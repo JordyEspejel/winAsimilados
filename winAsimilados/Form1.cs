@@ -1,0 +1,76 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using C = winAsimilados.Controller;
+using E = winAsimilados.Entities;
+
+namespace winAsimilados
+{
+    public partial class Form1 : Form
+    {
+        string fechaIni;
+        string fechaFinal;
+        string uuid;
+
+        C.Controller Controlador = new C.Controller();
+        E.UUID uUID = new E.UUID();
+
+        
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            fechaIni = fechaInicio.Value.ToString("dd/MM/yyyy");
+            fechaFinal = fechaFin.Value.ToString("dd/MM/yyyy");
+            Controlador.Buscar(gridControl1, fechaIni, fechaFinal);
+            gridControl1.Visible = true;
+            //MessageBox.Show(fechaIni, "Fecha");
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        [Obsolete]
+        private void btnGenerar_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Funciona", "XML & PDF");
+            var UUID = new List<E.UUID>();
+            E.UUID[] uid = null;
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+               if (gridView1.IsRowSelected(i))
+                {
+                    //MessageBox.Show(gridView1.GetRowCellValue(i, gridView1.Columns[1]).ToString());
+                    uuid = gridView1.GetRowCellValue(i, gridView1.Columns[1]).ToString();
+
+                    UUID.Add(new E.UUID
+                    {
+                        UIID = uuid
+                    });
+                    uid = UUID.ToArray();
+                }
+
+                //uUID.UIID = uuid;
+
+
+            }
+            Controlador.Generar(UUID);
+            //Controlador.LeerXML();
+        }
+
+        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+
+        }
+    }
+}

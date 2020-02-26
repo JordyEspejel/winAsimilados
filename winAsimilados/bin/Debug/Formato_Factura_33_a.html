@@ -1,0 +1,941 @@
+﻿<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title></title>
+    <style>
+            .textoContiguo {
+        -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word; /* Sólo WebKit -NO DOCUMENTADO */
+        -ms-hyphens: auto; /* Guiones para separar en sílabas */
+        -moz-hyphens: auto; /*  depende de lang en <html>      */
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+
+    </style>
+
+</head>
+
+<body lang=ES-MX link=blue vlink=#954F72>
+
+    <div class="container" style="font-family:Arial;">
+
+        <table class="textoContiguo">
+            <tr style="height:21.0pt">
+                <td width=187 rowspan=4 style="width:140.1pt;background:white;padding:0cm 5.4pt 0cm 5.4pt;
+  height:21.0pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif"></span></p>
+                </td>
+                <td width=494 valign=top style="width:370.2pt;background:#0082B7;padding:
+  0cm 5.4pt 0cm 5.4pt;height:21.0pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:10.0pt;font-family:Century Gothic,sans-serif;color:white">@Model.Emisor.Nombre</span>
+                        </b>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:14.05pt">
+                <td width=494 valign=top style="width:370.2pt;background:#0082B7;padding:
+  0cm 5.4pt 0cm 5.4pt;height:14.05pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:10.0pt;color:white">
+                                RFC:
+                                @Model.Emisor.Rfc
+                            </span>
+                        </b>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:12.3pt">
+                <td width=494 valign=top style="width:370.2pt;background:#0082B7;padding:
+  0cm 5.4pt 0cm 5.4pt;height:12.3pt">
+                    <p class=MsoNormal align=right style="text-align:right">
+                        <b>
+                            <span style="font-size:9.0pt;color:white">&nbsp;</span>
+                        </b>
+                    </p>
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;color:white">
+                                Tipo de Comprobante: @Model.TipoDeComprobante - Nómina
+                            </span>
+                        </b>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:20.3pt">
+                <td width=494 valign=top style="width:370.2pt;background:#0082B7;padding:
+  0cm 5.4pt 0cm 5.4pt;height:20.3pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:white">Lugar de Expedición: @Model.LugarExpedicion Ciudad de México</span>
+                        </b>
+                    </p>
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:white">
+                                Regimen Fiscal: @Model.Emisor.RegimenFiscal General de Ley Personas Morales
+                            </span>
+                        </b>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=718
+               style="width:19.0cm;border-collapse:collapse; border:groove">
+            <tr style="height:10.75pt">
+                <td width=116 style="width:87.0pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt;
+  height:10.75pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">Forma de pago</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=276 style="width:206.85pt;padding:0cm 5.4pt 0cm 5.4pt;height:10.75pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.FormaPago - Por definir</span></p>
+                </td>
+                <td width=16 rowspan=2 style="width:11.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:10.75pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">&nbsp;</span></p>
+                </td>
+                <td width=100 colspan=2 style="width:75.1pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 0cm;
+  height:10.75pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">Folio</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=178 style="width:133.5pt;padding:0cm 5.4pt 0cm 0cm;height:10.75pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;font-family:Calibri,sans-serif"></span>
+                        </b>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:7.95pt">
+                <td width=116 style="width:87.0pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt;
+  height:7.95pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">Metodo de pago</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=276 style="width:206.85pt;padding:0cm 5.4pt 0cm 5.4pt;height:7.95pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.MetodoPago - Pago en una sola exhibición </span></p>
+                </td>
+                <td width=52 style="width:39.25pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 0cm;
+  height:7.95pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">Fecha</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=48 style="width:35.85pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt;
+  height:7.95pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">&nbsp;</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=178 style="width:133.5pt;padding:0cm 5.4pt 0cm 0cm;height:7.95pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.Fecha</span>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:7.95pt">
+                <td width=116 style="width:87.0pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt;
+  height:7.95pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">Moneda:</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=276 style="width:206.85pt;padding:0cm 5.4pt 0cm 5.4pt;height:7.95pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.Moneda - Peso Mexicano</span></p>
+                </td>
+                <td width=16 style="width:11.65pt;padding:0cm 5.4pt 0cm 5.4pt;height:7.95pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">&nbsp;</span></p>
+                </td>
+                <td width=52 style="width:39.25pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 0cm;
+  height:7.95pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">&nbsp;</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=48 style="width:35.85pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt;
+  height:7.95pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">&nbsp;</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=178 style="width:133.5pt;padding:0cm 5.4pt 0cm 0cm;height:7.95pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">&nbsp;</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p class=MsoNormal><span lang=ES style="font-size:9.0pt;font-family:Calibri,sans-serif">&nbsp;</span></p>
+
+        <table style="width:19cm;border-collapse:collapse; border:groove">
+            <tr>
+                <td width=120 colspan=8 valign=top style="width:18.0cm;background:#D9D9D9; padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt; color:#0082B7">Datos del cliente</span>
+                        </b>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=76 valign=top style="width:56.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><strong><span style="font-size:9.0pt;font-family:Calibri,sans-serif">Cliente:</span></strong></p>
+                </td>
+                <td width=605 colspan=3 valign=top style="width:453.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.Receptor.Nombre</span></p>
+                </td>
+                <td width=76 valign=top style="width:56.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><strong><span style="font-size:9.0pt;font-family:Calibri,sans-serif">No.Empleado:</span></strong></p>
+                </td>
+                <td width=605 colspan=3 valign=top style="width:453.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.Nomina12.Receptor.NumEmpleado</span></p>
+                </td>
+
+            </tr>
+            <tr>
+                <td width=76 valign=top style="width:56.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><b><span style="font-size:9.0pt;font-family:Calibri,sans-serif">R.F.C.:</span></b></p>
+                </td>
+                <td width=227 valign=top style="width:6.0cm;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.Receptor.Rfc</span></p>
+                </td>
+                <td width=76 valign=top style="width:2.0cm;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=right style="text-align:right">
+                        <b>
+                            <span style="font-size:9.0pt;font-family:Calibri,sans-serif">Uso CFDI: </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=302 valign=top style="width:226.85pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.Receptor.UsoCFDI - Por definir</span></p>
+                </td>
+                <td width=76 valign=top style="width:56.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><b><span style="font-size:9.0pt;font-family:Calibri,sans-serif">DEPARTAMENTO:</span></b></p>
+                </td>
+                <td width=227 valign=top style="width:6.0cm;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.Nomina12.Receptor.Departamento</span></p>
+                </td>
+                <td width=76 valign=top style="width:56.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><b><span style="font-size:9.0pt;font-family:Calibri,sans-serif">Puesto:</span></b></p>
+                </td>
+                <td width=227 valign=top style="width:6.0cm;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.Nomina12.Receptor.Puesto</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td width=76 valign=top style="width:56.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><b><span style="font-size:9.0pt;font-family:Calibri,sans-serif">CURP:</span></b></p>
+                </td>
+                <td width=227 valign=top style="width:6.0cm;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.Nomina12.Receptor.Curp</span></p>
+                </td>
+                <td width=76 valign=top style="width:2.0cm;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=right style="text-align:right">
+                        <b>
+                            <span style="font-size:9.0pt;font-family:Calibri,sans-serif">IMSS: </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=302 valign=top style="width:226.85pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.Nomina12.Receptor.NumSeguridadSocial</span></p>
+                </td>
+                <td width=76 valign=top style="width:2.0cm;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=right style="text-align:right">
+                        <b>
+                            <span style="font-size:9.0pt;font-family:Calibri,sans-serif">DIAS:</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=302 valign=top style="width:226.85pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.Nomina12.NumDiasPagados</span></p>
+                </td>
+                <td width=76 valign=top style="width:2.0cm;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=right style="text-align:right">
+                        <b>
+                            <span style="font-size:9.0pt;font-family:Calibri,sans-serif">DEL PERIODO:</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=302 valign=top style="width:226.85pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.Nomina12.FechaInicialPago A @Model.Nomina12.FechaFinalPago</span></p>
+                </td>
+            </tr>
+        </table>
+
+        @foreach(var oConcepto in Model.Conceptos){
+
+        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=718
+               style="width:19.0cm;border-collapse:collapse; border:groove">
+            <tr>
+                <td width=148 valign=top style="width:111.35pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">Cantidad</span>
+                        </b>
+                    </p>
+                </td>
+
+                <td width=208 valign=top style="width:155.75pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">
+                                Clave
+                                Unidad SAT
+                            </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=249 valign=top style="width:186.4pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">
+                                Clave
+                                Producto/Servicio
+                            </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=119 valign=top style="width:89.25pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">
+                                Concepto
+                                / Descripción
+                            </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=91 valign=top style="width:68.3pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">
+                                Valor Unitario
+                            </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=91 valign=top style="width:68.3pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">Descuentos</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=226 valign=top style="width:169.15pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">Impuestos</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=126 valign=top style="width:94.65pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=right style="text-align:right">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">Importe</span>
+                        </b>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=148 style="width:111.35pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">@oConcepto.Cantidad</span>
+                    </p>
+                </td>
+                <td width=136 style="width:101.7pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">@oConcepto.ClaveUnidad</span>
+                    </p>
+                </td>
+
+                <td width=249 style="width:186.4pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal>
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">
+                            @oConcepto.ClaveProdServ
+                            -  @oConcepto.Descripcion
+                        </span>
+                    </p>
+                </td>
+                <td width=119 style="width:89.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal>
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">
+                            @oConcepto.Descripcion
+                        </span>
+                    </p>
+                </td>
+                <td width=91 style="width:68.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=Default align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">$@oConcepto.ValorUnitario</span>
+                    </p>
+                </td>
+                <td width=91 style="width:68.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=Default align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">$ @oConcepto.Descuento</span>
+                    </p>
+                </td>
+                <td width=226 style="width:169.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=Default align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">
+                            $ @oConcepto.Importe
+                        </span>
+                    </p>
+                </td>
+                <td width=126 style="width:94.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=right style="text-align:right">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">
+                            $ @(oConcepto.Cantidad*oConcepto.Importe)
+                        </span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+        }
+        <!-- Tabla percepciones / deducciones -->
+        @foreach(var oPercepcion in Model.Nomina12.Percepciones.Percepcion){
+        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=718
+               style="width:19.0cm;border-collapse:collapse; border:groove">
+            <tr>
+                <td width=148 valign=top style="width:111.35pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">Clave</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=136 valign=top style="width:101.7pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">Percepción</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=208 valign=top style="width:155.75pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">
+                                Exento
+                            </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=249 valign=top style="width:186.4pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">
+                                Gravado
+                            </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=119 valign=top style="width:89.25pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">
+                                Clave
+                            </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=91 valign=top style="width:68.3pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">
+                                Deducción
+                            </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=91 valign=top style="width:68.3pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">Importe</span>
+                        </b>
+                    </p>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td width=148 style="width:111.35pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">@oPercepcion.Clave</span>
+                    </p>
+                </td>
+                <td width=136 style="width:101.7pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">@oPercepcion.Concepto</span>
+                    </p>
+                </td>
+                <td width=208 style="width:155.75pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">$ @oPercepcion.ImporteExento</span>
+                    </p>
+                </td>
+
+                <td width=249 style="width:186.4pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal>
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">
+                            $ @oPercepcion.ImporteGravado
+                        </span>
+                    </p>
+                </td>
+                @foreach(var oDeduccion in Model.Nomina12.Deducciones.Deduccion){
+                <td width=119 style="width:89.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal>
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">
+                            @oDeduccion.Clave
+                        </span>
+                    </p>
+                </td>
+                <td width=91 style="width:68.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=Default align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">@oDeduccion.Concepto</span>
+                    </p>
+                </td>
+                <td width=91 style="width:68.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=Default align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">$ @oDeduccion.Importe</span>
+                    </p>
+                </td>
+                }
+            </tr>
+        </table>
+
+        }
+        <!-- Tabla total percepciones / deducciones -->
+        @foreach(var oPercepcion in Model.Nomina12.Percepciones.Percepcion){
+        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=718
+               style="width:19.0cm;border-collapse:collapse; border:groove">
+            <tr>
+                <td width=148 valign=top style="width:111.35pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#D9D9D9">Clave</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=136 valign=top style="width:101.7pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#D9D9D9">Percepción</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=208 valign=top style="width:155.75pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">
+                                Exento
+                            </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=249 valign=top style="width:186.4pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">
+                                Gravado
+                            </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=119 valign=top style="width:89.25pt;background:#D9D9D9;padding:
+  0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#D9D9D9">
+                                Clave
+                            </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=91 valign=top style="width:68.3pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">
+                                Importe
+                            </span>
+                        </b>
+                    </p>
+                </td>
+                <td width=91 valign=top style="width:68.3pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#D9D9D9">Importe</span>
+                        </b>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=148 style="width:111.35pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center; color:white">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">@oPercepcion.ImporteExento</span>
+                    </p>
+                </td>
+                <td width=136 style="width:101.7pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">Total Percepciones</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=208 style="width:155.75pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">$ @Model.Nomina12.Percepciones.TotalExento</span>
+                    </p>
+                </td>
+
+                <td width=249 style="width:186.4pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal>
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">
+                            $ @Model.Nomina12.Percepciones.TotalGravado
+                        </span>
+                    </p>
+                </td>
+                @foreach(var oDeduccion in Model.Nomina12.Deducciones.Deduccion){
+                <td width=119 style="width:89.25pt;padding:0cm 5.4pt 0cm 5.4pt">                    
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:9.0pt;color:#0082B7">Total Deducciones</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=91 style="width:68.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=Default align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">$  @oDeduccion.Importe</span>
+                    </p>
+                </td>
+                <td width=91 style="width:68.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=Default align=center style="text-align:center">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif; color:white">$ @oDeduccion.Importe</span>
+                    </p>
+                </td>
+                }
+            </tr>
+        </table>
+        
+        }
+
+        <!--  -->
+        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=718
+               style="width:19.0cm;border-collapse:collapse; border:groove">
+            <tr style="height:13.5pt">
+                <td width=446 style="width:334.85pt;padding:0cm 5.4pt 0cm 5.4pt;height:13.5pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">Importe con letra:</span>
+                        </b>
+                    </p>
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif"> @Model.MonedaConLetra</span></p>
+                </td>
+                <td width=16 style="width:12.25pt;padding:0cm 5.4pt 0cm 5.4pt;height:13.5pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#17365D">&nbsp;</span>
+                        </b>
+                    </p>
+                </td>
+
+                <td width=133 valign=bottom style="width:100.05pt;background:#D9D9D9;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.5pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">Subtotal</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=122 valign=bottom style="width:91.5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.5pt">
+                    <p class=MsoNormal align=right style="text-align:right">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">$  @Model.SubTotal</span>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:13.5pt">
+                <td width=463 colspan=2 style="width:347.1pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.5pt">
+                    <p class=MsoNormal><span style="font-size: 9.0pt; font-family: Calibri,sans-serif">&nbsp;</span></p>
+                </td>
+                <td width=133 valign=bottom style="width:100.05pt;background:#D9D9D9;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.5pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">Descuentos</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=122 valign=bottom style="width:91.5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.5pt">
+                    <p class=MsoNormal align=right style="text-align:right">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">$ @Model.Descuento</span>
+                    </p>
+                </td>
+            </tr>
+
+            <tr style="height:13.5pt">
+                <td width=463 colspan=2 style="width:347.1pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.5pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">&nbsp;</span></p>
+                </td>
+                <td width=133 valign=bottom style="width:100.05pt;background:#D9D9D9;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.5pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">Impuestos Trasladados</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=122 valign=bottom style="width:91.5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.5pt">
+                    <p class=MsoNormal align=right style="text-align:right">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">
+                        </span>
+                    </p>
+                </td>
+            </tr>
+
+            <tr style="height:14.45pt">
+                <td width=463 colspan=2 style="width:347.1pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:14.45pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">&nbsp;</span></p>
+                </td>
+                <td width=133 valign=bottom style="width:100.05pt;background:#D9D9D9;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.45pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">Total</span>
+                        </b>
+                    </p>
+                </td>
+                <td width=122 valign=bottom style="width:91.5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:14.45pt">
+                    <p class=MsoNormal align=right style="text-align:right">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">$ @Model.Total</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+        <br />
+        <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=718
+               style="width:19.0cm;border-collapse:collapse">
+            <tr style="height:13.5pt;">
+                <td width=207 rowspan=2 style="width:155.3pt;padding:0cm 5.4pt 0cm 5.4pt;  height:13.5pt">
+                    <img src="@Model.QR" width="250" height="250" />
+                </td>
+                <td width=17 rowspan=2 valign=top style="width:12.45pt;padding:0cm 5.4pt 0cm 5.4pt; height:13.5pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">&nbsp;</span></p>
+                </td>
+                <td width=223 style="width:167.1pt;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt;height:13.5pt; ">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:8.5pt; color:#0082B7">Serie del Certificado del emisor</span>
+                        </b>
+                    </p>
+                    <p class=MsoNormal>
+                        <strong>
+                            <span style="font-size:8.5pt;color:#0082B7">Folio fiscal</span>
+                        </strong>
+                    </p>
+                    <p class=MsoNormal>
+                        <strong>
+                            <span style="font-size:8.5pt; color:#0082B7">No. de Serie del Certificado del SAT</span>
+                        </strong>
+                    </p>
+                    <p class=MsoNormal>
+                        <strong>
+                            <span style="font-size:8.5pt;color:#0082B7">Fecha y hora de certificación</span>
+                        </strong>
+                    </p>
+                </td>
+                <td width=272 style="width:203.8pt;padding:0cm 5.4pt 0cm 5.4pt;height:13.5pt">
+                    <p class=MsoNormal><span style="font-size:8.5pt;font-family:Calibri,sans-serif">@Model.NoCertificado</span></p>
+                    <p class=MsoNormal><span style="font-size:8.5pt;font-family:Calibri,sans-serif">@Model.TimbreFiscalDigital.UUID</span></p>
+                    <p class=MsoNormal><span style="font-size:8.5pt;font-family:Calibri,sans-serif">@Model.TimbreFiscalDigital.NoCertificadoSAT</span></p>
+                    <p class=MsoNormal><span style="font-size:8.5pt;font-family:Calibri,sans-serif">@Model.Fecha</span></p>
+                </td>
+            </tr>
+            <tr style="height:13.5pt">
+                <td width=495 colspan=2 style="width:370.9pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.5pt">
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:8.5pt;color:#17365D">
+                                Este
+                                documento es una representación impresa de un CFDI
+                            </span>
+                        </b>
+                    </p>
+                    <p class=MsoNormal>&nbsp;</p>
+                    <p class=MsoNormal><span style="font-size:8.5pt;font-family:Calibri,sans-serif">&nbsp;</span></p>
+                    <p class=MsoNormal><span style="font-size:8.5pt;font-family:Calibri,sans-serif">&nbsp;</span></p>
+                </td>
+            </tr>
+            <tr style="height:13.5pt">
+                <td width=17 valign=bottom style="width:12.45pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.5pt">
+                    <p class=MsoNormal align=right style="text-align:right">
+                        <span style="font-size:9.0pt;font-family:Calibri,sans-serif">&nbsp;</span>
+                    </p>
+                </td>
+                <td width=495 colspan=2 style="width:370.9pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.5pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:8.5pt;
+  color:#17365D">&nbsp;</span>
+                        </b>
+                    </p>
+                    <p class=MsoNormal align=center style="text-align:center">
+                        <b>
+                            <span style="font-size:8.5pt;color:#17365D">&nbsp;</span>
+                        </b>
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+        <table class="textoContiguo" border=0 cellspacing=0 cellpadding=0 width=718
+               style="width:19.0cm;border-collapse:collapse; border:groove">
+            <tr>
+                <td width=718 colspan=2 valign=top style="width:19.0cm;background:#D9D9D9;
+  padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">Sello Digital del CFDi</span>
+                        </b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width=718 colspan=2 valign=top style="width:19.0cm;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="        font-size: 9.0pt;
+        font-family: Calibri,sans-serif
+">@Model.TimbreFiscalDigital.SelloCFD</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td width=506 valign=top style="width:379.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size: 9.0pt; font-family: Calibri,sans-serif">&nbsp;</span></p>
+                </td>
+                <td width=212 valign=top style="width:158.85pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">&nbsp;</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td width=718 colspan=2 valign=top style="width:19.0cm;background:#D9D9D9;
+  padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">Sello del SAT</span>
+                        </b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width=718 colspan=2 valign=top style="width:19.0cm;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">@Model.TimbreFiscalDigital.SelloSAT</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td width=506 valign=top style="width:379.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">&nbsp;</span></p>
+                </td>
+                <td width=212 valign=top style="width:158.85pt;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">&nbsp;</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td width=718 colspan=2 valign=top style="width:19.0cm;background:#D9D9D9;
+  padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal>
+                        <b>
+                            <span style="font-size:9.0pt;
+  color:#0082B7">
+                                Cadena original del complemento de certificación digital del
+                                SAT
+                            </span>
+                        </b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width=718 colspan=2 valign=top style="width:19.0cm;padding:0cm 5.4pt 0cm 5.4pt">
+                    <p class=MsoNormal><span style="font-size:9.0pt;font-family:Calibri,sans-serif">||@Model.TimbreFiscalDigital.Version|@Model.TimbreFiscalDigital.UUID|@Model.TimbreFiscalDigital.FechaTimbrado|@Model.TimbreFiscalDigital.RfcProvCertif|@Model.TimbreFiscalDigital.SelloCFD|@Model.TimbreFiscalDigital.NoCertificadoSAT</span></p>
+                </td>
+            </tr>
+        </table>
+
+
+
+
+    </div>
+
+</body>
+
+</html>
