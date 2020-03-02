@@ -25,6 +25,11 @@ namespace winAsimilados
         public Form1()
         {
             InitializeComponent();
+            if (Controlador.BuscarRecursos().Equals(false)){
+
+                Controlador.AgregarRecursos();
+               
+            }
         }
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
@@ -64,6 +69,7 @@ namespace winAsimilados
 
 
             }
+            //Controlador.AgregarRecursos();
             Controlador.Generar(UUID);
             //Controlador.LeerXML();
         }

@@ -23,6 +23,7 @@ namespace winAsimilados.Controller
 {
     class Controller
     {
+
         public void Buscar(GridControl grid, string fechaIni, string fechaFIn)
         {
             try
@@ -57,6 +58,88 @@ namespace winAsimilados.Controller
             string contenido = File.ReadAllText(pathFile);
             return contenido;
         }
+        public bool BuscarRecursos()
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "/";
+            string pathHTMLPlantilla = path + "Formato_Factura_33_a.html";
+            string pathWKHTMLTOPDF = path + "wkhtmltopdf\\wkhtmltopdf.exe";
+
+            if (!File.Exists(pathHTMLPlantilla) || !File.Exists(pathWKHTMLTOPDF))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public void AgregarRecursos()
+        {
+            string pathDestino = AppDomain.CurrentDomain.BaseDirectory + "/";
+            string pathHTMLPlantilla = pathDestino + "Formato_Factura_33_a.html";
+            string pathWKHTMLTOPDF = pathDestino + "wkhtmltopdf\\wkhtmltopdf.exe"; 
+            string pathOrigen = @"C:/DocAsimilados/";
+            string plantillaNombre = "Formato_Factura_33_a.html";
+            string archivo = null;
+
+            string origenPlantilla = Path.Combine(pathOrigen, plantillaNombre);
+            string destinoPlantilla = Path.Combine(pathDestino, plantillaNombre);
+            string origenPDF = Path.Combine(pathOrigen, "wkhtmltopdf/");
+            string destinoPDF = null;
+
+            if (BuscarRecursos().Equals(false))
+            {
+                if (!File.Exists(pathHTMLPlantilla))
+                {
+                    try
+                    {
+                        File.Copy(origenPlantilla, destinoPlantilla, true);
+                    }catch (Exception e)
+                    {
+                        MessageBox.Show(e.Message + "\nHubo un error al intentar generar los archivos necesarios para crear PDF, por favor pongase en contacto con el administrador de sistema.", "Error");
+                    }
+                }
+
+                if (!File.Exists(pathWKHTMLTOPDF))
+                {
+                    try
+                    {
+                        if (!Directory.Exists(origenPDF))
+                        {
+                            MessageBox.Show("La carpeta de origen de archivos PDF no existe.\nPor favor, notifique al administrador de sistema.","Error");
+                        }
+                        else
+                        {
+                            if (!Directory.Exists(pathDestino + "wkhtmltopdf"))
+                            {
+                                Directory.CreateDirectory(pathDestino + "wkhtmltopdf");
+                            }
+                            else
+                            {
+                                string[] files = Directory.GetFiles(origenPDF);
+                                foreach (string f in files)
+                                {
+                                    archivo = Path.GetFileName(f);
+                                    destinoPDF = Path.Combine(pathDestino + "wkhtmltopdf", archivo);
+                                    File.Copy(f, destinoPDF, true);
+                                }
+                            }
+                        }
+                    }catch(Exception e)
+                    {
+                        MessageBox.Show(e.Message + "\nHubo un error al intentar generar los archivos necesarios para crear PDF, por favor pongase en contacto con el administrador de sistema.", "Error");
+
+                    }
+                }
+
+            }
+            else
+            {
+
+            }
+        }
+
 
         [Obsolete]
         public void LeerXML(string pathXML, string pathF)
@@ -156,99 +239,109 @@ namespace winAsimilados.Controller
         [Obsolete]
         public bool Generar(List<E.UUID> list)
         {
-            try
-            {
-                string XML = null;
-                string RFC = null;
-                string dia = null;
-                string mes = null;
-                string year = null;
-                string fechaPago = null;
-                string nombreTrabajador = null;
-                string UUID = null;
-                int cont = 0;
-                if (list.Count() == 0)
+            if (BuscarRecursos().Equals(true)){
+                try
                 {
-                    MessageBox.Show("Por favor, seleccione una celda", "Error");
+                    string XML = null;
+                    string RFC = null;
+                    string dia = null;
+                    string mes = null;
+                    string year = null;
+                    string fechaPago = null;
+                    string nombreTrabajador = null;
+                    string UUID = null;
+                    int cont = 0;
+                    if (list.Count() == 0)
+                    {
+                        MessageBox.Show("Por favor, seleccione una celda", "Error");
+                        return false;
+                    }
+                    else
+                    {
+                        //MessageBox.Show(list.Count().ToString());
+                        foreach (var uuid in list)
+                        {
+                            cont++;
+                            //MessageBox.Show(uuid.UIID,"Información");
+                            try
+                            {
+                                N.Conexion.PerformConnection().Open();
+                                SqlCommand QueryUUID = N.Conexion.PerformConnection().CreateCommand();
+                                SqlDataReader readerUUID;
+                                QueryUUID.CommandText = @"Select top 1 XML_ADJUNTO, RFC, FechaPago, Receptor_Nombre, ADC.UUID from ADC
+                                inner join Nom_Generales on Nom_Generales.UUID = ADC.UUID
+                                inner join Doc_Encabezados on Doc_Encabezados.UUID = ADC.UUID
+                                where ADC.UUID= @uuid";
+                                QueryUUID.Parameters.AddWithValue("@uuid", uuid.UIID);
+
+                                readerUUID = QueryUUID.ExecuteReader();
+                                while (readerUUID.Read())
+                                {
+                                    XML = readerUUID.GetString(0).ToString();
+                                    RFC = readerUUID.GetString(1).ToString();
+                                    fechaPago = readerUUID.GetDateTime(2).ToString("dd-MM-yyy");
+                                    nombreTrabajador = readerUUID.GetString(3).ToString();
+                                    UUID = readerUUID.GetString(4).ToString();
+                                }
+                                readerUUID.Close();
+                                N.Conexion.PerformConnection().Close();
+                                //MessageBox.Show(XML);
+                                dia = DateTime.Now.Day.ToString();
+                                mes = DateTime.Now.Month.ToString();
+                                year = DateTime.Now.Year.ToString();
+                                string ruta = @"C:/XML/" + fechaPago + "/";
+                                if (!Directory.Exists(ruta))
+                                {
+                                    Directory.CreateDirectory(ruta);
+                                }
+                                string name = fechaPago.ToString() + "_" + RFC + "_" + nombreTrabajador + "_" + UUID;
+                                string nombre = fechaPago.ToString() + "_" + RFC + "_" + nombreTrabajador + "_" + UUID;
+                                string rutafila = Path.Combine(ruta, nombre);
+                                if (File.Exists(rutafila + ".xml"))
+                                {
+                                    MessageBox.Show("Los archivos de " + nombreTrabajador + ":\n(UUID: " + UUID + ")" + "\nYa fueron creados con anterioridad.", "Aviso");
+
+                                }
+                                else
+                                {
+                                    FileStream fs = new FileStream(path: ruta + nombre + ".xml", mode: FileMode.Create);
+                                    byte[] info = new UTF8Encoding(true).GetBytes(XML);
+                                    fs.Write(info, 0, info.Length);
+                                    fs.Close();
+
+                                    LeerXML(rutafila, rutafila);
+                                }
+
+                                if (cont == list.Count())
+                                {
+                                    MessageBox.Show("¡Proceso Terminado!", "Mensaje");
+                                }
+
+                            }
+                            catch (Exception e)
+                            {
+                                N.Conexion.PerformConnection().Close();
+                                MessageBox.Show(e.Message + "\nControlador: Generar(Foreach{})", "Error");
+                            }
+                        }
+                        return true;
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message + "\nError Controller: Generar()", "Error");
+                    
                     return false;
                 }
-                else
-                {
-                    //MessageBox.Show(list.Count().ToString());
-                    foreach (var uuid in list)
-                    {
-                        cont++;
-                        //MessageBox.Show(uuid.UIID,"Información");
-                        try
-                        {
-                            N.Conexion.PerformConnection().Open();
-                            SqlCommand QueryUUID = N.Conexion.PerformConnection().CreateCommand();
-                            SqlDataReader readerUUID;
-                            QueryUUID.CommandText = @"Select top 1 XML_ADJUNTO, RFC, FechaPago, Receptor_Nombre, ADC.UUID from ADC
-                            inner join Nom_Generales on Nom_Generales.UUID = ADC.UUID
-                            inner join Doc_Encabezados on Doc_Encabezados.UUID = ADC.UUID
-                            where ADC.UUID= @uuid";
-                            QueryUUID.Parameters.AddWithValue("@uuid", uuid.UIID);
-
-                            readerUUID = QueryUUID.ExecuteReader();
-                            while (readerUUID.Read())
-                            {
-                                XML = readerUUID.GetString(0).ToString();
-                                RFC = readerUUID.GetString(1).ToString();
-                                fechaPago = readerUUID.GetDateTime(2).ToString("dd-MM-yyy");
-                                nombreTrabajador = readerUUID.GetString(3).ToString();
-                                UUID = readerUUID.GetString(4).ToString();
-                            }
-                            readerUUID.Close();
-                            N.Conexion.PerformConnection().Close();
-                            //MessageBox.Show(XML);
-                            dia = DateTime.Now.Day.ToString();
-                            mes = DateTime.Now.Month.ToString();
-                            year = DateTime.Now.Year.ToString();
-                            string ruta = @"C:/XML/"+fechaPago + "/";
-                            if (!Directory.Exists(ruta))
-                            {
-                                Directory.CreateDirectory(ruta);
-                            }
-                            string name = fechaPago.ToString() + "_" + RFC + "_" + nombreTrabajador +"_" + UUID;
-                            string nombre =  fechaPago.ToString() + "_" + RFC + "_" + nombreTrabajador +"_" + UUID;
-                            string rutafila = Path.Combine(ruta, nombre);
-                            if (File.Exists(rutafila + ".xml"))
-                            {
-                                MessageBox.Show("Los archivos de " + nombreTrabajador +":\n(UUID: " + UUID + ")"+ "\nYa fueron creados con anterioridad.", "Aviso");
-
-                            }
-                            else
-                            {
-                                FileStream fs = new FileStream(path: ruta + nombre + ".xml", mode: FileMode.Create);
-                                byte[] info = new UTF8Encoding(true).GetBytes(XML);
-                                fs.Write(info, 0, info.Length);
-                                fs.Close();
-
-                                LeerXML(rutafila, rutafila);
-                            }
-
-                            if (cont == list.Count())
-                            {
-                                MessageBox.Show("¡Proceso Terminado!", "Mensaje");
-                            }
-
-                        }
-                        catch (Exception e)
-                        {
-                            N.Conexion.PerformConnection().Close();
-                            MessageBox.Show(e.Message + "\nControlador: Generar(Foreach{})", "Error");
-                        }
-                    }
-                    return true;
-                }
-
             }
-            catch (Exception e)
+            else
             {
-                MessageBox.Show(e.Message + "\nError Controller: Generar()" , "Error");
+                MessageBox.Show("Faltan archivos necesarios para generar PDF, Por favor pongase en contacto con el administrador de sistema.", "Error");
+                AgregarRecursos();
                 return false;
             }
+ 
         }
     }
 }
