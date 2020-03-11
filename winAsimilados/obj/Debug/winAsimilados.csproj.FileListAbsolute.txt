@@ -142,3 +142,14 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilad
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.csproj.CopyComplete
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.exe
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.pdb
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.Login.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.csprojAssemblyReference.cache
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\soprclscomp.dll
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\Microsoft.SqlServer.Types.dll
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\es\Microsoft.SqlServer.Types.resources.dll
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.AsimiladosPrincipal.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.ListaEmpresas.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\DevExpress.CodeParser.v18.1.dll
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\DevExpress.DemoData.v18.1.dll
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\DevExpress.Tutorials.v18.1.dll
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\DevExpress.DemoData.v18.1.Core.dll

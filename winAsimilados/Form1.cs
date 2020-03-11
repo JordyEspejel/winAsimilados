@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using C = winAsimilados.Controller;
 using E = winAsimilados.Entities;
+using V = winAsimilados.Views;
 
 namespace winAsimilados
 {
@@ -20,6 +21,7 @@ namespace winAsimilados
 
         C.Controller Controlador = new C.Controller();
         E.UUID uUID = new E.UUID();
+        E.Empresa empresa = new E.Empresa();
 
         
         public Form1()
@@ -28,7 +30,7 @@ namespace winAsimilados
             if (Controlador.BuscarRecursos().Equals(false)){
 
                 Controlador.AgregarRecursos();
-               
+
             }
         }
         private void BtnBuscar_Click(object sender, EventArgs e)
@@ -48,6 +50,8 @@ namespace winAsimilados
         [Obsolete]
         private void btnGenerar_Click(object sender, EventArgs e)
         {
+            string message = C.Conexion.PerformConnection().Database;
+            MessageBox.Show(message);
             //MessageBox.Show("Funciona", "XML & PDF");
             var UUID = new List<E.UUID>();
             E.UUID[] uid = null;
@@ -76,7 +80,12 @@ namespace winAsimilados
 
         private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
+            
+        }
 
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

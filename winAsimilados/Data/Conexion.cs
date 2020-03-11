@@ -11,6 +11,7 @@ namespace winAsimilados.Controller
     class Conexion
     {
         static SqlConnection Connection_BD;
+        static SqlConnection Connection_BDSoprade;
         private static Conexion Instance = null;
 
         private Conexion()
@@ -63,6 +64,7 @@ namespace winAsimilados.Controller
             {
                 Instance = null;
                 Connection_BD.Close();
+                Connection_BDSoprade.Close();
             }
             catch (Exception e)
             {
@@ -76,9 +78,45 @@ namespace winAsimilados.Controller
             {
                 if (Connection_BD == null)
                 {
-                    Connection_BD = new SqlConnection("Data Source=server-contpaq\\compac17;Initial Catalog=Nomina_Empresa17;User ID=sa;Password=Supervisor2020.;");
+                    //Connection_BD = new SqlConnection("Data Source=server-contpaq\\compac17;Initial Catalog=Nomina_Empresa17;User ID=sa;Password=Supervisor2020.;");
+                    Connection_BD = new SqlConnection("Data Source=server-contpaq\\compac17;Initial Catalog=BSNOMINAS;User ID=sa;Password=Supervisor2020.;");
+
                 }
                 return Connection_BD;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error");
+                return null;
+            }
+        }
+
+        public static SqlConnection ChangeConnection(string BD)
+        {
+            try
+            {
+                if (Connection_BD != null)
+                {
+                    Connection_BD.ChangeDatabase(BD);
+                  
+                }
+                return Connection_BD;
+            }catch(Exception e)
+            {
+                MessageBox.Show(e.Message, "Error");
+                return null;
+            }
+        }
+
+        public static SqlConnection PerformConnectionSoprade()
+        {
+            try
+            {
+                if (Connection_BDSoprade == null)
+                {
+                    Connection_BDSoprade = new SqlConnection("Data Source=db-server\\inarisql;Initial Catalog=dbDatosNomina;User ID=sa;Password=Sql1N4r1;");
+                }
+                return Connection_BDSoprade;
             }
             catch (Exception e)
             {
@@ -92,10 +130,15 @@ namespace winAsimilados.Controller
             try
             {
                 Connection_BD.Close();
+                Connection_BDSoprade.Close();
+                if (Connection_BDSoprade.State == System.Data.ConnectionState.Closed)
+                {
+                    MessageBox.Show("Conexion Cerrada", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Error");
+                MessageBox.Show(e.Message + "Error Conexion()", "Error");
             }
         }
     }

@@ -18,17 +18,102 @@ using System.Xml.Xsl;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Serialization;
+using D = soprclscomp;
 using System.Diagnostics;
+using V = winAsimilados.Views;
+
 namespace winAsimilados.Controller
 {
     class Controller
     {
-
-        public void Buscar(GridControl grid, string fechaIni, string fechaFIn)
+        public bool AccedeEmpresa(string Empresa)
         {
             try
             {
                 N.Conexion.PerformConnection().Open();
+                N.Conexion.PerformConnection().ChangeDatabase(Empresa);
+                return true;
+            }catch (Exception e)
+            {
+                MessageBox.Show(e.Message + "\nError en controlador:AccedeEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                N.Conexion.PerformConnection().Close();
+                return false;
+            }
+        }
+        public bool Login(Object _P)
+        {
+            try
+            {
+                E.User User = (E.User)_P;
+                N.Conexion.PerformConnectionSoprade().Open();
+                SqlCommand queryLogin = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                D.clsSeguridad seguridad = new D.clsSeguridad();
+                SqlDataReader readerLogin;
+                string passEncrip = seguridad.EncryptString(User.pass);
+
+                //MessageBox.Show("\nPASS: " + passEncrip + "\nUsua: " + User.usuario.ToUpper());
+
+                queryLogin.CommandText = @"select usuaIDUsua, usuaPasswd from segUsuarios where usuaIDUsua = @usuario and usuaPasswd = @pass";
+                queryLogin.Parameters.AddWithValue("@usuario", User.usuario.ToUpper());
+                queryLogin.Parameters.AddWithValue("@pass", passEncrip.ToString());
+                readerLogin = queryLogin.ExecuteReader();
+                
+
+                if (readerLogin.Read())
+                {
+                    //MessageBox.Show("Entra", "");
+                    //Form1 frm = new Form1();
+                    //frm.Show();
+                    readerLogin.Close();
+                    N.Conexion.PerformConnectionSoprade().Close();
+                    return true;
+                }
+                else
+                {
+                    //MessageBox.Show("no entra", "");
+                    readerLogin.Close();
+                    N.Conexion.PerformConnectionSoprade().Close();
+                    return false;
+                }
+
+
+                           
+            }catch (Exception e)
+            {
+                MessageBox.Show(e.Message + "Error login()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                N.Conexion.PerformConnectionSoprade().Close();
+                return false;
+            }
+        }
+
+        public void ListadoEmpresas(GridControl grid)
+        {
+            try
+            {
+                N.Conexion.PerformConnection().Close();
+                N.Conexion.PerformConnection().Open();
+                SqlCommand queryListado = N.Conexion.PerformConnection().CreateCommand();
+                queryListado.CommandText = @"SELECT Numero_Empresa as 'Numero Empresa', Nombre_Empresa as 'EMPRESA',RFC_Empresa AS 'R.F.C.'
+                                            ,STATUS,TablaEmpresa AS 'Base de Datos'
+                                            from Listado_Empresas where status='1'";
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = queryListado;
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                grid.DataSource = dataSet.Tables[0];
+                N.Conexion.PerformConnection().Close();
+
+            }catch (Exception e)
+            {
+                MessageBox.Show(e.Message + "\nError Controlador: ListadoEmpresas()","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void Buscar(GridControl grid, string fechaIni, string fechaFIn)
+        {
+            try
+            {
+               // N.Conexion.PerformConnection().Open();
+                //N.Conexion.PerformConnection().ChangeDatabase("Nomina_Empresa17");
                 SqlCommand queryBuscar = N.Conexion.PerformConnection().CreateCommand();
                 queryBuscar.CommandText = @"SELECT Nom_Generales.FechaPago as 'Fecha Pago',Nom_Generales.UUID,Doc_Encabezados.Total AS 'IMPORTE PAGADO',Doc_Encabezados.Receptor_Rfc as 'R.F.C TRABAJADOR'
                 ,Doc_Encabezados.Receptor_Nombre as 'NOMBRE DEL TRABAJADOR',ADC.FECHA_INICIAL,ADC.FECHA_FINAL,Nom_Generales.NumDiasPagados AS 'DIAS PAGADOS',
@@ -44,12 +129,13 @@ namespace winAsimilados.Controller
                 DataSet dataSet = new DataSet();
                 dataAdapter.Fill(dataSet);
                 grid.DataSource = dataSet.Tables[0];
-                N.Conexion.PerformConnection().Close();
+             //   N.Conexion.PerformConnection().Close();
                 
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message + "\n Controller: Buscar()", "Error");
+                MessageBox.Show(e.Message + "\n Controller: Buscar()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                N.Conexion.PerformConnection().Close();
             }            
         }
 
@@ -181,16 +267,6 @@ namespace winAsimilados.Controller
                                          (Nomina)oSerializerComplemento.Deserialize(readerComplemento);
 
                                 }
-
-                                //XmlSerializer oSerializerComplemento2 = new XmlSerializer(typeof(NominaDeduccionesDeduccion));
-                                //using (var readerComplemento1 = new StringReader(oComplementoInterior.OuterXml))
-                                //{
-
-                                //    oComprobante.Deduccion =
-                                //        (NominaDeduccionesDeduccion)oSerializerComplemento2 .Deserialize(readerComplemento1);
-                                //}
-
-
                             }
                         }
                     }
@@ -265,7 +341,7 @@ namespace winAsimilados.Controller
                             //MessageBox.Show(uuid.UIID,"Información");
                             try
                             {
-                                N.Conexion.PerformConnection().Open();
+                              //  N.Conexion.PerformConnection().Open();
                                 SqlCommand QueryUUID = N.Conexion.PerformConnection().CreateCommand();
                                 SqlDataReader readerUUID;
                                 QueryUUID.CommandText = @"Select top 1 XML_ADJUNTO, RFC, FechaPago, Receptor_Nombre, ADC.UUID from ADC
@@ -284,7 +360,7 @@ namespace winAsimilados.Controller
                                     UUID = readerUUID.GetString(4).ToString();
                                 }
                                 readerUUID.Close();
-                                N.Conexion.PerformConnection().Close();
+                               // N.Conexion.PerformConnection().Close();
                                 //MessageBox.Show(XML);
                                 dia = DateTime.Now.Day.ToString();
                                 mes = DateTime.Now.Month.ToString();
