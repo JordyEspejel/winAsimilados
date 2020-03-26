@@ -50,8 +50,8 @@ namespace winAsimilados
         [Obsolete]
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            string message = C.Conexion.PerformConnection().Database;
-            MessageBox.Show(message);
+            //string message = C.Conexion.PerformConnection().Database;
+            //MessageBox.Show(message);
             //MessageBox.Show("Funciona", "XML & PDF");
             var UUID = new List<E.UUID>();
             E.UUID[] uid = null;

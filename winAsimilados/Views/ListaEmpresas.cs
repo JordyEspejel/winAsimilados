@@ -72,8 +72,10 @@ namespace winAsimilados.Views
                     //C.Conexion.PerformConnection().Close();
                     this.Dispose();
                     V.AsimiladosPrincipal principal = new V.AsimiladosPrincipal();
-                    principal.lblEmpresa.Text = empresa.empresa;
-                    principal.lblRFC.Text = empresa.RFC;
+                    principal.lblEmpresa.Caption = empresa.empresa;
+                    principal.lblRFC.Caption = empresa.RFC;
+                    //principal.Text = "WinAsimilados - " + empresa.empresa + " - " + empresa.RFC;
+                    
                     principal.ShowDialog();
                     salida = false;
                     

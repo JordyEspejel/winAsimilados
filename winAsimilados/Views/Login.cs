@@ -44,15 +44,15 @@ namespace winAsimilados.Views
                 //MessageBox.Show("entra login()", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (Controlador.Login(User).Equals(true))
                 {
+                    this.Hide();
                     salida = false;
                     //Form1 frm = new Form1();
                     //frm.Show();
                     //V.AsimiladosPrincipal Prin = new V.AsimiladosPrincipal();
                     //Prin.Show();
-                    V.ListaEmpresas listaEmpresas = new V.ListaEmpresas();
+                    V.ListaEmpresas listaEmpresas = new V.ListaEmpresas();               
                     listaEmpresas.ShowDialog();
-                    this.Dispose();
-
+                    //this.Dispose();
 
                 }
                 else
@@ -76,6 +76,10 @@ namespace winAsimilados.Views
                 else if (result == DialogResult.No)
                 {
                     e.Cancel = true;
+                }
+                else
+                {
+                    this.Dispose();
                 }
             }
         }

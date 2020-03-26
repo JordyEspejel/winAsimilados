@@ -21,6 +21,10 @@ using System.Xml.Serialization;
 using D = soprclscomp;
 using System.Diagnostics;
 using V = winAsimilados.Views;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors;
+using DevExpress.XtraPrinting.Native;
+using DevExpress.XtraSplashScreen;
 
 namespace winAsimilados.Controller
 {
@@ -86,6 +90,258 @@ namespace winAsimilados.Controller
             }
         }
 
+        public void AgregaEmpleado(Object _P)
+        {
+            try
+            {
+                E.Empleado empleado = (E.Empleado)_P;
+                int numEmplAnt =0, numEmplNue = 0;
+                SqlCommand queryNumEmpl = N.Conexion.PerformConnection().CreateCommand();
+                queryNumEmpl.CommandText = @"select max (cast(NUM_EMPLEADO as int)) from EMPLEADOS";
+                SqlDataReader readerNumEmpl;
+                readerNumEmpl = queryNumEmpl.ExecuteReader();
+
+                if (readerNumEmpl.Read())
+                {
+                    numEmplAnt = Convert.ToInt32(readerNumEmpl.GetInt32(0));
+                    numEmplNue = numEmplAnt + 1;
+                }
+                readerNumEmpl.Close();
+                //MessageBox.Show(numEmplAnt + "\n" + numEmplNue);
+
+                SqlCommand queryBuscaEmpl = N.Conexion.PerformConnection().CreateCommand();
+                queryBuscaEmpl.CommandText = @"select * from Empleados where RFC = @rfc";
+                SqlDataReader ReaderEmpl;
+                queryBuscaEmpl.Parameters.AddWithValue("@rfc", empleado.RFC);
+                ReaderEmpl = queryBuscaEmpl.ExecuteReader();
+
+                SqlCommand queryInsertaEmpl = N.Conexion.PerformConnection().CreateCommand();
+                queryInsertaEmpl.CommandText = @"INSERT INTO [dbo].[EMPLEADOS]
+                ([NUM_EMPLEADO]
+                ,[NOMBRE]
+                ,[RFC]
+                ,[CURP]
+                ,[TIPO_REGIMEN]
+                ,[DEPARTAMENTO]
+                ,[FECHA_INICIO_LABORAL]
+                ,[PUESTO]
+                ,[TIPO_CONTRATO]
+                ,[TIPO_JORNADA]
+                ,[PERIODICIDAD_PAGO]
+                ,[SINDICALIZADO])
+                VALUES
+                ('" + numEmplNue + "','" + empleado.Nombre + "','" + empleado.RFC + "','" + empleado.CURP + "','" + "09'," + "'ASIMILADOS'," + "'01/01/1900'," + "'ASIMILADOS',"
+                + "'99'," + "'00','" + empleado.Periodicidad + "'," + "'No'" + ")";
+                
+                if (ReaderEmpl.Read())
+                {
+                    MessageBox.Show("El empleado:" + empleado.Nombre + "\nYa se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ReaderEmpl.Close();
+                }
+                else
+                {
+                    //MessageBox.Show("No existe");
+                    ReaderEmpl.Close();
+                    if (queryInsertaEmpl.ExecuteNonQuery().Equals(1))
+                    {
+                        MessageBox.Show("¡Empleado agregado satisfactoriamente!", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message + "\nError Controlador: AgregaEmpleado()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        public void AgregarEmpleadoMasivo(List<E.Empleado> list, Object _P, SplashScreenManager splashManager)
+        {
+            try
+            {
+                StreamWriter writer = null;
+                StringBuilder builder = null;
+                string url = @"C:\AsimiladosLogs\";
+                if (!Directory.Exists(url))
+                {
+                    Directory.CreateDirectory(url);
+                }
+                string NombreArchivo = Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
+                + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
+                + "-" + DateTime.Now.Second.ToString());
+                string path = Path.Combine(url, NombreArchivo + ".INARI");
+                int numEmplAnt = 0, numEmplNue = 0, contErrores = 0, contExito = 0, cont = 0, contErrRFC = 0, contErrCURP = 0, validaCURP = 0, ValidaRFC = 0, ValidaExiste = 0, TotalErrores = 0;
+                E.Empleado empleado = (E.Empleado)_P;
+
+                builder = new StringBuilder();
+                builder.AppendLine();
+                builder.Append("********************************   Erroes Encontrados  ******************************************" + "\r\n");
+                builder.AppendLine();
+
+                foreach (var empl in list)
+                {
+                    builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                    builder.AppendLine();
+
+                    cont++;
+                    SqlCommand queryNumEmpl = N.Conexion.PerformConnection().CreateCommand();
+                    queryNumEmpl.CommandText = @"select max (cast(NUM_EMPLEADO as int)) from EMPLEADOS";
+                    SqlDataReader readerNumEmpl;
+                    readerNumEmpl = queryNumEmpl.ExecuteReader();
+
+                    if (readerNumEmpl.Read())
+                    {
+                        numEmplAnt = Convert.ToInt32(readerNumEmpl.GetInt32(0));
+                        numEmplNue = numEmplAnt + 1;
+                    }
+                    readerNumEmpl.Close();
+                    //MessageBox.Show(numEmplAnt + "\n" + numEmplNue);
+
+                    SqlCommand queryBuscaEmpl = N.Conexion.PerformConnection().CreateCommand();
+                    queryBuscaEmpl.CommandText = @"select * from Empleados where RFC = @rfc";
+                    SqlDataReader ReaderEmpl;
+                    queryBuscaEmpl.Parameters.AddWithValue("@rfc", empl.RFC);
+                    ReaderEmpl = queryBuscaEmpl.ExecuteReader();
+
+                    SqlCommand queryInsertaEmpl = N.Conexion.PerformConnection().CreateCommand();
+                    queryInsertaEmpl.CommandText = @"INSERT INTO [dbo].[EMPLEADOS]
+                    ([NUM_EMPLEADO]
+                    ,[NOMBRE]
+                    ,[RFC]
+                    ,[CURP]
+                    ,[TIPO_REGIMEN]
+                    ,[DEPARTAMENTO]
+                    ,[FECHA_INICIO_LABORAL]
+                    ,[PUESTO]
+                    ,[TIPO_CONTRATO]
+                    ,[TIPO_JORNADA]
+                    ,[PERIODICIDAD_PAGO]
+                    ,[SINDICALIZADO])
+                    VALUES
+                    ('" + numEmplNue + "','" + empl.Nombre + "','" + empl.RFC + "','" + empl.CURP + "','" + "09'," + "'ASIMILADOS'," + "'01/01/1900'," + "'ASIMILADOS',"
+                        + "'99'," + "'00','" + empl.Periodicidad + "'," + "'No'" + ")";
+
+                    if (!empl.RFC.Length.Equals(13))
+                    {
+                        contErrRFC++;
+                        string MensajeRFC = "RFC no cumple con el formato correcto, favor de verificar.";
+                        //contErrores++;
+                        ValidaRFC = 0;
+                        builder.Append(MensajeRFC);
+                        builder.AppendLine();
+                    }
+                    else
+                    {
+                        ValidaRFC = 1;
+                    }
+
+                    if (!empl.CURP.Length.Equals(18))
+                    {
+                        contErrCURP++;
+                        string MensajeCURP = "CURP no cumple con el formato correcto, favor de verificar";
+                        //contErrores++;
+                        validaCURP = 0;
+                        builder.Append(MensajeCURP);
+                        builder.AppendLine();
+                    }
+                    else
+                    {
+                        validaCURP = 1;
+                    }
+
+                    if (ReaderEmpl.Read())
+                    {
+                        contErrores++;                    
+                        string MensajeExiste = "El empleado ya fue registrado anteriormete.";
+                        //MessageBox.Show("El empleado:" + empleado.Nombre + "\nYa se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ReaderEmpl.Close();
+                        ValidaExiste = 0;
+                        builder.Append(MensajeExiste);
+                        builder.AppendLine();
+                    }
+                    else
+                    {
+                        ReaderEmpl.Close();
+                        ValidaExiste = 1;
+                    }
+
+                    builder.Append("*************************************************************************************************");
+                    builder.AppendLine();
+                    //MessageBox.Show("No existe");
+
+                    if (validaCURP == 1 && ValidaRFC == 1 && ValidaExiste == 1)
+                    {
+                        if (queryInsertaEmpl.ExecuteNonQuery().Equals(1))
+                        {
+                            contExito++;
+                            //MessageBox.Show("¡Empleado agregado satisfactoriamente!", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                        }
+                    }
+                        
+                    if (cont == list.Count())
+                    {
+                        if (contErrores > 0)
+                        {
+                            //Aqui se genera el log
+                            TotalErrores = contErrores + contErrRFC + contErrCURP;
+                            builder.AppendLine();
+                            builder.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
+                            splashManager.CloseWaitForm();
+                            MessageBox.Show("Proceso terminado con " + TotalErrores + " errores y " + contExito + " con éxito.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            writer = new StreamWriter(path, true);
+                            writer.Write(builder);
+                            writer.Close();
+                            FileStream file = new FileStream(path, FileMode.Open);
+                        }
+                        else
+                        {
+                            splashManager.CloseWaitForm();
+                            MessageBox.Show("¡Carga masiva terminada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                splashManager.CloseWaitForm();
+                MessageBox.Show(e.Message + "\nError Controlador: AgregaEmpleadoMasivo()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void ListaEmpleados (string bd, GridControl grid)
+        {
+            try
+            {
+                N.Conexion.PerformConnection().Close();
+                N.Conexion.PerformConnection().Open();
+                N.Conexion.PerformConnection().ChangeDatabase(bd);
+
+                SqlCommand queryListaEmpleados = N.Conexion.PerformConnection().CreateCommand();
+                queryListaEmpleados.CommandText = @"SELECT
+                                                    [NUM_EMPLEADO] as [# EMPLEADO]
+                                                  ,[NOMBRE] 
+                                                  ,[RFC]   
+                                                  ,[CURP]
+                                                  ,[PERIODICIDAD_PAGO] as [PERIODICIDAD PAGO]
+                                              FROM [EMPLEADOS]";
+                
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = queryListaEmpleados;
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                grid.DataSource = dataSet.Tables[0];
+                //string message = N.Conexion.PerformConnection().Database;
+                //MessageBox.Show(message);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message + "\nError Controller: ListaEmpleados()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public void ListadoEmpresas(GridControl grid)
         {
             try

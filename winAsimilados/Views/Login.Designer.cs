@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.txtUsua = new DevExpress.XtraEditors.TextEdit();
             this.lblUsua = new DevExpress.XtraEditors.LabelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -42,18 +43,20 @@
             // txtUsua
             // 
             this.txtUsua.EditValue = "";
-            this.txtUsua.Location = new System.Drawing.Point(104, 19);
+            this.txtUsua.Location = new System.Drawing.Point(89, 30);
             this.txtUsua.Name = "txtUsua";
             this.txtUsua.Size = new System.Drawing.Size(219, 20);
             this.txtUsua.TabIndex = 0;
             // 
             // lblUsua
             // 
+            this.lblUsua.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.lblUsua.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblUsua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("lblUsua.ImageOptions.Image")));
             this.lblUsua.Location = new System.Drawing.Point(26, 22);
             this.lblUsua.Name = "lblUsua";
-            this.lblUsua.Size = new System.Drawing.Size(40, 13);
+            this.lblUsua.Size = new System.Drawing.Size(37, 36);
             this.lblUsua.TabIndex = 1;
-            this.lblUsua.Text = "Usuario:";
             // 
             // groupBox1
             // 
@@ -64,14 +67,14 @@
             this.groupBox1.Controls.Add(this.txtUsua);
             this.groupBox1.Location = new System.Drawing.Point(12, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(401, 122);
+            this.groupBox1.Size = new System.Drawing.Size(401, 130);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingresa tu credencial para entrar:";
             // 
             // btnIngresar
             // 
-            this.btnIngresar.Location = new System.Drawing.Point(137, 91);
+            this.btnIngresar.Location = new System.Drawing.Point(124, 98);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(144, 23);
             this.btnIngresar.TabIndex = 5;
@@ -80,15 +83,16 @@
             // 
             // lblPass
             // 
+            this.lblPass.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.lblPass.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("lblPass.ImageOptions.Image")));
             this.lblPass.Location = new System.Drawing.Point(26, 60);
             this.lblPass.Name = "lblPass";
-            this.lblPass.Size = new System.Drawing.Size(60, 13);
+            this.lblPass.Size = new System.Drawing.Size(37, 36);
             this.lblPass.TabIndex = 4;
-            this.lblPass.Text = "Contraseña:";
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(104, 57);
+            this.txtPass.Location = new System.Drawing.Point(89, 68);
             this.txtPass.Name = "txtPass";
             this.txtPass.Properties.UseSystemPasswordChar = true;
             this.txtPass.Size = new System.Drawing.Size(219, 20);
@@ -100,7 +104,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(425, 134);
+            this.ClientSize = new System.Drawing.Size(425, 150);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Login";
