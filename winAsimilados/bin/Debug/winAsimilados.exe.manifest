@@ -1639,37 +1639,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.AspNetCore.Razor.Language.dll" size="936832">
-      <assemblyIdentity name="Microsoft.AspNetCore.Razor.Language" version="3.1.2.0" publicKeyToken="ADB9793829DDAE60" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Microsoft.AspNetCore.Razor.Language" version="3.1.3.0" publicKeyToken="ADB9793829DDAE60" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>QNM+moKQpWYhGhaeO99cgLR+PJNnx3HPZTtwLdFpdqQ=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.SqlServer.Types.dll" size="384000">
-      <assemblyIdentity name="Microsoft.SqlServer.Types" version="11.0.0.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>B9SzMv6mskamcz9tJqmE+cSspSIfIo6eL9NMYrriZ04=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="es\Microsoft.SqlServer.Types.resources.dll" size="48624">
-      <assemblyIdentity name="Microsoft.SqlServer.Types.resources" version="11.0.0.0" publicKeyToken="89845DCD8080CC91" language="es" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XXVy/d3OrRUQbf6bUpuzxtPV+rUGXTtwRnIE3C/ezgs=</dsig:DigestValue>
+        <dsig:DigestValue>rK0k8AY3q7DDDONhe4giueVI/NEW9x7snlKthbYbOQY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1710,24 +1686,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="371136">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="451008">
       <assemblyIdentity name="winAsimilados" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>n87WuS3lkEms8wWajXTk8nN9O+31+UE0iPNR992WYCU=</dsig:DigestValue>
+        <dsig:DigestValue>vTnW0vtF9BbdhFi83+8yRrbztOIj7uTEsDShNSDIT6U=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="winAsimilados.exe.config" size="460">
+  <file name="winAsimilados.exe.config" size="1340">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>lmdKfl88Fqr3I5t00c1Zh9Hj3vU09x5BoqWpjPqszfM=</dsig:DigestValue>
+      <dsig:DigestValue>tZu318Pn3ohKYbuJcqMj851BfOxN+nF6vwf0VDf1qwY=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

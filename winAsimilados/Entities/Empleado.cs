@@ -8,6 +8,12 @@ namespace winAsimilados.Entities
 {
     class Empleado
     {
+        private int _IDEmpleado;
+        public int IDEmpleado
+        {
+            get { return _IDEmpleado; }
+            set { _IDEmpleado = value; }
+        }
         private string _Nombre;
         public string Nombre
         {

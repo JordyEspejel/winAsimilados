@@ -74,7 +74,7 @@ namespace winAsimilados
 
             }
             //Controlador.AgregarRecursos();
-            Controlador.Generar(UUID);
+            Controlador.Generar(UUID, splashScreenManager1);
             //Controlador.LeerXML();
         }
 

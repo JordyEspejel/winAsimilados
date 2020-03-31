@@ -145,8 +145,6 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilad
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.Login.resources
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.csprojAssemblyReference.cache
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\soprclscomp.dll
-C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\Microsoft.SqlServer.Types.dll
-C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\es\Microsoft.SqlServer.Types.resources.dll
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.AsimiladosPrincipal.resources
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.ListaEmpresas.resources
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\DevExpress.CodeParser.v18.1.dll
@@ -188,3 +186,6 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\es\DevExpre
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\ja\DevExpress.PivotGrid.v18.1.Core.resources.dll
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\ru\DevExpress.PivotGrid.v18.1.Core.resources.dll
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.WaitForm1.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.csproj.CoreCompileInputs.cache
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.AgregarEmpresa.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.NominaAsimilados.resources

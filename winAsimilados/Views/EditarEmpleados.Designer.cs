@@ -32,6 +32,13 @@
             this.sidePanel1 = new DevExpress.XtraEditors.SidePanel();
             this.GridControlEmpl = new DevExpress.XtraGrid.GridControl();
             this.GridViewEmpl = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
             this.sidePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlEmpl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpl)).BeginInit();
@@ -56,6 +63,7 @@
             this.GridControlEmpl.Location = new System.Drawing.Point(0, 0);
             this.GridControlEmpl.MainView = this.GridViewEmpl;
             this.GridControlEmpl.Name = "GridControlEmpl";
+            this.GridControlEmpl.ShowOnlyPredefinedDetails = true;
             this.GridControlEmpl.Size = new System.Drawing.Size(800, 450);
             this.GridControlEmpl.TabIndex = 0;
             this.GridControlEmpl.UseEmbeddedNavigator = true;
@@ -64,11 +72,75 @@
             // 
             // GridViewEmpl
             // 
+            this.GridViewEmpl.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6});
             this.GridViewEmpl.GridControl = this.GridControlEmpl;
             this.GridViewEmpl.Name = "GridViewEmpl";
             this.GridViewEmpl.OptionsView.RowAutoHeight = true;
             this.GridViewEmpl.OptionsView.ShowAutoFilterRow = true;
             this.GridViewEmpl.OptionsView.ShowFooter = true;
+            this.GridViewEmpl.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.GridViewEmpl_CellValueChanged);
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "idempleado";
+            this.gridColumn1.FieldName = "idempleado";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "# Empleado";
+            this.gridColumn2.FieldName = "NUM_EMPLEADO";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "NOMBRE";
+            this.gridColumn3.FieldName = "NOMBRE";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.String;
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 1;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "RFC";
+            this.gridColumn4.FieldName = "RFC";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.UnboundType = DevExpress.Data.UnboundColumnType.String;
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 2;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "CURP";
+            this.gridColumn5.FieldName = "CURP";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.UnboundType = DevExpress.Data.UnboundColumnType.String;
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 3;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "PERIODICIDAD";
+            this.gridColumn6.FieldName = "PERIODICIDAD_PAGO";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 4;
+            // 
+            // splashScreenManager1
+            // 
+            this.splashScreenManager1.ClosingDelay = 500;
             // 
             // EditarEmpleados
             // 
@@ -97,5 +169,12 @@
         private DevExpress.XtraEditors.SidePanel sidePanel1;
         private DevExpress.XtraGrid.GridControl GridControlEmpl;
         private DevExpress.XtraGrid.Views.Grid.GridView GridViewEmpl;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }

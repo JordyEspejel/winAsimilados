@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery1 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery3 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarEmpleado));
             this.sidePanel1 = new DevExpress.XtraEditors.SidePanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -84,6 +84,7 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Silver;
             this.flowLayoutPanel1.Controls.Add(this.lblNombreEmpl);
             this.flowLayoutPanel1.Controls.Add(this.TxtNombreEmpl);
             this.flowLayoutPanel1.Controls.Add(this.lblCURP);
@@ -170,6 +171,8 @@
             this.lookUpEdit2.Properties.DataSource = this.queryBindingSource;
             this.lookUpEdit2.Properties.DisplayMember = "Descripcion";
             this.lookUpEdit2.Properties.DropDownRows = 11;
+            this.lookUpEdit2.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+            this.lookUpEdit2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lookUpEdit2.Properties.ValueMember = "Codigo";
             this.lookUpEdit2.Size = new System.Drawing.Size(250, 20);
             this.lookUpEdit2.TabIndex = 15;
@@ -184,10 +187,10 @@
             // 
             this.sqlDataSource1.ConnectionName = "localhost_BSNOMINAS_Connection";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            customSqlQuery1.Name = "Query";
-            customSqlQuery1.Sql = "  SELECT c_PeriodicidadPago as [Codigo], Descripcion  from PeriodicidadPago";
+            customSqlQuery3.Name = "Query";
+            customSqlQuery3.Sql = "  SELECT c_PeriodicidadPago as [Codigo], Descripcion  from PeriodicidadPago";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            customSqlQuery1});
+            customSqlQuery3});
             this.sqlDataSource1.ResultSchemaSerializable = "PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlF1ZXJ5Ij48RmllbGQgTmFtZ" +
     "T0iQ29kaWdvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRlc2NyaXBjaW9uIiBUeXBlPSJTd" +
     "HJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4=";

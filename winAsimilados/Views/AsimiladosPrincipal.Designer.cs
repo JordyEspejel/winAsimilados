@@ -60,11 +60,11 @@
             this.barToolbarsListItem1 = new DevExpress.XtraBars.BarToolbarsListItem();
             this.BtnAgregarEmpesa = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barSubItem5 = new DevExpress.XtraBars.BarSubItem();
-            this.barLargeButtonItem2 = new DevExpress.XtraBars.BarLargeButtonItem();
+            this.BtnAgreEmpreUnit = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barLargeButtonItem4 = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barSubItem6 = new DevExpress.XtraBars.BarSubItem();
             this.barLargeButtonItem5 = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.barLargeButtonItem6 = new DevExpress.XtraBars.BarLargeButtonItem();
+            this.BtnNomiAsim = new DevExpress.XtraBars.BarLargeButtonItem();
             this.dropDownButton2 = new DevExpress.XtraEditors.DropDownButton();
             this.PopBtnEmpresas = new DevExpress.XtraBars.PopupMenu(this.components);
             this.BtnGenerarPDFXML = new DevExpress.XtraEditors.SimpleButton();
@@ -213,11 +213,11 @@
             this.BtnAgregaEmplMasiv,
             this.BtnAgregarEmpesa,
             this.barSubItem5,
-            this.barLargeButtonItem2,
+            this.BtnAgreEmpreUnit,
             this.barLargeButtonItem4,
             this.barSubItem6,
             this.barLargeButtonItem5,
-            this.barLargeButtonItem6,
+            this.BtnNomiAsim,
             this.BtnEditaEmpleados,
             this.btnGenerarExcelEmpl});
             this.barManager1.MainMenu = this.bar1;
@@ -388,17 +388,18 @@
             this.barSubItem5.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.barSubItem5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barSubItem5.ImageOptions.Image")));
             this.barSubItem5.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItem2),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BtnAgreEmpreUnit),
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItem4)});
             this.barSubItem5.Name = "barSubItem5";
             // 
-            // barLargeButtonItem2
+            // BtnAgreEmpreUnit
             // 
-            this.barLargeButtonItem2.Caption = "Unitario";
-            this.barLargeButtonItem2.Id = 29;
-            this.barLargeButtonItem2.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.barLargeButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem2.ImageOptions.Image")));
-            this.barLargeButtonItem2.Name = "barLargeButtonItem2";
+            this.BtnAgreEmpreUnit.Caption = "Unitario";
+            this.BtnAgreEmpreUnit.Id = 29;
+            this.BtnAgreEmpreUnit.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.BtnAgreEmpreUnit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgreEmpreUnit.ImageOptions.Image")));
+            this.BtnAgreEmpreUnit.Name = "BtnAgreEmpreUnit";
+            this.BtnAgreEmpreUnit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BtnAgreEmpreUnit_ItemClick);
             // 
             // barLargeButtonItem4
             // 
@@ -426,13 +427,14 @@
             this.barLargeButtonItem5.Name = "barLargeButtonItem5";
             this.barLargeButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItem5_ItemClick);
             // 
-            // barLargeButtonItem6
+            // BtnNomiAsim
             // 
-            this.barLargeButtonItem6.Caption = "Asimilados";
-            this.barLargeButtonItem6.Id = 33;
-            this.barLargeButtonItem6.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.barLargeButtonItem6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem6.ImageOptions.Image")));
-            this.barLargeButtonItem6.Name = "barLargeButtonItem6";
+            this.BtnNomiAsim.Caption = "Asimilados";
+            this.BtnNomiAsim.Id = 33;
+            this.BtnNomiAsim.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.BtnNomiAsim.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem6.ImageOptions.Image")));
+            this.BtnNomiAsim.Name = "BtnNomiAsim";
+            this.BtnNomiAsim.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BtnNomiAsim_ItemClick);
             // 
             // dropDownButton2
             // 
@@ -480,7 +482,7 @@
             // PopBtnNomi
             // 
             this.PopBtnNomi.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItem6)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.BtnNomiAsim)});
             this.PopBtnNomi.Manager = this.barManager1;
             this.PopBtnNomi.Name = "PopBtnNomi";
             // 
@@ -580,14 +582,14 @@
         private DevExpress.XtraEditors.DropDownButton dropDownButton2;
         private DevExpress.XtraBars.BarLargeButtonItem BtnAgregarEmpesa;
         private DevExpress.XtraBars.BarSubItem barSubItem5;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem2;
+        private DevExpress.XtraBars.BarLargeButtonItem BtnAgreEmpreUnit;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem4;
         private DevExpress.XtraBars.BarSubItem barSubItem6;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem5;
         private DevExpress.XtraEditors.DropDownButton dropDownButton3;
         private DevExpress.XtraBars.PopupMenu PopBtnOpciones;
         private DevExpress.XtraEditors.DropDownButton dropDownButton4;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem6;
+        private DevExpress.XtraBars.BarLargeButtonItem BtnNomiAsim;
         private DevExpress.XtraBars.PopupMenu PopBtnNomi;
         private DevExpress.XtraBars.BarLargeButtonItem BtnEditaEmpleados;
         private DevExpress.XtraEditors.SidePanel PanelPrincipal;

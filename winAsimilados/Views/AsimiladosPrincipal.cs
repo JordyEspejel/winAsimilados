@@ -21,18 +21,9 @@ namespace winAsimilados.Views
     public partial class AsimiladosPrincipal : Form
     {
         bool salida = true;
-        //ProgressPanel progressPanel1 = new ProgressPanel();
         public AsimiladosPrincipal()
         {
             InitializeComponent();
-            //progressPanel2.Hide();
-            //progressPanel1.Caption = "Ejecutando operación...";
-            //progressPanel1.Description = "Por favor, espere...";
-            //progressPanel1.WaitAnimationType = DevExpress.Utils.Animation.WaitingAnimatorType.Ring;
-            //progressPanel1.Parent = this;
-            ////progressPanel1.Location = new Point(367, 200);
-            //this.Controls.Add(progressPanel1);
-            //salida = true;
         }
 
         private void AsimiladosPrincipal_FormClosing(object sender, FormClosingEventArgs e)
@@ -160,7 +151,9 @@ namespace winAsimilados.Views
             }
             else
             {
+                
                 agregarEmpleado.Show();
+                agregarEmpleado.Location = new Point(144, 60);
                 //agregarEmpleado.Size = PanelPrincipal.Size;
                 //agregarEmpleado.Location = new Point(144, 60);
             }
@@ -188,10 +181,7 @@ namespace winAsimilados.Views
                 Excel.Workbook xlWorkBook;
                 Excel.Worksheet xlWorkSheet;
                 Excel.Range range;
-
-                string str;
                 int rCnt;
-                int cCnt;
                 int rw = 0;
                 int cl = 0;
                 int cont = 0;
@@ -284,6 +274,55 @@ namespace winAsimilados.Views
 
             //progressPanel2.Hide();
             splashScreenManager1.CloseWaitForm();
+        }
+
+        private void BtnAgreEmpreUnit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            AgregarEmpresa agregarEmpresa = new AgregarEmpresa();
+            var frm = Application.OpenForms.OfType<AgregarEmpresa>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //MessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+               
+                agregarEmpresa.Show();
+                agregarEmpresa.Location = new Point(144, 60);
+                //agregarEmpresa.Size = PanelPrincipal.Size;
+                //agregarEmpresa.Location = new Point(144, 60);
+            }
+        }
+
+        private void BtnNomiAsim_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            NominaAsimilados nominaAsimilados = new NominaAsimilados();
+            var frm = Application.OpenForms.OfType<NominaAsimilados>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //MessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                nominaAsimilados.Show();
+                nominaAsimilados.Location = new Point(144, 60);
+            }
         }
     }
 }
