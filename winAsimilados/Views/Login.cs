@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,15 +34,15 @@ namespace winAsimilados.Views
             User.pass = txtPass.Text;
             if (User.usuario == "")
             {
-                MessageBox.Show("Campo Usuario vacio!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Campo Usuario vacio!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (User.pass == "")
             {
-                MessageBox.Show("Campo Contraseña vacio!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Campo Contraseña vacio!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                //MessageBox.Show("entra login()", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //XtraMessageBox.Show("entra login()", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (Controlador.Login(User).Equals(true))
                 {
                     this.Hide();
@@ -57,7 +58,7 @@ namespace winAsimilados.Views
                 }
                 else
                 {
-                    MessageBox.Show("Usuario y/o Contraseña incorrectos!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("Usuario y/o Contraseña incorrectos!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 
             }
@@ -67,7 +68,7 @@ namespace winAsimilados.Views
         {
             if (salida == true)
             {
-                DialogResult result = MessageBox.Show("¿Desea salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = XtraMessageBox.Show("¿Desea salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     this.Dispose();

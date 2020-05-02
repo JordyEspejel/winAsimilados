@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using V = winAsimilados.Views;
+using C = winAsimilados.Controller;
 
 
 namespace winAsimilados
@@ -23,6 +24,11 @@ namespace winAsimilados
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Application.Run(new Form1());
+            C.Controller controller = new C.Controller();
+            if (controller.BuscarRecursos().Equals(false))
+            {
+                controller.AgregarRecursos();
+            }
             V.Login login = new V.Login();
             Application.Run(login);
             //V.ListaEmpresas listaEmpresas = new V.ListaEmpresas();

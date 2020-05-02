@@ -79,7 +79,9 @@ namespace winAsimilados.Controller
                 if (Connection_BD == null)
                 {
                     //Connection_BD = new SqlConnection("Data Source=server-contpaq\\compac17;Initial Catalog=Nomina_Empresa17;User ID=sa;Password=Supervisor2020.;");
-                    Connection_BD = new SqlConnection("Data Source=server-contpaq\\compac17;Initial Catalog=BSNOMINAS;User ID=sa;Password=Supervisor2020.;");
+                    //Connection_BD = new SqlConnection("Data Source=server-contpaq\\compac17;Initial Catalog=BSNOMINAS;User ID=sa;Password=Supervisor2020.;");
+                    Connection_BD = new SqlConnection("Data Source=192.168.4.182\\COMPAC;Initial Catalog=BSNOMINAS;User ID=sa;Password=Supervisor2020.;");
+
 
                 }
                 return Connection_BD;
@@ -114,7 +116,8 @@ namespace winAsimilados.Controller
             {
                 if (Connection_BDSoprade == null)
                 {
-                    Connection_BDSoprade = new SqlConnection("Data Source=db-server\\inarisql;Initial Catalog=dbDatosNomina;User ID=sa;Password=Sql1N4r1;");
+                    //Connection_BDSoprade = new SqlConnection("Data Source=db-server\\inarisql;Initial Catalog=dbDatosNomina;User ID=sa;Password=Sql1N4r1;");
+                    Connection_BDSoprade = new SqlConnection("Data Source=192.168.4.142;Initial Catalog=dbDatosNomina;User ID=sa;Password=Sql1N4r1;");
                 }
                 return Connection_BDSoprade;
             }

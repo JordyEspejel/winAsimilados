@@ -403,9 +403,9 @@ public partial class NominaReceptor {
     
     private string antigüedadField;
     
-    private c_TipoContrato tipoContratoField;
+    private string tipoContratoField;
     
-    private NominaReceptorSindicalizado sindicalizadoField;
+    private string sindicalizadoField;
     
     private bool sindicalizadoFieldSpecified;
     
@@ -425,7 +425,7 @@ public partial class NominaReceptor {
     
     private bool riesgoPuestoFieldSpecified;
     
-    private c_PeriodicidadPago periodicidadPagoField;
+    private string periodicidadPagoField;
     
     private c_Banco bancoField;
     
@@ -441,7 +441,7 @@ public partial class NominaReceptor {
     
     private bool salarioDiarioIntegradoFieldSpecified;
     
-    private c_Estado claveEntFedField;
+    private string claveEntFedField;
     
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("SubContratacion")]
@@ -511,7 +511,7 @@ public partial class NominaReceptor {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public c_TipoContrato TipoContrato {
+    public string TipoContrato {
         get {
             return this.tipoContratoField;
         }
@@ -522,7 +522,7 @@ public partial class NominaReceptor {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public NominaReceptorSindicalizado Sindicalizado {
+    public string Sindicalizado {
         get {
             return this.sindicalizadoField;
         }
@@ -632,7 +632,7 @@ public partial class NominaReceptor {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public c_PeriodicidadPago PeriodicidadPago {
+    public string PeriodicidadPago {
         get {
             return this.periodicidadPagoField;
         }
@@ -720,7 +720,7 @@ public partial class NominaReceptor {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public c_Estado ClaveEntFed {
+    public string ClaveEntFed {
         get {
             return this.claveEntFedField;
         }
@@ -1744,7 +1744,7 @@ public enum c_Estado {
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.sat.gob.mx/nomina12")]
 public partial class NominaPercepciones {
     
-    private NominaPercepcionesPercepcion[] percepcionField;
+    private NominaPercepcionesPercepcion percepcionField;
     
     private NominaPercepcionesJubilacionPensionRetiro jubilacionPensionRetiroField;
     
@@ -1768,7 +1768,7 @@ public partial class NominaPercepciones {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("Percepcion")]
-    public NominaPercepcionesPercepcion[] Percepcion {
+    public NominaPercepcionesPercepcion Percepcion {
         get {
             return this.percepcionField;
         }
@@ -1898,7 +1898,7 @@ public partial class NominaPercepcionesPercepcion {
     
     private NominaPercepcionesPercepcionHorasExtra[] horasExtraField;
     
-    private c_TipoPercepcion tipoPercepcionField;
+    private string tipoPercepcionField;
     
     private string claveField;
     
@@ -1931,7 +1931,7 @@ public partial class NominaPercepcionesPercepcion {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public c_TipoPercepcion TipoPercepcion {
+    public string TipoPercepcion {
         get {
             return this.tipoPercepcionField;
         }
@@ -2478,7 +2478,7 @@ public partial class NominaPercepcionesSeparacionIndemnizacion {
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.sat.gob.mx/nomina12")]
 public partial class NominaDeducciones {
     
-    private NominaDeduccionesDeduccion[] deduccionField;
+    private NominaDeduccionesDeduccion deduccionField;
     
     private decimal totalOtrasDeduccionesField;
     
@@ -2490,7 +2490,7 @@ public partial class NominaDeducciones {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("Deduccion")]
-    public NominaDeduccionesDeduccion[] Deduccion {
+    public NominaDeduccionesDeduccion Deduccion {
         get {
             return this.deduccionField;
         }
@@ -2552,7 +2552,7 @@ public partial class NominaDeducciones {
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.sat.gob.mx/nomina12")]
 public partial class NominaDeduccionesDeduccion {
     
-    private c_TipoDeduccion tipoDeduccionField;
+    private string tipoDeduccionField;
     
     private string claveField;
     
@@ -2562,7 +2562,7 @@ public partial class NominaDeduccionesDeduccion {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public c_TipoDeduccion TipoDeduccion {
+    public string TipoDeduccion {
         get {
             return this.tipoDeduccionField;
         }

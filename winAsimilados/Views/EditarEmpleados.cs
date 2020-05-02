@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,7 +46,7 @@ namespace winAsimilados.Views
         {
             if (e.Button.ButtonType == DevExpress.XtraEditors.NavigatorButtonType.EndEdit)
             {
-                DialogResult result = MessageBox.Show("¿Desea modificar la información  del empleado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = XtraMessageBox.Show("¿Desea modificar la información  del empleado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     splashScreenManager1.ShowWaitForm();
@@ -56,7 +57,7 @@ namespace winAsimilados.Views
                     {   
                         if (GridViewEmpl.IsRowSelected(i))
                         {
-                            //MessageBox.Show(GridViewEmpl.GetRowCellValue(i, GridViewEmpl.Columns[0]).ToString());
+                            //XtraMessageBox.Show(GridViewEmpl.GetRowCellValue(i, GridViewEmpl.Columns[0]).ToString());
                             //splashScreenManager1.CloseWaitForm();
                             IDEmpl = Convert.ToInt32(GridViewEmpl.GetRowCellValue(i, GridViewEmpl.Columns[0]));
                             nombre = GridViewEmpl.GetRowCellValue(i, GridViewEmpl.Columns[2]).ToString();
@@ -64,7 +65,7 @@ namespace winAsimilados.Views
                             CURP = GridViewEmpl.GetRowCellValue(i, GridViewEmpl.Columns[4]).ToString();
                             peri = GridViewEmpl.GetRowCellValue(i, GridViewEmpl.Columns[5]).ToString();
 
-                            // MessageBox.Show(nombre + RFC + CURP + peri);
+                            // XtraMessageBox.Show(nombre + RFC + CURP + peri);
                             Empleado.IDEmpleado = IDEmpl;
                             Empleado.Nombre = nombre;
                             Empleado.RFC = RFC;
@@ -78,7 +79,7 @@ namespace winAsimilados.Views
                 }
                 else
                 {
-                    splashScreenManager1.CloseWaitForm();
+                 //   splashScreenManager1.CloseWaitForm();
                 }
             }
         }

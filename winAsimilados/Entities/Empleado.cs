@@ -14,6 +14,7 @@ namespace winAsimilados.Entities
             get { return _IDEmpleado; }
             set { _IDEmpleado = value; }
         }
+
         private string _Nombre;
         public string Nombre
         {
@@ -47,6 +48,36 @@ namespace winAsimilados.Entities
             get { return _Periodicidad; }
             set { _Periodicidad = value; }
         }
+        private string _TipoRegimen;
+        public string TipoRegimen
+        {
+            get { return _TipoRegimen; }
+            set { _TipoRegimen = value; }
+        }
 
+        private string _TipoContrato;
+        public string TipoContrato
+        {
+            get { return _TipoContrato; }
+            set { _TipoContrato = value; }
+        }
+        private string _Sindicalizado;
+        public string Sindicalizado
+        {
+            get { return _Sindicalizado; }
+            set { _Sindicalizado = value; }
+        }
+        private string _Departamento;
+        public string Departamento
+        {
+            get { return _Departamento; }
+            set { _Departamento = value; }
+        }
+        private string _Puesto;
+        public string Puesto
+        {
+            get { return _Puesto; }
+            set { _Puesto = value; }
+        }
     }
 }

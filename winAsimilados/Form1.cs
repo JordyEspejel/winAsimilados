@@ -35,11 +35,13 @@ namespace winAsimilados
         }
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            fechaIni = fechaInicio.Value.ToString("dd/MM/yyyy");
-            fechaFinal = fechaFin.Value.ToString("dd/MM/yyyy");
+            //fechaIni = fechaInicio.Value.ToString("dd/MM/yyyy");
+            //fechaFinal = fechaFin.Value.ToString("dd/MM/yyyy");
+            fechaIni = fechaInicio.Value.ToString("yyyy/MM/dd");
+            fechaFinal = fechaFin.Value.ToString("yyyy/MM/dd");
             Controlador.Buscar(gridControl1, fechaIni, fechaFinal);
             gridControl1.Visible = true;
-            //MessageBox.Show(fechaIni, "Fecha");
+            //XtraMessageBox.Show(fechaIni, "Fecha");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -51,15 +53,15 @@ namespace winAsimilados
         private void btnGenerar_Click(object sender, EventArgs e)
         {
             //string message = C.Conexion.PerformConnection().Database;
-            //MessageBox.Show(message);
-            //MessageBox.Show("Funciona", "XML & PDF");
+            //XtraMessageBox.Show(message);
+            //XtraMessageBox.Show("Funciona", "XML & PDF");
             var UUID = new List<E.UUID>();
             E.UUID[] uid = null;
             for (int i = 0; i < gridView1.RowCount; i++)
             {
                if (gridView1.IsRowSelected(i))
                 {
-                    //MessageBox.Show(gridView1.GetRowCellValue(i, gridView1.Columns[1]).ToString());
+                    //XtraMessageBox.Show(gridView1.GetRowCellValue(i, gridView1.Columns[1]).ToString());
                     uuid = gridView1.GetRowCellValue(i, gridView1.Columns[1]).ToString();
 
                     UUID.Add(new E.UUID

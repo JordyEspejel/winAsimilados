@@ -38,10 +38,12 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
             this.sidePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlEmpl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // sidePanel1
@@ -63,6 +65,8 @@
             this.GridControlEmpl.Location = new System.Drawing.Point(0, 0);
             this.GridControlEmpl.MainView = this.GridViewEmpl;
             this.GridControlEmpl.Name = "GridControlEmpl";
+            this.GridControlEmpl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemLookUpEdit1});
             this.GridControlEmpl.ShowOnlyPredefinedDetails = true;
             this.GridControlEmpl.Size = new System.Drawing.Size(800, 450);
             this.GridControlEmpl.TabIndex = 0;
@@ -81,6 +85,10 @@
             this.gridColumn6});
             this.GridViewEmpl.GridControl = this.GridControlEmpl;
             this.GridViewEmpl.Name = "GridViewEmpl";
+            this.GridViewEmpl.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.True;
+            this.GridViewEmpl.OptionsFilter.ColumnFilterPopupRowCount = 10;
+            this.GridViewEmpl.OptionsFilter.ShowAllTableValuesInFilterPopup = true;
+            this.GridViewEmpl.OptionsFilter.UseNewCustomFilterDialog = true;
             this.GridViewEmpl.OptionsView.RowAutoHeight = true;
             this.GridViewEmpl.OptionsView.ShowAutoFilterRow = true;
             this.GridViewEmpl.OptionsView.ShowFooter = true;
@@ -106,6 +114,7 @@
             // 
             this.gridColumn3.Caption = "NOMBRE";
             this.gridColumn3.FieldName = "NOMBRE";
+            this.gridColumn3.FilterMode = DevExpress.XtraGrid.ColumnFilterMode.DisplayText;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.gridColumn3.Visible = true;
@@ -115,6 +124,7 @@
             // 
             this.gridColumn4.Caption = "RFC";
             this.gridColumn4.FieldName = "RFC";
+            this.gridColumn4.FilterMode = DevExpress.XtraGrid.ColumnFilterMode.DisplayText;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.gridColumn4.Visible = true;
@@ -124,6 +134,7 @@
             // 
             this.gridColumn5.Caption = "CURP";
             this.gridColumn5.FieldName = "CURP";
+            this.gridColumn5.FilterMode = DevExpress.XtraGrid.ColumnFilterMode.DisplayText;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.gridColumn5.Visible = true;
@@ -133,10 +144,20 @@
             // 
             this.gridColumn6.Caption = "PERIODICIDAD";
             this.gridColumn6.FieldName = "PERIODICIDAD_PAGO";
+            this.gridColumn6.FilterMode = DevExpress.XtraGrid.ColumnFilterMode.DisplayText;
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsFilter.AllowFilterModeChanging = DevExpress.Utils.DefaultBoolean.True;
+            this.gridColumn6.OptionsFilter.ShowBlanksFilterItems = DevExpress.Utils.DefaultBoolean.True;
             this.gridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 4;
+            // 
+            // repositoryItemLookUpEdit1
+            // 
+            this.repositoryItemLookUpEdit1.AutoHeight = false;
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
             // 
             // splashScreenManager1
             // 
@@ -160,6 +181,7 @@
             this.sidePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControlEmpl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -176,5 +198,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
     }
 }

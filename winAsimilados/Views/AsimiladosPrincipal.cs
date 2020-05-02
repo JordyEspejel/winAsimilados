@@ -31,7 +31,7 @@ namespace winAsimilados.Views
             //Application.Exit();
             if (salida == true)
             {
-                DialogResult result = MessageBox.Show("¿Desea salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = XtraMessageBox.Show("¿Desea salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     this.Dispose();
@@ -43,7 +43,7 @@ namespace winAsimilados.Views
                 }
                    
                 //Application.Exit();
-                //if (MessageBox.Show("¿Desea salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                //if (XtraMessageBox.Show("¿Desea salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 //{
                 //    Application.Exit();
                 //}
@@ -56,7 +56,7 @@ namespace winAsimilados.Views
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
-            if (MessageBox.Show("¿Desea cambiar de empresa?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            if (XtraMessageBox.Show("¿Desea cambiar de empresa?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 this.Dispose();
                 ListaEmpresas listaEmpresas = new ListaEmpresas();
@@ -97,7 +97,7 @@ namespace winAsimilados.Views
         private void barLargeButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
-            if (MessageBox.Show("¿Desea cambiar de empresa?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            if (XtraMessageBox.Show("¿Desea cambiar de empresa?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 this.Dispose();
                 ListaEmpresas listaEmpresas = new ListaEmpresas();
@@ -120,7 +120,7 @@ namespace winAsimilados.Views
                 frm.Location = new Point(144, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
-                    //MessageBox.Show("S")
+                    //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     editarEmpleados.Size = PanelPrincipal.Size;
                     editarEmpleados.Location = new Point(144, 60);
@@ -278,7 +278,7 @@ namespace winAsimilados.Views
 
         private void BtnAgreEmpreUnit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            AgregarEmpresa agregarEmpresa = new AgregarEmpresa();
+            AgregarEmpresa agregarEmpresa = new AgregarEmpresa(false);
             var frm = Application.OpenForms.OfType<AgregarEmpresa>().FirstOrDefault();
             if (frm != null)
             {
@@ -286,7 +286,7 @@ namespace winAsimilados.Views
                 frm.Location = new Point(144, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
-                    //MessageBox.Show("S")
+                    //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
                     //agregarEmpresa.Location = new Point(144, 60);
@@ -304,7 +304,7 @@ namespace winAsimilados.Views
 
         private void BtnNomiAsim_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            NominaAsimilados nominaAsimilados = new NominaAsimilados();
+            NominaAsimilados nominaAsimilados = new NominaAsimilados(lblEmpresa.Caption, lblRFC.Caption);
             var frm = Application.OpenForms.OfType<NominaAsimilados>().FirstOrDefault();
             if (frm != null)
             {
@@ -312,7 +312,7 @@ namespace winAsimilados.Views
                 frm.Location = new Point(144, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
-                    //MessageBox.Show("S")
+                    //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
                     //agregarEmpresa.Location = new Point(144, 60);
@@ -322,6 +322,7 @@ namespace winAsimilados.Views
             {
                 nominaAsimilados.Show();
                 nominaAsimilados.Location = new Point(144, 60);
+                nominaAsimilados.BringToFront();
             }
         }
     }

@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaEmpresas));
             this.GridEmpresas = new DevExpress.XtraGrid.GridControl();
             this.GridViewEmpresas = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.BtnIniciar = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.GridEmpresas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpresas)).BeginInit();
@@ -46,6 +48,8 @@
             this.GridEmpresas.TabIndex = 0;
             this.GridEmpresas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewEmpresas});
+            this.GridEmpresas.Click += new System.EventHandler(this.GridEmpresas_Click);
+            this.GridEmpresas.DoubleClick += new System.EventHandler(this.GridEmpresas_DoubleClick);
             // 
             // GridViewEmpresas
             // 
@@ -61,6 +65,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.simpleButton1);
             this.groupBox1.Controls.Add(this.BtnIniciar);
             this.groupBox1.Controls.Add(this.GridEmpresas);
             this.groupBox1.Location = new System.Drawing.Point(3, 13);
@@ -70,11 +75,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione una empresa para continuar:";
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.ImageOptions.Image = global::winAsimilados.Properties.Resources.hospital;
+            this.simpleButton1.Location = new System.Drawing.Point(27, 384);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(137, 35);
+            this.simpleButton1.TabIndex = 2;
+            this.simpleButton1.Text = "Agregar Empresa";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // BtnIniciar
             // 
-            this.BtnIniciar.Location = new System.Drawing.Point(709, 384);
+            this.BtnIniciar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnIniciar.ImageOptions.Image")));
+            this.BtnIniciar.Location = new System.Drawing.Point(665, 384);
             this.BtnIniciar.Name = "BtnIniciar";
-            this.BtnIniciar.Size = new System.Drawing.Size(75, 23);
+            this.BtnIniciar.Size = new System.Drawing.Size(119, 35);
             this.BtnIniciar.TabIndex = 1;
             this.BtnIniciar.Text = "Seleccionar";
             this.BtnIniciar.Click += new System.EventHandler(this.BtnIniciar_Click);
@@ -104,5 +120,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView GridViewEmpresas;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraEditors.SimpleButton BtnIniciar;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

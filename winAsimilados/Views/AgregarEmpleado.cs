@@ -21,7 +21,7 @@ namespace winAsimilados.Views
 
         private void lookUpEdit2_EditValueChanged(object sender, EventArgs e)
         {
-            //MessageBox.Show("LookUpEdit EditValue = " + (sender as LookUpEdit).EditValue);
+            //XtraMessageBox.Show("LookUpEdit EditValue = " + (sender as LookUpEdit).EditValue);
             peri = (sender as LookUpEdit).EditValue.ToString();
         }
 
@@ -47,7 +47,7 @@ namespace winAsimilados.Views
 
             if (nombre == "")
             {
-                MessageBox.Show("El campo Nombre no puede estar vacio", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("El campo Nombre no puede estar vacio", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -56,13 +56,13 @@ namespace winAsimilados.Views
 
             if (RFC == "")
             {
-                MessageBox.Show("El campo RFC no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("El campo RFC no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 if (!RFC.Length.Equals(13))
                 {
-                    MessageBox.Show("RFC no cumple con el formato correcto, favor de verificar.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("RFC no cumple con el formato correcto, favor de verificar.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -72,13 +72,13 @@ namespace winAsimilados.Views
 
             if (CURP == "")
             {
-                MessageBox.Show("El campo CURP no puede estar vacio", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("El campo CURP no puede estar vacio", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 if (!CURP.Length.Equals(18))
                 {
-                    MessageBox.Show("CURP no cumple con el formato correcto, favor de verificar,", "Mesnaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("CURP no cumple con el formato correcto, favor de verificar,", "Mesnaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace winAsimilados.Views
 
             if (peri == null)
             {
-                MessageBox.Show("Seleccione tipo de periodicidad.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                XtraMessageBox.Show("Seleccione tipo de periodicidad.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -97,9 +97,9 @@ namespace winAsimilados.Views
 
             if (empleado.RFC != null && empleado.Nombre != null && empleado.CURP != null && empleado.Periodicidad != null)
             {
-                //MessageBox.Show("Nombre:" + nombre + "\nRFC:" + RFC + "\nCURP:" + CURP + "\nPeriodicidad:" + peri, "mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //XtraMessageBox.Show("Nombre:" + nombre + "\nRFC:" + RFC + "\nCURP:" + CURP + "\nPeriodicidad:" + peri, "mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                if (MessageBox.Show("¿Desea Agregar al empleado?:\n" + empleado.Nombre.ToString() + "\n\nRFC:" + empleado.RFC.ToString() + "\n\nCURP:" + empleado.CURP.ToString() + "\n\nPeriodicidad pago:" + lookUpEdit2.Text + "\n\nFavor de verificar los datos.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (XtraMessageBox.Show("¿Desea Agregar al empleado?:\n" + empleado.Nombre.ToString() + "\n\nRFC:" + empleado.RFC.ToString() + "\n\nCURP:" + empleado.CURP.ToString() + "\n\nPeriodicidad pago:" + lookUpEdit2.Text + "\n\nFavor de verificar los datos.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     Controlador.AgregaEmpleado(empleado);
                 }

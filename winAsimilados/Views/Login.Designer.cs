@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.txtUsua = new DevExpress.XtraEditors.TextEdit();
             this.lblUsua = new DevExpress.XtraEditors.LabelControl();
@@ -35,9 +36,11 @@
             this.btnIngresar = new DevExpress.XtraEditors.SimpleButton();
             this.lblPass = new DevExpress.XtraEditors.LabelControl();
             this.txtPass = new DevExpress.XtraEditors.TextEdit();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtUsua.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPass.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUsua
@@ -92,6 +95,7 @@
             // 
             // txtPass
             // 
+            this.txtPass.EditValue = "";
             this.txtPass.Location = new System.Drawing.Point(89, 68);
             this.txtPass.Name = "txtPass";
             this.txtPass.Properties.UseSystemPasswordChar = true;
@@ -115,6 +119,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPass.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -127,5 +132,6 @@
         private DevExpress.XtraEditors.TextEdit txtPass;
         private DevExpress.XtraEditors.LabelControl lblPass;
         private DevExpress.XtraEditors.SimpleButton btnIngresar;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
     }
 }

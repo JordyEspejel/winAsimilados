@@ -31,6 +31,623 @@ namespace winAsimilados.Controller
     class Controller
     {
 
+        public string GetEntFed(string bd,string CodPost)
+        {
+            try
+            {
+                string entidad = null, idEstado = null;
+                N.Conexion.PerformConnection().Close();
+                N.Conexion.PerformConnection().Open();
+
+                SqlCommand queryEstado = N.Conexion.PerformConnection().CreateCommand();
+                queryEstado.CommandText = @"select c_estado from Codigos_Postales where d_codigo = @CP";
+                queryEstado.Parameters.AddWithValue("@CP", CodPost);
+
+                SqlDataReader readerEstado;
+                readerEstado = queryEstado.ExecuteReader();
+                if (readerEstado.Read())
+                {
+                    idEstado = readerEstado.GetString(0);
+                }
+                readerEstado.Close();
+
+                SqlCommand queryEntidad = N.Conexion.PerformConnection().CreateCommand();
+                queryEntidad.CommandText = @"select c_Estado from Estados_Republica where id = @ID";
+                queryEntidad.Parameters.AddWithValue("@ID", idEstado);
+
+                SqlDataReader readerEntidad;
+                readerEntidad = queryEntidad.ExecuteReader();
+                if (readerEntidad.Read())
+                {
+                    entidad = readerEntidad.GetString(0);
+                }
+                readerEntidad.Close();
+
+                N.Conexion.PerformConnection().ChangeDatabase(bd);
+                return entidad;
+
+            }catch(Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: GetEntFed()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public E.Parametros GetParametros(string RFC)
+        {
+            try
+            {
+                E.Parametros parametros = new E.Parametros();
+
+                SqlCommand queryParametros = N.Conexion.PerformConnection().CreateCommand();
+                queryParametros.CommandText = @"SELECT TOP (1) [ID]
+                      ,[NOMBRE_EMPRESA]
+                      ,[RFC]
+                      ,[REGISTRO_PATRONAL]
+                      ,[REGISTRO_NSS]
+                      ,[REPRESENTANTE]
+                      ,[CALLE]
+                      ,[NUM_EXT]
+                      ,[NUM_INT]
+                      ,[CODIGO_POSTAL]
+                      ,[MUNICIPIO]
+                      ,[LOCALIDAD]
+                      ,[ESTADO]
+                      ,[PAIS]
+                      ,[REGIMEN]
+                      ,[RIESGO_PUESTO]
+                      ,[CLAVE_CERTIFICADO]
+                      ,[NUMERO_CERTIFICADO]
+                      ,[FECHA_VENCIMIENTO_CERTIFICADO]
+                      ,[RUTA_Cti]
+                      ,[COD_CONCEPTO_Cti]
+                      ,[FECHA_INICIO_CERTIFICADO]
+                      ,[ORIGEN_RECURSOS]
+                      ,[TIPO_NOMINA]
+                      ,[ARCHIVO_CER]
+                      ,[ARCHIVO_KEY]
+                      ,[ASUNTO_CERTIFICADO]
+                      ,[COLONIA]
+                      ,[RUTA_ALMACEN_PDF]
+                  FROM [PARAMETROS] WHERE RFC = @RFC";
+                queryParametros.Parameters.AddWithValue("@RFC", RFC);
+
+                SqlDataReader readerParametros;
+                readerParametros = queryParametros.ExecuteReader();
+
+                if (readerParametros.Read())
+                {
+                    parametros.NombreEmpresa = readerParametros.GetString(1);
+                    parametros.RFC = readerParametros.GetString(2);
+                    parametros.RegistroPatronal = readerParametros.GetString(3);
+                    parametros.NSS = readerParametros.GetString(4);
+                    parametros.Representante = readerParametros.GetString(5);
+                    parametros.Calle = readerParametros.GetString(6);
+                    parametros.NUM_EXT = readerParametros.GetString(7);
+                    parametros.NUM_INT = readerParametros.GetString(8);
+                    parametros.CODIGO_POSTAL = readerParametros.GetString(9);
+                    parametros.MUNICIPIO = readerParametros.GetString(10);
+                    parametros.LOCALIDAD = readerParametros.GetString(11);
+                    parametros.ESTADO = readerParametros.GetString(12);
+                    parametros.PAIS = readerParametros.GetString(13);
+                    parametros.REGIMEN = readerParametros.GetString(14);
+                    parametros.RIESGO_PUESTO = readerParametros.GetString(15);
+                    parametros.CLAVE_CERTIFICADO = readerParametros.GetString(16);
+                    parametros.NUMERO_CERTIFICADO = readerParametros.GetString(17);
+                    parametros.FECHA_VENCIMIENTO_CERTIFICADO = readerParametros.GetDateTime(18);
+                    parametros.RUTA_Cti = readerParametros.GetString(19);
+                    parametros.COD_CONCEPTO_Cti = readerParametros.GetString(20);
+                    parametros.FECHA_INICIO_CERTIFICADO = readerParametros.GetDateTime(21);
+                    parametros.ORIGEN_RECURSOS = readerParametros.GetString(22);
+                    parametros.TIPO_NOMINA = readerParametros.GetString(23);
+                    parametros.ARCHIVO_CER = readerParametros.GetString(24);
+                    parametros.ARCHIVO_KEY = readerParametros.GetString(25);
+                    parametros.ASUNTO_CERTIFICADO = readerParametros.GetString(26);
+                    parametros.COLONIA = readerParametros.GetString(27);
+                    parametros.RUTA_ALMACEN_PDF = readerParametros.GetString(28);
+                }
+                readerParametros.Close();
+
+                return parametros;
+            }catch(Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "Error controlador: GetParametros()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public bool AgregaArchivoCer(string RFC, string cer)
+        {
+            try
+            {
+                bool result = false;
+                SqlCommand queryAgregaKey = N.Conexion.PerformConnection().CreateCommand();
+                queryAgregaKey.CommandText = @"update PARAMETROS set ARCHIVO_CER ='" + cer + "' where RFC ='" + RFC + "'";
+
+                if (queryAgregaKey.ExecuteNonQuery().Equals(1))
+                {
+                    XtraMessageBox.Show("¡Información Actualizada Con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    result = true;
+                }
+                else
+                {
+                    XtraMessageBox.Show("¡Error Al  Actualizar La Información!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    result = false;
+                }
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: AgregarArchivoCer()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public string ArchivoCER(string RFC)
+        {
+            try
+            {
+                string pathCer = null;
+                SqlCommand queryCer = N.Conexion.PerformConnection().CreateCommand();
+                queryCer.CommandText = @"select ARCHIVO_CER from PARAMETROS where RFC =@RFC";
+                queryCer.Parameters.AddWithValue("@RFC", RFC);
+
+                SqlDataReader readerCer;
+                readerCer = queryCer.ExecuteReader();
+
+                if (readerCer.Read())
+                {
+                    pathCer = readerCer.GetString(0);
+                }
+                readerCer.Close();
+                return pathCer;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "Error Controlador: ArchivoCER()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public bool AgregaArchivoKey(string RFC, string key, string pass)
+        {
+            try
+            {
+                bool result = false;
+                SqlCommand queryAgregaKey = N.Conexion.PerformConnection().CreateCommand();
+                queryAgregaKey.CommandText = @"update PARAMETROS set ARCHIVO_KEY ='" + key + "', CLAVE_CERTIFICADO = '" + pass + "' where RFC ='" + RFC + "'";
+
+                if (queryAgregaKey.ExecuteNonQuery().Equals(1))
+                {
+                    XtraMessageBox.Show("¡Información Actualizada Con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    result = true;
+                }
+                else
+                {
+                    XtraMessageBox.Show("¡Error Al  Actualizar La Información!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    result = false;
+                }
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: AgregarArchivoKey()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public string ArchivoKEY(string RFC)
+        {
+            try
+            {
+                string pathKey = null;
+                SqlCommand queryKey = N.Conexion.PerformConnection().CreateCommand();
+                queryKey.CommandText = @"select ARCHIVO_KEY from PARAMETROS where RFC =@RFC";
+                queryKey.Parameters.AddWithValue("@RFC", RFC);
+
+                SqlDataReader readerKey;
+                readerKey = queryKey.ExecuteReader();
+
+                if (readerKey.Read())
+                {
+                    pathKey = readerKey.GetString(0);
+                }
+                readerKey.Close();
+                return pathKey;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "Error Controlador: ArchivoKEY()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }         
+        }
+        public string PassKey(string RFC)
+        {
+            try
+            {
+                string pass = null;
+                SqlCommand queryPass = N.Conexion.PerformConnection().CreateCommand();
+                queryPass.CommandText = @"select CLAVE_CERTIFICADO from PARAMETROS where RFC =@RFC";
+                queryPass.Parameters.AddWithValue("@RFC", RFC);
+
+                SqlDataReader readerPass;
+                readerPass = queryPass.ExecuteReader();
+
+                if (readerPass.Read())
+                {
+                    pass = readerPass.GetString(0);
+                }
+                readerPass.Close();
+                return pass;
+            }
+            catch (Exception e)
+            { 
+                XtraMessageBox.Show(e.Message + "\n Error Controlador: PassKey()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public E.Calculo GeneraCalculo(decimal Ingresos, string Periodicidad, string TipoIngresos)
+        {
+            try
+            {
+                E.Calculo calculo = new E.Calculo();                
+
+                if (TipoIngresos.Equals("Brutos"))
+                {
+                    calculo.IngresosBrutos = Ingresos;
+
+                    if (Periodicidad.Equals("Semanal"))
+                    {
+                        var ISR07 = new List<E.ISR7>();
+                        E.ISR7[] isr07 = null;
+
+                        var SUB07 = new List<E.SUB7>();
+                        E.SUB7[] sub07 = null;
+
+                        N.Conexion.PerformConnectionSoprade().Open();
+                        SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                        queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        from genTablasNumericasDet 
+                        where tnudIDTnum = 'ISR07'";
+
+                        SqlDataReader readerTabla;
+                        readerTabla = queryTablaISR.ExecuteReader();
+
+                        while (readerTabla.Read())
+                        {
+                            ISR07.Add(new E.ISR7
+                            {
+                                LimiteInferior = readerTabla.GetDecimal(0),
+                                LimiteSuperior = readerTabla.GetDecimal(1),
+                                CuotaFija = readerTabla.GetDecimal(2),
+                                Porcentaje = readerTabla.GetDecimal(3)
+                            });
+                            isr07 = ISR07.ToArray();
+                        }
+                        readerTabla.Close();
+
+                        SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                        queryTablaSub.CommandText = @"
+                        select tnudValor1, tnudValor2, tnudValor3
+                        from genTablasNumericasDet 
+                        where tnudIDTnum = 'SUB07'";
+
+                        SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
+                        while (readerTablaSub.Read())
+                        {
+                            SUB07.Add(new E.SUB7
+                            {
+                                rango1 = readerTablaSub.GetDecimal(0),
+                                rango2 = readerTablaSub.GetDecimal(1),
+                                subsidio = readerTablaSub.GetDecimal(2)
+                            });
+                            sub07 = SUB07.ToArray();
+                        }
+                        readerTablaSub.Close();
+                        N.Conexion.PerformConnectionSoprade().Close();
+
+                        foreach (var valor in sub07)
+                        {
+                            if(Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
+                            {
+                                calculo.Sub = valor.subsidio;
+                            }
+                        }
+
+                        foreach (var valor in isr07)
+                        {
+                            if (Ingresos >= valor.LimiteInferior && Ingresos <= valor.LimiteSuperior)
+                            {
+                                calculo.LimInferior = valor.LimiteInferior;
+                                calculo.PerExLimInf = valor.Porcentaje;
+                                calculo.CF = valor.CuotaFija;
+                            }
+                        }
+                        calculo.ExLimInf = calculo.IngresosBrutos - calculo.LimInferior;
+                        calculo.ImpMarg = calculo.ExLimInf * calculo.PerExLimInf;
+                        calculo.ISR = calculo.CF + calculo.ImpMarg;
+                        calculo.IngresosNetos = calculo.IngresosBrutos - calculo.ISR + calculo.Sub;
+                    }
+
+                    if (Periodicidad.Equals("Quincenal"))
+                    {
+                        var ISR15 = new List<E.ISR15>();
+                        E.ISR15[] isr15 = null;
+
+                        var SUB15 = new List<E.SUB15>();
+                        E.SUB15[] sub15 = null;
+
+                        N.Conexion.PerformConnectionSoprade().Open();
+                        SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                        queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        from genTablasNumericasDet 
+                        where tnudIDTnum = 'ISR15'";
+
+                        SqlDataReader readerTabla;
+                        readerTabla = queryTablaISR.ExecuteReader();
+
+                        while (readerTabla.Read())
+                        {
+                            ISR15.Add(new E.ISR15
+                            {
+                                LimiteInferior = readerTabla.GetDecimal(0),
+                                LimiteSuperior = readerTabla.GetDecimal(1),
+                                CuotaFija = readerTabla.GetDecimal(2),
+                                Porcentaje = readerTabla.GetDecimal(3)
+                            });
+                            isr15 = ISR15.ToArray();
+                        }
+                        readerTabla.Close();
+                        SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                        queryTablaSub.CommandText = @"
+                        select tnudValor1, tnudValor2, tnudValor3
+                        from genTablasNumericasDet 
+                        where tnudIDTnum = 'SUB15'";
+
+                        SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
+                        while (readerTablaSub.Read())
+                        {
+                            SUB15.Add(new E.SUB15
+                            {
+                                rango1 = readerTablaSub.GetDecimal(0),
+                                rango2 = readerTablaSub.GetDecimal(1),
+                                subsidio = readerTablaSub.GetDecimal(2)
+                            });
+                            sub15 = SUB15.ToArray();
+                        }
+                        readerTablaSub.Close();
+                        N.Conexion.PerformConnectionSoprade().Close();
+
+                        foreach (var valor in sub15)
+                        {
+                            if (Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
+                            {
+                                calculo.Sub = valor.subsidio;
+                            }
+                        }
+
+                        foreach (var valor in isr15)
+                        {
+                            if (Ingresos >= valor.LimiteInferior && Ingresos <= valor.LimiteSuperior)
+                            {
+                                calculo.LimInferior = valor.LimiteInferior;
+                                calculo.PerExLimInf = valor.Porcentaje;
+                                calculo.CF = valor.CuotaFija;
+                            }
+                        }
+                        calculo.ExLimInf = calculo.IngresosBrutos - calculo.LimInferior;
+                        calculo.ImpMarg = calculo.ExLimInf * calculo.PerExLimInf;
+                        calculo.ISR = calculo.CF + calculo.ImpMarg;
+                        calculo.IngresosNetos = calculo.IngresosBrutos - calculo.ISR + calculo.Sub;
+                    }
+
+                    if (Periodicidad.Equals("Mensual"))
+                    {
+                        var ISR30 = new List<E.ISR30>();
+                        E.ISR30[] isr30 = null;
+
+                        var SUB30 = new List<E.SUB30>();
+                        E.SUB30[] sub30 = null;
+
+                        N.Conexion.PerformConnectionSoprade().Open();
+                        SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                        queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        from genTablasNumericasDet 
+                        where tnudIDTnum = 'ISR30'";
+
+                        SqlDataReader readerTabla;
+                        readerTabla = queryTablaISR.ExecuteReader();
+
+                        while (readerTabla.Read())
+                        {
+                            ISR30.Add(new E.ISR30
+                            {
+                                LimiteInferior = readerTabla.GetDecimal(0),
+                                LimiteSuperior = readerTabla.GetDecimal(1),
+                                CuotaFija = readerTabla.GetDecimal(2),
+                                Porcentaje = readerTabla.GetDecimal(3)
+                            });
+                            isr30 = ISR30.ToArray();
+                        }
+                        readerTabla.Close();
+                        SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                        queryTablaSub.CommandText = @"
+                        select tnudValor1, tnudValor2, tnudValor3
+                        from genTablasNumericasDet 
+                        where tnudIDTnum = 'SUB30'";
+
+                        SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
+                        while (readerTablaSub.Read())
+                        {
+                            SUB30.Add(new E.SUB30
+                            {
+                                rango1 = readerTablaSub.GetDecimal(0),
+                                rango2 = readerTablaSub.GetDecimal(1),
+                                subsidio = readerTablaSub.GetDecimal(2)
+                            });
+                            sub30 = SUB30.ToArray();
+                        }
+                        readerTablaSub.Close();
+                        N.Conexion.PerformConnectionSoprade().Close();
+
+                        foreach (var valor in sub30)
+                        {
+                            if (Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
+                            {
+                                calculo.Sub = valor.subsidio;
+                            }
+                        }
+
+                        foreach (var valor in isr30)
+                        {
+                            if (Ingresos >= valor.LimiteInferior && Ingresos <= valor.LimiteSuperior)
+                            {
+                                calculo.LimInferior = valor.LimiteInferior;
+                                calculo.PerExLimInf = valor.Porcentaje;
+                                calculo.CF = valor.CuotaFija;
+                            }
+                        }
+                        calculo.ExLimInf = calculo.IngresosBrutos - calculo.LimInferior;
+                        calculo.ImpMarg = calculo.ExLimInf * calculo.PerExLimInf;
+                        calculo.ISR = calculo.CF + calculo.ImpMarg;
+                        calculo.IngresosNetos = calculo.IngresosBrutos - calculo.ISR + calculo.Sub;
+                    }
+                }
+
+                return calculo;
+            }
+            catch(Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: GeneraCalculo()", "Error", MessageBoxButtons.OK
+                    , MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public E.Empleado BuscaEmpleado(string RFC)
+        {
+            try
+            {
+                E.Empleado empleado = new E.Empleado();
+
+                SqlCommand queryEmpleado = N.Conexion.PerformConnection().CreateCommand();
+                queryEmpleado.CommandText = @"select NUM_EMPLEADO, RFC, CURP, Descripcion as [Periodicidad Pago]
+                , NOMBRE, TIPO_REGIMEN, TIPO_CONTRATO, SINDICALIZADO
+                , DEPARTAMENTO, PUESTO
+                from EMPLEADOS 
+                inner join [BSNOMINAS].[dbo].[PeriodicidadPago] as Peri
+                on EMPLEADOS.PERIODICIDAD_PAGO = Peri.c_PeriodicidadPago
+                where RFC = @RFC";
+                queryEmpleado.Parameters.AddWithValue("@RFC", RFC);
+
+                SqlDataReader readerEmpleado;
+                readerEmpleado = queryEmpleado.ExecuteReader();
+
+                if (readerEmpleado.Read())
+                {
+                    empleado.NumEmpl = readerEmpleado.GetString(0);
+                    empleado.RFC = readerEmpleado.GetString(1);
+                    empleado.CURP = readerEmpleado.GetString(2);
+                    empleado.Periodicidad = readerEmpleado.GetString(3);
+                    empleado.Nombre = readerEmpleado.GetString(4);
+                    empleado.TipoRegimen = readerEmpleado.GetString(5);
+                    empleado.TipoContrato = readerEmpleado.GetString(6);
+                    empleado.Sindicalizado = readerEmpleado.GetString(7);
+                    empleado.Departamento = readerEmpleado.GetString(8);
+                    empleado.Puesto = readerEmpleado.GetString(9);
+                }
+                readerEmpleado.Close();
+
+                //XtraMessageBox.Show(empleado.NumEmpl + "\n" + empleado.RFC + "\n" + empleado.CURP + "\n" + empleado.Periodicidad);
+
+                return empleado;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: BuscaEmpleado()" , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public List<E.Colonia> Colonias(string BD, string CP, List <E.Colonia> colonias)
+        {
+            try
+            {
+                N.Conexion.PerformConnection().Close();
+                N.Conexion.PerformConnection().Open();
+
+                SqlCommand queryColonias = N.Conexion.PerformConnection().CreateCommand();
+                queryColonias.CommandText = @"select d_codigo, d_asenta from Codigos_Postales where d_codigo = @Codigo";
+                queryColonias.Parameters.AddWithValue("@Codigo", CP);
+
+                SqlDataReader ReaderColonias;
+                ReaderColonias = queryColonias.ExecuteReader();
+
+                while (ReaderColonias.Read())
+                {
+                    colonias.Add(new E.Colonia{
+                        ID = ReaderColonias.GetString(0),
+                        Nombre = ReaderColonias.GetString(1)
+                    });
+                }
+                ReaderColonias.Close();
+                N.Conexion.PerformConnection().ChangeDatabase(BD);
+
+                return colonias;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: Colonias()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public List <E.Municipio> Municipios(string BD, string Estado, List <E.Municipio> municipios)
+        {
+            try
+            {
+                int ID = 0;
+                E.Municipio[] Muni = null;
+                //List ListPoblacion = null;
+                N.Conexion.PerformConnection().Close();
+                N.Conexion.PerformConnection().Open();
+
+                SqlCommand QueryIdEstado = N.Conexion.PerformConnection().CreateCommand();
+                QueryIdEstado.CommandText = @"select id from Estados_Republica where [Nombre del estado] = @Estado";
+                QueryIdEstado.Parameters.AddWithValue("@Estado", Estado);
+
+                SqlDataReader ReaderEstado;
+                ReaderEstado = QueryIdEstado.ExecuteReader();
+
+                if (ReaderEstado.Read())
+                {
+                    ID = ReaderEstado.GetInt32(0);
+                    //XtraMessageBox.Show(ID.ToString());
+                }
+                ReaderEstado.Close();
+
+                SqlCommand QueryMunicipios = N.Conexion.PerformConnection().CreateCommand();
+                QueryMunicipios.CommandText = @"select id, nombre from Municipios where estado_id = @EstadoID";
+                QueryMunicipios.Parameters.AddWithValue("@EstadoID", ID);
+                SqlDataReader ReaderMunicipios;
+                ReaderMunicipios = QueryMunicipios.ExecuteReader();
+
+                while (ReaderMunicipios.Read())
+                {
+                    municipios.Add(new E.Municipio
+                    {
+                        ID = ReaderMunicipios.GetInt32(0),
+                        Nombre = ReaderMunicipios.GetString(1)
+                    });
+                    Muni = municipios.ToArray();
+                }
+                ReaderMunicipios.Close();
+
+                N.Conexion.PerformConnection().ChangeDatabase(BD);
+
+                return municipios;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: Lista Poblacion()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
         public string CreaTablas2()
         {
             try
@@ -43,19 +660,18 @@ namespace winAsimilados.Controller
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                XtraMessageBox.Show(e.Message);
                 return null;
             }
         }
-        public bool CreaTablas()
+        public bool CreaTablas(string BD)
         {
             try
             {
                 string path = @"C:\DocAsimilados\CreaTablasEmpresa.sql";
-                string path2 = @"C:\DocAsimilados\prueba.sql";
+                string path2 = @"C:\DocAsimilados\resultado.txt";
                 ProcessStartInfo cmd;
-                cmd = new ProcessStartInfo("sqlcmd", "-S server-contpaq\\compac17 -i " + path);
-
+                cmd = new ProcessStartInfo("sqlcmd", "-S SERVER-CONTPAQ\\COMPAC17 -U sa -P Supervisor2020. -q use " + BD + @"-o C:\DocAsimilados\resultado.txt");
                 cmd.UseShellExecute = false;
                 cmd.CreateNoWindow = false;
                 cmd.RedirectStandardOutput = true;
@@ -66,18 +682,22 @@ namespace winAsimilados.Controller
                 return true;
             }catch (Exception e)
             {
-                MessageBox.Show(e.Message + "\nError Controlador: CreaTablas()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\nError Controlador: CreaTablas()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;          
             }
         }
-        public void CreaBDEmpresa(string BD, Object _P, SplashScreenManager splashScreenManager)
+        public void CreaBDEmpresa(string BD, Object _P, SplashScreenManager splashScreenManager, Object _A)
         {
             try
             {
                 E.Empresa empresa = (E.Empresa)_P;
+                E.Parametros parametros = (E.Parametros)_A;
+
                 //splashScreenManager.WaitForSplashFormClose();
-                string nameDB = "Nomina_Empresa", newNameDB = null;
+                string nameDB = "Nomina_Empresa", newNameDB = null, localidad = null, fechaIniCer = parametros.FECHA_INICIO_CERTIFICADO.ToString("yyyy-MM-dd"), fechaFincer = parametros.FECHA_VENCIMIENTO_CERTIFICADO.ToString("yyy-MM-dd");
                 int num = 0, nextNum = 0;
+                string ruta = @"C:/XML/";
+                parametros.RUTA_ALMACEN_PDF = ruta;
                 N.Conexion.PerformConnection().Close();
                 N.Conexion.PerformConnection().Open();
 
@@ -93,7 +713,7 @@ namespace winAsimilados.Controller
                 }
                 readerNumEmpresa.Close();
                 newNameDB = nameDB + nextNum.ToString();
-                //MessageBox.Show(newNameDB);
+                //XtraMessageBox.Show(newNameDB);
 
                 SqlCommand queryInsertEmpr = N.Conexion.PerformConnection().CreateCommand();
                 queryInsertEmpr.CommandText = @"INSERT INTO [dbo].[Listado_Empresas]
@@ -111,952 +731,100 @@ namespace winAsimilados.Controller
                 #region creaTablas 
                 SqlCommand queryCreaTablas2 = N.Conexion.PerformConnection().CreateCommand();
                 queryCreaTablas2.CommandText = CreaTablas2();
-                SqlCommand queryCreaTablas = N.Conexion.PerformConnection().CreateCommand();
-
-                queryCreaTablas.CommandText = @"SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ADC](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[XML_ADJUNTO] [text] NULL,
-	[TIPO_DOCUMENTO] [varchar](10) NOT NULL,
-	[NATURALEZA_DOCUMENTO] [varchar](5) NOT NULL,
-	[ESTATUS_SAT] [varchar](20) NOT NULL,
-	[FECHA_INICIAL] [date] NOT NULL,
-	[FECHA_FINAL] [date] NOT NULL,
-	[RFC] [varchar](13) NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC,
-	[UUID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ALMACEN_TIMBRES](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[FECHA_PAGO] [date] NULL,
-	[FICHERO_XML] [text] NULL,
-	[RFC_TRABAJADOR] [varchar](13) NULL,
-	[REGISTRO_PATRONAL] [varchar](20) NULL,
-	[XML_ADJUNTO] [text] NULL,
-	[FECHA_INICIAL_PAGO] [date] NULL,
-	[FECHA_FINAL_PAGO] [date] NULL,
-	[DIAS_PAGADOS] [int] NULL,
-	[TIPO_NOMINA] [varchar](20) NULL,
-	[FECHA_REAL_LABORAL] [varchar](30) NULL,
-	[FECHA_TIMBRADO] [varchar](30) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC,
-	[UUID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ALMACEN_XML](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](40) NULL,
-	[Fecha_Emision] [date] NULL,
-	[serie_factura] [varchar](20) NULL,
-	[folio_factura] [varchar](50) NULL,
-	[rfc_emisor] [varchar](13) NULL,
-	[rsocial_emisor] [varchar](max) NULL,
-	[rfc_receptor] [varchar](13) NULL,
-	[rsocial_receptor] [varchar](max) NULL,
-	[status] [varchar](20) NULL,
-	[metodo_pago] [varchar](800) NULL,
-	[tipo_documento] [varchar](11) NULL,
-	[Nombre_Moneda] [text] NULL,
-	[Tipo_Cambio] [money] NULL,
-	[importe_Neto] [money] NULL,
-	[importe_Descuento] [money] NULL,
-	[Total] [money] NULL,
-	[xml_adjunto] [text] NULL,
-	[Lugar_Expedicion] [text] NULL,
-	[Tipo_Venta] [varchar](11) NULL,
-	[Tipo_Comprobante] [varchar](50) NULL,
-	[cuenta_contable] [varchar](50) NULL,
-	[DC] [varchar](2) NULL,
-	[Numero_Empresa] [int] NULL
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ALMACEN_XML_DETALLE](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NULL,
-	[Prod_Codigo] [varchar](max) NULL,
-	[Prod_Descripcion] [varchar](max) NULL,
-	[Prod_Cantidad] [varchar](max) NULL,
-	[Prod_Unidad] [varchar](max) NULL,
-	[Prod_ValorUnitario] [money] NULL,
-	[Prod_ValorTotal] [money] NULL,
-	[Numero_Empresa] [int] NULL
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[CATALOGO_CONCEPTOS](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[Descripcion] [nvarchar](255) NULL,
-	[Clave_SAT] [nvarchar](4) NULL,
-	[Tipo] [varchar](1) NULL,
-	[Clave_Interna] [varchar](255) NULL,
-	[Descipcion_Interna] [varchar](100) NULL,
-	[Tipo_Interna] [varchar](1) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[COMPLEMENTONOMINAS](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NULL,
-	[RegistroPatronal] [varchar](20) NULL,
-	[NumEmpleado] [varchar](20) NULL,
-	[CURP] [varchar](20) NULL,
-	[TipoRegimen] [varchar](5) NULL,
-	[NumSeguridadSocial] [varchar](20) NULL,
-	[FechaPago] [date] NULL,
-	[NumDiasPagados] [varchar](4) NULL,
-	[Departamento] [varchar](255) NULL,
-	[FechaInicioRelLaboral] [date] NULL,
-	[Antiguedad] [varchar](4) NULL,
-	[Puesto] [varchar](255) NULL,
-	[TipoContrato] [varchar](20) NULL,
-	[TipoJornada] [varchar](20) NULL,
-	[PeriodicidadPago] [varchar](20) NULL,
-	[SalarioBaseCotApor] [money] NULL,
-	[RiesgoPuesto] [int] NULL,
-	[SalarioDiarioIntegrado] [money] NULL,
-	[FechaInicialPago] [date] NULL,
-	[FechaFinalPago] [date] NULL,
-	[Numero_Empresa] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Concepto_Documento](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[cantidad] [varchar](255) NULL,
-	[descripcion] [varchar](255) NULL,
-	[valorUnitario] [money] NULL,
-	[importe] [money] NULL,
-	[unidad] [varchar](10) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC,
-	[UUID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[CONCEPTOSNOMINA](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[ImporteExento] [money] NULL,
-	[ImporteGravado] [money] NULL,
-	[Concepto] [varchar](255) NULL,
-	[ClaveInt] [varchar](4) NULL,
-	[ClaveSAT] [varchar](4) NULL,
-	[Tipo] [varchar](20) NULL,
-	[Numero_Empresa] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ConceptosUnidos](
-	[ID] [int] NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[TipoPercepcion] [varchar](3) NULL,
-	[TipoDeduccion] [varchar](3) NULL,
-	[ClavePInterno] [varchar](3) NULL,
-	[ClaveDInterno] [varchar](3) NULL,
-	[ConceptoP] [varchar](255) NULL,
-	[ConceptoD] [varchar](255) NULL,
-	[Importe] [money] NULL,
-	[ImporteGravado] [money] NULL,
-	[ImporteExento] [money] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC,
-	[UUID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Datos_Emisor](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[nombre] [text] NULL,
-	[rfc] [varchar](13) NOT NULL,
-	[Curp] [varchar](20) NULL,
-	[RfcPatronOrigen] [varchar](13) NULL,
-	[Regimen] [varchar](255) NULL,
-	[RegistroPatronal] [varchar](20) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC,
-	[UUID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Datos_Receptor](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[nombre] [text] NULL,
-	[rfc] [varchar](13) NOT NULL,
-	[Curp] [varchar](18) NOT NULL,
-	[NumSeguridadSocial] [varchar](30) NULL,
-	[FechaInicioRelLaboral] [date] NULL,
-	[Antiguedad] [varchar](10) NULL,
-	[TipoContrato] [varchar](10) NULL,
-	[Sindicalizado] [varchar](3) NULL,
-	[TipoJornada] [varchar](10) NULL,
-	[TipoRegimen] [varchar](10) NULL,
-	[NumEmpleado] [varchar](255) NULL,
-	[Departamento] [varchar](255) NULL,
-	[Puesto] [varchar](255) NULL,
-	[RiesgoPuesto] [varchar](10) NULL,
-	[PeriodicidadPago] [varchar](10) NULL,
-	[Banco] [varchar](10) NULL,
-	[CuentaBancaria] [varchar](20) NULL,
-	[SalarioBaseCotApor] [money] NULL,
-	[SalarioDiarioIntegrado] [money] NULL,
-	[ClaveEntFed] [varchar](10) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC,
-	[UUID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[DEDUCCIONES](
-	[iddeducciones] [int] IDENTITY(1,1) NOT NULL,
-	[periodo] [int] NOT NULL,
-	[num_empleado] [int] NOT NULL,
-	[nombre] [varchar](250) NULL,
-	[clave_sat] [varchar](100) NULL,
-	[clave_interna] [varchar](100) NULL,
-	[concepto] [varchar](250) NULL,
-	[importe_gravado] [int] NULL,
-	[import_excento] [int] NULL
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Doc_Detalles](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[ClaveProdServ] [varchar](50) NULL,
-	[ClaveUnidad] [varchar](50) NULL,
-	[NoIdentificacion] [varchar](50) NULL,
-	[Cantidad] [varchar](50) NULL,
-	[Unidad] [varchar](50) NULL,
-	[Descripcion] [varchar](max) NULL,
-	[ValorUnitario] [money] NULL,
-	[Importe] [money] NULL,
-	[TBase] [varchar](50) NULL,
-	[TImpuesto] [varchar](50) NULL,
-	[TTipoFactor] [varchar](50) NULL,
-	[TTasaOCuota] [money] NULL,
-	[TImporte] [money] NULL,
-	[RBase] [varchar](50) NULL,
-	[RImpuesto] [varchar](50) NULL,
-	[RTipoFactor] [varchar](50) NULL,
-	[RTasaOCuota] [money] NULL,
-	[RImporte] [varchar](50) NULL,
-	[InformacionAduanera_NumeroPedimento] [varchar](50) NULL,
-	[UUID] [varchar](50) NULL,
-	[NumeroCuentaPredial] [varchar](50) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Doc_Encabezados](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[Vcfdi] [nvarchar](4) NULL,
-	[Folio] [nvarchar](50) NULL,
-	[Serie] [nvarchar](25) NULL,
-	[Fecha] [date] NULL,
-	[Emisor_RFC] [varchar](13) NULL,
-	[Emisor_Nombre] [ntext] NULL,
-	[RegimenFiscal] [varchar](50) NULL,
-	[Receptor_Rfc] [varchar](50) NULL,
-	[Receptor_Nombre] [ntext] NULL,
-	[UsoCFDI] [varchar](50) NULL,
-	[FormaPago] [varchar](50) NULL,
-	[MetodoPago] [varchar](50) NULL,
-	[CondicionesDePago] [varchar](50) NULL,
-	[TipoDeComprobante] [varchar](10) NULL,
-	[LugarExpedicion] [ntext] NULL,
-	[Moneda] [varchar](50) NULL,
-	[TipoCambio] [money] NULL,
-	[SubTotal] [money] NULL,
-	[Descuento] [money] NULL,
-	[Total] [money] NULL,
-	[TipoRelacion_CFDI] [varchar](50) NULL,
-	[UUIDRelacion_CFDI] [varchar](50) NULL,
-	[TotalImpuestosRetenidos] [money] NULL,
-	[TotalImpuestosTrasladados] [money] NULL,
-	[UUID] [varchar](50) NULL,
-	[FechaTimbrado] [varchar](50) NULL,
-	[NumEmpresa] [int] NULL,
-	[TRetencionesLocales] [money] NULL,
-	[TTrasladosLocales] [money] NULL,
-	[ImpLocRetenido] [varchar](max) NULL,
-	[TasadeRetencion] [decimal](18, 0) NULL,
-	[ImporteRetencion] [money] NULL,
-	[ImpLocTrasladado] [varchar](max) NULL,
-	[TasadeTraslado] [decimal](18, 0) NULL,
-	[Importe] [money] NULL,
-	[Confirmacion] [varchar](50) NULL,
-	[VigenciaSAT] [varchar](50) NULL,
-	[MiDocumento] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[EMPLEADOS](
-	[idempleado] [int] IDENTITY(1,1) NOT NULL,
-	[NUM_EMPLEADO] [varchar](10) NULL,
-	[NOMBRE] [varchar](250) NULL,
-	[RFC] [varchar](13) NOT NULL,
-	[MAIL] [varchar](50) NULL,
-	[CURP] [varchar](50) NULL,
-	[TIPO_REGIMEN] [varchar](50) NULL,
-	[NUMERO_SS] [numeric](18, 0) NULL,
-	[DEPARTAMENTO] [varchar](250) NULL,
-	[CLABE_BANCARIA] [varchar](18) NULL,
-	[BANCO] [varchar](4) NULL,
-	[FECHA_INICIO_LABORAL] [date] NULL,
-	[PUESTO] [varchar](250) NULL,
-	[TIPO_CONTRATO] [varchar](50) NULL,
-	[TIPO_JORNADA] [varchar](50) NULL,
-	[PERIODICIDAD_PAGO] [varchar](50) NULL,
-	[SBC] [varchar](50) NULL,
-	[SDI] [varchar](255) NULL,
-	[SINDICALIZADO] [varchar](2) NULL,
-	[REGISTRO_PATRONAL] [varchar](20) NULL,
-	[RIESGO_PUESTO] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[idempleado] ASC,
-	[RFC] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
-UNIQUE NONCLUSTERED 
-(
-	[RFC] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Encabezado_Importes](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[serie] [varchar](80) NULL,
-	[folio] [varchar](80) NULL,
-	[fecha] [date] NULL,
-	[tipoDeComprobante] [varchar](10) NULL,
-	[formaDePago] [varchar](255) NULL,
-	[metodoDePago] [varchar](100) NULL,
-	[subTotal] [money] NULL,
-	[descuento] [money] NULL,
-	[Moneda] [varchar](30) NULL,
-	[TipoCambio] [money] NULL,
-	[total] [money] NULL,
-	[LugarExpedicion] [varchar](100) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC,
-	[UUID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[HEXTRASNOMINAS](
-	[ID] [int] NOT NULL,
-	[UUID] [varchar](50) NULL,
-	[Dias] [varchar](5) NULL,
-	[TipoHoras] [varchar](4) NULL,
-	[HorasExtra] [varchar](4) NULL,
-	[ImportePagado] [money] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[IMPUESTOS](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](60) NULL,
-	[Nombre_Impuesto] [varchar](50) NULL,
-	[Tasa_Impuesto] [varchar](10) NULL,
-	[Importe_Impuesto] [money] NULL,
-	[Tipo_Impuesto] [varchar](50) NULL,
-	[Etiqueta] [varchar](50) NULL,
-	[Subtotal_Docto] [money] NULL,
-	[Descto_Docto] [money] NULL,
-	[Total_Docto] [money] NULL,
-	[Numero_Empresa] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[INCAPACIDADESNOMINAS](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NULL,
-	[DiasIncapacidad] [int] NULL,
-	[TipoIncapacidad] [varchar](4) NULL,
-	[Descuento] [money] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[LOGTIMBRADO](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[NUMEMPLEADO] [varchar](50) NULL,
-	[RFC] [varchar](13) NULL,
-	[FECHA_PAGO] [date] NULL,
-	[OBSERVACIONES] [text] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Nom_Detalles](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NULL,
-	[TipoPercepcion] [varchar](10) NULL,
-	[Clave_P] [varchar](10) NULL,
-	[Concepto_P] [varchar](50) NULL,
-	[ImporteGravado_P] [money] NULL,
-	[ImporteExento_P] [money] NULL,
-	[ImporteExento_D] [money] NULL,
-	[ImporteGravado_D] [money] NULL,
-	[Concepto_D] [varchar](50) NULL,
-	[Clave_D] [varchar](10) NULL,
-	[TipoDeduccion] [varchar](10) NULL,
-	[Importe] [money] NULL,
-	[DiasIncapacidad] [int] NULL,
-	[TipoIncapacidad] [int] NULL,
-	[Descuento] [money] NULL,
-	[Dias] [int] NULL,
-	[TipoHoras] [varchar](50) NULL,
-	[HorasExtra] [int] NULL,
-	[ImportePagado] [money] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Nom_Generales](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[Version] [varchar](10) NULL,
-	[TipoNomina] [varchar](10) NULL,
-	[FechaPago] [date] NULL,
-	[FechaInicialPago] [date] NULL,
-	[FechaFinalPago] [date] NULL,
-	[NumDiasPagados] [decimal](18, 0) NULL,
-	[TotalPercepciones] [money] NULL,
-	[TotalDeducciones] [money] NULL,
-	[TotalOtrosPagos] [money] NULL,
-	[Curp] [varchar](20) NULL,
-	[NumSeguridadSocial] [varchar](20) NULL,
-	[FechaInicioRelLaboral] [date] NULL,
-	[Antigüedad] [varchar](10) NULL,
-	[TipoContrato] [varchar](50) NULL,
-	[Sindicalizado] [varchar](10) NULL,
-	[TipoJornada] [varchar](50) NULL,
-	[TipoRegimen] [nvarchar](max) NULL,
-	[NumEmpleado] [varchar](50) NULL,
-	[Departamento] [varchar](max) NULL,
-	[Puesto] [varchar](max) NULL,
-	[RiesgoPuesto] [varchar](10) NULL,
-	[PeriodicidadPago] [varchar](30) NULL,
-	[CuentaBancaria] [varchar](50) NULL,
-	[Banco] [varchar](10) NULL,
-	[SalarioBaseCotApor] [money] NULL,
-	[SalarioDiarioIntegrado] [money] NULL,
-	[RegistroPatronal] [varchar](50) NULL,
-	[UUID] [varchar](50) NULL,
-	[PTotalGravado] [money] NULL,
-	[PTotalExento] [money] NULL,
-	[DTotalGravado] [money] NULL,
-	[DTotalExento] [money] NULL,
-	[SubsidioAlEmpleoCausado] [money] NULL,
-	[TotalImpuestosRetenidos] [money] NULL,
-	[TotalOtrasDeducciones] [money] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Pagos_Detalles](
-	[id] [int] NOT NULL,
-	[Confirmacion] [varchar](max) NULL,
-	[IdDocumento] [varchar](max) NULL,
-	[MonedaDR] [varchar](50) NULL,
-	[MetodoDePagoDR] [smalldatetime] NULL,
-	[NumParcialidad] [int] NULL,
-	[ImpSaldoAnt] [money] NULL,
-	[ImpPagado] [money] NULL,
-	[ImpSaldoInsoluto] [money] NULL,
-	[TipoCambioDR] [money] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Pagos_Generales](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[Confirmacion] [varchar](max) NULL,
-	[Version] [varchar](5) NULL,
-	[FechaPago] [date] NULL,
-	[FormaDePagoP] [varchar](max) NULL,
-	[MonedaP] [varchar](max) NULL,
-	[Monto] [money] NULL,
-	[RfcEmisorCtaOrd] [varchar](50) NULL,
-	[CtaOrdenante] [varchar](max) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[PARAMETROS](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[NOMBRE_EMPRESA] [varchar](255) NULL,
-	[RFC] [varchar](13) NULL,
-	[REGISTRO_PATRONAL] [varchar](20) NULL,
-	[REGISTRO_NSS] [varchar](20) NULL,
-	[REPRESENTANTE] [varchar](255) NULL,
-	[CALLE] [varchar](200) NULL,
-	[NUM_EXT] [varchar](10) NULL,
-	[NUM_INT] [varchar](10) NULL,
-	[CODIGO_POSTAL] [varchar](5) NULL,
-	[MUNICIPIO] [varchar](255) NULL,
-	[LOCALIDAD] [varchar](255) NULL,
-	[ESTADO] [varchar](255) NULL,
-	[PAIS] [varchar](255) NULL,
-	[REGIMEN] [varchar](4) NULL,
-	[RIESGO_PUESTO] [varchar](4) NULL,
-	[CLAVE_CERTIFICADO] [varchar](255) NULL,
-	[NUMERO_CERTIFICADO] [varchar](100) NULL,
-	[FECHA_VENCIMIENTO_CERTIFICADO] [date] NULL,
-	[RUTA_Cti] [varchar](255) NULL,
-	[COD_CONCEPTO_Cti] [varchar](255) NULL,
-	[FECHA_INICIO_CERTIFICADO] [date] NULL,
-	[ORIGEN_RECURSOS] [varchar](3) NULL,
-	[TIPO_NOMINA] [varchar](2) NULL,
-	[ARCHIVO_CER] [varchar](255) NULL,
-	[ARCHIVO_KEY] [varchar](255) NULL,
-	[ASUNTO_CERTIFICADO] [varchar](255) NULL,
-	[COLONIA] [varchar](100) NULL,
-	[RUTA_ALMACEN_PDF] [varchar](255) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[PERCEPCIONES](
-	[idpercepciones] [int] IDENTITY(1,1) NOT NULL,
-	[periodo] [int] NOT NULL,
-	[num_empleado] [int] NOT NULL,
-	[nombre] [varchar](250) NULL,
-	[clave_sat] [varchar](100) NULL,
-	[clave_interna] [varchar](100) NULL,
-	[concepto] [varchar](250) NULL,
-	[importe_gravado] [int] NULL,
-	[import_excento] [int] NULL
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[PERIODOS](
-	[id_periodo] [int] IDENTITY(1,1) NOT NULL,
-	[descripcion] [varchar](250) NULL,
-	[fecha_ini] [date] NULL,
-	[fecha_fin] [date] NULL
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Registro_Patronales](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[RegistroPatronal] [nvarchar](50) NOT NULL,
-	[Riesgo_Puesto] [int] NULL,
-	[NumCertificadoSAT] [nvarchar](50) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[RegistroPatronal] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[SMTP](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[NombreServidor] [varchar](50) NULL,
-	[ServidorSMTP] [varchar](50) NULL,
-	[PuertoSMTP] [varchar](50) NULL,
-	[SeguridadSSL] [int] NULL,
-	[ClaveSMTP] [varchar](255) NULL,
-	[DominioCorreo] [nvarchar](50) NULL,
-	[CorreoEnvio] [nvarchar](50) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Tabla_Complemento](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[Version] [varchar](5) NULL,
-	[TipoNomina] [varchar](10) NULL,
-	[FechaPago] [date] NULL,
-	[FechaInicialPago] [date] NULL,
-	[FechaFinalPago] [date] NULL,
-	[NumDiasPagados] [varchar](10) NULL,
-	[TotalPercepciones] [money] NULL,
-	[TotalDeducciones] [money] NULL,
-	[TotalOtrosPagos] [money] NULL
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[TABLA_DEDUDCCIONES](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[TipoDeduccion] [varchar](10) NULL,
-	[Clave] [varchar](10) NULL,
-	[Concepto] [varchar](255) NULL,
-	[Importe] [money] NULL
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[TABLA_HEXTRAS](
-	[ID] [int] NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[DIAS] [varchar](10) NULL,
-	[TipoHoras] [varchar](10) NULL,
-	[HorasExtra] [varchar](10) NULL,
-	[ImportePagado] [money] NULL
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Tabla_Incapacidades](
-	[ID] [int] NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[DiasIncapacidad] [varchar](10) NULL,
-	[TipoIncapacidad] [varchar](10) NULL,
-	[ImporteMonetario] [money] NULL
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[TABLA_PERCEPCIONES](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[TipoPercepcion] [varchar](10) NULL,
-	[Clave] [varchar](10) NULL,
-	[Concepto] [varchar](255) NULL,
-	[ImporteGravado] [money] NULL,
-	[ImporteExento] [money] NULL
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Total_Deducciones](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[TotalOtrasDeducciones] [money] NULL,
-	[TotalImpuestosRetenidos] [money] NULL
-) ON [PRIMARY]
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Total_Percepciones](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[UUID] [varchar](50) NOT NULL,
-	[TotalSueldos] [money] NULL,
-	[TotalSeparacionIndemnizacion] [money] NULL,
-	[TotalJubilacionPensionRetiro] [money] NULL,
-	[TotalGravado] [money] NULL,
-	[TotalExento] [money] NULL
-) ON [PRIMARY]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [UUID]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [serie_factura]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [folio_factura]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [rfc_emisor]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [rsocial_emisor]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [rfc_receptor]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [rsocial_receptor]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [status]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [metodo_pago]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [tipo_documento]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [Nombre_Moneda]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT ((0.00)) FOR [Tipo_Cambio]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [importe_Neto]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [importe_Descuento]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [Total]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [xml_adjunto]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [Lugar_Expedicion]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [Tipo_Venta]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT ('FAC') FOR [Tipo_Comprobante]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT (NULL) FOR [cuenta_contable]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT ((0)) FOR [DC]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML] ADD  DEFAULT ((0)) FOR [Numero_Empresa]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML_DETALLE] ADD  DEFAULT (NULL) FOR [UUID]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML_DETALLE] ADD  DEFAULT (NULL) FOR [Prod_Codigo]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML_DETALLE] ADD  DEFAULT (NULL) FOR [Prod_Descripcion]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML_DETALLE] ADD  DEFAULT (NULL) FOR [Prod_Cantidad]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML_DETALLE] ADD  DEFAULT (NULL) FOR [Prod_Unidad]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML_DETALLE] ADD  DEFAULT (NULL) FOR [Prod_ValorUnitario]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML_DETALLE] ADD  DEFAULT (NULL) FOR [Prod_ValorTotal]
-GO
-ALTER TABLE [dbo].[ALMACEN_XML_DETALLE] ADD  DEFAULT ((0)) FOR [Numero_Empresa]
-GO
-ALTER TABLE [dbo].[ConceptosUnidos] ADD  DEFAULT ((0.00)) FOR [Importe]
-GO
-ALTER TABLE [dbo].[ConceptosUnidos] ADD  DEFAULT ((0.00)) FOR [ImporteGravado]
-GO
-ALTER TABLE [dbo].[ConceptosUnidos] ADD  DEFAULT ((0.00)) FOR [ImporteExento]
-GO
-ALTER TABLE [dbo].[Datos_Emisor] ADD  DEFAULT ('') FOR [Curp]
-GO
-ALTER TABLE [dbo].[Datos_Receptor] ADD  DEFAULT ((0)) FOR [Banco]
-GO
-ALTER TABLE [dbo].[Datos_Receptor] ADD  DEFAULT ((0)) FOR [CuentaBancaria]
-GO
-ALTER TABLE [dbo].[Datos_Receptor] ADD  DEFAULT ((0.00)) FOR [SalarioBaseCotApor]
-GO
-ALTER TABLE [dbo].[Datos_Receptor] ADD  DEFAULT ((0.00)) FOR [SalarioDiarioIntegrado]
-GO
-ALTER TABLE [dbo].[Doc_Encabezados] ADD  DEFAULT ((0.00)) FOR [SubTotal]
-GO
-ALTER TABLE [dbo].[Doc_Encabezados] ADD  DEFAULT ((0.00)) FOR [Descuento]
-GO
-ALTER TABLE [dbo].[Doc_Encabezados] ADD  DEFAULT ((0.00)) FOR [Total]
-GO
-ALTER TABLE [dbo].[Doc_Encabezados] ADD  DEFAULT ((0)) FOR [MiDocumento]
-GO
-ALTER TABLE [dbo].[EMPLEADOS] ADD  DEFAULT ('No') FOR [SINDICALIZADO]
-GO
-ALTER TABLE [dbo].[Encabezado_Importes] ADD  DEFAULT ((0.00)) FOR [subTotal]
-GO
-ALTER TABLE [dbo].[Encabezado_Importes] ADD  DEFAULT ((0.00)) FOR [descuento]
-GO
-ALTER TABLE [dbo].[Encabezado_Importes] ADD  DEFAULT ((0.00)) FOR [TipoCambio]
-GO
-ALTER TABLE [dbo].[Encabezado_Importes] ADD  DEFAULT ((0.00)) FOR [total]
-GO
-ALTER TABLE [dbo].[IMPUESTOS] ADD  DEFAULT ('') FOR [Tasa_Impuesto]
-GO
-ALTER TABLE [dbo].[IMPUESTOS] ADD  DEFAULT ((0.00)) FOR [Importe_Impuesto]
-GO
-ALTER TABLE [dbo].[IMPUESTOS] ADD  DEFAULT ((0)) FOR [Numero_Empresa]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [NOMBRE_EMPRESA]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [RFC]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [REGISTRO_PATRONAL]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [REGISTRO_NSS]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [REPRESENTANTE]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [CALLE]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [NUM_EXT]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [NUM_INT]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('00000') FOR [CODIGO_POSTAL]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [MUNICIPIO]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [LOCALIDAD]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [ESTADO]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('MXN') FOR [PAIS]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [REGIMEN]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [RIESGO_PUESTO]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [CLAVE_CERTIFICADO]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [NUMERO_CERTIFICADO]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('c:\CompacW\Empresas\Predeterminada') FOR [RUTA_Cti]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [COD_CONCEPTO_Cti]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [FECHA_INICIO_CERTIFICADO]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [ORIGEN_RECURSOS]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [TIPO_NOMINA]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [ARCHIVO_CER]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [ARCHIVO_KEY]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [ASUNTO_CERTIFICADO]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('') FOR [COLONIA]
-GO
-ALTER TABLE [dbo].[PARAMETROS] ADD  DEFAULT ('C:\NOMINASCFDI\') FOR [RUTA_ALMACEN_PDF]
-GO
-ALTER TABLE [dbo].[TABLA_DEDUDCCIONES] ADD  DEFAULT ((0.00)) FOR [Importe]
-GO
-ALTER TABLE [dbo].[TABLA_HEXTRAS] ADD  DEFAULT ((0.00)) FOR [ImportePagado]
-GO
-ALTER TABLE [dbo].[Tabla_Incapacidades] ADD  DEFAULT ((0.00)) FOR [ImporteMonetario]
-GO
-ALTER TABLE [dbo].[TABLA_PERCEPCIONES] ADD  DEFAULT ((0.00)) FOR [ImporteGravado]
-GO
-ALTER TABLE [dbo].[TABLA_PERCEPCIONES] ADD  DEFAULT ((0.00)) FOR [ImporteExento]
-GO
-ALTER TABLE [dbo].[Total_Deducciones] ADD  DEFAULT ((0.00)) FOR [TotalOtrasDeducciones]
-GO
-ALTER TABLE [dbo].[Total_Deducciones] ADD  DEFAULT ((0.00)) FOR [TotalImpuestosRetenidos]
-GO
-ALTER TABLE [dbo].[Total_Percepciones] ADD  DEFAULT ((0.00)) FOR [UUID]
-GO
-ALTER TABLE [dbo].[Total_Percepciones] ADD  DEFAULT ((0.00)) FOR [TotalSueldos]
-GO
-ALTER TABLE [dbo].[Total_Percepciones] ADD  DEFAULT ((0.00)) FOR [TotalSeparacionIndemnizacion]
-GO
-ALTER TABLE [dbo].[Total_Percepciones] ADD  DEFAULT ((0.00)) FOR [TotalJubilacionPensionRetiro]
-GO
-ALTER TABLE [dbo].[Total_Percepciones] ADD  DEFAULT ((0.00)) FOR [TotalGravado]
-GO
-ALTER TABLE [dbo].[Total_Percepciones] ADD  DEFAULT ((0.00)) FOR [TotalExento]
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Tipo de Documento, si es nomina o factura' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ALMACEN_XML', @level2type=N'COLUMN',@level2name=N'Tipo_Comprobante'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Documento Contabilizado' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ALMACEN_XML', @level2type=N'COLUMN',@level2name=N'DC'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'SE UTILIZA COMO IDENTIFICADOR DE EMPRESA' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ALMACEN_XML', @level2type=N'COLUMN',@level2name=N'Numero_Empresa'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'SI ES PERCEPCION O DEDUCCION' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CONCEPTOSNOMINA', @level2type=N'COLUMN',@level2name=N'Tipo'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Forma de Etiquetal al Impuesto para Llamarlo' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'IMPUESTOS', @level2type=N'COLUMN',@level2name=N'Etiqueta'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Subtotal del Documento' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'IMPUESTOS', @level2type=N'COLUMN',@level2name=N'Subtotal_Docto'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Total de Descuento del Documento' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'IMPUESTOS', @level2type=N'COLUMN',@level2name=N'Descto_Docto'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Total del Documento' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'IMPUESTOS', @level2type=N'COLUMN',@level2name=N'Total_Docto'
-GO";
+                //SqlCommand queryCreaTablas = N.Conexion.PerformConnection().CreateCommand();
                 #endregion
+                SqlCommand queryLocalidad = N.Conexion.PerformConnection().CreateCommand();
+                queryLocalidad.CommandText = @"Select clave from Municipios where nombre = @municipio";
+                queryLocalidad.Parameters.AddWithValue("@municipio", parametros.MUNICIPIO);
+
+                SqlDataReader readerLocalidad;
+                readerLocalidad = queryLocalidad.ExecuteReader();
+                if (readerLocalidad.Read())
+                {
+                    parametros.LOCALIDAD = readerLocalidad.GetString(0);
+                }
+                readerLocalidad.Close();
+
+                SqlCommand queryPais = N.Conexion.PerformConnection().CreateCommand();
+                queryPais.CommandText = @"select [c_Pais] from [Estados_Republica] where [Nombre del estado] = @estado";
+                queryPais.Parameters.AddWithValue("estado", parametros.ESTADO);
+
+                SqlDataReader readerPais;
+                readerPais = queryPais.ExecuteReader();
+                if (readerPais.Read())
+                {
+                    parametros.PAIS = readerPais.GetString(0);
+                }
+                readerPais.Close();
+
+                //XtraMessageBox.Show(parametros.FECHA_VENCIMIENTO_CERTIFICADO.ToShortDateString() + "\n" + parametros.FECHA_INICIO_CERTIFICADO.ToShortDateString());
+                SqlCommand queryParametros = N.Conexion.PerformConnection().CreateCommand();
+                queryParametros.CommandText = @"INSERT INTO [dbo].[PARAMETROS]
+                                               ([NOMBRE_EMPRESA]
+                                               ,[RFC]
+                                               ,[REGISTRO_PATRONAL]
+                                               ,[CALLE]
+                                               ,[NUM_EXT]
+                                               ,[NUM_INT]
+                                               ,[CODIGO_POSTAL]
+                                               ,[MUNICIPIO]
+                                               ,[LOCALIDAD]
+                                               ,[ESTADO]
+                                               ,[PAIS]
+                                               ,[REGIMEN]
+                                               ,[RIESGO_PUESTO]
+                                               ,[CLAVE_CERTIFICADO]
+                                               ,[NUMERO_CERTIFICADO]
+                                               ,[FECHA_VENCIMIENTO_CERTIFICADO]
+                                               ,[FECHA_INICIO_CERTIFICADO]
+                                               ,[ORIGEN_RECURSOS]
+                                               ,[TIPO_NOMINA]
+                                               ,[ARCHIVO_CER]
+                                               ,[ARCHIVO_KEY]
+                                               ,[ASUNTO_CERTIFICADO]
+                                               ,[COLONIA]
+                                               ,[RUTA_ALMACEN_PDF])
+                                         VALUES
+                                               ('" + parametros.NombreEmpresa + "'," +
+                                               "'" + parametros.RFC + "'," +
+                                               "'" + parametros.RegistroPatronal + "'," +
+                                               "'" + parametros.Calle + "'," +
+                                               "'" + parametros.NUM_EXT + "'," +
+                                               "'" + parametros.NUM_INT + "'," +
+                                               "'" + parametros.CODIGO_POSTAL + "'," +
+                                               "'" + parametros.MUNICIPIO + "'," +
+                                               "'" + parametros.LOCALIDAD + "'," +
+                                               "'" + parametros.ESTADO + "'," +
+                                               "'" + parametros.PAIS + "'," +
+                                               "'" + parametros.REGIMEN + "'," +
+                                               "'" + parametros.RIESGO_PUESTO + "'," +
+                                               "'" + parametros.CLAVE_CERTIFICADO + "'," +
+                                               "'" + parametros.NUMERO_CERTIFICADO + "'," +
+                                               "'" + fechaFincer + "'," +
+                                               "'" + fechaIniCer + "'," +
+                                               "'" + parametros.ORIGEN_RECURSOS + "'," +
+                                               "'" + parametros.TIPO_NOMINA + "'," +
+                                               "'" + parametros.ARCHIVO_CER + "'," +
+                                               "'" + parametros.ARCHIVO_KEY + "'," +
+                                               "'" + parametros.ASUNTO_CERTIFICADO + "'," +
+                                               "'" + parametros.COLONIA + "'," +
+                                               "'" + parametros.RUTA_ALMACEN_PDF + "')";
 
                 if (queryInsertEmpr.ExecuteNonQuery().Equals(1))
                 {
                     if (!queryCreaBD.ExecuteNonQuery().Equals(1))
                     {
                         N.Conexion.PerformConnection().ChangeDatabase(newNameDB);
-                        if (CreaTablas().Equals(true))
+                        if (!queryCreaTablas2.ExecuteNonQuery().Equals(0))
                         {
-                            MessageBox.Show("¡Empresa Agregada con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //XtraMessageBox.Show("¡Empresa Agregada con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //splashScreenManager.CloseWaitForm();
+                            //XtraMessageBox.Show(queryParametros.CommandText.ToString());
+                            if (queryParametros.ExecuteNonQuery().Equals(1))
+                            {
+                                splashScreenManager.CloseWaitForm();
+                                XtraMessageBox.Show("¡Empresa Agregada con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
                         }
 
                     }
@@ -1064,12 +832,12 @@ GO";
 
 
                 N.Conexion.PerformConnection().ChangeDatabase(BD);
-                splashScreenManager.CloseWaitForm();
+                //splashScreenManager.CloseWaitForm();
             }
             catch (Exception e)
             {
+                XtraMessageBox.Show(e.Message + "\nError Controlador:CrearBDEmpresa()" , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 splashScreenManager.CloseWaitForm();
-                MessageBox.Show(e.Message + "\nError Controlador:CrearBDEmpresa()" , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public bool AccedeEmpresa(string Empresa)
@@ -1081,7 +849,7 @@ GO";
                 return true;
             }catch (Exception e)
             {
-                MessageBox.Show(e.Message + "\nError en controlador:AccedeEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\nError en controlador:AccedeEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 N.Conexion.PerformConnection().Close();
                 return false;
             }
@@ -1097,7 +865,7 @@ GO";
                 SqlDataReader readerLogin;
                 string passEncrip = seguridad.EncryptString(User.pass);
 
-                //MessageBox.Show("\nPASS: " + passEncrip + "\nUsua: " + User.usuario.ToUpper());
+                //XtraMessageBox.Show("\nPASS: " + passEncrip + "\nUsua: " + User.usuario.ToUpper());
 
                 queryLogin.CommandText = @"select usuaIDUsua, usuaPasswd from segUsuarios where usuaIDUsua = @usuario and usuaPasswd = @pass";
                 queryLogin.Parameters.AddWithValue("@usuario", User.usuario.ToUpper());
@@ -1107,7 +875,7 @@ GO";
 
                 if (readerLogin.Read())
                 {
-                    //MessageBox.Show("Entra", "");
+                    //XtraMessageBox.Show("Entra", "");
                     //Form1 frm = new Form1();
                     //frm.Show();
                     readerLogin.Close();
@@ -1116,7 +884,7 @@ GO";
                 }
                 else
                 {
-                    //MessageBox.Show("no entra", "");
+                    //XtraMessageBox.Show("no entra", "");
                     readerLogin.Close();
                     N.Conexion.PerformConnectionSoprade().Close();
                     return false;
@@ -1126,7 +894,7 @@ GO";
                            
             }catch (Exception e)
             {
-                MessageBox.Show(e.Message + "Error login()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "Error login()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 N.Conexion.PerformConnectionSoprade().Close();
                 return false;
             }
@@ -1139,7 +907,7 @@ GO";
                 E.Empleado empleado = (E.Empleado)_P;
                 int numEmplAnt =0, numEmplNue = 0;
                 SqlCommand queryNumEmpl = N.Conexion.PerformConnection().CreateCommand();
-                queryNumEmpl.CommandText = @"select max (cast(NUM_EMPLEADO as int)) from EMPLEADOS";
+                queryNumEmpl.CommandText = @"select ISNULL(max (cast(NUM_EMPLEADO as int)), 0) from EMPLEADOS";
                 SqlDataReader readerNumEmpl;
                 readerNumEmpl = queryNumEmpl.ExecuteReader();
 
@@ -1149,7 +917,7 @@ GO";
                     numEmplNue = numEmplAnt + 1;
                 }
                 readerNumEmpl.Close();
-                //MessageBox.Show(numEmplAnt + "\n" + numEmplNue);
+                //XtraMessageBox.Show(numEmplAnt + "\n" + numEmplNue);
 
                 SqlCommand queryBuscaEmpl = N.Conexion.PerformConnection().CreateCommand();
                 queryBuscaEmpl.CommandText = @"select * from Empleados where RFC = @rfc";
@@ -1177,22 +945,22 @@ GO";
                 
                 if (ReaderEmpl.Read())
                 {
-                    MessageBox.Show("El empleado:" + empleado.Nombre + "\nYa se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("El empleado:" + empleado.Nombre + "\nYa se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ReaderEmpl.Close();
                 }
                 else
                 {
-                    //MessageBox.Show("No existe");
+                    //XtraMessageBox.Show("No existe");
                     ReaderEmpl.Close();
                     if (queryInsertaEmpl.ExecuteNonQuery().Equals(1))
                     {
-                        MessageBox.Show("¡Empleado agregado satisfactoriamente!", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show("¡Empleado agregado satisfactoriamente!", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message + "\nError Controlador: AgregaEmpleado()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\nError Controlador: AgregaEmpleado()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -1210,19 +978,19 @@ GO";
                 if (queryUpdateEmpl.ExecuteNonQuery().Equals(1))
                 {
                     splashScreenManager.CloseWaitForm();
-                    MessageBox.Show("¡Información Actualizada Con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("¡Información Actualizada Con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     splashScreenManager.CloseWaitForm();
-                    MessageBox.Show("¡Error Al  Actualizar La Información!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("¡Error Al  Actualizar La Información!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
             catch (Exception e)
             {
                 splashScreenManager.CloseWaitForm();
-                MessageBox.Show(e.Message + "\nError Controlador: EditarEMpleado()", "Error",  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\nError Controlador: EditarEMpleado()", "Error",  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void AgregarEmpleadoMasivo(List<E.Empleado> list, Object _P, SplashScreenManager splashManager)
@@ -1240,7 +1008,7 @@ GO";
                 + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
                 + "-" + DateTime.Now.Second.ToString());
                 string path = Path.Combine(url, NombreArchivo + ".INARI");
-                int numEmplAnt = 0, numEmplNue = 0, contErrores = 0, contExito = 0, cont = 0, contErrRFC = 0, contErrCURP = 0, validaCURP = 0, ValidaRFC = 0, ValidaExiste = 0, TotalErrores = 0;
+                int numEmplAnt = 0, numEmplNue = 0, contErroresExis = 0, contErrores = 0, contExito = 0, cont = 0, contErrRFC = 0, contErrCURP = 0, validaCURP = 0, ValidaRFC = 0, ValidaExiste = 0, TotalErrores = 0;
                 E.Empleado empleado = (E.Empleado)_P;
 
                 builder = new StringBuilder();
@@ -1255,7 +1023,10 @@ GO";
 
                     cont++;
                     SqlCommand queryNumEmpl = N.Conexion.PerformConnection().CreateCommand();
-                    queryNumEmpl.CommandText = @"select max (cast(NUM_EMPLEADO as int)) from EMPLEADOS";
+                    queryNumEmpl.CommandText = @"select
+                    isnull(max (cast(NUM_EMPLEADO as int)), 0)
+                    from EMPLEADOS
+                    ";
                     SqlDataReader readerNumEmpl;
                     readerNumEmpl = queryNumEmpl.ExecuteReader();
 
@@ -1264,8 +1035,12 @@ GO";
                         numEmplAnt = Convert.ToInt32(readerNumEmpl.GetInt32(0));
                         numEmplNue = numEmplAnt + 1;
                     }
+                    else
+                    {
+
+                    }
                     readerNumEmpl.Close();
-                    //MessageBox.Show(numEmplAnt + "\n" + numEmplNue);
+                    //XtraMessageBox.Show(numEmplAnt + "\n" + numEmplNue);
 
                     SqlCommand queryBuscaEmpl = N.Conexion.PerformConnection().CreateCommand();
                     queryBuscaEmpl.CommandText = @"select * from Empleados where RFC = @rfc";
@@ -1293,6 +1068,7 @@ GO";
 
                     if (!empl.RFC.Length.Equals(13))
                     {
+                        contErrores++;
                         contErrRFC++;
                         string MensajeRFC = "RFC no cumple con el formato correcto, favor de verificar.";
                         //contErrores++;
@@ -1307,9 +1083,10 @@ GO";
 
                     if (!empl.CURP.Length.Equals(18))
                     {
+                        contErroresExis++;
                         contErrCURP++;
                         string MensajeCURP = "CURP no cumple con el formato correcto, favor de verificar";
-                        //contErrores++;
+                        contErrores++;
                         validaCURP = 0;
                         builder.Append(MensajeCURP);
                         builder.AppendLine();
@@ -1323,7 +1100,7 @@ GO";
                     {
                         contErrores++;                    
                         string MensajeExiste = "El empleado ya fue registrado anteriormete.";
-                        //MessageBox.Show("El empleado:" + empleado.Nombre + "\nYa se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //XtraMessageBox.Show("El empleado:" + empleado.Nombre + "\nYa se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ReaderEmpl.Close();
                         ValidaExiste = 0;
                         builder.Append(MensajeExiste);
@@ -1337,14 +1114,14 @@ GO";
 
                     builder.Append("*************************************************************************************************");
                     builder.AppendLine();
-                    //MessageBox.Show("No existe");
+                    //XtraMessageBox.Show("No existe");
 
                     if (validaCURP == 1 && ValidaRFC == 1 && ValidaExiste == 1)
                     {
                         if (queryInsertaEmpl.ExecuteNonQuery().Equals(1))
                         {
                             contExito++;
-                            //MessageBox.Show("¡Empleado agregado satisfactoriamente!", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //XtraMessageBox.Show("¡Empleado agregado satisfactoriamente!", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
@@ -1356,11 +1133,11 @@ GO";
                         if (contErrores > 0)
                         {
                             //Aqui se genera el log
-                            TotalErrores = contErrores + contErrRFC + contErrCURP;
+                            TotalErrores = contErroresExis + contErrRFC + contErrCURP;
                             builder.AppendLine();
                             builder.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
                             splashManager.CloseWaitForm();
-                            MessageBox.Show("Proceso terminado con " + TotalErrores + " errores y " + contExito + " con éxito.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            XtraMessageBox.Show("Proceso terminado con " + TotalErrores + " errores y " + contExito + " con éxito.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             writer = new StreamWriter(path, true);
                             writer.Write(builder);
                             writer.Close();
@@ -1371,7 +1148,7 @@ GO";
                         else
                         {
                             splashManager.CloseWaitForm();
-                            MessageBox.Show("¡Carga masiva terminada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            XtraMessageBox.Show("¡Carga masiva terminada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -1380,10 +1157,30 @@ GO";
             catch (Exception e)
             {
                
-                MessageBox.Show(e.Message + "\nError Controlador: AgregaEmpleadoMasivo()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\nError Controlador: AgregaEmpleadoMasivo()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                splashManager.CloseWaitForm();
             }
         }
 
+        public void ListaEmpleadosNomiMasiv(GridControl grid)
+        {
+            SqlCommand queryListaEmpleados = N.Conexion.PerformConnection().CreateCommand();
+            queryListaEmpleados.CommandText = @"SELECT
+            [idempleado]
+            ,[NUM_EMPLEADO]
+            ,[NOMBRE] 
+            ,[RFC]   
+            ,[CURP]
+            ,Descripcion as [Periodicidad Pago]  from EMPLEADOS 
+            inner join [BSNOMINAS].[dbo].[PeriodicidadPago] as Peri 
+            on EMPLEADOS.PERIODICIDAD_PAGO = Peri.c_PeriodicidadPago";
+
+            SqlDataAdapter dataAdapter = new SqlDataAdapter();
+            dataAdapter.SelectCommand = queryListaEmpleados;
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet);
+            grid.DataSource = dataSet.Tables[0];
+        }
         public void ListaEmpleados (string bd, GridControl grid)
         {
             try
@@ -1408,11 +1205,11 @@ GO";
                 dataAdapter.Fill(dataSet);
                 grid.DataSource = dataSet.Tables[0];
                 //string message = N.Conexion.PerformConnection().Database;
-                //MessageBox.Show(message);
+                //XtraMessageBox.Show(message);
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message + "\nError Controller: ListaEmpleados()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\nError Controller: ListaEmpleados()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void ListadoEmpresas(GridControl grid)
@@ -1434,7 +1231,7 @@ GO";
 
             }catch (Exception e)
             {
-                MessageBox.Show(e.Message + "\nError Controlador: ListadoEmpresas()","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ListadoEmpresas()","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void Buscar(GridControl grid, string fechaIni, string fechaFIn)
@@ -1463,7 +1260,7 @@ GO";
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message + "\n Controller: Buscar()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\n Controller: Buscar()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 N.Conexion.PerformConnection().Close();
             }            
         }
@@ -1478,8 +1275,9 @@ GO";
             string path = AppDomain.CurrentDomain.BaseDirectory + "/";
             string pathHTMLPlantilla = path + "Formato_Factura_33_a.html";
             string pathWKHTMLTOPDF = path + "wkhtmltopdf\\wkhtmltopdf.exe";
+            string pathCadenaxls = path + "xslt\\cadenaoriginal_3_3.xslt    ";
 
-            if (!File.Exists(pathHTMLPlantilla) || !File.Exists(pathWKHTMLTOPDF))
+            if (!File.Exists(pathHTMLPlantilla) || !File.Exists(pathWKHTMLTOPDF) || !File.Exists(pathCadenaxls))
             {
                 return false;
             }
@@ -1493,7 +1291,8 @@ GO";
         {
             string pathDestino = AppDomain.CurrentDomain.BaseDirectory + "/";
             string pathHTMLPlantilla = pathDestino + "Formato_Factura_33_a.html";
-            string pathWKHTMLTOPDF = pathDestino + "wkhtmltopdf\\wkhtmltopdf.exe"; 
+            string pathWKHTMLTOPDF = pathDestino + "wkhtmltopdf\\wkhtmltopdf.exe";
+            string pathCadenaXlst = pathDestino + "xslt\\cadenaoriginal_3_3.xslt";
             string pathOrigen = @"C:/DocAsimilados/";
             string plantillaNombre = "Formato_Factura_33_a.html";
             string archivo = null;
@@ -1502,6 +1301,10 @@ GO";
             string destinoPlantilla = Path.Combine(pathDestino, plantillaNombre);
             string origenPDF = Path.Combine(pathOrigen, "wkhtmltopdf/");
             string destinoPDF = null;
+
+            string origenXslt = Path.Combine(pathOrigen, "xslt/");
+            string origenCadenaXslt = Path.Combine(pathOrigen, "xslt/cadenaoriginal_3_3.xslt");
+            string destinoCadenaXslt = Path.Combine(pathDestino, "xslt");
 
             if (BuscarRecursos().Equals(false))
             {
@@ -1512,7 +1315,47 @@ GO";
                         File.Copy(origenPlantilla, destinoPlantilla, true);
                     }catch (Exception e)
                     {
-                        MessageBox.Show(e.Message + "\nHubo un error al intentar generar los archivos necesarios para crear PDF, por favor pongase en contacto con el administrador de sistema.", "Error");
+                        XtraMessageBox.Show(e.Message + "\nHubo un error al intentar generar los archivos necesarios para crear PDF, por favor pongase en contacto con el administrador de sistema.", "Error");
+                    }
+                }
+
+                if (!File.Exists(pathCadenaXlst))
+                {
+                    try
+                    {
+                        if (!Directory.Exists(origenXslt))
+                        {
+                            XtraMessageBox.Show("La carpeta de origen de archivos XLM no existe.\nPor favor, notifique al administrador de sistema.", "Error");
+                        }
+                        else
+                        {
+                            if (!Directory.Exists(pathDestino + "xslt"))
+                            {
+                                Directory.CreateDirectory(pathDestino + "xslt");
+                                //File.Copy(origenCadenaXslt, pathDestino + "xslt/cadenaoriginal_3_3.xslt", true);
+                                string[] files = Directory.GetFiles(origenXslt);
+                                foreach (string f in files)
+                                {
+                                    archivo = Path.GetFileName(f);
+                                    destinoPDF = Path.Combine(pathDestino + "xslt", archivo);
+                                    File.Copy(f, destinoPDF, true);
+                                }
+                            }
+                            else
+                            {
+                                File.Copy(origenCadenaXslt, pathDestino + "xslt/cadenaoriginal_3_3.xslt", true);
+                                string[] files = Directory.GetFiles(origenXslt);
+                                foreach (string f in files)
+                                {
+                                    archivo = Path.GetFileName(f);
+                                    destinoPDF = Path.Combine(pathDestino + "xslt", archivo);
+                                    File.Copy(f, destinoPDF, true);
+                                }
+                            }
+                        }
+                    }catch(Exception e)
+                    {
+                        XtraMessageBox.Show(e.Message + "\nHubo un error al intentar generar los archivos necesarios para crear XML, por favor pongase en contacto con el administrador de sistema.", "Error");
                     }
                 }
 
@@ -1522,13 +1365,20 @@ GO";
                     {
                         if (!Directory.Exists(origenPDF))
                         {
-                            MessageBox.Show("La carpeta de origen de archivos PDF no existe.\nPor favor, notifique al administrador de sistema.","Error");
+                            XtraMessageBox.Show("La carpeta de origen de archivos PDF no existe.\nPor favor, notifique al administrador de sistema.","Error");
                         }
                         else
                         {
                             if (!Directory.Exists(pathDestino + "wkhtmltopdf"))
                             {
                                 Directory.CreateDirectory(pathDestino + "wkhtmltopdf");
+                                string[] files = Directory.GetFiles(origenPDF);
+                                foreach (string f in files)
+                                {
+                                    archivo = Path.GetFileName(f);
+                                    destinoPDF = Path.Combine(pathDestino + "wkhtmltopdf", archivo);
+                                    File.Copy(f, destinoPDF, true);
+                                }
                             }
                             else
                             {
@@ -1543,7 +1393,7 @@ GO";
                         }
                     }catch(Exception e)
                     {
-                        MessageBox.Show(e.Message + "\nHubo un error al intentar generar los archivos necesarios para crear PDF, por favor pongase en contacto con el administrador de sistema.", "Error");
+                        XtraMessageBox.Show(e.Message + "\nHubo un error al intentar generar los archivos necesarios para crear PDF, por favor pongase en contacto con el administrador de sistema.", "Error");
 
                     }
                 }
@@ -1610,7 +1460,7 @@ GO";
 
                 resultHtml = RazorEngine.Razor.Parse(sHtml, oComprobante);
 
-                //MessageBox.Show(resultHtml);
+                //XtraMessageBox.Show(resultHtml);
 
                 System.IO.File.WriteAllText(pathHTMLTemp, resultHtml);
 
@@ -1636,7 +1486,7 @@ GO";
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message + "\nControlador: LeerXML()", "Error");
+                XtraMessageBox.Show(e.Message + "\nControlador: LeerXML()", "Error");
             }
 
         }
@@ -1658,13 +1508,13 @@ GO";
                     int cont = 0;
                     if (list.Count() == 0)
                     {
-                        MessageBox.Show("Por favor, seleccione una celda", "Error");
+                        XtraMessageBox.Show("Por favor, seleccione una celda", "Error");
                         return false;
                     }
                     else
                     {
                         splashScreenManager.ShowWaitForm();
-                        //MessageBox.Show(list.Count().ToString());
+                        //XtraMessageBox.Show(list.Count().ToString());
                         foreach (var uuid in list)
                         {
                             //if (splashScreenManager.IsSplashFormVisible)
@@ -1676,7 +1526,7 @@ GO";
                             //    splashScreenManager.CloseWaitForm();
                             //}
                             cont++;
-                            //MessageBox.Show(uuid.UIID,"Información");
+                            //XtraMessageBox.Show(uuid.UIID,"Información");
                             try
                             {
                               //  N.Conexion.PerformConnection().Open();
@@ -1699,7 +1549,7 @@ GO";
                                 }
                                 readerUUID.Close();
                                // N.Conexion.PerformConnection().Close();
-                                //MessageBox.Show(XML);
+                                //XtraMessageBox.Show(XML);
                                 dia = DateTime.Now.Day.ToString();
                                 mes = DateTime.Now.Month.ToString();
                                 year = DateTime.Now.Year.ToString();
@@ -1714,7 +1564,7 @@ GO";
                                 if (File.Exists(rutafila + ".xml"))
                                 {
 
-                                    MessageBox.Show("Los archivos de " + nombreTrabajador + ":\n(UUID: " + UUID + ")" + "\nYa fueron creados con anterioridad.", "Aviso");
+                                    XtraMessageBox.Show("Los archivos de " + nombreTrabajador + ":\n(UUID: " + UUID + ")" + "\nYa fueron creados con anterioridad.", "Aviso");
 
                                 }
                                 else
@@ -1730,14 +1580,14 @@ GO";
                                 if (cont == list.Count())
                                 {
                                     splashScreenManager.CloseWaitForm();
-                                    MessageBox.Show("¡Proceso Terminado!", "Mensaje");
+                                    XtraMessageBox.Show("¡Proceso Terminado!", "Mensaje");
                                 }
 
                             }
                             catch (Exception e)
                             {
                                 N.Conexion.PerformConnection().Close();
-                                MessageBox.Show(e.Message + "\nControlador: Generar(Foreach{})", "Error");
+                                XtraMessageBox.Show(e.Message + "\nControlador: Generar(Foreach{})", "Error");
                             }
                         }
                         return true;
@@ -1746,14 +1596,14 @@ GO";
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message + "\nError Controller: Generar()", "Error");
+                    XtraMessageBox.Show(e.Message + "\nError Controller: Generar()", "Error");
                     
                     return false;
                 }
             }
             else
             {
-                MessageBox.Show("Faltan archivos necesarios para generar PDF, Por favor pongase en contacto con el administrador de sistema.", "Error");
+                XtraMessageBox.Show("Faltan archivos necesarios para generar PDF, Por favor pongase en contacto con el administrador de sistema.", "Error");
                 AgregarRecursos();
                 return false;
             }
