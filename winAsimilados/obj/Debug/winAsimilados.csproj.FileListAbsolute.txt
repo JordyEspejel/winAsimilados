@@ -191,3 +191,4 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilad
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.NominaAsimilados.resources
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\DevExpress.Dialogs.v18.1.Core.dll
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\DevExpress.XtraDialogs.v18.1.dll
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.EditarEmpresa.resources

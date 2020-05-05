@@ -325,5 +325,29 @@ namespace winAsimilados.Views
                 nominaAsimilados.BringToFront();
             }
         }
+
+        private void BtnEdiarEmpresa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            EditarEmpresa editarEmpresa = new EditarEmpresa(lblRFC.Caption);
+            var frm = Application.OpenForms.OfType<EditarEmpresa>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                editarEmpresa.ShowDialog();
+                editarEmpresa.Location = new Point(144, 60);
+                editarEmpresa.BringToFront();
+            }
+        }
     }
 }

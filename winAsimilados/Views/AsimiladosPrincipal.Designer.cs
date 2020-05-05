@@ -34,7 +34,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.dropDownButton1 = new DevExpress.XtraEditors.DropDownButton();
             this.PopBtnEmpleados = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.barSubItem4 = new DevExpress.XtraBars.BarSubItem();
+            this.BtnAgregar = new DevExpress.XtraBars.BarSubItem();
             this.BtnAgregarEmplUni = new DevExpress.XtraBars.BarLargeButtonItem();
             this.BtnAgregaEmplMasiv = new DevExpress.XtraBars.BarLargeButtonItem();
             this.BtnEditaEmpleados = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -65,6 +65,7 @@
             this.barSubItem6 = new DevExpress.XtraBars.BarSubItem();
             this.barLargeButtonItem5 = new DevExpress.XtraBars.BarLargeButtonItem();
             this.BtnNomiAsim = new DevExpress.XtraBars.BarLargeButtonItem();
+            this.BtnEdiarEmpresa = new DevExpress.XtraBars.BarLargeButtonItem();
             this.dropDownButton2 = new DevExpress.XtraEditors.DropDownButton();
             this.PopBtnEmpresas = new DevExpress.XtraBars.PopupMenu(this.components);
             this.BtnGenerarPDFXML = new DevExpress.XtraEditors.SimpleButton();
@@ -124,23 +125,23 @@
             // PopBtnEmpleados
             // 
             this.PopBtnEmpleados.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem4),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BtnAgregar),
             new DevExpress.XtraBars.LinkPersistInfo(this.BtnEditaEmpleados),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnGenerarExcelEmpl)});
             this.PopBtnEmpleados.Manager = this.barManager1;
             this.PopBtnEmpleados.Name = "PopBtnEmpleados";
             // 
-            // barSubItem4
+            // BtnAgregar
             // 
-            this.barSubItem4.Caption = "Agregar";
-            this.barSubItem4.Id = 24;
-            this.barSubItem4.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.barSubItem4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barSubItem4.ImageOptions.Image")));
-            this.barSubItem4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            this.BtnAgregar.Caption = "Agregar";
+            this.BtnAgregar.Id = 24;
+            this.BtnAgregar.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.BtnAgregar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgregar.ImageOptions.Image")));
+            this.BtnAgregar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.BtnAgregarEmplUni, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(this.BtnAgregaEmplMasiv)});
-            this.barSubItem4.Name = "barSubItem4";
-            this.barSubItem4.ShowMenuCaption = true;
+            this.BtnAgregar.Name = "BtnAgregar";
+            this.BtnAgregar.ShowMenuCaption = true;
             // 
             // BtnAgregarEmplUni
             // 
@@ -208,7 +209,7 @@
             this.btnAgregarEmpresa,
             this.barLargeButtonItem1,
             this.barToolbarsListItem1,
-            this.barSubItem4,
+            this.BtnAgregar,
             this.BtnAgregarEmplUni,
             this.BtnAgregaEmplMasiv,
             this.BtnAgregarEmpesa,
@@ -219,9 +220,10 @@
             this.barLargeButtonItem5,
             this.BtnNomiAsim,
             this.BtnEditaEmpleados,
-            this.btnGenerarExcelEmpl});
+            this.btnGenerarExcelEmpl,
+            this.BtnEdiarEmpresa});
             this.barManager1.MainMenu = this.bar1;
-            this.barManager1.MaxItemId = 37;
+            this.barManager1.MaxItemId = 38;
             this.barManager1.ShowFullMenus = true;
             this.barManager1.ShowScreenTipsInMenus = true;
             this.barManager1.StatusBar = this.bar2;
@@ -432,9 +434,18 @@
             this.BtnNomiAsim.Caption = "Asimilados";
             this.BtnNomiAsim.Id = 33;
             this.BtnNomiAsim.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.BtnNomiAsim.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItem6.ImageOptions.Image")));
+            this.BtnNomiAsim.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnNomiAsim.ImageOptions.Image")));
             this.BtnNomiAsim.Name = "BtnNomiAsim";
             this.BtnNomiAsim.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BtnNomiAsim_ItemClick);
+            // 
+            // BtnEdiarEmpresa
+            // 
+            this.BtnEdiarEmpresa.Caption = "Editar";
+            this.BtnEdiarEmpresa.Id = 37;
+            this.BtnEdiarEmpresa.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.BtnEdiarEmpresa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnEdiarEmpresa.ImageOptions.Image")));
+            this.BtnEdiarEmpresa.Name = "BtnEdiarEmpresa";
+            this.BtnEdiarEmpresa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BtnEdiarEmpresa_ItemClick);
             // 
             // dropDownButton2
             // 
@@ -452,7 +463,8 @@
             // PopBtnEmpresas
             // 
             this.PopBtnEmpresas.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem5)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem5),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BtnEdiarEmpresa)});
             this.PopBtnEmpresas.Manager = this.barManager1;
             this.PopBtnEmpresas.Name = "PopBtnEmpresas";
             // 
@@ -576,7 +588,7 @@
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem1;
         private DevExpress.XtraEditors.SimpleButton BtnGenerarPDFXML;
         private DevExpress.XtraBars.BarToolbarsListItem barToolbarsListItem1;
-        private DevExpress.XtraBars.BarSubItem barSubItem4;
+        private DevExpress.XtraBars.BarSubItem BtnAgregar;
         private DevExpress.XtraBars.BarLargeButtonItem BtnAgregarEmplUni;
         private DevExpress.XtraBars.BarLargeButtonItem BtnAgregaEmplMasiv;
         private DevExpress.XtraEditors.DropDownButton dropDownButton2;
@@ -595,5 +607,6 @@
         private DevExpress.XtraEditors.SidePanel PanelPrincipal;
         private DevExpress.XtraBars.BarLargeButtonItem btnGenerarExcelEmpl;
         public DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
+        private DevExpress.XtraBars.BarLargeButtonItem BtnEdiarEmpresa;
     }
 }

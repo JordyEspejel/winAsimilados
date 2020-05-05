@@ -178,5 +178,29 @@ namespace winAsimilados.Entities
             set { _RUTA_ALMACEN_PDF = value; }
         }
 
+        private string _DescripcionRegimen;
+        public string DescripcionRegimen
+        {
+            get { return _DescripcionRegimen; }
+            set { _DescripcionRegimen = value; }
+        }
+        private string _DescripcionRecursos;
+        public string DescripcionRecursos
+        {
+            get { return _DescripcionRecursos; }
+            set { _DescripcionRecursos = value; }
+        }
+        private string _DescripcionPuesto;
+        public string DescripcionPuesto
+        {
+            get { return _DescripcionPuesto; }
+            set { _DescripcionPuesto = value; }
+        }
+        private string _DescripcionNomina;
+        public string DescripcionNomina
+        {
+            get { return _DescripcionNomina; }
+            set { _DescripcionNomina = value; }
+        }
     }
 }

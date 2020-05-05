@@ -311,13 +311,19 @@ namespace winAsimilados.Views
             }
             catch(Exception exc)
             {
-                XtraMessageBox.Show(exc.Message);
+                //XtraMessageBox.Show(exc.Message);
             }
         }
 
         private void LookUpMunicipios_EditValueChanged(object sender, EventArgs e)
-        {            
-            municipio = LookUpMunicipios2.EditValue.ToString();
+        {
+            try
+            {
+                municipio = LookUpMunicipios2.EditValue.ToString();
+            } catch (Exception ex)
+            {
+
+            }
             //XtraMessageBox.Show("LookUpEdit EditValue = " + municipio);
         }
 
@@ -392,7 +398,15 @@ namespace winAsimilados.Views
 
         private void LookUpColonia_EditValueChanged(object sender, EventArgs e)
         {
-             colonia =LookUpColonia.EditValue.ToString();
+            try
+            {
+                colonia = LookUpColonia.EditValue.ToString();
+            }
+            catch(Exception ex)
+            {
+
+            }
+
             //XtraMessageBox.Show("Colonia = " + colonia);
         }
 

@@ -25,6 +25,7 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors;
 using DevExpress.XtraPrinting.Native;
 using DevExpress.XtraSplashScreen;
+using DevExpress.Xpo.DB.Helpers;
 
 namespace winAsimilados.Controller
 {
@@ -72,6 +73,35 @@ namespace winAsimilados.Controller
                 return null;
             }
         }
+        public string GetTipoRecu(string rfc)
+        {
+            try
+            {
+                string Recu = null;
+                SqlCommand queryRecurso = N.Conexion.PerformConnection().CreateCommand();
+                queryRecurso.CommandText = @"SELECT TOP (1) RE.Descripcion AS [Descripcion] FROM [PARAMETROS] as P INNER JOIN  BSNOMINAS.dbo.OrigenRecurso AS RE  ON RE.c_OrigenRecurso LIKE P.ORIGEN_RECURSOS  WHERE RFC = @RFC";
+                queryRecurso.Parameters.AddWithValue("@RFC", rfc);
+
+                SqlDataReader ReaderRecurso;
+                ReaderRecurso = queryRecurso.ExecuteReader();
+
+                if (ReaderRecurso.Read())
+                {
+                    Recu = ReaderRecurso.GetString(0);
+                }
+                else
+                {
+                    Recu = "";
+                }
+                ReaderRecurso.Close();
+
+                return Recu;
+            }catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError controlador: GetParametros()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
         public E.Parametros GetParametros(string RFC)
         {
             try
@@ -79,12 +109,12 @@ namespace winAsimilados.Controller
                 E.Parametros parametros = new E.Parametros();
 
                 SqlCommand queryParametros = N.Conexion.PerformConnection().CreateCommand();
-                queryParametros.CommandText = @"SELECT TOP (1) [ID]
+                queryParametros.CommandText = @"SELECT TOP (1) P.[ID]
                       ,[NOMBRE_EMPRESA]
                       ,[RFC]
-                      ,[REGISTRO_PATRONAL]
-                      ,[REGISTRO_NSS]
-                      ,[REPRESENTANTE]
+                      ,ISNULL([REGISTRO_PATRONAL],'') AS [REGISTRO_PATRONAL]
+                      ,ISNULL([REGISTRO_NSS], '') AS [REGISTRO_NSS]
+                      ,ISNULL([REPRESENTANTE],'') AS [REPRESENTANTE]
                       ,[CALLE]
                       ,[NUM_EXT]
                       ,[NUM_INT]
@@ -99,16 +129,25 @@ namespace winAsimilados.Controller
                       ,[NUMERO_CERTIFICADO]
                       ,[FECHA_VENCIMIENTO_CERTIFICADO]
                       ,[RUTA_Cti]
-                      ,[COD_CONCEPTO_Cti]
+                      ,ISNULL([COD_CONCEPTO_Cti],'') AS [COD_CONCEPTO_Cti]
                       ,[FECHA_INICIO_CERTIFICADO]
-                      ,[ORIGEN_RECURSOS]
+                      ,ISNULL([ORIGEN_RECURSOS], '') AS [ORIGEN_RECURSOS]
                       ,[TIPO_NOMINA]
                       ,[ARCHIVO_CER]
                       ,[ARCHIVO_KEY]
                       ,[ASUNTO_CERTIFICADO]
                       ,[COLONIA]
                       ,[RUTA_ALMACEN_PDF]
-                  FROM [PARAMETROS] WHERE RFC = @RFC";
+					  ,Rf.Descripcion as [Descripcion Regimen]
+					  --,RE.Descripcion AS [Descripción Recursos]
+					  ,RP.Descripcion AS [Descripción Puesto]
+					  ,TN.Descripcion AS [Descripción Nómina]
+                  FROM [PARAMETROS] as P
+				  INNER JOIN  BSNOMINAS.dbo.RegimenFiscal as RF on RF.c_RegimenFiscal = P.REGIMEN
+				  --INNER JOIN  BSNOMINAS.dbo.OrigenRecurso AS RE  ON RE.c_OrigenRecurso = P.ORIGEN_RECURSOS
+				  INNER JOIN  BSNOMINAS.dbo.RiesgoPuesto AS RP ON RP.c_RiesgoPuesto = P.RIESGO_PUESTO
+				  INNER JOIN BSNOMINAS.dbo.TipoNomina AS TN ON TN.c_TipoNomina = P.TIPO_NOMINA
+                  WHERE RFC = @RFC";
                 queryParametros.Parameters.AddWithValue("@RFC", RFC);
 
                 SqlDataReader readerParametros;
@@ -144,6 +183,10 @@ namespace winAsimilados.Controller
                     parametros.ASUNTO_CERTIFICADO = readerParametros.GetString(26);
                     parametros.COLONIA = readerParametros.GetString(27);
                     parametros.RUTA_ALMACEN_PDF = readerParametros.GetString(28);
+                    parametros.DescripcionRegimen = readerParametros.GetString(29);
+                    //parametros.DescripcionRecursos = readerParametros.GetString(30);
+                    parametros.DescripcionPuesto = readerParametros.GetString(30);
+                    parametros.DescripcionNomina = readerParametros.GetString(31);
                 }
                 readerParametros.Close();
 
@@ -686,6 +729,93 @@ namespace winAsimilados.Controller
                 return false;          
             }
         }
+
+        public bool EditaEmpresa(Object _P ,string RFC, string bd)
+        {
+            try
+            {
+                bool result = false;
+                E.Parametros parametros = (E.Parametros)_P;
+                N.Conexion.PerformConnection().Close();
+                N.Conexion.PerformConnection().Open();
+                SqlCommand queryLocalidad = N.Conexion.PerformConnection().CreateCommand();
+                queryLocalidad.CommandText = @"Select clave from Municipios where nombre = @municipio";
+                queryLocalidad.Parameters.AddWithValue("@municipio", parametros.MUNICIPIO);
+
+                SqlDataReader readerLocalidad;
+                readerLocalidad = queryLocalidad.ExecuteReader();
+                if (readerLocalidad.Read())
+                {
+                    parametros.LOCALIDAD = readerLocalidad.GetString(0);
+                }
+                readerLocalidad.Close();
+
+                SqlCommand queryPais = N.Conexion.PerformConnection().CreateCommand();
+                queryPais.CommandText = @"select [c_Pais] from [Estados_Republica] where [Nombre del estado] = @estado";
+                queryPais.Parameters.AddWithValue("estado", parametros.ESTADO);
+
+                SqlDataReader readerPais;
+                readerPais = queryPais.ExecuteReader();
+                if (readerPais.Read())
+                {
+                    parametros.PAIS = readerPais.GetString(0);
+                }
+                readerPais.Close();
+
+                N.Conexion.PerformConnection().ChangeDatabase(bd);
+
+                SqlCommand queryActEmpr = N.Conexion.PerformConnection().CreateCommand();
+                queryActEmpr.CommandText = @"UPDATE [dbo].[PARAMETROS]
+                SET [NOMBRE_EMPRESA] = '" + parametros.NombreEmpresa +
+                "',[RFC] = '" + parametros.RFC +
+                "',[REGISTRO_PATRONAL] = '" + parametros.RegistroPatronal +
+                "',[CALLE] = '" + parametros.Calle +
+                "',[NUM_EXT] = '" + parametros.NUM_EXT +
+                "',[NUM_INT] = '" + parametros.NUM_INT +
+                "',[CODIGO_POSTAL] = '" + parametros.CODIGO_POSTAL +
+                "',[MUNICIPIO] = '" + parametros.MUNICIPIO +
+                "',[LOCALIDAD] = '" + parametros.LOCALIDAD +
+                "',[ESTADO] = '" + parametros.ESTADO +
+                "',[PAIS] = '" + parametros.PAIS +
+                "',[REGIMEN] = '" + parametros.REGIMEN +
+                "',[RIESGO_PUESTO] = '" + parametros.RIESGO_PUESTO +
+                "',[CLAVE_CERTIFICADO] = '" + parametros.CLAVE_CERTIFICADO +
+                "',[NUMERO_CERTIFICADO] = '" + parametros.NUMERO_CERTIFICADO +
+                "',[FECHA_VENCIMIENTO_CERTIFICADO] = '" + parametros.FECHA_VENCIMIENTO_CERTIFICADO.ToString("yyyy-MM-dd") +
+                "',[FECHA_INICIO_CERTIFICADO] = '" + parametros.FECHA_INICIO_CERTIFICADO.ToString("yyyy-MM-dd") +
+                 "',[ORIGEN_RECURSOS] = '" + parametros.ORIGEN_RECURSOS +
+                "',[TIPO_NOMINA] = '" + parametros.TIPO_NOMINA +
+                "',[ARCHIVO_CER] = '" + parametros.ARCHIVO_CER +
+                "',[ARCHIVO_KEY] = '" + parametros.ARCHIVO_KEY +
+                "',[ASUNTO_CERTIFICADO] = '" + parametros.ASUNTO_CERTIFICADO +
+                "',[COLONIA] = '" + parametros.COLONIA +
+                "'WHERE RFC ='" + RFC + "'";
+
+                if (queryActEmpr.ExecuteNonQuery().Equals(1))
+                {
+                    N.Conexion.PerformConnection().Close();
+                    N.Conexion.PerformConnection().Open();
+                    SqlCommand queryListaEmpr = N.Conexion.PerformConnection().CreateCommand();
+                    queryListaEmpr.CommandText = @"UPDATE [BSNOMINAS].[dbo].[Listado_Empresas]
+                    SET Nombre_Empresa = '" + parametros.NombreEmpresa +
+                    "', RFC_Empresa = '" + parametros.RFC + "'" +
+                    "WHERE RFC_Empresa = '" + parametros.RFC + "'";
+
+                    if (queryListaEmpr.ExecuteNonQuery().Equals(1))
+                    {
+                        result = true;
+                        N.Conexion.PerformConnection().ChangeDatabase(bd);
+                        XtraMessageBox.Show("¡Información de la Empresa Actualizada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }                    
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: EditaEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         public void CreaBDEmpresa(string BD, Object _P, SplashScreenManager splashScreenManager, Object _A)
         {
             try
@@ -734,7 +864,7 @@ namespace winAsimilados.Controller
                 //SqlCommand queryCreaTablas = N.Conexion.PerformConnection().CreateCommand();
                 #endregion
                 SqlCommand queryLocalidad = N.Conexion.PerformConnection().CreateCommand();
-                queryLocalidad.CommandText = @"Select clave from Municipios where nombre = @municipio";
+                queryLocalidad.CommandText = @"Select clave from [BSNOMINAS].[dbo].[Municipios] where nombre = @municipio";
                 queryLocalidad.Parameters.AddWithValue("@municipio", parametros.MUNICIPIO);
 
                 SqlDataReader readerLocalidad;
@@ -746,7 +876,7 @@ namespace winAsimilados.Controller
                 readerLocalidad.Close();
 
                 SqlCommand queryPais = N.Conexion.PerformConnection().CreateCommand();
-                queryPais.CommandText = @"select [c_Pais] from [Estados_Republica] where [Nombre del estado] = @estado";
+                queryPais.CommandText = @"select [c_Pais] from [BSNOMINAS].[dbo].[Estados_Republica] where [Nombre del estado] = @estado";
                 queryPais.Parameters.AddWithValue("estado", parametros.ESTADO);
 
                 SqlDataReader readerPais;
