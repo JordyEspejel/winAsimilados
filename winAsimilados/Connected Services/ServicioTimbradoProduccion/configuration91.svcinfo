@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="YSxTxIB7v750yD8J6AJ3Na9pFF0oLR37NNXf8K0ITNM=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="QMb1A76FJZbu9aw3CWgouGLzhptaj50igCE4NdISjHE=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="TimbradoSoap11Binding">
       <properties>
@@ -219,10 +219,10 @@
         </property>
       </properties>
     </bindingConfiguration>
-    <bindingConfiguration bindingType="customBinding" name="TimbradoSoap12Binding">
+    <bindingConfiguration bindingType="customBinding" name="TimbradoSoap12Binding1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>TimbradoSoap12Binding</serializedValue>
+          <serializedValue>TimbradoSoap12Binding1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -375,7 +375,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="TimbradoHttpsSoap11Endpoint" contract="SolucionFactibleTimbrado.TimbradoPortType" bindingType="basicHttpBinding" address="https://solucionfactible.com/ws/services/Timbrado.TimbradoHttpsSoap11Endpoint/" bindingConfiguration="TimbradoSoap11Binding">
+    <endpoint name="TimbradoHttpsSoap11Endpoint" contract="ServicioTimbradoProduccion.TimbradoPortType" bindingType="basicHttpBinding" address="https://solucionfactible.com/ws/services/Timbrado.TimbradoHttpsSoap11Endpoint/" bindingConfiguration="TimbradoSoap11Binding">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>https://solucionfactible.com/ws/services/Timbrado.TimbradoHttpsSoap11Endpoint/</serializedValue>
@@ -390,7 +390,7 @@
           <serializedValue>TimbradoSoap11Binding</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>SolucionFactibleTimbrado.TimbradoPortType</serializedValue>
+          <serializedValue>ServicioTimbradoProduccion.TimbradoPortType</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -460,7 +460,7 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="TimbradoHttpsSoap12Endpoint" contract="SolucionFactibleTimbrado.TimbradoPortType" bindingType="customBinding" address="https://solucionfactible.com/ws/services/Timbrado.TimbradoHttpsSoap12Endpoint/" bindingConfiguration="TimbradoSoap12Binding">
+    <endpoint name="TimbradoHttpsSoap12Endpoint1" contract="ServicioTimbradoProduccion.TimbradoPortType" bindingType="customBinding" address="https://solucionfactible.com/ws/services/Timbrado.TimbradoHttpsSoap12Endpoint/" bindingConfiguration="TimbradoSoap12Binding1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>https://solucionfactible.com/ws/services/Timbrado.TimbradoHttpsSoap12Endpoint/</serializedValue>
@@ -472,10 +472,10 @@
           <serializedValue>customBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>TimbradoSoap12Binding</serializedValue>
+          <serializedValue>TimbradoSoap12Binding1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>SolucionFactibleTimbrado.TimbradoPortType</serializedValue>
+          <serializedValue>ServicioTimbradoProduccion.TimbradoPortType</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -535,7 +535,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>TimbradoHttpsSoap12Endpoint</serializedValue>
+          <serializedValue>TimbradoHttpsSoap12Endpoint1</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

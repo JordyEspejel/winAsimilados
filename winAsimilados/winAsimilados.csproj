@@ -26,7 +26,7 @@
     <UpdateUrl>\\192.168.16.253\Asimilados\</UpdateUrl>
     <WebPage>Asimilados.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -141,12 +141,19 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\ServicioTimbradoProduccion\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Data\Conexion.cs" />
+    <Compile Include="Entities\BitacoraXML.cs" />
     <Compile Include="Entities\Calculo.cs" />
     <Compile Include="Entities\Colonia.cs" />
     <Compile Include="Entities\Empleado.cs" />
     <Compile Include="Entities\Empresa.cs" />
+    <Compile Include="Entities\FolioXML.cs" />
     <Compile Include="Entities\ISR15.cs" />
     <Compile Include="Entities\ISR30.cs" />
     <Compile Include="Entities\ISR7.cs" />
@@ -203,6 +210,12 @@
     <Compile Include="Views\EditarEmpresa.Designer.cs">
       <DependentUpon>EditarEmpresa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\GenPDF12.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GenPDF12.Designer.cs">
+      <DependentUpon>GenPDF12.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ListaEmpresas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +269,9 @@
     <EmbeddedResource Include="Views\EditarEmpresa.resx">
       <DependentUpon>EditarEmpresa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\GenPDF12.resx">
+      <DependentUpon>GenPDF12.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ListaEmpresas.resx">
       <DependentUpon>ListaEmpresas.cs</DependentUpon>
     </EmbeddedResource>
@@ -268,6 +284,37 @@
     <EmbeddedResource Include="Views\WaitForm1.resx">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Connected Services\ServicioTimbradoProduccion\Timbrado.wsdl" />
+    <None Include="Connected Services\ServicioTimbradoProduccion\winAsimilados.ServicioTimbradoProduccion.cancelarBase64Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioTimbradoProduccion\winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioTimbradoProduccion\winAsimilados.ServicioTimbradoProduccion.cancelarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioTimbradoProduccion\winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioTimbradoProduccion\winAsimilados.ServicioTimbradoProduccion.CFDICancelacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioTimbradoProduccion\winAsimilados.ServicioTimbradoProduccion.CFDICertificacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioTimbradoProduccion\winAsimilados.ServicioTimbradoProduccion.CFDIResultadoCertificacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioTimbradoProduccion\winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioTimbradoProduccion\winAsimilados.ServicioTimbradoProduccion.timbrarBase64Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioTimbradoProduccion\winAsimilados.ServicioTimbradoProduccion.timbrarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -321,6 +368,21 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServicioTimbradoProduccion\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServicioTimbradoProduccion\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServicioTimbradoProduccion\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServicioTimbradoProduccion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

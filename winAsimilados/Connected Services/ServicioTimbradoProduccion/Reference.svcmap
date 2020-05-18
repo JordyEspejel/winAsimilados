@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a3d6b3d6-9d98-4661-a40a-5034565bce62" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ca7db030-3815-46a9-aad2-c488925454a4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,7 +22,7 @@
     <MetadataSource Address="https://solucionfactible.com/ws/services/Timbrado?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Timbrado.wsdl" MetadataType="Wsdl" ID="f6a6062e-82ae-4073-ab6e-b1511f52fae9" SourceId="1" SourceUrl="https://solucionfactible.com/ws/services/Timbrado?wsdl" />
+    <MetadataFile FileName="Timbrado.wsdl" MetadataType="Wsdl" ID="6c0fc231-0065-4465-9c60-efd6c0fde7cf" SourceId="1" SourceUrl="https://solucionfactible.com/ws/services/Timbrado?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

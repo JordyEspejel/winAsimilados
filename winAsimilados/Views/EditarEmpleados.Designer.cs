@@ -174,7 +174,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "EditarEmpleados";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "EditarEmpleados";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditarEmpleados_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditarEmpleados_FormClosed);

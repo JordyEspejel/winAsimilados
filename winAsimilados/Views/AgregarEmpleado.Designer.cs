@@ -290,7 +290,7 @@
             this.Controls.Add(this.layoutControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AgregarEmpleado";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "AgregarEmpleado";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AgregarEmpleado_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.queryBindingSource)).EndInit();

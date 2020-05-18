@@ -413,7 +413,7 @@ public partial class NominaReceptor {
     
     private bool tipoJornadaFieldSpecified;
     
-    private c_TipoRegimen tipoRegimenField;
+    private string tipoRegimenField;
     
     private string numEmpleadoField;
     
@@ -566,7 +566,7 @@ public partial class NominaReceptor {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public c_TipoRegimen TipoRegimen {
+    public string TipoRegimen {
         get {
             return this.tipoRegimenField;
         }
@@ -1743,8 +1743,9 @@ public enum c_Estado {
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.sat.gob.mx/nomina12")]
 public partial class NominaPercepciones {
+    private System.Xml.XmlElement[] anyField;
     
-    private NominaPercepcionesPercepcion percepcionField;
+    private NominaPercepcionesPercepcion [] percepcionField;
     
     private NominaPercepcionesJubilacionPensionRetiro jubilacionPensionRetiroField;
     
@@ -1768,7 +1769,9 @@ public partial class NominaPercepciones {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("Percepcion")]
-    public NominaPercepcionesPercepcion Percepcion {
+
+    public NominaPercepcionesPercepcion [] Percepcion {
+
         get {
             return this.percepcionField;
         }
@@ -2478,7 +2481,7 @@ public partial class NominaPercepcionesSeparacionIndemnizacion {
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.sat.gob.mx/nomina12")]
 public partial class NominaDeducciones {
     
-    private NominaDeduccionesDeduccion deduccionField;
+    private NominaDeduccionesDeduccion [] deduccionField;
     
     private decimal totalOtrasDeduccionesField;
     
@@ -2490,7 +2493,7 @@ public partial class NominaDeducciones {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("Deduccion")]
-    public NominaDeduccionesDeduccion Deduccion {
+    public NominaDeduccionesDeduccion [] Deduccion {
         get {
             return this.deduccionField;
         }

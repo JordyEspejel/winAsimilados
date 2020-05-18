@@ -8,75 +8,75 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace winAsimilados.SolucionFactibleTimbrado {
+namespace winAsimilados.ServicioTimbradoProduccion {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", ConfigurationName="SolucionFactibleTimbrado.TimbradoPortType")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", ConfigurationName="ServicioTimbradoProduccion.TimbradoPortType")]
     public interface TimbradoPortType {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="urn:cancelarPorNotaCredito", ReplyAction="urn:cancelarPorNotaCreditoResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoResponse cancelarPorNotaCredito(winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoRequest request);
+        winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoResponse cancelarPorNotaCredito(winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="urn:cancelarPorNotaCredito", ReplyAction="urn:cancelarPorNotaCreditoResponse")]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoResponse> cancelarPorNotaCreditoAsync(winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoRequest request);
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoResponse> cancelarPorNotaCreditoAsync(winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="urn:cancelarViaCSDAlmacenado", ReplyAction="urn:cancelarViaCSDAlmacenadoResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoResponse cancelarViaCSDAlmacenado(winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoRequest request);
+        winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoResponse cancelarViaCSDAlmacenado(winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="urn:cancelarViaCSDAlmacenado", ReplyAction="urn:cancelarViaCSDAlmacenadoResponse")]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoResponse> cancelarViaCSDAlmacenadoAsync(winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="urn:cancelar", ReplyAction="urn:cancelarResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        winAsimilados.SolucionFactibleTimbrado.cancelarResponse cancelar(winAsimilados.SolucionFactibleTimbrado.cancelarRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="urn:cancelar", ReplyAction="urn:cancelarResponse")]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.cancelarResponse> cancelarAsync(winAsimilados.SolucionFactibleTimbrado.cancelarRequest request);
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoResponse> cancelarViaCSDAlmacenadoAsync(winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="urn:enviarSolicitudCancelacion", ReplyAction="urn:enviarSolicitudCancelacionResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionResponse enviarSolicitudCancelacion(winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionRequest request);
+        winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionResponse enviarSolicitudCancelacion(winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="urn:enviarSolicitudCancelacion", ReplyAction="urn:enviarSolicitudCancelacionResponse")]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionResponse> enviarSolicitudCancelacionAsync(winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionRequest request);
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionResponse> enviarSolicitudCancelacionAsync(winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="urn:cancelar", ReplyAction="urn:cancelarResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        winAsimilados.ServicioTimbradoProduccion.cancelarResponse cancelar(winAsimilados.ServicioTimbradoProduccion.cancelarRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="urn:cancelar", ReplyAction="urn:cancelarResponse")]
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.cancelarResponse> cancelarAsync(winAsimilados.ServicioTimbradoProduccion.cancelarRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="urn:timbrarBase64", ReplyAction="urn:timbrarBase64Response")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        winAsimilados.SolucionFactibleTimbrado.timbrarBase64Response timbrarBase64(winAsimilados.SolucionFactibleTimbrado.timbrarBase64Request request);
+        winAsimilados.ServicioTimbradoProduccion.timbrarBase64Response timbrarBase64(winAsimilados.ServicioTimbradoProduccion.timbrarBase64Request request);
         
         [System.ServiceModel.OperationContractAttribute(Action="urn:timbrarBase64", ReplyAction="urn:timbrarBase64Response")]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.timbrarBase64Response> timbrarBase64Async(winAsimilados.SolucionFactibleTimbrado.timbrarBase64Request request);
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.timbrarBase64Response> timbrarBase64Async(winAsimilados.ServicioTimbradoProduccion.timbrarBase64Request request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="urn:timbrar", ReplyAction="urn:timbrarResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        winAsimilados.SolucionFactibleTimbrado.timbrarResponse timbrar(winAsimilados.SolucionFactibleTimbrado.timbrarRequest request);
+        winAsimilados.ServicioTimbradoProduccion.timbrarResponse timbrar(winAsimilados.ServicioTimbradoProduccion.timbrarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="urn:timbrar", ReplyAction="urn:timbrarResponse")]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.timbrarResponse> timbrarAsync(winAsimilados.SolucionFactibleTimbrado.timbrarRequest request);
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.timbrarResponse> timbrarAsync(winAsimilados.ServicioTimbradoProduccion.timbrarRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="urn:cancelarBase64", ReplyAction="urn:cancelarBase64Response")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        winAsimilados.SolucionFactibleTimbrado.cancelarBase64Response cancelarBase64(winAsimilados.SolucionFactibleTimbrado.cancelarBase64Request request);
+        winAsimilados.ServicioTimbradoProduccion.cancelarBase64Response cancelarBase64(winAsimilados.ServicioTimbradoProduccion.cancelarBase64Request request);
         
         [System.ServiceModel.OperationContractAttribute(Action="urn:cancelarBase64", ReplyAction="urn:cancelarBase64Response")]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.cancelarBase64Response> cancelarBase64Async(winAsimilados.SolucionFactibleTimbrado.cancelarBase64Request request);
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.cancelarBase64Response> cancelarBase64Async(winAsimilados.ServicioTimbradoProduccion.cancelarBase64Request request);
     }
     
     /// <remarks/>
@@ -552,12 +552,12 @@ namespace winAsimilados.SolucionFactibleTimbrado {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public winAsimilados.SolucionFactibleTimbrado.CFDIResultadoCertificacion @return;
+        public winAsimilados.ServicioTimbradoProduccion.CFDIResultadoCertificacion @return;
         
         public cancelarPorNotaCreditoResponse() {
         }
         
-        public cancelarPorNotaCreditoResponse(winAsimilados.SolucionFactibleTimbrado.CFDIResultadoCertificacion @return) {
+        public cancelarPorNotaCreditoResponse(winAsimilados.ServicioTimbradoProduccion.CFDIResultadoCertificacion @return) {
             this.@return = @return;
         }
     }
@@ -603,12 +603,58 @@ namespace winAsimilados.SolucionFactibleTimbrado {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public winAsimilados.SolucionFactibleTimbrado.CFDICancelacion @return;
+        public winAsimilados.ServicioTimbradoProduccion.CFDICancelacion @return;
         
         public cancelarViaCSDAlmacenadoResponse() {
         }
         
-        public cancelarViaCSDAlmacenadoResponse(winAsimilados.SolucionFactibleTimbrado.CFDICancelacion @return) {
+        public cancelarViaCSDAlmacenadoResponse(winAsimilados.ServicioTimbradoProduccion.CFDICancelacion @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="enviarSolicitudCancelacion", WrapperNamespace="http://timbrado.ws.cfdi.solucionfactible.com", IsWrapped=true)]
+    public partial class enviarSolicitudCancelacionRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string usuario;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string password;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", IsNullable=true)]
+        public byte[] solicitudCancelacion;
+        
+        public enviarSolicitudCancelacionRequest() {
+        }
+        
+        public enviarSolicitudCancelacionRequest(string usuario, string password, byte[] solicitudCancelacion) {
+            this.usuario = usuario;
+            this.password = password;
+            this.solicitudCancelacion = solicitudCancelacion;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="enviarSolicitudCancelacionResponse", WrapperNamespace="http://timbrado.ws.cfdi.solucionfactible.com", IsWrapped=true)]
+    public partial class enviarSolicitudCancelacionResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public winAsimilados.ServicioTimbradoProduccion.CFDICancelacion @return;
+        
+        public enviarSolicitudCancelacionResponse() {
+        }
+        
+        public enviarSolicitudCancelacionResponse(winAsimilados.ServicioTimbradoProduccion.CFDICancelacion @return) {
             this.@return = @return;
         }
     }
@@ -664,58 +710,12 @@ namespace winAsimilados.SolucionFactibleTimbrado {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public winAsimilados.SolucionFactibleTimbrado.CFDICancelacion @return;
+        public winAsimilados.ServicioTimbradoProduccion.CFDICancelacion @return;
         
         public cancelarResponse() {
         }
         
-        public cancelarResponse(winAsimilados.SolucionFactibleTimbrado.CFDICancelacion @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="enviarSolicitudCancelacion", WrapperNamespace="http://timbrado.ws.cfdi.solucionfactible.com", IsWrapped=true)]
-    public partial class enviarSolicitudCancelacionRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string usuario;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string password;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=2)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", IsNullable=true)]
-        public byte[] solicitudCancelacion;
-        
-        public enviarSolicitudCancelacionRequest() {
-        }
-        
-        public enviarSolicitudCancelacionRequest(string usuario, string password, byte[] solicitudCancelacion) {
-            this.usuario = usuario;
-            this.password = password;
-            this.solicitudCancelacion = solicitudCancelacion;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="enviarSolicitudCancelacionResponse", WrapperNamespace="http://timbrado.ws.cfdi.solucionfactible.com", IsWrapped=true)]
-    public partial class enviarSolicitudCancelacionResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public winAsimilados.SolucionFactibleTimbrado.CFDICancelacion @return;
-        
-        public enviarSolicitudCancelacionResponse() {
-        }
-        
-        public enviarSolicitudCancelacionResponse(winAsimilados.SolucionFactibleTimbrado.CFDICancelacion @return) {
+        public cancelarResponse(winAsimilados.ServicioTimbradoProduccion.CFDICancelacion @return) {
             this.@return = @return;
         }
     }
@@ -760,12 +760,12 @@ namespace winAsimilados.SolucionFactibleTimbrado {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public winAsimilados.SolucionFactibleTimbrado.CFDICertificacion @return;
+        public winAsimilados.ServicioTimbradoProduccion.CFDICertificacion @return;
         
         public timbrarBase64Response() {
         }
         
-        public timbrarBase64Response(winAsimilados.SolucionFactibleTimbrado.CFDICertificacion @return) {
+        public timbrarBase64Response(winAsimilados.ServicioTimbradoProduccion.CFDICertificacion @return) {
             this.@return = @return;
         }
     }
@@ -810,12 +810,12 @@ namespace winAsimilados.SolucionFactibleTimbrado {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public winAsimilados.SolucionFactibleTimbrado.CFDICertificacion @return;
+        public winAsimilados.ServicioTimbradoProduccion.CFDICertificacion @return;
         
         public timbrarResponse() {
         }
         
-        public timbrarResponse(winAsimilados.SolucionFactibleTimbrado.CFDICertificacion @return) {
+        public timbrarResponse(winAsimilados.ServicioTimbradoProduccion.CFDICertificacion @return) {
             this.@return = @return;
         }
     }
@@ -871,23 +871,23 @@ namespace winAsimilados.SolucionFactibleTimbrado {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://timbrado.ws.cfdi.solucionfactible.com", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public winAsimilados.SolucionFactibleTimbrado.CFDICancelacion @return;
+        public winAsimilados.ServicioTimbradoProduccion.CFDICancelacion @return;
         
         public cancelarBase64Response() {
         }
         
-        public cancelarBase64Response(winAsimilados.SolucionFactibleTimbrado.CFDICancelacion @return) {
+        public cancelarBase64Response(winAsimilados.ServicioTimbradoProduccion.CFDICancelacion @return) {
             this.@return = @return;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface TimbradoPortTypeChannel : winAsimilados.SolucionFactibleTimbrado.TimbradoPortType, System.ServiceModel.IClientChannel {
+    public interface TimbradoPortTypeChannel : winAsimilados.ServicioTimbradoProduccion.TimbradoPortType, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class TimbradoPortTypeClient : System.ServiceModel.ClientBase<winAsimilados.SolucionFactibleTimbrado.TimbradoPortType>, winAsimilados.SolucionFactibleTimbrado.TimbradoPortType {
+    public partial class TimbradoPortTypeClient : System.ServiceModel.ClientBase<winAsimilados.ServicioTimbradoProduccion.TimbradoPortType>, winAsimilados.ServicioTimbradoProduccion.TimbradoPortType {
         
         public TimbradoPortTypeClient() {
         }
@@ -909,216 +909,216 @@ namespace winAsimilados.SolucionFactibleTimbrado {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoResponse winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.cancelarPorNotaCredito(winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoRequest request) {
+        winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoResponse winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.cancelarPorNotaCredito(winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoRequest request) {
             return base.Channel.cancelarPorNotaCredito(request);
         }
         
-        public winAsimilados.SolucionFactibleTimbrado.CFDIResultadoCertificacion cancelarPorNotaCredito(string usuario, string password, string uuid, byte[] derCertCSD, byte[] derKeyCSD, string contrasenaCSD) {
-            winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoRequest inValue = new winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoRequest();
+        public winAsimilados.ServicioTimbradoProduccion.CFDIResultadoCertificacion cancelarPorNotaCredito(string usuario, string password, string uuid, byte[] derCertCSD, byte[] derKeyCSD, string contrasenaCSD) {
+            winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoRequest inValue = new winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoRequest();
             inValue.usuario = usuario;
             inValue.password = password;
             inValue.uuid = uuid;
             inValue.derCertCSD = derCertCSD;
             inValue.derKeyCSD = derKeyCSD;
             inValue.contrasenaCSD = contrasenaCSD;
-            winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoResponse retVal = ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).cancelarPorNotaCredito(inValue);
+            winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoResponse retVal = ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).cancelarPorNotaCredito(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoResponse> winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.cancelarPorNotaCreditoAsync(winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoRequest request) {
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoResponse> winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.cancelarPorNotaCreditoAsync(winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoRequest request) {
             return base.Channel.cancelarPorNotaCreditoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoResponse> cancelarPorNotaCreditoAsync(string usuario, string password, string uuid, byte[] derCertCSD, byte[] derKeyCSD, string contrasenaCSD) {
-            winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoRequest inValue = new winAsimilados.SolucionFactibleTimbrado.cancelarPorNotaCreditoRequest();
+        public System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoResponse> cancelarPorNotaCreditoAsync(string usuario, string password, string uuid, byte[] derCertCSD, byte[] derKeyCSD, string contrasenaCSD) {
+            winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoRequest inValue = new winAsimilados.ServicioTimbradoProduccion.cancelarPorNotaCreditoRequest();
             inValue.usuario = usuario;
             inValue.password = password;
             inValue.uuid = uuid;
             inValue.derCertCSD = derCertCSD;
             inValue.derKeyCSD = derKeyCSD;
             inValue.contrasenaCSD = contrasenaCSD;
-            return ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).cancelarPorNotaCreditoAsync(inValue);
+            return ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).cancelarPorNotaCreditoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoResponse winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.cancelarViaCSDAlmacenado(winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoRequest request) {
+        winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoResponse winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.cancelarViaCSDAlmacenado(winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoRequest request) {
             return base.Channel.cancelarViaCSDAlmacenado(request);
         }
         
-        public winAsimilados.SolucionFactibleTimbrado.CFDICancelacion cancelarViaCSDAlmacenado(string usuario, string password, string rfcEmisor, string[] uuids) {
-            winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoRequest inValue = new winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoRequest();
+        public winAsimilados.ServicioTimbradoProduccion.CFDICancelacion cancelarViaCSDAlmacenado(string usuario, string password, string rfcEmisor, string[] uuids) {
+            winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoRequest inValue = new winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoRequest();
             inValue.usuario = usuario;
             inValue.password = password;
             inValue.rfcEmisor = rfcEmisor;
             inValue.uuids = uuids;
-            winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoResponse retVal = ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).cancelarViaCSDAlmacenado(inValue);
+            winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoResponse retVal = ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).cancelarViaCSDAlmacenado(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoResponse> winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.cancelarViaCSDAlmacenadoAsync(winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoRequest request) {
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoResponse> winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.cancelarViaCSDAlmacenadoAsync(winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoRequest request) {
             return base.Channel.cancelarViaCSDAlmacenadoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoResponse> cancelarViaCSDAlmacenadoAsync(string usuario, string password, string rfcEmisor, string[] uuids) {
-            winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoRequest inValue = new winAsimilados.SolucionFactibleTimbrado.cancelarViaCSDAlmacenadoRequest();
+        public System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoResponse> cancelarViaCSDAlmacenadoAsync(string usuario, string password, string rfcEmisor, string[] uuids) {
+            winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoRequest inValue = new winAsimilados.ServicioTimbradoProduccion.cancelarViaCSDAlmacenadoRequest();
             inValue.usuario = usuario;
             inValue.password = password;
             inValue.rfcEmisor = rfcEmisor;
             inValue.uuids = uuids;
-            return ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).cancelarViaCSDAlmacenadoAsync(inValue);
+            return ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).cancelarViaCSDAlmacenadoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        winAsimilados.SolucionFactibleTimbrado.cancelarResponse winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.cancelar(winAsimilados.SolucionFactibleTimbrado.cancelarRequest request) {
-            return base.Channel.cancelar(request);
-        }
-        
-        public winAsimilados.SolucionFactibleTimbrado.CFDICancelacion cancelar(string usuario, string password, string[] uuids, byte[] derCertCSD, byte[] derKeyCSD, string contrasenaCSD) {
-            winAsimilados.SolucionFactibleTimbrado.cancelarRequest inValue = new winAsimilados.SolucionFactibleTimbrado.cancelarRequest();
-            inValue.usuario = usuario;
-            inValue.password = password;
-            inValue.uuids = uuids;
-            inValue.derCertCSD = derCertCSD;
-            inValue.derKeyCSD = derKeyCSD;
-            inValue.contrasenaCSD = contrasenaCSD;
-            winAsimilados.SolucionFactibleTimbrado.cancelarResponse retVal = ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).cancelar(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.cancelarResponse> winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.cancelarAsync(winAsimilados.SolucionFactibleTimbrado.cancelarRequest request) {
-            return base.Channel.cancelarAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.cancelarResponse> cancelarAsync(string usuario, string password, string[] uuids, byte[] derCertCSD, byte[] derKeyCSD, string contrasenaCSD) {
-            winAsimilados.SolucionFactibleTimbrado.cancelarRequest inValue = new winAsimilados.SolucionFactibleTimbrado.cancelarRequest();
-            inValue.usuario = usuario;
-            inValue.password = password;
-            inValue.uuids = uuids;
-            inValue.derCertCSD = derCertCSD;
-            inValue.derKeyCSD = derKeyCSD;
-            inValue.contrasenaCSD = contrasenaCSD;
-            return ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).cancelarAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionResponse winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.enviarSolicitudCancelacion(winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionRequest request) {
+        winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionResponse winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.enviarSolicitudCancelacion(winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionRequest request) {
             return base.Channel.enviarSolicitudCancelacion(request);
         }
         
-        public winAsimilados.SolucionFactibleTimbrado.CFDICancelacion enviarSolicitudCancelacion(string usuario, string password, byte[] solicitudCancelacion) {
-            winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionRequest inValue = new winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionRequest();
+        public winAsimilados.ServicioTimbradoProduccion.CFDICancelacion enviarSolicitudCancelacion(string usuario, string password, byte[] solicitudCancelacion) {
+            winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionRequest inValue = new winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionRequest();
             inValue.usuario = usuario;
             inValue.password = password;
             inValue.solicitudCancelacion = solicitudCancelacion;
-            winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionResponse retVal = ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).enviarSolicitudCancelacion(inValue);
+            winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionResponse retVal = ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).enviarSolicitudCancelacion(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionResponse> winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.enviarSolicitudCancelacionAsync(winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionRequest request) {
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionResponse> winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.enviarSolicitudCancelacionAsync(winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionRequest request) {
             return base.Channel.enviarSolicitudCancelacionAsync(request);
         }
         
-        public System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionResponse> enviarSolicitudCancelacionAsync(string usuario, string password, byte[] solicitudCancelacion) {
-            winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionRequest inValue = new winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionRequest();
+        public System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionResponse> enviarSolicitudCancelacionAsync(string usuario, string password, byte[] solicitudCancelacion) {
+            winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionRequest inValue = new winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionRequest();
             inValue.usuario = usuario;
             inValue.password = password;
             inValue.solicitudCancelacion = solicitudCancelacion;
-            return ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).enviarSolicitudCancelacionAsync(inValue);
+            return ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).enviarSolicitudCancelacionAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        winAsimilados.SolucionFactibleTimbrado.timbrarBase64Response winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.timbrarBase64(winAsimilados.SolucionFactibleTimbrado.timbrarBase64Request request) {
+        winAsimilados.ServicioTimbradoProduccion.cancelarResponse winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.cancelar(winAsimilados.ServicioTimbradoProduccion.cancelarRequest request) {
+            return base.Channel.cancelar(request);
+        }
+        
+        public winAsimilados.ServicioTimbradoProduccion.CFDICancelacion cancelar(string usuario, string password, string[] uuids, byte[] derCertCSD, byte[] derKeyCSD, string contrasenaCSD) {
+            winAsimilados.ServicioTimbradoProduccion.cancelarRequest inValue = new winAsimilados.ServicioTimbradoProduccion.cancelarRequest();
+            inValue.usuario = usuario;
+            inValue.password = password;
+            inValue.uuids = uuids;
+            inValue.derCertCSD = derCertCSD;
+            inValue.derKeyCSD = derKeyCSD;
+            inValue.contrasenaCSD = contrasenaCSD;
+            winAsimilados.ServicioTimbradoProduccion.cancelarResponse retVal = ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).cancelar(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.cancelarResponse> winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.cancelarAsync(winAsimilados.ServicioTimbradoProduccion.cancelarRequest request) {
+            return base.Channel.cancelarAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.cancelarResponse> cancelarAsync(string usuario, string password, string[] uuids, byte[] derCertCSD, byte[] derKeyCSD, string contrasenaCSD) {
+            winAsimilados.ServicioTimbradoProduccion.cancelarRequest inValue = new winAsimilados.ServicioTimbradoProduccion.cancelarRequest();
+            inValue.usuario = usuario;
+            inValue.password = password;
+            inValue.uuids = uuids;
+            inValue.derCertCSD = derCertCSD;
+            inValue.derKeyCSD = derKeyCSD;
+            inValue.contrasenaCSD = contrasenaCSD;
+            return ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).cancelarAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        winAsimilados.ServicioTimbradoProduccion.timbrarBase64Response winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.timbrarBase64(winAsimilados.ServicioTimbradoProduccion.timbrarBase64Request request) {
             return base.Channel.timbrarBase64(request);
         }
         
-        public winAsimilados.SolucionFactibleTimbrado.CFDICertificacion timbrarBase64(string usuario, string password, string cfdiBase64, bool zip) {
-            winAsimilados.SolucionFactibleTimbrado.timbrarBase64Request inValue = new winAsimilados.SolucionFactibleTimbrado.timbrarBase64Request();
+        public winAsimilados.ServicioTimbradoProduccion.CFDICertificacion timbrarBase64(string usuario, string password, string cfdiBase64, bool zip) {
+            winAsimilados.ServicioTimbradoProduccion.timbrarBase64Request inValue = new winAsimilados.ServicioTimbradoProduccion.timbrarBase64Request();
             inValue.usuario = usuario;
             inValue.password = password;
             inValue.cfdiBase64 = cfdiBase64;
             inValue.zip = zip;
-            winAsimilados.SolucionFactibleTimbrado.timbrarBase64Response retVal = ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).timbrarBase64(inValue);
+            winAsimilados.ServicioTimbradoProduccion.timbrarBase64Response retVal = ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).timbrarBase64(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.timbrarBase64Response> winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.timbrarBase64Async(winAsimilados.SolucionFactibleTimbrado.timbrarBase64Request request) {
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.timbrarBase64Response> winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.timbrarBase64Async(winAsimilados.ServicioTimbradoProduccion.timbrarBase64Request request) {
             return base.Channel.timbrarBase64Async(request);
         }
         
-        public System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.timbrarBase64Response> timbrarBase64Async(string usuario, string password, string cfdiBase64, bool zip) {
-            winAsimilados.SolucionFactibleTimbrado.timbrarBase64Request inValue = new winAsimilados.SolucionFactibleTimbrado.timbrarBase64Request();
+        public System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.timbrarBase64Response> timbrarBase64Async(string usuario, string password, string cfdiBase64, bool zip) {
+            winAsimilados.ServicioTimbradoProduccion.timbrarBase64Request inValue = new winAsimilados.ServicioTimbradoProduccion.timbrarBase64Request();
             inValue.usuario = usuario;
             inValue.password = password;
             inValue.cfdiBase64 = cfdiBase64;
             inValue.zip = zip;
-            return ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).timbrarBase64Async(inValue);
+            return ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).timbrarBase64Async(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        winAsimilados.SolucionFactibleTimbrado.timbrarResponse winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.timbrar(winAsimilados.SolucionFactibleTimbrado.timbrarRequest request) {
+        winAsimilados.ServicioTimbradoProduccion.timbrarResponse winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.timbrar(winAsimilados.ServicioTimbradoProduccion.timbrarRequest request) {
             return base.Channel.timbrar(request);
         }
         
-        public winAsimilados.SolucionFactibleTimbrado.CFDICertificacion timbrar(string usuario, string password, byte[] cfdi, bool zip) {
-            winAsimilados.SolucionFactibleTimbrado.timbrarRequest inValue = new winAsimilados.SolucionFactibleTimbrado.timbrarRequest();
+        public winAsimilados.ServicioTimbradoProduccion.CFDICertificacion timbrar(string usuario, string password, byte[] cfdi, bool zip) {
+            winAsimilados.ServicioTimbradoProduccion.timbrarRequest inValue = new winAsimilados.ServicioTimbradoProduccion.timbrarRequest();
             inValue.usuario = usuario;
             inValue.password = password;
             inValue.cfdi = cfdi;
             inValue.zip = zip;
-            winAsimilados.SolucionFactibleTimbrado.timbrarResponse retVal = ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).timbrar(inValue);
+            winAsimilados.ServicioTimbradoProduccion.timbrarResponse retVal = ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).timbrar(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.timbrarResponse> winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.timbrarAsync(winAsimilados.SolucionFactibleTimbrado.timbrarRequest request) {
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.timbrarResponse> winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.timbrarAsync(winAsimilados.ServicioTimbradoProduccion.timbrarRequest request) {
             return base.Channel.timbrarAsync(request);
         }
         
-        public System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.timbrarResponse> timbrarAsync(string usuario, string password, byte[] cfdi, bool zip) {
-            winAsimilados.SolucionFactibleTimbrado.timbrarRequest inValue = new winAsimilados.SolucionFactibleTimbrado.timbrarRequest();
+        public System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.timbrarResponse> timbrarAsync(string usuario, string password, byte[] cfdi, bool zip) {
+            winAsimilados.ServicioTimbradoProduccion.timbrarRequest inValue = new winAsimilados.ServicioTimbradoProduccion.timbrarRequest();
             inValue.usuario = usuario;
             inValue.password = password;
             inValue.cfdi = cfdi;
             inValue.zip = zip;
-            return ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).timbrarAsync(inValue);
+            return ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).timbrarAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        winAsimilados.SolucionFactibleTimbrado.cancelarBase64Response winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.cancelarBase64(winAsimilados.SolucionFactibleTimbrado.cancelarBase64Request request) {
+        winAsimilados.ServicioTimbradoProduccion.cancelarBase64Response winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.cancelarBase64(winAsimilados.ServicioTimbradoProduccion.cancelarBase64Request request) {
             return base.Channel.cancelarBase64(request);
         }
         
-        public winAsimilados.SolucionFactibleTimbrado.CFDICancelacion cancelarBase64(string usuario, string password, string[] uuids, string derCertCSDBase64, string derKeyCSDBase64, string contrasenaCSD) {
-            winAsimilados.SolucionFactibleTimbrado.cancelarBase64Request inValue = new winAsimilados.SolucionFactibleTimbrado.cancelarBase64Request();
+        public winAsimilados.ServicioTimbradoProduccion.CFDICancelacion cancelarBase64(string usuario, string password, string[] uuids, string derCertCSDBase64, string derKeyCSDBase64, string contrasenaCSD) {
+            winAsimilados.ServicioTimbradoProduccion.cancelarBase64Request inValue = new winAsimilados.ServicioTimbradoProduccion.cancelarBase64Request();
             inValue.usuario = usuario;
             inValue.password = password;
             inValue.uuids = uuids;
             inValue.derCertCSDBase64 = derCertCSDBase64;
             inValue.derKeyCSDBase64 = derKeyCSDBase64;
             inValue.contrasenaCSD = contrasenaCSD;
-            winAsimilados.SolucionFactibleTimbrado.cancelarBase64Response retVal = ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).cancelarBase64(inValue);
+            winAsimilados.ServicioTimbradoProduccion.cancelarBase64Response retVal = ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).cancelarBase64(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.cancelarBase64Response> winAsimilados.SolucionFactibleTimbrado.TimbradoPortType.cancelarBase64Async(winAsimilados.SolucionFactibleTimbrado.cancelarBase64Request request) {
+        System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.cancelarBase64Response> winAsimilados.ServicioTimbradoProduccion.TimbradoPortType.cancelarBase64Async(winAsimilados.ServicioTimbradoProduccion.cancelarBase64Request request) {
             return base.Channel.cancelarBase64Async(request);
         }
         
-        public System.Threading.Tasks.Task<winAsimilados.SolucionFactibleTimbrado.cancelarBase64Response> cancelarBase64Async(string usuario, string password, string[] uuids, string derCertCSDBase64, string derKeyCSDBase64, string contrasenaCSD) {
-            winAsimilados.SolucionFactibleTimbrado.cancelarBase64Request inValue = new winAsimilados.SolucionFactibleTimbrado.cancelarBase64Request();
+        public System.Threading.Tasks.Task<winAsimilados.ServicioTimbradoProduccion.cancelarBase64Response> cancelarBase64Async(string usuario, string password, string[] uuids, string derCertCSDBase64, string derKeyCSDBase64, string contrasenaCSD) {
+            winAsimilados.ServicioTimbradoProduccion.cancelarBase64Request inValue = new winAsimilados.ServicioTimbradoProduccion.cancelarBase64Request();
             inValue.usuario = usuario;
             inValue.password = password;
             inValue.uuids = uuids;
             inValue.derCertCSDBase64 = derCertCSDBase64;
             inValue.derKeyCSDBase64 = derKeyCSDBase64;
             inValue.contrasenaCSD = contrasenaCSD;
-            return ((winAsimilados.SolucionFactibleTimbrado.TimbradoPortType)(this)).cancelarBase64Async(inValue);
+            return ((winAsimilados.ServicioTimbradoProduccion.TimbradoPortType)(this)).cancelarBase64Async(inValue);
         }
     }
 }

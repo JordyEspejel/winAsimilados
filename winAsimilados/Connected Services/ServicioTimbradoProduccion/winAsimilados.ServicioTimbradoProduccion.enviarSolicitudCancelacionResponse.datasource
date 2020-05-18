@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="enviarSolicitudCancelacionResponse" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>winAsimilados.SolucionFactibleTimbrado.enviarSolicitudCancelacionResponse, Connected Services.SolucionFactibleTimbrado.Reference.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+   <TypeInfo>winAsimilados.ServicioTimbradoProduccion.enviarSolicitudCancelacionResponse, Connected Services.ServicioTimbradoProduccion.Reference.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

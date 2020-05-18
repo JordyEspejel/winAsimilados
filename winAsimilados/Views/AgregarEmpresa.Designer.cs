@@ -1113,6 +1113,7 @@
             this.ClientSize = new System.Drawing.Size(922, 610);
             this.Controls.Add(this.sidePanel1);
             this.Name = "AgregarEmpresa";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Agregar Empresa";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AgregarEmpresa_FormClosed);
             this.sidePanel1.ResumeLayout(false);

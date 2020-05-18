@@ -79,5 +79,26 @@ namespace winAsimilados.Entities
             get { return _Puesto; }
             set { _Puesto = value; }
         }
+
+        private decimal _IngresosBrutos;
+        public decimal IngresosBrutos
+        {
+            get { return _IngresosBrutos; }
+            set { _IngresosBrutos = value; }
+        }
+
+        private decimal _ISR;
+        public decimal ISR
+        {
+            get { return _ISR; }
+            set { _ISR = value; }
+        }
+        private decimal _IngresosNetos;
+        public decimal IngresosNetos
+        {
+            get { return _IngresosNetos; }
+            set { _IngresosNetos = value; }
+        }
     }
 }
+

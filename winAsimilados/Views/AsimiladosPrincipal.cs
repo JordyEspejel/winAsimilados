@@ -87,9 +87,9 @@ namespace winAsimilados.Views
             }
             else
             {
-                form.Show();
                 form.Size = PanelPrincipal.Size;
                 form.Location = new Point(144, 60);
+                form.ShowDialog();
             }
  
         }
@@ -128,9 +128,9 @@ namespace winAsimilados.Views
             }
             else
             {
-                editarEmpleados.Show();
                 editarEmpleados.Size = PanelPrincipal.Size;
-                editarEmpleados.Location = new Point (144, 60);
+                editarEmpleados.Location = new Point(144, 60);
+                editarEmpleados.ShowDialog();
             }
         }
 
@@ -152,7 +152,7 @@ namespace winAsimilados.Views
             else
             {
                 
-                agregarEmpleado.Show();
+                agregarEmpleado.ShowDialog();
                 agregarEmpleado.Location = new Point(144, 60);
                 //agregarEmpleado.Size = PanelPrincipal.Size;
                 //agregarEmpleado.Location = new Point(144, 60);
@@ -294,9 +294,8 @@ namespace winAsimilados.Views
             }
             else
             {
-               
-                agregarEmpresa.Show();
                 agregarEmpresa.Location = new Point(144, 60);
+                agregarEmpresa.ShowDialog();
                 //agregarEmpresa.Size = PanelPrincipal.Size;
                 //agregarEmpresa.Location = new Point(144, 60);
             }
@@ -304,7 +303,7 @@ namespace winAsimilados.Views
 
         private void BtnNomiAsim_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            NominaAsimilados nominaAsimilados = new NominaAsimilados(lblEmpresa.Caption, lblRFC.Caption);
+            NominaAsimilados nominaAsimilados = new NominaAsimilados(lblEmpresa.Caption, lblRFC.Caption, splashScreenManager1);
             var frm = Application.OpenForms.OfType<NominaAsimilados>().FirstOrDefault();
             if (frm != null)
             {
@@ -314,14 +313,18 @@ namespace winAsimilados.Views
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
                     //agregarEmpresa.Location = new Point(144, 60);
                 }
             }
             else
             {
-                nominaAsimilados.Show();
+                splashScreenManager1.ShowWaitForm();
+                splashScreenManager1.SetWaitFormCaption("Cargando Modulo Nómina...");
                 nominaAsimilados.Location = new Point(144, 60);
+                nominaAsimilados.Size = PanelPrincipal.Size;
+                nominaAsimilados.ShowDialog();
                 nominaAsimilados.BringToFront();
             }
         }
@@ -332,8 +335,9 @@ namespace winAsimilados.Views
             var frm = Application.OpenForms.OfType<EditarEmpresa>().FirstOrDefault();
             if (frm != null)
             {
-                frm.BringToFront();
                 frm.Location = new Point(144, 60);
+                frm.BringToFront();
+
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
@@ -344,10 +348,57 @@ namespace winAsimilados.Views
             }
             else
             {
-                editarEmpresa.ShowDialog();
                 editarEmpresa.Location = new Point(144, 60);
+                editarEmpresa.ShowDialog();
                 editarEmpresa.BringToFront();
+
             }
+        }
+
+        private void AsimiladosPrincipal_Load(object sender, EventArgs e)
+        {
+            LblUsuario.Caption = Properties.Settings.Default.Usuario.ToString().ToUpper();
+        }
+
+        private void BtnCancelarCFDI_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnGenPDF12_Click(object sender, EventArgs e)
+        {
+            GenPDF12 genPDF12 = new GenPDF12();
+            var frm = Application.OpenForms.OfType<GenPDF12>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                genPDF12.Location = new Point(144, 60);
+                genPDF12.Size = PanelPrincipal.Size;
+                genPDF12.ShowDialog();
+                genPDF12.BringToFront();
+            }
+        }
+
+        private void BtnHistorico_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

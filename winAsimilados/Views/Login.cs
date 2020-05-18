@@ -51,6 +51,8 @@ namespace winAsimilados.Views
                     //frm.Show();
                     //V.AsimiladosPrincipal Prin = new V.AsimiladosPrincipal();
                     //Prin.Show();
+                    Properties.Settings.Default["Usuario"] = txtUsua.Text;
+                    Properties.Settings.Default.Save();
                     V.ListaEmpresas listaEmpresas = new V.ListaEmpresas();               
                     listaEmpresas.ShowDialog();
                     //this.Dispose();
@@ -83,6 +85,11 @@ namespace winAsimilados.Views
                     this.Dispose();
                 }
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            txtUsua.Text = Properties.Settings.Default.Usuario.ToString();
         }
     }
 }
