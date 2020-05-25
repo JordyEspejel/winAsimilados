@@ -94,6 +94,8 @@ namespace winAsimilados.Views
                 layoutControlGroup6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 layoutControlItem18.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
             }
 
         }
@@ -149,8 +151,8 @@ namespace winAsimilados.Views
                 DialogResult resultado = XtraMessageBox.Show("¿Desea cambiar el tipo de Peiodicidad?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultado.Equals(DialogResult.Yes))
                 {
-                    TxtPeriPago.Text = "";
-                    TxtPeriPago.EditValue = "";
+                    //TxtPeriPago.Text = "";
+                    //TxtPeriPago.EditValue = "";
                     TxtPeriPago.ReadOnly = false;
                 }
                 else
@@ -165,17 +167,29 @@ namespace winAsimilados.Views
         }
         private void GenerarCalculoIngresosBrutos()
         {
-            ingresos = Convert.ToDecimal(TxtIngresos.EditValue);
-            Calculo = controlador.GeneraCalculo(ingresos, periodicidad);
-            TxtIngBru.Text = Calculo.IngresosBrutos.ToString();
-            TxtLimInf.Text = Calculo.LimInferior.ToString();
-            TxtExcLimInf.Text = Calculo.ExLimInf.ToString();
-            TxtPorExcLimInf.Text = Calculo.PerExLimInf.ToString();
-            TxtCF.Text = Calculo.CF.ToString();
-            TxtImpMar.Text = Calculo.ImpMarg.ToString();
-            TxtISR.Text = Calculo.ISR.ToString();
-            TxtSubEmpl.Text = Calculo.Sub.ToString();
-            TxtIngNet.Text = Calculo.IngresosNetos.ToString();
+            try
+            {
+                ingresos = Convert.ToDecimal(TxtIngresos.EditValue);
+                string ing = String.Format("{0:0.00}", ingresos);
+                ingresos = Convert.ToDecimal(ing);
+                Calculo = controlador.GeneraCalculo(ingresos, periodicidad);
+                TxtIngBru.Text = Calculo.IngresosBrutos.ToString();
+                TxtLimInf.Text = Calculo.LimInferior.ToString();
+                TxtExcLimInf.Text = Calculo.ExLimInf.ToString();
+                TxtPorExcLimInf.Text = Calculo.PerExLimInf.ToString();
+                TxtCF.Text = Calculo.CF.ToString();
+                TxtImpMar.Text = Calculo.ImpMarg.ToString();
+                TxtISR.Text = Calculo.ISR.ToString();
+                TxtSubEmpl.Text = Calculo.Sub.ToString();
+                TxtIngNet.Text = Calculo.IngresosNetos.ToString();
+            }
+            catch(Exception calc)
+            {
+                XtraMessageBox.Show(calc.Message +
+                    "\nError Modulo Calculo Nomina Unitario: GenerarCalculoIngresosBrutos()",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
         private void Args_Showing(object sender, XtraMessageShowingArgs e)
         {
@@ -299,6 +313,313 @@ namespace winAsimilados.Views
             return result;
         }
 
+
+        private void ValidarXML()
+        {
+            try
+            {
+
+                if (ValidaCer().Equals(false))
+                {
+                    return;
+                }
+                if (ValidaKey().Equals(false))
+                {
+                    return;
+                }
+                splashScreenManager1.ShowWaitForm();
+                splashScreenManager1.SetWaitFormCaption("Validando nomina");
+
+                string fecPago = Convert.ToDateTime(FecPagoUni.Text).ToString("dd-MM-yyyy");
+                pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
+
+                if (!Directory.Exists(pathArchivoXML))
+                {
+                    Directory.CreateDirectory(pathArchivoXML);
+                }
+
+                nombreArchivo = fecPago + "_" + empleado.RFC + "_" + empleado.Nombre;
+
+                pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo + ".xml");
+                // produccion = false ---> para pruebas
+                bool produccion = false;
+                string prod_endpoint = "TimbradoEndpoint_PRODUCCION";
+                string test_endpoint = "TimbradoEndpoint_TESTING";
+
+                string pathPrincipalExe = AppDomain.CurrentDomain.BaseDirectory + "/";
+                //string pathCer = @"C:\DocAsimilados\CSD01_AAA010101AAA.cer";
+                //string pathKey = @"C:\DocAsimilados\CSD01_AAA010101AAA.key";
+                //string pass = "12345678a";
+
+                //string pathCer = @"C:\DocAsimilados\00001000000413522787.cer";
+                //string pathKey = @"C:\DocAsimilados\CSD_QUERETARO_PTP131002FA0_20190214_113034.key";
+                //string pass = "ptpinari";
+                string pathCer = controlador.ArchivoCER(rfc);
+                string pathKey = controlador.ArchivoKEY(rfc);
+                string pass = controlador.PassKey(rfc);
+
+                string Inicio, Final, Serie, NumCer;
+
+                SelloDigital.leerCER(pathCer, out Inicio, out Final, out Serie, out NumCer);
+
+                folio = controlador.GetFolio();
+
+                if (folio.Equals(null) || folio.Equals(""))
+                {
+                    splashScreenManager1.CloseWaitForm();
+                    XtraMessageBox.Show("¡Folio no encontrado!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    if (folio.Equals("0"))
+                    {
+                        folio = "0001";
+                    }
+                    Bitacora.Folio = folio;
+                }
+                #region GenNomina
+                Comprobante comprobante = new Comprobante();
+                comprobante.Folio = folio;
+                comprobante.Fecha = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
+                //comprobante.Sello = "faltante";
+                comprobante.FormaPago = "99";
+                comprobante.NoCertificado = NumCer;
+                comprobante.SubTotal = Calculo.IngresosBrutos;
+                comprobante.Descuento = Calculo.ISR;
+                comprobante.Total = Calculo.IngresosNetos;
+                comprobante.Moneda = "MXN";
+                comprobante.TipoDeComprobante = "N";
+                comprobante.MetodoPago = "PUE";
+                comprobante.LugarExpedicion = parametros.CODIGO_POSTAL;
+                comprobante.TipoCambio = 1;
+
+                ComprobanteEmisor comprobanteEmisor = new ComprobanteEmisor();
+                comprobanteEmisor.Rfc = rfc;
+                comprobanteEmisor.Nombre = empresa;
+                comprobanteEmisor.RegimenFiscal = "601";
+
+                ComprobanteReceptor comprobanteReceptor = new ComprobanteReceptor();
+                comprobanteReceptor.Nombre = empleado.Nombre;
+                comprobanteReceptor.Rfc = empleado.RFC;
+                comprobanteReceptor.UsoCFDI = "P01";
+
+
+                comprobante.Emisor = comprobanteEmisor;
+                comprobante.Receptor = comprobanteReceptor;
+
+                List<ComprobanteConcepto> listaConceptos = new List<ComprobanteConcepto>();
+                ComprobanteConcepto comprobanteConcepto = new ComprobanteConcepto();
+                comprobanteConcepto.Importe = Calculo.IngresosBrutos;
+                comprobanteConcepto.ValorUnitario = Calculo.IngresosBrutos;
+                comprobanteConcepto.Descuento = Calculo.ISR;
+                comprobanteConcepto.ClaveProdServ = "84111505";
+                comprobanteConcepto.Cantidad = 1;
+                comprobanteConcepto.ClaveUnidad = "ACT";
+                comprobanteConcepto.Descripcion = "Pago de nómina";
+
+                listaConceptos.Add(comprobanteConcepto);
+
+                comprobante.Conceptos = listaConceptos.ToArray();
+                NominaReceptor nominaReceptor = new NominaReceptor();
+
+                Nomina nomina12 = new Nomina();
+                List<Nomina> nominas = new List<Nomina>();
+                nomina12.Version = "1.2";
+                nomina12.FechaPago = Convert.ToDateTime(FecPagoUni.EditValue.ToString());
+                nomina12.FechaInicialPago = Convert.ToDateTime(FecIniPeriUni.EditValue.ToString());
+                nomina12.FechaFinalPago = Convert.ToDateTime(FecFinPeriUni.EditValue.ToString());
+                nomina12.TotalPercepcionesSpecified = true;
+                nomina12.TotalDeduccionesSpecified = true;
+                nomina12.TotalPercepciones = Calculo.IngresosBrutos;
+                nomina12.TotalDeducciones = Calculo.ISR;
+
+
+                if (periodicidad.Equals("Semanal"))
+                {
+                    nomina12.NumDiasPagados = 7;
+                    nominaReceptor.PeriodicidadPago = "02";
+                }
+
+                if (periodicidad.Equals("Quincenal"))
+                {
+                    nomina12.NumDiasPagados = 14;
+                    nominaReceptor.PeriodicidadPago = "04";
+                }
+
+                if (periodicidad.Equals("Mensual"))
+                {
+                    nomina12.NumDiasPagados = 30;
+                    nominaReceptor.PeriodicidadPago = "05";
+                }
+
+                nominaReceptor.Curp = empleado.CURP;
+                nominaReceptor.TipoContrato = empleado.TipoContrato;
+                nominaReceptor.Sindicalizado = empleado.Sindicalizado;
+                nominaReceptor.NumEmpleado = empleado.NumEmpl;
+                nominaReceptor.Departamento = empleado.Departamento;
+                nominaReceptor.Puesto = empleado.Puesto;
+                string entFed = controlador.GetEntFed(bd, parametros.CODIGO_POSTAL);
+                nominaReceptor.TipoRegimen = empleado.TipoRegimen;
+                nominaReceptor.ClaveEntFed = entFed;
+                nominaReceptor.SalarioBaseCotApor = 0;
+
+                NominaDeducciones nominaDeducciones = new NominaDeducciones();
+                NominaDeduccionesDeduccion nominaDeduccionesDeduccion = new NominaDeduccionesDeduccion();
+                NominaPercepciones nominaPercepciones = new NominaPercepciones();
+                NominaPercepcionesPercepcion nominaPercepcionesPercepcion = new NominaPercepcionesPercepcion();
+
+                nominaPercepciones.TotalSueldos = Calculo.IngresosBrutos;
+                nominaPercepciones.TotalExento = 0;
+                nominaPercepciones.TotalGravado = Calculo.IngresosBrutos;
+                nominaPercepciones.TotalSueldosSpecified = true;
+                nominaPercepciones.TotalSueldos = Calculo.IngresosBrutos;
+                nominaPercepcionesPercepcion.TipoPercepcion = "046";
+                nominaPercepcionesPercepcion.Clave = "046";
+                nominaPercepcionesPercepcion.Concepto = "INGRESO A ASIMILADOS A SALARIO";
+                nominaPercepcionesPercepcion.ImporteGravado = Calculo.IngresosBrutos;
+                nominaPercepcionesPercepcion.ImporteExento = 0;
+
+                nominaDeducciones.TotalImpuestosRetenidosSpecified = true;
+                nominaDeducciones.TotalImpuestosRetenidos = Calculo.ISR;
+
+                nominaDeduccionesDeduccion.TipoDeduccion = "002";
+                nominaDeduccionesDeduccion.Clave = "211";
+                nominaDeduccionesDeduccion.Concepto = "ISR";
+                nominaDeduccionesDeduccion.Importe = Calculo.ISR;
+
+
+                nomina12.Receptor = nominaReceptor;
+                nomina12.Deducciones = nominaDeducciones;
+                nomina12.Percepciones = nominaPercepciones;
+                nomina12.Percepciones.Percepcion = nominaPercepcionesPercepcion.ToArray();
+                nominaDeducciones.Deduccion = nominaDeduccionesDeduccion.ToArray();
+
+
+                nominas.Add(nomina12);
+                //comprobante.Nomina12 = nomina12;
+                comprobante.Complemento = new ComprobanteComplemento[1];
+                comprobante.Complemento[0] = new ComprobanteComplemento();
+
+                XmlDocument nom12 = new XmlDocument();
+                XmlSerializerNamespaces xmlNameSpaceNomi = new XmlSerializerNamespaces();
+                xmlNameSpaceNomi.Add("nomina12", "http://www.sat.gob.mx/nomina12");
+                using (XmlWriter writer = nom12.CreateNavigator().AppendChild())
+                {
+                    new XmlSerializer(nomina12.GetType()).Serialize(writer, nomina12, xmlNameSpaceNomi);
+                }
+                comprobante.Complemento[0].Any = new XmlElement[1];
+                comprobante.Complemento[0].Any[0] = nom12.DocumentElement;
+
+                GenXML(comprobante);
+
+                string cadenaOrig = "";
+                //string ruta = @"C:\DocAsimilados\xslt\cadenaoriginal_3_3.xslt";
+                string pathCadenaOriginalxslt = pathPrincipalExe + @"xslt\cadenaoriginal_3_3.xslt";
+                System.Xml.Xsl.XslCompiledTransform transformador = new System.Xml.Xsl.XslCompiledTransform(true);
+                transformador.Load(pathCadenaOriginalxslt);
+
+                using (StringWriter sw = new StringWriter())
+                using (XmlWriter xwo = XmlWriter.Create(sw, transformador.OutputSettings))
+                {
+
+                    //transformador.Transform(pathXml, xwo);
+                    transformador.Transform(pathArchivoXML, xwo);
+                    cadenaOrig = sw.ToString();
+                }
+
+                SelloDigital selloDigital = new SelloDigital();
+                comprobante.Certificado = selloDigital.Certificado(pathCer);
+                comprobante.Sello = selloDigital.Sellar(cadenaOrig, pathKey, pass);
+                //Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
+                GenXML(comprobante);
+                #endregion
+                splashScreenManager1.SetWaitFormCaption( "Validando Timbrando..");
+
+                try
+                {
+                    //Conexion al servicio de timprado produccion = true / portCllient =  prod_endpoint
+                    ServicioTimbradoProduccion.TimbradoPortTypeClient portTypeClient = null;
+                    portTypeClient = (produccion)
+                        ? new ServicioTimbradoProduccion.TimbradoPortTypeClient(prod_endpoint)
+                        : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint);
+
+                    byte[] bxml = Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(pathArchivoXML));
+
+                    /* servicio de prueba 
+                     * ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
+                     */
+                    ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
+                    //ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", bxml, false);
+                    //splashScreenManager1.SetWaitFormCaption(respuesta.status.ToString());
+                    //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
+                    ServicioTimbradoProduccion.CFDIResultadoCertificacion[] cFDIResultados = respuesta.resultados;
+                    if (respuesta.status.Equals(200))
+                    {
+                        //XtraMessageBox.Show(cFDIResultados[0].uuid);
+                        //XtraMessageBox.Show(cFDIResultados[0].certificadoSAT);
+                        //XtraMessageBox.Show(cFDIResultados[0].mensaje);
+                        if (cFDIResultados[0].status.Equals(200))
+                        {
+                            System.IO.File.Delete(pathArchivoXML);
+                            if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                            {
+                                splashScreenManager1.CloseWaitForm();
+                            }
+                            XtraMessageBox.Show("¡Informacíón Validada con Éxito!",
+                                "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            System.IO.File.Delete(pathArchivoXML);
+                            if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                            {
+                                splashScreenManager1.CloseWaitForm();
+                            }
+                            ////XtraMessageBox.Show(cFDIResultados[0].mensaje + "\nEmpleado #: " + empleado.NumEmpl + " (" + empleado.Nombre + ")"
+                            ////, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            XtraMessageBox.Show("¡Error al validar documento!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            controlador.LogValidaTimbradoUnitario(empleado, cFDIResultados[0].mensaje);
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                        {
+                            splashScreenManager1.CloseWaitForm();
+                        }
+                        XtraMessageBox.Show(cFDIResultados[0].mensaje);
+                        controlador.LogValidaTimbradoUnitario(empleado, respuesta.mensaje);
+                        return;
+                    }
+                    //XtraMessageBox.Show(cFDIResultados.ToString());
+                    //System.IO.File.WriteAllText(pathXml,);
+                }
+                catch (Exception timbrado)
+                {
+                    if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                    {
+                        splashScreenManager1.CloseWaitForm();
+                    }
+
+                    XtraMessageBox.Show(timbrado.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            catch (Exception genxml)
+            {
+                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                {
+                    splashScreenManager1.CloseWaitForm();
+                }
+                XtraMessageBox.Show(genxml.Message + "Error Componente NominaAsimilados: GenXML()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+
         [Obsolete]
         private void GeneraXML()
         {
@@ -345,8 +666,8 @@ namespace winAsimilados.Views
                 nombreArchivo = fecPago + "_" + empleado.RFC + "_" + empleado.Nombre;
 
                 pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo + ".xml");
-
-                bool produccion = false;
+                // produccion = false ---> para pruebas
+                bool produccion = true;
                 string prod_endpoint = "TimbradoEndpoint_PRODUCCION";
                 string test_endpoint = "TimbradoEndpoint_TESTING";
 
@@ -382,6 +703,7 @@ namespace winAsimilados.Views
                     }
                     Bitacora.Folio = folio;
                 }
+                #region GenNomina
                 Comprobante comprobante = new Comprobante();
                 comprobante.Folio = folio;
                 comprobante.Fecha = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
@@ -538,18 +860,24 @@ namespace winAsimilados.Views
                 comprobante.Sello = selloDigital.Sellar(cadenaOrig, pathKey, pass);
                 //Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
                 GenXML(comprobante);
-
+                #endregion
                 splashScreenManager1.SetWaitFormCaption("Timbrando Documento..");
 
                 try
                 {
+                    //Conexion al servicio de timprado produccion = true / portCllient =  prod_endpoint
                     ServicioTimbradoProduccion.TimbradoPortTypeClient portTypeClient = null;
                     portTypeClient = (produccion)
                         ? new ServicioTimbradoProduccion.TimbradoPortTypeClient(prod_endpoint)
-                        : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint);
+                        : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(prod_endpoint);
 
                     byte[] bxml = Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(pathArchivoXML));
-                    ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
+
+                    /* servicio de prueba 
+                     * ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
+                     */
+
+                    ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", bxml, false);
                     //splashScreenManager1.SetWaitFormCaption(respuesta.status.ToString());
                     //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
                     ServicioTimbradoProduccion.CFDIResultadoCertificacion[] cFDIResultados = respuesta.resultados;
@@ -564,8 +892,8 @@ namespace winAsimilados.Views
                             pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
                             nombreArchivo = fecPago + "_" + empleado.RFC + "_" + empleado.Nombre;
                             pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo);
-                            pathArchivoXML = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid + ".xml");
                             pathArchivoXMLF = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid);
+                            pathArchivoXML = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid + ".xml");
                             byte[] info = cFDIResultados[0].cfdiTimbrado;
                             FileStream fs = new FileStream(path: pathArchivoXML, mode: FileMode.Create);
                             fs.Write(info, 0, info.Length);
@@ -595,8 +923,11 @@ namespace winAsimilados.Views
 
                     }
                     else
-                    {                       
-                        splashScreenManager1.CloseWaitForm();
+                    {
+                        if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                        {
+                            splashScreenManager1.CloseWaitForm();
+                        }
                         XtraMessageBox.Show(cFDIResultados[0].mensaje);
                         return;
                     }
@@ -604,7 +935,11 @@ namespace winAsimilados.Views
                     //System.IO.File.WriteAllText(pathXml,);
                 } catch(Exception timbrado)
                 {
-                    splashScreenManager1.CloseWaitForm();
+                    if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                    {
+                        splashScreenManager1.CloseWaitForm();
+                    }
+
                     XtraMessageBox.Show(timbrado.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -616,13 +951,19 @@ namespace winAsimilados.Views
                     return;
                 }
 
-                splashScreenManager1.CloseWaitForm();
+                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                {
+                    splashScreenManager1.CloseWaitForm();
+                }
                 XtraMessageBox.Show("¡Nómina Generada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception genxml)
             {
-                splashScreenManager1.CloseWaitForm();
+                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                {
+                    splashScreenManager1.CloseWaitForm();
+                }
                 XtraMessageBox.Show(genxml.Message + "Error Componente NominaAsimilados: GenXML()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -1022,6 +1363,90 @@ namespace winAsimilados.Views
 
         }
 
+        private void BtnValidarInfo_Click(object sender, EventArgs e)
+        {
+            ValidarXML();
+        }
+
+        [Obsolete]
+        private void BtnValidaInfoMasiv_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var empleadoMasivo = new List<E.Empleado>();
+                E.Empleado[] emplMasiv = null;
+                for (int i = 0; i < gridViewNomiMasiv.RowCount; i++)
+                {
+                    if (gridViewNomiMasiv.IsRowSelected(i))
+                    {
+                        ingresosMasiv = Convert.ToDecimal(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[5]));
+                        string ing = String.Format("{0:0.00}", ingresosMasiv);
+                        ingresosMasiv = Convert.ToDecimal(ing);
+                        tipoIngresos = gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[4]).ToString();
+                        //ingresosMasiv = Convert.ToDecimal(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[5]));
+                        ISRMasiv = Convert.ToDecimal(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[6]));
+                        rfcEmplMasiv = gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[2]).ToString();
+                        netoMasiv = Convert.ToDecimal(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[7]));
+                        empleadoMasivo.Add(new E.Empleado
+                        {
+                            RFC = rfcEmplMasiv,
+                            IngresosBrutos = ingresosMasiv,
+                            ISR = ISRMasiv,
+                            IngresosNetos = netoMasiv,
+                            Periodicidad = tipoIngresos
+                        });
+                        emplMasiv = empleadoMasivo.ToArray();
+                    }
+                }
+
+                if (empleadoMasivo.Count.Equals(0))
+                {
+                    XtraMessageBox.Show("Por favor, Seleccione una celda.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                        if (ValidaCer().Equals(false))
+                        {
+                            return;
+                        }
+                        if (ValidaKey().Equals(false))
+                        {
+                            return;
+                        }
+
+                        DateTime FechaInicioMasivo = Convert.ToDateTime(FecIniPeriMasiv.EditValue.ToString());
+                        DateTime FechaFinMasivo = Convert.ToDateTime(FecFinPeriMasiv.EditValue.ToString());
+                        DateTime FechaPago = Convert.ToDateTime(FecPagoMasiv.Text);
+                        controlador.ValXmlMasivo(empleadoMasivo, splash, empresa, rfc, ip, FechaInicioMasivo, FechaFinMasivo, FechaPago);                    
+                    //int row = -1;
+                    //int contRow = gridViewNomiMasiv.RowCount;
+                    //foreach (var item in emplMasiv)
+                    //{
+                    //    row++;
+                    //    EmplMasiv = controlador.BuscaEmpleado(item.RFC);
+                    //    EmplMasiv.IngresosBrutos = item.IngresosBrutos;
+                    //    EmplMasiv.ISR = item.ISR;
+                    //    EmplMasiv.IngresosNetos = item.IngresosNetos;
+
+                    //    if (row < contRow)
+                    //    {
+                    //        GenXmlMasiv(EmplMasiv);
+                    //    }
+                    //    else
+                    //    {
+                    //        splashScreenManager1.CloseWaitForm();
+                    //        XtraMessageBox.Show("¡Nómina Generada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //        return;
+                    //    }
+                    //}
+                }
+            }
+            catch (Exception masiv)
+            {
+                XtraMessageBox.Show(masiv.Message + "\nError modulo Nomina: BtnNomiMasiv", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void gridViewNomiMasiv_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {
             if (e.Column.Caption.Equals("Ingresos"))
@@ -1029,6 +1454,8 @@ namespace winAsimilados.Views
                 string ingresosCelda = e.Value.ToString();
                 string periMasiv = gridViewNomiMasiv.GetRowCellValue(e.RowHandle, "Periodicidad Pago").ToString();
                 decimal IngresosMsiv = Convert.ToDecimal(ingresosCelda);
+                string ing = String.Format("{0:0.00}", IngresosMsiv);
+                IngresosMsiv = Convert.ToDecimal(ing);
                 calcMasiv =  controlador.GeneraCalculo(IngresosMsiv, periMasiv);
 
                 gridViewNomiMasiv.SetRowCellValue(e.RowHandle, "ISR", calcMasiv.ISR);
@@ -1040,6 +1467,8 @@ namespace winAsimilados.Views
                 string periCelda = e.Value.ToString();
                 string ingresosCelda = gridViewNomiMasiv.GetRowCellValue(e.RowHandle, "Ingresos").ToString();
                 decimal ingresosMasiv = Convert.ToDecimal(ingresosCelda);
+                string ing = String.Format("{0:0.00}", ingresosMasiv);
+                ingresosMasiv = Convert.ToDecimal(ing);
 
                 calcMasiv = controlador.GeneraCalculo(ingresosMasiv, periCelda);
                 gridViewNomiMasiv.SetRowCellValue(e.RowHandle, "ISR", calcMasiv.ISR);
@@ -1066,6 +1495,7 @@ namespace winAsimilados.Views
             layoutControlItem18.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             layoutControlItem23.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             layoutControlItem24.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
             // This line of code is generated by Data Source Configuration Wizard
             // Fill a SqlDataSource
@@ -1122,8 +1552,11 @@ namespace winAsimilados.Views
                 {
                     if (gridViewNomiMasiv.IsRowSelected(i))
                     {
-                        tipoIngresos = gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[4]).ToString();
                         ingresosMasiv = Convert.ToDecimal(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[5]));
+                        string ing = String.Format("{0:0.00}", ingresosMasiv);
+                        ingresosMasiv = Convert.ToDecimal(ing);
+                        tipoIngresos = gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[4]).ToString();
+                        //ingresosMasiv = Convert.ToDecimal(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[5]));
                         ISRMasiv = Convert.ToDecimal(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[6]));
                         rfcEmplMasiv = gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[2]).ToString();
                         netoMasiv = Convert.ToDecimal(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[7]));
@@ -1145,51 +1578,44 @@ namespace winAsimilados.Views
                 }
                 else
                 {
-                    if (ValidaCer().Equals(false))
-                    {
-                        return;
-                    }
-                    if (ValidaKey().Equals(false))
-                    {
-                        return;
-                    }
+                        if (ValidaCer().Equals(false))
+                        {
+                            return;
+                        }
+                        if (ValidaKey().Equals(false))
+                        {
+                            return;
+                        }
 
-                    DateTime FechaInicioMasivo = Convert.ToDateTime(FecIniPeriMasiv.EditValue.ToString());
-                    DateTime FechaFinMasivo = Convert.ToDateTime(FecFinPeriMasiv.EditValue.ToString());
-                    DateTime FechaPago = Convert.ToDateTime(FecPagoMasiv.Text);
-                    controlador.GenXmlMasivo(empleadoMasivo, splash, empresa, rfc, ip, FechaInicioMasivo, FechaFinMasivo, FechaPago);
-                    //int row = -1;
-                    //int contRow = gridViewNomiMasiv.RowCount;
-                    //foreach (var item in emplMasiv)
-                    //{
-                    //    row++;
-                    //    EmplMasiv = controlador.BuscaEmpleado(item.RFC);
-                    //    EmplMasiv.IngresosBrutos = item.IngresosBrutos;
-                    //    EmplMasiv.ISR = item.ISR;
-                    //    EmplMasiv.IngresosNetos = item.IngresosNetos;
-
-                    //    if (row < contRow)
-                    //    {
-                    //        GenXmlMasiv(EmplMasiv);
-                    //    }
-                    //    else
-                    //    {
-                    //        splashScreenManager1.CloseWaitForm();
-                    //        XtraMessageBox.Show("¡Nómina Generada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //        return;
-                    //    }
-                    //}
+                        DateTime FechaInicioMasivo = Convert.ToDateTime(FecIniPeriMasiv.EditValue.ToString());
+                        DateTime FechaFinMasivo = Convert.ToDateTime(FecFinPeriMasiv.EditValue.ToString());
+                        DateTime FechaPago = Convert.ToDateTime(FecPagoMasiv.Text);
+                        controlador.GenXmlMasivo(empleadoMasivo, splash, empresa, rfc, ip, FechaInicioMasivo, FechaFinMasivo, FechaPago);
                 }
             }
-            catch (Exception masiv)
+            catch (Exception Valmasiv)
             {
-                XtraMessageBox.Show(masiv.Message + "\nError modulo Nomina: BtnNomiMasiv", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(Valmasiv.Message + "\nError modulo Nomina: BtnValNomiMasiv", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        [Obsolete]
         private void BtnGenNom_Click(object sender, EventArgs e)
         {
-            GeneraXML();
+            DialogResult result = XtraMessageBox.Show("¿Desea generar y timbrar la nomina de "
+                + LookUpEmpl.Text + "?\n(Validar información)"
+                , "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result.Equals(DialogResult.Yes))
+            {
+                GeneraXML();
+            }
+            else
+            {
+                XtraMessageBox.Show("¡Nomina de " + LookUpEmpl.Text + " no fue generada por cancelacion de usuario!"
+                   , "Mensaje" , MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
     }
 }

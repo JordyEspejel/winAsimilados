@@ -20,6 +20,7 @@ namespace winAsimilados.Views
 {
     public partial class AsimiladosPrincipal : Form
     {
+        C.Controller controller = new C.Controller();
         bool salida = true;
         public AsimiladosPrincipal()
         {
@@ -264,7 +265,7 @@ namespace winAsimilados.Views
             xlWorkSheet = default(Excel.Worksheet);
             xlApp.Visible = true;
 
-            xlWorkBook = xlApp.Workbooks.Add();
+            xlWorkBook = xlApp.Workbooks.Add();            
             xlWorkSheet = xlWorkBook.Worksheets[1];
             xlWorkSheet.Visible = Excel.XlSheetVisibility.xlSheetVisible;
 
@@ -358,11 +359,37 @@ namespace winAsimilados.Views
         private void AsimiladosPrincipal_Load(object sender, EventArgs e)
         {
             LblUsuario.Caption = Properties.Settings.Default.Usuario.ToString().ToUpper();
+
+            if (controller.GetAdminUsuario(Properties.Settings.Default.Usuario.ToString().ToUpper()).Equals(true))
+            {
+                //accordionBitacora.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
         }
 
         private void BtnCancelarCFDI_Click(object sender, EventArgs e)
         {
-
+            CancelarCFDI cancelarCFDI = new CancelarCFDI(lblRFC.Caption, lblEmpresa.Caption);
+            var frm = Application.OpenForms.OfType<CancelarCFDI>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                cancelarCFDI.Location = new Point(144, 60);
+                cancelarCFDI.Size = PanelPrincipal.Size;
+                cancelarCFDI.ShowDialog();
+                cancelarCFDI.BringToFront();
+            }
         }
 
         private void BtnGenPDF12_Click(object sender, EventArgs e)
@@ -393,12 +420,375 @@ namespace winAsimilados.Views
 
         private void BtnHistorico_Click(object sender, EventArgs e)
         {
-
+            Bitacora bitacora = new Bitacora(splashScreenManager1);
+            var frm = Application.OpenForms.OfType<Bitacora>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                splashScreenManager1.ShowWaitForm();
+                splashScreenManager1.SetWaitFormCaption("Cargando Modulo Bitacora...");
+                bitacora.Location = new Point(144, 60);
+                bitacora.Size = PanelPrincipal.Size;
+                bitacora.ShowDialog();
+                bitacora.BringToFront();
+            }
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void accordionAgregaEmplUni_Click(object sender, EventArgs e)
+        {
+            AgregarEmpleado agregarEmpleado = new AgregarEmpleado();
+            var frm = Application.OpenForms.OfType<AgregarEmpleado>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    //frm.Size = PanelPrincipal.Size;
+                    //frm.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                agregarEmpleado.Location = new Point(270, 60);
+                agregarEmpleado.ShowDialog();
+
+                //agregarEmpleado.Size = PanelPrincipal.Size;
+                //agregarEmpleado.Location = new Point(144, 60);
+            }
+        }
+
+        private void accordionAgregaEmplMasiv_Click(object sender, EventArgs e)
+        {
+
+            splashScreenManager1.ShowWaitForm();
+
+            E.Empleado empl = new E.Empleado();
+            C.Controller Controlador = new C.Controller();
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Archivos de Excel (*.xls;*.xlsx)|*.xls;*.xlsx"; //le indicamos el tipo de filtro en este caso que busque
+                                                                             //solo los archivos excel
+
+            dialog.Title = "Seleccione el archivo de Excel";//le damos un titulo a la ventana
+
+            dialog.FileName = string.Empty;
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+
+                Excel.Application xlApp;
+                Excel.Workbook xlWorkBook;
+                Excel.Worksheet xlWorkSheet;
+                Excel.Range range;
+                int rCnt;
+                int rw = 0;
+                int cl = 0;
+                int cont = 0;
+                string Archivo = dialog.FileName;
+                var misValue = Type.Missing;
+
+                xlApp = new Excel.Application();
+                xlWorkBook = xlApp.Workbooks.Open(@Archivo, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue);
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+                range = xlWorkSheet.UsedRange;
+                rw = range.Rows.Count;
+                cl = range.Columns.Count;
+                //ProgressBarControl progressBarControl1 = new ProgressBarControl();
+                //progressBarControl1.Properties.Step = 1;
+                //progressBarControl1.Properties.PercentView = true;
+                //progressBarControl1.Properties.Minimum = 0;
+                //form.Controls.Add(progressBarControl1);
+                //progressBarControl1.Dock = DockStyle.Fill;
+                //form.Show();
+                //form.BringToFront();
+                //progressBarControl1.Properties.Maximum = rw;
+                //progressBarControl1.Update();
+
+                var Empleado = new List<E.Empleado>();
+                E.Empleado[] empleado = null;
+                for (rCnt = 2; rCnt <= rw; rCnt++)
+                {
+                    cont++;
+                    //progressBarControl1.PerformStep();
+                    //progressBarControl1.Update();
+                    string nombre = (range.Cells[rCnt, "A"] as Excel.Range).Value2.ToString();
+                    string rfc = (range.Cells[rCnt, "B"] as Excel.Range).Value2.ToString();
+                    string curp = (range.Cells[rCnt, "C"] as Excel.Range).Value2.ToString();
+                    string peri = (range.Cells[rCnt, "D"] as Excel.Range).Value2.ToString();
+
+
+                    empl.Nombre = nombre;
+                    empl.CURP = curp;
+                    empl.RFC = rfc;
+                    empl.Periodicidad = peri;
+                    Empleado.Add(new E.Empleado
+                    {
+
+                        Nombre = nombre,
+                        CURP = curp,
+                        RFC = rfc,
+                        Periodicidad = peri
+
+                    });
+                    empleado = Empleado.ToArray();
+
+                }
+
+                Controlador.AgregarEmpleadoMasivo(Empleado, empl, splashScreenManager1);
+                xlWorkBook.Close(true, "Formato_Masivo_Empleados.xlsx", null);
+                xlApp.Quit();
+                //progressPanel2.Hide();
+
+                Marshal.ReleaseComObject(xlWorkSheet);
+                Marshal.ReleaseComObject(xlWorkBook);
+                Marshal.ReleaseComObject(xlApp);
+            }
+            else
+            {
+                splashScreenManager1.CloseWaitForm();
+            }
+        }
+
+        private void acoordionEditaEmpleado_Click(object sender, EventArgs e)
+        {
+            EditarEmpleados editarEmpleados = new EditarEmpleados();
+            var frm = Application.OpenForms.OfType<EditarEmpleados>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    editarEmpleados.Size = PanelPrincipal.Size;
+                    editarEmpleados.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                editarEmpleados.Size = PanelPrincipal.Size;
+                editarEmpleados.Location = new Point(270, 60);
+                editarEmpleados.ShowDialog();
+            }
+        }
+
+        private void accordionAgregarEmpresaUnitario_Click(object sender, EventArgs e)
+        {
+            AgregarEmpresa agregarEmpresa = new AgregarEmpresa(false);
+            var frm = Application.OpenForms.OfType<AgregarEmpresa>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                agregarEmpresa.Location = new Point(270, 60);
+                agregarEmpresa.ShowDialog();
+                //agregarEmpresa.Size = PanelPrincipal.Size;
+                //agregarEmpresa.Location = new Point(144, 60);
+            }
+        }
+
+        private void accordionEditaEmpresa_Click(object sender, EventArgs e)
+        {
+            EditarEmpresa editarEmpresa = new EditarEmpresa(lblRFC.Caption);
+            var frm = Application.OpenForms.OfType<EditarEmpresa>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.Location = new Point(144, 60);
+                frm.BringToFront();
+
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                editarEmpresa.Location = new Point(270, 60);
+                editarEmpresa.ShowDialog();
+                editarEmpresa.BringToFront();
+
+            }
+        }
+
+        private void accordionNomiAsim_Click(object sender, EventArgs e)
+        {
+            NominaAsimilados nominaAsimilados = new NominaAsimilados(lblEmpresa.Caption, lblRFC.Caption, splashScreenManager1);
+            var frm = Application.OpenForms.OfType<NominaAsimilados>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                splashScreenManager1.ShowWaitForm();
+                splashScreenManager1.SetWaitFormCaption("Cargando Modulo Nómina...");
+                nominaAsimilados.Location = new Point(270, 60);
+                nominaAsimilados.Size = PanelPrincipal.Size;
+                nominaAsimilados.ShowDialog();
+                nominaAsimilados.BringToFront();
+            }
+        }
+
+        private void accordionGenPDF_XML_Click(object sender, EventArgs e)
+        {
+            Form1 form = new Form1();
+            var frm = Application.OpenForms.OfType<Form1>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                form.Location = new Point(144, 60);
+
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    frm.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                form.Size = PanelPrincipal.Size;
+                form.Location = new Point(270, 60);
+                form.ShowDialog();
+            }
+        }
+
+        private void accordionGenPDF1_2_Click(object sender, EventArgs e)
+        {
+            GenPDF12 genPDF12 = new GenPDF12();
+            var frm = Application.OpenForms.OfType<GenPDF12>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                genPDF12.Location = new Point(270, 60);
+                genPDF12.Size = PanelPrincipal.Size;
+                genPDF12.ShowDialog();
+                genPDF12.BringToFront();
+            }
+        }
+
+        private void accordionCambiarEmpresa_Click(object sender, EventArgs e)
+        {
+
+            if (XtraMessageBox.Show("¿Desea cambiar de empresa?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.Dispose();
+                ListaEmpresas listaEmpresas = new ListaEmpresas();
+                listaEmpresas.ShowDialog();
+                salida = false;
+            }
+            //else
+            //{
+            //    salida = true;
+            //}
+        }
+
+        private void accordionBitacora_Click(object sender, EventArgs e)
+        {
+            Bitacora bitacora = new Bitacora(splashScreenManager1);
+            var frm = Application.OpenForms.OfType<Bitacora>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                splashScreenManager1.ShowWaitForm();
+                splashScreenManager1.SetWaitFormCaption("Cargando Modulo Bitacora...");
+                bitacora.Location = new Point(270, 60);
+                bitacora.Size = PanelPrincipal.Size;
+                bitacora.ShowDialog();
+                bitacora.BringToFront();
+            }
+        }
+
+        private void accordionCancelarCFDI_Click(object sender, EventArgs e)
+        {
+            CancelarCFDI cancelarCFDI = new CancelarCFDI(lblRFC.Caption, lblEmpresa.Caption);
+            var frm = Application.OpenForms.OfType<CancelarCFDI>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(144, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(144, 60);
+                }
+            }
+            else
+            {
+                cancelarCFDI.Location = new Point(270, 60);
+                cancelarCFDI.Size = PanelPrincipal.Size;
+                cancelarCFDI.ShowDialog();
+                cancelarCFDI.BringToFront();
+            }
         }
     }
 }

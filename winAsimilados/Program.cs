@@ -30,6 +30,7 @@ namespace winAsimilados
                 controller.AgregarRecursos();
             }
             V.Login login = new V.Login();
+            login.BringToFront();
             Application.Run(login);
             //V.ListaEmpresas listaEmpresas = new V.ListaEmpresas();
             //Application.Run(listaEmpresas);

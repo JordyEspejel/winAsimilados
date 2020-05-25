@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery1 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery3 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NominaAsimilados));
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery2 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery4 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             this.queryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -79,6 +79,8 @@
             this.FecIniPeriUni = new DevExpress.XtraEditors.DateEdit();
             this.FecFinPeriUni = new DevExpress.XtraEditors.DateEdit();
             this.BtnNomiMasiv = new DevExpress.XtraEditors.SimpleButton();
+            this.BtnValidarInfo = new DevExpress.XtraEditors.SimpleButton();
+            this.BtnValidaInfoMasiv = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -94,6 +96,7 @@
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem23 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -144,6 +147,7 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.LayOutInfEmpl = new DevExpress.XtraLayout.LayoutControlGroup();
             this.OpenFileDialogKey = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             this.OpenFileDialogCer = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
@@ -205,6 +209,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
@@ -255,6 +260,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayOutInfEmpl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
@@ -268,11 +274,11 @@
             // 
             this.sqlDataSource1.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            customSqlQuery1.Name = "Query";
-            customSqlQuery1.Sql = "select cast(NUM_EMPLEADO as int) as [# Empleado], NOMBRE, RFC, CURP from EMPLEADO" +
+            customSqlQuery3.Name = "Query";
+            customSqlQuery3.Sql = "select cast(NUM_EMPLEADO as int) as [# Empleado], NOMBRE, RFC, CURP from EMPLEADO" +
     "S";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            customSqlQuery1});
+            customSqlQuery3});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // layoutControl1
@@ -307,6 +313,8 @@
             this.layoutControl1.Controls.Add(this.FecIniPeriUni);
             this.layoutControl1.Controls.Add(this.FecFinPeriUni);
             this.layoutControl1.Controls.Add(this.BtnNomiMasiv);
+            this.layoutControl1.Controls.Add(this.BtnValidarInfo);
+            this.layoutControl1.Controls.Add(this.BtnValidaInfoMasiv);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -318,13 +326,13 @@
             // 
             // gridControlNomiMasiv
             // 
-            this.gridControlNomiMasiv.Location = new System.Drawing.Point(48, 220);
+            this.gridControlNomiMasiv.Location = new System.Drawing.Point(48, 264);
             this.gridControlNomiMasiv.MainView = this.gridViewNomiMasiv;
             this.gridControlNomiMasiv.Name = "gridControlNomiMasiv";
             this.gridControlNomiMasiv.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemGridLookUpEdit1,
             this.repositoryItemSpinEdit1});
-            this.gridControlNomiMasiv.Size = new System.Drawing.Size(835, 386);
+            this.gridControlNomiMasiv.Size = new System.Drawing.Size(835, 420);
             this.gridControlNomiMasiv.TabIndex = 33;
             this.gridControlNomiMasiv.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewNomiMasiv});
@@ -412,12 +420,12 @@
             // 
             this.SqlTipoPeri.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.SqlTipoPeri.Name = "SqlTipoPeri";
-            customSqlQuery2.Name = "PeriodicidadPago";
-            customSqlQuery2.Sql = "select \"PeriodicidadPago\".\"c_PeriodicidadPago\",\r\n       \"PeriodicidadPago\".\"Descr" +
+            customSqlQuery4.Name = "PeriodicidadPago";
+            customSqlQuery4.Sql = "select \"PeriodicidadPago\".\"c_PeriodicidadPago\",\r\n       \"PeriodicidadPago\".\"Descr" +
     "ipcion\"\r\n  from \"dbo\".\"PeriodicidadPago\" \"PeriodicidadPago\" \r\n  where \"Periodici" +
     "dadPago\".\"id\" in (02,04,05)";
             this.SqlTipoPeri.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            customSqlQuery2});
+            customSqlQuery4});
             this.SqlTipoPeri.ResultSchemaSerializable = resources.GetString("SqlTipoPeri.ResultSchemaSerializable");
             // 
             // repositoryItemGridLookUpEdit1View
@@ -431,11 +439,11 @@
             // 
             this.IngEmpl.Caption = "Ingresos";
             this.IngEmpl.ColumnEdit = this.repositoryItemSpinEdit1;
-            this.IngEmpl.DisplayFormat.FormatString = "c";
+            this.IngEmpl.DisplayFormat.FormatString = "c2";
             this.IngEmpl.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.IngEmpl.FieldName = "Ingresos";
             this.IngEmpl.FilterMode = DevExpress.XtraGrid.ColumnFilterMode.DisplayText;
-            this.IngEmpl.GroupFormat.FormatString = "c";
+            this.IngEmpl.GroupFormat.FormatString = "c2";
             this.IngEmpl.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.IngEmpl.GroupInterval = DevExpress.XtraGrid.ColumnGroupInterval.DisplayText;
             this.IngEmpl.Name = "IngEmpl";
@@ -461,7 +469,7 @@
             // ISREmpl
             // 
             this.ISREmpl.Caption = "ISR";
-            this.ISREmpl.DisplayFormat.FormatString = "c";
+            this.ISREmpl.DisplayFormat.FormatString = "c2";
             this.ISREmpl.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.ISREmpl.FieldName = "ISR";
             this.ISREmpl.Name = "ISREmpl";
@@ -512,7 +520,7 @@
             // 
             // TxtNumEmpl
             // 
-            this.TxtNumEmpl.Location = new System.Drawing.Point(234, 148);
+            this.TxtNumEmpl.Location = new System.Drawing.Point(234, 170);
             this.TxtNumEmpl.Name = "TxtNumEmpl";
             this.TxtNumEmpl.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtNumEmpl.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -523,7 +531,7 @@
             // 
             // TxtRFC
             // 
-            this.TxtRFC.Location = new System.Drawing.Point(234, 172);
+            this.TxtRFC.Location = new System.Drawing.Point(234, 194);
             this.TxtRFC.Name = "TxtRFC";
             this.TxtRFC.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtRFC.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -534,7 +542,7 @@
             // 
             // TxtCurp
             // 
-            this.TxtCurp.Location = new System.Drawing.Point(637, 172);
+            this.TxtCurp.Location = new System.Drawing.Point(637, 194);
             this.TxtCurp.Name = "TxtCurp";
             this.TxtCurp.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCurp.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -545,11 +553,11 @@
             // 
             // TxtIngresos
             // 
-            this.TxtIngresos.EditValue = "0";
-            this.TxtIngresos.Location = new System.Drawing.Point(234, 238);
+            this.TxtIngresos.EditValue = "$0";
+            this.TxtIngresos.Location = new System.Drawing.Point(234, 260);
             this.TxtIngresos.Name = "TxtIngresos";
             this.TxtIngresos.Properties.Mask.BeepOnError = true;
-            this.TxtIngresos.Properties.Mask.EditMask = "c";
+            this.TxtIngresos.Properties.Mask.EditMask = "c2";
             this.TxtIngresos.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.TxtIngresos.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.TxtIngresos.Size = new System.Drawing.Size(196, 20);
@@ -559,7 +567,7 @@
             // 
             // ChBruto
             // 
-            this.ChBruto.Location = new System.Drawing.Point(434, 238);
+            this.ChBruto.Location = new System.Drawing.Point(434, 260);
             this.ChBruto.Name = "ChBruto";
             this.ChBruto.Properties.Caption = "Ingresos Brutos";
             this.ChBruto.Size = new System.Drawing.Size(156, 19);
@@ -570,7 +578,7 @@
             // ChNeto
             // 
             this.ChNeto.Enabled = false;
-            this.ChNeto.Location = new System.Drawing.Point(594, 238);
+            this.ChNeto.Location = new System.Drawing.Point(594, 260);
             this.ChNeto.Name = "ChNeto";
             this.ChNeto.Properties.Caption = "Ingresos Netos";
             this.ChNeto.Size = new System.Drawing.Size(289, 19);
@@ -582,7 +590,7 @@
             // TxtIngBru
             // 
             this.TxtIngBru.EditValue = "0";
-            this.TxtIngBru.Location = new System.Drawing.Point(495, 382);
+            this.TxtIngBru.Location = new System.Drawing.Point(495, 460);
             this.TxtIngBru.Name = "TxtIngBru";
             this.TxtIngBru.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtIngBru.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -599,7 +607,7 @@
             // TxtLimInf
             // 
             this.TxtLimInf.EditValue = "0";
-            this.TxtLimInf.Location = new System.Drawing.Point(495, 406);
+            this.TxtLimInf.Location = new System.Drawing.Point(495, 484);
             this.TxtLimInf.Name = "TxtLimInf";
             this.TxtLimInf.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtLimInf.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -614,7 +622,7 @@
             // TxtExcLimInf
             // 
             this.TxtExcLimInf.EditValue = "0";
-            this.TxtExcLimInf.Location = new System.Drawing.Point(495, 430);
+            this.TxtExcLimInf.Location = new System.Drawing.Point(495, 508);
             this.TxtExcLimInf.Name = "TxtExcLimInf";
             this.TxtExcLimInf.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtExcLimInf.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -630,7 +638,7 @@
             // TxtPorExcLimInf
             // 
             this.TxtPorExcLimInf.EditValue = "0";
-            this.TxtPorExcLimInf.Location = new System.Drawing.Point(495, 454);
+            this.TxtPorExcLimInf.Location = new System.Drawing.Point(495, 532);
             this.TxtPorExcLimInf.Name = "TxtPorExcLimInf";
             this.TxtPorExcLimInf.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtPorExcLimInf.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -645,7 +653,7 @@
             // TxtCF
             // 
             this.TxtCF.EditValue = "0";
-            this.TxtCF.Location = new System.Drawing.Point(495, 502);
+            this.TxtCF.Location = new System.Drawing.Point(495, 580);
             this.TxtCF.Name = "TxtCF";
             this.TxtCF.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCF.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -660,7 +668,7 @@
             // TxtISR
             // 
             this.TxtISR.EditValue = "0";
-            this.TxtISR.Location = new System.Drawing.Point(495, 526);
+            this.TxtISR.Location = new System.Drawing.Point(495, 604);
             this.TxtISR.Name = "TxtISR";
             this.TxtISR.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtISR.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -675,7 +683,7 @@
             // TxtSubEmpl
             // 
             this.TxtSubEmpl.EditValue = "0";
-            this.TxtSubEmpl.Location = new System.Drawing.Point(495, 550);
+            this.TxtSubEmpl.Location = new System.Drawing.Point(495, 628);
             this.TxtSubEmpl.Name = "TxtSubEmpl";
             this.TxtSubEmpl.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtSubEmpl.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -690,7 +698,7 @@
             // TxtIngNet
             // 
             this.TxtIngNet.EditValue = "0";
-            this.TxtIngNet.Location = new System.Drawing.Point(495, 574);
+            this.TxtIngNet.Location = new System.Drawing.Point(495, 652);
             this.TxtIngNet.Name = "TxtIngNet";
             this.TxtIngNet.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtIngNet.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -705,7 +713,7 @@
             // TxtImpMar
             // 
             this.TxtImpMar.EditValue = "0";
-            this.TxtImpMar.Location = new System.Drawing.Point(495, 478);
+            this.TxtImpMar.Location = new System.Drawing.Point(495, 556);
             this.TxtImpMar.Name = "TxtImpMar";
             this.TxtImpMar.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtImpMar.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -719,7 +727,7 @@
             // 
             // TxtPeriPago
             // 
-            this.TxtPeriPago.Location = new System.Drawing.Point(637, 148);
+            this.TxtPeriPago.Location = new System.Drawing.Point(637, 170);
             this.TxtPeriPago.Name = "TxtPeriPago";
             this.TxtPeriPago.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtPeriPago.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -752,9 +760,9 @@
             // BtnGenNom
             // 
             this.BtnGenNom.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnGenNom.ImageOptions.Image")));
-            this.BtnGenNom.Location = new System.Drawing.Point(690, 622);
+            this.BtnGenNom.Location = new System.Drawing.Point(774, 700);
             this.BtnGenNom.Name = "BtnGenNom";
-            this.BtnGenNom.Size = new System.Drawing.Size(205, 38);
+            this.BtnGenNom.Size = new System.Drawing.Size(121, 38);
             this.BtnGenNom.StyleController = this.layoutControl1;
             this.BtnGenNom.TabIndex = 24;
             this.BtnGenNom.Text = "Generar Nomina";
@@ -763,7 +771,7 @@
             // FecPagoUni
             // 
             this.FecPagoUni.EditValue = null;
-            this.FecPagoUni.Location = new System.Drawing.Point(246, 292);
+            this.FecPagoUni.Location = new System.Drawing.Point(246, 348);
             this.FecPagoUni.Name = "FecPagoUni";
             this.FecPagoUni.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -777,7 +785,7 @@
             // FecPagoMasiv
             // 
             this.FecPagoMasiv.EditValue = null;
-            this.FecPagoMasiv.Location = new System.Drawing.Point(234, 106);
+            this.FecPagoMasiv.Location = new System.Drawing.Point(234, 128);
             this.FecPagoMasiv.Name = "FecPagoMasiv";
             this.FecPagoMasiv.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -791,7 +799,7 @@
             // FecIniPeriMasiv
             // 
             this.FecIniPeriMasiv.EditValue = null;
-            this.FecIniPeriMasiv.Location = new System.Drawing.Point(234, 130);
+            this.FecIniPeriMasiv.Location = new System.Drawing.Point(234, 152);
             this.FecIniPeriMasiv.Name = "FecIniPeriMasiv";
             this.FecIniPeriMasiv.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -804,7 +812,7 @@
             // FecFinPeriMasiv
             // 
             this.FecFinPeriMasiv.EditValue = null;
-            this.FecFinPeriMasiv.Location = new System.Drawing.Point(623, 130);
+            this.FecFinPeriMasiv.Location = new System.Drawing.Point(623, 152);
             this.FecFinPeriMasiv.Name = "FecFinPeriMasiv";
             this.FecFinPeriMasiv.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -816,7 +824,7 @@
             // 
             // PeriPagoMasiv
             // 
-            this.PeriPagoMasiv.Location = new System.Drawing.Point(653, 196);
+            this.PeriPagoMasiv.Location = new System.Drawing.Point(653, 240);
             this.PeriPagoMasiv.Name = "PeriPagoMasiv";
             this.PeriPagoMasiv.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.PeriPagoMasiv.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -837,10 +845,10 @@
             // 
             // ChPeriMasiv
             // 
-            this.ChPeriMasiv.Location = new System.Drawing.Point(234, 196);
+            this.ChPeriMasiv.Location = new System.Drawing.Point(48, 240);
             this.ChPeriMasiv.Name = "ChPeriMasiv";
             this.ChPeriMasiv.Properties.Caption = "Cambiar Periodicidad";
-            this.ChPeriMasiv.Size = new System.Drawing.Size(229, 19);
+            this.ChPeriMasiv.Size = new System.Drawing.Size(415, 19);
             this.ChPeriMasiv.StyleController = this.layoutControl1;
             this.ChPeriMasiv.TabIndex = 30;
             this.ChPeriMasiv.CheckedChanged += new System.EventHandler(this.ChPeriMasiv_CheckedChanged);
@@ -848,7 +856,7 @@
             // FecIniPeriUni
             // 
             this.FecIniPeriUni.EditValue = null;
-            this.FecIniPeriUni.Location = new System.Drawing.Point(246, 316);
+            this.FecIniPeriUni.Location = new System.Drawing.Point(246, 372);
             this.FecIniPeriUni.Name = "FecIniPeriUni";
             this.FecIniPeriUni.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -861,7 +869,7 @@
             // FecFinPeriUni
             // 
             this.FecFinPeriUni.EditValue = null;
-            this.FecFinPeriUni.Location = new System.Drawing.Point(664, 316);
+            this.FecFinPeriUni.Location = new System.Drawing.Point(664, 372);
             this.FecFinPeriUni.Name = "FecFinPeriUni";
             this.FecFinPeriUni.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -874,13 +882,35 @@
             // BtnNomiMasiv
             // 
             this.BtnNomiMasiv.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnNomiMasiv.ImageOptions.Image")));
-            this.BtnNomiMasiv.Location = new System.Drawing.Point(740, 610);
+            this.BtnNomiMasiv.Location = new System.Drawing.Point(762, 688);
             this.BtnNomiMasiv.Name = "BtnNomiMasiv";
-            this.BtnNomiMasiv.Size = new System.Drawing.Size(143, 38);
+            this.BtnNomiMasiv.Size = new System.Drawing.Size(121, 38);
             this.BtnNomiMasiv.StyleController = this.layoutControl1;
             this.BtnNomiMasiv.TabIndex = 34;
             this.BtnNomiMasiv.Text = "Generar Nómina";
             this.BtnNomiMasiv.Click += new System.EventHandler(this.BtnNomiMasiv_Click);
+            // 
+            // BtnValidarInfo
+            // 
+            this.BtnValidarInfo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnValidarInfo.ImageOptions.Image")));
+            this.BtnValidarInfo.Location = new System.Drawing.Point(634, 700);
+            this.BtnValidarInfo.Name = "BtnValidarInfo";
+            this.BtnValidarInfo.Size = new System.Drawing.Size(136, 38);
+            this.BtnValidarInfo.StyleController = this.layoutControl1;
+            this.BtnValidarInfo.TabIndex = 35;
+            this.BtnValidarInfo.Text = "Validar Información";
+            this.BtnValidarInfo.Click += new System.EventHandler(this.BtnValidarInfo_Click);
+            // 
+            // BtnValidaInfoMasiv
+            // 
+            this.BtnValidaInfoMasiv.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnValidaInfoMasiv.ImageOptions.Image")));
+            this.BtnValidaInfoMasiv.Location = new System.Drawing.Point(622, 688);
+            this.BtnValidaInfoMasiv.Name = "BtnValidaInfoMasiv";
+            this.BtnValidaInfoMasiv.Size = new System.Drawing.Size(136, 38);
+            this.BtnValidaInfoMasiv.StyleController = this.layoutControl1;
+            this.BtnValidaInfoMasiv.TabIndex = 36;
+            this.BtnValidaInfoMasiv.Text = "Validar Información";
+            this.BtnValidaInfoMasiv.Click += new System.EventHandler(this.BtnValidaInfoMasiv_Click);
             // 
             // layoutControlGroup1
             // 
@@ -889,7 +919,7 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.tabbedControlGroup1});
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(931, 696);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(931, 774);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // tabbedControlGroup1
@@ -898,7 +928,7 @@
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
             this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup4;
             this.tabbedControlGroup1.SelectedTabPageIndex = 1;
-            this.tabbedControlGroup1.Size = new System.Drawing.Size(911, 676);
+            this.tabbedControlGroup1.Size = new System.Drawing.Size(911, 754);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup2,
             this.layoutControlGroup4});
@@ -909,7 +939,7 @@
             this.layoutControlGroup8});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(887, 630);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(887, 708);
             this.layoutControlGroup4.Text = "Nomina Masiva";
             // 
             // layoutControlGroup8
@@ -919,11 +949,13 @@
             this.layoutControlGroup10});
             this.layoutControlGroup8.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup8.Name = "layoutControlGroup8";
-            this.layoutControlGroup8.Size = new System.Drawing.Size(887, 630);
+            this.layoutControlGroup8.Size = new System.Drawing.Size(887, 708);
             this.layoutControlGroup8.Text = "Nomina Empleados";
             // 
             // layoutControlGroup9
             // 
+            this.layoutControlGroup9.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutControlGroup9.CaptionImageOptions.Image")));
+            this.layoutControlGroup9.CustomizationFormText = "Configuración Peiodo";
             this.layoutControlGroup9.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup9.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem20,
@@ -932,8 +964,8 @@
             this.emptySpaceItem21});
             this.layoutControlGroup9.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup9.Name = "layoutControlGroup9";
-            this.layoutControlGroup9.Size = new System.Drawing.Size(863, 90);
-            this.layoutControlGroup9.Text = "Configuración Peiodo";
+            this.layoutControlGroup9.Size = new System.Drawing.Size(863, 112);
+            this.layoutControlGroup9.Text = "Configuración Periodo";
             // 
             // layoutControlItem20
             // 
@@ -972,16 +1004,18 @@
             // 
             // layoutControlGroup10
             // 
+            this.layoutControlGroup10.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutControlGroup10.CaptionImageOptions.Image")));
             this.layoutControlGroup10.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup10.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem23,
             this.layoutControlItem16,
             this.layoutControlItem24,
             this.layoutControlItem27,
-            this.emptySpaceItem23});
-            this.layoutControlGroup10.Location = new System.Drawing.Point(0, 90);
+            this.emptySpaceItem23,
+            this.layoutControlItem29});
+            this.layoutControlGroup10.Location = new System.Drawing.Point(0, 112);
             this.layoutControlGroup10.Name = "layoutControlGroup10";
-            this.layoutControlGroup10.Size = new System.Drawing.Size(863, 498);
+            this.layoutControlGroup10.Size = new System.Drawing.Size(863, 554);
             this.layoutControlGroup10.Tag = "layoutControlGroup10";
             this.layoutControlGroup10.Text = "Configuración Nómina";
             // 
@@ -999,7 +1033,7 @@
             this.layoutControlItem16.Control = this.gridControlNomiMasiv;
             this.layoutControlItem16.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(839, 390);
+            this.layoutControlItem16.Size = new System.Drawing.Size(839, 424);
             this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem16.TextVisible = false;
             // 
@@ -1009,24 +1043,34 @@
             this.layoutControlItem24.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem24.Name = "layoutControlItem24";
             this.layoutControlItem24.Size = new System.Drawing.Size(419, 24);
-            this.layoutControlItem24.TextSize = new System.Drawing.Size(183, 13);
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem24.TextVisible = false;
             // 
             // layoutControlItem27
             // 
             this.layoutControlItem27.Control = this.BtnNomiMasiv;
-            this.layoutControlItem27.Location = new System.Drawing.Point(692, 414);
+            this.layoutControlItem27.Location = new System.Drawing.Point(714, 448);
             this.layoutControlItem27.Name = "layoutControlItem27";
-            this.layoutControlItem27.Size = new System.Drawing.Size(147, 42);
+            this.layoutControlItem27.Size = new System.Drawing.Size(125, 42);
             this.layoutControlItem27.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem27.TextVisible = false;
             // 
             // emptySpaceItem23
             // 
             this.emptySpaceItem23.AllowHotTrack = false;
-            this.emptySpaceItem23.Location = new System.Drawing.Point(0, 414);
+            this.emptySpaceItem23.Location = new System.Drawing.Point(0, 448);
             this.emptySpaceItem23.Name = "emptySpaceItem23";
-            this.emptySpaceItem23.Size = new System.Drawing.Size(692, 42);
+            this.emptySpaceItem23.Size = new System.Drawing.Size(574, 42);
             this.emptySpaceItem23.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem29
+            // 
+            this.layoutControlItem29.Control = this.BtnValidaInfoMasiv;
+            this.layoutControlItem29.Location = new System.Drawing.Point(574, 448);
+            this.layoutControlItem29.Name = "layoutControlItem29";
+            this.layoutControlItem29.Size = new System.Drawing.Size(140, 42);
+            this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem29.TextVisible = false;
             // 
             // layoutControlGroup2
             // 
@@ -1034,7 +1078,7 @@
             this.layoutControlGroup3});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(887, 630);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(887, 708);
             this.layoutControlGroup2.Text = "Nomina Unitaria";
             // 
             // layoutControlGroup3
@@ -1047,14 +1091,16 @@
             this.layoutControlItem17,
             this.emptySpaceItem3,
             this.layoutControlItem18,
-            this.emptySpaceItem7});
+            this.emptySpaceItem7,
+            this.layoutControlItem28});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(887, 630);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(887, 708);
             this.layoutControlGroup3.Text = "Nomina Empleado";
             // 
             // layoutControlGroup5
             // 
+            this.layoutControlGroup5.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutControlGroup5.CaptionImageOptions.Image")));
             this.layoutControlGroup5.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem2,
@@ -1064,7 +1110,7 @@
             this.emptySpaceItem2});
             this.layoutControlGroup5.Location = new System.Drawing.Point(0, 42);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
-            this.layoutControlGroup5.Size = new System.Drawing.Size(863, 90);
+            this.layoutControlGroup5.Size = new System.Drawing.Size(863, 112);
             this.layoutControlGroup5.Text = "Información Empleado";
             // 
             // layoutControlItem2
@@ -1123,11 +1169,12 @@
             // LayOutEmpleado
             // 
             this.LayOutEmpleado.Control = this.LookUpEmpl;
+            this.LayOutEmpleado.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("LayOutEmpleado.ImageOptions.Image")));
             this.LayOutEmpleado.Location = new System.Drawing.Point(0, 0);
             this.LayOutEmpleado.Name = "LayOutEmpleado";
             this.LayOutEmpleado.Size = new System.Drawing.Size(496, 42);
             this.LayOutEmpleado.Text = "Empleado";
-            this.LayOutEmpleado.TextSize = new System.Drawing.Size(183, 13);
+            this.LayOutEmpleado.TextSize = new System.Drawing.Size(183, 32);
             // 
             // layoutControlGroup6
             // 
@@ -1137,26 +1184,27 @@
             this.layoutControlItem8,
             this.layoutControlGroup7,
             this.layoutControlGroup11});
-            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 132);
+            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 154);
             this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(863, 414);
+            this.layoutControlGroup6.Size = new System.Drawing.Size(863, 470);
             this.layoutControlGroup6.Text = "Configuración Nómina";
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.TxtIngresos;
+            this.layoutControlItem6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutControlItem6.ImageOptions.Image")));
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(386, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(386, 36);
             this.layoutControlItem6.Text = "Ingresos";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(183, 13);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(183, 32);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.ChBruto;
             this.layoutControlItem7.Location = new System.Drawing.Point(386, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(160, 24);
+            this.layoutControlItem7.Size = new System.Drawing.Size(160, 36);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
@@ -1165,12 +1213,13 @@
             this.layoutControlItem8.Control = this.ChNeto;
             this.layoutControlItem8.Location = new System.Drawing.Point(546, 0);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(293, 24);
+            this.layoutControlItem8.Size = new System.Drawing.Size(293, 36);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
             // layoutControlGroup7
             // 
+            this.layoutControlGroup7.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutControlGroup7.CaptionImageOptions.Image")));
             this.layoutControlGroup7.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup7.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.LblIngBru,
@@ -1199,9 +1248,9 @@
             this.emptySpaceItem19,
             this.emptySpaceItem20,
             this.emptySpaceItem6});
-            this.layoutControlGroup7.Location = new System.Drawing.Point(0, 114);
+            this.layoutControlGroup7.Location = new System.Drawing.Point(0, 148);
             this.layoutControlGroup7.Name = "layoutControlGroup7";
-            this.layoutControlGroup7.Size = new System.Drawing.Size(839, 258);
+            this.layoutControlGroup7.Size = new System.Drawing.Size(839, 280);
             this.layoutControlGroup7.Text = "Calculo";
             // 
             // LblIngBru
@@ -1423,15 +1472,16 @@
             // 
             // layoutControlGroup11
             // 
+            this.layoutControlGroup11.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutControlGroup11.CaptionImageOptions.Image")));
             this.layoutControlGroup11.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup11.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem19,
             this.emptySpaceItem22,
             this.layoutControlItem25,
             this.layoutControlItem26});
-            this.layoutControlGroup11.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlGroup11.Location = new System.Drawing.Point(0, 36);
             this.layoutControlGroup11.Name = "layoutControlGroup11";
-            this.layoutControlGroup11.Size = new System.Drawing.Size(839, 90);
+            this.layoutControlGroup11.Size = new System.Drawing.Size(839, 112);
             this.layoutControlGroup11.Text = "Periodo";
             // 
             // layoutControlItem19
@@ -1489,19 +1539,28 @@
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.BtnGenNom;
-            this.layoutControlItem18.Location = new System.Drawing.Point(654, 546);
+            this.layoutControlItem18.Location = new System.Drawing.Point(738, 624);
             this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(209, 42);
+            this.layoutControlItem18.Size = new System.Drawing.Size(125, 42);
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
             // 
             // emptySpaceItem7
             // 
             this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(0, 546);
+            this.emptySpaceItem7.Location = new System.Drawing.Point(0, 624);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(654, 42);
+            this.emptySpaceItem7.Size = new System.Drawing.Size(598, 42);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem28
+            // 
+            this.layoutControlItem28.Control = this.BtnValidarInfo;
+            this.layoutControlItem28.Location = new System.Drawing.Point(598, 624);
+            this.layoutControlItem28.Name = "layoutControlItem28";
+            this.layoutControlItem28.Size = new System.Drawing.Size(140, 42);
+            this.layoutControlItem28.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem28.TextVisible = false;
             // 
             // LayOutInfEmpl
             // 
@@ -1581,6 +1640,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
@@ -1631,6 +1691,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LayOutInfEmpl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
@@ -1755,5 +1816,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn ISREmpl;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn NetoEmpl;
+        private DevExpress.XtraEditors.SimpleButton BtnValidarInfo;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
+        private DevExpress.XtraEditors.SimpleButton BtnValidaInfoMasiv;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
     }
 }

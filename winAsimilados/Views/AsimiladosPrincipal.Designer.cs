@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AsimiladosPrincipal));
-            this.dropDownButton1 = new DevExpress.XtraEditors.DropDownButton();
             this.PopBtnEmpleados = new DevExpress.XtraBars.PopupMenu(this.components);
             this.BtnAgregar = new DevExpress.XtraBars.BarSubItem();
             this.BtnAgregarEmplUni = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -68,61 +67,39 @@
             this.BtnEdiarEmpresa = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barHeaderItem3 = new DevExpress.XtraBars.BarHeaderItem();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
-            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.dropDownButton3 = new DevExpress.XtraEditors.DropDownButton();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.PopBtnOpciones = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.BtnGenPDF12 = new DevExpress.XtraEditors.SimpleButton();
-            this.dropDownButton4 = new DevExpress.XtraEditors.DropDownButton();
             this.PopBtnNomi = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.BtnGenerarPDFXML = new DevExpress.XtraEditors.SimpleButton();
-            this.dropDownButton2 = new DevExpress.XtraEditors.DropDownButton();
             this.PopBtnEmpresas = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.BtnCancelarCFDI = new DevExpress.XtraEditors.SimpleButton();
-            this.BtnHistorico = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.PanelPrincipal = new DevExpress.XtraEditors.SidePanel();
+            this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
+            this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionAgregaEmplUni = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionAgregaEmplMasiv = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.acoordionEditaEmpleado = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionAgregarEmpresaUnitario = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionEditaEmpresa = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionNomiAsim = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionBitacora = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionCancelarCFDI = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement6 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionGenPDF_XML = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionGenPDF1_2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement8 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionCambiarEmpresa = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
-            this.sidePanel2 = new DevExpress.XtraEditors.SidePanel();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpleados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
-            this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnOpciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnNomi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpresas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            this.sidePanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dropDownButton1
-            // 
-            this.dropDownButton1.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            this.dropDownButton1.DropDownControl = this.PopBtnEmpleados;
-            this.dropDownButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("dropDownButton1.ImageOptions.Image")));
-            this.dropDownButton1.Location = new System.Drawing.Point(12, 12);
-            this.dropDownButton1.Name = "dropDownButton1";
-            this.dropDownButton1.Size = new System.Drawing.Size(128, 38);
-            this.dropDownButton1.StyleController = this.layoutControl1;
-            this.dropDownButton1.TabIndex = 4;
-            this.dropDownButton1.Text = "Empleados";
             // 
             // PopBtnEmpleados
             // 
@@ -229,7 +206,9 @@
             this.barHeaderItem4,
             this.LblUsuario});
             this.barManager1.MainMenu = this.bar1;
-            this.barManager1.MaxItemId = 42;
+            this.barManager1.MaxItemId = 44;
+            this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemTextEdit1});
             this.barManager1.ShowFullMenus = true;
             this.barManager1.ShowScreenTipsInMenus = true;
             this.barManager1.StatusBar = this.bar2;
@@ -485,38 +464,10 @@
             this.barStaticItem1.Id = 39;
             this.barStaticItem1.Name = "barStaticItem1";
             // 
-            // layoutControl1
+            // repositoryItemTextEdit1
             // 
-            this.layoutControl1.Controls.Add(this.dropDownButton3);
-            this.layoutControl1.Controls.Add(this.BtnGenPDF12);
-            this.layoutControl1.Controls.Add(this.dropDownButton1);
-            this.layoutControl1.Controls.Add(this.dropDownButton4);
-            this.layoutControl1.Controls.Add(this.BtnGenerarPDFXML);
-            this.layoutControl1.Controls.Add(this.dropDownButton2);
-            this.layoutControl1.Controls.Add(this.BtnCancelarCFDI);
-            this.layoutControl1.Controls.Add(this.BtnHistorico);
-            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(197, 173, 650, 400);
-            this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(152, 672);
-            this.layoutControl1.TabIndex = 0;
-            this.layoutControl1.Text = "layoutControl1";
-            // 
-            // dropDownButton3
-            // 
-            this.dropDownButton3.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            this.dropDownButton3.DropDownControl = this.PopBtnOpciones;
-            this.dropDownButton3.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.dropDownButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("dropDownButton3.ImageOptions.Image")));
-            this.dropDownButton3.Location = new System.Drawing.Point(12, 298);
-            this.dropDownButton3.MenuManager = this.barManager1;
-            this.dropDownButton3.Name = "dropDownButton3";
-            this.dropDownButton3.Size = new System.Drawing.Size(128, 38);
-            this.dropDownButton3.StyleController = this.layoutControl1;
-            this.dropDownButton3.TabIndex = 7;
-            this.dropDownButton3.Text = "Opciones";
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
             // PopBtnOpciones
             // 
@@ -525,62 +476,12 @@
             this.PopBtnOpciones.Manager = this.barManager1;
             this.PopBtnOpciones.Name = "PopBtnOpciones";
             // 
-            // BtnGenPDF12
-            // 
-            this.BtnGenPDF12.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnGenPDF12.ImageOptions.Image")));
-            this.BtnGenPDF12.Location = new System.Drawing.Point(12, 180);
-            this.BtnGenPDF12.Name = "BtnGenPDF12";
-            this.BtnGenPDF12.Size = new System.Drawing.Size(128, 38);
-            this.BtnGenPDF12.StyleController = this.layoutControl1;
-            this.BtnGenPDF12.TabIndex = 9;
-            this.BtnGenPDF12.Text = "Generar PDF 1.2";
-            this.BtnGenPDF12.Click += new System.EventHandler(this.BtnGenPDF12_Click);
-            // 
-            // dropDownButton4
-            // 
-            this.dropDownButton4.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            this.dropDownButton4.DropDownControl = this.PopBtnNomi;
-            this.dropDownButton4.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.dropDownButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("dropDownButton4.ImageOptions.Image")));
-            this.dropDownButton4.Location = new System.Drawing.Point(12, 138);
-            this.dropDownButton4.MenuManager = this.barManager1;
-            this.dropDownButton4.Name = "dropDownButton4";
-            this.dropDownButton4.Size = new System.Drawing.Size(128, 38);
-            this.dropDownButton4.StyleController = this.layoutControl1;
-            this.dropDownButton4.TabIndex = 8;
-            this.dropDownButton4.Text = "Nómina";
-            // 
             // PopBtnNomi
             // 
             this.PopBtnNomi.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.BtnNomiAsim)});
             this.PopBtnNomi.Manager = this.barManager1;
             this.PopBtnNomi.Name = "PopBtnNomi";
-            // 
-            // BtnGenerarPDFXML
-            // 
-            this.BtnGenerarPDFXML.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnGenerarPDFXML.ImageOptions.Image")));
-            this.BtnGenerarPDFXML.Location = new System.Drawing.Point(12, 96);
-            this.BtnGenerarPDFXML.Name = "BtnGenerarPDFXML";
-            this.BtnGenerarPDFXML.Size = new System.Drawing.Size(128, 38);
-            this.BtnGenerarPDFXML.StyleController = this.layoutControl1;
-            this.BtnGenerarPDFXML.TabIndex = 5;
-            this.BtnGenerarPDFXML.Text = "Generar PDF/XML";
-            this.BtnGenerarPDFXML.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
-            // dropDownButton2
-            // 
-            this.dropDownButton2.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            this.dropDownButton2.DropDownControl = this.PopBtnEmpresas;
-            this.dropDownButton2.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.dropDownButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("dropDownButton2.ImageOptions.Image")));
-            this.dropDownButton2.Location = new System.Drawing.Point(12, 54);
-            this.dropDownButton2.MenuManager = this.barManager1;
-            this.dropDownButton2.Name = "dropDownButton2";
-            this.dropDownButton2.Size = new System.Drawing.Size(128, 38);
-            this.dropDownButton2.StyleController = this.layoutControl1;
-            this.dropDownButton2.TabIndex = 6;
-            this.dropDownButton2.Text = "Empresas";
             // 
             // PopBtnEmpresas
             // 
@@ -590,155 +491,189 @@
             this.PopBtnEmpresas.Manager = this.barManager1;
             this.PopBtnEmpresas.Name = "PopBtnEmpresas";
             // 
-            // BtnCancelarCFDI
-            // 
-            this.BtnCancelarCFDI.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnCancelarCFDI.ImageOptions.Image")));
-            this.BtnCancelarCFDI.Location = new System.Drawing.Point(12, 222);
-            this.BtnCancelarCFDI.Name = "BtnCancelarCFDI";
-            this.BtnCancelarCFDI.Size = new System.Drawing.Size(128, 34);
-            this.BtnCancelarCFDI.StyleController = this.layoutControl1;
-            this.BtnCancelarCFDI.TabIndex = 10;
-            this.BtnCancelarCFDI.Text = "Cancelar CFDI";
-            this.BtnCancelarCFDI.Click += new System.EventHandler(this.BtnCancelarCFDI_Click);
-            // 
-            // BtnHistorico
-            // 
-            this.BtnHistorico.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnHistorico.ImageOptions.Image")));
-            this.BtnHistorico.Location = new System.Drawing.Point(12, 260);
-            this.BtnHistorico.Name = "BtnHistorico";
-            this.BtnHistorico.Size = new System.Drawing.Size(128, 34);
-            this.BtnHistorico.StyleController = this.layoutControl1;
-            this.BtnHistorico.TabIndex = 11;
-            this.BtnHistorico.Text = "Bitacora";
-            this.BtnHistorico.Click += new System.EventHandler(this.BtnHistorico_Click);
-            // 
-            // layoutControlGroup1
-            // 
-            this.layoutControlGroup1.AppearanceGroup.BackColor = System.Drawing.Color.DarkGray;
-            this.layoutControlGroup1.AppearanceGroup.Options.UseBackColor = true;
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem1,
-            this.layoutControlItem1,
-            this.layoutControlItem2,
-            this.layoutControlItem3,
-            this.layoutControlItem4,
-            this.layoutControlItem5,
-            this.layoutControlItem6,
-            this.layoutControlItem7,
-            this.layoutControlItem8});
-            this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(152, 672);
-            this.layoutControlGroup1.TextVisible = false;
-            // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 328);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(132, 324);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.dropDownButton1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(132, 42);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.dropDownButton2;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 42);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(132, 42);
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.BtnGenerarPDFXML;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 84);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(132, 42);
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.dropDownButton4;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 126);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(132, 42);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.BtnGenPDF12;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 168);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(132, 42);
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.dropDownButton3;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 286);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(132, 42);
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.BtnCancelarCFDI;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 210);
-            this.layoutControlItem7.MinSize = new System.Drawing.Size(82, 26);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(132, 38);
-            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.BtnHistorico;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 248);
-            this.layoutControlItem8.MinSize = new System.Drawing.Size(80, 26);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(132, 38);
-            this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
-            // 
             // PanelPrincipal
             // 
-            this.PanelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelPrincipal.Location = new System.Drawing.Point(153, 34);
+            this.PanelPrincipal.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PanelPrincipal.Location = new System.Drawing.Point(266, 34);
             this.PanelPrincipal.Name = "PanelPrincipal";
-            this.PanelPrincipal.Size = new System.Drawing.Size(1197, 672);
+            this.PanelPrincipal.Size = new System.Drawing.Size(1084, 672);
             this.PanelPrincipal.TabIndex = 9;
             this.PanelPrincipal.Text = "sidePanel1";
+            this.PanelPrincipal.Visible = false;
+            // 
+            // accordionControl1
+            // 
+            this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlElement1,
+            this.accordionControlElement3,
+            this.accordionControlElement5,
+            this.accordionControlElement8});
+            this.accordionControl1.Location = new System.Drawing.Point(0, 34);
+            this.accordionControl1.Name = "accordionControl1";
+            this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
+            this.accordionControl1.OptionsMinimizing.NormalWidth = 260;
+            this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
+            this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
+            this.accordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
+            this.accordionControl1.Size = new System.Drawing.Size(56, 672);
+            this.accordionControl1.TabIndex = 0;
+            this.accordionControl1.Text = "Menu";
+            this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
+            // 
+            // accordionControlElement1
+            // 
+            this.accordionControlElement1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlElement2,
+            this.acoordionEditaEmpleado});
+            this.accordionControlElement1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement1.ImageOptions.Image")));
+            this.accordionControlElement1.Name = "accordionControlElement1";
+            this.accordionControlElement1.Text = "Empleados";
+            // 
+            // accordionControlElement2
+            // 
+            this.accordionControlElement2.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionAgregaEmplUni,
+            this.accordionAgregaEmplMasiv});
+            this.accordionControlElement2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement2.ImageOptions.Image")));
+            this.accordionControlElement2.Name = "accordionControlElement2";
+            this.accordionControlElement2.Text = "Agregar";
+            // 
+            // accordionAgregaEmplUni
+            // 
+            this.accordionAgregaEmplUni.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionAgregaEmplUni.ImageOptions.Image")));
+            this.accordionAgregaEmplUni.Name = "accordionAgregaEmplUni";
+            this.accordionAgregaEmplUni.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionAgregaEmplUni.Text = "Unitario";
+            this.accordionAgregaEmplUni.Click += new System.EventHandler(this.accordionAgregaEmplUni_Click);
+            // 
+            // accordionAgregaEmplMasiv
+            // 
+            this.accordionAgregaEmplMasiv.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionAgregaEmplMasiv.ImageOptions.Image")));
+            this.accordionAgregaEmplMasiv.Name = "accordionAgregaEmplMasiv";
+            this.accordionAgregaEmplMasiv.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionAgregaEmplMasiv.Text = "Masivo";
+            this.accordionAgregaEmplMasiv.Click += new System.EventHandler(this.accordionAgregaEmplMasiv_Click);
+            // 
+            // acoordionEditaEmpleado
+            // 
+            this.acoordionEditaEmpleado.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("acoordionEditaEmpleado.ImageOptions.Image")));
+            this.acoordionEditaEmpleado.Name = "acoordionEditaEmpleado";
+            this.acoordionEditaEmpleado.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.acoordionEditaEmpleado.Text = "Editar";
+            this.acoordionEditaEmpleado.Click += new System.EventHandler(this.acoordionEditaEmpleado_Click);
+            // 
+            // accordionControlElement3
+            // 
+            this.accordionControlElement3.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlElement4,
+            this.accordionEditaEmpresa});
+            this.accordionControlElement3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement3.ImageOptions.Image")));
+            this.accordionControlElement3.Name = "accordionControlElement3";
+            this.accordionControlElement3.Text = "Empresas";
+            // 
+            // accordionControlElement4
+            // 
+            this.accordionControlElement4.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionAgregarEmpresaUnitario});
+            this.accordionControlElement4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement4.ImageOptions.Image")));
+            this.accordionControlElement4.Name = "accordionControlElement4";
+            this.accordionControlElement4.Text = "Agregar";
+            // 
+            // accordionAgregarEmpresaUnitario
+            // 
+            this.accordionAgregarEmpresaUnitario.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionAgregarEmpresaUnitario.ImageOptions.Image")));
+            this.accordionAgregarEmpresaUnitario.Name = "accordionAgregarEmpresaUnitario";
+            this.accordionAgregarEmpresaUnitario.Text = "Unitario";
+            this.accordionAgregarEmpresaUnitario.Click += new System.EventHandler(this.accordionAgregarEmpresaUnitario_Click);
+            // 
+            // accordionEditaEmpresa
+            // 
+            this.accordionEditaEmpresa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionEditaEmpresa.ImageOptions.Image")));
+            this.accordionEditaEmpresa.Name = "accordionEditaEmpresa";
+            this.accordionEditaEmpresa.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionEditaEmpresa.Text = "Editar";
+            this.accordionEditaEmpresa.Click += new System.EventHandler(this.accordionEditaEmpresa_Click);
+            // 
+            // accordionControlElement5
+            // 
+            this.accordionControlElement5.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionNomiAsim,
+            this.accordionBitacora,
+            this.accordionCancelarCFDI,
+            this.accordionControlElement6});
+            this.accordionControlElement5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement5.ImageOptions.Image")));
+            this.accordionControlElement5.Name = "accordionControlElement5";
+            this.accordionControlElement5.Text = "Nómina";
+            // 
+            // accordionNomiAsim
+            // 
+            this.accordionNomiAsim.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionNomiAsim.ImageOptions.Image")));
+            this.accordionNomiAsim.Name = "accordionNomiAsim";
+            this.accordionNomiAsim.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionNomiAsim.Text = "Asimilados";
+            this.accordionNomiAsim.Click += new System.EventHandler(this.accordionNomiAsim_Click);
+            // 
+            // accordionBitacora
+            // 
+            this.accordionBitacora.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionBitacora.ImageOptions.Image")));
+            this.accordionBitacora.Name = "accordionBitacora";
+            this.accordionBitacora.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionBitacora.Text = "Bitacora";
+            this.accordionBitacora.Click += new System.EventHandler(this.accordionBitacora_Click);
+            // 
+            // accordionCancelarCFDI
+            // 
+            this.accordionCancelarCFDI.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionCancelarCFDI.ImageOptions.Image")));
+            this.accordionCancelarCFDI.Name = "accordionCancelarCFDI";
+            this.accordionCancelarCFDI.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionCancelarCFDI.Text = "Cancelar CDFI";
+            this.accordionCancelarCFDI.Click += new System.EventHandler(this.accordionCancelarCFDI_Click);
+            // 
+            // accordionControlElement6
+            // 
+            this.accordionControlElement6.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionGenPDF_XML,
+            this.accordionGenPDF1_2});
+            this.accordionControlElement6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement6.ImageOptions.Image")));
+            this.accordionControlElement6.Name = "accordionControlElement6";
+            this.accordionControlElement6.Text = "PDF";
+            // 
+            // accordionGenPDF_XML
+            // 
+            this.accordionGenPDF_XML.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionGenPDF_XML.ImageOptions.Image")));
+            this.accordionGenPDF_XML.Name = "accordionGenPDF_XML";
+            this.accordionGenPDF_XML.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionGenPDF_XML.Text = "Generar PDF/XML";
+            this.accordionGenPDF_XML.Click += new System.EventHandler(this.accordionGenPDF_XML_Click);
+            // 
+            // accordionGenPDF1_2
+            // 
+            this.accordionGenPDF1_2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionGenPDF1_2.ImageOptions.Image")));
+            this.accordionGenPDF1_2.Name = "accordionGenPDF1_2";
+            this.accordionGenPDF1_2.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionGenPDF1_2.Text = "Generar PDF1.2";
+            this.accordionGenPDF1_2.Click += new System.EventHandler(this.accordionGenPDF1_2_Click);
+            // 
+            // accordionControlElement8
+            // 
+            this.accordionControlElement8.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionCambiarEmpresa});
+            this.accordionControlElement8.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement8.ImageOptions.Image")));
+            this.accordionControlElement8.Name = "accordionControlElement8";
+            this.accordionControlElement8.Text = "Opciones";
+            // 
+            // accordionCambiarEmpresa
+            // 
+            this.accordionCambiarEmpresa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionCambiarEmpresa.ImageOptions.Image")));
+            this.accordionCambiarEmpresa.Name = "accordionCambiarEmpresa";
+            this.accordionCambiarEmpresa.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionCambiarEmpresa.Text = "Cambiar Empresa";
+            this.accordionCambiarEmpresa.Click += new System.EventHandler(this.accordionCambiarEmpresa_Click);
             // 
             // splashScreenManager1
             // 
             this.splashScreenManager1.ClosingDelay = 500;
-            // 
-            // sidePanel2
-            // 
-            this.sidePanel2.AllowResize = false;
-            this.sidePanel2.Controls.Add(this.layoutControl1);
-            this.sidePanel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sidePanel2.Location = new System.Drawing.Point(0, 34);
-            this.sidePanel2.Name = "sidePanel2";
-            this.sidePanel2.Size = new System.Drawing.Size(153, 672);
-            this.sidePanel2.TabIndex = 4;
-            this.sidePanel2.Text = "sidePanel2";
             // 
             // AsimiladosPrincipal
             // 
@@ -746,8 +681,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.accordionControl1);
             this.Controls.Add(this.PanelPrincipal);
-            this.Controls.Add(this.sidePanel2);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -762,29 +697,17 @@
             this.Load += new System.EventHandler(this.AsimiladosPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpleados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
-            this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnOpciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnNomi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpresas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            this.sidePanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private DevExpress.XtraEditors.DropDownButton dropDownButton1;
         private DevExpress.XtraBars.PopupMenu PopBtnEmpleados;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.PopupMenu PopBtnEmpresas;
@@ -805,21 +728,17 @@
         private DevExpress.XtraBars.BarDockingMenuItem barDockingMenuItem1;
         private DevExpress.XtraBars.BarButtonItem btnAgregarEmpresa;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem1;
-        private DevExpress.XtraEditors.SimpleButton BtnGenerarPDFXML;
         private DevExpress.XtraBars.BarToolbarsListItem barToolbarsListItem1;
         private DevExpress.XtraBars.BarSubItem BtnAgregar;
         private DevExpress.XtraBars.BarLargeButtonItem BtnAgregarEmplUni;
         private DevExpress.XtraBars.BarLargeButtonItem BtnAgregaEmplMasiv;
-        private DevExpress.XtraEditors.DropDownButton dropDownButton2;
         private DevExpress.XtraBars.BarLargeButtonItem BtnAgregarEmpesa;
         private DevExpress.XtraBars.BarSubItem barSubItem5;
         private DevExpress.XtraBars.BarLargeButtonItem BtnAgreEmpreUnit;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem4;
         private DevExpress.XtraBars.BarSubItem barSubItem6;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem5;
-        private DevExpress.XtraEditors.DropDownButton dropDownButton3;
         private DevExpress.XtraBars.PopupMenu PopBtnOpciones;
-        private DevExpress.XtraEditors.DropDownButton dropDownButton4;
         private DevExpress.XtraBars.BarLargeButtonItem BtnNomiAsim;
         private DevExpress.XtraBars.PopupMenu PopBtnNomi;
         private DevExpress.XtraBars.BarLargeButtonItem BtnEditaEmpleados;
@@ -831,20 +750,25 @@
         private DevExpress.XtraBars.BarHeaderItem barHeaderItem4;
         private DevExpress.XtraBars.BarStaticItem LblUsuario;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
-        private DevExpress.XtraEditors.SimpleButton BtnGenPDF12;
-        private DevExpress.XtraEditors.SidePanel sidePanel2;
-        private DevExpress.XtraLayout.LayoutControl layoutControl1;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private DevExpress.XtraEditors.SimpleButton BtnCancelarCFDI;
-        private DevExpress.XtraEditors.SimpleButton BtnHistorico;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private DevExpress.XtraBars.Navigation.AccordionControl accordionControl1;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionAgregaEmplUni;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionAgregaEmplMasiv;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement acoordionEditaEmpleado;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionAgregarEmpresaUnitario;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionEditaEmpresa;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement5;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionNomiAsim;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement6;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionGenPDF_XML;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionGenPDF1_2;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionCancelarCFDI;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement8;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionCambiarEmpresa;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionBitacora;
     }
 }

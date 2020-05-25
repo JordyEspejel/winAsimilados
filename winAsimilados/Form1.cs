@@ -46,7 +46,10 @@ namespace winAsimilados
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            fechaIni = fechaInicio.Value.ToString("yyyy/MM/dd");
+            fechaFinal = fechaFin.Value.ToString("yyyy/MM/dd");
+            Controlador.Buscar(gridControl1, fechaIni, fechaFinal);
+            gridControl1.Visible = true;
         }
 
         [Obsolete]

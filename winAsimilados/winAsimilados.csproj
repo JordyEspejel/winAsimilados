@@ -150,6 +150,7 @@
     <Compile Include="Data\Conexion.cs" />
     <Compile Include="Entities\BitacoraXML.cs" />
     <Compile Include="Entities\Calculo.cs" />
+    <Compile Include="Entities\CancelarUUID.cs" />
     <Compile Include="Entities\Colonia.cs" />
     <Compile Include="Entities\Empleado.cs" />
     <Compile Include="Entities\Empresa.cs" />
@@ -197,6 +198,18 @@
     </Compile>
     <Compile Include="Views\AsimiladosPrincipal.Designer.cs">
       <DependentUpon>AsimiladosPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Bitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Bitacora.Designer.cs">
+      <DependentUpon>Bitacora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CancelarCFDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CancelarCFDI.Designer.cs">
+      <DependentUpon>CancelarCFDI.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\EditarEmpleados.cs">
       <SubType>Form</SubType>
@@ -262,6 +275,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AsimiladosPrincipal.resx">
       <DependentUpon>AsimiladosPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Bitacora.resx">
+      <DependentUpon>Bitacora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CancelarCFDI.resx">
+      <DependentUpon>CancelarCFDI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\EditarEmpleados.resx">
       <DependentUpon>EditarEmpleados.cs</DependentUpon>

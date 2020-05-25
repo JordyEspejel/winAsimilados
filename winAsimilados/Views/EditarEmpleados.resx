@@ -117,6 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="queryBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>331, 17</value>
+  </metadata>
+  <metadata name="sqlDataTipoPeri.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>194, 17</value>
+  </metadata>
+  <data name="sqlDataTipoPeri.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVRpcG9QZXJpIj48VmlldyBOYW1lPSJRdWVyeSI+PEZpZWxkIE5hbWU9ImNfUGVyaW9kaWNpZGFkUGFnbyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJEZXNjcmlwY2lvbiIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+  </data>
+  <metadata name="queryBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>649, 17</value>
+  </metadata>
+  <metadata name="sqlDataSourceEmpl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>492, 17</value>
+  </metadata>
+  <data name="customSqlQuery2.Sql" xml:space="preserve">
+    <value>SELECT
+                [idempleado]
+                ,cast([NUM_EMPLEADO] as int) as [NUM_EMPLEADO]
+                ,[NOMBRE] 
+                ,[RFC]   
+                ,[CURP]
+                ,'Peri' as [PERIODICIDAD_PAGO]
+                FROM [EMPLEADOS]
+                inner join [BSNOMINAS].[dbo].[PeriodicidadPago] as Peri 
+                on EMPLEADOS.PERIODICIDAD_PAGO = Peri.c_PeriodicidadPago</value>
+  </data>
+  <data name="sqlDataSourceEmpl.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZUVtcGwiPjxWaWV3IE5hbWU9IlF1ZXJ5Ij48RmllbGQgTmFtZT0iaWRlbXBsZWFkbyIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9Ik5VTV9FTVBMRUFETyIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9Ik5PTUJSRSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJSRkMiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iQ1VSUCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJQRVJJT0RJQ0lEQURfUEFHTyIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+  </data>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

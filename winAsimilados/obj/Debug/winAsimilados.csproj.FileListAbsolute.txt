@@ -193,3 +193,5 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\DevExpress.
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\DevExpress.XtraDialogs.v18.1.dll
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.EditarEmpresa.resources
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.GenPDF12.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.Bitacora.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.CancelarCFDI.resources

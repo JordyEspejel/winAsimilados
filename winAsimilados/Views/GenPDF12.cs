@@ -21,12 +21,6 @@ namespace winAsimilados.Views
         string fechaIni;
         string fechaFinal;
         string uuid;
-        string rutaXML;
-        string fecPago;
-        string nomEmpl;
-        string RFC;
-        string pathPDF = @"C:\XML\";
-        string PDF;
         C.Controller Controlador = new C.Controller();
         public GenPDF12()
         {

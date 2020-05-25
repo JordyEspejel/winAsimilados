@@ -53,7 +53,8 @@ namespace winAsimilados.Views
                     //Prin.Show();
                     Properties.Settings.Default["Usuario"] = txtUsua.Text;
                     Properties.Settings.Default.Save();
-                    V.ListaEmpresas listaEmpresas = new V.ListaEmpresas();               
+                    V.ListaEmpresas listaEmpresas = new V.ListaEmpresas();
+                    listaEmpresas.BringToFront();                                                           
                     listaEmpresas.ShowDialog();
                     //this.Dispose();
 
