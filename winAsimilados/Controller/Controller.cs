@@ -116,6 +116,42 @@ namespace winAsimilados.Controller
                 return null;
             }
         }
+        public string GetStatusUsuario(string usuario, string pass)
+        {
+            try
+            {
+                string tipoUsua = null;
+                N.Conexion.PerformConnection().Open();
+                SqlCommand queryTipoUsua = N.Conexion.PerformConnection().CreateCommand();
+                D.clsSeguridad seguridad = new D.clsSeguridad();
+                string passEncrip = seguridad.EncryptString(pass);
+                queryTipoUsua.CommandText = @"select
+                usuarioStatus
+                from UsuariosSistema
+                where usuarioID = @usuario
+                and usuarioPass = @pass";
+                queryTipoUsua.Parameters.AddWithValue("@usuario", usuario);
+                queryTipoUsua.Parameters.AddWithValue("@pass", passEncrip);
+
+                SqlDataReader readerTipo;
+                readerTipo = queryTipoUsua.ExecuteReader();
+
+                if (readerTipo.Read())
+                {
+                    tipoUsua = readerTipo.GetString(0);
+                }
+                N.Conexion.PerformConnection().Close();
+                return tipoUsua;
+
+            }catch (Exception e)
+            {
+                N.Conexion.PerformConnection().Close();
+
+                XtraMessageBox.Show(e.Message + "\nErro Controlador:GetStatusUsuario()"
+                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
         public bool GetAdminUsuario(string usuario)
         {
             try
@@ -219,7 +255,7 @@ namespace winAsimilados.Controller
                                     {
                                         XtraMessageBox.Show(resultados[0].mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
-                                    if (resultados[0].statusUUID.Equals("211"))
+                                    else if (resultados[0].statusUUID.Equals("211"))
                                     {
                                         bitacora.StatusSAT = "En Proceso de Cancelación";
                                         ActualizaFolio(bitacora.UUID, "En proceso de Cancelación");
@@ -244,7 +280,7 @@ namespace winAsimilados.Controller
                                         //}
                                         XtraMessageBox.Show(resultados[0].mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
-                                    if (resultados[0].statusUUID.Equals("201"))
+                                    else if (resultados[0].statusUUID.Equals("201"))
                                     {
                                         bitacora.StatusSAT = "Cancelado";
                                         ActualizaFolio(resultados[0].uuid, "Cancelado");
@@ -253,11 +289,24 @@ namespace winAsimilados.Controller
                                         XtraMessageBox.Show("¡Folio: " + resultados[0].uuid + " Cancelado con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
 
-                                    if (resultados[0].statusUUID !="202" || resultados[0].statusUUID != "201" || resultados[0].statusUUID != "211")
+                                    else// (resultados[0].statusUUID !="202" || resultados[0].statusUUID != "201" || resultados[0].statusUUID != "211")
                                     {
+                                        if (splashScreenManager.IsSplashFormVisible.Equals(true))
+                                        {
+                                            splashScreenManager.CloseWaitForm();
+                                        }
                                         XtraMessageBox.Show(resultados[0].mensaje, "Error",
                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
+                                }
+                                else// (resultados[0].statusUUID !="202" || resultados[0].statusUUID != "201" || resultados[0].statusUUID != "211")
+                                {
+                                    if (splashScreenManager.IsSplashFormVisible.Equals(true))
+                                    {
+                                        splashScreenManager.CloseWaitForm();
+                                    }
+                                    XtraMessageBox.Show(resultados[0].mensaje, "Error",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
@@ -1650,7 +1699,7 @@ namespace winAsimilados.Controller
                 return null;
             }
         }
-        public E.Calculo GeneraCalculo(decimal Ingresos, string Periodicidad)//, string TipoIngresos)
+        public E.Calculo GeneraCalculo(decimal Ingresos, string Periodicidad, string BD)//, string TipoIngresos)
         {
             try
             {
@@ -1660,7 +1709,7 @@ namespace winAsimilados.Controller
                 //{
                     calculo.IngresosBrutos = Math.Round(Ingresos,2);
 
-                    if (Periodicidad.Equals("Semanal"))
+                    if (Periodicidad.Equals("Semanal") || Periodicidad.Equals("02"))
                     {
                         var ISR07 = new List<E.ISR7>();
                         E.ISR7[] isr07 = null;
@@ -1668,13 +1717,19 @@ namespace winAsimilados.Controller
                         var SUB07 = new List<E.SUB7>();
                         E.SUB7[] sub07 = null;
 
-                        N.Conexion.PerformConnectionSoprade().Open();
-                        SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                        queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
-                        from genTablasNumericasDet 
+                        //N.Conexion.PerformConnectionSoprade().Open();
+                        //SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                        N.Conexion.PerformConnection().Close();
+                        N.Conexion.PerformConnection().Open();
+                        SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
+                        //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        //from genTablasNumericasDet 
+                        //where tnudIDTnum = 'ISR07'";  
+                        queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        from TablaCalculos 
                         where tnudIDTnum = 'ISR07'";
 
-                        SqlDataReader readerTabla;
+                    SqlDataReader readerTabla;
                         readerTabla = queryTablaISR.ExecuteReader();
 
                         while (readerTabla.Read())
@@ -1690,10 +1745,10 @@ namespace winAsimilados.Controller
                         }
                         readerTabla.Close();
 
-                        SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                        queryTablaSub.CommandText = @"
-                        select tnudValor1, tnudValor2, tnudValor3
-                        from genTablasNumericasDet 
+                     //SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                        SqlCommand queryTablaSub = N.Conexion.PerformConnection().CreateCommand();
+                        queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        from TablaCalculos 
                         where tnudIDTnum = 'SUB07'";
 
                         SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
@@ -1708,7 +1763,7 @@ namespace winAsimilados.Controller
                             sub07 = SUB07.ToArray();
                         }
                         readerTablaSub.Close();
-                        N.Conexion.PerformConnectionSoprade().Close();
+                        N.Conexion.PerformConnection().ChangeDatabase(BD);
 
                         foreach (var valor in sub07)
                         {
@@ -1734,7 +1789,7 @@ namespace winAsimilados.Controller
                         calculo.IngresosNetos = Math.Round(calculo.IngresosBrutos - calculo.ISR + calculo.Sub,2);
                     }
 
-                    if (Periodicidad.Equals("Quincenal"))
+                    if (Periodicidad.Equals("Quincenal") || Periodicidad.Equals("04"))
                     {
                         var ISR15 = new List<E.ISR15>();
                         E.ISR15[] isr15 = null;
@@ -1742,13 +1797,19 @@ namespace winAsimilados.Controller
                         var SUB15 = new List<E.SUB15>();
                         E.SUB15[] sub15 = null;
 
-                        N.Conexion.PerformConnectionSoprade().Open();
-                        SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                        queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
-                        from genTablasNumericasDet 
-                        where tnudIDTnum = 'ISR15'";
+                        //N.Conexion.PerformConnectionSoprade().Open();
+                        //SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                        N.Conexion.PerformConnection().Close();
+                        N.Conexion.PerformConnection().Open();
+                        SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
+                        //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        //from genTablasNumericasDet 
+                        //where tnudIDTnum = 'ISR15'";  
+                        queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                            from TablaCalculos 
+                            where tnudIDTnum = 'ISR15'";
 
-                        SqlDataReader readerTabla;
+                    SqlDataReader readerTabla;
                         readerTabla = queryTablaISR.ExecuteReader();
 
                         while (readerTabla.Read())
@@ -1763,13 +1824,14 @@ namespace winAsimilados.Controller
                             isr15 = ISR15.ToArray();
                         }
                         readerTabla.Close();
-                        SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                        queryTablaSub.CommandText = @"
-                        select tnudValor1, tnudValor2, tnudValor3
-                        from genTablasNumericasDet 
-                        where tnudIDTnum = 'SUB15'";
 
-                        SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
+                        //SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                        SqlCommand queryTablaSub = N.Conexion.PerformConnection().CreateCommand();
+                        queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                            from TablaCalculos 
+                            where tnudIDTnum = 'SUB15'";
+
+                    SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
                         while (readerTablaSub.Read())
                         {
                             SUB15.Add(new E.SUB15
@@ -1781,9 +1843,10 @@ namespace winAsimilados.Controller
                             sub15 = SUB15.ToArray();
                         }
                         readerTablaSub.Close();
-                        N.Conexion.PerformConnectionSoprade().Close();
+                    //N.Conexion.PerformConnectionSoprade().Close();
+                    N.Conexion.PerformConnection().ChangeDatabase(BD);
 
-                        foreach (var valor in sub15)
+                    foreach (var valor in sub15)
                         {
                             if (Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
                             {
@@ -1807,7 +1870,7 @@ namespace winAsimilados.Controller
                         calculo.IngresosNetos = Math.Round(calculo.IngresosBrutos - calculo.ISR + calculo.Sub,2);
                     }
 
-                    if (Periodicidad.Equals("Mensual"))
+                    if (Periodicidad.Equals("Mensual") || Periodicidad.Equals("05"))
                     {
                         var ISR30 = new List<E.ISR30>();
                         E.ISR30[] isr30 = null;
@@ -1815,13 +1878,19 @@ namespace winAsimilados.Controller
                         var SUB30 = new List<E.SUB30>();
                         E.SUB30[] sub30 = null;
 
-                        N.Conexion.PerformConnectionSoprade().Open();
-                        SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                        queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
-                        from genTablasNumericasDet 
-                        where tnudIDTnum = 'ISR30'";
+                        //N.Conexion.PerformConnectionSoprade().Open();
+                        //SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                        N.Conexion.PerformConnection().Close();
+                        N.Conexion.PerformConnection().Open();
+                        SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
+                        //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        //from genTablasNumericasDet 
+                        //where tnudIDTnum = 'ISR15'";  
+                        queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                                from TablaCalculos 
+                                where tnudIDTnum = 'ISR30'";
 
-                        SqlDataReader readerTabla;
+                    SqlDataReader readerTabla;
                         readerTabla = queryTablaISR.ExecuteReader();
 
                         while (readerTabla.Read())
@@ -1836,13 +1905,14 @@ namespace winAsimilados.Controller
                             isr30 = ISR30.ToArray();
                         }
                         readerTabla.Close();
-                        SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                        queryTablaSub.CommandText = @"
-                        select tnudValor1, tnudValor2, tnudValor3
-                        from genTablasNumericasDet 
-                        where tnudIDTnum = 'SUB30'";
 
-                        SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
+                        //SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                        SqlCommand queryTablaSub = N.Conexion.PerformConnection().CreateCommand();
+                        queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                                from TablaCalculos 
+                                where tnudIDTnum = 'SUB30'";
+
+                    SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
                         while (readerTablaSub.Read())
                         {
                             SUB30.Add(new E.SUB30
@@ -1854,7 +1924,8 @@ namespace winAsimilados.Controller
                             sub30 = SUB30.ToArray();
                         }
                         readerTablaSub.Close();
-                        N.Conexion.PerformConnectionSoprade().Close();
+                        //N.Conexion.PerformConnectionSoprade().Close();
+                        N.Conexion.PerformConnection().ChangeDatabase(BD);
 
                         foreach (var valor in sub30)
                         {
@@ -1890,6 +1961,247 @@ namespace winAsimilados.Controller
                 return null;
             }
         }
+        public E.Calculo GeneraCalculoInverso(decimal Ingresos, string Periodicidad)//, string TipoIngresos)
+        {
+            try
+            {
+                E.Calculo calculo = new E.Calculo();
+
+                //if (TipoIngresos.Equals("Brutos"))
+                //{
+                calculo.IngresosNetos = Math.Round(Ingresos, 2);
+
+                if (Periodicidad.Equals("Semanal") || Periodicidad.Equals("02"))
+                {
+                    var ISR07 = new List<E.ISR7>();
+                    E.ISR7[] isr07 = null;
+
+                    var SUB07 = new List<E.SUB7>();
+                    E.SUB7[] sub07 = null;
+
+                    N.Conexion.PerformConnectionSoprade().Open();
+                    SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        from genTablasNumericasDet 
+                        where tnudIDTnum = 'ISR07'";
+
+                    SqlDataReader readerTabla;
+                    readerTabla = queryTablaISR.ExecuteReader();
+
+                    while (readerTabla.Read())
+                    {
+                        ISR07.Add(new E.ISR7
+                        {
+                            LimiteInferior = readerTabla.GetDecimal(0),
+                            LimiteSuperior = readerTabla.GetDecimal(1),
+                            CuotaFija = readerTabla.GetDecimal(2),
+                            Porcentaje = readerTabla.GetDecimal(3)
+                        });
+                        isr07 = ISR07.ToArray();
+                    }
+                    readerTabla.Close();
+
+                    SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    queryTablaSub.CommandText = @"
+                        select tnudValor1, tnudValor2, tnudValor3
+                        from genTablasNumericasDet 
+                        where tnudIDTnum = 'SUB07'";
+
+                    SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
+                    while (readerTablaSub.Read())
+                    {
+                        SUB07.Add(new E.SUB7
+                        {
+                            rango1 = readerTablaSub.GetDecimal(0),
+                            rango2 = readerTablaSub.GetDecimal(1),
+                            subsidio = readerTablaSub.GetDecimal(2)
+                        });
+                        sub07 = SUB07.ToArray();
+                    }
+                    readerTablaSub.Close();
+                    N.Conexion.PerformConnectionSoprade().Close();
+
+                    foreach (var valor in sub07)
+                    {
+                        if (Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
+                        {
+                            calculo.Sub = Math.Round(valor.subsidio, 2);
+                        }
+                    }
+
+                    foreach (var valor in isr07)
+                    {
+                        if (Ingresos >= valor.LimiteInferior && Ingresos <= valor.LimiteSuperior)
+                        {
+                            calculo.LimInferior = Math.Round(valor.LimiteInferior, 2);
+                            //calculo.PerExLimInf = Math.Round(valor.Porcentaje,2);
+                            calculo.PerExLimInf = valor.Porcentaje;
+                            calculo.CF = Math.Round(valor.CuotaFija, 2);
+                        }
+                    }
+                    calculo.ExLimInf = Math.Round(calculo.IngresosNetos - calculo.LimInferior, 2);
+                    calculo.ImpMarg = Math.Round(calculo.ExLimInf * calculo.PerExLimInf, 2);
+                    calculo.ISR = Math.Round(calculo.CF + calculo.ImpMarg, 2);
+                    calculo.IngresosBrutos = Math.Round(calculo.IngresosNetos + calculo.ISR + calculo.Sub, 2);
+                }
+
+                if (Periodicidad.Equals("Quincenal") || Periodicidad.Equals("04"))
+                {
+                    var ISR15 = new List<E.ISR15>();
+                    E.ISR15[] isr15 = null;
+
+                    var SUB15 = new List<E.SUB15>();
+                    E.SUB15[] sub15 = null;
+
+                    N.Conexion.PerformConnectionSoprade().Open();
+                    SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        from genTablasNumericasDet 
+                        where tnudIDTnum = 'ISR15'";
+
+                    SqlDataReader readerTabla;
+                    readerTabla = queryTablaISR.ExecuteReader();
+
+                    while (readerTabla.Read())
+                    {
+                        ISR15.Add(new E.ISR15
+                        {
+                            LimiteInferior = readerTabla.GetDecimal(0),
+                            LimiteSuperior = readerTabla.GetDecimal(1),
+                            CuotaFija = readerTabla.GetDecimal(2),
+                            Porcentaje = readerTabla.GetDecimal(3)
+                        });
+                        isr15 = ISR15.ToArray();
+                    }
+                    readerTabla.Close();
+                    SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    queryTablaSub.CommandText = @"
+                        select tnudValor1, tnudValor2, tnudValor3
+                        from genTablasNumericasDet 
+                        where tnudIDTnum = 'SUB15'";
+
+                    SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
+                    while (readerTablaSub.Read())
+                    {
+                        SUB15.Add(new E.SUB15
+                        {
+                            rango1 = readerTablaSub.GetDecimal(0),
+                            rango2 = readerTablaSub.GetDecimal(1),
+                            subsidio = readerTablaSub.GetDecimal(2)
+                        });
+                        sub15 = SUB15.ToArray();
+                    }
+                    readerTablaSub.Close();
+                    N.Conexion.PerformConnectionSoprade().Close();
+
+                    foreach (var valor in sub15)
+                    {
+                        if (Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
+                        {
+                            calculo.Sub = Math.Round(valor.subsidio, 2);
+                        }
+                    }
+
+                    foreach (var valor in isr15)
+                    {
+                        if (Ingresos >= valor.LimiteInferior && Ingresos <= valor.LimiteSuperior)
+                        {
+                            calculo.LimInferior = Math.Round(valor.LimiteInferior, 2);
+                            //calculo.PerExLimInf = Math.Round(valor.Porcentaje,2);
+                            calculo.PerExLimInf = valor.Porcentaje;
+                            calculo.CF = Math.Round(valor.CuotaFija, 2);
+                        }
+                    }
+                    calculo.ExLimInf = Math.Round(calculo.IngresosNetos - calculo.LimInferior, 2);
+                    calculo.ImpMarg = Math.Round(calculo.ExLimInf * calculo.PerExLimInf, 2);
+                    calculo.ISR = Math.Round(calculo.CF + calculo.ImpMarg, 2);
+                    calculo.IngresosBrutos = Math.Round(calculo.IngresosNetos + calculo.ISR + calculo.Sub, 2);
+                }
+
+                if (Periodicidad.Equals("Mensual") || Periodicidad.Equals("05"))
+                {
+                    var ISR30 = new List<E.ISR30>();
+                    E.ISR30[] isr30 = null;
+
+                    var SUB30 = new List<E.SUB30>();
+                    E.SUB30[] sub30 = null;
+
+                    N.Conexion.PerformConnectionSoprade().Open();
+                    SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        from genTablasNumericasDet 
+                        where tnudIDTnum = 'ISR30'";
+
+                    SqlDataReader readerTabla;
+                    readerTabla = queryTablaISR.ExecuteReader();
+
+                    while (readerTabla.Read())
+                    {
+                        ISR30.Add(new E.ISR30
+                        {
+                            LimiteInferior = readerTabla.GetDecimal(0),
+                            LimiteSuperior = readerTabla.GetDecimal(1),
+                            CuotaFija = readerTabla.GetDecimal(2),
+                            Porcentaje = readerTabla.GetDecimal(3)
+                        });
+                        isr30 = ISR30.ToArray();
+                    }
+                    readerTabla.Close();
+                    SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    queryTablaSub.CommandText = @"
+                        select tnudValor1, tnudValor2, tnudValor3
+                        from genTablasNumericasDet 
+                        where tnudIDTnum = 'SUB30'";
+
+                    SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
+                    while (readerTablaSub.Read())
+                    {
+                        SUB30.Add(new E.SUB30
+                        {
+                            rango1 = readerTablaSub.GetDecimal(0),
+                            rango2 = readerTablaSub.GetDecimal(1),
+                            subsidio = readerTablaSub.GetDecimal(2)
+                        });
+                        sub30 = SUB30.ToArray();
+                    }
+                    readerTablaSub.Close();
+                    N.Conexion.PerformConnectionSoprade().Close();
+
+                    foreach (var valor in sub30)
+                    {
+                        if (Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
+                        {
+                            calculo.Sub = Math.Round(valor.subsidio, 2);
+                        }
+                    }
+
+                    foreach (var valor in isr30)
+                    {
+                        if (Ingresos >= valor.LimiteInferior && Ingresos <= valor.LimiteSuperior)
+                        {
+                            calculo.LimInferior = Math.Round(valor.LimiteInferior, 2);
+                            //calculo.PerExLimInf = Math.Round(valor.Porcentaje,2);
+                            calculo.PerExLimInf = valor.Porcentaje;
+                            calculo.CF = Math.Round(valor.CuotaFija, 2);
+                        }
+                    }
+                    calculo.ExLimInf = Math.Round(calculo.IngresosNetos - calculo.LimInferior, 2);
+                    calculo.ImpMarg = Math.Round(calculo.ExLimInf * calculo.PerExLimInf, 2);
+                    calculo.ISR = Math.Round(calculo.CF + calculo.ImpMarg, 2);
+                    calculo.IngresosBrutos = Math.Round(calculo.IngresosNetos + calculo.ISR + calculo.Sub, 2);
+                }
+                //}
+
+                return calculo;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: GeneraCalculo()", "Error", MessageBoxButtons.OK
+                    , MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
         public E.Empleado BuscaEmpleado(string RFC)
         {
             try
@@ -2311,20 +2623,148 @@ namespace winAsimilados.Controller
                 return false;
             }
         }
+        public bool AgregaUsuario(Object _P, string BD)
+        {
+            try
+            {
+                E.User user = (E.User)_P;
+                N.Conexion.PerformConnection().Close();
+                N.Conexion.PerformConnection().Open();
+                SqlCommand queryInsertaUsuario = N.Conexion.PerformConnection().CreateCommand();
+                queryInsertaUsuario.CommandText = @"INSERT INTO [dbo].[UsuariosSistema]
+                ([usuarioNombre]
+                ,[usuarioID]
+                ,[usuarioPass]
+                ,[usuarioFecReg]
+                ,[usuarioStatus]
+                ,[usuarioTipo])
+                VALUES
+                ('" + user.nombre + "'" +
+                ",'" + user.usuario + "'" +
+                ",'" + user.pass + "'" +
+                ",'" + user.fecReg.ToString("yyyy-MM-dd") + "'" +
+                ",'" + user.estatusUsuario + "'" +
+                ",'" + user.tipoUsiario + "')";
+
+                if (queryInsertaUsuario.ExecuteNonQuery().Equals(1))
+                {
+                    XtraMessageBox.Show("¡Usuario Creado con Éxito!", "Mensaje"
+                        , MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    N.Conexion.ChangeConnection(BD);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }catch (Exception e)
+            {
+                N.Conexion.ChangeConnection(BD);
+                XtraMessageBox.Show(e.Message + "\nError Controlador:AgregaUsuario()"
+                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public bool EditaUsuario(Object _P, string BD)
+        {
+            try
+            {
+                E.User user = (E.User)_P;
+                N.Conexion.PerformConnection().Close();
+                N.Conexion.PerformConnection().Open();
+                SqlCommand queryEditaUsuario = N.Conexion.PerformConnection().CreateCommand();
+                queryEditaUsuario.CommandText = @"UPDATE [dbo].[UsuariosSistema]
+                 SET [usuarioNombre] = '" + user.nombre +"'" +
+                 ",[usuarioID] = '" + user.usuario + "'" +
+                 ",[usuarioPass] = '" + user.pass + "'" +
+                 ",[usuarioStatus] = '" + user.estatusUsuario + "'" +
+                 ",[usuarioTipo] = '" + user.tipoUsiario + "'" +
+                 ",[usuarioFecMod] = '" + user.fecMod.ToString("yyyy-MM-dd") +"'" +
+                 "WHERE [ID] = " + user.ID;
+                if (queryEditaUsuario.ExecuteNonQuery().Equals(1))
+                {
+                    N.Conexion.ChangeConnection(BD);
+                    return true;
+                }
+                else
+                {
+                    N.Conexion.ChangeConnection(BD);
+                    return false;
+                }
+            }
+            catch(Exception e)
+            {
+                N.Conexion.ChangeConnection(BD);
+                XtraMessageBox.Show(e.Message + "\nError Controlador:EditaUsuario()",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public E.User BuscaUsuario(string ID)
+        {
+            try
+            {
+                E.User user = new E.User();
+                D.clsSeguridad seguridad = new D.clsSeguridad();
+                SqlCommand queryBuscaUsuario = N.Conexion.PerformConnection().CreateCommand();
+                queryBuscaUsuario.CommandText = @"SELECT [ID]
+                ,[usuarioNombre]
+                ,[usuarioID]
+                ,[usuarioPass]
+                ,[usuarioFecReg]
+                ,[usuarioStatus]
+                ,[usuarioTipo]
+                ,isnull([usuarioFecMod], '1900-01-01') as [usuarioFecMod]
+                FROM [BSNOMINAS].[dbo].[UsuariosSistema]
+                WHERE [ID] = @ID";
+                queryBuscaUsuario.Parameters.AddWithValue("@ID", ID);
+
+                SqlDataReader readerUsuario;
+                readerUsuario = queryBuscaUsuario.ExecuteReader();
+
+                if (readerUsuario.Read())
+                { 
+                    user.ID = readerUsuario.GetInt32(0);
+                    user.nombre = readerUsuario.GetString(1);
+                    user.usuario = readerUsuario.GetString(2);
+                    user.pass = seguridad.DecryptString(readerUsuario.GetString(3));
+                    user.fecReg = readerUsuario.GetDateTime(4);
+                    user.estatusUsuario = readerUsuario.GetString(5);
+                    user.tipoUsiario = readerUsuario.GetString(6);
+                    user.fecMod = readerUsuario.GetDateTime(7);
+                }
+                readerUsuario.Close();
+
+                return user;
+            }catch(Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador:BuscaUsuario", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);    
+                return null;
+            }
+        }
         public bool Login(Object _P)
         {
             try
             {
                 E.User User = (E.User)_P;
-                N.Conexion.PerformConnectionSoprade().Open();
-                SqlCommand queryLogin = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                //N.Conexion.PerformConnectionSoprade().Open();
+                //SqlCommand queryLogin = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                N.Conexion.PerformConnection().Open();
+                SqlCommand queryLogin = N.Conexion.PerformConnection().CreateCommand();
                 D.clsSeguridad seguridad = new D.clsSeguridad();
                 SqlDataReader readerLogin;
                 string passEncrip = seguridad.EncryptString(User.pass);
 
                 //XtraMessageBox.Show("\nPASS: " + passEncrip + "\nUsua: " + User.usuario.ToUpper());
 
-                queryLogin.CommandText = @"select usuaIDUsua, usuaPasswd from segUsuarios where usuaIDUsua = @usuario and usuaPasswd = @pass";
+                //queryLogin.CommandText = @"select usuaIDUsua, usuaPasswd from segUsuarios where usuaIDUsua = @usuario and usuaPasswd = @pass";
+                queryLogin.CommandText = @"select
+                usuarioID
+                ,usuarioPass
+                from UsuariosSistema
+                where usuarioID = @usuario
+                and usuarioPass = @pass";
                 queryLogin.Parameters.AddWithValue("@usuario", User.usuario.ToUpper());
                 queryLogin.Parameters.AddWithValue("@pass", passEncrip.ToString());
                 readerLogin = queryLogin.ExecuteReader();
@@ -2336,14 +2776,16 @@ namespace winAsimilados.Controller
                     //Form1 frm = new Form1();
                     //frm.Show();
                     readerLogin.Close();
-                    N.Conexion.PerformConnectionSoprade().Close();
+                    N.Conexion.PerformConnection().Close();
+                    //N.Conexion.PerformConnectionSoprade().Close();
                     return true;
                 }
                 else
                 {
                     //XtraMessageBox.Show("no entra", "");
                     readerLogin.Close();
-                    N.Conexion.PerformConnectionSoprade().Close();
+                    N.Conexion.PerformConnection().Close();
+                    //N.Conexion.PerformConnectionSoprade().Close();
                     return false;
                 }
 
@@ -2670,7 +3112,7 @@ namespace winAsimilados.Controller
                 ,[NOMBRE] 
                 ,[RFC]   
                 ,[CURP]
-                ,Descripcion as [Periodicidad Pago]
+                ,[PERIODICIDAD_PAGO] as [Periodicidad Pago]
                 ,0.00 as [Ingresos]
                 ,0.00 as [ISR]
                 ,0.00 as [Neto]
@@ -3321,6 +3763,7 @@ namespace winAsimilados.Controller
                                         {
                                             splashScreenManager.ShowWaitForm();
                                         }
+                                        PDF = Path.Combine(PDF + ".pdf");
                                         LeerXML12(rutaXML, PDF, splashScreenManager);
                                     }
                                     else

@@ -19,7 +19,7 @@ namespace winAsimilados.Views
         C.Controller Controlador = new C.Controller();
         E.Empresa empresa = new E.Empresa();
         bool salida;
-        public bool btnAgregaEmpresa;
+        public bool btnAgregaEmpresa, btnAgregaUsuario, btnEditaUsuario;
         //int IDEmpresa;
         //string NombreEmpresa;
         //string RFC;
@@ -32,7 +32,8 @@ namespace winAsimilados.Views
             GridEmpresas.Visible = true;
             salida = true;
             btnAgregaEmpresa = false;
-
+            btnAgregaUsuario = false;
+            btnEditaUsuario = false;
     }
 
         private void ListaEmpresas_FormClosing(object sender, FormClosingEventArgs e)
@@ -51,6 +52,7 @@ namespace winAsimilados.Views
                         e.Cancel = true;
                     }
                 }
+
             }
         }
 
@@ -110,6 +112,40 @@ namespace winAsimilados.Views
         private void GridEmpresas_DoubleClick(object sender, EventArgs e)
         {
 
+        }
+
+        private void ListaEmpresas_Load(object sender, EventArgs e)
+        {
+            if (Controlador.GetAdminUsuario(Properties.Settings.Default.Usuario.ToString().ToUpper()).Equals(true))
+            {
+                layoutControlOpciones.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
+            else
+            {
+                layoutControlOpciones.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            }
+
+        }
+
+        private void btnAgregar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            btnAgregaEmpresa = true;
+            btnAgregaUsuario = true;
+            this.Dispose();
+            AgregarUsuario agregarUsuario = new AgregarUsuario(true);
+            agregarUsuario.StartPosition = FormStartPosition.CenterScreen;
+            agregarUsuario.Show();
+        }
+
+        private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            btnAgregaEmpresa = true;
+            btnEditaUsuario = true;
+            this.Dispose();
+            EditarUsuario editarUsuario = new EditarUsuario(true);
+            editarUsuario.StartPosition = FormStartPosition.CenterScreen;
+            editarUsuario.Show();
         }
     }
 }

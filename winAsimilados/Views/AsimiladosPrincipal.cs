@@ -15,6 +15,7 @@ using C = winAsimilados.Controller;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors;
 using DevExpress.XtraWaitForm;
+using System.IO;
 
 namespace winAsimilados.Views
 {
@@ -77,20 +78,20 @@ namespace winAsimilados.Views
             if (frm != null) 
             {
                 frm.BringToFront();
-                form.Location = new Point(144, 60);
+                form.Location = new Point(270, 60);
 
                 if(frm.WindowState == FormWindowState.Minimized)
                 {
                     frm.WindowState = FormWindowState.Normal;
                     frm.Size = PanelPrincipal.Size;
-                    frm.Location = new Point(144, 60);
+                    frm.Location = new Point(270, 60);
                 }
             }
             else
             {
                 form.Size = PanelPrincipal.Size;
-                form.Location = new Point(144, 60);
-                form.ShowDialog();
+                form.Location = new Point(270, 60);
+                form.Show();
             }
  
         }
@@ -118,20 +119,20 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     editarEmpleados.Size = PanelPrincipal.Size;
-                    editarEmpleados.Location = new Point(144, 60);
+                    editarEmpleados.Location = new Point(270, 60);
                 }
             }
             else
             {
                 editarEmpleados.Size = PanelPrincipal.Size;
-                editarEmpleados.Location = new Point(144, 60);
-                editarEmpleados.ShowDialog();
+                editarEmpleados.Location = new Point(270, 60);
+                editarEmpleados.Show();
             }
         }
 
@@ -142,21 +143,21 @@ namespace winAsimilados.Views
             if( frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     frm.WindowState = FormWindowState.Normal;
                     //frm.Size = PanelPrincipal.Size;
-                    //frm.Location = new Point(144, 60);
+                    //frm.Location = new Point(270, 60);
                 }
             }
             else
             {
                 
-                agregarEmpleado.ShowDialog();
-                agregarEmpleado.Location = new Point(144, 60);
+                agregarEmpleado.Show();
+                agregarEmpleado.Location = new Point(270, 60);
                 //agregarEmpleado.Size = PanelPrincipal.Size;
-                //agregarEmpleado.Location = new Point(144, 60);
+                //agregarEmpleado.Location = new Point(270, 60);
             }
         }
 
@@ -284,21 +285,21 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(144, 60);
+                    //agregarEmpresa.Location = new Point(270, 60);
                 }
             }
             else
             {
-                agregarEmpresa.Location = new Point(144, 60);
-                agregarEmpresa.ShowDialog();
+                agregarEmpresa.Location = new Point(270, 60);
+                agregarEmpresa.Show();
                 //agregarEmpresa.Size = PanelPrincipal.Size;
-                //agregarEmpresa.Location = new Point(144, 60);
+                //agregarEmpresa.Location = new Point(270, 60);
             }
         }
 
@@ -309,23 +310,23 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     frm.Size = PanelPrincipal.Size;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(144, 60);
+                    //agregarEmpresa.Location = new Point(270, 60);
                 }
             }
             else
             {
                 splashScreenManager1.ShowWaitForm();
                 splashScreenManager1.SetWaitFormCaption("Cargando Modulo Nómina...");
-                nominaAsimilados.Location = new Point(144, 60);
+                nominaAsimilados.Location = new Point(270, 60);
                 nominaAsimilados.Size = PanelPrincipal.Size;
-                nominaAsimilados.ShowDialog();
+                nominaAsimilados.Show();
                 nominaAsimilados.BringToFront();
             }
         }
@@ -336,7 +337,7 @@ namespace winAsimilados.Views
             var frm = Application.OpenForms.OfType<EditarEmpresa>().FirstOrDefault();
             if (frm != null)
             {
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 frm.BringToFront();
 
                 if (frm.WindowState == FormWindowState.Minimized)
@@ -344,13 +345,13 @@ namespace winAsimilados.Views
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(144, 60);
+                    //agregarEmpresa.Location = new Point(270, 60);
                 }
             }
             else
             {
-                editarEmpresa.Location = new Point(144, 60);
-                editarEmpresa.ShowDialog();
+                editarEmpresa.Location = new Point(270, 60);
+                editarEmpresa.Show();
                 editarEmpresa.BringToFront();
 
             }
@@ -363,6 +364,8 @@ namespace winAsimilados.Views
             if (controller.GetAdminUsuario(Properties.Settings.Default.Usuario.ToString().ToUpper()).Equals(true))
             {
                 //accordionBitacora.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                //accordionControlElement8.Visible = true;
+                accordionControlElement7.Visible = true;
             }
         }
 
@@ -373,21 +376,21 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     frm.Size = PanelPrincipal.Size;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(144, 60);
+                    //agregarEmpresa.Location = new Point(270, 60);
                 }
             }
             else
             {
-                cancelarCFDI.Location = new Point(144, 60);
+                cancelarCFDI.Location = new Point(270, 60);
                 cancelarCFDI.Size = PanelPrincipal.Size;
-                cancelarCFDI.ShowDialog();
+                cancelarCFDI.Show();
                 cancelarCFDI.BringToFront();
             }
         }
@@ -399,21 +402,21 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     frm.Size = PanelPrincipal.Size;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(144, 60);
+                    //agregarEmpresa.Location = new Point(270, 60);
                 }
             }
             else
             {
-                genPDF12.Location = new Point(144, 60);
+                genPDF12.Location = new Point(270, 60);
                 genPDF12.Size = PanelPrincipal.Size;
-                genPDF12.ShowDialog();
+                genPDF12.Show();
                 genPDF12.BringToFront();
             }
         }
@@ -425,23 +428,23 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     frm.Size = PanelPrincipal.Size;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(144, 60);
+                    //agregarEmpresa.Location = new Point(270, 60);
                 }
             }
             else
             {
                 splashScreenManager1.ShowWaitForm();
                 splashScreenManager1.SetWaitFormCaption("Cargando Modulo Bitacora...");
-                bitacora.Location = new Point(144, 60);
+                bitacora.Location = new Point(270, 60);
                 bitacora.Size = PanelPrincipal.Size;
-                bitacora.ShowDialog();
+                bitacora.Show();
                 bitacora.BringToFront();
             }
         }
@@ -458,21 +461,21 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     frm.WindowState = FormWindowState.Normal;
                     //frm.Size = PanelPrincipal.Size;
-                    //frm.Location = new Point(144, 60);
+                    //frm.Location = new Point(270, 60);
                 }
             }
             else
             {
                 agregarEmpleado.Location = new Point(270, 60);
-                agregarEmpleado.ShowDialog();
+                agregarEmpleado.Show();
 
                 //agregarEmpleado.Size = PanelPrincipal.Size;
-                //agregarEmpleado.Location = new Point(144, 60);
+                //agregarEmpleado.Location = new Point(270, 60);
             }
         }
 
@@ -512,24 +515,12 @@ namespace winAsimilados.Views
                 range = xlWorkSheet.UsedRange;
                 rw = range.Rows.Count;
                 cl = range.Columns.Count;
-                //ProgressBarControl progressBarControl1 = new ProgressBarControl();
-                //progressBarControl1.Properties.Step = 1;
-                //progressBarControl1.Properties.PercentView = true;
-                //progressBarControl1.Properties.Minimum = 0;
-                //form.Controls.Add(progressBarControl1);
-                //progressBarControl1.Dock = DockStyle.Fill;
-                //form.Show();
-                //form.BringToFront();
-                //progressBarControl1.Properties.Maximum = rw;
-                //progressBarControl1.Update();
 
                 var Empleado = new List<E.Empleado>();
                 E.Empleado[] empleado = null;
                 for (rCnt = 2; rCnt <= rw; rCnt++)
                 {
                     cont++;
-                    //progressBarControl1.PerformStep();
-                    //progressBarControl1.Update();
                     string nombre = (range.Cells[rCnt, "A"] as Excel.Range).Value2.ToString();
                     string rfc = (range.Cells[rCnt, "B"] as Excel.Range).Value2.ToString();
                     string curp = (range.Cells[rCnt, "C"] as Excel.Range).Value2.ToString();
@@ -554,7 +545,10 @@ namespace winAsimilados.Views
                 }
 
                 Controlador.AgregarEmpleadoMasivo(Empleado, empl, splashScreenManager1);
-                xlWorkBook.Close(true, "Formato_Masivo_Empleados.xlsx", null);
+                string nombreArchivo = xlWorkBook.Name;
+                nombreArchivo = Path.GetFileNameWithoutExtension(nombreArchivo);
+                //xlWorkBook.Close(true, "Formato_Masivo_Importe_Empleados", null);
+                xlWorkBook.Close(true, nombreArchivo, null);
                 xlApp.Quit();
                 //progressPanel2.Hide();
 
@@ -575,20 +569,20 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     editarEmpleados.Size = PanelPrincipal.Size;
-                    editarEmpleados.Location = new Point(144, 60);
+                    editarEmpleados.Location = new Point(270, 60);
                 }
             }
             else
             {
                 editarEmpleados.Size = PanelPrincipal.Size;
                 editarEmpleados.Location = new Point(270, 60);
-                editarEmpleados.ShowDialog();
+                editarEmpleados.Show();
             }
         }
 
@@ -599,21 +593,21 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(144, 60);
+                    //agregarEmpresa.Location = new Point(270, 60);
                 }
             }
             else
             {
                 agregarEmpresa.Location = new Point(270, 60);
-                agregarEmpresa.ShowDialog();
+                agregarEmpresa.Show();
                 //agregarEmpresa.Size = PanelPrincipal.Size;
-                //agregarEmpresa.Location = new Point(144, 60);
+                //agregarEmpresa.Location = new Point(270, 60);
             }
         }
 
@@ -623,7 +617,7 @@ namespace winAsimilados.Views
             var frm = Application.OpenForms.OfType<EditarEmpresa>().FirstOrDefault();
             if (frm != null)
             {
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 frm.BringToFront();
 
                 if (frm.WindowState == FormWindowState.Minimized)
@@ -631,13 +625,13 @@ namespace winAsimilados.Views
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(144, 60);
+                    //agregarEmpresa.Location = new Point(270, 60);
                 }
             }
             else
             {
                 editarEmpresa.Location = new Point(270, 60);
-                editarEmpresa.ShowDialog();
+                editarEmpresa.Show();
                 editarEmpresa.BringToFront();
 
             }
@@ -650,14 +644,14 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     frm.Size = PanelPrincipal.Size;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(144, 60);
+                    //agregarEmpresa.Location = new Point(270, 60);
                 }
             }
             else
@@ -666,7 +660,7 @@ namespace winAsimilados.Views
                 splashScreenManager1.SetWaitFormCaption("Cargando Modulo Nómina...");
                 nominaAsimilados.Location = new Point(270, 60);
                 nominaAsimilados.Size = PanelPrincipal.Size;
-                nominaAsimilados.ShowDialog();
+                nominaAsimilados.Show();
                 nominaAsimilados.BringToFront();
             }
         }
@@ -678,20 +672,20 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                form.Location = new Point(144, 60);
+                form.Location = new Point(270, 60);
 
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     frm.WindowState = FormWindowState.Normal;
                     frm.Size = PanelPrincipal.Size;
-                    frm.Location = new Point(144, 60);
+                    frm.Location = new Point(270, 60);
                 }
             }
             else
             {
                 form.Size = PanelPrincipal.Size;
                 form.Location = new Point(270, 60);
-                form.ShowDialog();
+                form.Show();
             }
         }
 
@@ -702,21 +696,21 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     frm.Size = PanelPrincipal.Size;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(144, 60);
+                    //agregarEmpresa.Location = new Point(270, 60);
                 }
             }
             else
             {
                 genPDF12.Location = new Point(270, 60);
                 genPDF12.Size = PanelPrincipal.Size;
-                genPDF12.ShowDialog();
+                genPDF12.Show();
                 genPDF12.BringToFront();
             }
         }
@@ -728,7 +722,7 @@ namespace winAsimilados.Views
             {
                 this.Dispose();
                 ListaEmpresas listaEmpresas = new ListaEmpresas();
-                listaEmpresas.ShowDialog();
+                listaEmpresas.Show();
                 salida = false;
             }
             //else
@@ -744,14 +738,14 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     frm.Size = PanelPrincipal.Size;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(144, 60);
+                    //agregarEmpresa.Location = new Point(270, 60);
                 }
             }
             else
@@ -760,7 +754,7 @@ namespace winAsimilados.Views
                 splashScreenManager1.SetWaitFormCaption("Cargando Modulo Bitacora...");
                 bitacora.Location = new Point(270, 60);
                 bitacora.Size = PanelPrincipal.Size;
-                bitacora.ShowDialog();
+                bitacora.Show();
                 bitacora.BringToFront();
             }
         }
@@ -772,22 +766,75 @@ namespace winAsimilados.Views
             if (frm != null)
             {
                 frm.BringToFront();
-                frm.Location = new Point(144, 60);
+                frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     frm.Size = PanelPrincipal.Size;
                     //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(144, 60);
+                    //agregarEmpresa.Location = new Point(270, 60);
                 }
             }
             else
             {
                 cancelarCFDI.Location = new Point(270, 60);
                 cancelarCFDI.Size = PanelPrincipal.Size;
-                cancelarCFDI.ShowDialog();
+                cancelarCFDI.Show();
                 cancelarCFDI.BringToFront();
+            }
+        }
+
+        private void accordionControlElement9_Click(object sender, EventArgs e)
+        {
+            AgregarUsuario  agregarUsuario = new AgregarUsuario(false);
+            var frm = Application.OpenForms.OfType<AgregarUsuario>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(270, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(270, 60);
+                }
+            }
+            else
+            {
+                agregarUsuario.Location = new Point(270, 60);
+                //agregarUsuario.Size = PanelPrincipal.Size;
+                agregarUsuario.Show();
+                agregarUsuario.BringToFront();
+            }
+        }
+
+        private void accordionControlEditaUsuario_Click(object sender, EventArgs e)
+        {
+            EditarUsuario editarUsuario = new EditarUsuario(false);
+            var frm = Application.OpenForms.OfType<EditarUsuario>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(270, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    frm.BringToFront();
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(270, 60);
+                }
+            }
+            else
+            {
+                editarUsuario.Location = new Point(270, 60);
+                //agregarUsuario.Size = PanelPrincipal.Size;
+                editarUsuario.Show();
+                editarUsuario.BringToFront();
             }
         }
     }

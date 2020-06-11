@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\aespejel\Desktop\Asimilados2\</PublishUrl>
+    <PublishUrl>C:\Users\aespejel\Desktop\ASIMILADOS\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,7 +26,7 @@
     <UpdateUrl>\\192.168.16.253\Asimilados\</UpdateUrl>
     <WebPage>Asimilados.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -64,6 +64,9 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>invoice_78456.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
     <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -87,12 +90,16 @@
     <Reference Include="DevExpress.XtraCharts.v18.1.Wizard, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraDialogs.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v18.1.Win, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraNavBar.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
@@ -146,6 +153,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Controller\ConnectionStringManager.cs" />
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Data\Conexion.cs" />
     <Compile Include="Entities\BitacoraXML.cs" />
@@ -193,6 +201,12 @@
     <Compile Include="Views\AgregarEmpresa.Designer.cs">
       <DependentUpon>AgregarEmpresa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\AgregarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AgregarUsuario.Designer.cs">
+      <DependentUpon>AgregarUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\AsimiladosPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +237,12 @@
     <Compile Include="Views\EditarEmpresa.Designer.cs">
       <DependentUpon>EditarEmpresa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditarUsuario.Designer.cs">
+      <DependentUpon>EditarUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\GenPDF12.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +266,12 @@
     </Compile>
     <Compile Include="Views\NominaAsimilados.Designer.cs">
       <DependentUpon>NominaAsimilados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SQLConnetcionString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SQLConnetcionString.Designer.cs">
+      <DependentUpon>SQLConnetcionString.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\WaitForm1.cs">
       <SubType>Form</SubType>
@@ -273,6 +299,9 @@
     <EmbeddedResource Include="Views\AgregarEmpresa.resx">
       <DependentUpon>AgregarEmpresa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\AgregarUsuario.resx">
+      <DependentUpon>AgregarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\AsimiladosPrincipal.resx">
       <DependentUpon>AsimiladosPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -288,6 +317,9 @@
     <EmbeddedResource Include="Views\EditarEmpresa.resx">
       <DependentUpon>EditarEmpresa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditarUsuario.resx">
+      <DependentUpon>EditarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\GenPDF12.resx">
       <DependentUpon>GenPDF12.cs</DependentUpon>
     </EmbeddedResource>
@@ -299,6 +331,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\NominaAsimilados.resx">
       <DependentUpon>NominaAsimilados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SQLConnetcionString.resx">
+      <DependentUpon>SQLConnetcionString.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\WaitForm1.resx">
       <DependentUpon>WaitForm1.cs</DependentUpon>
@@ -402,6 +437,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="invoice_78456.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

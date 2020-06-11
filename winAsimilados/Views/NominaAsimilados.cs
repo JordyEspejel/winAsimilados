@@ -22,6 +22,8 @@ using DevExpress.XtraSplashScreen;
 using DevExpress.Utils.OAuth.Provider;
 using winAsimilados.Entities;
 using System.Net;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
 
 namespace winAsimilados.Views
 {
@@ -87,6 +89,7 @@ namespace winAsimilados.Views
                 LblIngBru.Text = "Ingresos Brutos " + periodicidad;
                 LblIngNet.Text =  "Ingresos Netos " + periodicidad;
                 ChBruto.Checked = true;
+                //ChNeto.Checked = true;
                 FecPagoUni.EditValue = System.DateTime.Today.ToString("dd/MM/yyyy");
                 FecIniPeriUni.EditValue = System.DateTime.Today.ToString("dd/MM/yyy");
                 FecFinPeriUni.EditValue = System.DateTime.Today.ToString("dd/MM/yyyy");
@@ -117,7 +120,7 @@ namespace winAsimilados.Views
                 }
                 if (ChNeto.Checked.Equals(true))
                 {
-                    TxtIngNet.Text = TxtIngresos.Text;
+                    GenerarCalculoIngresosNetos();
                 }
             }
             catch (Exception ex)
@@ -132,6 +135,11 @@ namespace winAsimilados.Views
             {
                 ChNeto.Checked = false;
                 tipoIngresos = "Brutos";
+                if (TxtIngresos.EditValue.ToString() != "$0" || TxtIngresos.Text != "$0.00")
+                {
+                    GenerarCalculoIngresosBrutos();
+                }
+
             }
         }
 
@@ -141,6 +149,11 @@ namespace winAsimilados.Views
             {
                 ChBruto.Checked = false;
                 tipoIngresos = "Netos";
+                if (TxtIngresos.EditValue.ToString() != "$0" || TxtIngresos.Text != "$0.00")
+                {
+                    GenerarCalculoIngresosNetos();
+                }
+                   
             }
         }
 
@@ -169,10 +182,10 @@ namespace winAsimilados.Views
         {
             try
             {
-                ingresos = Convert.ToDecimal(TxtIngresos.EditValue);
+                ingresos = Convert.ToDecimal(TxtIngresos.EditValue.ToString());
                 string ing = String.Format("{0:0.00}", ingresos);
                 ingresos = Convert.ToDecimal(ing);
-                Calculo = controlador.GeneraCalculo(ingresos, periodicidad);
+                Calculo = controlador.GeneraCalculo(ingresos, periodicidad, bd);
                 TxtIngBru.Text = Calculo.IngresosBrutos.ToString();
                 TxtLimInf.Text = Calculo.LimInferior.ToString();
                 TxtExcLimInf.Text = Calculo.ExLimInf.ToString();
@@ -191,6 +204,33 @@ namespace winAsimilados.Views
             }
 
         }
+        private void GenerarCalculoIngresosNetos()
+        {
+            try
+            {
+                ingresos = Convert.ToDecimal(TxtIngresos.EditValue.ToString());
+                string ing = String.Format("{0:0.00}", ingresos);
+                ingresos = Convert.ToDecimal(ing);
+                Calculo = controlador.GeneraCalculoInverso(ingresos, periodicidad);
+                TxtIngBru.Text = Calculo.IngresosBrutos.ToString();
+                TxtLimInf.Text = Calculo.LimInferior.ToString();
+                TxtExcLimInf.Text = Calculo.ExLimInf.ToString();
+                TxtPorExcLimInf.Text = Calculo.PerExLimInf.ToString();
+                TxtCF.Text = Calculo.CF.ToString();
+                TxtImpMar.Text = Calculo.ImpMarg.ToString();
+                TxtISR.Text = Calculo.ISR.ToString();
+                TxtSubEmpl.Text = Calculo.Sub.ToString();
+                TxtIngNet.Text = Calculo.IngresosNetos.ToString();
+            }
+            catch (Exception calc)
+            {
+                XtraMessageBox.Show(calc.Message +
+                    "\nError Modulo Calculo Nomina Unitario: GenerarCalculoIngresosNetos()",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
         private void Args_Showing(object sender, XtraMessageShowingArgs e)
         {
             e.Form.Icon = this.Icon;
@@ -347,9 +387,9 @@ namespace winAsimilados.Views
                 string test_endpoint = "TimbradoEndpoint_TESTING";
 
                 string pathPrincipalExe = AppDomain.CurrentDomain.BaseDirectory + "/";
-                //string pathCer = @"C:\DocAsimilados\CSD01_AAA010101AAA.cer";
-                //string pathKey = @"C:\DocAsimilados\CSD01_AAA010101AAA.key";
-                //string pass = "12345678a";
+                //string pathCer = @"C:\Users\aespejel\Desktop\FIEL_EEMA930408QU5_20200120114615\eema930408qu5.cer";
+                //string pathKey = @"C:\Users\aespejel\Desktop\FIEL_EEMA930408QU5_20200120114615\Claveprivada_FIEL_EEMA930408QU5_20200120_114615.key";
+                //string pass = "Jesp1!";
 
                 //string pathCer = @"C:\DocAsimilados\00001000000413522787.cer";
                 //string pathKey = @"C:\DocAsimilados\CSD_QUERETARO_PTP131002FA0_20190214_113034.key";
@@ -1329,6 +1369,10 @@ namespace winAsimilados.Views
             {
                 GenerarCalculoIngresosBrutos();
             }
+            if (ChNeto.Checked.Equals(true))
+            {
+                GenerarCalculoIngresosNetos();
+            }
         }
 
         private void dateEdit2_EditValueChanged(object sender, EventArgs e)
@@ -1447,8 +1491,110 @@ namespace winAsimilados.Views
             }
         }
 
+        private void repositoryItemGridLookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.SendKeys.Send("{ENTER}");
+        }
+
+        private void repositoryItemSpinEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.SendKeys.Send("{ENTER}");
+        }
+
+        private void BtnMasivIngresos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                splashScreenManager1.ShowWaitForm();
+
+                E.Empleado empl = new E.Empleado();
+                C.Controller Controlador = new C.Controller();
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "Archivos de Excel (*.xls;*.xlsx)|*.xls;*.xlsx"; //le indicamos el tipo de filtro en este caso que busque
+                                                                                 //solo los archivos excel
+
+                dialog.Title = "Seleccione el archivo de Excel";//le damos un titulo a la ventana
+
+                dialog.FileName = string.Empty;
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    Excel.Application xlApp;
+                    Excel.Workbook xlWorkBook;
+                    Excel.Worksheet xlWorkSheet;
+                    Excel.Range range;
+                    int rCnt;
+                    int rw = 0;
+                    int cl = 0;
+                    int cont = 0;
+                    string Archivo = dialog.FileName;
+                    var misValue = Type.Missing;
+
+                    xlApp = new Excel.Application();
+                    xlWorkBook = xlApp.Workbooks.Open(@Archivo, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue);
+                    xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+                    range = xlWorkSheet.UsedRange;
+                    rw = range.Rows.Count;
+                    cl = range.Columns.Count;
+
+                    var listaImporteEmpleados = new List<E.Empleado>();
+
+                    for (rCnt = 2; rCnt <= rw; rCnt++)
+                    {
+                        int IDEmpl = Convert.ToInt32((range.Cells[rCnt, "A"] as Excel.Range).Value2.ToString());
+                        decimal importe = Convert.ToDecimal((range.Cells[rCnt, "B"] as Excel.Range).Value2.ToString());
+
+                        listaImporteEmpleados.Add(new E.Empleado
+                        {
+
+                            IDEmpleado = IDEmpl,
+                            IngresosNetos = importe,
+                            
+                        });
+                    }
+                    string nombreArchivo = xlWorkBook.Name;
+                    nombreArchivo = Path.GetFileNameWithoutExtension(nombreArchivo);
+                    //xlWorkBook.Close(true, "Formato_Masivo_Importe_Empleados", null);
+                    xlWorkBook.Close(true, nombreArchivo, null);
+                    xlApp.Quit();
+                    //progressPanel2.Hide();
+
+                    Marshal.ReleaseComObject(xlWorkSheet);
+                    Marshal.ReleaseComObject(xlWorkBook);
+                    Marshal.ReleaseComObject(xlApp);
+
+                    for (int i = 0; i < gridViewNomiMasiv.RowCount; i++)
+                    {
+                        int numEmpl = Convert.ToInt32(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[0]).ToString());
+                        foreach (var empleado in listaImporteEmpleados)
+                        {
+                            if (numEmpl.Equals(empleado.IDEmpleado))
+                            {
+                                gridViewNomiMasiv.SetRowCellValue(i, "Ingresos", empleado.IngresosNetos);
+                                break;
+                            }
+                        }
+                    }
+                    splashScreenManager1.CloseWaitForm();
+
+                }
+                else
+                {
+                    splashScreenManager1.CloseWaitForm();
+                }
+
+            }
+            catch (Exception ing)
+            {
+                XtraMessageBox.Show(ing.Message + "\nBtnMasivIngresos", "Error"
+                    , MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void gridViewNomiMasiv_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {
+            //System.Windows.Forms.SendKeys.Send("{ENTER}");
             if (e.Column.Caption.Equals("Ingresos"))
             {
                 string ingresosCelda = e.Value.ToString();
@@ -1456,23 +1602,23 @@ namespace winAsimilados.Views
                 decimal IngresosMsiv = Convert.ToDecimal(ingresosCelda);
                 string ing = String.Format("{0:0.00}", IngresosMsiv);
                 IngresosMsiv = Convert.ToDecimal(ing);
-                calcMasiv =  controlador.GeneraCalculo(IngresosMsiv, periMasiv);
+                calcMasiv =  controlador.GeneraCalculo(IngresosMsiv, periMasiv,bd);
 
                 gridViewNomiMasiv.SetRowCellValue(e.RowHandle, "ISR", calcMasiv.ISR);
                 gridViewNomiMasiv.SetRowCellValue(e.RowHandle, "Neto", calcMasiv.IngresosNetos);
             }
 
             if (e.Column.Caption.Equals("Periodicidad Pago"))
-            {
+            {                                
                 string periCelda = e.Value.ToString();
                 string ingresosCelda = gridViewNomiMasiv.GetRowCellValue(e.RowHandle, "Ingresos").ToString();
                 decimal ingresosMasiv = Convert.ToDecimal(ingresosCelda);
                 string ing = String.Format("{0:0.00}", ingresosMasiv);
                 ingresosMasiv = Convert.ToDecimal(ing);
 
-                calcMasiv = controlador.GeneraCalculo(ingresosMasiv, periCelda);
+                calcMasiv = controlador.GeneraCalculo(ingresosMasiv, periCelda,bd);
                 gridViewNomiMasiv.SetRowCellValue(e.RowHandle, "ISR", calcMasiv.ISR);
-                gridViewNomiMasiv.SetRowCellValue(e.RowHandle, "Ingreso Neto", calcMasiv.IngresosNetos);
+                gridViewNomiMasiv.SetRowCellValue(e.RowHandle, "Neto", calcMasiv.IngresosNetos);
             }
             ////if (e.Column.Caption.Equals("Periodicidad Pago"))
             ////{
@@ -1484,7 +1630,7 @@ namespace winAsimilados.Views
         {
             sqlDataSource1.Connection.ConnectionString = "Data Source=192.168.4.182\\COMPAC;Initial Catalog=" + bd + ";User ID=sa;Password=Supervisor2020.;";
             sqlDataSource1.Fill();
-            ChNeto.Visible = false;
+            ChNeto.Visible = true;
             parametros = controlador.GetParametros(rfc);
             layoutControlGroup5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -1506,38 +1652,38 @@ namespace winAsimilados.Views
             gridControlNomiMasiv.Visible = true;
 
             splash.SetWaitFormCaption("Cargando Empleados...");
-            string rfcEmpl = null;
-            var Empleado = new List<E.Empleado>();
-            E.Empleado[] empl = null;
-            for (int i = 0; i < gridViewNomiMasiv.RowCount; i++)
-            {
-                rfcEmpl = gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[2]).ToString();
-                Empleado.Add(new E.Empleado
-                {
-                    RFC = rfcEmpl
-                });
-                empl = empleado.ToArray();
-            }
+            //string rfcEmpl = null;
+            //var Empleado = new List<E.Empleado>();
+            //E.Empleado[] empl = null;
+            //for (int i = 0; i < gridViewNomiMasiv.RowCount; i++)
+            //{
+            //    rfcEmpl = gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[2]).ToString();
+            //    Empleado.Add(new E.Empleado
+            //    {
+            //        RFC = rfcEmpl
+            //    });
+            //    empl = empleado.ToArray();
+            //}
 
-            int row = -1;
-            int contRow = gridViewNomiMasiv.RowCount;
-            foreach (var item in Empleado)
-            {
-                row++;
+            //int row = -1;
+            //int contRow = gridViewNomiMasiv.RowCount;
+            //foreach (var item in Empleado)
+            //{
+            //    row++;
 
-                if (row < contRow)
-                {
-                    empleado = controlador.BuscaEmpleado(item.RFC);
-                    peri = empleado.Periodicidad;
-                    gridViewNomiMasiv.SetRowCellValue(row, "prueba", peri);
-                    gridViewNomiMasiv.SetRowCellValue(row, "Periodicidad Pago", peri);
-                    repositoryItemGridLookUpEdit1View.SetRowCellValue(row, "prueba", peri);
-                }
-                else
-                {
-                    return;
-                }
-            }
+            //    if (row < contRow)
+            //    {
+            //        empleado = controlador.BuscaEmpleado(item.RFC);
+            //        peri = empleado.Periodicidad;
+            //        gridViewNomiMasiv.SetRowCellValue(row, "prueba", peri);
+            //        gridViewNomiMasiv.SetRowCellValue(row, "Periodicidad Pago", peri);
+            //        repositoryItemGridLookUpEdit1View.SetRowCellValue(row, "prueba", peri);
+            //    }
+            //    else
+            //    {
+            //        return;
+            //    }
+            //}
             splash.CloseWaitForm();
         }
 

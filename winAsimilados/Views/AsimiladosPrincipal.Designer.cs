@@ -91,6 +91,9 @@
             this.accordionGenPDF1_2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement8 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionCambiarEmpresa = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement7 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement9 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlEditaUsuario = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpleados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -513,10 +516,9 @@
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
             this.accordionControl1.OptionsMinimizing.NormalWidth = 260;
-            this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
             this.accordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
-            this.accordionControl1.Size = new System.Drawing.Size(56, 672);
+            this.accordionControl1.Size = new System.Drawing.Size(260, 672);
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.Text = "Menu";
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
@@ -658,7 +660,8 @@
             // accordionControlElement8
             // 
             this.accordionControlElement8.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.accordionCambiarEmpresa});
+            this.accordionCambiarEmpresa,
+            this.accordionControlElement7});
             this.accordionControlElement8.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement8.ImageOptions.Image")));
             this.accordionControlElement8.Name = "accordionControlElement8";
             this.accordionControlElement8.Text = "Opciones";
@@ -670,6 +673,32 @@
             this.accordionCambiarEmpresa.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionCambiarEmpresa.Text = "Cambiar Empresa";
             this.accordionCambiarEmpresa.Click += new System.EventHandler(this.accordionCambiarEmpresa_Click);
+            // 
+            // accordionControlElement7
+            // 
+            this.accordionControlElement7.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlElement9,
+            this.accordionControlEditaUsuario});
+            this.accordionControlElement7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement7.ImageOptions.Image")));
+            this.accordionControlElement7.Name = "accordionControlElement7";
+            this.accordionControlElement7.Text = "Usuarios Sistema";
+            this.accordionControlElement7.Visible = false;
+            // 
+            // accordionControlElement9
+            // 
+            this.accordionControlElement9.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement9.ImageOptions.Image")));
+            this.accordionControlElement9.Name = "accordionControlElement9";
+            this.accordionControlElement9.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement9.Text = "Agregar";
+            this.accordionControlElement9.Click += new System.EventHandler(this.accordionControlElement9_Click);
+            // 
+            // accordionControlEditaUsuario
+            // 
+            this.accordionControlEditaUsuario.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlEditaUsuario.ImageOptions.Image")));
+            this.accordionControlEditaUsuario.Name = "accordionControlEditaUsuario";
+            this.accordionControlEditaUsuario.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlEditaUsuario.Text = "Editar";
+            this.accordionControlEditaUsuario.Click += new System.EventHandler(this.accordionControlEditaUsuario_Click);
             // 
             // splashScreenManager1
             // 
@@ -688,10 +717,10 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "AsimiladosPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AsimiladosPrincipal";
+            this.Text = "Asimilados Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AsimiladosPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.AsimiladosPrincipal_Load);
@@ -770,5 +799,8 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement8;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionCambiarEmpresa;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionBitacora;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement7;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement9;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlEditaUsuario;
     }
 }

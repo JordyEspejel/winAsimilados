@@ -36,28 +36,39 @@ namespace winAsimilados.Views
             {
                 XtraMessageBox.Show("Campo Usuario vacio!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (User.pass == "")
+            if (User.pass == "")
             {
                 XtraMessageBox.Show("Campo Contraseña vacio!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
+            if (User.usuario != "" && User.pass !="")
             {
                 //XtraMessageBox.Show("entra login()", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (Controlador.Login(User).Equals(true))
                 {
-                    this.Hide();
-                    salida = false;
                     //Form1 frm = new Form1();
                     //frm.Show();
                     //V.AsimiladosPrincipal Prin = new V.AsimiladosPrincipal();
                     //Prin.Show();
-                    Properties.Settings.Default["Usuario"] = txtUsua.Text;
-                    Properties.Settings.Default.Save();
-                    V.ListaEmpresas listaEmpresas = new V.ListaEmpresas();
-                    listaEmpresas.BringToFront();                                                           
-                    listaEmpresas.ShowDialog();
-                    //this.Dispose();
-
+                    if(Controlador.GetStatusUsuario(User.usuario, User.pass).Equals("B"))
+                    {
+                        XtraMessageBox.Show("¡Usuario Bloqueado! \nPongase en contacto con su " +
+                            "administrador de sistema.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }else if(Controlador.GetStatusUsuario(User.usuario, User.pass).Equals("I"))
+                    {
+                        XtraMessageBox.Show("¡Usuario Inactivo! \nPongase en contacto con su " +
+                            "administrador de sistema.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        this.Hide();
+                        salida = false;
+                        Properties.Settings.Default["Usuario"] = txtUsua.Text;
+                        Properties.Settings.Default.Save();
+                        V.ListaEmpresas listaEmpresas = new V.ListaEmpresas();
+                        listaEmpresas.BringToFront();
+                        listaEmpresas.ShowDialog();
+                        //this.Dispose();
+                    }
                 }
                 else
                 {
@@ -83,7 +94,7 @@ namespace winAsimilados.Views
                 }
                 else
                 {
-                    this.Dispose();
+                    ////this.Dispose();
                 }
             }
         }
@@ -91,6 +102,15 @@ namespace winAsimilados.Views
         private void Login_Load(object sender, EventArgs e)
         {
             txtUsua.Text = Properties.Settings.Default.Usuario.ToString();
+        }
+
+        private void BtnConfigBD_Click(object sender, EventArgs e)
+        {
+            salida = false;
+            this.Hide();
+            V.SQLConnetcionString connetcionString = new V.SQLConnetcionString();
+            connetcionString.BringToFront();
+            connetcionString.ShowDialog();
         }
     }
 }

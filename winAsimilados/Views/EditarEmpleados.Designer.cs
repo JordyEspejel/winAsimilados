@@ -117,6 +117,7 @@
             this.colPERIODICIDAD_PAGO});
             this.GridViewEmpl.GridControl = this.GridControlEmpl;
             this.GridViewEmpl.Name = "GridViewEmpl";
+            this.GridViewEmpl.OptionsView.ShowAutoFilterRow = true;
             // 
             // colidempleado
             // 
