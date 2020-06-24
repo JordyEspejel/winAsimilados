@@ -272,7 +272,9 @@ namespace winAsimilados.Views
 
             xlWorkSheet.Activate();
 
-            xlWorkBook.PrintPreview();
+            //xlWorkBook.PrintPreview();
+
+            xlWorkBook.Close();
 
             //progressPanel2.Hide();
             splashScreenManager1.CloseWaitForm();
@@ -359,9 +361,10 @@ namespace winAsimilados.Views
 
         private void AsimiladosPrincipal_Load(object sender, EventArgs e)
         {
+            string bd = C.Conexion.PerformConnection().Database;
             LblUsuario.Caption = Properties.Settings.Default.Usuario.ToString().ToUpper();
 
-            if (controller.GetAdminUsuario(Properties.Settings.Default.Usuario.ToString().ToUpper()).Equals(true))
+            if (controller.GetAdminUsuario(Properties.Settings.Default.Usuario.ToString().ToUpper(),bd,false).Equals(true))
             {
                 //accordionBitacora.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 //accordionControlElement8.Visible = true;
@@ -495,66 +498,113 @@ namespace winAsimilados.Views
             dialog.FileName = string.Empty;
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-
-
-                Excel.Application xlApp;
-                Excel.Workbook xlWorkBook;
-                Excel.Worksheet xlWorkSheet;
-                Excel.Range range;
-                int rCnt;
-                int rw = 0;
-                int cl = 0;
-                int cont = 0;
-                string Archivo = dialog.FileName;
-                var misValue = Type.Missing;
-
-                xlApp = new Excel.Application();
-                xlWorkBook = xlApp.Workbooks.Open(@Archivo, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue);
-                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-
-                range = xlWorkSheet.UsedRange;
-                rw = range.Rows.Count;
-                cl = range.Columns.Count;
-
-                var Empleado = new List<E.Empleado>();
-                E.Empleado[] empleado = null;
-                for (rCnt = 2; rCnt <= rw; rCnt++)
+                try
                 {
-                    cont++;
-                    string nombre = (range.Cells[rCnt, "A"] as Excel.Range).Value2.ToString();
-                    string rfc = (range.Cells[rCnt, "B"] as Excel.Range).Value2.ToString();
-                    string curp = (range.Cells[rCnt, "C"] as Excel.Range).Value2.ToString();
-                    string peri = (range.Cells[rCnt, "D"] as Excel.Range).Value2.ToString();
+                    Excel.Application xlApp;
+                    Excel.Workbook xlWorkBook;
+                    Excel.Worksheet xlWorkSheet;
+                    Excel.Range range;
+                    int rCnt;
+                    int rw = 0;
+                    int cl = 0;
+                    int cont = 0;
+                    string Archivo = dialog.FileName;
+                    var misValue = Type.Missing;
 
+                    xlApp = new Excel.Application();
+                    xlWorkBook = xlApp.Workbooks.Open(@Archivo, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue);
+                    xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
 
-                    empl.Nombre = nombre;
-                    empl.CURP = curp;
-                    empl.RFC = rfc;
-                    empl.Periodicidad = peri;
-                    Empleado.Add(new E.Empleado
+                    range = xlWorkSheet.UsedRange;
+                    rw = range.Rows.Count;
+                    cl = range.Columns.Count;
+
+                    var Empleado = new List<E.Empleado>();
+                    E.Empleado[] empleado = null;
+                    for (rCnt = 2; rCnt <= rw; rCnt++)
                     {
+                        cont++;
+                        string numEmpl = (range.Cells[rCnt, "A"] as Excel.Range).Value2.ToString();
+                        string nombre = (range.Cells[rCnt, "B"] as Excel.Range).Value2.ToString();
+                        string rfc = (range.Cells[rCnt, "C"] as Excel.Range).Value2.ToString();
+                        string curp = (range.Cells[rCnt, "D"] as Excel.Range).Value2.ToString();
+                        string peri = (range.Cells[rCnt, "E"] as Excel.Range).Value2.ToString();
+                        string cuenta = (range.Cells[rCnt, "F"] as Excel.Range).Value2.ToString();
+                        string clabe = (range.Cells[rCnt, "G"] as Excel.Range).Value2.ToString();
+                        string cve = (range.Cells[rCnt, "H"] as Excel.Range).Value2.ToString();
+                        string banco = (range.Cells[rCnt, "I"] as Excel.Range).Value2.ToString();
+                        string empresa = (range.Cells[rCnt, "J"] as Excel.Range).Value2.ToString();
+                        string idEmpr = (range.Cells[rCnt, "K"] as Excel.Range).Value2.ToString();
 
-                        Nombre = nombre,
-                        CURP = curp,
-                        RFC = rfc,
-                        Periodicidad = peri
+  
 
-                    });
-                    empleado = Empleado.ToArray();
+                        peri = peri.ToUpper();
 
+                        if (peri.Equals("SEMANAL"))
+                        {
+                            peri = "02";
+                        }
+                        else if (peri.Equals("QUINCENAL"))
+                        {
+                            peri = "04";
+                        }
+                        else if (peri.Equals("MENSUAL"))
+                        {
+                            peri = "04";
+                        }
+                        else
+                        {
+                            peri = "99";
+                        }
+                        empl.NumEmpl = numEmpl;
+                        empl.Nombre = nombre;
+                        empl.CURP = curp;
+                        empl.RFC = rfc;
+                        empl.Periodicidad = peri;
+                        empl.cuenta = cuenta;
+                        empl.clabe_bancaria = clabe;
+                        empl.banco = banco;
+                        empl.cve_banco = cve;
+                        empl.empresa = empresa;
+                        empl.idEmpresa = idEmpr;
+
+                        Empleado.Add(new E.Empleado
+                        {
+                            NumEmpl = numEmpl,
+                            Nombre = nombre,
+                            CURP = curp,
+                            RFC = rfc,
+                            Periodicidad = peri,
+                            cuenta = cuenta,
+                            clabe_bancaria = clabe,
+                            banco = banco,
+                            cve_banco = cve,
+                            empresa = empresa,
+                            idEmpresa = idEmpr
+
+                        });
+                        empleado = Empleado.ToArray();
+
+                    }
+
+                    Controlador.AgregarEmpleadoMasivo(Empleado, empl, splashScreenManager1);
+                    string nombreArchivo = xlWorkBook.Name;
+                    nombreArchivo = Path.GetFileNameWithoutExtension(nombreArchivo);
+                    //xlWorkBook.Close(true, "Formato_Masivo_Importe_Empleados", null);
+                    xlWorkBook.Close(true, nombreArchivo, null);
+                    xlApp.Quit();
+                    //progressPanel2.Hide();
+
+                    Marshal.ReleaseComObject(xlWorkSheet);
+                    Marshal.ReleaseComObject(xlWorkBook);
+                    Marshal.ReleaseComObject(xlApp);
                 }
-
-                Controlador.AgregarEmpleadoMasivo(Empleado, empl, splashScreenManager1);
-                string nombreArchivo = xlWorkBook.Name;
-                nombreArchivo = Path.GetFileNameWithoutExtension(nombreArchivo);
-                //xlWorkBook.Close(true, "Formato_Masivo_Importe_Empleados", null);
-                xlWorkBook.Close(true, nombreArchivo, null);
-                xlApp.Quit();
-                //progressPanel2.Hide();
-
-                Marshal.ReleaseComObject(xlWorkSheet);
-                Marshal.ReleaseComObject(xlWorkBook);
-                Marshal.ReleaseComObject(xlApp);
+                catch (Exception leerExcel)
+                {
+                    splashScreenManager1.CloseWaitForm();
+                    XtraMessageBox.Show(leerExcel.Message + "\nCarga masiva empleados", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+ 
             }
             else
             {
@@ -835,6 +885,33 @@ namespace winAsimilados.Views
                 //agregarUsuario.Size = PanelPrincipal.Size;
                 editarUsuario.Show();
                 editarUsuario.BringToFront();
+            }
+        }
+
+        private void accordionControlTablasCalc_Click(object sender, EventArgs e)
+        {
+            TablasCalculo tablasCalculo = new TablasCalculo();
+            var frm = Application.OpenForms.OfType<TablasCalculo>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(270, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    frm.BringToFront();
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(270, 60);
+                }
+            }
+            else
+            {
+                tablasCalculo.Location = new Point(270, 60);
+                //agregarUsuario.Size = PanelPrincipal.Size;
+                tablasCalculo.Show();
+                tablasCalculo.BringToFront();
             }
         }
     }

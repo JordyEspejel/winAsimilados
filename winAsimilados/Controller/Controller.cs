@@ -31,6 +31,7 @@ using DevExpress.CodeParser;
 using XSDToXML.Utils;
 using System.Net;
 using DevExpress.Utils.Extensions;
+using DevExpress.XtraRichEdit.Layout.Engine;
 
 namespace winAsimilados.Controller
 {
@@ -152,15 +153,19 @@ namespace winAsimilados.Controller
                 return null;
             }
         }
-        public bool GetAdminUsuario(string usuario)
+        public bool GetAdminUsuario(string usuario, string BD, bool listado)
         {
             try
             {
                 bool Admin = false;
                 string TipoUsua = null;
-                N.Conexion.PerformConnectionSoprade().Open();
-                SqlCommand queryUser = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                queryUser.CommandText = @"select usuaTipUsu from segUsuarios where usuaIDUsua = @user";
+                N.Conexion.PerformConnection().Close();
+                N.Conexion.PerformConnection().Open();
+                SqlCommand queryUser = N.Conexion.PerformConnection().CreateCommand();
+                //N.Conexion.PerformConnectionSoprade().Open();
+                //SqlCommand queryUser = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                //queryUser.CommandText = @"select usuaTipUsu from segUsuarios where usuaIDUsua = @user";
+                queryUser.CommandText = "select usuarioTipo from UsuariosSistema where usuarioID = @user";
                 queryUser.Parameters.AddWithValue("@user", usuario);
                 SqlDataReader readerUser;
                 readerUser = queryUser.ExecuteReader();
@@ -179,7 +184,16 @@ namespace winAsimilados.Controller
                 {
                     Admin = false;
                 }
-                N.Conexion.PerformConnectionSoprade().Close();
+                //N.Conexion.PerformConnectionSoprade().Close();
+                if (listado.Equals(true))
+                {
+                    N.Conexion.PerformConnection().Close();
+                }
+                else
+                {
+                    N.Conexion.PerformConnection().ChangeDatabase(BD);
+                }
+                
                 return Admin;
             }catch (Exception e)
             {
@@ -1515,6 +1529,7 @@ namespace winAsimilados.Controller
 					  --,RE.Descripcion AS [Descripción Recursos]
 					  ,RP.Descripcion AS [Descripción Puesto]
 					  ,TN.Descripcion AS [Descripción Nómina]
+                      ,ISNULL([CUENTA_ORIGEN], 'No Definido') as [CUENTA_ORIGEN]
                   FROM [PARAMETROS] as P
 				  INNER JOIN  BSNOMINAS.dbo.RegimenFiscal as RF on RF.c_RegimenFiscal = P.REGIMEN
 				  --INNER JOIN  BSNOMINAS.dbo.OrigenRecurso AS RE  ON RE.c_OrigenRecurso = P.ORIGEN_RECURSOS
@@ -1560,6 +1575,7 @@ namespace winAsimilados.Controller
                     //parametros.DescripcionRecursos = readerParametros.GetString(30);
                     parametros.DescripcionPuesto = readerParametros.GetString(30);
                     parametros.DescripcionNomina = readerParametros.GetString(31);
+                    parametros.cuentaOrigen = readerParametros.GetString(32);
                 }
                 readerParametros.Close();
 
@@ -1703,13 +1719,13 @@ namespace winAsimilados.Controller
         {
             try
             {
-                E.Calculo calculo = new E.Calculo();                
+                E.Calculo calculo = new E.Calculo();
 
                 //if (TipoIngresos.Equals("Brutos"))
                 //{
-                    calculo.IngresosBrutos = Math.Round(Ingresos,2);
-
-                    if (Periodicidad.Equals("Semanal") || Periodicidad.Equals("02"))
+                //calculo.IngresosBrutos = Math.Round(Ingresos,2);
+                calculo.IngresosBrutos = Math.Round(Ingresos, 2);
+                if (Periodicidad.Equals("Semanal") || Periodicidad.Equals("02"))
                     {
                         var ISR07 = new List<E.ISR7>();
                         E.ISR7[] isr07 = null;
@@ -1951,7 +1967,6 @@ namespace winAsimilados.Controller
                         calculo.IngresosNetos = Math.Round(calculo.IngresosBrutos - calculo.ISR + calculo.Sub,2);
                     }
                 //}
-
                 return calculo;
             }
             catch(Exception e)
@@ -1961,7 +1976,7 @@ namespace winAsimilados.Controller
                 return null;
             }
         }
-        public E.Calculo GeneraCalculoInverso(decimal Ingresos, string Periodicidad)//, string TipoIngresos)
+        public E.Calculo GeneraCalculoInverso(decimal Ingresos, string Periodicidad, string BD)//, string TipoIngresos)
         {
             try
             {
@@ -1979,10 +1994,16 @@ namespace winAsimilados.Controller
                     var SUB07 = new List<E.SUB7>();
                     E.SUB7[] sub07 = null;
 
-                    N.Conexion.PerformConnectionSoprade().Open();
-                    SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                    queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
-                        from genTablasNumericasDet 
+                    //N.Conexion.PerformConnectionSoprade().Open();
+                    //SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    N.Conexion.PerformConnection().Close();
+                    N.Conexion.PerformConnection().Open();
+                    SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
+                    //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                    //from genTablasNumericasDet 
+                    //where tnudIDTnum = 'ISR07'";  
+                    queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        from TablaCalculos 
                         where tnudIDTnum = 'ISR07'";
 
                     SqlDataReader readerTabla;
@@ -2000,11 +2021,9 @@ namespace winAsimilados.Controller
                         isr07 = ISR07.ToArray();
                     }
                     readerTabla.Close();
-
-                    SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                    queryTablaSub.CommandText = @"
-                        select tnudValor1, tnudValor2, tnudValor3
-                        from genTablasNumericasDet 
+                    SqlCommand queryTablaSub = N.Conexion.PerformConnection().CreateCommand();
+                    queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                        from TablaCalculos 
                         where tnudIDTnum = 'SUB07'";
 
                     SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
@@ -2053,11 +2072,17 @@ namespace winAsimilados.Controller
                     var SUB15 = new List<E.SUB15>();
                     E.SUB15[] sub15 = null;
 
-                    N.Conexion.PerformConnectionSoprade().Open();
-                    SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                    queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
-                        from genTablasNumericasDet 
-                        where tnudIDTnum = 'ISR15'";
+                    //N.Conexion.PerformConnectionSoprade().Open();
+                    //SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    N.Conexion.PerformConnection().Close();
+                    N.Conexion.PerformConnection().Open();
+                    SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
+                    //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                    //from genTablasNumericasDet 
+                    //where tnudIDTnum = 'ISR15'";  
+                    queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                            from TablaCalculos 
+                            where tnudIDTnum = 'ISR15'";
 
                     SqlDataReader readerTabla;
                     readerTabla = queryTablaISR.ExecuteReader();
@@ -2074,11 +2099,12 @@ namespace winAsimilados.Controller
                         isr15 = ISR15.ToArray();
                     }
                     readerTabla.Close();
-                    SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                    queryTablaSub.CommandText = @"
-                        select tnudValor1, tnudValor2, tnudValor3
-                        from genTablasNumericasDet 
-                        where tnudIDTnum = 'SUB15'";
+                    //SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    SqlCommand queryTablaSub = N.Conexion.PerformConnection().CreateCommand();
+                    queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                            from TablaCalculos 
+                            where tnudIDTnum = 'SUB15'";
+
 
                     SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
                     while (readerTablaSub.Read())
@@ -2126,11 +2152,17 @@ namespace winAsimilados.Controller
                     var SUB30 = new List<E.SUB30>();
                     E.SUB30[] sub30 = null;
 
-                    N.Conexion.PerformConnectionSoprade().Open();
-                    SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                    queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
-                        from genTablasNumericasDet 
-                        where tnudIDTnum = 'ISR30'";
+                    //N.Conexion.PerformConnectionSoprade().Open();
+                    //SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    N.Conexion.PerformConnection().Close();
+                    N.Conexion.PerformConnection().Open();
+                    SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
+                    //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                    //from genTablasNumericasDet 
+                    //where tnudIDTnum = 'ISR15'";  
+                    queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                                from TablaCalculos 
+                                where tnudIDTnum = 'ISR30'";
 
                     SqlDataReader readerTabla;
                     readerTabla = queryTablaISR.ExecuteReader();
@@ -2147,13 +2179,14 @@ namespace winAsimilados.Controller
                         isr30 = ISR30.ToArray();
                     }
                     readerTabla.Close();
-                    SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                    queryTablaSub.CommandText = @"
-                        select tnudValor1, tnudValor2, tnudValor3
-                        from genTablasNumericasDet 
-                        where tnudIDTnum = 'SUB30'";
+                    //SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    SqlCommand queryTablaSub = N.Conexion.PerformConnection().CreateCommand();
+                    queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                                from TablaCalculos 
+                                where tnudIDTnum = 'SUB30'";
+                
 
-                    SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
+                SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
                     while (readerTablaSub.Read())
                     {
                         SUB30.Add(new E.SUB30
@@ -2165,7 +2198,9 @@ namespace winAsimilados.Controller
                         sub30 = SUB30.ToArray();
                     }
                     readerTablaSub.Close();
-                    N.Conexion.PerformConnectionSoprade().Close();
+
+                    //N.Conexion.PerformConnectionSoprade().Close();
+                    N.Conexion.PerformConnection().ChangeDatabase(BD);
 
                     foreach (var valor in sub30)
                     {
@@ -2212,6 +2247,12 @@ namespace winAsimilados.Controller
                 queryEmpleado.CommandText = @"select NUM_EMPLEADO, RFC, CURP, Descripcion as [Periodicidad Pago]
                 , NOMBRE, TIPO_REGIMEN, TIPO_CONTRATO, SINDICALIZADO
                 , DEPARTAMENTO, PUESTO
+                ,ISNULL([CUENTA], 'No Definido') as [CUENTA]
+                ,ISNULL([CLABE_BANCARIA], 'No Definido') as [CLABE_BANCARIA]
+                ,ISNULL([CVE_BANCO], 'S/D') as [CVE_BANCO]
+                ,ISNULL([BANCO], 'No Definido') as [BANCO]
+                ,ISNULL([EMPRESA], 'No Definido')as [EMPRESA]
+                ,ISNULL([ID_EMPRESA], 'No Definido') as [ID EMPRESA]
                 from EMPLEADOS 
                 inner join [BSNOMINAS].[dbo].[PeriodicidadPago] as Peri
                 on EMPLEADOS.PERIODICIDAD_PAGO = Peri.c_PeriodicidadPago
@@ -2233,6 +2274,12 @@ namespace winAsimilados.Controller
                     empleado.Sindicalizado = readerEmpleado.GetString(7);
                     empleado.Departamento = readerEmpleado.GetString(8);
                     empleado.Puesto = readerEmpleado.GetString(9);
+                    empleado.cuenta = readerEmpleado.GetString(10);
+                    empleado.clabe_bancaria = readerEmpleado.GetString(11);
+                    empleado.cve_banco = readerEmpleado.GetString(12);
+                    empleado.banco = readerEmpleado.GetString(13);
+                    empleado.empresa = readerEmpleado.GetString(14);
+                    empleado.idEmpresa = readerEmpleado.GetString(15);
                 }
                 readerEmpleado.Close();
 
@@ -2243,6 +2290,44 @@ namespace winAsimilados.Controller
             catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: BuscaEmpleado()" , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public List<E.ISR30> GetISR30(string BD, List<E.ISR30> iSR30s)
+        {
+            try
+            {
+                N.Conexion.PerformConnection().Close();
+                N.Conexion.PerformConnection().Open();
+                SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
+                //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                //from genTablasNumericasDet 
+                //where tnudIDTnum = 'ISR15'";  
+                queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                                from TablaCalculos 
+                                where tnudIDTnum = 'ISR30'";
+
+                SqlDataReader readerTabla;
+                readerTabla = queryTablaISR.ExecuteReader();
+
+                while (readerTabla.Read())
+                {
+                    iSR30s.Add(new E.ISR30
+                    {
+                        LimiteInferior = readerTabla.GetDecimal(0),
+                        LimiteSuperior = readerTabla.GetDecimal(1),
+                        CuotaFija = readerTabla.GetDecimal(2),
+                        Porcentaje = readerTabla.GetDecimal(3)
+                    });              
+                }
+                readerTabla.Close();
+                N.Conexion.PerformConnection().ChangeDatabase(BD);
+
+                return iSR30s;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: GetISR30()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -2428,7 +2513,7 @@ namespace winAsimilados.Controller
                 "',[ARCHIVO_KEY] = '" + parametros.ARCHIVO_KEY +
                 "',[ASUNTO_CERTIFICADO] = '" + parametros.ASUNTO_CERTIFICADO +
                 "',[COLONIA] = '" + parametros.COLONIA +
-                "'WHERE RFC ='" + RFC + "'";
+                "',[CUENTA_ORIGEN] = '" + parametros.cuentaOrigen + "' WHERE RFC ='" + RFC + "'";
 
                 if (queryActEmpr.ExecuteNonQuery().Equals(1))
                 {
@@ -2552,7 +2637,8 @@ namespace winAsimilados.Controller
                                                ,[ARCHIVO_KEY]
                                                ,[ASUNTO_CERTIFICADO]
                                                ,[COLONIA]
-                                               ,[RUTA_ALMACEN_PDF])
+                                               ,[RUTA_ALMACEN_PDF]
+                                                ,[CUENTA_ORIGEN])
                                          VALUES
                                                ('" + parametros.NombreEmpresa + "'," +
                                                "'" + parametros.RFC + "'," +
@@ -2577,7 +2663,8 @@ namespace winAsimilados.Controller
                                                "'" + parametros.ARCHIVO_KEY + "'," +
                                                "'" + parametros.ASUNTO_CERTIFICADO + "'," +
                                                "'" + parametros.COLONIA + "'," +
-                                               "'" + parametros.RUTA_ALMACEN_PDF + "')";
+                                               "'" + parametros.RUTA_ALMACEN_PDF + "'" +
+                                               "'" + parametros.cuentaOrigen + "')";
 
                 if (queryInsertEmpr.ExecuteNonQuery().Equals(1))
                 {
@@ -2837,11 +2924,23 @@ namespace winAsimilados.Controller
                 ,[TIPO_CONTRATO]
                 ,[TIPO_JORNADA]
                 ,[PERIODICIDAD_PAGO]
-                ,[SINDICALIZADO])
+                ,[SINDICALIZADO]
+                ,[CUENTA]
+                ,[CLABE_BANCARIA]
+                ,[BANCO]
+                ,[CVE_BANCO]
+                ,[EMPRESA]
+                ,[ID_EMPRESA])
                 VALUES
-                ('" + numEmplNue + "','" + empleado.Nombre + "','" + empleado.RFC + "','" + empleado.CURP + "','" + "09'," + "'ASIMILADOS'," + "'01/01/1900'," + "'ASIMILADOS',"
-                + "'99'," + "'00','" + empleado.Periodicidad + "'," + "'No'" + ")";
-                
+                ('" + empleado.NumEmpl + "','" + empleado.Nombre + "','" + empleado.RFC + "','" + empleado.CURP + "','" + "09'," + "'ASIMILADO'," + "'01/01/1900'," + "'ASIMILADO',"
+                + "'99'," + "'00','" + empleado.Periodicidad + "'," + "'No'" +
+                ",'" + empleado.cuenta + "'" +
+                ",'" + empleado.clabe_bancaria + "'" +
+                ",'" + empleado.banco + "'" +
+                ",'" + empleado.cve_banco + "'" +
+                ",'" + empleado.empresa + "'" +
+                ",'" + empleado.idEmpresa + "')";
+
                 if (ReaderEmpl.Read())
                 {
                     XtraMessageBox.Show("El empleado:" + empleado.Nombre + "\nYa se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -2932,6 +3031,354 @@ namespace winAsimilados.Controller
                 return;
             }
         }
+
+        public void GeneraLayoutBanorte(List<E.LayoutBanorte> ListaLayout /*,E.Parametros empresa*/)
+        {
+            try
+            {
+                int errorCuentaOrigen = 0, errorDestino = 0, cont = -1, exito = 0, errorImporte = 0, errorIDEmpresa = 0;
+                int validaCuentaOrigen = 0, validaDestino = 0, validaImporte = 0, validaIDEmpresa = 0;
+                string mensaje = "";
+                StreamWriter writerLog = null;
+                StringBuilder builderLog = null;
+                StreamWriter writerLayout = null;
+                StringBuilder builderLayout = null;
+                bool sig = false, nombre = true;
+
+                string urlLog = @"C:\AsimiladosLogs\";
+                if (!Directory.Exists(urlLog))
+                {
+                    Directory.CreateDirectory(urlLog);
+                }
+
+                string urlLayout = @"C:\AsimiladosLayout\";
+                if (!Directory.Exists(urlLayout))
+                {
+                    Directory.CreateDirectory(urlLayout);
+                }
+
+                string NombreArchivoLog ="GenLayout_" +Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
+                + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
+                + "-" + DateTime.Now.Second.ToString());
+                                string pathLog = Path.Combine(urlLog, NombreArchivoLog + ".txt");
+
+                string NombreArchivoLayout = "Layout_" +Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
+                + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
+                + "-" + DateTime.Now.Second.ToString());
+                                string pathLayout = Path.Combine(urlLayout, NombreArchivoLayout + ".txt");
+
+                builderLog = new StringBuilder();
+                //builderLog.AppendLine();
+                builderLog.Append("********************************   Erroes Encontrados  ******************************************" + "\r\n");
+                builderLayout = new StringBuilder();
+
+                foreach (var item in ListaLayout)
+                {
+                    try
+                    {
+                        cont++;
+
+                        nombre = true;
+                        if (item.cuentaOrigen.Length > 10)
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builderLog.Append("Nombre del empleado:" + item.nombreEmpleado + "\r\n");
+                                builderLog.AppendLine();
+                                nombre = false;
+                            }
+                            errorCuentaOrigen++;
+                            mensaje = "Cuenta Origen mayor a 10 digitos";
+                            builderLog.Append(mensaje);
+                            builderLog.AppendLine();
+                            builderLog.AppendLine();
+                            sig = true;                            
+                        }
+                        else if (item.cuentaOrigen.Length < 10)
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builderLog.Append("Nombre del empleado:" + item.nombreEmpleado + "\r\n");
+                                builderLog.AppendLine();
+                                nombre = false;
+                            }
+                            errorCuentaOrigen++;
+                            mensaje = "Cuenta Origen menor a 10 digitos";
+                            builderLog.Append(mensaje);
+                            builderLog.AppendLine();
+                            builderLog.AppendLine();
+                            sig = true;
+                        }
+                        else
+                        {
+                            validaCuentaOrigen = 1;
+                        }
+                        if (item.cuentaClaveDestino.Length < 10)
+                        {
+
+                            if (nombre.Equals(true))
+                            {
+                                builderLog.Append("Nombre del empleado:" + item.nombreEmpleado + "\r\n");
+                                builderLog.AppendLine();
+                                nombre = false;
+                            }
+                            errorDestino++;
+                            mensaje = "Cuenta/CLABE Destino menor a 10 digitos";
+                            builderLog.Append(mensaje);
+                            builderLog.AppendLine();
+                            builderLog.AppendLine();
+                            sig = true;
+                        }
+                        else if (item.cuentaClaveDestino.Length > 18)
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builderLog.Append("Nombre del empleado:" + item.nombreEmpleado + "\r\n");
+                                builderLog.AppendLine();
+                                nombre = false;
+                            }
+                            errorDestino++;
+                            mensaje = "Cuenta/CLABE Destino mayor a 18 digitos";
+                            builderLog.Append(mensaje);
+                            builderLog.AppendLine();
+                            builderLog.AppendLine();
+                            sig = true;
+                        }
+                        else if (item.cuentaClaveDestino.Equals("No Definido") || item.cuentaClaveDestino.Equals("0"))
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builderLog.Append("Nombre del empleado:" + item.nombreEmpleado + "\r\n");
+                                builderLog.AppendLine();
+                                nombre = false;
+                            }
+                            errorDestino++;
+                            mensaje = "Cuenta/CLABE NO Definida, verificar información empleado.";
+                            builderLog.Append(mensaje);
+                            builderLog.AppendLine();
+                            builderLog.AppendLine();
+                            sig = true;
+                        }
+                        else
+                        {                            
+                            validaDestino = 1;                            
+                        }
+                        if (item.importe.Equals(0))
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builderLog.Append("Nombre del empleado:" + item.nombreEmpleado + "\r\n");
+                                builderLog.AppendLine();
+                                nombre = false;
+                            }
+                            errorImporte++;
+                            mensaje = "Importe debe ser MAYOR a 0.";
+                            builderLog.Append(mensaje);
+                            builderLog.AppendLine();
+                            builderLog.AppendLine();
+                            sig = true;
+                        }
+                        else
+                        {
+                            validaImporte = 1;
+                        }
+                        if (item.claveID.Equals("No Definido")|| item.claveID.Equals("0"))
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builderLog.Append("Nombre del empleado:" + item.nombreEmpleado + "\r\n");
+                                builderLog.AppendLine();
+                                nombre = false;
+                            }
+                            errorIDEmpresa++;
+                            mensaje = "Clave ID no Definida";
+                            builderLog.Append(mensaje);
+                            builderLog.AppendLine();
+                            builderLog.AppendLine();
+                            sig = true;
+                        }
+                        else
+                        {
+                            validaIDEmpresa = 1;
+                        }
+                        if (cont + 1 < ListaLayout.Count() && sig.Equals(true))
+                        {
+                            builderLog.Append("*************************************************************************************************");
+                            builderLog.AppendLine();
+                        }
+
+
+                        if (validaDestino == 1 && validaCuentaOrigen == 1 && validaImporte == 1 && validaIDEmpresa == 1)
+                        {
+                            exito++;
+                            validaDestino = 0;
+                            validaCuentaOrigen = 0;
+                            validaImporte = 0;
+                            validaIDEmpresa = 0;
+                        }
+
+                        if (exito > 0/* && errorDestino == 0 && errorCuentaOrigen == 0 && errorImporte == 0 && errorIDEmpresa == 0*/)
+                        {
+                            builderLayout.Append(item.operacion + "\t" + item.claveID + "\t" + item.cuentaOrigen + "\t" + item.cuentaClaveDestino + "\t" + item.importe + "\t" + item.referencia + "\t" + item.descripcion + "\t" + item.RFCOrdenante + "\t" + item.IVA + "\t" + item.fechaAplicacion.ToString("yyyyMMdd") + "\t" + item.institucionPago + "\t" + item.claveTipoCambio);
+                            builderLayout.AppendLine();
+                        }
+
+                        if (cont + 1 == ListaLayout.Count())
+                        {
+                            if (errorDestino > 0 || errorCuentaOrigen > 0 || errorIDEmpresa > 0 || errorImporte > 0)
+                            {
+                                int error = errorCuentaOrigen + errorDestino + errorImporte + errorIDEmpresa;
+                                builderLog.AppendLine();
+                                builderLog.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
+
+                                XtraMessageBox.Show("¡Layout generado con " + error + " errores registrados y "
+                                + exito + " registros con éxito! \n(Presione aceptar para ver errores)", "Mensaje"
+                                , MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                writerLog = new StreamWriter(pathLog, true);
+                                writerLog.Write(builderLog);
+                                writerLog.Close();
+
+                                Process procesoLog = new Process();
+                                procesoLog.StartInfo.FileName = pathLog;
+                                procesoLog.Start();
+
+                                if (exito > 0)
+                                {
+                                    writerLayout = new StreamWriter(pathLayout, true);
+                                    writerLayout.Write(builderLayout);
+                                    writerLayout.Close();
+
+                                    Process procesoLayout = new Process();
+                                    procesoLayout.StartInfo.FileName = pathLayout;
+                                    procesoLayout.Start();
+                                }
+                            }
+
+                            if (errorCuentaOrigen.Equals(0) && errorDestino.Equals(0) && exito > 0)
+                            {
+
+                                XtraMessageBox.Show("¡Layout generado con éxito! \n(Presione aceptar para ver Layout)", "Mensaje"
+                                , MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                writerLayout = new StreamWriter(pathLayout, true);
+                                writerLayout.Write(builderLayout);
+                                writerLayout.Close();
+
+                                Process procesoLayout = new Process();
+                                procesoLayout.StartInfo.FileName = pathLayout;
+                                procesoLayout.Start();
+                            }
+
+                        }
+
+                    }
+                    catch(Exception lista)
+                    {
+                        XtraMessageBox.Show(lista.Message + "\nError Controlador: GeneraLayoutBanorte():Foreach():ListaLayout", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador:GeneraLayoutBanorte", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+        public void InsertaLayout(List<E.LayoutBanorte> listaLayout/*, string BD*/)
+        {
+            try
+            {
+                //N.Conexion.PerformConnection().Close();
+                //N.Conexion.PerformConnection().Open();
+
+                SqlCommand queryInsertaLayout = N.Conexion.PerformConnection().CreateCommand();
+
+                foreach (var item in listaLayout)
+                {
+                    try
+                    {
+
+                        queryInsertaLayout.CommandText = @"INSERT INTO [dbo].[LayoutBanorte]
+                       ([numEmpl]
+                       ,[nombreEmpleado]
+                       ,[RFCEmpleado]
+                       ,[CURPEmpleado]
+                       ,[PeriodicidadPago]
+                       ,[ingresos]
+                       ,[LimInferior]
+                       ,[ExLimInf]
+                       ,[PerExLimInf]
+                       ,[ImpMarg]
+                       ,[CF]
+                       ,[ISR]
+                       ,[ingresosNeto]
+                       ,[operacion]
+                       ,[claveID]
+                       ,[cuentaOrigen]
+                       ,[cuenta_ClaveDestino]
+                       ,[importe]
+                       ,[referencia]
+                       ,[descripcion]
+                       ,[RFCOrdenante]
+                       ,[IVA]
+                       ,[fechaAplicacion]
+                       ,[fecIniPeri]
+                       ,[fecFinPeri]
+                       ,[InstruccionPago]
+                       ,[claveTipoCambio]
+                       ,[fechaCreacion]
+                       --,[estatus]
+                       ,[Banco]
+                       ,[sub]
+                       ,[Caratula])
+                 VALUES
+                       ('" + item.numEmpl + "'" +
+                       ",'" + item.nombreEmpleado + "'" +
+                       ",'" + item.RFCEmpleado + "'" +
+                       ",'" + item.CURPEmpleado + "'" +
+                       ",'" + item.periPago + "'" +
+                       "," + item.ingresos +"" +                    
+                       "," + item.LimInferior +"" +
+                       "," + item.ExLimInf + "" +
+                       "," + item.PerExLimInf + "" +
+                       "," + item.ImpMarg + "" +
+                       "," + item.CF + "" +
+                       "," + item.ISR + "" +
+                       "," + item.ingresosNet + "" +
+                       ",'" + item.operacion + "'" +
+                       ",'" + item.claveID + "'" +
+                       ",'" + item.cuentaOrigen + "'" +
+                       ",'" + item.cuentaClaveDestino + "'" +
+                       "," + item.importe + "" +
+                       ",'" + item.referencia + "'" +
+                       ",'" + item.descripcion + "'" +
+                       ",'" + item.RFCOrdenante + "'" +
+                       "," + item.IVA + "" +
+                       ",'" + item.fechaAplicacion.ToString("yyyy-MM-dd") +"'" +
+                       ",'" + item.fecIniPeri.ToString("yyyy-MM-dd") + "'" +
+                       ",'" + item.fecFinPeri.ToString("yyyy-MM-dd") +"'" 
+                       + ",'"+ item.institucionPago + "'" +
+                       ",'" + item.claveTipoCambio + "'" +
+                       "," + "GETDATE()" + "" +
+                       ",'" + item.banco + "'" +
+                       "," + item.Sub + "" +
+                      ",'" + item.caratula + "')";
+
+                        queryInsertaLayout.ExecuteNonQuery();
+
+
+                    }catch(Exception lista)
+                    {
+                        XtraMessageBox.Show(lista.Message + "\nError Controlador: InsertaLayout(foreach())", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+            }catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaLayout()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public void AgregarEmpleadoMasivo(List<E.Empleado> list, Object _P, SplashScreenManager splashManager)
         {
             try
@@ -2939,6 +3386,7 @@ namespace winAsimilados.Controller
                 StreamWriter writer = null;
                 StringBuilder builder = null;
                 string url = @"C:\AsimiladosLogs\";
+                bool nombre = true;
                 if (!Directory.Exists(url))
                 {
                     Directory.CreateDirectory(url);
@@ -2947,7 +3395,7 @@ namespace winAsimilados.Controller
                 + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
                 + "-" + DateTime.Now.Second.ToString());
                 string path = Path.Combine(url, NombreArchivo + ".INARI");
-                int numEmplAnt = 0, numEmplNue = 0, contErroresExis = 0, contErrores = 0, contExito = 0, cont = 0, contErrRFC = 0, contErrCURP = 0, validaCURP = 0, ValidaRFC = 0, ValidaExiste = 0, TotalErrores = 0;
+                int numEmplAnt = 0, numEmplNue = 0, contErroresExis = 0, contErrores = 0, contExito = 0, cont = 0, contErrRFC = 0, contErrCURP = 0, validaCURP = 0, ValidaRFC = 0, ValidaExiste = 0, TotalErrores = 0, contErrCuenta =0, validaCuenta = 0, contErrCLABE = 0, validaCLABE = 0, contErrBanco = 0, validaBanco = 0, contErrCVE = 0, validaCVE = 0;
                 E.Empleado empleado = (E.Empleado)_P;
 
                 builder = new StringBuilder();
@@ -2957,9 +3405,11 @@ namespace winAsimilados.Controller
 
                 foreach (var empl in list)
                 {
-                    builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
-                    builder.AppendLine();
-
+                    //if (nombre.Equals(true))
+                    //{
+                    //    builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                    //    builder.AppendLine();
+                    //}
                     cont++;
                     SqlCommand queryNumEmpl = N.Conexion.PerformConnection().CreateCommand();
                     queryNumEmpl.CommandText = @"select
@@ -3000,20 +3450,38 @@ namespace winAsimilados.Controller
                     ,[TIPO_CONTRATO]
                     ,[TIPO_JORNADA]
                     ,[PERIODICIDAD_PAGO]
-                    ,[SINDICALIZADO])
+                    ,[SINDICALIZADO]
+                    ,[CUENTA]
+                    ,[CLABE_BANCARIA]
+                    ,[BANCO]
+                    ,[CVE_BANCO]
+                    ,[EMPRESA]
+                    ,[ID_EMPRESA])
                     VALUES
-                    ('" + numEmplNue + "','" + empl.Nombre + "','" + empl.RFC + "','" + empl.CURP + "','" + "09'," + "'ASIMILADOS'," + "'01/01/1900'," + "'ASIMILADOS',"
-                        + "'99'," + "'00','" + empl.Periodicidad + "'," + "'No'" + ")";
+                    ('" + empl.NumEmpl + "','" + empl.Nombre + "','" + empl.RFC + "','" + empl.CURP + "','" + "09'," + "'ASIMILADO'," + "'01/01/1900'," + "'ASIMILADO',"
+                    + "'99'," + "'00','" + empl.Periodicidad + "'," + "'No'" +
+                    ",'" + empl.cuenta + "'" +
+                    ",'" + empl.clabe_bancaria + "'" +
+                    ",'" + empl.banco + "'" +
+                    ",'" + empl.cve_banco + "'" +
+                    ",'" + empl.empresa + "'" +
+                    ",'" + empl.idEmpresa + "')";
 
                     if (!empl.RFC.Length.Equals(13))
                     {
-                        contErrores++;
+                        if (nombre.Equals(true))
+                        {
+                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                            builder.AppendLine();
+                        }
+                        //contErrores++;
                         contErrRFC++;
                         string MensajeRFC = "RFC no cumple con el formato correcto, favor de verificar.";
                         //contErrores++;
                         ValidaRFC = 0;
                         builder.Append(MensajeRFC);
                         builder.AppendLine();
+                        nombre = false;
                     }
                     else
                     {
@@ -3022,28 +3490,141 @@ namespace winAsimilados.Controller
 
                     if (!empl.CURP.Length.Equals(18))
                     {
-                        contErroresExis++;
+                        if (nombre.Equals(true))
+                        {
+                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                            builder.AppendLine();
+                        }
+                        //contErroresExis++;
                         contErrCURP++;
                         string MensajeCURP = "CURP no cumple con el formato correcto, favor de verificar";
-                        contErrores++;
+                        //contErrores++;
                         validaCURP = 0;
                         builder.Append(MensajeCURP);
                         builder.AppendLine();
+                        nombre = false;
                     }
                     else
                     {
                         validaCURP = 1;
                     }
 
+                    if (empl.cuenta.Length < 10)
+                    {
+                        if (nombre.Equals(true))
+                        {
+                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                            builder.AppendLine();
+                        }
+                        contErrCuenta++;
+                        validaCuenta = 0;
+                        string mensajeCuenta = "Cuenta no cumple con el formato correcto, debe tener al menos 10 dígitos.";
+                        builder.Append(mensajeCuenta);
+                        builder.AppendLine();
+                        nombre = false;
+                    }else if (empl.cuenta.Length > 10)
+                    {
+                        if (nombre.Equals(true))
+                        {
+                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                            builder.AppendLine();
+                        }
+                        contErrCuenta++;
+                        validaCuenta = 0;
+                        string mensajeCuenta = "Cuenta no cumple con el formato correcto, debe tener al máximo 10 dígitos.";
+                        builder.Append(mensajeCuenta);
+                        builder.AppendLine();
+                        nombre = false;
+                    }
+                    else
+                    {
+                        validaCuenta++;
+                    }
+
+                    if (empl.clabe_bancaria.Length < 18)
+                    {
+                        if (nombre.Equals(true))
+                        {
+                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                            builder.AppendLine();
+                        }
+                        contErrCLABE++;
+                        validaCLABE = 0;
+                        string mensaje = "CLABE no cumple con el formato correcto, debe tener al menos 18 dígitos.";
+                        builder.Append(mensaje);
+                        builder.AppendLine();
+                        nombre = false;
+                    }else if (empl.clabe_bancaria.Length > 18)
+                    {
+                        if (nombre.Equals(true))
+                        {
+                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                            builder.AppendLine();
+                        }
+                        contErrCLABE++;
+                        validaCLABE = 0;
+                        string mensaje = "CLABE no cumple con el formato correcto, debe tener al máximo 18 dígitos.";
+                        builder.Append(mensaje);
+                        builder.AppendLine();
+                        nombre = false;
+                    }
+                    else
+                    {
+                        validaCLABE++;
+                    }
+                    if (empl.banco.Equals(null) || empl.banco.Equals("0"))
+                    {
+                        if (nombre.Equals(true))
+                        {
+                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                            builder.AppendLine();
+                        }
+                        contErrBanco++;
+                        validaBanco = 0;
+                        string mensaje = "Banco no definido.";
+                        builder.Append(mensaje);
+                        builder.AppendLine();
+                        nombre = false;
+                    }
+                    else
+                    {
+                        validaBanco++;
+                    }
+
+                    if (empl.cve_banco.Equals(null) || empl.cve_banco.Equals("0"))
+                    {
+                        if (nombre.Equals(true))
+                        {
+                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                            builder.AppendLine();
+                        }
+                        contErrCVE++;
+                        validaCVE = 0;
+                        string mensaje = "CVE Banco no definido.";
+                        builder.Append(mensaje);
+                        builder.AppendLine();
+                        nombre = false;
+                    }
+                    else
+                    {
+                        validaCVE++;
+                    }
+
                     if (ReaderEmpl.Read())
                     {
-                        contErrores++;                    
+                        if (nombre.Equals(true))
+                        {
+                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                            builder.AppendLine();
+                        }
+                        contErroresExis++;
                         string MensajeExiste = "El empleado ya fue registrado anteriormete.";
                         //XtraMessageBox.Show("El empleado:" + empleado.Nombre + "\nYa se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ReaderEmpl.Close();
                         ValidaExiste = 0;
                         builder.Append(MensajeExiste);
                         builder.AppendLine();
+                        nombre = false;
                     }
                     else
                     {
@@ -3051,28 +3632,38 @@ namespace winAsimilados.Controller
                         ValidaExiste = 1;
                     }
 
-                    builder.Append("*************************************************************************************************");
-                    builder.AppendLine();
+
+                    if (cont + 1 <= list.Count() && contErroresExis > 0 || contErrRFC > 0 || contErrCURP > 0 || contErrCuenta > 0 || contErrCLABE > 0 || contErrCVE > 0 || contErrBanco > 0)
+                    {
+                        builder.Append("*************************************************************************************************");
+                        builder.AppendLine();
+                    }
+                    nombre = true;
+
                     //XtraMessageBox.Show("No existe");
 
-                    if (validaCURP == 1 && ValidaRFC == 1 && ValidaExiste == 1)
+                    if (validaCURP == 1 && ValidaRFC == 1 && ValidaExiste == 1 && validaBanco == 1 && validaCLABE == 1 && validaCVE == 1 && validaCuenta == 1)
                     {
                         if (queryInsertaEmpl.ExecuteNonQuery().Equals(1))
                         {
                             contExito++;
+                            validaCURP = 0;
+                            ValidaRFC = 0;
+                            ValidaExiste = 0;
+                            validaCuenta = 0;
+                            validaBanco = 0;
+                            validaCLABE = 0;
+                            validaCVE = 0;
                             //XtraMessageBox.Show("¡Empleado agregado satisfactoriamente!", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
                         }
                     }
                         
                     if (cont == list.Count())
                     {
-                        if (contErrores > 0)
+                        if (contErroresExis >0 || contErrRFC > 0 || contErrCURP > 0 || contErrCuenta > 0 || contErrCLABE > 0 || contErrCVE > 0 || contErrBanco > 0)
                         {
                             //Aqui se genera el log
-                            TotalErrores = contErroresExis + contErrRFC + contErrCURP;
+                            TotalErrores = contErroresExis + contErrRFC + contErrCURP + contErrCuenta + contErrCLABE + contErrCVE + contErrBanco;
                             builder.AppendLine();
                             builder.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
                             splashManager.CloseWaitForm();
@@ -3084,7 +3675,7 @@ namespace winAsimilados.Controller
                             proceso.StartInfo.FileName = path;
                             proceso.Start();
                         }
-                        else
+                        if (contErroresExis == 0 && contErrRFC == 0 && contErrCURP == 0 && contErrCuenta == 0 && contErrCLABE == 0 && contErrCVE == 0 && contErrBanco == 0 && contExito > 0)
                         {
                             splashManager.CloseWaitForm();
                             XtraMessageBox.Show("¡Carga masiva terminada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -3095,12 +3686,82 @@ namespace winAsimilados.Controller
             }
             catch (Exception e)
             {
-               
-                XtraMessageBox.Show(e.Message + "\nError Controlador: AgregaEmpleadoMasivo()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 splashManager.CloseWaitForm();
+                XtraMessageBox.Show(e.Message + "\nError Controlador: AgregaEmpleadoMasivo()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
+        public void ListaEmpleadosCaratula(GridControl grid, string seleccion)
+        {
+            try
+            {
 
+                if (seleccion.Equals("E00000"))
+                {
+                    SqlCommand queryListaEmpleados = N.Conexion.PerformConnection().CreateCommand();
+                    queryListaEmpleados.CommandText = @"SELECT
+                [idempleado]
+                ,cast([NUM_EMPLEADO] as int) as [NUM_EMPLEADO]
+                ,[NOMBRE] 
+                ,[RFC]   
+                ,[CURP]
+                ,[PERIODICIDAD_PAGO] as [Periodicidad Pago]
+                ,0.00 as [Ingresos]
+                ,0.00 as [LimInferior]
+                ,0.00 as [ExLimInf]
+                ,0.00 as [PerExLimInf]
+                ,0.00 as [ImpMarg]
+                ,0.00 as [CF]
+                ,0.00 as [ISR]
+                ,0.00 as [Sub]
+                ,0.00 as [ISR]
+                ,0.00 as [Bruto]
+                ,'Pago a Asimilados' as [Descripcion]
+                from EMPLEADOS";
+
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                    dataAdapter.SelectCommand = queryListaEmpleados;
+                    DataSet dataSet = new DataSet();
+                    dataAdapter.Fill(dataSet);
+                    grid.DataSource = dataSet.Tables[0];
+                }
+                else
+                {
+
+                    SqlCommand queryListaEmpleados = N.Conexion.PerformConnection().CreateCommand();
+                    queryListaEmpleados.CommandText = @"SELECT
+                    [idempleado]
+                    ,cast([NUM_EMPLEADO] as int) as [NUM_EMPLEADO]
+                    ,[NOMBRE] 
+                    ,[RFC]   
+                    ,[CURP]
+                    ,[PERIODICIDAD_PAGO] as [Periodicidad Pago]
+                    ,0.00 as [Ingresos]
+                    ,0.00 as [LimInferior]
+                    ,0.00 as [ExLimInf]
+                    ,0.00 as [PerExLimInf]
+                    ,0.00 as [ImpMarg]
+                    ,0.00 as [CF]
+                    ,0.00 as [ISR]
+                    ,0.00 as [Sub]
+                    ,0.00 as [ISR]
+                    ,0.00 as [Bruto]
+                    ,'Pago a Asimilados' as [Descripcion]
+                    from EMPLEADOS WHERE ID_EMPRESA = @IDE";
+                    queryListaEmpleados.Parameters.AddWithValue("@IDE", seleccion);
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                    dataAdapter.SelectCommand = queryListaEmpleados;
+                    DataSet dataSet = new DataSet();
+                    dataAdapter.Fill(dataSet);
+                    grid.DataSource = dataSet.Tables[0];
+                }
+
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ListaCaratula()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public void ListaEmpleadosNomiMasiv(GridControl grid)
         {
             try
@@ -3116,6 +3777,10 @@ namespace winAsimilados.Controller
                 ,0.00 as [Ingresos]
                 ,0.00 as [ISR]
                 ,0.00 as [Neto]
+                ,'Pago a Asimilados' as [Descripcion]
+                ,GETDATE() as [Fecha Aplicacion]
+                ,GETDATE() as [Fecha Inicio Periodo]
+                ,GETDATE() as [Fecha Fin Periodo]
                 from EMPLEADOS 
                 inner join [BSNOMINAS].[dbo].[PeriodicidadPago] as Peri 
                 on EMPLEADOS.PERIODICIDAD_PAGO = Peri.c_PeriodicidadPago";

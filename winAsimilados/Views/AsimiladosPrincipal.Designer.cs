@@ -95,6 +95,7 @@
             this.accordionControlElement9 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlEditaUsuario = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
+            this.accordionControlTablasCalc = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpleados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -661,7 +662,9 @@
             // 
             this.accordionControlElement8.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionCambiarEmpresa,
-            this.accordionControlElement7});
+            this.accordionControlElement7,
+            this.accordionControlTablasCalc});
+            this.accordionControlElement8.Expanded = true;
             this.accordionControlElement8.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement8.ImageOptions.Image")));
             this.accordionControlElement8.Name = "accordionControlElement8";
             this.accordionControlElement8.Text = "Opciones";
@@ -703,6 +706,14 @@
             // splashScreenManager1
             // 
             this.splashScreenManager1.ClosingDelay = 500;
+            // 
+            // accordionControlTablasCalc
+            // 
+            this.accordionControlTablasCalc.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement10.ImageOptions.Image")));
+            this.accordionControlTablasCalc.Name = "accordionControlTablasCalc";
+            this.accordionControlTablasCalc.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlTablasCalc.Text = "Tablas Calculo SUB/ISR";
+            this.accordionControlTablasCalc.Click += new System.EventHandler(this.accordionControlTablasCalc_Click);
             // 
             // AsimiladosPrincipal
             // 
@@ -802,5 +813,6 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement7;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement9;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlEditaUsuario;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlTablasCalc;
     }
 }

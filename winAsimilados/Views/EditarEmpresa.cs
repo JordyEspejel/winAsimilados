@@ -27,6 +27,7 @@ namespace winAsimilados.Views
         string calle, municipio, colonia, regimen, recursos, nomina, numInt, numExt, RegPat, puesto;
         string Estado, CodPost;
         string RutaCer, RutaKey, Pass;
+        string cuenta;
 
         private void TxtEmpresa_EditValueChanged(object sender, EventArgs e)
         {
@@ -105,6 +106,11 @@ namespace winAsimilados.Views
         private void TxtFevFinVig_EditValueChanged(object sender, EventArgs e)
         {
             parametros.FECHA_VENCIMIENTO_CERTIFICADO = Convert.ToDateTime(TxtFevFinVig.Text);
+        }
+
+        private void TxtCuenta_EditValueChanged(object sender, EventArgs e)
+        {
+            cuenta = TxtCuenta.Text;
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
@@ -274,11 +280,27 @@ namespace winAsimilados.Views
             {
                 parametros.CLAVE_CERTIFICADO = TxtPassKey.Text;
             }
+            if (cuenta.Equals(""))
+            {
+                XtraMessageBox.Show("Campo Cuenta Bancaría no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (cuenta.Length < 10)
+            {
+                XtraMessageBox.Show("Campo Cuenta Bancaría debe tener al menos 10 dígitos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (cuenta.Length > 10)
+            {
+                XtraMessageBox.Show("Campo Cuenta Bancaría debe tener máximo 10 dígitos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                parametros.cuentaOrigen = cuenta;
+            }
             #endregion
             if (Empresa.empresa != null && Empresa.RFC != null && parametros.RegistroPatronal != null && parametros.REGIMEN != null && parametros.ORIGEN_RECURSOS != null
             && parametros.RIESGO_PUESTO != null && parametros.TIPO_NOMINA != null && parametros.Calle != null && parametros.ESTADO != null && parametros.MUNICIPIO != null
             && parametros.CODIGO_POSTAL != null && parametros.COLONIA != null && parametros.ARCHIVO_CER != null && parametros.ARCHIVO_KEY != null
-            && parametros.CLAVE_CERTIFICADO != null && ValRegPat.Equals(true))
+            && parametros.CLAVE_CERTIFICADO != null && ValRegPat.Equals(true) && parametros.cuentaOrigen != null)
             {
                 DialogResult result = XtraMessageBox.Show("¿Desea actualizar la información?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -482,6 +504,8 @@ namespace winAsimilados.Views
                 TxtSerie.Text = parametros.NUMERO_CERTIFICADO;
                 TxtFecIniVig.Text = parametros.FECHA_INICIO_CERTIFICADO.ToString("dd/MM/yyyy");
                 TxtFevFinVig.Text = parametros.FECHA_VENCIMIENTO_CERTIFICADO.ToString("dd/MM/yyyy");
+                TxtCuenta.Text = parametros.cuentaOrigen;
+                TxtCuenta.ReadOnly = true;
             }
             catch (Exception ex)
             {
@@ -516,6 +540,7 @@ namespace winAsimilados.Views
             TxtCP.ReadOnly = false;
             LookUpCol.ReadOnly = false;
             TxtPassKey.ReadOnly = false;
+            TxtCuenta.ReadOnly = false;
             layoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             layoutControlItem24.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
         }
@@ -570,6 +595,7 @@ namespace winAsimilados.Views
             TxtCP.ReadOnly = true;
             LookUpCol.ReadOnly = true;
             TxtPassKey.ReadOnly = true;
+            TxtCuenta.ReadOnly = true;
             layoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             layoutControlItem24.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
         }

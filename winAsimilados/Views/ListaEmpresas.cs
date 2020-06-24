@@ -16,6 +16,7 @@ namespace winAsimilados.Views
 {
     public partial class ListaEmpresas : Form
     {
+        string bd = C.Conexion.PerformConnection().Database;
         C.Controller Controlador = new C.Controller();
         E.Empresa empresa = new E.Empresa();
         bool salida;
@@ -116,7 +117,7 @@ namespace winAsimilados.Views
 
         private void ListaEmpresas_Load(object sender, EventArgs e)
         {
-            if (Controlador.GetAdminUsuario(Properties.Settings.Default.Usuario.ToString().ToUpper()).Equals(true))
+            if (Controlador.GetAdminUsuario(Properties.Settings.Default.Usuario.ToString().ToUpper(), bd, true).Equals(true))
             {
                 layoutControlOpciones.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             }

@@ -212,3 +212,4 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\ja\DevExpre
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\ru\DevExpress.XtraScheduler.v18.1.Core.resources.dll
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.AgregarUsuario.resources
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.EditarUsuario.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.TablasCalculo.resources

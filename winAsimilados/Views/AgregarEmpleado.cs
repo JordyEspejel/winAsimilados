@@ -16,7 +16,7 @@ namespace winAsimilados.Views
 {
     public partial class AgregarEmpleado : Form
     {
-        string nombre, CURP, RFC, peri;
+        string nombre, CURP, RFC, peri, cuenta, clabe, cve,banco, empresa, idEmpr, numEmpl;
         C.Controller Controlador = new C.Controller();
 
         private void lookUpEdit2_EditValueChanged(object sender, EventArgs e)
@@ -44,6 +44,13 @@ namespace winAsimilados.Views
             nombre = TxtNombreEmpl.Text.ToUpper();
             RFC = TxtRFC.Text.ToUpper();
             CURP = TxtCURP.Text.ToUpper();
+            cuenta = TxtCuenta.Text;
+            clabe = TxtCLABE.Text;
+            banco = TxtBanco.Text;
+            cve = TxtCVE.Text;
+            empresa = TxtEmpresa.Text;
+            idEmpr = TxtIDProv.Text;
+            numEmpl = TxtNumEmpl.Text;
 
             if (nombre == "")
             {
@@ -52,6 +59,15 @@ namespace winAsimilados.Views
             else
             {
                 empleado.Nombre = nombre;
+            }
+
+            if (numEmpl.Equals(""))
+            {
+                XtraMessageBox.Show("El campo # Empleado no puede estar vacio", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                empleado.NumEmpl = numEmpl;
             }
 
             if (RFC == "")
@@ -95,11 +111,79 @@ namespace winAsimilados.Views
                 empleado.Periodicidad = peri;
             }
 
-            if (empleado.RFC != null && empleado.Nombre != null && empleado.CURP != null && empleado.Periodicidad != null)
+            if (cuenta.Equals(""))
+            {
+                XtraMessageBox.Show("El campo cuenta no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }else if (cuenta.Length < 10)
+            {
+                XtraMessageBox.Show("Cuenta no cumple con el formato correcto, debe contener al menos 10 digitos.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }else if (cuenta.Length > 10)
+            {
+                XtraMessageBox.Show("Cuenta no cumple con el formato correcto, debe contener máximo 10 dígitos.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                empleado.cuenta = cuenta;
+            }
+
+            if (clabe.Equals(""))
+            {
+                XtraMessageBox.Show("El campo CLABE no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }else if (clabe.Length < 18)
+            {
+                XtraMessageBox.Show("CLABE no cumple con el formato correcto, debe contener al menos 18 dígitos.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }else if (clabe.Length > 18)
+            {
+                XtraMessageBox.Show("CLABE no cumple con el formato correcto, debe contener máximo 18 dígitos.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                empleado.clabe_bancaria = clabe;
+            }
+
+            if (banco.Equals(""))
+            {
+                XtraMessageBox.Show("El campo banco no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                empleado.banco = banco;
+            }
+
+            if (cve.Equals(""))
+            {
+                XtraMessageBox.Show("El campo CVE no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                empleado.cve_banco = cve;
+            }
+
+            if (empresa.Equals(""))
+            {
+                XtraMessageBox.Show("El campo Empresa no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                empleado.empresa = empresa;
+            }
+
+            if (idEmpr.Equals(""))
+            {
+                
+                    XtraMessageBox.Show("El campo ID Layout no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                empleado.idEmpresa = idEmpr;
+            }
+
+
+            if (empleado.RFC != null && empleado.Nombre != null && empleado.CURP != null && empleado.Periodicidad != null && empleado.cuenta != null && empleado.clabe_bancaria != null && empleado.banco != null && empleado.cve_banco != null && empleado.empresa != null && empleado.idEmpresa != null && empleado.NumEmpl != null)
             {
                 //XtraMessageBox.Show("Nombre:" + nombre + "\nRFC:" + RFC + "\nCURP:" + CURP + "\nPeriodicidad:" + peri, "mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                if (XtraMessageBox.Show("¿Desea Agregar al empleado?:\n" + empleado.Nombre.ToString() + "\n\nRFC:" + empleado.RFC.ToString() + "\n\nCURP:" + empleado.CURP.ToString() + "\n\nPeriodicidad pago:" + lookUpEdit2.Text + "\n\nFavor de verificar los datos.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (XtraMessageBox.Show("¿Desea Agregar al empleado?:\n" + empleado.Nombre.ToString()/* + "\n\nRFC:" + empleado.RFC.ToString() + "\n\nCURP:" + empleado.CURP.ToString() + "\n\nPeriodicidad pago:" + lookUpEdit2.Text +*/ + "\n\nFavor de verificar los datos.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     Controlador.AgregaEmpleado(empleado);
                 }

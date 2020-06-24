@@ -118,6 +118,7 @@
             this.GridViewEmpl.GridControl = this.GridControlEmpl;
             this.GridViewEmpl.Name = "GridViewEmpl";
             this.GridViewEmpl.OptionsView.ShowAutoFilterRow = true;
+            this.GridViewEmpl.OptionsView.ShowGroupPanel = false;
             // 
             // colidempleado
             // 
@@ -126,6 +127,7 @@
             // 
             // colNUM_EMPLEADO
             // 
+            this.colNUM_EMPLEADO.Caption = "# Empleado";
             this.colNUM_EMPLEADO.FieldName = "NUM_EMPLEADO";
             this.colNUM_EMPLEADO.Name = "colNUM_EMPLEADO";
             this.colNUM_EMPLEADO.Visible = true;
@@ -133,6 +135,7 @@
             // 
             // colNOMBRE
             // 
+            this.colNOMBRE.Caption = "Nombre";
             this.colNOMBRE.FieldName = "NOMBRE";
             this.colNOMBRE.Name = "colNOMBRE";
             this.colNOMBRE.Visible = true;
@@ -140,6 +143,7 @@
             // 
             // colRFC
             // 
+            this.colRFC.Caption = "RFC";
             this.colRFC.FieldName = "RFC";
             this.colRFC.Name = "colRFC";
             this.colRFC.Visible = true;
@@ -147,6 +151,7 @@
             // 
             // colCURP
             // 
+            this.colCURP.Caption = "CURP";
             this.colCURP.FieldName = "CURP";
             this.colCURP.Name = "colCURP";
             this.colCURP.Visible = true;
@@ -154,6 +159,7 @@
             // 
             // colPERIODICIDAD_PAGO
             // 
+            this.colPERIODICIDAD_PAGO.Caption = "Periodicidad Pago";
             this.colPERIODICIDAD_PAGO.ColumnEdit = this.repositoryItemLookUpEdit1;
             this.colPERIODICIDAD_PAGO.FieldName = "PERIODICIDAD_PAGO";
             this.colPERIODICIDAD_PAGO.Name = "colPERIODICIDAD_PAGO";

@@ -12,6 +12,7 @@ using C = winAsimilados.Controller;
 using D = soprclscomp;
 using DevExpress.XtraEditors;
 using V = winAsimilados.Views;
+using System.Security.Cryptography;
 
 namespace winAsimilados.Views
 {
@@ -38,6 +39,7 @@ namespace winAsimilados.Views
             listadoEmpresas = listado;
             if (listadoEmpresas.Equals(true))
             {
+                var estado = C.Conexion.PerformConnection().State;
                 C.Conexion.PerformConnection().Open();
             }
         }

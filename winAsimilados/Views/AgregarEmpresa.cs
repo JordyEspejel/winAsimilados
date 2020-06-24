@@ -29,6 +29,7 @@ namespace winAsimilados.Views
         string calle, municipio, colonia, regimen, recursos, nomina, numInt, numExt, RegPat, puesto;
         string Estado,CodPost;
         string RutaCer, RutaKey, Pass;
+        string cuenta;
 
         private void TxtNomEmpresa_EditValueChanged(object sender, EventArgs e)
         {
@@ -57,6 +58,11 @@ namespace winAsimilados.Views
         private void LookUpRegFis_EditValueChanged(object sender, EventArgs e)
         {
             regimen = LookUpRegFis.EditValue.ToString();
+        }
+
+        private void TxtCuenta_EditValueChanged(object sender, EventArgs e)
+        {
+            cuenta = TxtCuenta.Text;
         }
 
         public AgregarEmpresa(bool listado)
@@ -245,6 +251,24 @@ namespace winAsimilados.Views
             {
                 Parametros.CLAVE_CERTIFICADO = TxtPssw.Text;
             }
+
+            if (cuenta.Equals(""))
+            {
+                XtraMessageBox.Show("Campo Cuenta Bancaría no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (cuenta.Length < 10)
+            {
+                XtraMessageBox.Show("Campo Cuenta Bancaría debe tener al menos 10 dígitos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (cuenta.Length > 10)
+            {
+                XtraMessageBox.Show("Campo Cuenta Bancaría debe tener máximo 10 dígitos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Parametros.cuentaOrigen = cuenta;
+            }
+
             #endregion
             //XtraMessageBox.Show(Empresa.empresa.ToString() + "\n" + Empresa.RFC.ToString() + "\n" + Parametros.RegistroPatronal.ToString () + "\n" +
             //    Parametros.ORIGEN_RECURSOS.ToString() + "\n" + Parametros.RIESGO_PUESTO.ToString() + "\n" + Parametros.TIPO_NOMINA.ToString() + "\n" +
@@ -256,7 +280,7 @@ namespace winAsimilados.Views
             if (Empresa.empresa != null && Empresa.RFC != null && Parametros.RegistroPatronal != null && Parametros.REGIMEN != null && Parametros.ORIGEN_RECURSOS != null
                 && Parametros.RIESGO_PUESTO != null && Parametros.TIPO_NOMINA != null && Parametros.Calle != null && Parametros.ESTADO != null && Parametros.MUNICIPIO != null
                 && Parametros.CODIGO_POSTAL != null && Parametros.COLONIA != null && Parametros.ARCHIVO_CER != null && Parametros.ARCHIVO_KEY != null
-                && Parametros.CLAVE_CERTIFICADO != null && ValRegPat.Equals(true) )
+                && Parametros.CLAVE_CERTIFICADO != null && ValRegPat.Equals(true) && Parametros.cuentaOrigen != null)
             {
                 if (RFC.Length < 12 || RFC.Length > 13)
                 {

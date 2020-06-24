@@ -176,9 +176,6 @@
   <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlJlZ2ltZW5GaXNjYWwiPjxGaWVsZCBOYW1lPSJjX1JlZ2ltZW5GaXNjYWwiIFR5cGU9IlVua25vd24iIC8+PEZpZWxkIE5hbWU9IkRlc2NyaXBjaW9uIiBUeXBlPSJVbmtub3duIiAvPjwvVmlldz48VmlldyBOYW1lPSJPcmlnZW5SZWN1cnNvIj48RmllbGQgTmFtZT0iY19PcmlnZW5SZWN1cnNvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRlc2NyaXBjaW9uIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjxWaWV3IE5hbWU9IlJpZXNnb1B1ZXN0byI+PEZpZWxkIE5hbWU9ImNfUmllc2dvUHVlc3RvIiBUeXBlPSJVbmtub3duIiAvPjxGaWVsZCBOYW1lPSJEZXNjcmlwY2lvbiIgVHlwZT0iVW5rbm93biIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iVGlwb05vbWluYSI+PEZpZWxkIE5hbWU9ImNfVGlwb05vbWluYSIgVHlwZT0iVW5rbm93biIgLz48RmllbGQgTmFtZT0iRGVzY3JpcGNpb24iIFR5cGU9IlVua25vd24iIC8+PC9WaWV3PjxWaWV3IE5hbWU9IkVzdGFkb3NfUmVwdWJsaWNhIj48RmllbGQgTmFtZT0iY19Fc3RhZG8iIFR5cGU9IlVua25vd24iIC8+PEZpZWxkIE5hbWU9Ik5vbWJyZSBkZWwgZXN0YWRvIiBUeXBlPSJVbmtub3duIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
-  </data>
   <metadata name="origenRecursoBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>358, 17</value>
   </metadata>
@@ -275,6 +272,12 @@
   <metadata name="estados_RepublicaBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 56</value>
   </metadata>
+  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlJlZ2ltZW5GaXNjYWwiPjxGaWVsZCBOYW1lPSJjX1JlZ2ltZW5GaXNjYWwiIFR5cGU9IlVua25vd24iIC8+PEZpZWxkIE5hbWU9IkRlc2NyaXBjaW9uIiBUeXBlPSJVbmtub3duIiAvPjwvVmlldz48VmlldyBOYW1lPSJPcmlnZW5SZWN1cnNvIj48RmllbGQgTmFtZT0iY19PcmlnZW5SZWN1cnNvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRlc2NyaXBjaW9uIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjxWaWV3IE5hbWU9IlJpZXNnb1B1ZXN0byI+PEZpZWxkIE5hbWU9ImNfUmllc2dvUHVlc3RvIiBUeXBlPSJVbmtub3duIiAvPjxGaWVsZCBOYW1lPSJEZXNjcmlwY2lvbiIgVHlwZT0iVW5rbm93biIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iVGlwb05vbWluYSI+PEZpZWxkIE5hbWU9ImNfVGlwb05vbWluYSIgVHlwZT0iVW5rbm93biIgLz48RmllbGQgTmFtZT0iRGVzY3JpcGNpb24iIFR5cGU9IlVua25vd24iIC8+PC9WaWV3PjxWaWV3IE5hbWU9IkVzdGFkb3NfUmVwdWJsaWNhIj48RmllbGQgTmFtZT0iY19Fc3RhZG8iIFR5cGU9IlVua25vd24iIC8+PEZpZWxkIE5hbWU9Ik5vbWJyZSBkZWwgZXN0YWRvIiBUeXBlPSJVbmtub3duIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+  </data>
   <metadata name="xtraOpenFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>248, 56</value>
   </metadata>

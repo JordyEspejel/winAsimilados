@@ -202,5 +202,12 @@ namespace winAsimilados.Entities
             get { return _DescripcionNomina; }
             set { _DescripcionNomina = value; }
         }
+
+        private string _cuentaOrigen;
+        public string cuentaOrigen
+        {
+            get { return _cuentaOrigen; }
+            set { _cuentaOrigen = value; }
+        }
     }
 }
