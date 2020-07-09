@@ -27,7 +27,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>Asimilados.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -157,17 +157,25 @@
     <Compile Include="Controller\ConnectionStringManager.cs" />
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Data\Conexion.cs" />
+    <Compile Include="Entities\Banco.cs" />
+    <Compile Include="Entities\ClaveProdServ.cs" />
+    <Compile Include="Entities\ListaBancos.cs" />
     <Compile Include="Entities\BitacoraXML.cs" />
     <Compile Include="Entities\Calculo.cs" />
     <Compile Include="Entities\CancelarUUID.cs" />
+    <Compile Include="Entities\Caratula.cs" />
+    <Compile Include="Entities\CaratulaPago.cs" />
+    <Compile Include="Entities\ClienteAsimilado.cs" />
     <Compile Include="Entities\Colonia.cs" />
+    <Compile Include="Entities\DetalleLayout.cs" />
     <Compile Include="Entities\Empleado.cs" />
     <Compile Include="Entities\Empresa.cs" />
     <Compile Include="Entities\FolioXML.cs" />
     <Compile Include="Entities\ISR15.cs" />
     <Compile Include="Entities\ISR30.cs" />
     <Compile Include="Entities\ISR7.cs" />
-    <Compile Include="Entities\LayoutBanorte.cs" />
+    <Compile Include="Entities\Layout.cs" />
+    <Compile Include="Entities\ListaClaveProdServ.cs" />
     <Compile Include="Entities\Municipio.cs" />
     <Compile Include="Entities\Parametros.cs" />
     <Compile Include="Entities\SUB15.cs" />
@@ -227,6 +235,12 @@
     <Compile Include="Views\CancelarCFDI.Designer.cs">
       <DependentUpon>CancelarCFDI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditarCaratula.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditarCaratula.Designer.cs">
+      <DependentUpon>EditarCaratula.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditarEmpleados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +295,12 @@
     <Compile Include="Views\TablasCalculo.Designer.cs">
       <DependentUpon>TablasCalculo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\VerDetalleLayout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VerDetalleLayout.Designer.cs">
+      <DependentUpon>VerDetalleLayout.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\WaitForm1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,6 +339,9 @@
     <EmbeddedResource Include="Views\CancelarCFDI.resx">
       <DependentUpon>CancelarCFDI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditarCaratula.resx">
+      <DependentUpon>EditarCaratula.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\EditarEmpleados.resx">
       <DependentUpon>EditarEmpleados.cs</DependentUpon>
     </EmbeddedResource>
@@ -345,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TablasCalculo.resx">
       <DependentUpon>TablasCalculo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VerDetalleLayout.resx">
+      <DependentUpon>VerDetalleLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\WaitForm1.resx">
       <DependentUpon>WaitForm1.cs</DependentUpon>

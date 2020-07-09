@@ -17,6 +17,12 @@ namespace winAsimilados.Views
     public partial class AgregarEmpleado : Form
     {
         string nombre, CURP, RFC, peri, cuenta, clabe, cve,banco, empresa, idEmpr, numEmpl;
+
+        private void TxtIDProv_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
         C.Controller Controlador = new C.Controller();
 
         private void lookUpEdit2_EditValueChanged(object sender, EventArgs e)
@@ -143,7 +149,7 @@ namespace winAsimilados.Views
 
             if (banco.Equals(""))
             {
-                XtraMessageBox.Show("El campo banco no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("El campo bancoEmpleado no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

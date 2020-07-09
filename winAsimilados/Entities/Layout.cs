@@ -6,7 +6,7 @@ using System.Text;
 
 namespace winAsimilados.Entities
 {
-    class LayoutBanorte
+    class Layout
     {
         private string _ID;
         private int _numEmpl;
@@ -15,6 +15,11 @@ namespace winAsimilados.Entities
         private string _CURPEmpleado;
         private string _PeriPago;
         private decimal _ingresos;
+        private decimal _LimInferior;
+        private decimal _ExLimInf;
+        private decimal _PerExLimInf;
+        private decimal _ImpMarg;
+        private decimal _CF;
         private decimal _ISR;
         private decimal _ingresosNet;
         private string _operacion;
@@ -33,10 +38,19 @@ namespace winAsimilados.Entities
         private string _claveTipoCambio;
         private DateTime _fechaCreacion;
         private string _estatus;
-        private string _banco;
+        private string _bancoEmpleado;
+        private decimal _Sub;
         private string _caratula;
-
-
+        private string _IDEmpresa;
+        private string _periodo;
+        private string _IDCliente;
+        private string _layout;
+        private string _tipoPago;
+        private decimal _otrosConceptos;
+        private decimal _depositoNeto;
+        private string _cuentaBancaria;
+        private string _CLABE;
+        private string _bancoEmpresaPago;
 
 
         public string ID { get { return _ID; } set { _ID = value; } }
@@ -48,31 +62,32 @@ namespace winAsimilados.Entities
 
         public string periPago { get { return _PeriPago; } set { _PeriPago = value; } }
 
-        private decimal _LimInferior;
+        public string bancoEmpresaPago { get { return _bancoEmpresaPago; }  set { _bancoEmpresaPago = value; } }
+
         public decimal LimInferior
         {
             get { return _LimInferior; }
             set { _LimInferior = value; }
         }
-        private decimal _ExLimInf;
+
         public decimal ExLimInf
         {
             get { return _ExLimInf; }
             set { _ExLimInf = value; }
         }
-        private decimal _PerExLimInf;
+
         public decimal PerExLimInf
         {
             get { return _PerExLimInf; }
             set { _PerExLimInf = value; }
         }
-        private decimal _ImpMarg;
+
         public decimal ImpMarg
         {
             get { return _ImpMarg; }
             set { _ImpMarg = value; }
         }
-        private decimal _CF;
+
         public decimal CF
         {
             get { return _CF; }
@@ -83,7 +98,7 @@ namespace winAsimilados.Entities
             get { return _ISR; }
             set { _ISR = value; }
         }
-        private decimal _Sub;
+
         public decimal Sub
         {
             get { return _Sub; }
@@ -107,8 +122,23 @@ namespace winAsimilados.Entities
         public DateTime fechaCreacion { get { return _fechaCreacion; } set { _fechaCreacion = value; } }
         public string estatus { get { return _estatus; } set { _estatus = value; } }
 
-        public string banco { get { return _banco; } set { _banco = value; } }
+        public string bancoEmpleado { get { return _bancoEmpleado; } set { _bancoEmpleado = value; } }
 
         public string caratula { get { return _caratula; } set { _caratula = value; } }
+
+        public string IDEmpresa { get { return _IDEmpresa; } set { _IDEmpresa = value; } }
+        public string IDCliente { get { return _IDCliente; } set { _IDCliente = value; } }
+
+        public string periodo { get { return _periodo; } set { _periodo = value; } }
+
+        public string layout { get { return _layout; } set { _layout = value; } }
+
+        public string tipoPago { get { return _tipoPago; } set { _tipoPago = value; } }
+
+        public decimal otrosConceptos{ get { return _otrosConceptos; } set { _otrosConceptos = value; } }
+        public decimal depositoNeto{ get { return _depositoNeto; } set { _depositoNeto = value; } }
+        public string cuentaBancaria{ get { return _cuentaBancaria; } set { _cuentaBancaria = value; } }
+        public string CLABE{ get { return _CLABE; } set { _CLABE = value; } }
+
     }
 }

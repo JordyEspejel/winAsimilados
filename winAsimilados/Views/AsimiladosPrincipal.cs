@@ -16,6 +16,7 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors;
 using DevExpress.XtraWaitForm;
 using System.IO;
+using DevExpress.Persistent.Base;
 
 namespace winAsimilados.Views
 {
@@ -23,6 +24,17 @@ namespace winAsimilados.Views
     {
         C.Controller controller = new C.Controller();
         bool salida = true;
+        string numEmpl;
+        string nombre;
+        string rfc;
+        string curp;
+        string peri;
+        string cuenta;
+        string clabe;
+        string cve;
+        string banco;
+        string empresa;
+        string idEmpr;
         public AsimiladosPrincipal()
         {
             InitializeComponent();
@@ -282,7 +294,7 @@ namespace winAsimilados.Views
 
         private void BtnAgreEmpreUnit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            AgregarEmpresa agregarEmpresa = new AgregarEmpresa(false);
+            AgregarEmpresa agregarEmpresa = new AgregarEmpresa(false, splashScreenManager1);
             var frm = Application.OpenForms.OfType<AgregarEmpresa>().FirstOrDefault();
             if (frm != null)
             {
@@ -335,7 +347,7 @@ namespace winAsimilados.Views
 
         private void BtnEdiarEmpresa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            EditarEmpresa editarEmpresa = new EditarEmpresa(lblRFC.Caption);
+            EditarEmpresa editarEmpresa = new EditarEmpresa(lblRFC.Caption, splashScreenManager1);
             var frm = Application.OpenForms.OfType<EditarEmpresa>().FirstOrDefault();
             if (frm != null)
             {
@@ -484,9 +496,6 @@ namespace winAsimilados.Views
 
         private void accordionAgregaEmplMasiv_Click(object sender, EventArgs e)
         {
-
-            splashScreenManager1.ShowWaitForm();
-
             E.Empleado empl = new E.Empleado();
             C.Controller Controlador = new C.Controller();
             OpenFileDialog dialog = new OpenFileDialog();
@@ -500,6 +509,11 @@ namespace winAsimilados.Views
             {
                 try
                 {
+                    if (splashScreenManager1.IsSplashFormVisible.Equals(false))
+                    {
+                        splashScreenManager1.ShowWaitForm();
+                    }
+
                     Excel.Application xlApp;
                     Excel.Workbook xlWorkBook;
                     Excel.Worksheet xlWorkSheet;
@@ -524,21 +538,87 @@ namespace winAsimilados.Views
                     for (rCnt = 2; rCnt <= rw; rCnt++)
                     {
                         cont++;
-                        string numEmpl = (range.Cells[rCnt, "A"] as Excel.Range).Value2.ToString();
-                        string nombre = (range.Cells[rCnt, "B"] as Excel.Range).Value2.ToString();
-                        string rfc = (range.Cells[rCnt, "C"] as Excel.Range).Value2.ToString();
-                        string curp = (range.Cells[rCnt, "D"] as Excel.Range).Value2.ToString();
-                        string peri = (range.Cells[rCnt, "E"] as Excel.Range).Value2.ToString();
-                        string cuenta = (range.Cells[rCnt, "F"] as Excel.Range).Value2.ToString();
-                        string clabe = (range.Cells[rCnt, "G"] as Excel.Range).Value2.ToString();
-                        string cve = (range.Cells[rCnt, "H"] as Excel.Range).Value2.ToString();
-                        string banco = (range.Cells[rCnt, "I"] as Excel.Range).Value2.ToString();
-                        string empresa = (range.Cells[rCnt, "J"] as Excel.Range).Value2.ToString();
-                        string idEmpr = (range.Cells[rCnt, "K"] as Excel.Range).Value2.ToString();
+                        try
+                        {
+                            numEmpl = (range.Cells[rCnt, "A"] as Excel.Range).Value2.ToString();
+                        }
+                        catch (Exception Empl)
+                        {
+                            numEmpl = "";
+                        }
+                        try
+                        {
+                            nombre = (range.Cells[rCnt, "B"] as Excel.Range).Value2.ToString();
+                        }catch(Exception Nombre)
+                        {
+                            nombre = "";
+                        }
+                        try
+                        {
+                            rfc = (range.Cells[rCnt, "C"] as Excel.Range).Value2.ToString();
+                        }catch(Exception RFC)
+                        {
+                            rfc = "";
+                        }
+                        try
+                        {
+                            curp = (range.Cells[rCnt, "D"] as Excel.Range).Value2.ToString();
+                        }catch (Exception CURP)
+                        {
+                            curp = "";
+                        }
+                        try
+                        {
+                            peri = (range.Cells[rCnt, "E"] as Excel.Range).Value2.ToString();
+                            peri = peri.ToUpper();
+                        }
+                        catch (Exception PERI)
+                        {
+                            peri = "";
+                        }
+                        try
+                        {
+                            cuenta = (range.Cells[rCnt, "F"] as Excel.Range).Value2.ToString();
+                        }catch (Exception CUENTA)
+                        {
+                            cuenta = "";
+                        }
+                        try
+                        {
+                            clabe = (range.Cells[rCnt, "G"] as Excel.Range).Value2.ToString();
+                        }catch (Exception CLABE)
+                        {
+                            clabe = "";
+                        }
+                        try
+                        {
+                            cve = (range.Cells[rCnt, "H"] as Excel.Range).Value2.ToString();
+                        }catch (Exception CVE)
+                        {
+                            cve = "";
+                        }
+                        try
+                        {
+                            banco = (range.Cells[rCnt, "I"] as Excel.Range).Value2.ToString();
+                        }catch (Exception BANCO)
+                        {
+                            banco = "";
+                        }
+                        try
+                        {
+                            empresa = (range.Cells[rCnt, "J"] as Excel.Range).Value2.ToString();
+                        }catch (Exception EMPRESA)
+                        {
+                            empresa = "";
+                        }
+                        try
+                        {
+                            idEmpr = (range.Cells[rCnt, "K"] as Excel.Range).Value2.ToString();
+                        }catch(Exception IDEMPR)
+                        {
+                            idEmpr = "";
+                        }
 
-  
-
-                        peri = peri.ToUpper();
 
                         if (peri.Equals("SEMANAL"))
                         {
@@ -586,8 +666,6 @@ namespace winAsimilados.Views
                         empleado = Empleado.ToArray();
 
                     }
-
-                    Controlador.AgregarEmpleadoMasivo(Empleado, empl, splashScreenManager1);
                     string nombreArchivo = xlWorkBook.Name;
                     nombreArchivo = Path.GetFileNameWithoutExtension(nombreArchivo);
                     //xlWorkBook.Close(true, "Formato_Masivo_Importe_Empleados", null);
@@ -598,17 +676,26 @@ namespace winAsimilados.Views
                     Marshal.ReleaseComObject(xlWorkSheet);
                     Marshal.ReleaseComObject(xlWorkBook);
                     Marshal.ReleaseComObject(xlApp);
+                    Controlador.AgregarEmpleadoMasivo(Empleado, empl, splashScreenManager1);
+
                 }
                 catch (Exception leerExcel)
                 {
-                    splashScreenManager1.CloseWaitForm();
+                    if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                    {
+                        splashScreenManager1.CloseWaitForm();
+                    }
+
                     XtraMessageBox.Show(leerExcel.Message + "\nCarga masiva empleados", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
  
             }
             else
             {
-                splashScreenManager1.CloseWaitForm();
+                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                {
+                    splashScreenManager1.CloseWaitForm();
+                }
             }
         }
 
@@ -638,7 +725,9 @@ namespace winAsimilados.Views
 
         private void accordionAgregarEmpresaUnitario_Click(object sender, EventArgs e)
         {
-            AgregarEmpresa agregarEmpresa = new AgregarEmpresa(false);
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Modulo Empresa...");
+            AgregarEmpresa agregarEmpresa = new AgregarEmpresa(false, splashScreenManager1);
             var frm = Application.OpenForms.OfType<AgregarEmpresa>().FirstOrDefault();
             if (frm != null)
             {
@@ -663,7 +752,9 @@ namespace winAsimilados.Views
 
         private void accordionEditaEmpresa_Click(object sender, EventArgs e)
         {
-            EditarEmpresa editarEmpresa = new EditarEmpresa(lblRFC.Caption);
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Modulo Editar Empresa...");
+            EditarEmpresa editarEmpresa = new EditarEmpresa(lblRFC.Caption, splashScreenManager1);
             var frm = Application.OpenForms.OfType<EditarEmpresa>().FirstOrDefault();
             if (frm != null)
             {
@@ -689,7 +780,10 @@ namespace winAsimilados.Views
 
         private void accordionNomiAsim_Click(object sender, EventArgs e)
         {
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Modulo Nómina...");
             NominaAsimilados nominaAsimilados = new NominaAsimilados(lblEmpresa.Caption, lblRFC.Caption, splashScreenManager1);
+
             var frm = Application.OpenForms.OfType<NominaAsimilados>().FirstOrDefault();
             if (frm != null)
             {
@@ -706,11 +800,9 @@ namespace winAsimilados.Views
             }
             else
             {
-                splashScreenManager1.ShowWaitForm();
-                splashScreenManager1.SetWaitFormCaption("Cargando Modulo Nómina...");
                 nominaAsimilados.Location = new Point(270, 60);
                 nominaAsimilados.Size = PanelPrincipal.Size;
-                nominaAsimilados.Show();
+                nominaAsimilados.ShowDialog();
                 nominaAsimilados.BringToFront();
             }
         }
@@ -783,6 +875,8 @@ namespace winAsimilados.Views
 
         private void accordionBitacora_Click(object sender, EventArgs e)
         {
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Modulo Bitacora...");
             Bitacora bitacora = new Bitacora(splashScreenManager1);
             var frm = Application.OpenForms.OfType<Bitacora>().FirstOrDefault();
             if (frm != null)
@@ -800,8 +894,6 @@ namespace winAsimilados.Views
             }
             else
             {
-                splashScreenManager1.ShowWaitForm();
-                splashScreenManager1.SetWaitFormCaption("Cargando Modulo Bitacora...");
                 bitacora.Location = new Point(270, 60);
                 bitacora.Size = PanelPrincipal.Size;
                 bitacora.Show();

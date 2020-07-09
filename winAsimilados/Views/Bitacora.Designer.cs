@@ -35,8 +35,6 @@
             DevExpress.DataAccess.Sql.Table table1 = new DevExpress.DataAccess.Sql.Table();
             DevExpress.DataAccess.Sql.Column column2 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression2 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Column column3 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression3 = new DevExpress.DataAccess.Sql.ColumnExpression();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bitacora));
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery1 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery2 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
@@ -115,12 +113,11 @@
             this.lookUpEditUser.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpEditUser.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("usuaIDUsua", "Usuario", 87, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("usuaNombre", "Nombre Usuario", 73, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("usuaTipUsu", "Tipo Usuario", 71, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("usuarioID", "usuario ID", 72, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("usuarioNombre", "usuario Nombre", 85, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lookUpEditUser.Properties.DataSource = this.segUsuariosBindingSource;
-            this.lookUpEditUser.Properties.DisplayMember = "usuaNombre";
-            this.lookUpEditUser.Properties.ValueMember = "usuaIDUsua";
+            this.lookUpEditUser.Properties.DisplayMember = "usuarioNombre";
+            this.lookUpEditUser.Properties.ValueMember = "usuarioID";
             this.lookUpEditUser.Size = new System.Drawing.Size(362, 20);
             this.lookUpEditUser.StyleController = this.layoutControl1;
             this.lookUpEditUser.TabIndex = 6;
@@ -133,22 +130,18 @@
             // 
             // sqlDataSourceSopradeUsers
             // 
-            this.sqlDataSourceSopradeUsers.ConnectionName = "localhost_dbDatosNomina_ConnectionNube";
+            this.sqlDataSourceSopradeUsers.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataSourceSopradeUsers.Name = "sqlDataSourceSopradeUsers";
-            columnExpression1.ColumnName = "usuaIDUsua";
-            table1.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"400\" />";
-            table1.Name = "segUsuarios";
+            columnExpression1.ColumnName = "usuarioID";
+            table1.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"210\" />";
+            table1.Name = "UsuariosSistema";
             columnExpression1.Table = table1;
             column1.Expression = columnExpression1;
-            columnExpression2.ColumnName = "usuaNombre";
+            columnExpression2.ColumnName = "usuarioNombre";
             columnExpression2.Table = table1;
             column2.Expression = columnExpression2;
-            columnExpression3.ColumnName = "usuaTipUsu";
-            columnExpression3.Table = table1;
-            column3.Expression = columnExpression3;
             selectQuery1.Columns.Add(column1);
             selectQuery1.Columns.Add(column2);
-            selectQuery1.Columns.Add(column3);
             selectQuery1.Name = "segUsuarios";
             selectQuery1.Tables.Add(table1);
             this.sqlDataSourceSopradeUsers.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
@@ -335,10 +328,10 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSourceSopradeUsers;
-        private System.Windows.Forms.BindingSource segUsuariosBindingSource;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
+        private System.Windows.Forms.BindingSource segUsuariosBindingSource;
     }
 }

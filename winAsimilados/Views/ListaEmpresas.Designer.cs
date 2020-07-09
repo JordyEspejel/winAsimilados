@@ -52,6 +52,7 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlOpciones = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
             ((System.ComponentModel.ISupportInitialize)(this.GridEmpresas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpresas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -285,6 +286,10 @@
             this.emptySpaceItem2.Size = new System.Drawing.Size(445, 42);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // splashScreenManager1
+            // 
+            this.splashScreenManager1.ClosingDelay = 500;
+            // 
             // ListaEmpresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -344,5 +349,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem btnAgregar;
         private DevExpress.XtraBars.BarButtonItem btnEditar;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
     }
 }

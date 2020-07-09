@@ -117,43 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="segUsuariosBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>222, 56</value>
+  <metadata name="empresaPagaAsimiladosBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>153, 17</value>
   </metadata>
-  <metadata name="sqlDataSourceSopradeUsers.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
-  <data name="sqlDataSourceSopradeUsers.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZVNvcHJhZGVVc2VycyI+PFZpZXcgTmFtZT0ic2VnVXN1YXJpb3MiPjxGaWVsZCBOYW1lPSJ1c3VhcmlvSUQiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0idXN1YXJpb05vbWJyZSIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkVtcHJlc2FQYWdhQXNpbWlsYWRvcyI+PEZpZWxkIE5hbWU9IklERW1wcmVzYSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJSYXpvblNvY2lhbCIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48VmlldyBOYW1lPSJDbGllbnRlc0FzaW1pbGFkb3MiPjxGaWVsZCBOYW1lPSJJRCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJDTElFTlRFIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
   </data>
-  <metadata name="queryBindingSourceYear.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>700, 17</value>
-  </metadata>
-  <metadata name="sqlDataSourceAnio.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>545, 17</value>
-  </metadata>
-  <metadata name="queryBindingSourceMonth.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>347, 17</value>
-  </metadata>
-  <metadata name="sqlDataSourceMes.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>194, 17</value>
-  </metadata>
-  <data name="customSqlQuery2.Sql" xml:space="preserve">
-    <value>select
-1 as ID, 'Enero' as Mes
-union  select 2 as ID, 'Febrero' as Mes
-union  select 3 as ID, 'Marzo' as Mes
-union  select 4 as ID, 'Abril' as Mes
-union  select 5 as ID, 'Mayo' as Mes
-union  select 6 as ID, 'Junio' as Mes
-union  select 7 as ID, 'Julio' as Mes
-union  select 8 as ID, 'Agosto' as Mes
-union  select 9 as ID, 'Septiembre' as Mes
-union  select 10 as ID, 'Octubre' as Mes
-union  select 11 as ID, 'Noviembre' as Mes
-union  select 12 as ID, 'Diciembre' as Mes</value>
-  </data>
-  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <metadata name="clientesAsimiladosBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>416, 17</value>
   </metadata>
 </root>

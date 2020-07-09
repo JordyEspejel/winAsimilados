@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -175,12 +176,20 @@ namespace winAsimilados.Entities
             set { _idEmpresa = value; }
         }
 
-        private DateTime _fechaAplicacion;
-        private DateTime _fecIniPeri;
-        private DateTime _fecFinPeri;
-        public DateTime fechaAplicacion { get { return _fechaAplicacion; } set { _fechaAplicacion = value; } }
-        public DateTime fecIniPeri { get { return _fecIniPeri; } set { _fecIniPeri = value; } }
-        public DateTime fecFinPeri { get { return _fecFinPeri; } set { _fecFinPeri = value; } }
+        private string _tipoPago;
+
+        public string tipoPago
+        {
+            get { return _tipoPago; }
+            set { _tipoPago = value; }
+        }
+
+        //private DateTime _fechaAplicacion;
+        //private DateTime _fecIniPeri;
+        //private DateTime _fecFinPeri;
+        //public DateTime fechaAplicacion { get { return _fechaAplicacion; } set { _fechaAplicacion = value; } }
+        //public DateTime fecIniPeri { get { return _fecIniPeri; } set { _fecIniPeri = value; } }
+        //public DateTime fecFinPeri { get { return _fecFinPeri; } set { _fecFinPeri = value; } }
     }
 }
 

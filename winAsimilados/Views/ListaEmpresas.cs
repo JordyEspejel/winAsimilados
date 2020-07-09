@@ -103,9 +103,12 @@ namespace winAsimilados.Views
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+
             btnAgregaEmpresa = true;
             this.Dispose();
-            AgregarEmpresa agregarEmpresa = new AgregarEmpresa(true);
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Modulo Empresa...");
+            AgregarEmpresa agregarEmpresa = new AgregarEmpresa(true, splashScreenManager1);
             agregarEmpresa.StartPosition = FormStartPosition.CenterScreen;
             agregarEmpresa.Show();
         }

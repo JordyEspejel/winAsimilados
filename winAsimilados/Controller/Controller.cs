@@ -32,6 +32,8 @@ using XSDToXML.Utils;
 using System.Net;
 using DevExpress.Utils.Extensions;
 using DevExpress.XtraRichEdit.Layout.Engine;
+using DevExpress.XtraCharts.Designer.Native;
+using DevExpress.XtraVerticalGrid;
 
 namespace winAsimilados.Controller
 {
@@ -256,8 +258,7 @@ namespace winAsimilados.Controller
                             byte[] bCer = File.ReadAllBytes(pathCer);
                             byte[] bKey = File.ReadAllBytes(pathKey);
                             /* servicio de prueba 
-                            * ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
-                            */                                                                                                                                                                            //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
+                            * ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);                        */                                                                                                                                                                            //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
                             ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.cancelar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", uuid, bCer, bKey, pass);
                             ServicioTimbradoProduccion.CFDIResultadoCancelacion[] resultados = respuesta.resultados;
                             if (respuesta.status.Equals(200))
@@ -273,36 +274,17 @@ namespace winAsimilados.Controller
                                     {
                                         bitacora.StatusSAT = "En Proceso de Cancelación";
                                         ActualizaFolio(bitacora.UUID, "En proceso de Cancelación");
-                                        InsertaBitacora(bitacora);
-                                        //XtraMessageBoxArgs args = new XtraMessageBoxArgs();
-                                        //args.AutoCloseOptions.Delay = 5000;
-                                        //args.Caption = "Cancelar CFDI: " + item.UUID;
-                                        //args.Text = resultados[0].mensaje;
-                                        //args.Buttons = new DialogResult[] { DialogResult.OK, DialogResult.Cancel };
-                                        //XtraMessageBox.Show(args).ToString();
-                                        //ServicioTimbradoProduccion.CFDICancelacion respuesta2 = portTypeClient.cancelar("testing@solucionfactible.com", "timbrado.SF.16672", uuid, bCer, bKey, pass);
-                                        //ServicioTimbradoProduccion.CFDIResultadoCancelacion[] resultados2 = respuesta.resultados;
-                                        //if (respuesta2.status.Equals(200))
-                                        //{
-                                        //    if (resultados2[0].statusUUID.Equals("201"))
-                                        //    {
-                                        //        bitacora.StatusSAT = "Cancelado";
-                                        //        ActualizaFolio(resultados2[0].uuid, "Cancelado");
-                                        //        InsertaBitacora(bitacora);
-                                        //        XtraMessageBox.Show(resultados2[0].mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        //    }
-                                        //}
+                                        InsertaBitacora(bitacora, splashScreenManager);
                                         XtraMessageBox.Show(resultados[0].mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
                                     else if (resultados[0].statusUUID.Equals("201"))
                                     {
                                         bitacora.StatusSAT = "Cancelado";
                                         ActualizaFolio(resultados[0].uuid, "Cancelado");
-                                        InsertaBitacora(bitacora);
+                                        InsertaBitacora(bitacora, splashScreenManager);
                                         LogCancelacion(resultados[0].uuid, resultados[0].mensaje);
                                         XtraMessageBox.Show("¡Folio: " + resultados[0].uuid + " Cancelado con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
-
                                     else// (resultados[0].statusUUID !="202" || resultados[0].statusUUID != "201" || resultados[0].statusUUID != "211")
                                     {
                                         if (splashScreenManager.IsSplashFormVisible.Equals(true))
@@ -330,7 +312,9 @@ namespace winAsimilados.Controller
                                     splashScreenManager.CloseWaitForm();
                                 }
                                 //XtraMessageBox.Show(resultados[0].mensaje);
-                                XtraMessageBox.Show(respuesta.mensaje);
+                                XtraMessageBox.Show(respuesta.mensaje, "Error",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
                             }
 
                             if (cont.Equals(list.Count()))
@@ -880,7 +864,7 @@ namespace winAsimilados.Controller
             builder.Append("********************************   Erroes Encontrados  ******************************************" + "\r\n");
             builder.AppendLine();
 
-
+            //inicia foreach
             foreach (var item in Lista)
             {
                 cont++;
@@ -1175,9 +1159,32 @@ namespace winAsimilados.Controller
                                 Bitacora.UUID = cFDIResultados[0].uuid;
                                 Bitacora.StatusSAT = "Vigente";
                                 Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
-
-                                InsertaFolio(Folio);
-                                InsertaBitacora(Bitacora);
+                                splashScreenManager1.SetWaitFormCaption("Guardando Movimiento..");
+                                string resultFolio = InsertaFolio(Folio, splashScreenManager1);
+                                if (resultFolio != "true")
+                                {
+                                    error++;
+                                    builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                    builder.AppendLine();
+                                    builder.Append("Error al intentar guardar información de timbrado\nUUID de timbre: " + cFDIResultados[0].uuid);
+                                    builder.AppendLine();
+                                    builder.Append("Error: " + resultFolio);
+                                    builder.AppendLine();
+                                    //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en la base de datos.\n");
+                                }
+                                splashScreenManager1.SetWaitFormCaption("Guardando Historico..");
+                                string resultBitacora = InsertaBitacora(Bitacora, splashScreenManager1);
+                                if (resultBitacora != "true")
+                                {
+                                    error++;
+                                    builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                    builder.AppendLine();
+                                    builder.Append("Error al intentar guardar información de timbrado en bitacora\nUUID de timbre: " + cFDIResultados[0].uuid);
+                                    builder.AppendLine();
+                                    builder.Append("Error: " + resultBitacora);
+                                    builder.AppendLine();
+                                    //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en bitacora de la base de datos.\n");
+                                }
                             }
                             else
                             {
@@ -1207,6 +1214,7 @@ namespace winAsimilados.Controller
                                 splashScreenManager1.CloseWaitForm();
                             }
                             XtraMessageBox.Show(cFDIResultados[0].mensaje);
+                            return;
                         }
                         //XtraMessageBox.Show(cFDIResultados.ToString());
                         //System.IO.File.WriteAllText(pathXml,);
@@ -1218,15 +1226,22 @@ namespace winAsimilados.Controller
                             splashScreenManager1.CloseWaitForm();
                         }
                         XtraMessageBox.Show(timbrado.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
 
                     if (genPDF.Equals(true))
                     {
                         splashScreenManager1.SetWaitFormCaption("Generando PDF..");
-
-                        if (LeerXMLModAsim(pathArchivoXML, pathArchivoXMLF, splashScreenManager1).Equals(!true))
+                        string resultPDF = LeerXMLModAsim(pathArchivoXML, pathArchivoXMLF, splashScreenManager1);
+                        if (resultPDF != "true")
                         {
-                            XtraMessageBox.Show("Hubo un error al generar archivo pdf", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //XtraMessageBox.Show("Hubo un error al generar archivo pdf", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            error++;
+                            builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                            builder.AppendLine();
+                            builder.Append("Error al generar PDF: " + resultPDF);
+                            builder.AppendLine();
+                            builder.AppendLine();
                         }
                     }
                     //splashScreenManager1.CloseWaitForm();
@@ -1239,6 +1254,7 @@ namespace winAsimilados.Controller
                         splashScreenManager1.CloseWaitForm();
                     }
                     XtraMessageBox.Show(genxml.Message + "Error controlaor: GenXMLMasiv()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
                 if (cont + 1 == Lista.Count)
@@ -1277,7 +1293,7 @@ namespace winAsimilados.Controller
                                 splashScreenManager1.CloseWaitForm();
                             }
 
-                            XtraMessageBox.Show(feach.Message + "\nError controlador: foreach GenxmlMasiv()",
+                            XtraMessageBox.Show(feach.Message + "\nError controlador: foreach GenxmlMasiv(Generalog)",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
@@ -1290,7 +1306,7 @@ namespace winAsimilados.Controller
                         XtraMessageBox.Show("¡Nóminas generadas con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-            }
+            } //termina foreach
 
         }
         private void GenXML(Comprobante comprobante, string pathArchivoXML)
@@ -1317,10 +1333,11 @@ namespace winAsimilados.Controller
             System.IO.File.WriteAllText(pathArchivoXML, pathXmlWrit);
         }
 
-        public void InsertaBitacora(Object _P)
+        public string InsertaBitacora(Object _P, SplashScreenManager splash)
         {
             try
             {
+                string resultado;
                 E.BitacoraXML bitacora = (E.BitacoraXML)_P;
                 SqlCommand queryInserta = N.Conexion.PerformConnection().CreateCommand();
                 queryInserta.CommandText = @"INSERT INTO [dbo].[BitacoraXML]
@@ -1348,17 +1365,34 @@ namespace winAsimilados.Controller
                 ",'" + bitacora.IPMovimiento + "'" +
                 ",'" + bitacora.Usuario.ToUpper() + "')";
 
-                queryInserta.ExecuteNonQuery();
+                if (queryInserta.ExecuteNonQuery().Equals(1))
+                {
+                    resultado = "true";
+                    return resultado;
+                }
+                else
+                {
+                    resultado = "Error";
+                    return resultado;
+                }
 
             }catch(Exception e)
             {
-                XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaBitacora", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string resultado;
+                //if (splash.IsSplashFormVisible.Equals(true))
+                //{
+                //    splash.CloseWaitForm();
+                //}
+                //XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaBitacora", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                resultado = e.Message + "\nError Controlador: InsertaBitacora";
+                return resultado;
             }
         }
-        public void InsertaFolio(Object _P)
+        public string InsertaFolio(Object _P, SplashScreenManager splash)
         {
             try
             {
+                string resultado;
                 E.FolioXML folio = (E.FolioXML)_P;
                 SqlCommand queryInserta = N.Conexion.PerformConnection().CreateCommand();
                 queryInserta.CommandText = @"INSERT INTO [dbo].[FolioXML]
@@ -1386,11 +1420,29 @@ namespace winAsimilados.Controller
                 ",'" + folio.Empresa + "'" +
                 ",'" + folio.RFC + "')";
 
-                queryInserta.ExecuteNonQuery();
+                if (queryInserta.ExecuteNonQuery().Equals(1))
+                {
+                    resultado = "true";
+                    return resultado;
+                }
+                else
+                {
+                    resultado = "Error";
+                    return resultado;
+                }
+
+                
             }
             catch (Exception e)
             {
-                XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaFolio()", "Error" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string resultado;
+                //if (splash.IsSplashFormVisible.Equals(true))
+                //{
+                //    splash.CloseWaitForm();
+                //}
+                //XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaFolio()", "Error" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                resultado = e.Message + "\nError Controlador: InsertaFolio()";
+                return resultado;
             }
         }
         public string GetFolio()
@@ -1583,6 +1635,108 @@ namespace winAsimilados.Controller
             }catch(Exception e)
             {
                 XtraMessageBox.Show(e.Message + "Error controlador: GetParametros()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public E.ClienteAsimilado GetInfoCliente (string IDCliente)
+        {
+            try
+            {
+                E.ClienteAsimilado cliente = new E.ClienteAsimilado();
+
+                SqlCommand queryCliente = N.Conexion.PerformConnection().CreateCommand();
+                queryCliente.CommandText = @"SELECT [ID]
+                  ,[CLIENTE]
+                  ,[FECHA_ALTA _PRIMER PAGO]
+                  ,ISNULL([FECHA_BAJA], '') AS [FECHA_BAJA]
+                  ,[COMISIONISTA]
+                  ,[PORCENTAJE_ISN]
+                  ,[PORCENTAJE_COMISION]
+                  ,[TOTAL]
+                  ,[FACTURACION_CON IVA _SIN IVA]
+                  ,[RETENCION]
+                  ,[PERIODO_DE_PAGO]
+                  ,[ESTATUS]
+                  ,[EJECUTIVO_RESPONSABLE]
+                  ,[EMPRESA_PAGADORA_EMITE CFDI]
+                  ,[PROVEEDOR]
+                  ,ISNULL([EMPRESA_QUE_FACTUR_A _CLIENTE], 'SIN DEFINIR') AS [EMPRESA_QUE_FACTUR_A _CLIENTE]
+                  ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE1], 'SIN DEFINIR') AS [EMPRESA_QUE_FACTURA_A_CLIENTE1]
+                  ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE2], 'SIN DEFINIR') AS [EMPRESA_QUE_FACTURA_A_CLIENTE2]
+                  ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE3], 'SIN DEFINIR') AS [EMPRESA_QUE_FACTURA_A_CLIENTE3]
+                  ,[Metodo_Pago]
+                  ,ISNULL([Observaciones], '') AS [Observaciones]
+                  ,[Forma_Pago]
+                  FROM [BSNOMINAS].[dbo].[ClientesAsimilados]  
+                  WHERE [ID] = @ID";
+                queryCliente.Parameters.AddWithValue("ID", IDCliente);
+                SqlDataReader readerCliente;
+                readerCliente = queryCliente.ExecuteReader();
+
+                if (readerCliente.Read())
+                {
+                    cliente.ID = readerCliente.GetString(0);
+                    cliente.CLIENTE = readerCliente.GetString(1);
+                    cliente.FECHA_ALTA_PRIMER_PAGO = readerCliente.GetDateTime(2);
+                    cliente.FECHA_BAJA = readerCliente.GetDateTime(3);
+                    cliente.COMISIONISTA = readerCliente.GetString(4);
+                    cliente.PORCENTAJE_ISN = Convert.ToDecimal(readerCliente.GetDecimal(5));
+                    cliente.PORCENTAJE_COMISION = Convert.ToDecimal(readerCliente.GetDecimal(6));
+                    cliente.TOTAL = Convert.ToDecimal(readerCliente.GetDecimal(7));
+                    cliente.FACTURACION_CON_IVA_SIN_IVA = readerCliente.GetString(8);
+                    cliente.RETENCION = readerCliente.GetString(9);
+                    cliente.PERIODO_DE_PAGO = readerCliente.GetString(10);
+                    cliente.ESTATUS = readerCliente.GetString(11);
+                    cliente.EJECUTIVO_RESPONSABLE = readerCliente.GetString(12);
+                    cliente.EMPRESA_PAGADORA_EMITE_CFDI = readerCliente.GetString(13);
+                    cliente.PROVEEDOR = readerCliente.GetString(14);
+                    cliente.EMPRESA_QUE_FACTUR_A_CLIENTE = readerCliente.GetString(15);
+                    cliente.EMPRESA_QUE_FACTURA_A_CLIENTE1 = readerCliente.GetString(16);
+                    cliente.EMPRESA_QUE_FACTURA_A_CLIENTE2 =  readerCliente.GetString(17);
+                    cliente.EMPRESA_QUE_FACTURA_A_CLIENTE3 =  readerCliente.GetString(18);
+                    cliente.Metodo_Pago = readerCliente.GetString(19);
+                    cliente.Observaciones = readerCliente.GetString(20);
+                    cliente.Forma_Pago = readerCliente.GetString(21);
+                }
+                readerCliente.Close();
+                return cliente;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "Error controlador: GetInfoCLiente()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public E.Banco GetInfoBanco(string nombreBanco, string empresa)
+        {
+            try
+            {
+                E.Banco banco = new E.Banco();
+
+                SqlCommand queryInfoBanco = N.Conexion.PerformConnection().CreateCommand();
+                queryInfoBanco.CommandText = @"
+                  SELECT
+                  [Cuenta]
+                 ,[CLABE]
+                  FROM [BSNOMINAS].[dbo].[EmpresaPagaAsimilados]
+                  WHERE [IDEmpresa] =  @ID AND [Banco] = @nombreBanco";
+                queryInfoBanco.Parameters.AddWithValue("@ID", empresa);
+                queryInfoBanco.Parameters.AddWithValue("@nombreBanco", nombreBanco);
+
+                SqlDataReader readerInfo = queryInfoBanco.ExecuteReader();
+                if (readerInfo.Read())
+                {
+                    banco.cuenta = readerInfo.GetString(0);
+                    banco.clabe = readerInfo.GetString(1);
+                }
+
+
+                return banco;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "Error controlador: GetInfoBanco()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -2253,10 +2407,12 @@ namespace winAsimilados.Controller
                 ,ISNULL([BANCO], 'No Definido') as [BANCO]
                 ,ISNULL([EMPRESA], 'No Definido')as [EMPRESA]
                 ,ISNULL([ID_EMPRESA], 'No Definido') as [ID EMPRESA]
+                ,ISNULL([TIPO_PAGO], 'No Definido') as [TIPO_PAGO]
                 from EMPLEADOS 
                 inner join [BSNOMINAS].[dbo].[PeriodicidadPago] as Peri
                 on EMPLEADOS.PERIODICIDAD_PAGO = Peri.c_PeriodicidadPago
-                where RFC = @RFC";
+                WHERE RFC = @RFC";
+                
                 queryEmpleado.Parameters.AddWithValue("@RFC", RFC);
 
                 SqlDataReader readerEmpleado;
@@ -2280,6 +2436,7 @@ namespace winAsimilados.Controller
                     empleado.banco = readerEmpleado.GetString(13);
                     empleado.empresa = readerEmpleado.GetString(14);
                     empleado.idEmpresa = readerEmpleado.GetString(15);
+                    empleado.tipoPago = readerEmpleado.GetString(16);
                 }
                 readerEmpleado.Close();
 
@@ -2412,6 +2569,101 @@ namespace winAsimilados.Controller
             catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: Lista Poblacion()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public List<E.ListaBancos> Bancos(string empresa, List<E.ListaBancos> bancos) 
+        {
+            try
+            {
+                SqlCommand queryBancos = N.Conexion.PerformConnection().CreateCommand();
+                queryBancos.CommandText = @"SELECT
+                [ID]
+                ,[Banco]
+                ,[Cuenta]
+                ,[CLABE]
+             FROM [BSNOMINAS].[dbo].[EmpresaPagaAsimilados]
+                WHERE IDEmpresa = @ID";
+                queryBancos.Parameters.AddWithValue("ID", empresa);
+
+                SqlDataReader readerBanco = queryBancos.ExecuteReader();
+                while (readerBanco.Read())
+                {
+                    bancos.Add(new E.ListaBancos
+                    {
+                        ID = readerBanco.GetInt32(0),
+                        Nombre = readerBanco.GetString(1),
+                        cuenta = readerBanco.GetString(2),
+                        CLABE = readerBanco.GetString(3)
+                    });
+                }
+                readerBanco.Close();
+                return bancos;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: Lista Bancos()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public List<E.ListaClaveProdServ> ClavesClientes(string cliente, List<E.ListaClaveProdServ> listaClaves)
+        {
+            try
+            {
+                SqlCommand getLista = N.Conexion.PerformConnection().CreateCommand();
+                getLista.CommandText = @"SELECT
+                [ClaveServProd]
+                --,[Concepto]
+                 FROM [BSNOMINAS].[dbo].[ClavesServCliente]
+                 WHERE [IDClte] = @cliente";
+                getLista.Parameters.AddWithValue("@cliente", cliente);
+
+                SqlDataReader readerLista;
+                readerLista = getLista.ExecuteReader();
+
+                while (readerLista.Read())
+                {
+                    listaClaves.Add(new E.ListaClaveProdServ
+                    {
+                        clave = readerLista.GetString(0),
+                        //descripcion = readerLista.GetString(1)
+                    });
+                }
+                readerLista.Close();
+                return listaClaves;
+            }catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ListaClavesServ()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public E.ClaveProdServ GetClaveProdServ (string clave)
+        {
+            try
+            {
+                E.ClaveProdServ claveProd = new E.ClaveProdServ();
+                SqlCommand getClave = N.Conexion.PerformConnection().CreateCommand();
+                getClave.CommandText = @"SELECT [c_ClaveProdServ]
+                  ,[Descripcion]
+                  FROM [BSNOMINAS].[dbo].[ClaveProdServ]
+                  WHERE [c_ClaveProdServ] = @clave";
+                getClave.Parameters.AddWithValue("@clave", clave);
+
+                SqlDataReader readerClave;
+                readerClave = getClave.ExecuteReader();
+
+                if (readerClave.Read())
+                {
+                    claveProd.clave = Convert.ToString(readerClave.GetDouble(0));
+                    claveProd.descripcion = readerClave.GetString(1);
+                }
+                readerClave.Close();
+                return claveProd;                   
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: GetClaveProdServ()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -3032,10 +3284,16 @@ namespace winAsimilados.Controller
             }
         }
 
-        public void GeneraLayoutBanorte(List<E.LayoutBanorte> ListaLayout /*,E.Parametros empresa*/)
+        public void GeneraLayoutBanorte(List<E.Layout> ListaLayout, string nombreLayout, SplashScreenManager splash /*,E.Parametros empresa*/)
         {
             try
             {
+                if (splash.IsSplashFormVisible.Equals(true))
+                {
+                    splash.SetWaitFormCaption("Generando Layout Pago..");
+                }
+
+                SqlCommand updateErrorLayout = N.Conexion.PerformConnection().CreateCommand();
                 int errorCuentaOrigen = 0, errorDestino = 0, cont = -1, exito = 0, errorImporte = 0, errorIDEmpresa = 0;
                 int validaCuentaOrigen = 0, validaDestino = 0, validaImporte = 0, validaIDEmpresa = 0;
                 string mensaje = "";
@@ -3057,14 +3315,14 @@ namespace winAsimilados.Controller
                     Directory.CreateDirectory(urlLayout);
                 }
 
-                string NombreArchivoLog ="GenLayout_" +Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
-                + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
-                + "-" + DateTime.Now.Second.ToString());
-                                string pathLog = Path.Combine(urlLog, NombreArchivoLog + ".txt");
+                string NombreArchivoLog = nombreLayout;
 
-                string NombreArchivoLayout = "Layout_" +Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
-                + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
-                + "-" + DateTime.Now.Second.ToString());
+                //string NombreArchivoLog ="ErrorGenLayout_" + nombreLayout +"_" +Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
+                //+ DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
+                //+ "-" + DateTime.Now.Second.ToString());
+                string pathLog = Path.Combine(urlLog, NombreArchivoLog + ".txt");
+
+                string NombreArchivoLayout = nombreLayout;
                                 string pathLayout = Path.Combine(urlLayout, NombreArchivoLayout + ".txt");
 
                 builderLog = new StringBuilder();
@@ -3092,7 +3350,9 @@ namespace winAsimilados.Controller
                             builderLog.Append(mensaje);
                             builderLog.AppendLine();
                             builderLog.AppendLine();
-                            sig = true;                            
+                            sig = true;
+                            updateErrorLayout.CommandText = @"UPDATE LayoutHistorico SET estatus = 'ERROR', descripcionError = '" + mensaje + "' where Layout = '" + item.layout + "' and numEmpl = '" + item.numEmpl + "'";
+                            updateErrorLayout.ExecuteNonQuery();
                         }
                         else if (item.cuentaOrigen.Length < 10)
                         {
@@ -3108,6 +3368,8 @@ namespace winAsimilados.Controller
                             builderLog.AppendLine();
                             builderLog.AppendLine();
                             sig = true;
+                            updateErrorLayout.CommandText = @"UPDATE LayoutHistorico SET estatus = 'ERROR', descripcionError = '" + mensaje + "' where Layout = '" + item.layout + "' and numEmpl = '" + item.numEmpl + "'";
+                            updateErrorLayout.ExecuteNonQuery();
                         }
                         else
                         {
@@ -3128,6 +3390,8 @@ namespace winAsimilados.Controller
                             builderLog.AppendLine();
                             builderLog.AppendLine();
                             sig = true;
+                            updateErrorLayout.CommandText = @"UPDATE LayoutHistorico SET estatus = 'ERROR', descripcionError = '" + mensaje + "' where Layout = '" + item.layout + "' and numEmpl = '" + item.numEmpl + "'";
+                            updateErrorLayout.ExecuteNonQuery();
                         }
                         else if (item.cuentaClaveDestino.Length > 18)
                         {
@@ -3143,6 +3407,8 @@ namespace winAsimilados.Controller
                             builderLog.AppendLine();
                             builderLog.AppendLine();
                             sig = true;
+                            updateErrorLayout.CommandText = @"UPDATE LayoutHistorico SET estatus = 'ERROR', descripcionError = '" + mensaje + "' where Layout = '" + item.layout + "' and numEmpl = '" + item.numEmpl + "'";
+                            updateErrorLayout.ExecuteNonQuery();
                         }
                         else if (item.cuentaClaveDestino.Equals("No Definido") || item.cuentaClaveDestino.Equals("0"))
                         {
@@ -3158,6 +3424,8 @@ namespace winAsimilados.Controller
                             builderLog.AppendLine();
                             builderLog.AppendLine();
                             sig = true;
+                            updateErrorLayout.CommandText = @"UPDATE LayoutHistorico SET estatus = 'ERROR', descripcionError = '" + mensaje + "' where Layout = '" + item.layout + "' and numEmpl = '" + item.numEmpl + "'";
+                            updateErrorLayout.ExecuteNonQuery();
                         }
                         else
                         {                            
@@ -3177,6 +3445,8 @@ namespace winAsimilados.Controller
                             builderLog.AppendLine();
                             builderLog.AppendLine();
                             sig = true;
+                            updateErrorLayout.CommandText = @"UPDATE LayoutHistorico SET estatus = 'ERROR', descripcionError = '" + mensaje + "' where Layout = '" + item.layout + "' and numEmpl = '" + item.numEmpl + "'";
+                            updateErrorLayout.ExecuteNonQuery();
                         }
                         else
                         {
@@ -3196,6 +3466,8 @@ namespace winAsimilados.Controller
                             builderLog.AppendLine();
                             builderLog.AppendLine();
                             sig = true;
+                            updateErrorLayout.CommandText = @"UPDATE LayoutHistorico SET estatus = 'ERROR', descripcionError = '" + mensaje + "' where Layout = '" + item.layout + "' and numEmpl = '" + item.numEmpl + "'";
+                            updateErrorLayout.ExecuteNonQuery();
                         }
                         else
                         {
@@ -3219,7 +3491,7 @@ namespace winAsimilados.Controller
 
                         if (exito > 0/* && errorDestino == 0 && errorCuentaOrigen == 0 && errorImporte == 0 && errorIDEmpresa == 0*/)
                         {
-                            builderLayout.Append(item.operacion + "\t" + item.claveID + "\t" + item.cuentaOrigen + "\t" + item.cuentaClaveDestino + "\t" + item.importe + "\t" + item.referencia + "\t" + item.descripcion + "\t" + item.RFCOrdenante + "\t" + item.IVA + "\t" + item.fechaAplicacion.ToString("yyyyMMdd") + "\t" + item.institucionPago + "\t" + item.claveTipoCambio);
+                            builderLayout.Append(item.operacion + "\t" + item.claveID + "\t" + item.cuentaOrigen + "\t" + item.cuentaClaveDestino + "\t" + item.importe + "\t" + item.referencia + "\t" + item.descripcion + "\t" + item.RFCOrdenante + "\t" + item.IVA + "\t" + item.fechaAplicacion.ToString("ddMMyyyy") + "\t" + item.institucionPago + "\t" + item.claveTipoCambio);
                             builderLayout.AppendLine();
                         }
 
@@ -3231,6 +3503,10 @@ namespace winAsimilados.Controller
                                 builderLog.AppendLine();
                                 builderLog.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
 
+                                if (splash.IsSplashFormVisible.Equals(true))
+                                {
+                                    splash.CloseWaitForm();
+                                }
                                 XtraMessageBox.Show("¡Layout generado con " + error + " errores registrados y "
                                 + exito + " registros con éxito! \n(Presione aceptar para ver errores)", "Mensaje"
                                 , MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -3257,7 +3533,10 @@ namespace winAsimilados.Controller
 
                             if (errorCuentaOrigen.Equals(0) && errorDestino.Equals(0) && exito > 0)
                             {
-
+                                if (splash.IsSplashFormVisible.Equals(true))
+                                {
+                                    splash.CloseWaitForm();
+                                }
                                 XtraMessageBox.Show("¡Layout generado con éxito! \n(Presione aceptar para ver Layout)", "Mensaje"
                                 , MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -3275,17 +3554,202 @@ namespace winAsimilados.Controller
                     }
                     catch(Exception lista)
                     {
+                        if (splash.IsSplashFormVisible.Equals(true))
+                        {
+                            splash.CloseWaitForm();
+                        }
                         XtraMessageBox.Show(lista.Message + "\nError Controlador: GeneraLayoutBanorte():Foreach():ListaLayout", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch(Exception e)
             {
+                if (splash.IsSplashFormVisible.Equals(true))
+                {
+                    splash.CloseWaitForm();
+                }
                 XtraMessageBox.Show(e.Message + "\nError Controlador:GeneraLayoutBanorte", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
-        public void InsertaLayout(List<E.LayoutBanorte> listaLayout/*, string BD*/)
+        public void InsertaCaratula(E.Caratula caratula, SplashScreenManager splash)
+        {
+            try
+            {
+                SqlCommand queryInsertaCaratula = N.Conexion.PerformConnection().CreateCommand();
+                queryInsertaCaratula.CommandText = @"INSERT INTO [dbo].[CaratulaPago]
+               ([Caratula]
+               ,[Layout]
+               ,[IDCliente]
+               ,[Cliente]
+               ,[IDEmpresa]
+               ,[Empresa]
+               ,[FechaCreacion]
+               ,[FechaAplicacion]
+               ,[FechaIniPeriodo]
+               ,[FechaFinPeriodo]
+               ,[TotalEmpleados]
+               ,[TotalPagoAsimilados]
+               ,[usuario]
+               ,[TipoPeri]
+               ,[AsimiSalarios]
+               ,[ProvAguinaldo]
+               ,[ProviVacaciones]
+               ,[ProviPrimVacacional]
+               ,[SubTotalIAS]
+               ,[ComisionServicio]
+               ,[ImpNomi]
+               ,[Total]
+               ,[IVA]
+               ,[RetencionIVA]
+               ,[TotalFactura]
+               ,[Ajuste]
+               ,[TotalDeposito]
+               ,[Banco]
+               ,[NumCuenta]
+               ,[CLABE]
+               ,[ClaveFacturacion]
+               ,[TipoPago]
+               ,[FormaPago]
+               ,[Observaciones]
+               ,[RutaLogo]
+               ,[Imagen])
+         VALUES
+               ('" + caratula.caratula + "'" +
+               ",'" + caratula.Layout + "'" +
+               ",'" + caratula.IDCliente + "'" +
+               ",'" + caratula.Cliente + "'" +
+               ",'" + caratula.IDEmpresa + "'" +
+               ",'" + caratula.Empresa + "'" +
+               "," + "GETDATE()" + "" +
+               ",'" + caratula.FechaAplicacion.ToString("yyyy-MM-dd") + "'" +
+               ",'" + caratula.FechaIniPeriodo.ToString("yyyy-MM-dd") + "'" +
+               ",'" + caratula.FechaFinPeriodo.ToString("yyyy-MM-dd") + "'" +
+               "," + caratula.TotalEmpleados + "" +
+               "," + caratula.TotalPagoAsimilados +"" +
+               ",'" + caratula.usuario + "'" +
+               ",'" + caratula.TipoPeri + "'" +
+               "," + caratula.AsimiSalarios + "" +
+               "," + caratula.ProvAguinaldo + "" +
+               "," + caratula.ProviVacaciones + "" +
+               "," + caratula.ProviPrimVacacional + "" +
+               "," + caratula.SubTotalIAS + "" +
+               "," + caratula.ComisionServicio + "" +
+               "," + caratula.ImpNomi + "" +
+               "," + caratula.Total + "" +
+               "," + caratula.IVA + "" +
+               "," + caratula.RetencionIVA + "" +
+               "," + caratula.TotalFactura + "" +
+               "," + caratula.Ajuste + "" +
+               "," + caratula.TotalDeposito + "" +
+               ",'" + caratula.Banco + "'" +
+               ",'" + caratula.NumCuenta + "'" +
+               ",'" + caratula.CLABE + "'" +
+               ",'" + caratula.ClaveFacturacion + "'" +
+               ",'" + caratula.TipoPago + "'" +
+               ",'" + caratula.FormaPago + "'" +
+               ",'" + caratula.Observaciones + "'" +
+               ",'" + caratula.RutaLogo + "'" +
+               ",'" + caratula.Imagen + "')";
+
+                queryInsertaCaratula.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                if (splash.IsSplashFormVisible.Equals(true))
+                {
+                    splash.CloseWaitForm();
+                }
+                XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaCaratula()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public bool ActualizaStatusCaratula(string caratula, string usuario)
+        {
+            try
+            {
+                SqlCommand actualizaStatus = N.Conexion.PerformConnection().CreateCommand();
+                actualizaStatus.CommandText = @"Update caratulapago
+                set Estatus = 'Pagado'
+                , FechaValidaPago = GETDATE()
+                , UsuarioPago = '" + usuario + "' " +
+                "where Caratula = '" + caratula + "'";
+
+                if (actualizaStatus.ExecuteNonQuery().Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ActualizaStatusCaratula()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public bool ActualizaCaratula(E.Caratula caratula, SplashScreenManager splash)
+        {
+            try
+            {
+                SqlCommand updateCaratula = N.Conexion.PerformConnection().CreateCommand();
+                updateCaratula.CommandText = @"UPDATE [dbo].[CaratulaPago]
+               SET 
+                  [IDCliente] = '" + caratula.IDCliente + "'" +
+                  ",[Cliente] = '" + caratula.Cliente + "'" +
+                  ",[IDEmpresa] = '" + caratula.IDEmpresa + "'" +
+                  ",[Empresa] = '" + caratula.Empresa + "'" +
+                  ",[FechaAplicacion] = '" + caratula.FechaAplicacion.ToString("yyyy-MM-dd") + "'" +
+                  ",[FechaIniPeriodo] = '" + caratula.FechaIniPeriodo.ToString("yyyy-MM-dd") + "'" +
+                  ",[FechaFinPeriodo] = '" + caratula.FechaFinPeriodo.ToString("yyyy-MM-dd") + "'" +
+                  ",[TotalEmpleados] = " + caratula.TotalEmpleados + "" +
+                  ",[TotalPagoAsimilados] = " + caratula.TotalPagoAsimilados + "" +
+                  ",[TipoPeri] = '" + caratula.TipoPeri + "'" +
+                  ",[AsimiSalarios] = " + caratula.AsimiSalarios + "" +
+                  ",[ProvAguinaldo] = " + caratula.ProvAguinaldo + "" +
+                  ",[ProviVacaciones] = " + caratula.ProviVacaciones + "" +
+                  ",[ProviPrimVacacional] = " + caratula.ProviPrimVacacional + "" +
+                  ",[SubTotalIAS] = " + caratula.SubTotalIAS + "" +
+                  ",[ComisionServicio] = " + caratula.ComisionServicio + "" +
+                  ",[ImpNomi] = " + caratula.ImpNomi + "" +
+                  ",[Total] =  " + caratula.Total + "" +
+                  ",[IVA] = " + caratula.IVA + "" +
+                  ",[RetencionIVA] = " + caratula.RetencionIVA + "" +
+                  ",[TotalFactura] = " + caratula.TotalFactura + "" +
+                  ",[Ajuste] = " + caratula.Ajuste + "" +
+                  ",[TotalDeposito] = " + caratula.TotalDeposito + "" +
+                  ",[Banco] = '" + caratula.Banco + "'" +
+                  ",[NumCuenta] = '" + caratula.NumCuenta + "'" +
+                  ",[CLABE] = '" + caratula.CLABE + "'" +
+                  ",[ClaveFacturacion] = '" + caratula.ClaveFacturacion + "'" +
+                  ",[TipoPago] = '" + caratula.TipoPago + "'" +
+                  ",[FormaPago] = '" + caratula.FormaPago + "'" +
+                  ",[Observaciones] = '" + caratula.Observaciones + "'" +
+                  ",[FechaModificacion] = " + "GETDATE()" + "" +
+                  ",[UsuarioModificacion] = '" + caratula.UsuarioModificacion + "'" +
+                  "WHERE ID = '" + caratula.ID + "'";
+
+                if (updateCaratula.ExecuteNonQuery().Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }catch (Exception e)
+            {
+                if (splash.IsSplashFormVisible.Equals(true))
+                {
+                    splash.CloseWaitForm();
+                }
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ActualizaCaratula()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public void InsertaLayout(List<E.Layout> listaLayout, SplashScreenManager splash/*, string BD*/)
         {
             try
             {
@@ -3298,8 +3762,8 @@ namespace winAsimilados.Controller
                 {
                     try
                     {
-
-                        queryInsertaLayout.CommandText = @"INSERT INTO [dbo].[LayoutBanorte]
+                        splash.SetWaitFormCaption("Guardando Movimientos..");
+                        queryInsertaLayout.CommandText = @"INSERT INTO [dbo].[LayoutHistorico]
                        ([numEmpl]
                        ,[nombreEmpleado]
                        ,[RFCEmpleado]
@@ -3329,9 +3793,19 @@ namespace winAsimilados.Controller
                        ,[claveTipoCambio]
                        ,[fechaCreacion]
                        --,[estatus]
-                       ,[Banco]
+                       ,[BancoEmpleado]
                        ,[sub]
-                       ,[Caratula])
+                       ,[Caratula]
+                       ,[IDEmpresaPago]
+                       ,[IDPeriodo]
+                       ,[IDCliente]
+                       ,[Layout]
+                       ,[tipoPago]
+                       ,[otrosConceptos]
+                       ,[depositoNeto]
+                       ,[cuentaBancaria]
+                       ,[CLABE]
+                       ,[bancoEmpresaPago])
                  VALUES
                        ('" + item.numEmpl + "'" +
                        ",'" + item.nombreEmpleado + "'" +
@@ -3361,15 +3835,29 @@ namespace winAsimilados.Controller
                        + ",'"+ item.institucionPago + "'" +
                        ",'" + item.claveTipoCambio + "'" +
                        "," + "GETDATE()" + "" +
-                       ",'" + item.banco + "'" +
+                       ",'" + item.bancoEmpleado + "'" +
                        "," + item.Sub + "" +
-                      ",'" + item.caratula + "')";
+                      ",'" + item.caratula + "'" +
+                      ",'" + item.IDEmpresa + "'" +
+                      ",'" + item.periodo + "'" +
+                      ",'" + item.IDCliente + "'" +
+                      ",'" + item.layout + "'" +
+                      ",'" + item.tipoPago + "'" +
+                      "," + item.otrosConceptos + "" +
+                      "," + item.depositoNeto + "" +
+                      ",'" + item.cuentaBancaria + "'" +
+                      ",'" + item.CLABE + "'" +
+                      ",'" + item.bancoEmpresaPago + "')";
 
                         queryInsertaLayout.ExecuteNonQuery();
 
 
                     }catch(Exception lista)
                     {
+                        if (splash.IsSplashFormVisible.Equals(true))
+                        {
+                            splash.CloseWaitForm();
+                        }
                         XtraMessageBox.Show(lista.Message + "\nError Controlador: InsertaLayout(foreach())", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -3377,6 +3865,435 @@ namespace winAsimilados.Controller
             }catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaLayout()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public bool ActualizaLayout (List<E.Layout> layout, SplashScreenManager splash)
+        {
+            try
+            {
+                SqlCommand updateLayout = N.Conexion.PerformConnection().CreateCommand();
+
+                foreach (var item in layout)
+                {
+                    try
+                    {
+                        updateLayout.CommandText = @"UPDATE [dbo].[LayoutHistorico]
+                        SET 
+                            [PeriodicidadPago] = '" + item.periPago + "'" +
+                            ",[ingresos] = " + item.ingresos + "" +
+                            ",[LimInferior] = " + item.LimInferior +"" +
+                            ",[ExLimInf] =  " + item.ExLimInf + "" +
+                            ",[PerExLimInf] = " + item.PerExLimInf + "" +
+                            ",[ImpMarg] = " + item.ImpMarg + "" +
+                            ",[CF] = " + item.CF + "" +
+                            ",[ISR] = " + item.ISR + "" +
+                            ",[ingresosNeto] = " + item.ingresosNet + "" +
+                            ",[importe] = " + item.importe + "" +
+                            ",[IVA] = " + item.IVA + "" +
+                            ",[fechaAplicacion] = '" + item.fechaAplicacion.ToString("yyyy-MM-dd") + "'" +
+                            ",[fecIniPeri] = '" + item.fecIniPeri.ToString("yyyy-MM-dd") + "'" +
+                            ",[fecFinPeri] = '" + item.fecFinPeri.ToString("yyyy-MM-dd") + "'" +
+                            ",[IDEmpresaPago] = '" + item.IDEmpresa + "'" +
+                            ",[bancoEmpresaPago] = '" + item.bancoEmpresaPago + "'" +
+                            ",[IDPeriodo] = '" + item.periodo + "'" +
+                            ",[IDCliente] = '" + item.IDCliente + "'" +
+                            ",[tipoPago] = '" + item.tipoPago + "'" +
+                            ",[otrosConceptos] = " + item.otrosConceptos + "" +
+                            ",[depositoNeto] = " + item.depositoNeto + "" +
+                            ",[cuentaBancaria] = '" + item.cuentaBancaria + "'" +
+                            ",[CLABE] = '" + item.CLABE + "'" +
+                            "WHERE [ID] = '" + item.ID + "'";
+
+                        updateLayout.ExecuteNonQuery();
+
+                    }catch (Exception lista)
+                    {
+                        XtraMessageBox.Show(lista.Message + "\nError Controlador: ActualizaLayout(foreach())", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+                return true;
+
+            }catch(Exception e)
+            {
+                if (splash.IsSplashFormVisible.Equals(true))
+                {
+                    splash.CloseWaitForm();
+                }
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ActualizaLayout()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public void InsertaDetalleLyout(E.DetalleLayout detalleLayout, SplashScreenManager splash)
+        {
+            try
+            {
+                SqlCommand insertaDetalle = N.Conexion.PerformConnection().CreateCommand();
+                insertaDetalle.CommandText = @"INSERT INTO [dbo].[ResumenLayout]
+               ([Layout]
+               ,[Caratula]
+               ,[SalarioAsimilado]
+               ,[ImpuestoNomina]
+               ,[ComisionServicio]
+               ,[SubTotal]
+               ,[IVA]
+               ,[RetencionIVA]
+               ,[Total]
+               ,[Detalles])
+                VALUES
+               ('" + detalleLayout.Layout + "'" +
+               ",'" + detalleLayout.Caratula + "'" +
+               "," +  detalleLayout.SalarioAsimilado +"" +
+               "," + detalleLayout.ImpuestoNomina + "" +
+               "," + detalleLayout.ComisionServicio + "" +
+               "," + detalleLayout.SubTotal + "" +
+               "," + detalleLayout.IVA + "" +
+               "," + detalleLayout.RetencionIVA + "" +
+               "," + detalleLayout.Total + "" +
+               ",'" + detalleLayout.Detalles + "')";
+
+                insertaDetalle.ExecuteNonQuery();
+
+            }catch (Exception e)
+            {
+                if (splash.IsSplashFormVisible.Equals(true))
+                {
+                    splash.CloseWaitForm();
+                }
+                XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaLayout()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public bool ActualizaDetalleLayout(E.DetalleLayout detalle, SplashScreenManager splash)
+        {
+            try
+            {
+                SqlCommand updateDetalle = N.Conexion.PerformConnection().CreateCommand();
+                updateDetalle.CommandText = @"UPDATE [dbo].[ResumenLayout]
+                SET 
+                    [SalarioAsimilado] = " + detalle.SalarioAsimilado + "" +
+                    ",[ImpuestoNomina] = " + detalle.ImpuestoNomina + "" +
+                    ",[ComisionServicio] = " + detalle.ComisionServicio + "" +
+                    ",[SubTotal] = " + detalle.SubTotal + "" +
+                    ",[IVA] = " + detalle.IVA + "" +
+                    ",[RetencionIVA] = " + detalle.RetencionIVA +"" +
+                    ",[Total] = " + detalle.Total + "" +
+                    ",[Detalles] = '" + detalle.Detalles + "'" +
+                    "WHERE [ID] = '" + detalle.ID + "'";
+
+                if (updateDetalle.ExecuteNonQuery().Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                if (splash.IsSplashFormVisible.Equals(true))
+                {
+                    splash.CloseWaitForm();
+                }
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ActualizaDetalleLayout()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public List<E.Layout> GetListaLayout(string caratula, List <E.Layout> layout, SplashScreenManager splashManager)
+        {
+            try
+            {
+                SqlCommand getLista = N.Conexion.PerformConnection().CreateCommand();
+                getLista.CommandText = @"SELECT [ID]
+                  ,[numEmpl]
+                  ,[nombreEmpleado]
+                  ,[RFCEmpleado]
+                  ,[CURPEmpleado]
+                  ,[PeriodicidadPago]
+                  ,[ingresos]
+                  ,[LimInferior]
+                  ,[ExLimInf]
+                  ,[PerExLimInf]
+                  ,[ImpMarg]
+                  ,[CF]
+                  ,[ISR]
+                  ,[ingresosNeto]
+                  ,[operacion]
+                  ,[claveID]
+                  ,[cuentaOrigen]
+                  ,[cuenta_ClaveDestino]
+                  ,[importe]
+                  ,[referencia]
+                  ,[descripcion]
+                  ,[RFCOrdenante]
+                  ,[IVA]
+                  ,[fechaAplicacion]
+                  ,[fecIniPeri]
+                  ,[fecFinPeri]
+                  ,[InstruccionPago]
+                  ,[claveTipoCambio]
+                  ,[fechaCreacion]
+                  ,[estatus]
+                  ,[BancoEmpleado]
+                  ,[sub]
+                  ,[Caratula]
+                  ,[IDEmpresaPago]
+                  ,[bancoEmpresaPago]
+                  ,[IDPeriodo]
+                  ,[IDCliente]
+                  ,[Layout]
+                  ,[tipoPago]
+                  ,[otrosConceptos]
+                  ,[depositoNeto]
+                  ,[cuentaBancaria]
+                  ,[CLABE]
+                  ,[descripcionError]
+                FROM[LayoutHistorico]
+                WHERE[Caratula] = @caratula";
+                getLista.Parameters.AddWithValue("@caratula", caratula);
+
+                SqlDataReader readerLista = getLista.ExecuteReader();
+                while (readerLista.Read())
+                {
+                    layout.Add(new E.Layout
+                    {
+                          ID= Convert.ToString(readerLista.GetInt32(0)),
+                          numEmpl= readerLista.GetInt32(1),
+                          nombreEmpleado= readerLista.GetString(2),
+                          RFCEmpleado= readerLista.GetString(3),
+                          CURPEmpleado= readerLista.GetString(4),
+                          periPago= readerLista.GetString(5),
+                          ingresos= readerLista.GetDecimal(6),
+                          LimInferior= readerLista.GetDecimal(7),
+                          ExLimInf= readerLista.GetDecimal(8),
+                          PerExLimInf= readerLista.GetDecimal(9),
+                          ImpMarg= readerLista.GetDecimal(10),
+                          CF= readerLista.GetDecimal(11),
+                          ISR= readerLista.GetDecimal(12),
+                          ingresosNet= readerLista.GetDecimal(13),
+                          operacion= readerLista.GetString(14),
+                          claveID= readerLista.GetString(15),
+                          cuentaOrigen= readerLista.GetString(16),
+                          cuentaClaveDestino= readerLista.GetString(17),
+                          importe= readerLista.GetDecimal(18),
+                          referencia= readerLista.GetString(19),
+                          descripcion= readerLista.GetString(20),
+                          RFCOrdenante= readerLista.GetString(21),
+                          IVA= readerLista.GetDecimal(22),
+                          fechaAplicacion= readerLista.GetDateTime(23),
+                          fecIniPeri= readerLista.GetDateTime(24),
+                          fecFinPeri= readerLista.GetDateTime(25),
+                          institucionPago= readerLista.GetString(26),
+                          claveTipoCambio= Convert.ToString(readerLista.GetInt32(27)),
+                          fechaCreacion= readerLista.GetDateTime(28),
+                          estatus= readerLista.GetString(29),
+                          bancoEmpleado= readerLista.GetString(30),
+                          Sub= readerLista.GetDecimal(31),
+                          caratula= readerLista.GetString(32),
+                        bancoEmpresaPago = readerLista.GetString(33),
+                        IDEmpresa = readerLista.GetString(34),
+                          periodo= readerLista.GetString(35),
+                          IDCliente= readerLista.GetString(36),
+                          layout= readerLista.GetString(37),
+                          tipoPago= readerLista.GetString(38),
+                          otrosConceptos= readerLista.GetDecimal(39),
+                          depositoNeto= readerLista.GetDecimal(40),
+                          cuentaBancaria= readerLista.GetString(41),
+                          CLABE= readerLista.GetString(42),      
+                    });
+
+                }
+                readerLista.Close();
+                return layout;
+            }
+            catch (Exception e)
+            {
+                if (splashManager.IsSplashFormVisible.Equals(true))
+                {
+                    splashManager.CloseWaitForm();
+                }
+                XtraMessageBox.Show(e.Message + "\nError Controlador: GetListaLayout()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public E.Caratula GetDatosCaratula (string nombreCaratula)
+        {
+            try
+            {
+                E.Caratula caratula = new E.Caratula();
+                SqlCommand getDatos = N.Conexion.PerformConnection().CreateCommand();
+                getDatos.CommandText = @"SELECT TOP (1000) [ID]
+                  ,[Caratula]
+                  ,[Layout]
+                  ,[IDCliente]
+                  ,[Cliente]
+                  ,[IDEmpresa]
+                  ,[Empresa]
+                  ,[FechaCreacion]
+                  ,[FechaAplicacion]
+                  ,[FechaIniPeriodo]
+                  ,[FechaFinPeriodo]
+                  ,[TotalEmpleados]
+                  ,[TotalPagoAsimilados]
+                  ,[Estatus]
+                  ,[usuario]
+                  ,[TipoPeri]
+                  ,[AsimiSalarios]
+                  ,[ProvAguinaldo]
+                  ,[ProviVacaciones]
+                  ,[ProviPrimVacacional]
+                  ,[SubTotalIAS]
+                  ,[ComisionServicio]
+                  ,[ImpNomi]
+                  ,[Total]
+                  ,[IVA]
+                  ,[RetencionIVA]
+                  ,[TotalFactura]
+                  ,[Ajuste]
+                  ,[TotalDeposito]
+                  ,[Banco]
+                  ,[NumCuenta]
+                  ,[CLABE]
+                  ,[ClaveFacturacion]
+                  ,[TipoPago]
+                  ,[FormaPago]
+                  ,[Observaciones]
+                  ,[RutaLogo]
+                  ,[Imagen]
+                  ,ISNULL([FechaValidaPago],'') AS [FechaValidaPago]
+                  ,ISNULL([UsuarioPago], '') AS [UsuarioPago]
+                  ,ISNULL([FechaModificacion], '') AS [FechaModificacion]
+                  ,ISNULL([UsuarioModificacion], '') AS [UsuarioModificacion]
+              FROM [CaratulaPago]
+              WHERE [Caratula] = @caratula";
+
+                getDatos.Parameters.AddWithValue("@caratula", nombreCaratula);
+                SqlDataReader readerData = getDatos.ExecuteReader();
+
+                if (readerData.Read())
+                {
+                    caratula.ID= Convert.ToString(readerData.GetInt32(0));
+                    caratula.caratula= readerData.GetString(1);
+                    caratula.Layout= readerData.GetString(2);
+                    caratula.IDCliente= readerData.GetString(3);
+                    caratula.Cliente= readerData.GetString(4);
+                    caratula.IDEmpresa= readerData.GetString(5);
+                    caratula.Empresa= readerData.GetString(6);
+                    caratula.FechaCreacion= readerData.GetDateTime(7);
+                    caratula.FechaAplicacion= readerData.GetDateTime(8);
+                    caratula.FechaIniPeriodo= readerData.GetDateTime(9);
+                    caratula.FechaFinPeriodo= readerData.GetDateTime(10);
+                    caratula.TotalEmpleados= readerData.GetInt32(11);
+                    caratula.TotalPagoAsimilados= readerData.GetDecimal(12);
+                    caratula.Estatus= readerData.GetString(13);
+                    caratula.usuario= readerData.GetString(14);
+                    caratula.TipoPeri= readerData.GetString(15);
+                    caratula.AsimiSalarios= readerData.GetDecimal(16);
+                    caratula.ProvAguinaldo= readerData.GetDecimal(17);
+                    caratula.ProviVacaciones= readerData.GetDecimal(18);
+                    caratula.ProviPrimVacacional= readerData.GetDecimal(19);
+                    caratula.SubTotalIAS= readerData.GetDecimal(20);
+                    caratula.ComisionServicio= readerData.GetDecimal(21);
+                    caratula.ImpNomi= readerData.GetDecimal(22);
+                    caratula.Total= readerData.GetDecimal(23);
+                    caratula.IVA= readerData.GetDecimal(24);
+                    caratula.RetencionIVA= readerData.GetDecimal(25);
+                    caratula.TotalFactura= readerData.GetDecimal(26);
+                    caratula.Ajuste= readerData.GetDecimal(27);
+                    caratula.TotalDeposito= readerData.GetDecimal(28);
+                    caratula.Banco= readerData.GetString(29);
+                    caratula.NumCuenta= readerData.GetString(30);
+                    caratula.CLABE= readerData.GetString(31);
+                    caratula.ClaveFacturacion= readerData.GetString(32);
+                    caratula.TipoPago= readerData.GetString(33);
+                    caratula.FormaPago= readerData.GetString(34);
+                    caratula.Observaciones= readerData.GetString(35);
+                    caratula.RutaLogo= readerData.GetString(36);
+                    caratula.Imagen= readerData.GetString(37);
+                    caratula.FechaValidaPago = readerData.GetDateTime(38);
+                    caratula.UsuarioPago = readerData.GetString(39);
+                    caratula.FechaModificacion  = readerData.GetDateTime(40);
+                    caratula.UsuarioModificacion= readerData.GetString(41);
+                }
+                readerData.Close();
+                return caratula;
+            }
+            catch(Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador:GetDatosCaratula", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public E.DetalleLayout GetDetalleLayout(string nombreLayout)
+        {
+            try
+            {
+                E.DetalleLayout detalle = new E.DetalleLayout();
+                SqlCommand getDetalle = N.Conexion.PerformConnection().CreateCommand();
+                getDetalle.CommandText = @"SELECT  [ID]
+                ,[Layout]
+                ,[Caratula]
+                ,[SalarioAsimilado]
+                ,[ImpuestoNomina]
+                ,[ComisionServicio]
+                ,[SubTotal]
+                ,[IVA]
+                ,[RetencionIVA]
+                ,[Total]
+                ,[Detalles]
+            FROM [ResumenLayout] 
+            WHERE [Layout] = '" + nombreLayout + "'";
+
+                SqlDataReader readerDetalle;
+                readerDetalle = getDetalle.ExecuteReader();
+
+                if (readerDetalle.Read())   
+                {
+                    detalle.ID = Convert.ToString(readerDetalle.GetInt32(0));
+                    detalle.Layout = readerDetalle.GetString(1);
+                    detalle.Caratula = readerDetalle.GetString(2);
+                    detalle.SalarioAsimilado = readerDetalle.GetDecimal(3);
+                    detalle.ImpuestoNomina = readerDetalle.GetDecimal(4);
+                    detalle.ComisionServicio = readerDetalle.GetDecimal(5);
+                    detalle.SubTotal = readerDetalle.GetDecimal(6);
+                    detalle.IVA = readerDetalle.GetDecimal(7);
+                    detalle.RetencionIVA = readerDetalle.GetDecimal(8);
+                    detalle.Total = readerDetalle.GetDecimal(9);
+                    detalle.Detalles = readerDetalle.GetString(10);
+                }
+                readerDetalle.Close();
+                return detalle;
+            }catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador:GetDetalleLayout", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public void ActualizaStatusLayout(List<E.Layout> lista, SplashScreenManager splashManager)
+        {
+            try
+            {
+                SqlCommand actualizaStatus = N.Conexion.PerformConnection().CreateCommand();
+                foreach (var item in lista)
+                {
+                    actualizaStatus.CommandText = @"UPDATE
+                    LayoutHistorico
+                    SET [estatus] = 'Generado'
+                    WHERE [Caratula] = '" + item.caratula + "'" +
+                    "AND [ID] =" + item.ID + "";
+
+                    actualizaStatus.ExecuteNonQuery();
+                }
+            }catch (Exception e)
+            {
+                if (splashManager.IsSplashFormVisible.Equals(true))
+                {
+                    splashManager.CloseWaitForm();
+                }
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ActualizaEstatusLayout()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
         public void AgregarEmpleadoMasivo(List<E.Empleado> list, Object _P, SplashScreenManager splashManager)
@@ -3411,34 +4328,36 @@ namespace winAsimilados.Controller
                     //    builder.AppendLine();
                     //}
                     cont++;
-                    SqlCommand queryNumEmpl = N.Conexion.PerformConnection().CreateCommand();
-                    queryNumEmpl.CommandText = @"select
+                    if (empl.NumEmpl != "" &&empl.Nombre != "" && empl.CURP !="" && empl.RFC !="" && empl.Periodicidad !=""&&empl.cuenta !="" && empl.clabe_bancaria !="" &&empl.banco !="" &&empl.cve_banco!="" &&empl.empresa!="" &&empl.idEmpresa !="" )
+                    {
+                        SqlCommand queryNumEmpl = N.Conexion.PerformConnection().CreateCommand();
+                        queryNumEmpl.CommandText = @"select
                     isnull(max (cast(NUM_EMPLEADO as int)), 0)
                     from EMPLEADOS
                     ";
-                    SqlDataReader readerNumEmpl;
-                    readerNumEmpl = queryNumEmpl.ExecuteReader();
+                        SqlDataReader readerNumEmpl;
+                        readerNumEmpl = queryNumEmpl.ExecuteReader();
 
-                    if (readerNumEmpl.Read())
-                    {
-                        numEmplAnt = Convert.ToInt32(readerNumEmpl.GetInt32(0));
-                        numEmplNue = numEmplAnt + 1;
-                    }
-                    else
-                    {
+                        if (readerNumEmpl.Read())
+                        {
+                            numEmplAnt = Convert.ToInt32(readerNumEmpl.GetInt32(0));
+                            numEmplNue = numEmplAnt + 1;
+                        }
+                        else
+                        {
 
-                    }
-                    readerNumEmpl.Close();
-                    //XtraMessageBox.Show(numEmplAnt + "\n" + numEmplNue);
+                        }
+                        readerNumEmpl.Close();
+                        //XtraMessageBox.Show(numEmplAnt + "\n" + numEmplNue);
 
-                    SqlCommand queryBuscaEmpl = N.Conexion.PerformConnection().CreateCommand();
-                    queryBuscaEmpl.CommandText = @"select * from Empleados where RFC = @rfc";
-                    SqlDataReader ReaderEmpl;
-                    queryBuscaEmpl.Parameters.AddWithValue("@rfc", empl.RFC);
-                    ReaderEmpl = queryBuscaEmpl.ExecuteReader();
+                        SqlCommand queryBuscaEmpl = N.Conexion.PerformConnection().CreateCommand();
+                        queryBuscaEmpl.CommandText = @"select * from Empleados where RFC = @rfc";
+                        SqlDataReader ReaderEmpl;
+                        queryBuscaEmpl.Parameters.AddWithValue("@rfc", empl.RFC);
+                        ReaderEmpl = queryBuscaEmpl.ExecuteReader();
 
-                    SqlCommand queryInsertaEmpl = N.Conexion.PerformConnection().CreateCommand();
-                    queryInsertaEmpl.CommandText = @"INSERT INTO [dbo].[EMPLEADOS]
+                        SqlCommand queryInsertaEmpl = N.Conexion.PerformConnection().CreateCommand();
+                        queryInsertaEmpl.CommandText = @"INSERT INTO [dbo].[EMPLEADOS]
                     ([NUM_EMPLEADO]
                     ,[NOMBRE]
                     ,[RFC]
@@ -3459,236 +4378,310 @@ namespace winAsimilados.Controller
                     ,[ID_EMPRESA])
                     VALUES
                     ('" + empl.NumEmpl + "','" + empl.Nombre + "','" + empl.RFC + "','" + empl.CURP + "','" + "09'," + "'ASIMILADO'," + "'01/01/1900'," + "'ASIMILADO',"
-                    + "'99'," + "'00','" + empl.Periodicidad + "'," + "'No'" +
-                    ",'" + empl.cuenta + "'" +
-                    ",'" + empl.clabe_bancaria + "'" +
-                    ",'" + empl.banco + "'" +
-                    ",'" + empl.cve_banco + "'" +
-                    ",'" + empl.empresa + "'" +
-                    ",'" + empl.idEmpresa + "')";
+                        + "'99'," + "'00','" + empl.Periodicidad + "'," + "'No'" +
+                        ",'" + empl.cuenta + "'" +
+                        ",'" + empl.clabe_bancaria + "'" +
+                        ",'" + empl.banco + "'" +
+                        ",'" + empl.cve_banco + "'" +
+                        ",'" + empl.empresa + "'" +
+                        ",'" + empl.idEmpresa + "')";
 
-                    if (!empl.RFC.Length.Equals(13))
-                    {
-                        if (nombre.Equals(true))
+                        if (!empl.RFC.Length.Equals(13))
                         {
-                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
-                            builder.AppendLine();
-                        }
-                        //contErrores++;
-                        contErrRFC++;
-                        string MensajeRFC = "RFC no cumple con el formato correcto, favor de verificar.";
-                        //contErrores++;
-                        ValidaRFC = 0;
-                        builder.Append(MensajeRFC);
-                        builder.AppendLine();
-                        nombre = false;
-                    }
-                    else
-                    {
-                        ValidaRFC = 1;
-                    }
-
-                    if (!empl.CURP.Length.Equals(18))
-                    {
-                        if (nombre.Equals(true))
-                        {
-                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
-                            builder.AppendLine();
-                        }
-                        //contErroresExis++;
-                        contErrCURP++;
-                        string MensajeCURP = "CURP no cumple con el formato correcto, favor de verificar";
-                        //contErrores++;
-                        validaCURP = 0;
-                        builder.Append(MensajeCURP);
-                        builder.AppendLine();
-                        nombre = false;
-                    }
-                    else
-                    {
-                        validaCURP = 1;
-                    }
-
-                    if (empl.cuenta.Length < 10)
-                    {
-                        if (nombre.Equals(true))
-                        {
-                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
-                            builder.AppendLine();
-                        }
-                        contErrCuenta++;
-                        validaCuenta = 0;
-                        string mensajeCuenta = "Cuenta no cumple con el formato correcto, debe tener al menos 10 dígitos.";
-                        builder.Append(mensajeCuenta);
-                        builder.AppendLine();
-                        nombre = false;
-                    }else if (empl.cuenta.Length > 10)
-                    {
-                        if (nombre.Equals(true))
-                        {
-                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
-                            builder.AppendLine();
-                        }
-                        contErrCuenta++;
-                        validaCuenta = 0;
-                        string mensajeCuenta = "Cuenta no cumple con el formato correcto, debe tener al máximo 10 dígitos.";
-                        builder.Append(mensajeCuenta);
-                        builder.AppendLine();
-                        nombre = false;
-                    }
-                    else
-                    {
-                        validaCuenta++;
-                    }
-
-                    if (empl.clabe_bancaria.Length < 18)
-                    {
-                        if (nombre.Equals(true))
-                        {
-                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
-                            builder.AppendLine();
-                        }
-                        contErrCLABE++;
-                        validaCLABE = 0;
-                        string mensaje = "CLABE no cumple con el formato correcto, debe tener al menos 18 dígitos.";
-                        builder.Append(mensaje);
-                        builder.AppendLine();
-                        nombre = false;
-                    }else if (empl.clabe_bancaria.Length > 18)
-                    {
-                        if (nombre.Equals(true))
-                        {
-                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
-                            builder.AppendLine();
-                        }
-                        contErrCLABE++;
-                        validaCLABE = 0;
-                        string mensaje = "CLABE no cumple con el formato correcto, debe tener al máximo 18 dígitos.";
-                        builder.Append(mensaje);
-                        builder.AppendLine();
-                        nombre = false;
-                    }
-                    else
-                    {
-                        validaCLABE++;
-                    }
-                    if (empl.banco.Equals(null) || empl.banco.Equals("0"))
-                    {
-                        if (nombre.Equals(true))
-                        {
-                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
-                            builder.AppendLine();
-                        }
-                        contErrBanco++;
-                        validaBanco = 0;
-                        string mensaje = "Banco no definido.";
-                        builder.Append(mensaje);
-                        builder.AppendLine();
-                        nombre = false;
-                    }
-                    else
-                    {
-                        validaBanco++;
-                    }
-
-                    if (empl.cve_banco.Equals(null) || empl.cve_banco.Equals("0"))
-                    {
-                        if (nombre.Equals(true))
-                        {
-                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
-                            builder.AppendLine();
-                        }
-                        contErrCVE++;
-                        validaCVE = 0;
-                        string mensaje = "CVE Banco no definido.";
-                        builder.Append(mensaje);
-                        builder.AppendLine();
-                        nombre = false;
-                    }
-                    else
-                    {
-                        validaCVE++;
-                    }
-
-                    if (ReaderEmpl.Read())
-                    {
-                        if (nombre.Equals(true))
-                        {
-                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
-                            builder.AppendLine();
-                        }
-                        contErroresExis++;
-                        string MensajeExiste = "El empleado ya fue registrado anteriormete.";
-                        //XtraMessageBox.Show("El empleado:" + empleado.Nombre + "\nYa se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        ReaderEmpl.Close();
-                        ValidaExiste = 0;
-                        builder.Append(MensajeExiste);
-                        builder.AppendLine();
-                        nombre = false;
-                    }
-                    else
-                    {
-                        ReaderEmpl.Close();
-                        ValidaExiste = 1;
-                    }
-
-
-                    if (cont + 1 <= list.Count() && contErroresExis > 0 || contErrRFC > 0 || contErrCURP > 0 || contErrCuenta > 0 || contErrCLABE > 0 || contErrCVE > 0 || contErrBanco > 0)
-                    {
-                        builder.Append("*************************************************************************************************");
-                        builder.AppendLine();
-                    }
-                    nombre = true;
-
-                    //XtraMessageBox.Show("No existe");
-
-                    if (validaCURP == 1 && ValidaRFC == 1 && ValidaExiste == 1 && validaBanco == 1 && validaCLABE == 1 && validaCVE == 1 && validaCuenta == 1)
-                    {
-                        if (queryInsertaEmpl.ExecuteNonQuery().Equals(1))
-                        {
-                            contExito++;
-                            validaCURP = 0;
+                            if (nombre.Equals(true))
+                            {
+                                builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                                builder.AppendLine();
+                            }
+                            //contErrores++;
+                            contErrRFC++;
+                            string MensajeRFC = "RFC no cumple con el formato correcto, favor de verificar.";
+                            //contErrores++;
                             ValidaRFC = 0;
-                            ValidaExiste = 0;
-                            validaCuenta = 0;
-                            validaBanco = 0;
-                            validaCLABE = 0;
-                            validaCVE = 0;
-                            //XtraMessageBox.Show("¡Empleado agregado satisfactoriamente!", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                        
-                    if (cont == list.Count())
-                    {
-                        if (contErroresExis >0 || contErrRFC > 0 || contErrCURP > 0 || contErrCuenta > 0 || contErrCLABE > 0 || contErrCVE > 0 || contErrBanco > 0)
-                        {
-                            //Aqui se genera el log
-                            TotalErrores = contErroresExis + contErrRFC + contErrCURP + contErrCuenta + contErrCLABE + contErrCVE + contErrBanco;
+                            builder.Append(MensajeRFC);
                             builder.AppendLine();
-                            builder.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
-                            splashManager.CloseWaitForm();
-                            XtraMessageBox.Show("Proceso terminado con " + TotalErrores + " errores y " + contExito + " con éxito.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            writer = new StreamWriter(path, true);
-                            writer.Write(builder);
-                            writer.Close();
-                            Process proceso = new Process();
-                            proceso.StartInfo.FileName = path;
-                            proceso.Start();
+                            nombre = false;
                         }
-                        if (contErroresExis == 0 && contErrRFC == 0 && contErrCURP == 0 && contErrCuenta == 0 && contErrCLABE == 0 && contErrCVE == 0 && contErrBanco == 0 && contExito > 0)
+                        else
                         {
-                            splashManager.CloseWaitForm();
-                            XtraMessageBox.Show("¡Carga masiva terminada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ValidaRFC = 1;
+                        }
+
+                        if (!empl.CURP.Length.Equals(18))
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                                builder.AppendLine();
+                            }
+                            //contErroresExis++;
+                            contErrCURP++;
+                            string MensajeCURP = "CURP no cumple con el formato correcto, favor de verificar";
+                            //contErrores++;
+                            validaCURP = 0;
+                            builder.Append(MensajeCURP);
+                            builder.AppendLine();
+                            nombre = false;
+                        }
+                        else
+                        {
+                            validaCURP = 1;
+                        }
+
+                        if (empl.cuenta.Length < 10)
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                                builder.AppendLine();
+                            }
+                            contErrCuenta++;
+                            validaCuenta = 0;
+                            string mensajeCuenta = "Cuenta no cumple con el formato correcto, debe tener al menos 10 dígitos.";
+                            builder.Append(mensajeCuenta);
+                            builder.AppendLine();
+                            nombre = false;
+                        }
+                        else if (empl.cuenta.Length > 10)
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                                builder.AppendLine();
+                            }
+                            contErrCuenta++;
+                            validaCuenta = 0;
+                            string mensajeCuenta = "Cuenta no cumple con el formato correcto, debe tener al máximo 10 dígitos.";
+                            builder.Append(mensajeCuenta);
+                            builder.AppendLine();
+                            nombre = false;
+                        }
+                        else
+                        {
+                            validaCuenta++;
+                        }
+
+                        if (empl.clabe_bancaria.Length < 18)
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                                builder.AppendLine();
+                            }
+                            contErrCLABE++;
+                            validaCLABE = 0;
+                            string mensaje = "CLABE no cumple con el formato correcto, debe tener al menos 18 dígitos.";
+                            builder.Append(mensaje);
+                            builder.AppendLine();
+                            nombre = false;
+                        }
+                        else if (empl.clabe_bancaria.Length > 18)
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                                builder.AppendLine();
+                            }
+                            contErrCLABE++;
+                            validaCLABE = 0;
+                            string mensaje = "CLABE no cumple con el formato correcto, debe tener al máximo 18 dígitos.";
+                            builder.Append(mensaje);
+                            builder.AppendLine();
+                            nombre = false;
+                        }
+                        else
+                        {
+                            validaCLABE++;
+                        }
+                        if (empl.banco.Equals(null) || empl.banco.Equals("0"))
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                                builder.AppendLine();
+                            }
+                            contErrBanco++;
+                            validaBanco = 0;
+                            string mensaje = "Banco no definido.";
+                            builder.Append(mensaje);
+                            builder.AppendLine();
+                            nombre = false;
+                        }
+                        else
+                        {
+                            validaBanco++;
+                        }
+
+                        if (empl.cve_banco.Equals(null) || empl.cve_banco.Equals("0"))
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                                builder.AppendLine();
+                            }
+                            contErrCVE++;
+                            validaCVE = 0;
+                            string mensaje = "CVE Banco no definido.";
+                            builder.Append(mensaje);
+                            builder.AppendLine();
+                            nombre = false;
+                        }
+                        else
+                        {
+                            validaCVE++;
+                        }
+
+                        if (ReaderEmpl.Read())
+                        {
+                            if (nombre.Equals(true))
+                            {
+                                builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                                builder.AppendLine();
+                            }
+                            contErroresExis++;
+                            string MensajeExiste = "El empleado ya fue registrado anteriormete.";
+                            //XtraMessageBox.Show("El empleado:" + empleado.Nombre + "\nYa se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ReaderEmpl.Close();
+                            ValidaExiste = 0;
+                            builder.Append(MensajeExiste);
+                            builder.AppendLine();
+                            nombre = false;
+                        }
+                        else
+                        {
+                            ReaderEmpl.Close();
+                            ValidaExiste = 1;
+                        }
+
+
+                        if (cont + 1 <= list.Count() && contErroresExis > 0 || contErrRFC > 0 || contErrCURP > 0 || contErrCuenta > 0 || contErrCLABE > 0 || contErrCVE > 0 || contErrBanco > 0)
+                        {
+                            builder.Append("*************************************************************************************************");
+                            builder.AppendLine();
+                        }
+                        nombre = true;
+
+                        //XtraMessageBox.Show("No existe");
+
+                        if (validaCURP == 1 && ValidaRFC == 1 && ValidaExiste == 1 && validaBanco == 1 && validaCLABE == 1 && validaCVE == 1 && validaCuenta == 1)
+                        {
+                            if (queryInsertaEmpl.ExecuteNonQuery().Equals(1))
+                            {
+                                contExito++;
+                                validaCURP = 0;
+                                ValidaRFC = 0;
+                                ValidaExiste = 0;
+                                validaCuenta = 0;
+                                validaBanco = 0;
+                                validaCLABE = 0;
+                                validaCVE = 0;
+                                //XtraMessageBox.Show("¡Empleado agregado satisfactoriamente!", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+
+                        if (cont == list.Count())
+                        {
+                            if (contErroresExis > 0 || contErrRFC > 0 || contErrCURP > 0 || contErrCuenta > 0 || contErrCLABE > 0 || contErrCVE > 0 || contErrBanco > 0)
+                            {
+                                //Aqui se genera el log
+                                TotalErrores = contErroresExis + contErrRFC + contErrCURP + contErrCuenta + contErrCLABE + contErrCVE + contErrBanco;
+                                builder.AppendLine();
+                                builder.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
+                                if (splashManager.IsSplashFormVisible.Equals(true))
+                                {
+                                    splashManager.CloseWaitForm();
+                                }
+
+                                XtraMessageBox.Show("Proceso terminado con " + TotalErrores + " errores y " + contExito + " con éxito.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                writer = new StreamWriter(path, true);
+                                writer.Write(builder);
+                                writer.Close();
+                                Process proceso = new Process();
+                                proceso.StartInfo.FileName = path;
+                                proceso.Start();
+                            }
+                            if (contErroresExis == 0 && contErrRFC == 0 && contErrCURP == 0 && contErrCuenta == 0 && contErrCLABE == 0 && contErrCVE == 0 && contErrBanco == 0 && contExito > 0)
+                            {
+                                if (splashManager.IsSplashFormVisible.Equals(true))
+                                {
+                                    splashManager.CloseWaitForm();
+                                }
+
+                                XtraMessageBox.Show("¡Carga masiva terminada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
                         }
                     }
-                }
+                } // fin foreach
 
             }
             catch (Exception e)
             {
-                splashManager.CloseWaitForm();
+                if (splashManager.IsSplashFormVisible.Equals(true))
+                {
+                    splashManager.CloseWaitForm();
+                }
                 XtraMessageBox.Show(e.Message + "\nError Controlador: AgregaEmpleadoMasivo()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+        }
+        public void ListaCaratulas(GridControl grid)
+        {
+            try
+            {
+                SqlCommand queryLista = N.Conexion.PerformConnection().CreateCommand();
+                queryLista.CommandText = @"SELECT [ID]
+                  ,[Caratula]
+                  ,[Layout]
+                  ,[IDCliente]
+                  ,[Cliente]
+                  ,[IDEmpresa]
+                  ,[Empresa]
+                  ,[FechaCreacion]
+                  ,[FechaAplicacion]
+                  ,[FechaIniPeriodo]
+                  ,[FechaFinPeriodo]
+                  ,[TotalEmpleados]
+                  ,[TotalPagoAsimilados]
+                  ,[Estatus]
+                  ,[usuario]
+                  ,[TipoPeri]
+                  ,[AsimiSalarios]
+                  ,[ProvAguinaldo]
+                  ,[ProviVacaciones]
+                  ,[ProviPrimVacacional]
+                  ,[SubTotalIAS]
+                  ,[ComisionServicio]
+                  ,[ImpNomi]
+                  ,[Total]
+                  ,[IVA]
+                  ,[RetencionIVA]
+                  ,[TotalFactura]
+                  ,[Ajuste]
+                  ,[TotalDeposito]
+                  ,[Banco]
+                  ,[NumCuenta]
+                  ,[CLABE]
+                  ,[ClaveFacturacion]
+                  ,[TipoPago]
+                  ,[FormaPago]
+                  ,[Observaciones]
+                  ,[RutaLogo]
+                  ,[Imagen]
+                  ,[FechaValidaPago]
+                  ,[UsuarioPago]
+                  ,[FechaModificacion]
+                  ,[UsuarioModificacion]
+              FROM [CaratulaPago]
+              WHERE [Estatus] = 'Generado'";
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = queryLista;
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                grid.DataSource = dataSet.Tables[0];
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ListaCaratula()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void ListaEmpleadosCaratula(GridControl grid, string seleccion)
@@ -3717,6 +4710,7 @@ namespace winAsimilados.Controller
                 ,0.00 as [ISR]
                 ,0.00 as [Bruto]
                 ,'Pago a Asimilados' as [Descripcion]
+                ,0.00 as [Otro Concepto]
                 from EMPLEADOS";
 
                     SqlDataAdapter dataAdapter = new SqlDataAdapter();
@@ -3747,6 +4741,7 @@ namespace winAsimilados.Controller
                     ,0.00 as [ISR]
                     ,0.00 as [Bruto]
                     ,'Pago a Asimilados' as [Descripcion]
+                    ,0.00 as [Otro Concepto]
                     from EMPLEADOS WHERE ID_EMPRESA = @IDE";
                     queryListaEmpleados.Parameters.AddWithValue("@IDE", seleccion);
                     SqlDataAdapter dataAdapter = new SqlDataAdapter();
@@ -3759,7 +4754,7 @@ namespace winAsimilados.Controller
             }
             catch (Exception e)
             {
-                XtraMessageBox.Show(e.Message + "\nError Controlador: ListaCaratula()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ListaEmplCaratula()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void ListaEmpleadosNomiMasiv(GridControl grid)
@@ -3847,6 +4842,70 @@ namespace winAsimilados.Controller
             }catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: ListadoEmpresas()","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void DetalleLayoyt(GridControl grid, string layout)
+        {
+            try
+            {
+                SqlCommand detalle = N.Conexion.PerformConnection().CreateCommand();
+                detalle.CommandText = @"SELECT [ID]
+                  ,[numEmpl]
+                  ,[nombreEmpleado]
+                  ,[RFCEmpleado]
+                  ,[CURPEmpleado]
+                  ,[PeriodicidadPago]
+                  ,[ingresos]
+                  ,[LimInferior]
+                  ,[ExLimInf]
+                  ,[PerExLimInf]
+                  ,[ImpMarg]
+                  ,[CF]
+                  ,[ISR]
+                  ,[ingresosNeto]
+                  ,[operacion]
+                  ,[claveID]
+                  ,[cuentaOrigen]
+                  ,[cuenta_ClaveDestino]
+                  ,[importe]
+                  ,[referencia]
+                  ,[descripcion]
+                  ,[RFCOrdenante]
+                  ,[IVA]
+                  ,[fechaAplicacion]
+                  ,[fecIniPeri]
+                  ,[fecFinPeri]
+                  ,[InstruccionPago]
+                  ,[claveTipoCambio]
+                  ,[fechaCreacion]
+                  ,[estatus]
+                  ,[BancoEmpleado]
+                  ,[sub]
+                  ,[Caratula]
+                  ,[IDEmpresaPago]
+                  ,[bancoEmpresaPago]
+                  ,[IDPeriodo]
+                  ,[IDCliente]
+                  ,[Layout]
+                  ,[tipoPago]
+                  ,[otrosConceptos]
+                  ,[depositoNeto]
+                  ,[cuentaBancaria]
+                  ,[CLABE]
+                  ,[descripcionError]
+              FROM [LayoutHistorico]
+              WHERE [Layout] = @layout";
+                detalle.Parameters.AddWithValue("@layout", layout);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = detalle;
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                grid.DataSource = dataSet.Tables[0];
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: DetalleLayoyt()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void Buscar(GridControl grid, string fechaIni, string fechaFIn)
@@ -4066,7 +5125,7 @@ namespace winAsimilados.Controller
         }
 
         [Obsolete]
-        public bool LeerXMLModAsim(string pathXML, string pathF, SplashScreenManager splashScreenManager)
+        public string LeerXMLModAsim(string pathXML, string pathF, SplashScreenManager splashScreenManager)
         {
             try
             {            
@@ -4140,15 +5199,19 @@ namespace winAsimilados.Controller
                 System.IO.File.Delete(pathHTMLTemp);
                 File.Move(path + "mipdf.pdf", pathF + ".pdf");
                 System.IO.File.Delete(path + "mipdf.pdf");
-
-                return true;
+                string respuesta;
+                respuesta = "true";
+                return respuesta;
 
             }
             catch (Exception e)
             {
-                splashScreenManager.CloseWaitForm();
+                string respuesta;
+
+                //splashScreenManager.CloseWaitForm();
                 XtraMessageBox.Show(e.Message + "\nControlador: LeerXML()", "Error");
-                return false;
+                respuesta = e.Message + "\nControlador: LeerXML()";
+                return respuesta;
             }
 
         }

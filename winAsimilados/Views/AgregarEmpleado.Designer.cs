@@ -46,6 +46,7 @@
             this.TxtCVE = new DevExpress.XtraEditors.TextEdit();
             this.TxtEmpresa = new DevExpress.XtraEditors.TextEdit();
             this.TxtIDProv = new DevExpress.XtraEditors.TextEdit();
+            this.TxtNumEmpl = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -56,6 +57,7 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -70,8 +72,6 @@
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.TxtNumEmpl = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.queryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -86,6 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TxtCVE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtEmpresa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtIDProv.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtNumEmpl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
@@ -96,6 +97,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
@@ -110,8 +112,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtNumEmpl.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             this.SuspendLayout();
             // 
             // queryBindingSource
@@ -252,6 +252,15 @@
             this.TxtIDProv.Size = new System.Drawing.Size(276, 20);
             this.TxtIDProv.StyleController = this.layoutControl1;
             this.TxtIDProv.TabIndex = 18;
+            this.TxtIDProv.EditValueChanged += new System.EventHandler(this.TxtIDProv_EditValueChanged);
+            // 
+            // TxtNumEmpl
+            // 
+            this.TxtNumEmpl.Location = new System.Drawing.Point(578, 72);
+            this.TxtNumEmpl.Name = "TxtNumEmpl";
+            this.TxtNumEmpl.Size = new System.Drawing.Size(186, 20);
+            this.TxtNumEmpl.StyleController = this.layoutControl1;
+            this.TxtNumEmpl.TabIndex = 19;
             // 
             // layoutControlGroup1
             // 
@@ -353,6 +362,15 @@
             this.emptySpaceItem6.Name = "emptySpaceItem6";
             this.emptySpaceItem6.Size = new System.Drawing.Size(486, 24);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.TxtNumEmpl;
+            this.layoutControlItem12.Location = new System.Drawing.Point(455, 0);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(277, 24);
+            this.layoutControlItem12.Text = "# Empleado";
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(84, 13);
             // 
             // emptySpaceItem1
             // 
@@ -484,23 +502,6 @@
             this.emptySpaceItem2.Size = new System.Drawing.Size(641, 59);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // TxtNumEmpl
-            // 
-            this.TxtNumEmpl.Location = new System.Drawing.Point(578, 72);
-            this.TxtNumEmpl.Name = "TxtNumEmpl";
-            this.TxtNumEmpl.Size = new System.Drawing.Size(186, 20);
-            this.TxtNumEmpl.StyleController = this.layoutControl1;
-            this.TxtNumEmpl.TabIndex = 19;
-            // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.TxtNumEmpl;
-            this.layoutControlItem12.Location = new System.Drawing.Point(455, 0);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(277, 24);
-            this.layoutControlItem12.Text = "# Empleado";
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(84, 13);
-            // 
             // AgregarEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -526,6 +527,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TxtCVE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtEmpresa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtIDProv.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtNumEmpl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
@@ -536,6 +538,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
@@ -550,8 +553,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtNumEmpl.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             this.ResumeLayout(false);
 
         }

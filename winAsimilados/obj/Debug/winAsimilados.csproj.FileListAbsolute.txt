@@ -213,3 +213,5 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\ru\DevExpre
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.AgregarUsuario.resources
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.EditarUsuario.resources
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.TablasCalculo.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.VerDetalleLayout.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.EditarCaratula.resources
