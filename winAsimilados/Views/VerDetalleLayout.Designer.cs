@@ -181,9 +181,9 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtCveFactCaratula = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup9 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup11 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -324,9 +324,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCveFactCaratula)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup11)).BeginInit();
@@ -668,7 +668,7 @@
             this.gridColumnPerExLimInf.Caption = "Per. Ex. Lím. Inf. ";
             this.gridColumnPerExLimInf.DisplayFormat.FormatString = "p";
             this.gridColumnPerExLimInf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnPerExLimInf.FieldName = "ExLimInf";
+            this.gridColumnPerExLimInf.FieldName = "PerExLimInf";
             this.gridColumnPerExLimInf.GroupFormat.FormatString = "p";
             this.gridColumnPerExLimInf.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnPerExLimInf.Name = "gridColumnPerExLimInf";
@@ -1257,13 +1257,13 @@
             // 
             // txtTipoPago
             // 
-            this.txtTipoPago.Location = new System.Drawing.Point(433, 598);
+            this.txtTipoPago.Location = new System.Drawing.Point(432, 598);
             this.txtTipoPago.Name = "txtTipoPago";
             this.txtTipoPago.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.txtTipoPago.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.txtTipoPago.Properties.ReadOnly = true;
             this.txtTipoPago.Properties.UseReadOnlyAppearance = false;
-            this.txtTipoPago.Size = new System.Drawing.Size(246, 20);
+            this.txtTipoPago.Size = new System.Drawing.Size(247, 20);
             this.txtTipoPago.StyleController = this.layoutControl1;
             this.txtTipoPago.TabIndex = 35;
             // 
@@ -1681,14 +1681,15 @@
             // 
             // lookUpClveFact
             // 
-            this.lookUpClveFact.Location = new System.Drawing.Point(131, 598);
+            this.lookUpClveFact.Location = new System.Drawing.Point(139, 598);
             this.lookUpClveFact.Name = "lookUpClveFact";
             this.lookUpClveFact.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.lookUpClveFact.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.lookUpClveFact.Properties.ReadOnly = true;
-            this.lookUpClveFact.Size = new System.Drawing.Size(231, 20);
+            this.lookUpClveFact.Properties.UseReadOnlyAppearance = false;
+            this.lookUpClveFact.Size = new System.Drawing.Size(222, 20);
             this.lookUpClveFact.StyleController = this.layoutControl1;
-            this.lookUpClveFact.TabIndex = 34;
+            this.lookUpClveFact.TabIndex = 67;
             // 
             // layoutControlGroup1
             // 
@@ -1982,9 +1983,9 @@
             this.layoutControlItem6,
             this.layoutControlItem23,
             this.layoutControlItem24,
-            this.txtCveFactCaratula,
             this.layoutControlItem26,
-            this.layoutControlItem27});
+            this.layoutControlItem27,
+            this.layoutControlItem25});
             this.layoutControlGroup8.Location = new System.Drawing.Point(0, 468);
             this.layoutControlGroup8.Name = "layoutControlGroup8";
             this.layoutControlGroup8.Size = new System.Drawing.Size(977, 90);
@@ -2023,23 +2024,12 @@
             this.layoutControlItem24.TextSize = new System.Drawing.Size(31, 13);
             this.layoutControlItem24.TextToControlDistance = 5;
             // 
-            // txtCveFactCaratula
-            // 
-            this.txtCveFactCaratula.Control = this.lookUpClveFact;
-            this.txtCveFactCaratula.Location = new System.Drawing.Point(0, 24);
-            this.txtCveFactCaratula.Name = "txtCveFactCaratula";
-            this.txtCveFactCaratula.Size = new System.Drawing.Size(318, 24);
-            this.txtCveFactCaratula.Text = "Cve Facturación";
-            this.txtCveFactCaratula.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.txtCveFactCaratula.TextSize = new System.Drawing.Size(78, 13);
-            this.txtCveFactCaratula.TextToControlDistance = 5;
-            // 
             // layoutControlItem26
             // 
             this.layoutControlItem26.Control = this.txtTipoPago;
-            this.layoutControlItem26.Location = new System.Drawing.Point(318, 24);
+            this.layoutControlItem26.Location = new System.Drawing.Point(317, 24);
             this.layoutControlItem26.Name = "layoutControlItem26";
-            this.layoutControlItem26.Size = new System.Drawing.Size(317, 24);
+            this.layoutControlItem26.Size = new System.Drawing.Size(318, 24);
             this.layoutControlItem26.Text = "Tipo de Pago";
             this.layoutControlItem26.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem26.TextSize = new System.Drawing.Size(62, 13);
@@ -2055,6 +2045,17 @@
             this.layoutControlItem27.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem27.TextSize = new System.Drawing.Size(72, 13);
             this.layoutControlItem27.TextToControlDistance = 5;
+            // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.Control = this.lookUpClveFact;
+            this.layoutControlItem25.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(317, 24);
+            this.layoutControlItem25.Text = "Clave Facturación";
+            this.layoutControlItem25.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(86, 13);
+            this.layoutControlItem25.TextToControlDistance = 5;
             // 
             // layoutControlItem10
             // 
@@ -2704,9 +2705,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCveFactCaratula)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup11)).EndInit();
@@ -2898,7 +2899,6 @@
         private System.Windows.Forms.BindingSource clientesAsimiladosBindingSource;
         private DevExpress.XtraEditors.TextEdit txtTotalCaratula;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
-        private DevExpress.XtraLayout.LayoutControlItem txtCveFactCaratula;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem26;
         private DevExpress.XtraEditors.TextEdit txtISNCaratula;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItemISNCaratula;
@@ -2959,5 +2959,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem47;
         private DevExpress.XtraEditors.TextEdit txtBancoCaratula;
         private DevExpress.XtraEditors.TextEdit lookUpClveFact;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
     }
 }

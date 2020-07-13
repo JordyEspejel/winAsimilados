@@ -87,7 +87,6 @@ namespace winAsimilados.Views
             txtAjuste.Text = caratula.Ajuste.ToString();
             txtDeposito.Text = caratula.TotalDeposito.ToString();
             txtBancoCaratula.Text = caratula.Banco;
-            txtCveFactCaratula.Text = caratula.ClaveFacturacion;
             txtCuenta.Text = caratula.NumCuenta;
             txtCLABE.Text = caratula.CLABE;
             lookUpClveFact.Text = caratula.ClaveFacturacion;

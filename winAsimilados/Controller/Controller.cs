@@ -4672,7 +4672,7 @@ namespace winAsimilados.Controller
                   ,[FechaModificacion]
                   ,[UsuarioModificacion]
               FROM [CaratulaPago]
-              WHERE [Estatus] = 'Generado'";
+              --WHERE [Estatus] = 'Generado'";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryLista;
                 DataSet dataSet = new DataSet();
@@ -4842,6 +4842,40 @@ namespace winAsimilados.Controller
             }catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: ListadoEmpresas()","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void ListadoLayoutGenerados(GridControl grid)
+        {
+            try
+            {
+                SqlCommand queryListado = N.Conexion.PerformConnection().CreateCommand();
+                queryListado.CommandText = @"SELECT [numEmpl]
+                  ,[nombreEmpleado]
+                  ,[RFCEmpleado]
+                  ,[CURPEmpleado]
+                  ,[PeriodicidadPago]
+                  ,[ingresos]
+                  ,[LimInferior]
+                  ,[ExLimInf]
+                  ,[PerExLimInf]
+                  ,[ImpMarg]
+                  ,[CF]
+                  ,[ISR]
+                  ,[ingresosNeto]
+                  ,[estatus]
+                  ,[Caratula]
+                  ,[Layout]
+              FROM [LayoutHistorico]
+              WHERE [estatus] = 'Generado'";
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = queryListado;
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                grid.DataSource = dataSet.Tables[0];
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ListadoLayoutGenerado()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void DetalleLayoyt(GridControl grid, string layout)
