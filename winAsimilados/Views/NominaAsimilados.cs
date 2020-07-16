@@ -29,6 +29,9 @@ using Microsoft.Office.Interop.Excel;
 using System.Globalization;
 using DevExpress.Utils.About;
 using DevExpress.XtraNavBar.ViewInfo;
+using DevExpress.XtraPrinting;
+using DevExpress.XtraPrinting.Control;
+using DevExpress.XtraReports.UI;
 
 namespace winAsimilados.Views
 {
@@ -2472,6 +2475,20 @@ namespace winAsimilados.Views
             this.ActTableCarat();
         }
 
+        private void btnDetalleCaratula_Click(object sender, EventArgs e)
+        {
+
+            string caratula = gridViewLayout.GetFocusedRowCellValue( colCaratula).ToString();
+             
+            if (caratula.Length > 0)
+            {
+                MostrarReporte(caratula, 0);
+                MostrarReporte(caratula, 1);
+            }
+
+            
+        }
+
         private void btnGenerarLayout_Click(object sender, EventArgs e)
         {
             if (gridViewLayout.RowCount.Equals(0))
@@ -2863,7 +2880,19 @@ namespace winAsimilados.Views
                     {
                         splashScreenManager1.CloseWaitForm();
                     }
-                    XtraMessageBox.Show("Proceso Terminado con Éxito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                    //DetalleLayout detalle =  controlador.GetDetalleLayout(nombreLayout);
+                    //Caratula caratula =  controlador.GetDatosCaratula(nombreCaratula);
+
+                    MostrarReporte(nombreCaratula, 0);
+                    MostrarReporte(nombreCaratula, 1);
+
+                    
+
+
+
+                    //XtraMessageBox.Show("Proceso Terminado con Éxito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //controlador.GeneraLayoutBanorte(listaLayout, nombreLayout, splashScreenManager1);//, parametrosLayout);
                     //if (ValidaCer().Equals(false))
                     //{
@@ -2881,8 +2910,61 @@ namespace winAsimilados.Views
             }
             catch(Exception banorte)
             {
+                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                {
+                    splashScreenManager1.CloseWaitForm();
+                }
                 XtraMessageBox.Show(banorte.Message + "\nError Modulo Nomina: BtnLayoutBanorte()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void MostrarReporte(string caratula, int rep)
+        {
+            XtraReport reporte;
+
+
+            if (rep == 0)
+            {
+                reporte = new Reports.repDetalleFactura();
+                
+            }
+            else
+            {
+                 reporte = new Reports.repCaratulaFactura();
+                
+            }
+
+            
+            reporte.FilterString = "[caratula] ='" + caratula + "'";
+            reporte.FillDataSource();
+
+            ReportPrintTool printTool = new ReportPrintTool(reporte);
+            PrintControl printControl = printTool.PreviewForm.PrintControl;
+            //PrintControl printControl = printTool.PreviewRibbonForm.PrintControl; 
+
+
+            // Zoom the document, so that it fits the entire page into the Print Preview's dimensions.
+            if (printControl.CanExecCommand(PrintingSystemCommand.ViewWholePage))
+            {
+                printControl.ExecCommand(PrintingSystemCommand.ViewWholePage);
+            }
+
+            // Invoke the Hand tool to scroll the document using the mouse.
+            if (printControl.CanExecCommand(PrintingSystemCommand.HandTool))
+            {
+                printControl.ExecCommand(PrintingSystemCommand.HandTool, new object[] { true });
+            }
+
+            // Hide the Hand tool.
+            //if (printControlCanExecCommand(PrintingSystemCommand.HandTool)) {
+            //    printControl.ExecCommand(PrintingSystemCommand.HandTool, new object[] { false });
+            //}
+
+            // Show the report's Print Preview in a dialog window.
+            printControl.Zoom = 1.2F;
+            printTool.ShowPreview();
+            //printTool.ShowPreviewDialog();
+            //printTool.ShowRibbonPreviewDialog();
         }
 
         private void gridViewNomiMasiv_CellValueChanged(object sender, CellValueChangedEventArgs e)
