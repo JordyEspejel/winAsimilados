@@ -1006,5 +1006,34 @@ namespace winAsimilados.Views
                 tablasCalculo.BringToFront();
             }
         }
+
+        private void accordionControlElemenAddClteUnit_Click(object sender, EventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando modulo Alta Cliente...");
+            AgregarCliente agregarCliente = new AgregarCliente(splashScreenManager1);
+            var frm = Application.OpenForms.OfType<AgregarCliente>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(270, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    frm.BringToFront();
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(270, 60);
+                }
+            }
+            else
+            {
+                agregarCliente.Location = new Point(270, 60);
+                //agregarUsuario.Size = PanelPrincipal.Size;
+                agregarCliente.Show();
+                agregarCliente.BringToFront();
+            }
+        }
     }
 }

@@ -31,6 +31,7 @@ namespace winAsimilados.Entities
         private string _Metodo_Pago;
         private string _Observaciones;
         private string _Forma_Pago;
+        private decimal _PORCENTAJE_RETENCION;
 
         public string ID{ get { return _ID; } set { _ID = value; } }
         public string CLIENTE{ get { return _CLIENTE; } set { _CLIENTE = value; } }
@@ -55,5 +56,7 @@ namespace winAsimilados.Entities
         public string Observaciones { get { return _Observaciones; } set { _Observaciones = value; } }
 
         public string Forma_Pago { get { return _Forma_Pago; } set { _Forma_Pago = value; } }
+
+        public decimal PORCENTAJE_RETENCION { get { return _PORCENTAJE_RETENCION; } set { _PORCENTAJE_RETENCION = value; } }
     }
 }

@@ -39,6 +39,100 @@ namespace winAsimilados.Controller
 {
     class Controller
     {
+        public bool InsertaCliente(E.ClienteAsimilado cliente)
+        {
+            try
+            {
+                SqlCommand insertaCliente = N.Conexion.PerformConnection().CreateCommand();
+                insertaCliente.CommandText = @"INSERT INTO [BSNOMINAS].[dbo].[ClientesAsimilados]
+                   ([ID]
+                   ,[CLIENTE]
+                   ,[FECHA_ALTA _PRIMER PAGO]
+                   ,[COMISIONISTA]
+                   ,[PORCENTAJE_ISN]
+                   ,[PORCENTAJE_COMISION]
+                   ,[TOTAL]
+                   ,[FACTURACION_CON IVA _SIN IVA]
+                   ,[RETENCION]
+                   ,[PORCENTAJE_RETENCION]
+                   ,[PERIODO_DE_PAGO]
+                   ,[ESTATUS]
+                   ,[EJECUTIVO_RESPONSABLE]
+                   ,[EMPRESA_PAGADORA_EMITE CFDI]
+                   ,[PROVEEDOR]
+                   ,[EMPRESA_QUE_FACTUR_A _CLIENTE]
+                   ,[EMPRESA_QUE_FACTURA_A_CLIENTE1]
+                   ,[EMPRESA_QUE_FACTURA_A_CLIENTE2]
+                   ,[EMPRESA_QUE_FACTURA_A_CLIENTE3]
+                   ,[Metodo_Pago]
+                   ,[Observaciones]
+                   ,[Forma_Pago])
+             VALUES
+                   ('" + cliente.ID + "'" +
+                   ",'" + cliente.CLIENTE + "'" +
+                   ", GETDATE()" +
+                   ",'" + cliente.COMISIONISTA + "'" +
+                   "," + cliente.PORCENTAJE_ISN + "" +
+                   "," + cliente.PORCENTAJE_COMISION + "" +
+                   "," + cliente.TOTAL + "" +
+                   ",'" + cliente.FACTURACION_CON_IVA_SIN_IVA + "'" +
+                   ",'" + cliente.RETENCION + "'" +
+                   "," + cliente.PORCENTAJE_RETENCION + "" +
+                   ",'" + cliente.PERIODO_DE_PAGO + "'" +
+                   ",'" + cliente.ESTATUS + "'" +
+                   ",'" + cliente.EJECUTIVO_RESPONSABLE + "'" +
+                   ",'" + cliente.EMPRESA_PAGADORA_EMITE_CFDI + "'" +
+                   ",'" + cliente.PROVEEDOR + "'" +
+                   ",'" + cliente.EMPRESA_QUE_FACTUR_A_CLIENTE + "'" +
+                   ",'" + cliente.EMPRESA_QUE_FACTURA_A_CLIENTE1 + "'" +
+                   ",'" + cliente.EMPRESA_QUE_FACTURA_A_CLIENTE2 + "'" +
+                   ",'" + cliente.EMPRESA_QUE_FACTURA_A_CLIENTE3 + "'" +
+                   ",'" + cliente.Metodo_Pago + "'" +
+                   ",'" + cliente.Observaciones + "'" +
+                   ",'" + cliente.Forma_Pago + "')";
+
+                if (insertaCliente.ExecuteNonQuery().Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: InsertaCliente()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public string GetIDCliente()
+        {
+            try
+            {
+                string ID = "";
+                SqlCommand getID = N.Conexion.PerformConnection().CreateCommand();
+                getID.CommandText = @"SELECT TOP (1) [ID]
+                  FROM [BSNOMINAS].[dbo].[ClientesAsimilados]
+                  ORDER BY ID DESC";
+
+                SqlDataReader readerID;
+                readerID = getID.ExecuteReader();
+
+                if (readerID.Read())
+                {
+                    ID = readerID.GetString(0);
+                }
+                readerID.Close();
+                return ID;
+            }
+            catch( Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: GetIDCliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
         public void GetBitacora(GridControl grid, string User,  string Month, string Year, SplashScreenManager splashScreenManager)
         {
             try
@@ -4624,60 +4718,167 @@ namespace winAsimilados.Controller
 
             }
         }
-        public void ListaCaratulas(GridControl grid)
+        public void ListaCaratulas(GridControl grid/*, string estatus*/)
         {
             try
             {
                 SqlCommand queryLista = N.Conexion.PerformConnection().CreateCommand();
                 queryLista.CommandText = @"SELECT [ID]
-                  ,[Caratula]
-                  ,[Layout]
-                  ,[IDCliente]
-                  ,[Cliente]
-                  ,[IDEmpresa]
-                  ,[Empresa]
-                  ,[FechaCreacion]
-                  ,[FechaAplicacion]
-                  ,[FechaIniPeriodo]
-                  ,[FechaFinPeriodo]
-                  ,[TotalEmpleados]
-                  ,[TotalPagoAsimilados]
-                  ,[Estatus]
-                  ,[usuario]
-                  ,[TipoPeri]
-                  ,[AsimiSalarios]
-                  ,[ProvAguinaldo]
-                  ,[ProviVacaciones]
-                  ,[ProviPrimVacacional]
-                  ,[SubTotalIAS]
-                  ,[ComisionServicio]
-                  ,[ImpNomi]
-                  ,[Total]
-                  ,[IVA]
-                  ,[RetencionIVA]
-                  ,[TotalFactura]
-                  ,[Ajuste]
-                  ,[TotalDeposito]
-                  ,[Banco]
-                  ,[NumCuenta]
-                  ,[CLABE]
-                  ,[ClaveFacturacion]
-                  ,[TipoPago]
-                  ,[FormaPago]
-                  ,[Observaciones]
-                  ,[RutaLogo]
-                  ,[Imagen]
-                  ,[FechaValidaPago]
-                  ,[UsuarioPago]
-                  ,[FechaModificacion]
-                  ,[UsuarioModificacion]
-              FROM [CaratulaPago]
-              --WHERE [Estatus] = 'Generado'";
+                    ,[Caratula]
+                    ,[Layout]
+                    ,[IDCliente]
+                    ,[Cliente]
+                    ,[IDEmpresa]
+                    ,[Empresa]
+                    ,[FechaCreacion]
+                    ,[FechaAplicacion]
+                    ,[FechaIniPeriodo]
+                    ,[FechaFinPeriodo]
+                    ,[TotalEmpleados]
+                    ,[TotalPagoAsimilados]
+                    ,[Estatus]
+                    ,[usuario]
+                    ,[TipoPeri]
+                    ,[AsimiSalarios]
+                    ,[ProvAguinaldo]
+                    ,[ProviVacaciones]
+                    ,[ProviPrimVacacional]
+                    ,[SubTotalIAS]
+                    ,[ComisionServicio]
+                    ,[ImpNomi]
+                    ,[Total]
+                    ,[IVA]
+                    ,[RetencionIVA]
+                    ,[TotalFactura]
+                    ,[Ajuste]
+                    ,[TotalDeposito]
+                    ,[Banco]
+                    ,[NumCuenta]
+                    ,[CLABE]
+                    ,[ClaveFacturacion]
+                    ,[TipoPago]
+                    ,[FormaPago]
+                    ,[Observaciones]
+                    ,[RutaLogo]
+                    ,[Imagen]
+                    ,[FechaValidaPago]
+                    ,[UsuarioPago]
+                    ,[FechaModificacion]
+                    ,[UsuarioModificacion]
+                FROM [CaratulaPago]
+                --WHERE [Estatus] = 'Generado'";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryLista;
                 DataSet dataSet = new DataSet();
                 dataAdapter.Fill(dataSet);
                 grid.DataSource = dataSet.Tables[0];
+                #region ifregion
+                //  if (estatus.Equals("G"))
+                //  {
+                //      SqlCommand queryLista = N.Conexion.PerformConnection().CreateCommand();
+                //      queryLista.CommandText = @"SELECT [ID]
+                //    ,[Caratula]
+                //    ,[Layout]
+                //    ,[IDCliente]
+                //    ,[Cliente]
+                //    ,[IDEmpresa]
+                //    ,[Empresa]
+                //    ,[FechaCreacion]
+                //    ,[FechaAplicacion]
+                //    ,[FechaIniPeriodo]
+                //    ,[FechaFinPeriodo]
+                //    ,[TotalEmpleados]
+                //    ,[TotalPagoAsimilados]
+                //    ,[Estatus]
+                //    ,[usuario]
+                //    ,[TipoPeri]
+                //    ,[AsimiSalarios]
+                //    ,[ProvAguinaldo]
+                //    ,[ProviVacaciones]
+                //    ,[ProviPrimVacacional]
+                //    ,[SubTotalIAS]
+                //    ,[ComisionServicio]
+                //    ,[ImpNomi]
+                //    ,[Total]
+                //    ,[IVA]
+                //    ,[RetencionIVA]
+                //    ,[TotalFactura]
+                //    ,[Ajuste]
+                //    ,[TotalDeposito]
+                //    ,[Banco]
+                //    ,[NumCuenta]
+                //    ,[CLABE]
+                //    ,[ClaveFacturacion]
+                //    ,[TipoPago]
+                //    ,[FormaPago]
+                //    ,[Observaciones]
+                //    ,[RutaLogo]
+                //    ,[Imagen]
+                //    ,[FechaValidaPago]
+                //    ,[UsuarioPago]
+                //    ,[FechaModificacion]
+                //    ,[UsuarioModificacion]
+                //FROM [CaratulaPago]
+                //WHERE [Estatus] = 'Generado'";
+                //      SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                //      dataAdapter.SelectCommand = queryLista;
+                //      DataSet dataSet = new DataSet();
+                //      dataAdapter.Fill(dataSet);
+                //      grid.DataSource = dataSet.Tables[0];
+                //  }
+                //  else if (estatus.Equals("P"))
+                //  {
+                //      SqlCommand queryLista = N.Conexion.PerformConnection().CreateCommand();
+                //      queryLista.CommandText = @"SELECT [ID]
+                //    ,[Caratula]
+                //    ,[Layout]
+                //    ,[IDCliente]
+                //    ,[Cliente]
+                //    ,[IDEmpresa]
+                //    ,[Empresa]
+                //    ,[FechaCreacion]
+                //    ,[FechaAplicacion]
+                //    ,[FechaIniPeriodo]
+                //    ,[FechaFinPeriodo]
+                //    ,[TotalEmpleados]
+                //    ,[TotalPagoAsimilados]
+                //    ,[Estatus]
+                //    ,[usuario]
+                //    ,[TipoPeri]
+                //    ,[AsimiSalarios]
+                //    ,[ProvAguinaldo]
+                //    ,[ProviVacaciones]
+                //    ,[ProviPrimVacacional]
+                //    ,[SubTotalIAS]
+                //    ,[ComisionServicio]
+                //    ,[ImpNomi]
+                //    ,[Total]
+                //    ,[IVA]
+                //    ,[RetencionIVA]
+                //    ,[TotalFactura]
+                //    ,[Ajuste]
+                //    ,[TotalDeposito]
+                //    ,[Banco]
+                //    ,[NumCuenta]
+                //    ,[CLABE]
+                //    ,[ClaveFacturacion]
+                //    ,[TipoPago]
+                //    ,[FormaPago]
+                //    ,[Observaciones]
+                //    ,[RutaLogo]
+                //    ,[Imagen]
+                //    ,[FechaValidaPago]
+                //    ,[UsuarioPago]
+                //    ,[FechaModificacion]
+                //    ,[UsuarioModificacion]
+                //FROM [CaratulaPago]
+                //WHERE [Estatus] = 'Pagado'";
+                //      SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                //      dataAdapter.SelectCommand = queryLista;
+                //      DataSet dataSet = new DataSet();
+                //      dataAdapter.Fill(dataSet);
+                //      grid.DataSource = dataSet.Tables[0];
+                #endregion
             }
             catch (Exception e)
             {
