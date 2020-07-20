@@ -504,3 +504,4 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\bin\Debug\ru\DevExpre
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Reports.repCaratulaFactura.resources
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Reports.repDetalleFactura.resources
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.AgregarCliente.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.EditarCliente.resources

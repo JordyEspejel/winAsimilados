@@ -76,6 +76,7 @@
             this.accordionControlElement10 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement11 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElemenAddClteUnit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElementEditClte = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionAgregaEmplUni = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -98,7 +99,6 @@
             this.accordionControlElement9 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlEditaUsuario = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
-            this.accordionControlElementEditClte = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpleados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -533,7 +533,6 @@
             this.accordionControlElement10.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement11,
             this.accordionControlElementEditClte});
-            this.accordionControlElement10.Expanded = true;
             this.accordionControlElement10.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement10.ImageOptions.Image")));
             this.accordionControlElement10.Name = "accordionControlElement10";
             this.accordionControlElement10.Text = "Clientes";
@@ -542,7 +541,6 @@
             // 
             this.accordionControlElement11.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElemenAddClteUnit});
-            this.accordionControlElement11.Expanded = true;
             this.accordionControlElement11.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement11.ImageOptions.Image")));
             this.accordionControlElement11.Name = "accordionControlElement11";
             this.accordionControlElement11.Text = "Agregar";
@@ -554,6 +552,14 @@
             this.accordionControlElemenAddClteUnit.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElemenAddClteUnit.Text = "Unitario";
             this.accordionControlElemenAddClteUnit.Click += new System.EventHandler(this.accordionControlElemenAddClteUnit_Click);
+            // 
+            // accordionControlElementEditClte
+            // 
+            this.accordionControlElementEditClte.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElementEditClte.ImageOptions.Image")));
+            this.accordionControlElementEditClte.Name = "accordionControlElementEditClte";
+            this.accordionControlElementEditClte.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElementEditClte.Text = "Editar";
+            this.accordionControlElementEditClte.Click += new System.EventHandler(this.accordionControlElementEditClte_Click);
             // 
             // accordionControlElement1
             // 
@@ -737,13 +743,6 @@
             // splashScreenManager1
             // 
             this.splashScreenManager1.ClosingDelay = 500;
-            // 
-            // accordionControlElementEditClte
-            // 
-            this.accordionControlElementEditClte.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement12.ImageOptions.Image")));
-            this.accordionControlElementEditClte.Name = "accordionControlElementEditClte";
-            this.accordionControlElementEditClte.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElementEditClte.Text = "Editar";
             // 
             // AsimiladosPrincipal
             // 

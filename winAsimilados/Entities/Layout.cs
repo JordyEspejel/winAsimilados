@@ -51,6 +51,7 @@ namespace winAsimilados.Entities
         private string _cuentaBancaria;
         private string _CLABE;
         private string _bancoEmpresaPago;
+        private decimal _descuentos;
 
 
         public string ID { get { return _ID; } set { _ID = value; } }
@@ -139,6 +140,6 @@ namespace winAsimilados.Entities
         public decimal depositoNeto{ get { return _depositoNeto; } set { _depositoNeto = value; } }
         public string cuentaBancaria{ get { return _cuentaBancaria; } set { _cuentaBancaria = value; } }
         public string CLABE{ get { return _CLABE; } set { _CLABE = value; } }
-
+        public decimal descuentos { get { return _descuentos; } set { _descuentos = value; } }
     }
 }

@@ -39,6 +39,106 @@ namespace winAsimilados.Controller
 {
     class Controller
     {
+
+        public bool ReactivaCliente(E.ClienteAsimilado cliente)
+        {
+            try
+            {
+                SqlCommand updateEstatus = N.Conexion.PerformConnection().CreateCommand();
+                updateEstatus.CommandText = @"UPDATE [BSNOMINAS].[dbo].[ClientesAsimilados]
+                   SET [ESTATUS] = 'Activo' 
+                WHERE [ID] = '" + cliente.ID + "'";
+
+                if (updateEstatus.ExecuteNonQuery().Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: ReactivaCliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public bool BajaCliente(E.ClienteAsimilado cliente)
+        {
+            try
+            {
+                SqlCommand updateEstatus = N.Conexion.PerformConnection().CreateCommand();
+                updateEstatus.CommandText = @"UPDATE [BSNOMINAS].[dbo].[ClientesAsimilados]
+                   SET [ESTATUS] = 'Inactivo'
+                  ,[FECHA_BAJA] =  GETDATE()
+                WHERE [ID] = '" + cliente.ID + "'";
+
+                if (updateEstatus.ExecuteNonQuery().Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: BajaCliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public bool UpdateCliente(E.ClienteAsimilado cliente)
+        {
+            try
+            {
+                SqlCommand updateCliente = N.Conexion.PerformConnection().CreateCommand();
+                updateCliente.CommandText = @"UPDATE [BSNOMINAS].[dbo].[ClientesAsimilados]
+                   SET [COMISIONISTA] = '" + cliente.COMISIONISTA + "'" +
+                   ",[CLIENTE] = '" + cliente.CLIENTE + "'" +               
+                   ",[PORCENTAJE_ISN] = " + cliente.PORCENTAJE_ISN + "" +
+                   ",[PORCENTAJE_COMISION] = " + cliente.PORCENTAJE_COMISION + "" +
+                   ",[TOTAL] = " + cliente.TOTAL + "" +
+                   ",[FACTURACION_CON IVA _SIN IVA] = '" + cliente.FACTURACION_CON_IVA_SIN_IVA + "'" +
+                   ",[RETENCION] = '" + cliente.RETENCION + "'" +
+                   ",[PORCENTAJE_RETENCION] = " + cliente.PORCENTAJE_RETENCION + "" +
+                   ",[PERIODO_DE_PAGO] = '" + cliente.PERIODO_DE_PAGO + "'" +
+                   ",[EJECUTIVO_RESPONSABLE] = '" + cliente.EJECUTIVO_RESPONSABLE + "'" +
+                   ",[EMPRESA_PAGADORA_EMITE CFDI] = '" + cliente.EMPRESA_PAGADORA_EMITE_CFDI + "'" +
+                   ",[PROVEEDOR] = '" + cliente.PROVEEDOR + "'" +
+                   ",[EMPRESA_QUE_FACTUR_A _CLIENTE] = '" + cliente.EMPRESA_QUE_FACTUR_A_CLIENTE + "'" +
+                   ",[EMPRESA_QUE_FACTURA_A_CLIENTE1] = '" + cliente.EMPRESA_QUE_FACTURA_A_CLIENTE1 + "'" +
+                   ",[EMPRESA_QUE_FACTURA_A_CLIENTE2] = '" + cliente.EMPRESA_QUE_FACTURA_A_CLIENTE2 + "'" +
+                   ",[EMPRESA_QUE_FACTURA_A_CLIENTE3] = '" + cliente.EMPRESA_QUE_FACTURA_A_CLIENTE3 + "'" +
+                   ",[Metodo_Pago] = '" + cliente.Metodo_Pago + "'" +
+                    ",[Observaciones] = '" + cliente.Observaciones + "'" +
+                    ",[Forma_Pago] = '" + cliente.Forma_Pago +"'" +
+                    ",[PORCENTAJE_COMISIONISTA] = " + cliente.PORCENTAJE_COMISIONISTA + "" +
+                    ",[COMISIONISTA2] = '" + cliente.COMISIONISTA2 + "'" +
+                    ",[PORCENTAJE_COMISIONISTA2] = " + cliente.PORCENTAJE_COMISIONISTA2 + "" +
+                    ",[COMISIONISTA3] = '" + cliente.COMISIONISTA3 + "'" +
+                    ",[PORCENTAJE_COMISIONIST3] = " + cliente.PORCENTAJE_COMISIONISTA3 + "" +
+                    ",[PORCENTAJE_FACTURA] = " + cliente.PORCENTAJE_FACTURA + "" +
+                    ",[PORCENTAJE_FACTURA2] = " + cliente.PORCENTAJE_FACTURA2 + "" +
+                    ",[PORCENTAJE_FACTURA3] = " + cliente.PORCENTAJE_FACTURA3 + "" +
+                    ",[PORCENTAJE_FACTURA4] = " + cliente.PORCENTAJE_FACTURA4 + "" +
+                    "WHERE [ID] = '" + cliente.ID + "'";
+
+                if (updateCliente.ExecuteNonQuery().Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: updateClte", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         public bool InsertaCliente(E.ClienteAsimilado cliente)
         {
             try
@@ -66,7 +166,16 @@ namespace winAsimilados.Controller
                    ,[EMPRESA_QUE_FACTURA_A_CLIENTE3]
                    ,[Metodo_Pago]
                    ,[Observaciones]
-                   ,[Forma_Pago])
+                   ,[Forma_Pago]
+                  ,[PORCENTAJE_COMISIONISTA]
+                  ,[COMISIONISTA2]
+                  ,[PORCENTAJE_COMISIONISTA2]
+                  ,[COMISIONISTA3]
+                  ,[PORCENTAJE_COMISIONIST3]
+                  ,[PORCENTAJE_FACTURA]
+                  ,[PORCENTAJE_FACTURA2]
+                  ,[PORCENTAJE_FACTURA3]
+                  ,[PORCENTAJE_FACTURA4])
              VALUES
                    ('" + cliente.ID + "'" +
                    ",'" + cliente.CLIENTE + "'" +
@@ -89,7 +198,16 @@ namespace winAsimilados.Controller
                    ",'" + cliente.EMPRESA_QUE_FACTURA_A_CLIENTE3 + "'" +
                    ",'" + cliente.Metodo_Pago + "'" +
                    ",'" + cliente.Observaciones + "'" +
-                   ",'" + cliente.Forma_Pago + "')";
+                   ",'" + cliente.Forma_Pago + "'" +
+                   "," + cliente.PORCENTAJE_COMISIONISTA + "" +
+                    ",'" + cliente.COMISIONISTA2 + "'" +
+                    "," + cliente.PORCENTAJE_COMISIONISTA2 + "" +
+                    ",'" + cliente.COMISIONISTA3 + "'" +
+                    "," + cliente.PORCENTAJE_COMISIONISTA3 + "" +
+                    "," + cliente.PORCENTAJE_FACTURA + "" +
+                    "," + cliente.PORCENTAJE_FACTURA2 + "" +
+                    "," + cliente.PORCENTAJE_FACTURA3 + "" +
+                    "," + cliente.PORCENTAJE_FACTURA4 + ")";
 
                 if (insertaCliente.ExecuteNonQuery().Equals(1))
                 {
@@ -1754,13 +1872,23 @@ namespace winAsimilados.Controller
                   ,[EJECUTIVO_RESPONSABLE]
                   ,[EMPRESA_PAGADORA_EMITE CFDI]
                   ,[PROVEEDOR]
-                  ,ISNULL([EMPRESA_QUE_FACTUR_A _CLIENTE], 'SIN DEFINIR') AS [EMPRESA_QUE_FACTUR_A _CLIENTE]
-                  ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE1], 'SIN DEFINIR') AS [EMPRESA_QUE_FACTURA_A_CLIENTE1]
-                  ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE2], 'SIN DEFINIR') AS [EMPRESA_QUE_FACTURA_A_CLIENTE2]
-                  ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE3], 'SIN DEFINIR') AS [EMPRESA_QUE_FACTURA_A_CLIENTE3]
+                  ,ISNULL([EMPRESA_QUE_FACTUR_A _CLIENTE], '') AS [EMPRESA_QUE_FACTUR_A _CLIENTE]
+                  ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE1], '') AS [EMPRESA_QUE_FACTURA_A_CLIENTE1]
+                  ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE2], '') AS [EMPRESA_QUE_FACTURA_A_CLIENTE2]
+                  ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE3], '') AS [EMPRESA_QUE_FACTURA_A_CLIENTE3]
                   ,[Metodo_Pago]
                   ,ISNULL([Observaciones], '') AS [Observaciones]
                   ,[Forma_Pago]
+                  ,[PORCENTAJE_RETENCION]
+                ,ISNULL([PORCENTAJE_COMISIONISTA], 0) as[PORCENTAJE_COMISIONISTA]
+                ,ISNULL([COMISIONISTA2], '') as[COMISIONISTA2]
+                ,ISNULL([PORCENTAJE_COMISIONISTA2], 0) as[PORCENTAJE_COMISIONISTA2]
+                ,ISNULL([COMISIONISTA3], '') as[COMISIONISTA3]
+                ,ISNULL([PORCENTAJE_COMISIONIST3], 0) as[PORCENTAJE_COMISIONISTA3]
+                ,ISNULL([PORCENTAJE_FACTURA], 0) AS [PORCENTAJE_FACTURA]
+                ,ISNULL([PORCENTAJE_FACTURA2], 0) AS [PORCENTAJE_FACTURA2]
+                ,ISNULL([PORCENTAJE_FACTURA3], 0) AS [PORCENTAJE_FACTURA3]
+                ,ISNULL([PORCENTAJE_FACTURA4], 0) AS [PORCENTAJE_FACTURA4]
                   FROM [BSNOMINAS].[dbo].[ClientesAsimilados]  
                   WHERE [ID] = @ID";
                 queryCliente.Parameters.AddWithValue("ID", IDCliente);
@@ -1791,6 +1919,16 @@ namespace winAsimilados.Controller
                     cliente.Metodo_Pago = readerCliente.GetString(19);
                     cliente.Observaciones = readerCliente.GetString(20);
                     cliente.Forma_Pago = readerCliente.GetString(21);
+                    cliente.PORCENTAJE_RETENCION = readerCliente.GetDecimal(22);
+                    cliente.PORCENTAJE_COMISIONISTA = readerCliente.GetDecimal(23);
+                    cliente.COMISIONISTA2 = readerCliente.GetString(24);
+                    cliente.PORCENTAJE_COMISIONISTA2 = readerCliente.GetDecimal(25);
+                    cliente.COMISIONISTA3 = readerCliente.GetString(26);
+                    cliente.PORCENTAJE_COMISIONISTA3 = readerCliente.GetDecimal(27);
+                    cliente.PORCENTAJE_FACTURA = readerCliente.GetDecimal(28);
+                    cliente.PORCENTAJE_FACTURA2 = readerCliente.GetDecimal(29);
+                    cliente.PORCENTAJE_FACTURA3 = readerCliente.GetDecimal(30);
+                    cliente.PORCENTAJE_FACTURA4 = readerCliente.GetDecimal(31);
                 }
                 readerCliente.Close();
                 return cliente;
@@ -3276,7 +3414,9 @@ namespace winAsimilados.Controller
                 ,[BANCO]
                 ,[CVE_BANCO]
                 ,[EMPRESA]
-                ,[ID_EMPRESA])
+                ,[ID_EMPRESA]
+                ,[PORCENTAJE_DESCUENTO]
+                ,[TIPO_PAGO])
                 VALUES
                 ('" + empleado.NumEmpl + "','" + empleado.Nombre + "','" + empleado.RFC + "','" + empleado.CURP + "','" + "09'," + "'ASIMILADO'," + "'01/01/1900'," + "'ASIMILADO',"
                 + "'99'," + "'00','" + empleado.Periodicidad + "'," + "'No'" +
@@ -3285,11 +3425,13 @@ namespace winAsimilados.Controller
                 ",'" + empleado.banco + "'" +
                 ",'" + empleado.cve_banco + "'" +
                 ",'" + empleado.empresa + "'" +
-                ",'" + empleado.idEmpresa + "')";
+                ",'" + empleado.idEmpresa + "'" +
+                "," + empleado.descuento + "" +
+                ",'" + empleado.tipoPago + "')";
 
                 if (ReaderEmpl.Read())
                 {
-                    XtraMessageBox.Show("El empleado:" + empleado.Nombre + "\nYa se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("El empleado Con RFC: " + empleado.RFC + "Ya se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ReaderEmpl.Close();
                 }
                 else
@@ -4469,7 +4611,8 @@ namespace winAsimilados.Controller
                     ,[BANCO]
                     ,[CVE_BANCO]
                     ,[EMPRESA]
-                    ,[ID_EMPRESA])
+                    ,[ID_EMPRESA]
+                    ,[PORCENTAJE_DESCUENTO])
                     VALUES
                     ('" + empl.NumEmpl + "','" + empl.Nombre + "','" + empl.RFC + "','" + empl.CURP + "','" + "09'," + "'ASIMILADO'," + "'01/01/1900'," + "'ASIMILADO',"
                         + "'99'," + "'00','" + empl.Periodicidad + "'," + "'No'" +
@@ -4478,7 +4621,8 @@ namespace winAsimilados.Controller
                         ",'" + empl.banco + "'" +
                         ",'" + empl.cve_banco + "'" +
                         ",'" + empl.empresa + "'" +
-                        ",'" + empl.idEmpresa + "')";
+                        ",'" + empl.idEmpresa + "'" +
+                        "," + empl.descuento + ")";
 
                         if (!empl.RFC.Length.Equals(13))
                         {

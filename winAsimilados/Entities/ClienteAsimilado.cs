@@ -32,6 +32,16 @@ namespace winAsimilados.Entities
         private string _Observaciones;
         private string _Forma_Pago;
         private decimal _PORCENTAJE_RETENCION;
+        private decimal _PORCENTAJE_COMISIONISTA;
+        private string _COMISIONISTA2;
+        private decimal _PORCENTAJE_COMISIONISTA2;
+        private string _COMISIONISTA3;
+        private decimal _PORCENTAJE_COMISIONISTA3;
+        private decimal _PORCENTAJE_FACTURA;
+        private decimal _PORCENTAJE_FACTURA1;
+        private decimal _PORCENTAJE_FACTURA2;
+        private decimal _PORCENTAJE_FACTURA3;
+        private decimal _PORCENTAJE_FACTURA4;
 
         public string ID{ get { return _ID; } set { _ID = value; } }
         public string CLIENTE{ get { return _CLIENTE; } set { _CLIENTE = value; } }
@@ -58,5 +68,19 @@ namespace winAsimilados.Entities
         public string Forma_Pago { get { return _Forma_Pago; } set { _Forma_Pago = value; } }
 
         public decimal PORCENTAJE_RETENCION { get { return _PORCENTAJE_RETENCION; } set { _PORCENTAJE_RETENCION = value; } }
+        public string COMISIONISTA2 { get { return _COMISIONISTA2; } set { _COMISIONISTA2 = value; } }
+        public string COMISIONISTA3 { get { return _COMISIONISTA3; } set { _COMISIONISTA3 = value; } }
+        public decimal PORCENTAJE_COMISIONISTA3 { get { return _PORCENTAJE_COMISIONISTA3; } set { _PORCENTAJE_COMISIONISTA3 = value; } }
+        public decimal PORCENTAJE_COMISIONISTA2 { get { return _PORCENTAJE_COMISIONISTA2; } set { _PORCENTAJE_COMISIONISTA2 = value; } }
+        public decimal PORCENTAJE_COMISIONISTA { get { return _PORCENTAJE_COMISIONISTA; } set { _PORCENTAJE_COMISIONISTA = value; } }
+
+        public decimal PORCENTAJE_FACTURA { get { return _PORCENTAJE_FACTURA; } set { _PORCENTAJE_FACTURA = value; } }
+        public decimal PORCENTAJE_FACTURA2 { get { return _PORCENTAJE_FACTURA2; } set { _PORCENTAJE_FACTURA2 = value; } }
+        public decimal PORCENTAJE_FACTURA3 { get { return _PORCENTAJE_FACTURA3; } set { _PORCENTAJE_FACTURA3 = value; } }
+        public decimal PORCENTAJE_FACTURA4 { get { return _PORCENTAJE_FACTURA4; } set { _PORCENTAJE_FACTURA4 = value; } }
+
+
+
+
     }
 }

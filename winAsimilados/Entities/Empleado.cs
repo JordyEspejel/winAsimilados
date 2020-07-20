@@ -184,6 +184,13 @@ namespace winAsimilados.Entities
             set { _tipoPago = value; }
         }
 
+        private decimal _descuento;
+        public decimal descuento
+        {
+            get { return _descuento; }
+            set { _descuento = value; }
+        }
+
         //private DateTime _fechaAplicacion;
         //private DateTime _fecIniPeri;
         //private DateTime _fecFinPeri;

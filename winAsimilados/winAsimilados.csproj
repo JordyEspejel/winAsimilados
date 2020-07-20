@@ -264,6 +264,12 @@
     <Compile Include="Views\EditarCaratula.Designer.cs">
       <DependentUpon>EditarCaratula.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditarCliente.Designer.cs">
+      <DependentUpon>EditarCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditarEmpleados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -373,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\EditarCaratula.resx">
       <DependentUpon>EditarCaratula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditarCliente.resx">
+      <DependentUpon>EditarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\EditarEmpleados.resx">
       <DependentUpon>EditarEmpleados.cs</DependentUpon>

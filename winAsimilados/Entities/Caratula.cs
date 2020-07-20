@@ -50,7 +50,7 @@ namespace winAsimilados.Entities
         private string _UsuarioPago;
         private DateTime _FechaModificacion;
         private string _UsuarioModificacion;
-
+        private decimal _descuentos;
         public string ID { get { return _ID; } set { _ID = value; } }
         public string caratula { get { return _caratula; } set { _caratula = value; } }
         public string Layout { get { return _Layout; } set { _Layout = value; } }
@@ -96,5 +96,6 @@ namespace winAsimilados.Entities
         public string UsuarioPago { get { return _UsuarioPago; } set { _UsuarioPago = value; } }
         public DateTime FechaModificacion { get { return _FechaModificacion; } set { _FechaModificacion = value; } }
         public string UsuarioModificacion { get { return _UsuarioModificacion; } set { _UsuarioModificacion = value; } }
+        public decimal descuentos { get { return _descuentos; } set { _descuentos = value; } }
     }
 }

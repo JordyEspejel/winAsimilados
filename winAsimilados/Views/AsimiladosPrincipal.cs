@@ -35,6 +35,7 @@ namespace winAsimilados.Views
         string banco;
         string empresa;
         string idEmpr;
+        decimal perDescuento;
         public AsimiladosPrincipal()
         {
             InitializeComponent();
@@ -618,6 +619,13 @@ namespace winAsimilados.Views
                         {
                             idEmpr = "";
                         }
+                        try
+                        {
+                            perDescuento = Convert.ToDecimal((range.Cells[rCnt, "K"] as Excel.Range).Value2.ToString());
+                        }catch (Exception DESCUENTO)
+                        {
+                            perDescuento = 0;
+                        }
 
 
                         if (peri.Equals("SEMANAL"))
@@ -647,6 +655,7 @@ namespace winAsimilados.Views
                         empl.cve_banco = cve;
                         empl.empresa = empresa;
                         empl.idEmpresa = idEmpr;
+                        empl.descuento = perDescuento;
 
                         Empleado.Add(new E.Empleado
                         {
@@ -660,7 +669,8 @@ namespace winAsimilados.Views
                             banco = banco,
                             cve_banco = cve,
                             empresa = empresa,
-                            idEmpresa = idEmpr
+                            idEmpresa = idEmpr,
+                            descuento = perDescuento
 
                         });
                         empleado = Empleado.ToArray();
@@ -1033,6 +1043,35 @@ namespace winAsimilados.Views
                 //agregarUsuario.Size = PanelPrincipal.Size;
                 agregarCliente.Show();
                 agregarCliente.BringToFront();
+            }
+        }
+
+        private void accordionControlElementEditClte_Click(object sender, EventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando modulo Edita Cliente...");
+            EditarCliente editarCliente = new EditarCliente(splashScreenManager1);
+            var frm = Application.OpenForms.OfType<EditarCliente>().FirstOrDefault();
+            if (frm != null)
+            {
+                frm.BringToFront();
+                frm.Location = new Point(270, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Size = PanelPrincipal.Size;
+                    frm.BringToFront();
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(270, 60);
+                }
+            }
+            else
+            {
+                editarCliente.Location = new Point(270, 60);
+                //agregarUsuario.Size = PanelPrincipal.Size;
+                editarCliente.Show();
+                editarCliente.BringToFront();
             }
         }
     }
