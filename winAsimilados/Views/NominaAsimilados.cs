@@ -81,7 +81,7 @@ namespace winAsimilados.Views
         string nombreCaratula;
         string idEmpresaCaratula;
         string periPagoLayout;
-        decimal totalPagoAsimilados = 0, otrosConceptos = 0, depositoNeto = 0, aguinaldo = 0, vacaciones = 0, primaVac = 0;
+        decimal totalPagoAsimilados = 0, otrosConceptos = 0, depositoNeto = 0, aguinaldo = 0, vacaciones = 0, primaVac = 0, descuento = 0;
         //variables pestáña Genlayout
         string nomCaratulaGenLayout, EstatusCaratula, nomGenLayout, IDClienteLayout;
 
@@ -2706,9 +2706,12 @@ namespace winAsimilados.Views
                         SubLayout = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[13])); 
                         otrosConceptos = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[15]));
 
-                        depositoNeto = otrosConceptos + netoMasiv;
+                        empleadoLayout = controlador.BuscaEmpleado(rfcEmplMasiv);
 
-                       empleadoLayout = controlador.BuscaEmpleado(rfcEmplMasiv);
+                        descuento = netoMasiv * empleadoLayout.descuento;
+                        depositoNeto = otrosConceptos + netoMasiv - descuento;
+
+
 
                         #region ifPeriodos
                         if (empleadoLayout.Periodicidad.Equals("Semanal")|| empleadoLayout.Periodicidad.Equals("02"))
@@ -2805,7 +2808,8 @@ namespace winAsimilados.Views
                             depositoNeto = depositoNeto,
                             cuentaBancaria = empleadoLayout.cuenta,
                             CLABE = empleadoLayout.clabe_bancaria,
-                            bancoEmpresaPago = lookUpBanco.EditValue.ToString()
+                            bancoEmpresaPago = lookUpBanco.EditValue.ToString(),
+                            descuentos = descuento
                         });
 
                         ////XtraMessageBox.Show("Fin instrucciones");
@@ -2835,6 +2839,7 @@ namespace winAsimilados.Views
                 detalleLayout.ComisionServicio = detalleLayout.SalarioAsimilado * Convert.ToDecimal(infoCliente.PORCENTAJE_COMISION);
                 detalleLayout.SubTotal = detalleLayout.SalarioAsimilado + detalleLayout.ImpuestoNomina + detalleLayout.ComisionServicio;
                 detalleLayout.IVA = Math.Round(detalleLayout.SubTotal * IVA, 2);
+                
 
                 if (infoCliente.RETENCION.Equals("S"))
                 {

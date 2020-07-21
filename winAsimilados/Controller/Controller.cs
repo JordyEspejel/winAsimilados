@@ -2630,7 +2630,7 @@ namespace winAsimilados.Controller
                 E.Empleado empleado = new E.Empleado();
 
                 SqlCommand queryEmpleado = N.Conexion.PerformConnection().CreateCommand();
-                queryEmpleado.CommandText = @"select NUM_EMPLEADO, RFC, CURP, Descripcion as [Periodicidad Pago]
+                queryEmpleado.CommandText = @"select NUM_EMPLEADO, RFC, CURP, [PERIODICIDAD_PAGO]
                 , NOMBRE, TIPO_REGIMEN, TIPO_CONTRATO, SINDICALIZADO
                 , DEPARTAMENTO, PUESTO
                 ,ISNULL([CUENTA], 'No Definido') as [CUENTA]
@@ -2640,6 +2640,7 @@ namespace winAsimilados.Controller
                 ,ISNULL([EMPRESA], 'No Definido')as [EMPRESA]
                 ,ISNULL([ID_EMPRESA], 'No Definido') as [ID EMPRESA]
                 ,ISNULL([TIPO_PAGO], 'No Definido') as [TIPO_PAGO]
+                ,ISNULL([PORCENTAJE_DESCUENTO], 0) as [PORCENTAJE_DESCUENTO]
                 from EMPLEADOS 
                 inner join [BSNOMINAS].[dbo].[PeriodicidadPago] as Peri
                 on EMPLEADOS.PERIODICIDAD_PAGO = Peri.c_PeriodicidadPago
@@ -2669,6 +2670,7 @@ namespace winAsimilados.Controller
                     empleado.empresa = readerEmpleado.GetString(14);
                     empleado.idEmpresa = readerEmpleado.GetString(15);
                     empleado.tipoPago = readerEmpleado.GetString(16);
+                    empleado.descuento = readerEmpleado.GetDecimal(17);
                 }
                 readerEmpleado.Close();
 
@@ -3451,7 +3453,7 @@ namespace winAsimilados.Controller
 
         }
         
-        public void EditarEmpleado(Object _P, SplashScreenManager splashScreenManager)
+        public void EditarEmpleado(Object _P/*, SplashScreenManager splashScreenManager*/)
         {
             try
             {
@@ -3460,22 +3462,31 @@ namespace winAsimilados.Controller
                 //query update
                 SqlCommand queryUpdateEmpl = N.Conexion.PerformConnection().CreateCommand();
                 queryUpdateEmpl.CommandText = @"UPDATE EMPLEADOS set NOMBRE = '" + empleado.Nombre +"',"+ "RFC = '" + empleado.RFC + "',"
-                + "CURP = '" + empleado.CURP + "', PERIODICIDAD_PAGO = '" + empleado.Periodicidad + "' where idempleado = " + empleado.IDEmpleado + ""; //lo modifica por el ID del empleado
+                + "CURP = '" + empleado.CURP + "', PERIODICIDAD_PAGO = '" + empleado.Periodicidad + "'" +
+                ",CUENTA = '" + empleado.cuenta + "'" +
+                ",CLABE_BANCARIA = '" + empleado.clabe_bancaria + "'" +
+                ",CVE_BANCO = '" + empleado.cve_banco + "'" +
+                ",BANCO = '" + empleado.banco + "'" +
+                ",EMPRESA = '" + empleado.empresa + "'" +
+                ",ID_EMPRESA = '" + empleado.idEmpresa + "'" +
+                ",TIPO_PAGO = '" + empleado.tipoPago + "'" +
+                ",PORCENTAJE_DESCUENTO = '" + empleado.descuento + "'" +
+                "where RFC = '" + empleado.RFC + "'"; //lo modifica por el ID del empleado
                 if (queryUpdateEmpl.ExecuteNonQuery().Equals(1))
                 {
-                    splashScreenManager.CloseWaitForm();
+                    //splashScreenManager.CloseWaitForm();
                     XtraMessageBox.Show("¡Información Actualizada Con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    splashScreenManager.CloseWaitForm();
+                    //splashScreenManager.CloseWaitForm();
                     XtraMessageBox.Show("¡Error Al  Actualizar La Información!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
             catch (Exception e)
             {
-                splashScreenManager.CloseWaitForm();
+                //splashScreenManager.CloseWaitForm();
                 XtraMessageBox.Show(e.Message + "\nError Controlador: EditarEMpleado()", "Error",  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -4041,7 +4052,8 @@ namespace winAsimilados.Controller
                        ,[depositoNeto]
                        ,[cuentaBancaria]
                        ,[CLABE]
-                       ,[bancoEmpresaPago])
+                       ,[bancoEmpresaPago]
+                        ,[descuentos])
                  VALUES
                        ('" + item.numEmpl + "'" +
                        ",'" + item.nombreEmpleado + "'" +
@@ -4083,7 +4095,8 @@ namespace winAsimilados.Controller
                       "," + item.depositoNeto + "" +
                       ",'" + item.cuentaBancaria + "'" +
                       ",'" + item.CLABE + "'" +
-                      ",'" + item.bancoEmpresaPago + "')";
+                      ",'" + item.bancoEmpresaPago + "'" +
+                      "," + item.descuentos + ")";
 
                         queryInsertaLayout.ExecuteNonQuery();
 

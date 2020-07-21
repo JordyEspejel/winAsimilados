@@ -19,6 +19,7 @@ namespace winAsimilados.Entities
         private decimal _RetencionIVA;
         private decimal _Total;
         private string _Detalles;
+        private decimal _Descuentos;
 
         public string ID{ get { return _ID; } set { _ID = value; } }
         public string Layout { get { return _Layout; } set { _Layout = value; } }
@@ -31,5 +32,7 @@ namespace winAsimilados.Entities
         public decimal RetencionIVA { get { return _RetencionIVA; } set { _RetencionIVA = value; } }
         public decimal Total { get { return _Total; } set { _Total = value; } }
         public string Detalles { get { return _Detalles; } set { _Detalles = value; } }
+
+        public decimal Descuentos { get { return _Descuentos; } set { _Descuentos = value; } }
     }
 }

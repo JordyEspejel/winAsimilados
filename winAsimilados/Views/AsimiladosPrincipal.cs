@@ -127,7 +127,7 @@ namespace winAsimilados.Views
 
         private void BtnEditaEmpleados_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            EditarEmpleados editarEmpleados = new EditarEmpleados();
+            EditarEmpleados editarEmpleados = new EditarEmpleados(splashScreenManager1);
             var frm = Application.OpenForms.OfType<EditarEmpleados>().FirstOrDefault();
             if (frm != null)
             {
@@ -711,7 +711,9 @@ namespace winAsimilados.Views
 
         private void acoordionEditaEmpleado_Click(object sender, EventArgs e)
         {
-            EditarEmpleados editarEmpleados = new EditarEmpleados();
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Modulo Editar Empleados...");
+            EditarEmpleados editarEmpleados = new EditarEmpleados(splashScreenManager1);
             var frm = Application.OpenForms.OfType<EditarEmpleados>().FirstOrDefault();
             if (frm != null)
             {
@@ -721,13 +723,13 @@ namespace winAsimilados.Views
                 {
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
-                    editarEmpleados.Size = PanelPrincipal.Size;
+                    //editarEmpleados.Size = PanelPrincipal.Size;
                     editarEmpleados.Location = new Point(270, 60);
                 }
             }
             else
             {
-                editarEmpleados.Size = PanelPrincipal.Size;
+                //editarEmpleados.Size = PanelPrincipal.Size;
                 editarEmpleados.Location = new Point(270, 60);
                 editarEmpleados.Show();
             }

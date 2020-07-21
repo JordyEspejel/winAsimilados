@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery5 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery5 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column9 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression9 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table5 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column10 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression10 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery6 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column11 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression11 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table6 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column12 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression12 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery6 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery1 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery1 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column1 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression1 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table1 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column2 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression2 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery2 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column3 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression3 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table2 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column4 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression4 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery2 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarEmpleado));
             this.queryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
@@ -57,6 +57,13 @@
             this.TxtCLABE = new DevExpress.XtraEditors.TextEdit();
             this.TxtCVE = new DevExpress.XtraEditors.TextEdit();
             this.TxtNumEmpl = new DevExpress.XtraEditors.TextEdit();
+            this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
+            this.lookUpBanco = new DevExpress.XtraEditors.LookUpEdit();
+            this.bancosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lookUpEmpresa = new DevExpress.XtraEditors.LookUpEdit();
+            this.clientesAsimiladosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lookUpTipoPago = new DevExpress.XtraEditors.LookUpEdit();
+            this.tipoPagoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -65,24 +72,17 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
-            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lookUpBanco = new DevExpress.XtraEditors.LookUpEdit();
-            this.bancosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lookUpEmpresa = new DevExpress.XtraEditors.LookUpEdit();
-            this.clientesAsimiladosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.lookUpTipoPago = new DevExpress.XtraEditors.LookUpEdit();
-            this.tipoPagoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.queryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -95,6 +95,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.TxtCLABE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtCVE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtNumEmpl.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpBanco.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bancosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEmpresa.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesAsimiladosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpTipoPago.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoPagoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
@@ -103,24 +110,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpBanco.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bancosBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEmpresa.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientesAsimiladosBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpTipoPago.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoPagoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // queryBindingSource
@@ -132,42 +132,42 @@
             // 
             this.sqlDataSource1.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            customSqlQuery5.Name = "Query";
-            customSqlQuery5.Sql = "  SELECT c_PeriodicidadPago as [Codigo], Descripcion  from PeriodicidadPago";
-            columnExpression9.ColumnName = "c_Banco";
-            table5.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"134\" />";
-            table5.Name = "Bancos";
-            columnExpression9.Table = table5;
-            column9.Expression = columnExpression9;
-            columnExpression10.ColumnName = "Descripcion";
-            columnExpression10.Table = table5;
-            column10.Expression = columnExpression10;
-            selectQuery5.Columns.Add(column9);
-            selectQuery5.Columns.Add(column10);
-            selectQuery5.Name = "Bancos";
-            selectQuery5.Tables.Add(table5);
-            columnExpression11.ColumnName = "ID";
-            table6.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"495\" />";
-            table6.Name = "ClientesAsimilados";
-            columnExpression11.Table = table6;
-            column11.Expression = columnExpression11;
-            columnExpression12.ColumnName = "CLIENTE";
-            columnExpression12.Table = table6;
-            column12.Expression = columnExpression12;
-            selectQuery6.Columns.Add(column11);
-            selectQuery6.Columns.Add(column12);
-            selectQuery6.FilterString = "[ClientesAsimilados.ID] <> \'E00000\'";
-            selectQuery6.GroupFilterString = "";
-            selectQuery6.Name = "ClientesAsimilados";
-            selectQuery6.Tables.Add(table6);
-            customSqlQuery6.Name = "TipoPago";
-            customSqlQuery6.Sql = "SELECT \'010\' AS [Value], \'Num. Cuenta\' AS [Descripcion]\r\nUNION SELECT \'040\' AS [V" +
+            customSqlQuery1.Name = "Query";
+            customSqlQuery1.Sql = "  SELECT c_PeriodicidadPago as [Codigo], Descripcion  from PeriodicidadPago";
+            columnExpression1.ColumnName = "c_Banco";
+            table1.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"134\" />";
+            table1.Name = "Bancos";
+            columnExpression1.Table = table1;
+            column1.Expression = columnExpression1;
+            columnExpression2.ColumnName = "Descripcion";
+            columnExpression2.Table = table1;
+            column2.Expression = columnExpression2;
+            selectQuery1.Columns.Add(column1);
+            selectQuery1.Columns.Add(column2);
+            selectQuery1.Name = "Bancos";
+            selectQuery1.Tables.Add(table1);
+            columnExpression3.ColumnName = "ID";
+            table2.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"495\" />";
+            table2.Name = "ClientesAsimilados";
+            columnExpression3.Table = table2;
+            column3.Expression = columnExpression3;
+            columnExpression4.ColumnName = "CLIENTE";
+            columnExpression4.Table = table2;
+            column4.Expression = columnExpression4;
+            selectQuery2.Columns.Add(column3);
+            selectQuery2.Columns.Add(column4);
+            selectQuery2.FilterString = "[ClientesAsimilados.ID] <> \'E00000\'";
+            selectQuery2.GroupFilterString = "";
+            selectQuery2.Name = "ClientesAsimilados";
+            selectQuery2.Tables.Add(table2);
+            customSqlQuery2.Name = "TipoPago";
+            customSqlQuery2.Sql = "SELECT \'010\' AS [Value], \'Num. Cuenta\' AS [Descripcion]\r\nUNION SELECT \'040\' AS [V" +
     "alue], \'CLABE\' AS [Descripcion]";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            customSqlQuery5,
-            selectQuery5,
-            selectQuery6,
-            customSqlQuery6});
+            customSqlQuery1,
+            selectQuery1,
+            selectQuery2,
+            customSqlQuery2});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // BtnAgregar
@@ -280,6 +280,81 @@
             this.TxtNumEmpl.StyleController = this.layoutControl1;
             this.TxtNumEmpl.TabIndex = 19;
             // 
+            // spinEdit1
+            // 
+            this.spinEdit1.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEdit1.Location = new System.Drawing.Point(436, 120);
+            this.spinEdit1.Name = "spinEdit1";
+            this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEdit1.Properties.Mask.EditMask = "P";
+            this.spinEdit1.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.spinEdit1.Size = new System.Drawing.Size(127, 20);
+            this.spinEdit1.StyleController = this.layoutControl1;
+            this.spinEdit1.TabIndex = 20;
+            // 
+            // lookUpBanco
+            // 
+            this.lookUpBanco.Location = new System.Drawing.Point(70, 210);
+            this.lookUpBanco.Name = "lookUpBanco";
+            this.lookUpBanco.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpBanco.Properties.DataSource = this.bancosBindingSource;
+            this.lookUpBanco.Properties.DisplayMember = "Descripcion";
+            this.lookUpBanco.Properties.NullText = "Seleccione";
+            this.lookUpBanco.Properties.ValueMember = "c_Banco";
+            this.lookUpBanco.Size = new System.Drawing.Size(538, 20);
+            this.lookUpBanco.StyleController = this.layoutControl1;
+            this.lookUpBanco.TabIndex = 15;
+            this.lookUpBanco.EditValueChanged += new System.EventHandler(this.lookUpBanco_EditValueChanged);
+            // 
+            // bancosBindingSource
+            // 
+            this.bancosBindingSource.DataMember = "Bancos";
+            this.bancosBindingSource.DataSource = this.sqlDataSource1;
+            // 
+            // lookUpEmpresa
+            // 
+            this.lookUpEmpresa.Location = new System.Drawing.Point(82, 144);
+            this.lookUpEmpresa.Name = "lookUpEmpresa";
+            this.lookUpEmpresa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEmpresa.Properties.DataSource = this.clientesAsimiladosBindingSource;
+            this.lookUpEmpresa.Properties.DisplayMember = "CLIENTE";
+            this.lookUpEmpresa.Properties.NullText = "Seleccione";
+            this.lookUpEmpresa.Properties.ValueMember = "ID";
+            this.lookUpEmpresa.Size = new System.Drawing.Size(682, 20);
+            this.lookUpEmpresa.StyleController = this.layoutControl1;
+            this.lookUpEmpresa.TabIndex = 17;
+            // 
+            // clientesAsimiladosBindingSource
+            // 
+            this.clientesAsimiladosBindingSource.DataMember = "ClientesAsimilados";
+            this.clientesAsimiladosBindingSource.DataSource = this.sqlDataSource1;
+            // 
+            // lookUpTipoPago
+            // 
+            this.lookUpTipoPago.Location = new System.Drawing.Point(632, 120);
+            this.lookUpTipoPago.Name = "lookUpTipoPago";
+            this.lookUpTipoPago.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpTipoPago.Properties.DataSource = this.tipoPagoBindingSource;
+            this.lookUpTipoPago.Properties.DisplayMember = "Descripcion";
+            this.lookUpTipoPago.Properties.NullText = "Seleccione";
+            this.lookUpTipoPago.Properties.ValueMember = "Value";
+            this.lookUpTipoPago.Size = new System.Drawing.Size(132, 20);
+            this.lookUpTipoPago.StyleController = this.layoutControl1;
+            this.lookUpTipoPago.TabIndex = 21;
+            // 
+            // tipoPagoBindingSource
+            // 
+            this.tipoPagoBindingSource.DataMember = "TipoPago";
+            this.tipoPagoBindingSource.DataSource = this.sqlDataSource1;
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -375,6 +450,37 @@
             this.layoutControlItem12.TextSize = new System.Drawing.Size(57, 13);
             this.layoutControlItem12.TextToControlDistance = 5;
             // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.lookUpEmpresa;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(732, 24);
+            this.layoutControlItem10.Text = "Empresa";
+            this.layoutControlItem10.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(41, 13);
+            this.layoutControlItem10.TextToControlDistance = 5;
+            // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.Control = this.spinEdit1;
+            this.layoutControlItem11.Location = new System.Drawing.Point(330, 48);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Size = new System.Drawing.Size(201, 24);
+            this.layoutControlItem11.Text = "% Descuento";
+            this.layoutControlItem11.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(65, 13);
+            this.layoutControlItem11.TextToControlDistance = 5;
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.lookUpTipoPago;
+            this.layoutControlItem13.Location = new System.Drawing.Point(531, 48);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(201, 24);
+            this.layoutControlItem13.Text = "Tipo de pago";
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(62, 13);
+            // 
             // layoutControlGroup4
             // 
             this.layoutControlGroup4.GroupStyle = DevExpress.Utils.GroupStyle.Light;
@@ -399,17 +505,6 @@
             this.layoutControlItem6.TextSize = new System.Drawing.Size(35, 13);
             this.layoutControlItem6.TextToControlDistance = 5;
             // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.lookUpBanco;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(576, 24);
-            this.layoutControlItem8.Text = "Banco";
-            this.layoutControlItem8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(29, 13);
-            this.layoutControlItem8.TextToControlDistance = 5;
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.TxtCLABE;
@@ -421,6 +516,17 @@
             this.layoutControlItem7.TextSize = new System.Drawing.Size(31, 13);
             this.layoutControlItem7.TextToControlDistance = 5;
             // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.lookUpBanco;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(576, 24);
+            this.layoutControlItem8.Text = "Banco";
+            this.layoutControlItem8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(29, 13);
+            this.layoutControlItem8.TextToControlDistance = 5;
+            // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.TxtCVE;
@@ -431,17 +537,6 @@
             this.layoutControlItem9.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem9.TextSize = new System.Drawing.Size(51, 13);
             this.layoutControlItem9.TextToControlDistance = 5;
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.lookUpEmpresa;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 72);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(732, 24);
-            this.layoutControlItem10.Text = "Empresa";
-            this.layoutControlItem10.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(41, 13);
-            this.layoutControlItem10.TextToControlDistance = 5;
             // 
             // layoutControlItem5
             // 
@@ -460,82 +555,6 @@
             this.emptySpaceItem2.Size = new System.Drawing.Size(644, 59);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // spinEdit1
-            // 
-            this.spinEdit1.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEdit1.Location = new System.Drawing.Point(436, 120);
-            this.spinEdit1.Name = "spinEdit1";
-            this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEdit1.Properties.Mask.EditMask = "P";
-            this.spinEdit1.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEdit1.Size = new System.Drawing.Size(127, 20);
-            this.spinEdit1.StyleController = this.layoutControl1;
-            this.spinEdit1.TabIndex = 20;
-            // 
-            // layoutControlItem11
-            // 
-            this.layoutControlItem11.Control = this.spinEdit1;
-            this.layoutControlItem11.Location = new System.Drawing.Point(330, 48);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(201, 24);
-            this.layoutControlItem11.Text = "% Descuento";
-            this.layoutControlItem11.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(65, 13);
-            this.layoutControlItem11.TextToControlDistance = 5;
-            // 
-            // lookUpBanco
-            // 
-            this.lookUpBanco.Location = new System.Drawing.Point(70, 210);
-            this.lookUpBanco.Name = "lookUpBanco";
-            this.lookUpBanco.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpBanco.Properties.DataSource = this.bancosBindingSource;
-            this.lookUpBanco.Properties.DisplayMember = "Descripcion";
-            this.lookUpBanco.Properties.NullText = "Seleccione";
-            this.lookUpBanco.Properties.ValueMember = "c_Banco";
-            this.lookUpBanco.Size = new System.Drawing.Size(538, 20);
-            this.lookUpBanco.StyleController = this.layoutControl1;
-            this.lookUpBanco.TabIndex = 15;
-            this.lookUpBanco.EditValueChanged += new System.EventHandler(this.lookUpBanco_EditValueChanged);
-            // 
-            // bancosBindingSource
-            // 
-            this.bancosBindingSource.DataMember = "Bancos";
-            this.bancosBindingSource.DataSource = this.sqlDataSource1;
-            // 
-            // lookUpEmpresa
-            // 
-            this.lookUpEmpresa.Location = new System.Drawing.Point(82, 144);
-            this.lookUpEmpresa.Name = "lookUpEmpresa";
-            this.lookUpEmpresa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEmpresa.Properties.DataSource = this.clientesAsimiladosBindingSource;
-            this.lookUpEmpresa.Properties.DisplayMember = "CLIENTE";
-            this.lookUpEmpresa.Properties.NullText = "Seleccione";
-            this.lookUpEmpresa.Properties.ValueMember = "ID";
-            this.lookUpEmpresa.Size = new System.Drawing.Size(682, 20);
-            this.lookUpEmpresa.StyleController = this.layoutControl1;
-            this.lookUpEmpresa.TabIndex = 17;
-            // 
-            // clientesAsimiladosBindingSource
-            // 
-            this.clientesAsimiladosBindingSource.DataMember = "ClientesAsimilados";
-            this.clientesAsimiladosBindingSource.DataSource = this.sqlDataSource1;
-            // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.lookUpTipoPago;
-            this.layoutControlItem13.Location = new System.Drawing.Point(531, 48);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(201, 24);
-            this.layoutControlItem13.Text = "Tipo de pago";
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(62, 13);
-            // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
@@ -543,25 +562,6 @@
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(780, 106);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // lookUpTipoPago
-            // 
-            this.lookUpTipoPago.Location = new System.Drawing.Point(632, 120);
-            this.lookUpTipoPago.Name = "lookUpTipoPago";
-            this.lookUpTipoPago.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpTipoPago.Properties.DataSource = this.tipoPagoBindingSource;
-            this.lookUpTipoPago.Properties.DisplayMember = "Descripcion";
-            this.lookUpTipoPago.Properties.NullText = "Seleccione";
-            this.lookUpTipoPago.Properties.ValueMember = "Value";
-            this.lookUpTipoPago.Size = new System.Drawing.Size(132, 20);
-            this.lookUpTipoPago.StyleController = this.layoutControl1;
-            this.lookUpTipoPago.TabIndex = 21;
-            // 
-            // tipoPagoBindingSource
-            // 
-            this.tipoPagoBindingSource.DataMember = "TipoPago";
-            this.tipoPagoBindingSource.DataSource = this.sqlDataSource1;
             // 
             // AgregarEmpleado
             // 
@@ -586,6 +586,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.TxtCLABE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtCVE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtNumEmpl.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpBanco.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bancosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEmpresa.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesAsimiladosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpTipoPago.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoPagoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
@@ -594,24 +601,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpBanco.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bancosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEmpresa.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientesAsimiladosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpTipoPago.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoPagoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
