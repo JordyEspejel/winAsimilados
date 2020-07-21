@@ -191,12 +191,12 @@ namespace winAsimilados.Entities
             set { _descuento = value; }
         }
 
-        //private DateTime _fechaAplicacion;
-        //private DateTime _fecIniPeri;
-        //private DateTime _fecFinPeri;
-        //public DateTime fechaAplicacion { get { return _fechaAplicacion; } set { _fechaAplicacion = value; } }
-        //public DateTime fecIniPeri { get { return _fecIniPeri; } set { _fecIniPeri = value; } }
-        //public DateTime fecFinPeri { get { return _fecFinPeri; } set { _fecFinPeri = value; } }
+        private DateTime _fechaAplicacion;
+        private DateTime _fecIniPeri;
+        private DateTime _fecFinPeri;
+        public DateTime fechaAplicacion { get { return _fechaAplicacion; } set { _fechaAplicacion = value; } }
+        public DateTime fecIniPeri { get { return _fecIniPeri; } set { _fecIniPeri = value; } }
+        public DateTime fecFinPeri { get { return _fecFinPeri; } set { _fecFinPeri = value; } }
     }
 }
 

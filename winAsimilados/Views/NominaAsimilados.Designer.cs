@@ -193,6 +193,9 @@
             this.colestatus1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCaratula1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLayout1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnFecApp = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnFechaIniPeriodo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnFechaFinPeriodo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnTimbrar = new DevExpress.XtraEditors.SimpleButton();
             this.btnValidarTimbrado = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup28 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -380,12 +383,12 @@
             this.BtnMasivIngresos = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
-            this.layoutControlGroup15 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup12 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup25 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem51 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup12 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup15 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -599,12 +602,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.FecFinPeriUni.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
@@ -852,7 +855,10 @@
             this.colingresosNeto,
             this.colestatus1,
             this.colCaratula1,
-            this.colLayout1});
+            this.colLayout1,
+            this.gridColumnFecApp,
+            this.gridColumnFechaIniPeriodo,
+            this.gridColumnFechaFinPeriodo});
             this.gridViewFactura.GridControl = this.gridControlFactura;
             this.gridViewFactura.GroupCount = 1;
             this.gridViewFactura.Name = "gridViewFactura";
@@ -1041,6 +1047,30 @@
             this.colLayout1.Visible = true;
             this.colLayout1.VisibleIndex = 15;
             // 
+            // gridColumnFecApp
+            // 
+            this.gridColumnFecApp.Caption = "Fecha Aplicacion";
+            this.gridColumnFecApp.FieldName = "FechaAplicacion";
+            this.gridColumnFecApp.Name = "gridColumnFecApp";
+            this.gridColumnFecApp.Visible = true;
+            this.gridColumnFecApp.VisibleIndex = 18;
+            // 
+            // gridColumnFechaIniPeriodo
+            // 
+            this.gridColumnFechaIniPeriodo.Caption = "Fecha inicio periodo";
+            this.gridColumnFechaIniPeriodo.FieldName = "FechaIniPeriodo";
+            this.gridColumnFechaIniPeriodo.Name = "gridColumnFechaIniPeriodo";
+            this.gridColumnFechaIniPeriodo.Visible = true;
+            this.gridColumnFechaIniPeriodo.VisibleIndex = 17;
+            // 
+            // gridColumnFechaFinPeriodo
+            // 
+            this.gridColumnFechaFinPeriodo.Caption = "Fecha fin periodo";
+            this.gridColumnFechaFinPeriodo.FieldName = "FechaFinPeriodo";
+            this.gridColumnFechaFinPeriodo.Name = "gridColumnFechaFinPeriodo";
+            this.gridColumnFechaFinPeriodo.Visible = true;
+            this.gridColumnFechaFinPeriodo.VisibleIndex = 16;
+            // 
             // btnTimbrar
             // 
             this.btnTimbrar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTimbrar.ImageOptions.Image")));
@@ -1050,6 +1080,7 @@
             this.btnTimbrar.StyleController = this.layoutControl3;
             this.btnTimbrar.TabIndex = 5;
             this.btnTimbrar.Text = "Timbrar";
+            this.btnTimbrar.Click += new System.EventHandler(this.btnTimbrar_Click);
             // 
             // btnValidarTimbrado
             // 
@@ -1060,6 +1091,7 @@
             this.btnValidarTimbrado.StyleController = this.layoutControl3;
             this.btnValidarTimbrado.TabIndex = 6;
             this.btnValidarTimbrado.Text = "Validar";
+            this.btnValidarTimbrado.Click += new System.EventHandler(this.btnValidarTimbrado_Click);
             // 
             // layoutControlGroup28
             // 
@@ -3176,23 +3208,23 @@
             this.layoutControlGroup4});
             this.tabbedControlGroup1.Text = "Timbrado";
             // 
-            // layoutControlGroup15
+            // layoutControlGroup25
             // 
-            this.layoutControlGroup15.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem35});
-            this.layoutControlGroup15.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup15.Name = "layoutControlGroup15";
-            this.layoutControlGroup15.Size = new System.Drawing.Size(923, 708);
-            this.layoutControlGroup15.Text = "Generar Layout";
+            this.layoutControlGroup25.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem51});
+            this.layoutControlGroup25.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup25.Name = "layoutControlGroup25";
+            this.layoutControlGroup25.Size = new System.Drawing.Size(923, 708);
+            this.layoutControlGroup25.Text = "Timbrado";
             // 
-            // layoutControlItem35
+            // layoutControlItem51
             // 
-            this.layoutControlItem35.Control = this.layoutControl4;
-            this.layoutControlItem35.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem35.Name = "layoutControlItem35";
-            this.layoutControlItem35.Size = new System.Drawing.Size(923, 708);
-            this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem35.TextVisible = false;
+            this.layoutControlItem51.Control = this.layoutControl3;
+            this.layoutControlItem51.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem51.Name = "layoutControlItem51";
+            this.layoutControlItem51.Size = new System.Drawing.Size(923, 708);
+            this.layoutControlItem51.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem51.TextVisible = false;
             // 
             // layoutControlGroup12
             // 
@@ -3212,23 +3244,23 @@
             this.layoutControlItem31.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem31.TextVisible = false;
             // 
-            // layoutControlGroup25
+            // layoutControlGroup15
             // 
-            this.layoutControlGroup25.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem51});
-            this.layoutControlGroup25.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup25.Name = "layoutControlGroup25";
-            this.layoutControlGroup25.Size = new System.Drawing.Size(923, 708);
-            this.layoutControlGroup25.Text = "Timbrado";
+            this.layoutControlGroup15.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem35});
+            this.layoutControlGroup15.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup15.Name = "layoutControlGroup15";
+            this.layoutControlGroup15.Size = new System.Drawing.Size(923, 708);
+            this.layoutControlGroup15.Text = "Generar Layout";
             // 
-            // layoutControlItem51
+            // layoutControlItem35
             // 
-            this.layoutControlItem51.Control = this.layoutControl3;
-            this.layoutControlItem51.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem51.Name = "layoutControlItem51";
-            this.layoutControlItem51.Size = new System.Drawing.Size(923, 708);
-            this.layoutControlItem51.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem51.TextVisible = false;
+            this.layoutControlItem35.Control = this.layoutControl4;
+            this.layoutControlItem35.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem35.Name = "layoutControlItem35";
+            this.layoutControlItem35.Size = new System.Drawing.Size(923, 708);
+            this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem35.TextVisible = false;
             // 
             // layoutControlGroup2
             // 
@@ -4382,12 +4414,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.FecFinPeriUni.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
@@ -4787,5 +4819,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem57;
         private System.Windows.Forms.BindingSource queryEstatusBindingSource;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem32;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnFecApp;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnFechaIniPeriodo;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnFechaFinPeriodo;
     }
 }

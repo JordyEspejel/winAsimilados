@@ -2492,6 +2492,144 @@ namespace winAsimilados.Views
             
         }
 
+        private void btnTimbrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var empleadoMasivo = new List<E.Empleado>();
+                E.Empleado[] emplMasiv = null;
+                for (int i = 0; i < gridViewFactura.RowCount; i++)
+                {
+                    if (gridViewFactura.IsRowSelected(i))
+                    {
+                        ingresosMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[12]));
+                        string ing = String.Format("{0:0.00}", ingresosMasiv);
+                        ingresosMasiv = Convert.ToDecimal(ing);
+                        tipoIngresos = gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[5]).ToString();
+                        //ingresosMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[5]));
+                        ISRMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[6]));
+                        rfcEmplMasiv = gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[11]).ToString();
+                        netoMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[12]));
+
+                        DateTime FechaInicioMasivo = Convert.ToDateTime(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[17]));
+                        DateTime FechaFinMasivo = Convert.ToDateTime(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[18]));
+                        DateTime FechaPago = Convert.ToDateTime(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[16]));
+
+                        empleadoMasivo.Add(new E.Empleado
+                        {
+                            RFC = rfcEmplMasiv,
+                            //IngresosBrutos = ingresosMasiv,
+                            IngresosBrutos = netoMasiv,
+                            ISR = ISRMasiv,
+                            //IngresosNetos = netoMasiv,
+                            IngresosNetos = ingresosMasiv,
+                            Periodicidad = tipoIngresos,
+                            fechaAplicacion = FechaPago,
+                            fecIniPeri = FechaInicioMasivo,
+                            fecFinPeri =  FechaFinMasivo 
+                        });
+                        emplMasiv = empleadoMasivo.ToArray();
+                    }
+                }
+
+                if (empleadoMasivo.Count.Equals(0))
+                {
+                    XtraMessageBox.Show("Por favor, Seleccione una celda.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    if (ValidaCer().Equals(false))
+                    {
+                        return;
+                    }
+                    if (ValidaKey().Equals(false))
+                    {
+                        return;
+                    }
+
+                    E.Caratula datosCaratula = new E.Caratula();
+
+                    //DateTime FechaInicioMasivo = Convert.ToDateTime(FecIniPeriMasiv.EditValue.ToString());
+                    //DateTime FechaFinMasivo = Convert.ToDateTime(FecFinPeriMasiv.EditValue.ToString());
+                    //DateTime FechaPago = Convert.ToDateTime(FecPagoMasiv.Text);
+                    controlador.GenXmlMasivo2(empleadoMasivo, splash, empresa, rfc, ip);
+                }
+            }
+            catch (Exception Valmasiv)
+            {
+                XtraMessageBox.Show(Valmasiv.Message + "\nError modulo Nomina: Btntimbra", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnValidarTimbrado_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var empleadoMasivo = new List<E.Empleado>();
+                E.Empleado[] emplMasiv = null;
+                for (int i = 0; i < gridViewFactura.RowCount; i++)
+                {
+                    if (gridViewFactura.IsRowSelected(i))
+                    {
+                        ingresosMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[12]));
+                        string ing = String.Format("{0:0.00}", ingresosMasiv);
+                        ingresosMasiv = Convert.ToDecimal(ing);
+                        tipoIngresos = gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[5]).ToString();
+                        //ingresosMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[5]));
+                        ISRMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[6]));
+                        rfcEmplMasiv = gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[11]).ToString();
+                        netoMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[12]));
+
+                        DateTime FechaInicioMasivo = Convert.ToDateTime(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[17]));
+                        DateTime FechaFinMasivo = Convert.ToDateTime(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[18]));
+                        DateTime FechaPago = Convert.ToDateTime(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[16]));
+
+                        empleadoMasivo.Add(new E.Empleado
+                        {
+                            RFC = rfcEmplMasiv,
+                            //IngresosBrutos = ingresosMasiv,
+                            IngresosBrutos = netoMasiv,
+                            ISR = ISRMasiv,
+                            //IngresosNetos = netoMasiv,
+                            IngresosNetos = ingresosMasiv,
+                            Periodicidad = tipoIngresos,
+                            fechaAplicacion = FechaPago,
+                            fecIniPeri = FechaInicioMasivo,
+                            fecFinPeri = FechaFinMasivo
+                        });
+                        emplMasiv = empleadoMasivo.ToArray();
+                    }
+                }
+
+                if (empleadoMasivo.Count.Equals(0))
+                {
+                    XtraMessageBox.Show("Por favor, Seleccione una celda.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    if (ValidaCer().Equals(false))
+                    {
+                        return;
+                    }
+                    if (ValidaKey().Equals(false))
+                    {
+                        return;
+                    }
+
+                    E.Caratula datosCaratula = new E.Caratula();
+
+                    //DateTime FechaInicioMasivo = Convert.ToDateTime(FecIniPeriMasiv.EditValue.ToString());
+                    //DateTime FechaFinMasivo = Convert.ToDateTime(FecFinPeriMasiv.EditValue.ToString());
+                    //DateTime FechaPago = Convert.ToDateTime(FecPagoMasiv.Text);
+                    controlador.ValXmlMasivo2(empleadoMasivo, splash, empresa, rfc, ip);
+                }
+            }
+            catch (Exception Valmasiv)
+            {
+                XtraMessageBox.Show(Valmasiv.Message + "\nError modulo Nomina: BtnValNomiMasiv2", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void lookUpEstatusCarat_EditValueChanged(object sender, EventArgs e)
         {
 
