@@ -29,30 +29,30 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery4 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery4 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column8 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression8 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table4 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column9 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression9 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery5 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column10 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression10 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table5 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column11 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression11 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery5 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery1 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery1 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column1 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression1 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table1 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column2 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression2 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery2 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column3 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression3 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table2 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column4 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression4 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery2 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditarEmpleados));
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery6 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery6 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column12 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression12 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table6 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column13 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression13 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Column column14 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression14 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery3 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery3 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column5 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression5 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table3 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column6 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression6 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Column column7 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression7 = new DevExpress.DataAccess.Sql.ColumnExpression();
             this.queryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sqlDataTipoPeri = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
@@ -158,43 +158,43 @@
             // 
             this.sqlDataTipoPeri.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataTipoPeri.Name = "sqlDataTipoPeri";
-            customSqlQuery4.Name = "Query";
-            customSqlQuery4.Sql = "select \"PeriodicidadPago\".\"c_PeriodicidadPago\",\r\n       \"PeriodicidadPago\".\"Descr" +
+            customSqlQuery1.Name = "Query";
+            customSqlQuery1.Sql = "select \"PeriodicidadPago\".\"c_PeriodicidadPago\",\r\n       \"PeriodicidadPago\".\"Descr" +
     "ipcion\"\r\n  from \"dbo\".\"PeriodicidadPago\" \"PeriodicidadPago\" ";
-            columnExpression8.ColumnName = "c_Banco";
-            table4.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"134\" />";
-            table4.Name = "Bancos";
-            columnExpression8.Table = table4;
-            column8.Expression = columnExpression8;
-            columnExpression9.ColumnName = "Descripcion";
-            columnExpression9.Table = table4;
-            column9.Expression = columnExpression9;
-            selectQuery4.Columns.Add(column8);
-            selectQuery4.Columns.Add(column9);
-            selectQuery4.Name = "Bancos";
-            selectQuery4.Tables.Add(table4);
-            columnExpression10.ColumnName = "ID";
-            table5.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"666\" />";
-            table5.Name = "ClientesAsimilados";
-            columnExpression10.Table = table5;
-            column10.Expression = columnExpression10;
-            columnExpression11.ColumnName = "CLIENTE";
-            columnExpression11.Table = table5;
-            column11.Expression = columnExpression11;
-            selectQuery5.Columns.Add(column10);
-            selectQuery5.Columns.Add(column11);
-            selectQuery5.FilterString = "[ClientesAsimilados.ID] <> \'E00000\'";
-            selectQuery5.GroupFilterString = "";
-            selectQuery5.Name = "ClientesAsimilados";
-            selectQuery5.Tables.Add(table5);
-            customSqlQuery5.Name = "TipoPago";
-            customSqlQuery5.Sql = "SELECT \'010\' AS [Value], \'Num. Cuenta\' AS [Descripcion]\r\nUNION SELECT \'040\' AS [V" +
+            columnExpression1.ColumnName = "c_Banco";
+            table1.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"134\" />";
+            table1.Name = "Bancos";
+            columnExpression1.Table = table1;
+            column1.Expression = columnExpression1;
+            columnExpression2.ColumnName = "Descripcion";
+            columnExpression2.Table = table1;
+            column2.Expression = columnExpression2;
+            selectQuery1.Columns.Add(column1);
+            selectQuery1.Columns.Add(column2);
+            selectQuery1.Name = "Bancos";
+            selectQuery1.Tables.Add(table1);
+            columnExpression3.ColumnName = "ID";
+            table2.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"666\" />";
+            table2.Name = "ClientesAsimilados";
+            columnExpression3.Table = table2;
+            column3.Expression = columnExpression3;
+            columnExpression4.ColumnName = "CLIENTE";
+            columnExpression4.Table = table2;
+            column4.Expression = columnExpression4;
+            selectQuery2.Columns.Add(column3);
+            selectQuery2.Columns.Add(column4);
+            selectQuery2.FilterString = "[ClientesAsimilados.ID] <> \'E00000\'";
+            selectQuery2.GroupFilterString = "";
+            selectQuery2.Name = "ClientesAsimilados";
+            selectQuery2.Tables.Add(table2);
+            customSqlQuery2.Name = "TipoPago";
+            customSqlQuery2.Sql = "SELECT \'010\' AS [Value], \'Num. Cuenta\' AS [Descripcion]\r\nUNION SELECT \'040\' AS [V" +
     "alue], \'CLABE\' AS [Descripcion]\r\n";
             this.sqlDataTipoPeri.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            customSqlQuery4,
-            selectQuery4,
-            selectQuery5,
-            customSqlQuery5});
+            customSqlQuery1,
+            selectQuery1,
+            selectQuery2,
+            customSqlQuery2});
             this.sqlDataTipoPeri.ResultSchemaSerializable = resources.GetString("sqlDataTipoPeri.ResultSchemaSerializable");
             // 
             // splashScreenManager1
@@ -210,10 +210,10 @@
             // 
             this.sqlDataSourceEmpl.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataSourceEmpl.Name = "sqlDataSourceEmpl";
-            customSqlQuery6.Name = "Query";
-            customSqlQuery6.Sql = resources.GetString("customSqlQuery6.Sql");
+            customSqlQuery3.Name = "Query";
+            customSqlQuery3.Sql = resources.GetString("customSqlQuery3.Sql");
             this.sqlDataSourceEmpl.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            customSqlQuery6});
+            customSqlQuery3});
             this.sqlDataSourceEmpl.ResultSchemaSerializable = resources.GetString("sqlDataSourceEmpl.ResultSchemaSerializable");
             // 
             // layoutControl1
@@ -452,24 +452,24 @@
             // 
             this.sqlDataSource1.ConnectionName = "Nomina_Empresa19_Connection";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            columnExpression12.ColumnName = "NUM_EMPLEADO";
-            table6.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"571\" />";
-            table6.Name = "EMPLEADOS";
-            columnExpression12.Table = table6;
-            column12.Expression = columnExpression12;
-            columnExpression13.ColumnName = "NOMBRE";
-            columnExpression13.Table = table6;
-            column13.Expression = columnExpression13;
-            columnExpression14.ColumnName = "RFC";
-            columnExpression14.Table = table6;
-            column14.Expression = columnExpression14;
-            selectQuery6.Columns.Add(column12);
-            selectQuery6.Columns.Add(column13);
-            selectQuery6.Columns.Add(column14);
-            selectQuery6.Name = "EMPLEADOS";
-            selectQuery6.Tables.Add(table6);
+            columnExpression5.ColumnName = "NUM_EMPLEADO";
+            table3.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"571\" />";
+            table3.Name = "EMPLEADOS";
+            columnExpression5.Table = table3;
+            column5.Expression = columnExpression5;
+            columnExpression6.ColumnName = "NOMBRE";
+            columnExpression6.Table = table3;
+            column6.Expression = columnExpression6;
+            columnExpression7.ColumnName = "RFC";
+            columnExpression7.Table = table3;
+            column7.Expression = columnExpression7;
+            selectQuery3.Columns.Add(column5);
+            selectQuery3.Columns.Add(column6);
+            selectQuery3.Columns.Add(column7);
+            selectQuery3.Name = "EMPLEADOS";
+            selectQuery3.Tables.Add(table3);
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            selectQuery6});
+            selectQuery3});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // btnEditar

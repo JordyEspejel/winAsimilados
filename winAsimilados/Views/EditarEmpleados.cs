@@ -24,7 +24,7 @@ namespace winAsimilados.Views
         string nombre, CURP, RFC, peri, cuenta, clabe, cve, banco, empresa, idEmpr, numEmpl;
         C.Controller Controlador = new C.Controller();
         E.Empleado empleado = new E.Empleado();
-        string bd = C.Conexion.PerformConnection().Database;
+        string bd = C.Conexion.PerformConnection().Database.ToString();
         SplashScreenManager splash;
         public EditarEmpleados(SplashScreenManager screenManager)
         {

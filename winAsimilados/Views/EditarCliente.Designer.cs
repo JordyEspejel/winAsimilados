@@ -29,50 +29,50 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery15 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column25 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression29 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table15 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column26 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression30 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery16 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column27 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression31 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table16 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery17 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column28 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression32 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table17 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery5 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery18 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column29 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression33 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table18 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column30 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression34 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery19 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column31 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression35 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table19 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column32 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression36 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Group group5 = new DevExpress.DataAccess.Sql.Group();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression37 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Group group6 = new DevExpress.DataAccess.Sql.Group();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression38 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery20 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column33 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression39 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table20 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column34 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression40 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery21 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column35 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression41 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table21 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column36 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression42 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery6 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery1 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column1 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression1 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table1 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column2 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression2 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery2 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column3 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression3 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table2 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery3 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column4 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression4 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table3 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery1 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery4 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column5 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression5 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table4 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column6 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression6 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery5 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column7 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression7 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table5 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column8 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression8 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Group group1 = new DevExpress.DataAccess.Sql.Group();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression9 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Group group2 = new DevExpress.DataAccess.Sql.Group();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression10 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery6 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column9 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression11 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table6 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column10 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression12 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery7 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column11 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression13 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table7 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column12 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression14 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery2 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditarCliente));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.lookUpClte = new DevExpress.XtraEditors.LookUpEdit();
@@ -113,6 +113,16 @@
             this.queryEstatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnBajaClte = new DevExpress.XtraEditors.SimpleButton();
             this.btnReactiva = new DevExpress.XtraEditors.SimpleButton();
+            this.chComi = new DevExpress.XtraEditors.CheckEdit();
+            this.spinEditComi = new DevExpress.XtraEditors.SpinEdit();
+            this.txtComi2 = new DevExpress.XtraEditors.TextEdit();
+            this.spinEditComi2 = new DevExpress.XtraEditors.SpinEdit();
+            this.txtComi3 = new DevExpress.XtraEditors.TextEdit();
+            this.spinEditComi3 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEditEmpFact = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEditEmpFact2 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEditEmpFact3 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEditEmpFact4 = new DevExpress.XtraEditors.SpinEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -126,6 +136,11 @@
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlSp = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlComi2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlComi3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlSpinComi3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlbtnGuardar = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup7 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -133,14 +148,18 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemRetIVA = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -148,26 +167,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlBajaClte = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlbtnReactiva = new DevExpress.XtraLayout.LayoutControlItem();
-            this.chComi = new DevExpress.XtraEditors.CheckEdit();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.spinEditComi = new DevExpress.XtraEditors.SpinEdit();
-            this.layoutControlSp = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtComi2 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlComi2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.spinEditComi2 = new DevExpress.XtraEditors.SpinEdit();
-            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtComi3 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlComi3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.spinEditComi3 = new DevExpress.XtraEditors.SpinEdit();
-            this.layoutControlSpinComi3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.spinEditEmpFact = new DevExpress.XtraEditors.SpinEdit();
-            this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.spinEditEmpFact2 = new DevExpress.XtraEditors.SpinEdit();
-            this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.spinEditEmpFact3 = new DevExpress.XtraEditors.SpinEdit();
-            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.spinEditEmpFact4 = new DevExpress.XtraEditors.SpinEdit();
-            this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpClte.Properties)).BeginInit();
@@ -202,6 +202,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtIDClte.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEstatus.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.queryEstatusBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chComi.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditComi.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComi2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditComi2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComi3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditComi3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -215,6 +225,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlSp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlComi2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlComi3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlSpinComi3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnGuardar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).BeginInit();
@@ -222,14 +237,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemRetIVA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
@@ -237,26 +256,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlBajaClte)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnReactiva)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chComi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditComi.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlSp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtComi2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlComi2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditComi2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtComi3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlComi3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditComi3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlSpinComi3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -331,110 +331,110 @@
             // 
             this.sqlDataSource1.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            columnExpression29.ColumnName = "ID";
-            table15.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"495\" />";
-            table15.Name = "ClientesAsimilados";
-            columnExpression29.Table = table15;
-            column25.Expression = columnExpression29;
-            columnExpression30.ColumnName = "CLIENTE";
-            columnExpression30.Table = table15;
-            column26.Expression = columnExpression30;
-            selectQuery15.Columns.Add(column25);
-            selectQuery15.Columns.Add(column26);
-            selectQuery15.FilterString = "[ClientesAsimilados.ID] <> \'E00000\'";
-            selectQuery15.GroupFilterString = "";
-            selectQuery15.Name = "ClientesAsimilados";
-            selectQuery15.Tables.Add(table15);
-            columnExpression31.ColumnName = "usuarioNombre";
-            table16.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"210\" />";
-            table16.Name = "UsuariosSistema";
-            columnExpression31.Table = table16;
-            column27.Expression = columnExpression31;
-            selectQuery16.Columns.Add(column27);
-            selectQuery16.FilterString = "[UsuariosSistema.usuarioTipo] = \'O\'";
-            selectQuery16.GroupFilterString = "";
-            selectQuery16.Name = "UsuariosSistema";
-            selectQuery16.Tables.Add(table16);
-            columnExpression32.ColumnName = "Descripcion";
-            table17.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
-            table17.Name = "PeriodicidadPago";
-            columnExpression32.Table = table17;
-            column28.Expression = columnExpression32;
-            selectQuery17.Columns.Add(column28);
-            selectQuery17.Name = "PeriodicidadPago";
-            selectQuery17.Tables.Add(table17);
-            customSqlQuery5.Name = "QueryOpciones";
-            customSqlQuery5.Sql = "SELECT \'S\' AS [Value], \'Sí\' AS [Descripcipon]\r\nUNION SELECT \'N\' AS [Value], \'No\' " +
+            columnExpression1.ColumnName = "ID";
+            table1.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"495\" />";
+            table1.Name = "ClientesAsimilados";
+            columnExpression1.Table = table1;
+            column1.Expression = columnExpression1;
+            columnExpression2.ColumnName = "CLIENTE";
+            columnExpression2.Table = table1;
+            column2.Expression = columnExpression2;
+            selectQuery1.Columns.Add(column1);
+            selectQuery1.Columns.Add(column2);
+            selectQuery1.FilterString = "[ClientesAsimilados.ID] <> \'E00000\'";
+            selectQuery1.GroupFilterString = "";
+            selectQuery1.Name = "ClientesAsimilados";
+            selectQuery1.Tables.Add(table1);
+            columnExpression3.ColumnName = "usuarioNombre";
+            table2.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"210\" />";
+            table2.Name = "UsuariosSistema";
+            columnExpression3.Table = table2;
+            column3.Expression = columnExpression3;
+            selectQuery2.Columns.Add(column3);
+            selectQuery2.FilterString = "[UsuariosSistema.usuarioTipo] = \'O\'";
+            selectQuery2.GroupFilterString = "";
+            selectQuery2.Name = "UsuariosSistema";
+            selectQuery2.Tables.Add(table2);
+            columnExpression4.ColumnName = "Descripcion";
+            table3.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
+            table3.Name = "PeriodicidadPago";
+            columnExpression4.Table = table3;
+            column4.Expression = columnExpression4;
+            selectQuery3.Columns.Add(column4);
+            selectQuery3.Name = "PeriodicidadPago";
+            selectQuery3.Tables.Add(table3);
+            customSqlQuery1.Name = "QueryOpciones";
+            customSqlQuery1.Sql = "SELECT \'S\' AS [Value], \'Sí\' AS [Descripcipon]\r\nUNION SELECT \'N\' AS [Value], \'No\' " +
     "AS [Descripcipon]";
-            columnExpression33.ColumnName = "NumEmpresa";
-            table18.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
-            table18.Name = "EmpresaCatalogoCFDI";
-            columnExpression33.Table = table18;
-            column29.Expression = columnExpression33;
-            columnExpression34.ColumnName = "Descripcion";
-            columnExpression34.Table = table18;
-            column30.Expression = columnExpression34;
-            selectQuery18.Columns.Add(column29);
-            selectQuery18.Columns.Add(column30);
-            selectQuery18.Name = "EmpresaCatalogoCFDI";
-            selectQuery18.Tables.Add(table18);
-            columnExpression35.ColumnName = "IDEmpresa";
-            table19.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"210\" />";
-            table19.Name = "EmpresaPagaAsimilados";
-            columnExpression35.Table = table19;
-            column31.Expression = columnExpression35;
-            columnExpression36.ColumnName = "RazonSocial";
-            columnExpression36.Table = table19;
-            column32.Expression = columnExpression36;
-            selectQuery19.Columns.Add(column31);
-            selectQuery19.Columns.Add(column32);
-            columnExpression37.ColumnName = "IDEmpresa";
-            columnExpression37.Table = table19;
-            group5.Expression = columnExpression37;
-            columnExpression38.ColumnName = "RazonSocial";
-            columnExpression38.Table = table19;
-            group6.Expression = columnExpression38;
-            selectQuery19.Groups.Add(group5);
-            selectQuery19.Groups.Add(group6);
-            selectQuery19.Name = "EmpresaPagaAsimilados";
-            selectQuery19.Tables.Add(table19);
-            columnExpression39.ColumnName = "c_MetodoPago";
-            table20.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
-            table20.Name = "MetodoPago";
-            columnExpression39.Table = table20;
-            column33.Expression = columnExpression39;
-            columnExpression40.ColumnName = "Descripción";
-            columnExpression40.Table = table20;
-            column34.Expression = columnExpression40;
-            selectQuery20.Columns.Add(column33);
-            selectQuery20.Columns.Add(column34);
-            selectQuery20.Name = "MetodoPago";
-            selectQuery20.Tables.Add(table20);
-            columnExpression41.ColumnName = "c_FormaPago";
-            table21.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
-            table21.Name = "FormaPago";
-            columnExpression41.Table = table21;
-            column35.Expression = columnExpression41;
-            columnExpression42.ColumnName = "Descripción";
-            columnExpression42.Table = table21;
-            column36.Expression = columnExpression42;
-            selectQuery21.Columns.Add(column35);
-            selectQuery21.Columns.Add(column36);
-            selectQuery21.Name = "FormaPago";
-            selectQuery21.Tables.Add(table21);
-            customSqlQuery6.Name = "QueryEstatus";
-            customSqlQuery6.Sql = "  SELECT \'Activo\' AS [Value], \'Activo\' AS [Descripcion]\r\n  UNION SELECT \'Inactivo" +
+            columnExpression5.ColumnName = "NumEmpresa";
+            table4.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
+            table4.Name = "EmpresaCatalogoCFDI";
+            columnExpression5.Table = table4;
+            column5.Expression = columnExpression5;
+            columnExpression6.ColumnName = "Descripcion";
+            columnExpression6.Table = table4;
+            column6.Expression = columnExpression6;
+            selectQuery4.Columns.Add(column5);
+            selectQuery4.Columns.Add(column6);
+            selectQuery4.Name = "EmpresaCatalogoCFDI";
+            selectQuery4.Tables.Add(table4);
+            columnExpression7.ColumnName = "IDEmpresa";
+            table5.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"210\" />";
+            table5.Name = "EmpresaPagaAsimilados";
+            columnExpression7.Table = table5;
+            column7.Expression = columnExpression7;
+            columnExpression8.ColumnName = "RazonSocial";
+            columnExpression8.Table = table5;
+            column8.Expression = columnExpression8;
+            selectQuery5.Columns.Add(column7);
+            selectQuery5.Columns.Add(column8);
+            columnExpression9.ColumnName = "IDEmpresa";
+            columnExpression9.Table = table5;
+            group1.Expression = columnExpression9;
+            columnExpression10.ColumnName = "RazonSocial";
+            columnExpression10.Table = table5;
+            group2.Expression = columnExpression10;
+            selectQuery5.Groups.Add(group1);
+            selectQuery5.Groups.Add(group2);
+            selectQuery5.Name = "EmpresaPagaAsimilados";
+            selectQuery5.Tables.Add(table5);
+            columnExpression11.ColumnName = "c_MetodoPago";
+            table6.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
+            table6.Name = "MetodoPago";
+            columnExpression11.Table = table6;
+            column9.Expression = columnExpression11;
+            columnExpression12.ColumnName = "Descripción";
+            columnExpression12.Table = table6;
+            column10.Expression = columnExpression12;
+            selectQuery6.Columns.Add(column9);
+            selectQuery6.Columns.Add(column10);
+            selectQuery6.Name = "MetodoPago";
+            selectQuery6.Tables.Add(table6);
+            columnExpression13.ColumnName = "c_FormaPago";
+            table7.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
+            table7.Name = "FormaPago";
+            columnExpression13.Table = table7;
+            column11.Expression = columnExpression13;
+            columnExpression14.ColumnName = "Descripción";
+            columnExpression14.Table = table7;
+            column12.Expression = columnExpression14;
+            selectQuery7.Columns.Add(column11);
+            selectQuery7.Columns.Add(column12);
+            selectQuery7.Name = "FormaPago";
+            selectQuery7.Tables.Add(table7);
+            customSqlQuery2.Name = "QueryEstatus";
+            customSqlQuery2.Sql = "  SELECT \'Activo\' AS [Value], \'Activo\' AS [Descripcion]\r\n  UNION SELECT \'Inactivo" +
     "\' AS [Value], \'Inactivo\' AS [Descripcion]";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            selectQuery15,
-            selectQuery16,
-            selectQuery17,
-            customSqlQuery5,
-            selectQuery18,
-            selectQuery19,
-            selectQuery20,
-            selectQuery21,
-            customSqlQuery6});
+            selectQuery1,
+            selectQuery2,
+            selectQuery3,
+            customSqlQuery1,
+            selectQuery4,
+            selectQuery5,
+            selectQuery6,
+            selectQuery7,
+            customSqlQuery2});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // lookUpEjecutivo
@@ -876,6 +876,179 @@
             this.btnReactiva.Text = "Reactivar ";
             this.btnReactiva.Click += new System.EventHandler(this.btnReactiva_Click);
             // 
+            // chComi
+            // 
+            this.chComi.Location = new System.Drawing.Point(454, 149);
+            this.chComi.Name = "chComi";
+            this.chComi.Properties.Caption = "Cliente tiene más de un comisionista";
+            this.chComi.Properties.ReadOnly = true;
+            this.chComi.Size = new System.Drawing.Size(391, 19);
+            this.chComi.StyleController = this.layoutControl1;
+            this.chComi.TabIndex = 31;
+            this.chComi.CheckedChanged += new System.EventHandler(this.chComi_CheckedChanged);
+            // 
+            // spinEditComi
+            // 
+            this.spinEditComi.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditComi.Location = new System.Drawing.Point(338, 226);
+            this.spinEditComi.Name = "spinEditComi";
+            this.spinEditComi.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.spinEditComi.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.spinEditComi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditComi.Properties.Mask.EditMask = "P";
+            this.spinEditComi.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.spinEditComi.Properties.ReadOnly = true;
+            this.spinEditComi.Size = new System.Drawing.Size(65, 20);
+            this.spinEditComi.StyleController = this.layoutControl1;
+            this.spinEditComi.TabIndex = 32;
+            // 
+            // txtComi2
+            // 
+            this.txtComi2.Location = new System.Drawing.Point(109, 250);
+            this.txtComi2.Name = "txtComi2";
+            this.txtComi2.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtComi2.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.txtComi2.Properties.ReadOnly = true;
+            this.txtComi2.Size = new System.Drawing.Size(288, 20);
+            this.txtComi2.StyleController = this.layoutControl1;
+            this.txtComi2.TabIndex = 33;
+            // 
+            // spinEditComi2
+            // 
+            this.spinEditComi2.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditComi2.Location = new System.Drawing.Point(417, 250);
+            this.spinEditComi2.Name = "spinEditComi2";
+            this.spinEditComi2.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.spinEditComi2.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.spinEditComi2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditComi2.Properties.Mask.EditMask = "P";
+            this.spinEditComi2.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.spinEditComi2.Properties.ReadOnly = true;
+            this.spinEditComi2.Size = new System.Drawing.Size(72, 20);
+            this.spinEditComi2.StyleController = this.layoutControl1;
+            this.spinEditComi2.TabIndex = 34;
+            // 
+            // txtComi3
+            // 
+            this.txtComi3.Location = new System.Drawing.Point(566, 250);
+            this.txtComi3.Name = "txtComi3";
+            this.txtComi3.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtComi3.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.txtComi3.Properties.ReadOnly = true;
+            this.txtComi3.Size = new System.Drawing.Size(177, 20);
+            this.txtComi3.StyleController = this.layoutControl1;
+            this.txtComi3.TabIndex = 35;
+            // 
+            // spinEditComi3
+            // 
+            this.spinEditComi3.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditComi3.Location = new System.Drawing.Point(763, 250);
+            this.spinEditComi3.Name = "spinEditComi3";
+            this.spinEditComi3.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.spinEditComi3.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.spinEditComi3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditComi3.Properties.Mask.EditMask = "P";
+            this.spinEditComi3.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.spinEditComi3.Properties.ReadOnly = true;
+            this.spinEditComi3.Size = new System.Drawing.Size(70, 20);
+            this.spinEditComi3.StyleController = this.layoutControl1;
+            this.spinEditComi3.TabIndex = 36;
+            // 
+            // spinEditEmpFact
+            // 
+            this.spinEditEmpFact.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditEmpFact.Location = new System.Drawing.Point(761, 436);
+            this.spinEditEmpFact.Name = "spinEditEmpFact";
+            this.spinEditEmpFact.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.spinEditEmpFact.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.spinEditEmpFact.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditEmpFact.Properties.Mask.EditMask = "P";
+            this.spinEditEmpFact.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.spinEditEmpFact.Properties.ReadOnly = true;
+            this.spinEditEmpFact.Size = new System.Drawing.Size(72, 20);
+            this.spinEditEmpFact.StyleController = this.layoutControl1;
+            this.spinEditEmpFact.TabIndex = 37;
+            // 
+            // spinEditEmpFact2
+            // 
+            this.spinEditEmpFact2.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditEmpFact2.Location = new System.Drawing.Point(759, 460);
+            this.spinEditEmpFact2.Name = "spinEditEmpFact2";
+            this.spinEditEmpFact2.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.spinEditEmpFact2.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.spinEditEmpFact2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditEmpFact2.Properties.Mask.EditMask = "P";
+            this.spinEditEmpFact2.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.spinEditEmpFact2.Properties.ReadOnly = true;
+            this.spinEditEmpFact2.Size = new System.Drawing.Size(74, 20);
+            this.spinEditEmpFact2.StyleController = this.layoutControl1;
+            this.spinEditEmpFact2.TabIndex = 37;
+            // 
+            // spinEditEmpFact3
+            // 
+            this.spinEditEmpFact3.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditEmpFact3.Location = new System.Drawing.Point(759, 484);
+            this.spinEditEmpFact3.Name = "spinEditEmpFact3";
+            this.spinEditEmpFact3.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.spinEditEmpFact3.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.spinEditEmpFact3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditEmpFact3.Properties.Mask.EditMask = "P";
+            this.spinEditEmpFact3.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.spinEditEmpFact3.Properties.ReadOnly = true;
+            this.spinEditEmpFact3.Size = new System.Drawing.Size(74, 20);
+            this.spinEditEmpFact3.StyleController = this.layoutControl1;
+            this.spinEditEmpFact3.TabIndex = 37;
+            // 
+            // spinEditEmpFact4
+            // 
+            this.spinEditEmpFact4.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditEmpFact4.Location = new System.Drawing.Point(759, 508);
+            this.spinEditEmpFact4.Name = "spinEditEmpFact4";
+            this.spinEditEmpFact4.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.spinEditEmpFact4.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.spinEditEmpFact4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditEmpFact4.Properties.Mask.EditMask = "P";
+            this.spinEditEmpFact4.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.spinEditEmpFact4.Properties.ReadOnly = true;
+            this.spinEditEmpFact4.Size = new System.Drawing.Size(74, 20);
+            this.spinEditEmpFact4.StyleController = this.layoutControl1;
+            this.spinEditEmpFact4.TabIndex = 37;
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -1041,6 +1214,65 @@
             this.layoutControlItem20.TextSize = new System.Drawing.Size(71, 13);
             this.layoutControlItem20.TextToControlDistance = 5;
             // 
+            // layoutControlSp
+            // 
+            this.layoutControlSp.Control = this.spinEditComi;
+            this.layoutControlSp.Location = new System.Drawing.Point(286, 24);
+            this.layoutControlSp.Name = "layoutControlSp";
+            this.layoutControlSp.Size = new System.Drawing.Size(85, 24);
+            this.layoutControlSp.Text = "%";
+            this.layoutControlSp.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlSp.TextSize = new System.Drawing.Size(11, 13);
+            this.layoutControlSp.TextToControlDistance = 5;
+            // 
+            // layoutControlComi2
+            // 
+            this.layoutControlComi2.Control = this.txtComi2;
+            this.layoutControlComi2.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlComi2.Name = "layoutControlComi2";
+            this.layoutControlComi2.Size = new System.Drawing.Size(365, 24);
+            this.layoutControlComi2.Text = "Comisionista 2";
+            this.layoutControlComi2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlComi2.TextSize = new System.Drawing.Size(68, 13);
+            this.layoutControlComi2.TextToControlDistance = 5;
+            this.layoutControlComi2.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.Control = this.spinEditComi2;
+            this.layoutControlItem25.Location = new System.Drawing.Point(365, 48);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(92, 24);
+            this.layoutControlItem25.Text = "%";
+            this.layoutControlItem25.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(11, 13);
+            this.layoutControlItem25.TextToControlDistance = 5;
+            this.layoutControlItem25.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
+            // layoutControlComi3
+            // 
+            this.layoutControlComi3.Control = this.txtComi3;
+            this.layoutControlComi3.Location = new System.Drawing.Point(457, 48);
+            this.layoutControlComi3.Name = "layoutControlComi3";
+            this.layoutControlComi3.Size = new System.Drawing.Size(254, 24);
+            this.layoutControlComi3.Text = "Comisionista 3";
+            this.layoutControlComi3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlComi3.TextSize = new System.Drawing.Size(68, 13);
+            this.layoutControlComi3.TextToControlDistance = 5;
+            this.layoutControlComi3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
+            // layoutControlSpinComi3
+            // 
+            this.layoutControlSpinComi3.Control = this.spinEditComi3;
+            this.layoutControlSpinComi3.Location = new System.Drawing.Point(711, 48);
+            this.layoutControlSpinComi3.Name = "layoutControlSpinComi3";
+            this.layoutControlSpinComi3.Size = new System.Drawing.Size(90, 24);
+            this.layoutControlSpinComi3.Text = "%";
+            this.layoutControlSpinComi3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlSpinComi3.TextSize = new System.Drawing.Size(11, 13);
+            this.layoutControlSpinComi3.TextToControlDistance = 5;
+            this.layoutControlSpinComi3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.chBoxEmpFactura;
@@ -1135,18 +1367,6 @@
             this.layoutControlItemRetIVA.TextSize = new System.Drawing.Size(82, 13);
             this.layoutControlItemRetIVA.TextToControlDistance = 5;
             // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.lookUpEmprFact;
-            this.layoutControlItem12.CustomizationFormText = "Empresa que factura";
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 72);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(709, 24);
-            this.layoutControlItem12.Text = "Empresa que factura";
-            this.layoutControlItem12.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(100, 13);
-            this.layoutControlItem12.TextToControlDistance = 5;
-            // 
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.lookUpEmprFact2;
@@ -1159,32 +1379,6 @@
             this.layoutControlItem14.TextSize = new System.Drawing.Size(109, 13);
             this.layoutControlItem14.TextToControlDistance = 5;
             this.layoutControlItem14.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-            // 
-            // layoutControlItem16
-            // 
-            this.layoutControlItem16.Control = this.lookUpEmprFact3;
-            this.layoutControlItem16.CustomizationFormText = "Empresa que factura 3";
-            this.layoutControlItem16.Location = new System.Drawing.Point(0, 120);
-            this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(709, 24);
-            this.layoutControlItem16.Text = "Empresa que factura 3";
-            this.layoutControlItem16.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem16.TextSize = new System.Drawing.Size(109, 13);
-            this.layoutControlItem16.TextToControlDistance = 5;
-            this.layoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-            // 
-            // layoutControlItem15
-            // 
-            this.layoutControlItem15.Control = this.lookUpEmprFact4;
-            this.layoutControlItem15.CustomizationFormText = "Empresa que factura 4";
-            this.layoutControlItem15.Location = new System.Drawing.Point(0, 144);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(709, 24);
-            this.layoutControlItem15.Text = "Empresa que factura 4";
-            this.layoutControlItem15.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(109, 13);
-            this.layoutControlItem15.TextToControlDistance = 5;
-            this.layoutControlItem15.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItem11
             // 
@@ -1233,6 +1427,94 @@
             this.layoutControlItem7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem7.TextSize = new System.Drawing.Size(98, 13);
             this.layoutControlItem7.TextToControlDistance = 5;
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.lookUpEmprFact;
+            this.layoutControlItem12.CustomizationFormText = "Empresa que factura";
+            this.layoutControlItem12.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(709, 24);
+            this.layoutControlItem12.Text = "Empresa que factura";
+            this.layoutControlItem12.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(100, 13);
+            this.layoutControlItem12.TextToControlDistance = 5;
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.Control = this.lookUpEmprFact3;
+            this.layoutControlItem16.CustomizationFormText = "Empresa que factura 3";
+            this.layoutControlItem16.Location = new System.Drawing.Point(0, 120);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(709, 24);
+            this.layoutControlItem16.Text = "Empresa que factura 3";
+            this.layoutControlItem16.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(109, 13);
+            this.layoutControlItem16.TextToControlDistance = 5;
+            this.layoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
+            // layoutControlItem15
+            // 
+            this.layoutControlItem15.Control = this.lookUpEmprFact4;
+            this.layoutControlItem15.CustomizationFormText = "Empresa que factura 4";
+            this.layoutControlItem15.Location = new System.Drawing.Point(0, 144);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Size = new System.Drawing.Size(709, 24);
+            this.layoutControlItem15.Text = "Empresa que factura 4";
+            this.layoutControlItem15.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(109, 13);
+            this.layoutControlItem15.TextToControlDistance = 5;
+            this.layoutControlItem15.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
+            // layoutControlItem28
+            // 
+            this.layoutControlItem28.Control = this.spinEditEmpFact;
+            this.layoutControlItem28.Location = new System.Drawing.Point(709, 72);
+            this.layoutControlItem28.Name = "layoutControlItem28";
+            this.layoutControlItem28.Size = new System.Drawing.Size(92, 24);
+            this.layoutControlItem28.Text = "%";
+            this.layoutControlItem28.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem28.TextSize = new System.Drawing.Size(11, 13);
+            this.layoutControlItem28.TextToControlDistance = 5;
+            // 
+            // layoutControlItem29
+            // 
+            this.layoutControlItem29.Control = this.spinEditEmpFact2;
+            this.layoutControlItem29.CustomizationFormText = "layoutControlItem28";
+            this.layoutControlItem29.Location = new System.Drawing.Point(709, 96);
+            this.layoutControlItem29.Name = "layoutControlItem29";
+            this.layoutControlItem29.Size = new System.Drawing.Size(92, 24);
+            this.layoutControlItem29.Text = "%";
+            this.layoutControlItem29.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem29.TextSize = new System.Drawing.Size(11, 13);
+            this.layoutControlItem29.TextToControlDistance = 3;
+            this.layoutControlItem29.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
+            // layoutControlItem30
+            // 
+            this.layoutControlItem30.Control = this.spinEditEmpFact3;
+            this.layoutControlItem30.CustomizationFormText = "layoutControlItem28";
+            this.layoutControlItem30.Location = new System.Drawing.Point(709, 120);
+            this.layoutControlItem30.Name = "layoutControlItem30";
+            this.layoutControlItem30.Size = new System.Drawing.Size(92, 24);
+            this.layoutControlItem30.Text = "%";
+            this.layoutControlItem30.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem30.TextSize = new System.Drawing.Size(11, 13);
+            this.layoutControlItem30.TextToControlDistance = 3;
+            this.layoutControlItem30.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
+            // layoutControlItem31
+            // 
+            this.layoutControlItem31.Control = this.spinEditEmpFact4;
+            this.layoutControlItem31.CustomizationFormText = "layoutControlItem28";
+            this.layoutControlItem31.Location = new System.Drawing.Point(709, 144);
+            this.layoutControlItem31.Name = "layoutControlItem31";
+            this.layoutControlItem31.Size = new System.Drawing.Size(92, 24);
+            this.layoutControlItem31.Text = "%";
+            this.layoutControlItem31.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem31.TextSize = new System.Drawing.Size(11, 13);
+            this.layoutControlItem31.TextToControlDistance = 3;
+            this.layoutControlItem31.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // emptySpaceItem4
             // 
@@ -1300,17 +1582,6 @@
             this.layoutControlbtnReactiva.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlbtnReactiva.TextVisible = false;
             // 
-            // chComi
-            // 
-            this.chComi.Location = new System.Drawing.Point(454, 149);
-            this.chComi.Name = "chComi";
-            this.chComi.Properties.Caption = "Cliente tiene más de un comisionista";
-            this.chComi.Properties.ReadOnly = true;
-            this.chComi.Size = new System.Drawing.Size(391, 19);
-            this.chComi.StyleController = this.layoutControl1;
-            this.chComi.TabIndex = 31;
-            this.chComi.CheckedChanged += new System.EventHandler(this.chComi_CheckedChanged);
-            // 
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.chComi;
@@ -1319,273 +1590,6 @@
             this.layoutControlItem21.Size = new System.Drawing.Size(395, 23);
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
-            // 
-            // spinEditComi
-            // 
-            this.spinEditComi.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditComi.Location = new System.Drawing.Point(338, 226);
-            this.spinEditComi.Name = "spinEditComi";
-            this.spinEditComi.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
-            this.spinEditComi.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.spinEditComi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditComi.Properties.Mask.EditMask = "P";
-            this.spinEditComi.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditComi.Properties.ReadOnly = true;
-            this.spinEditComi.Size = new System.Drawing.Size(65, 20);
-            this.spinEditComi.StyleController = this.layoutControl1;
-            this.spinEditComi.TabIndex = 32;
-            // 
-            // layoutControlSp
-            // 
-            this.layoutControlSp.Control = this.spinEditComi;
-            this.layoutControlSp.Location = new System.Drawing.Point(286, 24);
-            this.layoutControlSp.Name = "layoutControlSp";
-            this.layoutControlSp.Size = new System.Drawing.Size(85, 24);
-            this.layoutControlSp.Text = "%";
-            this.layoutControlSp.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlSp.TextSize = new System.Drawing.Size(11, 13);
-            this.layoutControlSp.TextToControlDistance = 5;
-            // 
-            // txtComi2
-            // 
-            this.txtComi2.Location = new System.Drawing.Point(109, 250);
-            this.txtComi2.Name = "txtComi2";
-            this.txtComi2.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtComi2.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.txtComi2.Properties.ReadOnly = true;
-            this.txtComi2.Size = new System.Drawing.Size(288, 20);
-            this.txtComi2.StyleController = this.layoutControl1;
-            this.txtComi2.TabIndex = 33;
-            // 
-            // layoutControlComi2
-            // 
-            this.layoutControlComi2.Control = this.txtComi2;
-            this.layoutControlComi2.Location = new System.Drawing.Point(0, 48);
-            this.layoutControlComi2.Name = "layoutControlComi2";
-            this.layoutControlComi2.Size = new System.Drawing.Size(365, 24);
-            this.layoutControlComi2.Text = "Comisionista 2";
-            this.layoutControlComi2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlComi2.TextSize = new System.Drawing.Size(68, 13);
-            this.layoutControlComi2.TextToControlDistance = 5;
-            // 
-            // spinEditComi2
-            // 
-            this.spinEditComi2.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditComi2.Location = new System.Drawing.Point(417, 250);
-            this.spinEditComi2.Name = "spinEditComi2";
-            this.spinEditComi2.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
-            this.spinEditComi2.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.spinEditComi2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditComi2.Properties.Mask.EditMask = "P";
-            this.spinEditComi2.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditComi2.Properties.ReadOnly = true;
-            this.spinEditComi2.Size = new System.Drawing.Size(72, 20);
-            this.spinEditComi2.StyleController = this.layoutControl1;
-            this.spinEditComi2.TabIndex = 34;
-            // 
-            // layoutControlItem25
-            // 
-            this.layoutControlItem25.Control = this.spinEditComi2;
-            this.layoutControlItem25.Location = new System.Drawing.Point(365, 48);
-            this.layoutControlItem25.Name = "layoutControlItem25";
-            this.layoutControlItem25.Size = new System.Drawing.Size(92, 24);
-            this.layoutControlItem25.Text = "%";
-            this.layoutControlItem25.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem25.TextSize = new System.Drawing.Size(11, 13);
-            this.layoutControlItem25.TextToControlDistance = 5;
-            // 
-            // txtComi3
-            // 
-            this.txtComi3.Location = new System.Drawing.Point(566, 250);
-            this.txtComi3.Name = "txtComi3";
-            this.txtComi3.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtComi3.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.txtComi3.Properties.ReadOnly = true;
-            this.txtComi3.Size = new System.Drawing.Size(177, 20);
-            this.txtComi3.StyleController = this.layoutControl1;
-            this.txtComi3.TabIndex = 35;
-            // 
-            // layoutControlComi3
-            // 
-            this.layoutControlComi3.Control = this.txtComi3;
-            this.layoutControlComi3.Location = new System.Drawing.Point(457, 48);
-            this.layoutControlComi3.Name = "layoutControlComi3";
-            this.layoutControlComi3.Size = new System.Drawing.Size(254, 24);
-            this.layoutControlComi3.Text = "Comisionista 3";
-            this.layoutControlComi3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlComi3.TextSize = new System.Drawing.Size(68, 13);
-            this.layoutControlComi3.TextToControlDistance = 5;
-            // 
-            // spinEditComi3
-            // 
-            this.spinEditComi3.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditComi3.Location = new System.Drawing.Point(763, 250);
-            this.spinEditComi3.Name = "spinEditComi3";
-            this.spinEditComi3.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
-            this.spinEditComi3.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.spinEditComi3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditComi3.Properties.Mask.EditMask = "P";
-            this.spinEditComi3.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditComi3.Properties.ReadOnly = true;
-            this.spinEditComi3.Size = new System.Drawing.Size(70, 20);
-            this.spinEditComi3.StyleController = this.layoutControl1;
-            this.spinEditComi3.TabIndex = 36;
-            // 
-            // layoutControlSpinComi3
-            // 
-            this.layoutControlSpinComi3.Control = this.spinEditComi3;
-            this.layoutControlSpinComi3.Location = new System.Drawing.Point(711, 48);
-            this.layoutControlSpinComi3.Name = "layoutControlSpinComi3";
-            this.layoutControlSpinComi3.Size = new System.Drawing.Size(90, 24);
-            this.layoutControlSpinComi3.Text = "%";
-            this.layoutControlSpinComi3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlSpinComi3.TextSize = new System.Drawing.Size(11, 13);
-            this.layoutControlSpinComi3.TextToControlDistance = 5;
-            // 
-            // spinEditEmpFact
-            // 
-            this.spinEditEmpFact.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditEmpFact.Location = new System.Drawing.Point(761, 436);
-            this.spinEditEmpFact.Name = "spinEditEmpFact";
-            this.spinEditEmpFact.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
-            this.spinEditEmpFact.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.spinEditEmpFact.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditEmpFact.Properties.Mask.EditMask = "P";
-            this.spinEditEmpFact.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditEmpFact.Properties.ReadOnly = true;
-            this.spinEditEmpFact.Size = new System.Drawing.Size(72, 20);
-            this.spinEditEmpFact.StyleController = this.layoutControl1;
-            this.spinEditEmpFact.TabIndex = 37;
-            // 
-            // layoutControlItem28
-            // 
-            this.layoutControlItem28.Control = this.spinEditEmpFact;
-            this.layoutControlItem28.Location = new System.Drawing.Point(709, 72);
-            this.layoutControlItem28.Name = "layoutControlItem28";
-            this.layoutControlItem28.Size = new System.Drawing.Size(92, 24);
-            this.layoutControlItem28.Text = "%";
-            this.layoutControlItem28.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem28.TextSize = new System.Drawing.Size(11, 13);
-            this.layoutControlItem28.TextToControlDistance = 5;
-            // 
-            // spinEditEmpFact2
-            // 
-            this.spinEditEmpFact2.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditEmpFact2.Location = new System.Drawing.Point(759, 460);
-            this.spinEditEmpFact2.Name = "spinEditEmpFact2";
-            this.spinEditEmpFact2.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
-            this.spinEditEmpFact2.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.spinEditEmpFact2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditEmpFact2.Properties.Mask.EditMask = "P";
-            this.spinEditEmpFact2.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditEmpFact2.Properties.ReadOnly = true;
-            this.spinEditEmpFact2.Size = new System.Drawing.Size(74, 20);
-            this.spinEditEmpFact2.StyleController = this.layoutControl1;
-            this.spinEditEmpFact2.TabIndex = 37;
-            // 
-            // layoutControlItem29
-            // 
-            this.layoutControlItem29.Control = this.spinEditEmpFact2;
-            this.layoutControlItem29.CustomizationFormText = "layoutControlItem28";
-            this.layoutControlItem29.Location = new System.Drawing.Point(709, 96);
-            this.layoutControlItem29.Name = "layoutControlItem29";
-            this.layoutControlItem29.Size = new System.Drawing.Size(92, 24);
-            this.layoutControlItem29.Text = "%";
-            this.layoutControlItem29.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem29.TextSize = new System.Drawing.Size(11, 13);
-            this.layoutControlItem29.TextToControlDistance = 3;
-            this.layoutControlItem29.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-            // 
-            // spinEditEmpFact3
-            // 
-            this.spinEditEmpFact3.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditEmpFact3.Location = new System.Drawing.Point(759, 484);
-            this.spinEditEmpFact3.Name = "spinEditEmpFact3";
-            this.spinEditEmpFact3.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
-            this.spinEditEmpFact3.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.spinEditEmpFact3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditEmpFact3.Properties.Mask.EditMask = "P";
-            this.spinEditEmpFact3.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditEmpFact3.Properties.ReadOnly = true;
-            this.spinEditEmpFact3.Size = new System.Drawing.Size(74, 20);
-            this.spinEditEmpFact3.StyleController = this.layoutControl1;
-            this.spinEditEmpFact3.TabIndex = 37;
-            // 
-            // layoutControlItem30
-            // 
-            this.layoutControlItem30.Control = this.spinEditEmpFact3;
-            this.layoutControlItem30.CustomizationFormText = "layoutControlItem28";
-            this.layoutControlItem30.Location = new System.Drawing.Point(709, 120);
-            this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(92, 24);
-            this.layoutControlItem30.Text = "%";
-            this.layoutControlItem30.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem30.TextSize = new System.Drawing.Size(11, 13);
-            this.layoutControlItem30.TextToControlDistance = 3;
-            this.layoutControlItem30.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-            // 
-            // spinEditEmpFact4
-            // 
-            this.spinEditEmpFact4.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditEmpFact4.Location = new System.Drawing.Point(759, 508);
-            this.spinEditEmpFact4.Name = "spinEditEmpFact4";
-            this.spinEditEmpFact4.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
-            this.spinEditEmpFact4.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.spinEditEmpFact4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditEmpFact4.Properties.Mask.EditMask = "P";
-            this.spinEditEmpFact4.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditEmpFact4.Properties.ReadOnly = true;
-            this.spinEditEmpFact4.Size = new System.Drawing.Size(74, 20);
-            this.spinEditEmpFact4.StyleController = this.layoutControl1;
-            this.spinEditEmpFact4.TabIndex = 37;
-            // 
-            // layoutControlItem31
-            // 
-            this.layoutControlItem31.Control = this.spinEditEmpFact4;
-            this.layoutControlItem31.CustomizationFormText = "layoutControlItem28";
-            this.layoutControlItem31.Location = new System.Drawing.Point(709, 144);
-            this.layoutControlItem31.Name = "layoutControlItem31";
-            this.layoutControlItem31.Size = new System.Drawing.Size(92, 24);
-            this.layoutControlItem31.Text = "%";
-            this.layoutControlItem31.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem31.TextSize = new System.Drawing.Size(11, 13);
-            this.layoutControlItem31.TextToControlDistance = 3;
-            this.layoutControlItem31.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // EditarCliente
             // 
@@ -1632,6 +1636,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtIDClte.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEstatus.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.queryEstatusBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chComi.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditComi.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComi2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditComi2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComi3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditComi3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -1645,6 +1659,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlSp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlComi2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlComi3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlSpinComi3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnGuardar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).EndInit();
@@ -1652,14 +1671,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemRetIVA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
@@ -1667,26 +1690,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlBajaClte)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnReactiva)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chComi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditComi.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlSp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtComi2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlComi2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditComi2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtComi3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlComi3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditComi3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlSpinComi3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             this.ResumeLayout(false);
 
         }

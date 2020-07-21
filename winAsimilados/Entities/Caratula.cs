@@ -51,6 +51,11 @@ namespace winAsimilados.Entities
         private DateTime _FechaModificacion;
         private string _UsuarioModificacion;
         private decimal _descuentos;
+        private decimal _PorcentajeISN;
+        private decimal _PorcentajeComision;
+        private decimal _PorcentajeIVA;
+        private decimal _PorcentajeRetencion;
+
         public string ID { get { return _ID; } set { _ID = value; } }
         public string caratula { get { return _caratula; } set { _caratula = value; } }
         public string Layout { get { return _Layout; } set { _Layout = value; } }
@@ -97,5 +102,9 @@ namespace winAsimilados.Entities
         public DateTime FechaModificacion { get { return _FechaModificacion; } set { _FechaModificacion = value; } }
         public string UsuarioModificacion { get { return _UsuarioModificacion; } set { _UsuarioModificacion = value; } }
         public decimal descuentos { get { return _descuentos; } set { _descuentos = value; } }
+        public decimal PorcentajeISN { get { return _PorcentajeISN; } set { _PorcentajeISN = value; } }
+        public decimal PorcentajeComision { get { return _PorcentajeComision; } set { _PorcentajeComision = value; } }
+        public decimal PorcentajeIVA { get { return _PorcentajeIVA; } set { _PorcentajeIVA = value; } }
+        public decimal PorcentajeRetencion { get { return _PorcentajeRetencion; } set { _PorcentajeRetencion = value; } }         
     }
 }

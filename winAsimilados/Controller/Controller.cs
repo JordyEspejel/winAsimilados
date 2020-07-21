@@ -800,19 +800,19 @@ namespace winAsimilados.Controller
                     nomina12.TotalDeducciones = nomiEmpl.ISR;
 
 
-                    if (periodicidad.Equals("Semanal"))
+                    if (periodicidad.Equals("Semanal")|| periodicidad.Equals("02"))
                     {
                         nomina12.NumDiasPagados = 7;
                         nominaReceptor.PeriodicidadPago = "02";
                     }
 
-                    if (periodicidad.Equals("Quincenal"))
+                    if (periodicidad.Equals("Quincenal") || periodicidad.Equals("04"))
                     {
                         nomina12.NumDiasPagados = 14;
                         nominaReceptor.PeriodicidadPago = "04";
                     }
 
-                    if (periodicidad.Equals("Mensual"))
+                    if (periodicidad.Equals("Mensual") || periodicidad.Equals("05"))
                     {
                         nomina12.NumDiasPagados = 30;
                         nominaReceptor.PeriodicidadPago = "05";
@@ -1037,7 +1037,7 @@ namespace winAsimilados.Controller
                         {
                             splashScreenManager1.CloseWaitForm();
                         }
-                        XtraMessageBox.Show("¡Nóminas generadas con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show("¡Valdación generada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
@@ -1632,19 +1632,19 @@ namespace winAsimilados.Controller
                     nomina12.TotalDeducciones = nomiEmpl.ISR;
 
 
-                    if (periodicidad.Equals("Semanal"))
+                    if (periodicidad.Equals("Semanal") || periodicidad.Equals("02"))
                     {
                         nomina12.NumDiasPagados = 7;
                         nominaReceptor.PeriodicidadPago = "02";
                     }
 
-                    if (periodicidad.Equals("Quincenal"))
+                    if (periodicidad.Equals("Quincenal") || periodicidad.Equals("04"))
                     {
                         nomina12.NumDiasPagados = 14;
                         nominaReceptor.PeriodicidadPago = "04";
                     }
 
-                    if (periodicidad.Equals("Mensual"))
+                    if (periodicidad.Equals("Mensual") || periodicidad.Equals("05"))
                     {
                         nomina12.NumDiasPagados = 30;
                         nominaReceptor.PeriodicidadPago = "05";
@@ -4667,6 +4667,9 @@ namespace winAsimilados.Controller
 
                             if (errorCuentaOrigen.Equals(0) && errorDestino.Equals(0) && exito > 0)
                             {
+                                mensaje = "Sin Error";
+                                updateErrorLayout.CommandText = @"UPDATE LayoutHistorico SET estatus = 'Generado', descripcionError = '" + mensaje + "' where Layout = '" + item.layout + "' and numEmpl = '" + item.numEmpl + "'";
+                                updateErrorLayout.ExecuteNonQuery();
                                 if (splash.IsSplashFormVisible.Equals(true))
                                 {
                                     splash.CloseWaitForm();
@@ -4681,6 +4684,7 @@ namespace winAsimilados.Controller
                                 Process procesoLayout = new Process();
                                 procesoLayout.StartInfo.FileName = pathLayout;
                                 procesoLayout.Start();
+
                             }
 
                         }
@@ -4747,7 +4751,11 @@ namespace winAsimilados.Controller
                ,[FormaPago]
                ,[Observaciones]
                ,[RutaLogo]
-               ,[Imagen])
+               ,[Imagen]
+      ,[PorcentajeISN]
+      ,[PorcentajeComision]
+      ,[PorcentajeRetencion]
+      ,[descuentos])
          VALUES
                ('" + caratula.caratula + "'" +
                ",'" + caratula.Layout + "'" +
@@ -4784,7 +4792,11 @@ namespace winAsimilados.Controller
                ",'" + caratula.FormaPago + "'" +
                ",'" + caratula.Observaciones + "'" +
                ",'" + caratula.RutaLogo + "'" +
-               ",'" + caratula.Imagen + "')";
+               ",'" + caratula.Imagen + "'" +
+               "," + caratula.PorcentajeISN + "" +
+               "," + caratula.PorcentajeComision + "" +
+               "," + caratula.PorcentajeRetencion + "" +
+               "," + caratula.descuentos + ")";
 
                 queryInsertaCaratula.ExecuteNonQuery();
             }
@@ -5995,7 +6007,6 @@ namespace winAsimilados.Controller
                     dataAdapter.Fill(dataSet);
                     grid.DataSource = dataSet.Tables[0];
                 }
-
             }
             catch (Exception e)
             {
@@ -6110,6 +6121,9 @@ namespace winAsimilados.Controller
                   ,[estatus]
                   ,[Caratula]
                   ,[Layout]
+                  ,[fechaAplicacion]
+                  ,[fecIniPeri]
+                  ,[fecFinPeri]
               FROM [LayoutHistorico]
               WHERE [estatus] = 'Generado'";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();

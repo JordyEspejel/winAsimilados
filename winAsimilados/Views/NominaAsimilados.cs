@@ -2502,13 +2502,13 @@ namespace winAsimilados.Views
                 {
                     if (gridViewFactura.IsRowSelected(i))
                     {
-                        ingresosMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[12]));
+                        ingresosMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[5]));
                         string ing = String.Format("{0:0.00}", ingresosMasiv);
                         ingresosMasiv = Convert.ToDecimal(ing);
                         tipoIngresos = gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[5]).ToString();
                         //ingresosMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[5]));
-                        ISRMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[6]));
-                        rfcEmplMasiv = gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[11]).ToString();
+                        ISRMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[11]));
+                        rfcEmplMasiv = gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[2]).ToString();
                         netoMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[12]));
 
                         DateTime FechaInicioMasivo = Convert.ToDateTime(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[17]));
@@ -2519,14 +2519,14 @@ namespace winAsimilados.Views
                         {
                             RFC = rfcEmplMasiv,
                             //IngresosBrutos = ingresosMasiv,
-                            IngresosBrutos = netoMasiv,
-                            ISR = ISRMasiv,
+                            IngresosBrutos = Math.Round(ingresosMasiv, 2),
+                            ISR = Math.Round(ISRMasiv, 2),
                             //IngresosNetos = netoMasiv,
-                            IngresosNetos = ingresosMasiv,
+                            IngresosNetos = Math.Round(netoMasiv, 2),
                             Periodicidad = tipoIngresos,
                             fechaAplicacion = FechaPago,
                             fecIniPeri = FechaInicioMasivo,
-                            fecFinPeri =  FechaFinMasivo 
+                            fecFinPeri = FechaFinMasivo
                         });
                         emplMasiv = empleadoMasivo.ToArray();
                     }
@@ -2571,13 +2571,13 @@ namespace winAsimilados.Views
                 {
                     if (gridViewFactura.IsRowSelected(i))
                     {
-                        ingresosMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[12]));
+                        ingresosMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[5]));
                         string ing = String.Format("{0:0.00}", ingresosMasiv);
                         ingresosMasiv = Convert.ToDecimal(ing);
                         tipoIngresos = gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[5]).ToString();
                         //ingresosMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[5]));
-                        ISRMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[6]));
-                        rfcEmplMasiv = gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[11]).ToString();
+                        ISRMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[11]));
+                        rfcEmplMasiv = gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[2]).ToString();
                         netoMasiv = Convert.ToDecimal(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[12]));
 
                         DateTime FechaInicioMasivo = Convert.ToDateTime(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[17]));
@@ -2588,10 +2588,10 @@ namespace winAsimilados.Views
                         {
                             RFC = rfcEmplMasiv,
                             //IngresosBrutos = ingresosMasiv,
-                            IngresosBrutos = netoMasiv,
-                            ISR = ISRMasiv,
+                            IngresosBrutos = Math.Round(ingresosMasiv, 2),
+                            ISR = Math.Round(ISRMasiv, 2),
                             //IngresosNetos = netoMasiv,
-                            IngresosNetos = ingresosMasiv,
+                            IngresosNetos = Math.Round(netoMasiv, 2),
                             Periodicidad = tipoIngresos,
                             fechaAplicacion = FechaPago,
                             fecIniPeri = FechaInicioMasivo,
@@ -2673,6 +2673,7 @@ namespace winAsimilados.Views
                 controlador.ActualizaStatusLayout(listaLayoutValidado, splashScreenManager1);
                 controlador.GeneraLayoutBanorte(listaLayoutValidado, nomGenLayout, splashScreenManager1);
                 controlador.ListaCaratulas(gridControlLayout);
+                controlador.ListadoLayoutGenerados(gridControlFactura);
             }
 
         }
@@ -2894,7 +2895,7 @@ namespace winAsimilados.Views
                             cuentaDestino = "No Definido";
                         }
 
-                        if (empleadoLayout.tipoPago.Equals("001"))
+                        if (empleadoLayout.tipoPago.Equals("010"))
                         {
                             cuentaDestino = empleadoLayout.cuenta;
                         }else if (empleadoLayout.tipoPago.Equals("040"))
@@ -2981,7 +2982,7 @@ namespace winAsimilados.Views
 
                 if (infoCliente.RETENCION.Equals("S"))
                 {
-                    detalleLayout.RetencionIVA = Math.Round(detalleLayout.SubTotal * retencion, 2);
+                    detalleLayout.RetencionIVA = Math.Round(detalleLayout.SubTotal * infoCliente.PORCENTAJE_RETENCION, 2);
                 }
                 detalleLayout.Total = Math.Round(detalleLayout.SubTotal + detalleLayout.IVA - detalleLayout.RetencionIVA);
 
@@ -3023,6 +3024,9 @@ namespace winAsimilados.Views
                 caratulaPago.TipoPago = lookUpTipoPago.EditValue.ToString() /*+ "(" + lookUpTipoPago.Text + ")"*/;
                 caratulaPago.RutaLogo = "Prueba";
                 caratulaPago.Imagen = "prueba";
+                caratulaPago.PorcentajeISN = infoCliente.PORCENTAJE_ISN;
+                caratulaPago.PorcentajeComision = infoCliente.PORCENTAJE_COMISION;
+                caratulaPago.PorcentajeRetencion = infoCliente.PORCENTAJE_RETENCION;
 
                 if (listaLayout.Count.Equals(0))
                 {
@@ -3170,7 +3174,7 @@ namespace winAsimilados.Views
             FecFinLayout.Value = System.DateTime.Today;
             sqlDataSource1.Connection.ConnectionString = "Data Source=192.168.16.248\\COMPAC;Initial Catalog=" + bd + ";User ID=sa;Password=Supervisor;";
             sqlDataSource1.Fill();
-            lookUpCliente.EditValue = "E00000";
+            //lookUpCliente.EditValue = "E00000";
             ChNeto.Visible = true;
             parametros = controlador.GetParametros(rfc);
             layoutControlGroup5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -3191,9 +3195,9 @@ namespace winAsimilados.Views
             //Initialize GridControl MasivEMpl
             controlador.ListaEmpleadosNomiMasiv(gridControlNomiMasiv);
             gridControlNomiMasiv.Visible = true;
-            selectCliente = lookUpCliente.EditValue.ToString();
-            controlador.ListaEmpleadosCaratula(gridControlLayoutBanorte, selectCliente);
-            gridControlLayoutBanorte.Visible = true;
+            //selectCliente = lookUpCliente.EditValue.ToString();
+            //controlador.ListaEmpleadosCaratula(gridControlLayoutBanorte, selectCliente);
+            //gridControlLayoutBanorte.Visible = true;
 
             controlador.ListadoLayoutGenerados(gridControlFactura);
             gridControlFactura.Visible = true;
