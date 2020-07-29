@@ -505,3 +505,4 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilad
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Reports.repDetalleFactura.resources
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.AgregarCliente.resources
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.EditarCliente.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.AltaClavesSAT.resources

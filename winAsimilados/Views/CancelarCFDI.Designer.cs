@@ -47,7 +47,6 @@
             this.ColFecPago = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColFecIni = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFecFin = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ColBtn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.FecFinal = new System.Windows.Forms.DateTimePicker();
             this.FecIni = new System.Windows.Forms.DateTimePicker();
@@ -116,8 +115,7 @@
             this.ColStat,
             this.ColFecPago,
             this.ColFecIni,
-            this.colFecFin,
-            this.ColBtn});
+            this.colFecFin});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
@@ -212,12 +210,6 @@
             this.colFecFin.OptionsColumn.AllowEdit = false;
             this.colFecFin.Visible = true;
             this.colFecFin.VisibleIndex = 9;
-            // 
-            // ColBtn
-            // 
-            this.ColBtn.Caption = "Accion";
-            this.ColBtn.ColumnEdit = this.repositoryItemButtonEdit1;
-            this.ColBtn.Name = "ColBtn";
             // 
             // repositoryItemButtonEdit1
             // 
@@ -402,7 +394,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn ColFecPago;
         private DevExpress.XtraGrid.Columns.GridColumn ColFecIni;
         private DevExpress.XtraGrid.Columns.GridColumn colFecFin;
-        private DevExpress.XtraGrid.Columns.GridColumn ColBtn;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;

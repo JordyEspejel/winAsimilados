@@ -39,7 +39,99 @@ namespace winAsimilados.Controller
 {
     class Controller
     {
+        public void ActualizaStatusFolio(int ID, string mensaje)
+        {
+            try
+            {
+                SqlCommand updateEstatus = N.Conexion.PerformConnection().CreateCommand();
+                updateEstatus.CommandText = @"UPDATE [LayoutHistorico] SET [estatus] = '" + mensaje + "'" +
+                    "WHERE [ID] = " + ID + "";
 
+                updateEstatus.ExecuteNonQuery();
+            }catch(Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: ActualizaStatusFolio()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public bool EliminaClaveSAT(int ID)
+        {
+            try
+            {
+                SqlCommand eliminaClave = N.Conexion.PerformConnection().CreateCommand();
+                eliminaClave.CommandText = @"DELETE FROM [BSNOMINAS].[dbo].[ClavesServCliente] WHERE
+                 [ID] = " + ID + "";
+
+                if (eliminaClave.ExecuteNonQuery().Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: EliminaClaveSAT", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public bool InsertaClaveSAT(E.ClaveProdServClte clave)
+        {
+            try
+            {
+                SqlCommand insertaClave = N.Conexion.PerformConnection().CreateCommand();
+                insertaClave.CommandText = @"INSERT INTO [BSNOMINAS].[dbo].[ClavesServCliente]
+                    ([IDClte]
+                    ,[Cliente]
+                    ,[ClaveServProd]
+                    ,[Concepto])
+                    VALUES
+                    ('" + clave.IDClte + "'" +
+                    ",'" + clave.Cliente + "'" +
+                    ",'" + clave.clave + "'" +
+                    ",'" + clave.descripcion + "')";
+
+                SqlCommand validaInsert = N.Conexion.PerformConnection().CreateCommand();
+                validaInsert.CommandText = @"SELECT [ID]
+                  ,[IDClte]
+                  ,[Cliente]
+                  ,[ClaveServProd]
+                  ,[Concepto]
+              FROM [BSNOMINAS].[dbo].[ClavesServCliente]
+              where [IDClte] = @IDclte AND [ClaveServProd] = @clave";
+                validaInsert.Parameters.AddWithValue("@IDclte", clave.IDClte);
+                validaInsert.Parameters.AddWithValue("@clave", clave.clave);
+
+                SqlDataReader readerClave;
+                readerClave = validaInsert.ExecuteReader();
+
+                if (readerClave.Read())
+                {
+                    readerClave.Close();
+                    XtraMessageBox.Show("La clave " + clave.clave + " ya fue asignada al cliente " + clave.Cliente + "", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    readerClave.Close();
+                    if (insertaClave.ExecuteNonQuery().Equals(1))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+
+            }
+            catch(Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: InsertaClaveSAT", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         public bool ReactivaCliente(E.ClienteAsimilado cliente)
         {
             try
@@ -223,6 +315,93 @@ namespace winAsimilados.Controller
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: InsertaCliente()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+        }
+        public void AgregaClienteMasivo(List<E.ClienteAsimilado> lista, SplashScreenManager splashManager)
+        {
+            try
+            {
+                foreach(var item in lista)
+                {
+                    if (item.CLIENTE != "" && item.ID != "")
+                    {
+                        SqlCommand insertaCliente = N.Conexion.PerformConnection().CreateCommand();
+                        insertaCliente.CommandText = @"INSERT INTO [BSNOMINAS].[dbo].[ClientesAsimilados]
+                   ([ID]
+                   ,[CLIENTE]
+                   ,[FECHA_ALTA _PRIMER PAGO]
+                   ,[COMISIONISTA]
+                   ,[PORCENTAJE_ISN]
+                   ,[PORCENTAJE_COMISION]
+                   ,[TOTAL]
+                   ,[FACTURACION_CON IVA _SIN IVA]
+                   ,[RETENCION]
+                   ,[PORCENTAJE_RETENCION]
+                   ,[PERIODO_DE_PAGO]
+                   ,[ESTATUS]
+                   ,[EJECUTIVO_RESPONSABLE]
+                   ,[EMPRESA_PAGADORA_EMITE CFDI]
+                   ,[PROVEEDOR]
+                   ,[EMPRESA_QUE_FACTUR_A _CLIENTE]
+                   ,[EMPRESA_QUE_FACTURA_A_CLIENTE1]
+                   ,[EMPRESA_QUE_FACTURA_A_CLIENTE2]
+                   ,[EMPRESA_QUE_FACTURA_A_CLIENTE3]
+                   ,[Metodo_Pago]
+                   ,[Observaciones]
+                   ,[Forma_Pago]
+                  ,[PORCENTAJE_COMISIONISTA]
+                  ,[COMISIONISTA2]
+                  ,[PORCENTAJE_COMISIONISTA2]
+                  ,[COMISIONISTA3]
+                  ,[PORCENTAJE_COMISIONIST3]
+                  ,[PORCENTAJE_FACTURA]
+                  ,[PORCENTAJE_FACTURA2]
+                  ,[PORCENTAJE_FACTURA3]
+                  ,[PORCENTAJE_FACTURA4])
+             VALUES
+                   ('" + item.ID + "'" +
+                           ",'" + item.CLIENTE + "'" +
+                           ", GETDATE()" +
+                           ",'" + item.COMISIONISTA + "'" +
+                           "," + item.PORCENTAJE_ISN + "" +
+                           "," + item.PORCENTAJE_COMISION + "" +
+                           "," + item.TOTAL + "" +
+                           ",'" + item.FACTURACION_CON_IVA_SIN_IVA + "'" +
+                           ",'" + item.RETENCION + "'" +
+                           "," + item.PORCENTAJE_RETENCION + "" +
+                           ",'" + item.PERIODO_DE_PAGO + "'" +
+                           ",'" + item.ESTATUS + "'" +
+                           ",'" + item.EJECUTIVO_RESPONSABLE + "'" +
+                           ",'" + item.EMPRESA_PAGADORA_EMITE_CFDI + "'" +
+                           ",'" + item.PROVEEDOR + "'" +
+                           ",'" + item.EMPRESA_QUE_FACTUR_A_CLIENTE + "'" +
+                           ",'" + item.EMPRESA_QUE_FACTURA_A_CLIENTE1 + "'" +
+                           ",'" + item.EMPRESA_QUE_FACTURA_A_CLIENTE2 + "'" +
+                           ",'" + item.EMPRESA_QUE_FACTURA_A_CLIENTE3 + "'" +
+                           ",'" + item.Metodo_Pago + "'" +
+                           ",'" + item.Observaciones + "'" +
+                           ",'" + item.Forma_Pago + "'" +
+                           "," + item.PORCENTAJE_COMISIONISTA + "" +
+                            ",'" + item.COMISIONISTA2 + "'" +
+                            "," + item.PORCENTAJE_COMISIONISTA2 + "" +
+                            ",'" + item.COMISIONISTA3 + "'" +
+                            "," + item.PORCENTAJE_COMISIONISTA3 + "" +
+                            "," + item.PORCENTAJE_FACTURA + "" +
+                            "," + item.PORCENTAJE_FACTURA2 + "" +
+                            "," + item.PORCENTAJE_FACTURA3 + "" +
+                            "," + item.PORCENTAJE_FACTURA4 + ")";
+                        insertaCliente.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                if (splashManager.IsSplashFormVisible.Equals(true))
+                {
+                    splashManager.CloseWaitForm();
+                }
+                XtraMessageBox.Show(e.Message + "\nError Controlador: AgregaEmpleadoMasivo()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
         public string GetIDCliente()
@@ -470,8 +649,9 @@ namespace winAsimilados.Controller
                             byte[] bCer = File.ReadAllBytes(pathCer);
                             byte[] bKey = File.ReadAllBytes(pathKey);
                             /* servicio de prueba 
-                            * ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);                        */                                                                                                                                                                            //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
-                            ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.cancelar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", uuid, bCer, bKey, pass);
+                            * ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);                        */
+                            ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.cancelar("testing@solucionfactible.com", "timbrado.SF.16672", uuid, bCer, bKey,pass);                                                                 //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
+                            //ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.cancelar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", uuid, bCer, bKey, pass);
                             ServicioTimbradoProduccion.CFDIResultadoCancelacion[] resultados = respuesta.resultados;
                             if (respuesta.status.Equals(200))
                             {
@@ -636,8 +816,6 @@ namespace winAsimilados.Controller
                 return;
             }
         }
-
-
 
         public void ValXmlMasivo2(List<E.Empleado> Lista, SplashScreenManager splashScreenManager1, string empresa, string rfc, string ip/*, DateTime FecIniPeriMasiv, DateTime FecFinPeriMasiv, DateTime FecPagoMasiv*/)
         {
@@ -906,7 +1084,7 @@ namespace winAsimilados.Controller
                     {
                         ServicioTimbradoProduccion.TimbradoPortTypeClient portTypeClient = null;
                         portTypeClient = (produccion)
-                            ? new ServicioTimbradoProduccion.TimbradoPortTypeClient(prod_endpoint)
+                            ? new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint)
                             : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint);
 
                         byte[] bxml = Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(pathArchivoXML));
@@ -915,7 +1093,8 @@ namespace winAsimilados.Controller
                          */
 
                         ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
-                        //ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", bxml, false);                        //splashScreenManager1.SetWaitFormCaption(respuesta.status.ToString());
+                        //ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", bxml, false);
+                        //splashScreenManager1.SetWaitFormCaption(respuesta.status.ToString());
                         //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
                         ServicioTimbradoProduccion.CFDIResultadoCertificacion[] cFDIResultados = respuesta.resultados;
                         if (respuesta.status.Equals(200))
@@ -1468,6 +1647,7 @@ namespace winAsimilados.Controller
             bool genPDF = false;
             StreamWriter writerLog = null;
             StringBuilder builder = null;
+            string estatusLayout = "";
             string url = @"C:\AsimiladosLogs\";
             if (!Directory.Exists(url))
             {
@@ -1554,6 +1734,7 @@ namespace winAsimilados.Controller
                     string pathCer = ArchivoCER(rfc);
                     string pathKey = ArchivoKEY(rfc);
                     string pass = PassKey(rfc);
+                    //string estatusLayout = "";
 
                     string Inicio, Final, Serie, NumCer;
 
@@ -1744,11 +1925,12 @@ namespace winAsimilados.Controller
                             : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(prod_endpoint);
 
                         byte[] bxml = Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(pathArchivoXML));
-                        /* servicio de prueba 
-                         * ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
-                         */
+                        //servicio de prueba
+                        //ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
 
-                        ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", bxml, false);                        //splashScreenManager1.SetWaitFormCaption(respuesta.status.ToString());
+
+                        ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", bxml, false);
+                        //splashScreenManager1.SetWaitFormCaption(respuesta.status.ToString());
                         //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
                         ServicioTimbradoProduccion.CFDIResultadoCertificacion[] cFDIResultados = respuesta.resultados;
                         if (respuesta.status.Equals(200))
@@ -1804,6 +1986,8 @@ namespace winAsimilados.Controller
                                     builder.AppendLine();
                                     //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en bitacora de la base de datos.\n");
                                 }
+                                estatusLayout = "Timbrado";
+                                ActualizaStatusFolio(item.IDLayout, estatusLayout);
                             }
                             else
                             {
@@ -1824,10 +2008,11 @@ namespace winAsimilados.Controller
                                 //XtraMessageBox.Show(cFDIResultados[0].mensaje + "\nEmpleado #: " + nomiEmpl.NumEmpl + " (" + nomiEmpl.Nombre + ")"
                                 //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
-
                         }
                         else
                         {
+                            estatusLayout = "Error al timbrar";
+                            ActualizaStatusFolio(item.IDLayout, estatusLayout);
                             if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                             {
                                 splashScreenManager1.CloseWaitForm();
@@ -2849,7 +3034,7 @@ namespace winAsimilados.Controller
                     banco.cuenta = readerInfo.GetString(0);
                     banco.clabe = readerInfo.GetString(1);
                 }
-
+                readerInfo.Close();
 
                 return banco;
             }
@@ -4809,6 +4994,32 @@ namespace winAsimilados.Controller
                 XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaCaratula()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public bool ReabrirCaratula(string caratula, string usuario)
+        {
+            try
+            {
+                SqlCommand actualizaStatus = N.Conexion.PerformConnection().CreateCommand();
+                actualizaStatus.CommandText = @"Update caratulapago
+                set Estatus = 'Generado'
+                , FechaReAperturaCaratula = GETDATE()
+                , UsuarioReApertura = '" + usuario + "' " +
+                "where Caratula = '" + caratula + "'";
+
+                if (actualizaStatus.ExecuteNonQuery().Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ReabrirCaratula()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         public bool ActualizaStatusCaratula(string caratula, string usuario)
         {
             try
@@ -5312,6 +5523,8 @@ namespace winAsimilados.Controller
                   ,ISNULL([UsuarioPago], '') AS [UsuarioPago]
                   ,ISNULL([FechaModificacion], '') AS [FechaModificacion]
                   ,ISNULL([UsuarioModificacion], '') AS [UsuarioModificacion]
+                  ,ISNULL([FechaReAperturaCaratula], '') AS [FechaReAperturaCaratula]
+                  ,ISNULL([UsuarioReApertura], '') AS [UsuarioReApertura]
               FROM [CaratulaPago]
               WHERE [Caratula] = @caratula";
 
@@ -5362,6 +5575,8 @@ namespace winAsimilados.Controller
                     caratula.UsuarioPago = readerData.GetString(39);
                     caratula.FechaModificacion  = readerData.GetDateTime(40);
                     caratula.UsuarioModificacion= readerData.GetString(41);
+                    caratula.FechaReaperturaPeriodo = readerData.GetDateTime(42);
+                    caratula.UsuarioReapertura = readerData.GetString(43);
                 }
                 readerData.Close();
                 return caratula;
@@ -5444,6 +5659,7 @@ namespace winAsimilados.Controller
                 return;
             }
         }
+
         public void AgregarEmpleadoMasivo(List<E.Empleado> list, Object _P, SplashScreenManager splashManager)
         {
             try
@@ -5524,7 +5740,8 @@ namespace winAsimilados.Controller
                     ,[CVE_BANCO]
                     ,[EMPRESA]
                     ,[ID_EMPRESA]
-                    ,[PORCENTAJE_DESCUENTO])
+                    ,[PORCENTAJE_DESCUENTO],
+[TIPO_PAGO])
                     VALUES
                     ('" + empl.NumEmpl + "','" + empl.Nombre + "','" + empl.RFC + "','" + empl.CURP + "','" + "09'," + "'ASIMILADO'," + "'01/01/1900'," + "'ASIMILADO',"
                         + "'99'," + "'00','" + empl.Periodicidad + "'," + "'No'" +
@@ -5534,7 +5751,8 @@ namespace winAsimilados.Controller
                         ",'" + empl.cve_banco + "'" +
                         ",'" + empl.empresa + "'" +
                         ",'" + empl.idEmpresa + "'" +
-                        "," + empl.descuento + ")";
+                        "," + empl.descuento + "" +
+                        ",'" +empl.tipoPago + "')";
 
                         if (!empl.RFC.Length.Equals(13))
                         {
@@ -5941,11 +6159,34 @@ namespace winAsimilados.Controller
                 XtraMessageBox.Show(e.Message + "\nError Controlador: ListaCaratula()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public void ListaClavesEmpresa(GridControl grid, string ID)
+        {
+            try
+            {
+                SqlCommand queryLista = N.Conexion.PerformConnection().CreateCommand();
+                queryLista.CommandText = @"SELECT [ID]
+                  ,[IDClte]
+                  ,[Cliente]
+                  ,[ClaveServProd]
+                  ,[Concepto]
+              FROM [BSNOMINAS].[dbo].[ClavesServCliente]
+              WHERE [IDClte] = @ID";
+                queryLista.Parameters.AddWithValue("@ID", ID);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = queryLista;
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                grid.DataSource = dataSet.Tables[0];
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ListaClavesEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public void ListaEmpleadosCaratula(GridControl grid, string seleccion)
         {
             try
             {
-
                 if (seleccion.Equals("E00000"))
                 {
                     SqlCommand queryListaEmpleados = N.Conexion.PerformConnection().CreateCommand();
@@ -5979,8 +6220,8 @@ namespace winAsimilados.Controller
                 else
                 {
 
-                    SqlCommand queryListaEmpleados = N.Conexion.PerformConnection().CreateCommand();
-                    queryListaEmpleados.CommandText = @"SELECT
+                    SqlCommand queryListaEmpleados2 = N.Conexion.PerformConnection().CreateCommand();
+                    queryListaEmpleados2.CommandText = @"SELECT
                     [idempleado]
                     ,cast([NUM_EMPLEADO] as int) as [NUM_EMPLEADO]
                     ,[NOMBRE] 
@@ -6000,12 +6241,12 @@ namespace winAsimilados.Controller
                     ,'Pago a Asimilados' as [Descripcion]
                     ,0.00 as [Otro Concepto]
                     from EMPLEADOS WHERE ID_EMPRESA = @IDE";
-                    queryListaEmpleados.Parameters.AddWithValue("@IDE", seleccion);
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter();
-                    dataAdapter.SelectCommand = queryListaEmpleados;
-                    DataSet dataSet = new DataSet();
-                    dataAdapter.Fill(dataSet);
-                    grid.DataSource = dataSet.Tables[0];
+                    queryListaEmpleados2.Parameters.AddWithValue("@IDE", seleccion);
+                    SqlDataAdapter dataAdapter2 = new SqlDataAdapter();
+                    dataAdapter2.SelectCommand = queryListaEmpleados2;
+                    DataSet dataSet2 = new DataSet();
+                    dataAdapter2.Fill(dataSet2);
+                    grid.DataSource = dataSet2.Tables[0];
                 }
             }
             catch (Exception e)
@@ -6124,8 +6365,9 @@ namespace winAsimilados.Controller
                   ,[fechaAplicacion]
                   ,[fecIniPeri]
                   ,[fecFinPeri]
+                  ,[ID]
               FROM [LayoutHistorico]
-              WHERE [estatus] = 'Generado'";
+              WHERE [estatus] != 'Timbrado'";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryListado;
                 DataSet dataSet = new DataSet();

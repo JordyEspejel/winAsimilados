@@ -73,9 +73,12 @@
             this.PopBtnEmpresas = new DevExpress.XtraBars.PopupMenu(this.components);
             this.PanelPrincipal = new DevExpress.XtraEditors.SidePanel();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
+            this.accordionControlElement12 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElementClaveSAT = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement10 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement11 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElemenAddClteUnit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlbtnMasivClte = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElementEditClte = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -512,6 +515,7 @@
             // 
             this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlElement12,
             this.accordionControlElement10,
             this.accordionControlElement1,
             this.accordionControlElement3,
@@ -528,6 +532,22 @@
             this.accordionControl1.Text = "Menu";
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
+            // accordionControlElement12
+            // 
+            this.accordionControlElement12.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlElementClaveSAT});
+            this.accordionControlElement12.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement12.ImageOptions.Image")));
+            this.accordionControlElement12.Name = "accordionControlElement12";
+            this.accordionControlElement12.Text = "Catalogos";
+            // 
+            // accordionControlElementClaveSAT
+            // 
+            this.accordionControlElementClaveSAT.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElementClaveSAT.ImageOptions.Image")));
+            this.accordionControlElementClaveSAT.Name = "accordionControlElementClaveSAT";
+            this.accordionControlElementClaveSAT.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElementClaveSAT.Text = "Claves SAT";
+            this.accordionControlElementClaveSAT.Click += new System.EventHandler(this.accordionControlElementClaveSAT_Click);
+            // 
             // accordionControlElement10
             // 
             this.accordionControlElement10.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
@@ -540,7 +560,8 @@
             // accordionControlElement11
             // 
             this.accordionControlElement11.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.accordionControlElemenAddClteUnit});
+            this.accordionControlElemenAddClteUnit,
+            this.accordionControlbtnMasivClte});
             this.accordionControlElement11.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement11.ImageOptions.Image")));
             this.accordionControlElement11.Name = "accordionControlElement11";
             this.accordionControlElement11.Text = "Agregar";
@@ -552,6 +573,14 @@
             this.accordionControlElemenAddClteUnit.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElemenAddClteUnit.Text = "Unitario";
             this.accordionControlElemenAddClteUnit.Click += new System.EventHandler(this.accordionControlElemenAddClteUnit_Click);
+            // 
+            // accordionControlbtnMasivClte
+            // 
+            this.accordionControlbtnMasivClte.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlbtnMasivClte.ImageOptions.Image")));
+            this.accordionControlbtnMasivClte.Name = "accordionControlbtnMasivClte";
+            this.accordionControlbtnMasivClte.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlbtnMasivClte.Text = "Masivo";
+            this.accordionControlbtnMasivClte.Click += new System.EventHandler(this.accordionControlbtnMasivClte_Click);
             // 
             // accordionControlElementEditClte
             // 
@@ -616,7 +645,6 @@
             // 
             this.accordionControlElement4.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionAgregarEmpresaUnitario});
-            this.accordionControlElement4.Expanded = true;
             this.accordionControlElement4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement4.ImageOptions.Image")));
             this.accordionControlElement4.Name = "accordionControlElement4";
             this.accordionControlElement4.Text = "Agregar";
@@ -846,5 +874,8 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement11;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElemenAddClteUnit;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementEditClte;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement12;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementClaveSAT;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlbtnMasivClte;
     }
 }

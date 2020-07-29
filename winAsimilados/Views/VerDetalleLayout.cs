@@ -123,13 +123,27 @@ namespace winAsimilados.Views
 
         private void PutDataGral()
         {
+            string fechaReactiva = caratula.FechaReaperturaPeriodo.ToString("dd/MM/yyyy");
+            if (fechaReactiva.Equals("01/01/1900"))
+            {
+                txtFecReactiva.Text = "Sin Reactivar";
+            }
+            else
+            {
+                txtFecReactiva.Text = caratula.FechaReaperturaPeriodo.ToString();
+            }
+            txtUsuaFecReactiva.Text = caratula.UsuarioReapertura;
             if (caratula.Estatus.Equals("Generado"))
             {
                 txtEstatusGral.Text = "Generado (Sin Pagar)";
             }
-            else
+            else if (caratula.Estatus.Equals("Pagado"))
             {
-                txtEstatusGral.Text = caratula.Estatus;
+                txtEstatusGral.Text = caratula.Estatus + " (Cerrado)";
+            }
+            if (caratula.Estatus.Equals("Generado") && fechaReactiva!= "01/01/1900")
+            {
+                txtEstatusGral.Text = caratula.Estatus + " (Reactivado)";
             }
             txtFechaCreacion.Text = caratula.FechaCreacion.ToString();
             txtUsuaCreacion.Text = caratula.usuario;

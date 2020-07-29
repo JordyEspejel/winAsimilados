@@ -17,6 +17,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraWaitForm;
 using System.IO;
 using DevExpress.Persistent.Base;
+using Org.BouncyCastle.Asn1.Cmp;
 
 namespace winAsimilados.Views
 {
@@ -36,6 +37,7 @@ namespace winAsimilados.Views
         string empresa;
         string idEmpr;
         decimal perDescuento;
+        string TipoPago;
         public AsimiladosPrincipal()
         {
             InitializeComponent();
@@ -621,10 +623,18 @@ namespace winAsimilados.Views
                         }
                         try
                         {
-                            perDescuento = Convert.ToDecimal((range.Cells[rCnt, "K"] as Excel.Range).Value2.ToString());
+                            perDescuento = Convert.ToDecimal((range.Cells[rCnt, "L"] as Excel.Range).Value2.ToString());
                         }catch (Exception DESCUENTO)
                         {
                             perDescuento = 0;
+                        }
+                        try
+                        {
+                            TipoPago = (range.Cells[rCnt, "M"] as Excel.Range).Value2.ToString();
+                        }
+                        catch (Exception pago)
+                        {
+                            TipoPago = "";
                         }
 
 
@@ -638,7 +648,7 @@ namespace winAsimilados.Views
                         }
                         else if (peri.Equals("MENSUAL"))
                         {
-                            peri = "04";
+                            peri = "05";
                         }
                         else
                         {
@@ -656,6 +666,7 @@ namespace winAsimilados.Views
                         empl.empresa = empresa;
                         empl.idEmpresa = idEmpr;
                         empl.descuento = perDescuento;
+                        empl.tipoPago = TipoPago;
 
                         Empleado.Add(new E.Empleado
                         {
@@ -670,8 +681,8 @@ namespace winAsimilados.Views
                             cve_banco = cve,
                             empresa = empresa,
                             idEmpresa = idEmpr,
-                            descuento = perDescuento
-
+                            descuento = perDescuento,
+                            tipoPago = TipoPago,
                         });
                         empleado = Empleado.ToArray();
 
@@ -717,6 +728,7 @@ namespace winAsimilados.Views
             var frm = Application.OpenForms.OfType<EditarEmpleados>().FirstOrDefault();
             if (frm != null)
             {
+                splashScreenManager1.CloseWaitForm();
                 frm.BringToFront();
                 frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
@@ -743,6 +755,7 @@ namespace winAsimilados.Views
             var frm = Application.OpenForms.OfType<AgregarEmpresa>().FirstOrDefault();
             if (frm != null)
             {
+                splashScreenManager1.CloseWaitForm();
                 frm.BringToFront();
                 frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
@@ -770,6 +783,7 @@ namespace winAsimilados.Views
             var frm = Application.OpenForms.OfType<EditarEmpresa>().FirstOrDefault();
             if (frm != null)
             {
+                splashScreenManager1.CloseWaitForm();
                 frm.Location = new Point(270, 60);
                 frm.BringToFront();
 
@@ -799,6 +813,7 @@ namespace winAsimilados.Views
             var frm = Application.OpenForms.OfType<NominaAsimilados>().FirstOrDefault();
             if (frm != null)
             {
+                splashScreenManager1.CloseWaitForm();
                 frm.BringToFront();
                 frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
@@ -1002,6 +1017,7 @@ namespace winAsimilados.Views
                 frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
                 {
+
                     //XtraMessageBox.Show("S")
                     frm.WindowState = FormWindowState.Normal;
                     frm.Size = PanelPrincipal.Size;
@@ -1027,6 +1043,7 @@ namespace winAsimilados.Views
             var frm = Application.OpenForms.OfType<AgregarCliente>().FirstOrDefault();
             if (frm != null)
             {
+                splashScreenManager1.CloseWaitForm();
                 frm.BringToFront();
                 frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
@@ -1056,6 +1073,7 @@ namespace winAsimilados.Views
             var frm = Application.OpenForms.OfType<EditarCliente>().FirstOrDefault();
             if (frm != null)
             {
+                splashScreenManager1.CloseWaitForm();
                 frm.BringToFront();
                 frm.Location = new Point(270, 60);
                 if (frm.WindowState == FormWindowState.Minimized)
@@ -1074,6 +1092,401 @@ namespace winAsimilados.Views
                 //agregarUsuario.Size = PanelPrincipal.Size;
                 editarCliente.Show();
                 editarCliente.BringToFront();
+            }
+        }
+
+        private void accordionControlElementClaveSAT_Click(object sender, EventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Alta Claves SAT...");
+            AltaClavesSAT altaClaves = new AltaClavesSAT(splashScreenManager1);
+            var frm = Application.OpenForms.OfType<AltaClavesSAT>().FirstOrDefault();
+            if (frm != null)
+            {                
+                splashScreenManager1.CloseWaitForm();
+                frm.BringToFront();
+                frm.Location = new Point(270, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    //frm.Size = PanelPrincipal.Size;
+                    frm.BringToFront();
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(270, 60);
+                }
+            }
+            else
+            {
+                altaClaves.Location = new Point(270, 60);
+                //agregarUsuario.Size = PanelPrincipal.Size;
+                altaClaves.Show();
+                altaClaves.BringToFront();
+            }
+        }
+
+        private void accordionControlbtnMasivClte_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                E.ClienteAsimilado cliente = new E.ClienteAsimilado();
+                C.Controller Controlador = new C.Controller();
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "Archivos de Excel (*.xls;*.xlsx)|*.xls;*.xlsx"; //le indicamos el tipo de filtro en este caso que busque
+                                                                                 //solo los archivos excel
+
+                dialog.Title = "Seleccione el archivo de Excel";//le damos un titulo a la ventana
+
+                dialog.FileName = string.Empty;
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    if (splashScreenManager1.IsSplashFormVisible.Equals(false))
+                    {
+                        splashScreenManager1.ShowWaitForm();
+                    }
+                    Excel.Application xlApp;
+                    Excel.Workbook xlWorkBook;
+                    Excel.Worksheet xlWorkSheet;
+                    Excel.Range range;
+                    int rCnt;
+                    int rw = 0;
+                    int cl = 0;
+                    int cont = 0;
+                    string Archivo = dialog.FileName;
+                    var misValue = Type.Missing;
+
+                    xlApp = new Excel.Application();
+                    xlWorkBook = xlApp.Workbooks.Open(@Archivo, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue);
+                    xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+                    range = xlWorkSheet.UsedRange;
+                    rw = range.Rows.Count;
+                    cl = range.Columns.Count;
+
+                    var clientes = new List<E.ClienteAsimilado>();
+                    E.ClienteAsimilado[] cleAsim = null;
+                    for (rCnt = 2; rCnt <= rw; rCnt++)
+                    {
+                        string ID;
+                        string newID = "";
+                        int numID = 0;
+                        ID = Controlador.GetIDCliente();
+
+                        for (int i = 0; i < ID.Length; i++)
+                        {
+                            if (Char.IsDigit(ID[i]))
+                            {
+                                newID += ID[i];
+                            }
+                        }
+                        if (newID.Length > 0)
+                        {
+                            numID = int.Parse(newID);
+                        }
+
+                        if (numID.ToString().Length.Equals(3))
+                        {
+                            numID++;
+                            newID = "E00" + numID.ToString();
+                        }
+
+                        //txtID.Text = newID;
+                        cliente.ID = newID;
+                        newID = "";
+                        try
+                        {
+                            cliente.CLIENTE = (range.Cells[rCnt, "A"] as Excel.Range).Value2.ToString();
+                        }
+                        catch (Exception Empl)
+                        {
+                            cliente.CLIENTE = "";
+                        }
+                        try
+                        {
+                            cliente.FECHA_ALTA_PRIMER_PAGO = Convert.ToDateTime((range.Cells[rCnt, "B"] as Excel.Range).Value2.ToString());
+                        }
+                        catch
+                        {
+                            cliente.FECHA_ALTA_PRIMER_PAGO = Convert.ToDateTime("");
+                        }
+                        try
+                        {
+                            cliente.COMISIONISTA = (range.Cells[rCnt, "C"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.COMISIONISTA = "";
+                        }
+                        try
+                        {
+                            cliente.PORCENTAJE_COMISIONISTA = Convert.ToDecimal((range.Cells[rCnt, "D"] as Excel.Range).Value2.ToString());
+                        }
+                        catch
+                        {
+                            cliente.PORCENTAJE_COMISIONISTA = 0;
+                        }
+                        try
+                        {
+                            cliente.COMISIONISTA2 = (range.Cells[rCnt, "E"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.COMISIONISTA2 = "";
+                        }
+                        try
+                        {
+                            cliente.PORCENTAJE_COMISIONISTA2 = Convert.ToDecimal((range.Cells[rCnt, "F"] as Excel.Range).Value2.ToString());
+                        }
+                        catch
+                        {
+                            cliente.PORCENTAJE_COMISIONISTA2 = 0;
+                        }
+                        try
+                        {
+                            cliente.COMISIONISTA = (range.Cells[rCnt, "G"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.COMISIONISTA3 = "";
+                        }
+                        try
+                        {
+                            cliente.PORCENTAJE_COMISIONISTA3 = Convert.ToDecimal((range.Cells[rCnt, "H"] as Excel.Range).Value2.ToString());
+                        }
+                        catch
+                        {
+                            cliente.PORCENTAJE_COMISIONISTA3 = 0;
+                        }
+                        try
+                        {
+                            cliente.PORCENTAJE_ISN = Convert.ToDecimal((range.Cells[rCnt, "I"] as Excel.Range).Value2.ToString());
+                        }
+                        catch
+                        {
+                            cliente.PORCENTAJE_ISN = 0;
+                        }
+                        try
+                        {
+                            cliente.PORCENTAJE_COMISION = Convert.ToDecimal((range.Cells[rCnt, "J"] as Excel.Range).Value2.ToString());
+                        }
+                        catch
+                        {
+                            cliente.PORCENTAJE_COMISION = 0;
+                        }
+                        try
+                        {
+                            cliente.TOTAL = Convert.ToDecimal((range.Cells[rCnt, "k"] as Excel.Range).Value2.ToString());
+                        }
+                        catch
+                        {
+                            cliente.TOTAL = 0;
+                        }
+                        try
+                        {
+                            cliente.FACTURACION_CON_IVA_SIN_IVA = (range.Cells[rCnt, "L"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.FACTURACION_CON_IVA_SIN_IVA = "N";
+                        }
+                        try
+                        {
+                            cliente.RETENCION = (range.Cells[rCnt, "M"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.RETENCION = "N";
+                        }
+                        try
+                        {
+                            cliente.PORCENTAJE_RETENCION = Convert.ToDecimal((range.Cells[rCnt, "N"] as Excel.Range).Value2.ToString());
+                        }
+                        catch
+                        {
+                            cliente.PORCENTAJE_RETENCION = 0;
+                        }
+                        try
+                        {
+                            cliente.PERIODO_DE_PAGO = (range.Cells[rCnt, "O"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.PERIODO_DE_PAGO = "Otro";
+                        }
+                        try
+                        {
+                            cliente.EJECUTIVO_RESPONSABLE = (range.Cells[rCnt, "P"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.EJECUTIVO_RESPONSABLE = "";
+                        }
+                        try
+                        {
+                            cliente.EMPRESA_PAGADORA_EMITE_CFDI = (range.Cells[rCnt, "Q"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.EMPRESA_PAGADORA_EMITE_CFDI = "";
+                        }
+                        try
+                        {
+                            cliente.PROVEEDOR = (range.Cells[rCnt, "R"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.PROVEEDOR = "";
+                        }
+                        try
+                        {
+                            cliente.EMPRESA_QUE_FACTUR_A_CLIENTE = (range.Cells[rCnt, "S"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.EMPRESA_QUE_FACTUR_A_CLIENTE = "";
+                        }
+                        try
+                        {
+                            cliente.PORCENTAJE_FACTURA = Convert.ToDecimal((range.Cells[rCnt, "T"] as Excel.Range).Value2.ToString());
+                        }catch
+                        {
+                            cliente.PORCENTAJE_FACTURA = 0;
+                        }
+                        try
+                        {
+                            cliente.EMPRESA_QUE_FACTURA_A_CLIENTE1 = (range.Cells[rCnt, "U"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.EMPRESA_QUE_FACTURA_A_CLIENTE1 = "";
+                        }
+                        try
+                        {
+                            cliente.PORCENTAJE_FACTURA2 = Convert.ToDecimal((range.Cells[rCnt, "V"] as Excel.Range).Value2.ToString());
+                        }
+                        catch
+                        {
+                            cliente.PORCENTAJE_FACTURA2 = 0;
+                        }
+                        try
+                        {
+                            cliente.EMPRESA_QUE_FACTURA_A_CLIENTE2 = (range.Cells[rCnt, "W"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.EMPRESA_QUE_FACTURA_A_CLIENTE2 = "";
+                        }
+                        try
+                        {
+                            cliente.PORCENTAJE_FACTURA3 = Convert.ToDecimal((range.Cells[rCnt, "X"] as Excel.Range).Value2.ToString());
+                        }
+                        catch
+                        {
+                            cliente.PORCENTAJE_FACTURA3 = 0;
+                        }
+                        try
+                        {
+                            cliente.EMPRESA_QUE_FACTURA_A_CLIENTE3 = (range.Cells[rCnt, "Y"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.EMPRESA_QUE_FACTURA_A_CLIENTE3 = "";
+                        }
+                        try
+                        {
+                            cliente.PORCENTAJE_FACTURA3 = Convert.ToDecimal((range.Cells[rCnt, "Z"] as Excel.Range).Value2.ToString());
+                        }
+                        catch
+                        {
+                            cliente.PORCENTAJE_FACTURA3 = 0;
+                        }
+                        try
+                        {
+                            cliente.Metodo_Pago = (range.Cells[rCnt, "AA"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.Metodo_Pago = "";
+                        }
+                        try
+                        {
+                            cliente.Observaciones = (range.Cells[rCnt, "AB"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.Observaciones = "";
+                        }
+                        try
+                        {
+                            cliente.Forma_Pago = (range.Cells[rCnt, "AC"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.Forma_Pago = "";
+                        }
+
+                        clientes.Add(new E.ClienteAsimilado
+                        {
+                            ID = cliente.ID,
+                            CLIENTE = cliente.CLIENTE,
+                            FECHA_ALTA_PRIMER_PAGO = cliente.FECHA_ALTA_PRIMER_PAGO,
+                            COMISIONISTA = cliente.COMISIONISTA,
+                            PORCENTAJE_COMISIONISTA = cliente.PORCENTAJE_COMISIONISTA,
+                            COMISIONISTA2 = cliente.COMISIONISTA2,
+                            PORCENTAJE_COMISIONISTA2 = cliente.PORCENTAJE_COMISIONISTA2,
+                            COMISIONISTA3 = cliente.COMISIONISTA3,
+                            PORCENTAJE_COMISIONISTA3 = cliente.PORCENTAJE_COMISIONISTA3,
+                            PORCENTAJE_ISN = cliente.PORCENTAJE_ISN,
+                            PORCENTAJE_COMISION = cliente.PORCENTAJE_COMISION,
+                            TOTAL = cliente.TOTAL,
+                            FACTURACION_CON_IVA_SIN_IVA = cliente.FACTURACION_CON_IVA_SIN_IVA,
+                            RETENCION = cliente.RETENCION,
+                            PORCENTAJE_RETENCION = cliente.PORCENTAJE_RETENCION,
+                            PERIODO_DE_PAGO = cliente.PERIODO_DE_PAGO,
+                            EJECUTIVO_RESPONSABLE = cliente.EJECUTIVO_RESPONSABLE,
+                            EMPRESA_PAGADORA_EMITE_CFDI = cliente.EMPRESA_PAGADORA_EMITE_CFDI,
+                            PROVEEDOR = cliente.PROVEEDOR,
+                            EMPRESA_QUE_FACTUR_A_CLIENTE = cliente.EMPRESA_QUE_FACTUR_A_CLIENTE,
+                            PORCENTAJE_FACTURA = cliente.PORCENTAJE_FACTURA,
+                            EMPRESA_QUE_FACTURA_A_CLIENTE1 = cliente.EMPRESA_QUE_FACTURA_A_CLIENTE1,
+                            PORCENTAJE_FACTURA2 = cliente.PORCENTAJE_FACTURA2,
+                            EMPRESA_QUE_FACTURA_A_CLIENTE2 = cliente.EMPRESA_QUE_FACTURA_A_CLIENTE2,
+                            PORCENTAJE_FACTURA3 = cliente.PORCENTAJE_FACTURA3,
+                            EMPRESA_QUE_FACTURA_A_CLIENTE3 = cliente.EMPRESA_QUE_FACTURA_A_CLIENTE3,
+                            PORCENTAJE_FACTURA4 = cliente.PORCENTAJE_FACTURA4,
+                            Metodo_Pago = cliente.Metodo_Pago,
+                            Observaciones = cliente.Observaciones,
+                            Forma_Pago = cliente.Forma_Pago
+                        });
+                    }
+                    string nombreArchivo = xlWorkBook.Name;
+                    nombreArchivo = Path.GetFileNameWithoutExtension(nombreArchivo);
+                    //xlWorkBook.Close(true, "Formato_Masivo_Importe_Empleados", null);
+                    xlWorkBook.Close(true, nombreArchivo, null);
+                    xlApp.Quit();
+                    //progressPanel2.Hide();
+
+                    Marshal.ReleaseComObject(xlWorkSheet);
+                    Marshal.ReleaseComObject(xlWorkBook);
+                    Marshal.ReleaseComObject(xlApp);
+
+                    Controlador.AgregaClienteMasivo(clientes, splashScreenManager1);
+
+                    if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                    {
+                        splashScreenManager1.CloseWaitForm();
+                    }
+                    XtraMessageBox.Show("Proceso terminado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception masivClte)
+            {
+                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                {
+                    splashScreenManager1.CloseWaitForm();
+                }
+                XtraMessageBox.Show(masivClte.Message + "\nError Carga Masiva CLiente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

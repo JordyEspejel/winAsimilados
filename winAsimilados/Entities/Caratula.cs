@@ -50,6 +50,8 @@ namespace winAsimilados.Entities
         private string _UsuarioPago;
         private DateTime _FechaModificacion;
         private string _UsuarioModificacion;
+        private DateTime _FechaReaperturaPeriodo;
+        private string _UsuarioReapertura;
         private decimal _descuentos;
         private decimal _PorcentajeISN;
         private decimal _PorcentajeComision;
@@ -105,6 +107,10 @@ namespace winAsimilados.Entities
         public decimal PorcentajeISN { get { return _PorcentajeISN; } set { _PorcentajeISN = value; } }
         public decimal PorcentajeComision { get { return _PorcentajeComision; } set { _PorcentajeComision = value; } }
         public decimal PorcentajeIVA { get { return _PorcentajeIVA; } set { _PorcentajeIVA = value; } }
-        public decimal PorcentajeRetencion { get { return _PorcentajeRetencion; } set { _PorcentajeRetencion = value; } }         
+        public decimal PorcentajeRetencion { get { return _PorcentajeRetencion; } set { _PorcentajeRetencion = value; } }
+
+
+        public DateTime FechaReaperturaPeriodo { get { return _FechaReaperturaPeriodo; } set { _FechaReaperturaPeriodo = value; } }
+        public string UsuarioReapertura { get { return _UsuarioReapertura; } set { _UsuarioReapertura = value; } }
     }
 }

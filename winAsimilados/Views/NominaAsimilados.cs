@@ -2514,8 +2514,9 @@ namespace winAsimilados.Views
                         DateTime FechaInicioMasivo = Convert.ToDateTime(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[17]));
                         DateTime FechaFinMasivo = Convert.ToDateTime(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[18]));
                         DateTime FechaPago = Convert.ToDateTime(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[16]));
+                        int IDLayout = Convert.ToInt32(gridViewFactura.GetRowCellValue(i, gridViewFactura.Columns[19]));
 
-                        empleadoMasivo.Add(new E.Empleado
+                empleadoMasivo.Add(new E.Empleado
                         {
                             RFC = rfcEmplMasiv,
                             //IngresosBrutos = ingresosMasiv,
@@ -2526,7 +2527,8 @@ namespace winAsimilados.Views
                             Periodicidad = tipoIngresos,
                             fechaAplicacion = FechaPago,
                             fecIniPeri = FechaInicioMasivo,
-                            fecFinPeri = FechaFinMasivo
+                            fecFinPeri = FechaFinMasivo,
+                            IDLayout = IDLayout
                         });
                         emplMasiv = empleadoMasivo.ToArray();
                     }
@@ -2553,6 +2555,7 @@ namespace winAsimilados.Views
                     //DateTime FechaFinMasivo = Convert.ToDateTime(FecFinPeriMasiv.EditValue.ToString());
                     //DateTime FechaPago = Convert.ToDateTime(FecPagoMasiv.Text);
                     controlador.GenXmlMasivo2(empleadoMasivo, splash, empresa, rfc, ip);
+                    controlador.ListadoLayoutGenerados(gridControlFactura);
                 }
             }
             catch (Exception Valmasiv)
@@ -2627,6 +2630,45 @@ namespace winAsimilados.Views
             catch (Exception Valmasiv)
             {
                 XtraMessageBox.Show(Valmasiv.Message + "\nError modulo Nomina: BtnValNomiMasiv2", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAbrirPeriodo_Click(object sender, EventArgs e)
+        {
+            if (gridViewLayout.RowCount.Equals(0))
+            {
+                XtraMessageBox.Show("La tabla no contiene información", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            for (int i = 0; i < gridViewLayout.RowCount; i++)
+            {
+                if (gridViewLayout.IsRowSelected(i))
+                {
+                    nomCaratulaGenLayout = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[1]).ToString();
+                    nomGenLayout = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[2]).ToString();
+                    EstatusCaratula = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[13]).ToString();
+                }
+            }
+            if (EstatusCaratula.Equals("Generado"))
+            {
+                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                {
+                    splashScreenManager1.CloseWaitForm();
+                }
+                XtraMessageBox.Show("¡El periodo ya se encuentra abierto!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                if (controlador.ReabrirCaratula(nomCaratulaGenLayout, usuarioSistema).Equals(true))
+                {
+                    XtraMessageBox.Show("Periodo abierto con éxito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    controlador.ListaCaratulas(gridControlLayout);
+                }
+                else
+                {
+                    XtraMessageBox.Show("No se pudo abrir periodo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -3169,6 +3211,10 @@ namespace winAsimilados.Views
         private void NominaAsimilados_Load(object sender, EventArgs e)
         {
             calcUnitario = true;
+            if (controlador.GetAdminUsuario(usuarioSistema, bd, false).Equals("A"))
+            {
+                layoutControlbtnPeriodo.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
             FecAplicacionLayoutBanorte.Value = System.DateTime.Today;
             FecIniLayout.Value = System.DateTime.Today;
             FecFinLayout.Value = System.DateTime.Today;
@@ -3522,95 +3568,6 @@ namespace winAsimilados.Views
             ((Excel.Worksheet)excel.ActiveWorkbook.Sheets["Hoja1"]).Delete();   //Borramos la hoja que crea en el libro por defecto
         }
 
-        //private void GenCarExcel()
-        //{
-        //    try
-        //    {
-        //        Excel.Application excel = new Excel.Application();
-        //        Excel._Workbook libro = null;
-        //        Excel._Worksheet hoja = null;
-        //        Excel.Range rango = null;
-
-        //        excel.Visible = true;
-        //        //string nombreEmpleado = ctrlPrestamos.nombreEmpleado(lblEmpleado.Text);
-        //        string titulo = "Empresa:";
-        //        string encabezado = "PAGO CORRESPONDIENTE A:";
-        //        libro = (Excel._Workbook)excel.Workbooks.Add(Excel.XlWBATemplate.xlWBATWorksheet);
-        //        hoja = (Excel._Worksheet)libro.Worksheets.Add();
-        //        hoja.Name = "Prestamo " /*+ lblEmpleado.Text*/;
-
-        //        ((Excel.Worksheet)excel.ActiveWorkbook.Sheets["Hoja1"]).Delete();   //Borramos la hoja que crea en el libro por defecto
-        //        int fila = 14;
-
-        //        hoja.Cells[1, 1] = titulo;
-        //        hoja.Cells[2, 1] = encabezado;
-        //        rango = hoja.Range["A1", "A1"];
-        //        rango.Font.Size = 16;
-        //        rango.EntireRow.Font.Bold = true;
-
-        //        rango = hoja.Range["B1", "B1"];
-        //        rango.Font.Size = 16;
-        //        rango.EntireRow.Font.Bold = true;
-
-        //        hoja.Cells[3, 1] = "Número";
-        //        hoja.Cells[3, 2] = "Nombre";
-        //        hoja.Cells[3, 3] = "RFC";
-        //        hoja.Cells[3, 4] = "CURP";
-        //        hoja.Cells[3, 5] = "Cuenta";
-        //        hoja.Cells[3, 6] = "CLABE";
-        //        hoja.Cells[3, 7] = "Banco";
-        //        hoja.Cells[3, 8] = "Cantidad a pagar";
-        //        hoja.Cells[3, 9] = "Otros conceptos";
-        //        hoja.Cells[3, 10] = "Total";
-        //        hoja.Cells[3, 11] = "Retenciones(Descuentos)";
-        //        hoja.Cells[3, 3] = "Deposito Neto";
-        //        hoja.Cells[3, 13] = "Periodo del";
-        //        hoja.Cells[3, 14] = "Al";
-
-        //        string I = "A" + (3).ToString();
-        //        string J = "N" + (3).ToString();
-
-        //        rango = hoja.Range[I, J];
-        //        rango.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-        //        rango.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
-
-
-
-        //        //for (int i = 0; i < gvAmortizacion.VisibleRowCount; i++)
-        //        //{
-
-        //        //    //Asignamos los datos a las celdas de la fila
-        //        //    hoja.Cells[fila + i, 1] = gvAmortizacion.GetRowValues(i, "Codigo").ToString();
-        //        //    hoja.Cells[fila + i, 2] = gvAmortizacion.GetRowValues(i, "Fecha pago").ToString();
-        //        //    hoja.Cells[fila + i, 3] = gvAmortizacion.GetRowValues(i, "Capital").ToString();
-        //        //    hoja.Cells[fila + i, 4] = gvAmortizacion.GetRowValues(i, "Intereses").ToString();
-        //        //    hoja.Cells[fila + i, 5] = gvAmortizacion.GetRowValues(i, "Saldo").ToString();
-        //        //    hoja.Cells[fila + i, 6] = gvAmortizacion.GetRowValues(i, "Pagos").ToString();
-        //        //    //Definimos la fila y la columna del rango 
-        //        //    string x = "A" + (fila + i).ToString();
-        //        //    string y = "F" + (fila + i).ToString();
-
-        //        //    rango = hoja.Range[x, y];
-        //        //    rango.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-        //        //}
-
-        //        //libro.Saved = true;
-        //        //rutaArchivo = (@"C:\archivo\" + nombreEmpleado + " " + txtMonto.Text + " " + cmbConcepto.Value.ToString() + ".xlsx");
-        //        //libro.SaveAs(rutaArchivo);
-        //        //libro.Save();
-        //        libro.PrintPreview();
-        //        //libro.Close();
-        //        //excel.UserControl = false;
-        //        //excel.Quit();
-        //        // fin codigo Ernesto
-        //    }
-        //    catch (Exception excel)
-        //    {
-        //        XtraMessageBox.Show(excel.Message + "\nCalcExel()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //    //codigo Ernesto
-
-        //}
 
     }
 }

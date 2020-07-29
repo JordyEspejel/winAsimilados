@@ -197,6 +197,8 @@ namespace winAsimilados.Entities
         public DateTime fechaAplicacion { get { return _fechaAplicacion; } set { _fechaAplicacion = value; } }
         public DateTime fecIniPeri { get { return _fecIniPeri; } set { _fecIniPeri = value; } }
         public DateTime fecFinPeri { get { return _fecFinPeri; } set { _fecFinPeri = value; } }
+        private int _IDLayout;
+        public int IDLayout { get { return _IDLayout; } set { _IDLayout = value; } }
     }
 }
 

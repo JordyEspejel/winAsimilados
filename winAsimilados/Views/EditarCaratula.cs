@@ -295,7 +295,7 @@ namespace winAsimilados.Views
                             periodo = Convert.ToString(anio + mes + "0");
                             cont++;
                         int ID = Convert.ToInt32(gridViewEditaCaratula.GetRowCellValue(i, gridViewEditaCaratula.Columns[0]).ToString());
-                        ingresosMasiv = Convert.ToDecimal(gridViewEditaCaratula.GetRowCellValue(i, gridViewEditaCaratula.Columns[13]));
+                        ingresosMasiv = Convert.ToDecimal(gridViewEditaCaratula.GetRowCellValue(i, gridViewEditaCaratula.Columns[6]));
                             string ing = String.Format("{0:0.00}", ingresosMasiv);
                             ingresosMasiv = Convert.ToDecimal(ing);
                             tipoIngresos = gridViewEditaCaratula.GetRowCellValue(i, gridViewEditaCaratula.Columns[5]).ToString();
