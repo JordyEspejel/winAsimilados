@@ -75,6 +75,9 @@
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordionControlElement12 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElementClaveSAT = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement13 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlBanSucursales = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlBanEmpresa = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement10 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement11 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElemenAddClteUnit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -535,7 +538,8 @@
             // accordionControlElement12
             // 
             this.accordionControlElement12.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.accordionControlElementClaveSAT});
+            this.accordionControlElementClaveSAT,
+            this.accordionControlElement13});
             this.accordionControlElement12.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement12.ImageOptions.Image")));
             this.accordionControlElement12.Name = "accordionControlElement12";
             this.accordionControlElement12.Text = "Catalogos";
@@ -547,6 +551,31 @@
             this.accordionControlElementClaveSAT.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElementClaveSAT.Text = "Claves SAT";
             this.accordionControlElementClaveSAT.Click += new System.EventHandler(this.accordionControlElementClaveSAT_Click);
+            // 
+            // accordionControlElement13
+            // 
+            this.accordionControlElement13.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlBanSucursales,
+            this.accordionControlBanEmpresa});
+            this.accordionControlElement13.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement13.ImageOptions.Image")));
+            this.accordionControlElement13.Name = "accordionControlElement13";
+            this.accordionControlElement13.Text = "Bancos";
+            // 
+            // accordionControlBanSucursales
+            // 
+            this.accordionControlBanSucursales.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlBanSucursales.ImageOptions.Image")));
+            this.accordionControlBanSucursales.Name = "accordionControlBanSucursales";
+            this.accordionControlBanSucursales.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlBanSucursales.Text = "Sucursales";
+            this.accordionControlBanSucursales.Click += new System.EventHandler(this.accordionControlBanSucursales_Click);
+            // 
+            // accordionControlBanEmpresa
+            // 
+            this.accordionControlBanEmpresa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlBanEmpresa.ImageOptions.Image")));
+            this.accordionControlBanEmpresa.Name = "accordionControlBanEmpresa";
+            this.accordionControlBanEmpresa.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlBanEmpresa.Text = "Bancos Empresa";
+            this.accordionControlBanEmpresa.Click += new System.EventHandler(this.accordionControlBanEmpresa_Click);
             // 
             // accordionControlElement10
             // 
@@ -877,5 +906,8 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement12;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementClaveSAT;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlbtnMasivClte;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement13;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlBanSucursales;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlBanEmpresa;
     }
 }

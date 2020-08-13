@@ -46,7 +46,7 @@ namespace winAsimilados.Views
 
         decimal ingresos, ingresosMasiv, ISRMasiv, netoMasiv;
         decimal LimInferiorLayout, ExLimInfLayout, PerExLimInfLayout, ImpMargLayout, CFLayout, SubLayout;
-        decimal totalPagoAsimilados = 0, otrosConceptos = 0, depositoNeto = 0, aguinaldo = 0, vacaciones = 0, primaVac = 0;
+        decimal totalPagoAsimilados = 0, otrosConceptos = 0, depositoNeto = 0, aguinaldo = 0, vacaciones = 0, primaVac = 0, descuento = 0;
         string periPagoLayout;
         string tipoIngresos;
         string rfcEmplMasiv;
@@ -313,12 +313,15 @@ namespace winAsimilados.Views
                             SubLayout = Convert.ToDecimal(gridViewEditaCaratula.GetRowCellValue(i, gridViewEditaCaratula.Columns[31]));
                             otrosConceptos = Convert.ToDecimal(gridViewEditaCaratula.GetRowCellValue(i, gridViewEditaCaratula.Columns[39]));
 
-                            depositoNeto = otrosConceptos + netoMasiv;
+
+                            //depositoNeto = otrosConceptos + netoMasiv;
 
                             empleadoLayout = controlador.BuscaEmpleado(rfcEmplMasiv);
+                            descuento = empleadoLayout.descuento;
+                            depositoNeto = otrosConceptos + netoMasiv - descuento;
 
-                            #region ifPeriodos
-                            if (empleadoLayout.Periodicidad.Equals("Semanal") || empleadoLayout.Periodicidad.Equals("02"))
+                        #region ifPeriodos
+                        if (empleadoLayout.Periodicidad.Equals("Semanal") || empleadoLayout.Periodicidad.Equals("02"))
                             {
                                 if (dia <= 7)
                                 {
@@ -419,7 +422,8 @@ namespace winAsimilados.Views
                                 depositoNeto = depositoNeto,
                                 cuentaBancaria = empleadoLayout.cuenta,
                                 CLABE = empleadoLayout.clabe_bancaria,
-                                bancoEmpresaPago = lookUpBanco.Text.ToString()
+                                bancoEmpresaPago = lookUpBanco.Text.ToString(),
+                                descuentos = descuento
                             });
 
                             ////XtraMessageBox.Show("Fin instrucciones");

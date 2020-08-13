@@ -287,13 +287,13 @@
             0,
             0,
             0});
-            this.spinEdit1.Location = new System.Drawing.Point(436, 120);
+            this.spinEdit1.Location = new System.Drawing.Point(422, 120);
             this.spinEdit1.Name = "spinEdit1";
             this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEdit1.Properties.Mask.EditMask = "P";
+            this.spinEdit1.Properties.Mask.EditMask = "c";
             this.spinEdit1.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEdit1.Size = new System.Drawing.Size(127, 20);
+            this.spinEdit1.Size = new System.Drawing.Size(141, 20);
             this.spinEdit1.StyleController = this.layoutControl1;
             this.spinEdit1.TabIndex = 20;
             // 
@@ -467,9 +467,9 @@
             this.layoutControlItem11.Location = new System.Drawing.Point(330, 48);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Size = new System.Drawing.Size(201, 24);
-            this.layoutControlItem11.Text = "% Descuento";
+            this.layoutControlItem11.Text = "Descuento";
             this.layoutControlItem11.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(65, 13);
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(51, 13);
             this.layoutControlItem11.TextToControlDistance = 5;
             // 
             // layoutControlItem13

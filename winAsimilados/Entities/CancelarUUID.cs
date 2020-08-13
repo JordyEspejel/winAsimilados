@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Razor.Parser;
 
 namespace winAsimilados.Entities
 {
@@ -80,6 +81,25 @@ namespace winAsimilados.Entities
         {
             get { return _Usuario; }
             set { _Usuario = value; }
+        }
+
+        private string _RFCEmpl;
+        public string RFCEmpl
+        {
+            get { return _RFCEmpl; }
+            set { _RFCEmpl = value; }
+        }
+        private string _selloCFD;
+        public string selloCFD
+        {
+            get { return _selloCFD; }
+            set { _selloCFD = value; }
+        }
+        private decimal _total;
+        public decimal total
+        {
+            get { return _total; }
+            set { _total = value; }
         }
     }
 }

@@ -160,6 +160,7 @@
             // Detail
             // 
             this.Detail.Dpi = 254F;
+            this.Detail.Expanded = false;
             this.Detail.HeightF = 0F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254F);

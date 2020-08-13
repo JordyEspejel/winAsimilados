@@ -27,7 +27,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>Asimilados.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationRevision>18</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -154,7 +154,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\ServicioTimbradoNTLINK\Reference.cs">
+    <Compile Include="Connected Services\ServcioTimbradoNTLINK\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioPruebasTimbradoNTLINK\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -168,6 +173,7 @@
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Data\Conexion.cs" />
     <Compile Include="Entities\Banco.cs" />
+    <Compile Include="Entities\BancoEmpresa.cs" />
     <Compile Include="Entities\ClaveProdServ.cs" />
     <Compile Include="Entities\ClaveProdServClte.cs" />
     <Compile Include="Entities\ListaBancos.cs" />
@@ -258,6 +264,12 @@
     <Compile Include="Views\AsimiladosPrincipal.Designer.cs">
       <DependentUpon>AsimiladosPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\BancosEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BancosEmpresa.Designer.cs">
+      <DependentUpon>BancosEmpresa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Bitacora.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,6 +342,12 @@
     <Compile Include="Views\SQLConnetcionString.Designer.cs">
       <DependentUpon>SQLConnetcionString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SucursalesBancarias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SucursalesBancarias.Designer.cs">
+      <DependentUpon>SucursalesBancarias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TablasCalculo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -386,6 +404,9 @@
     <EmbeddedResource Include="Views\AsimiladosPrincipal.resx">
       <DependentUpon>AsimiladosPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\BancosEmpresa.resx">
+      <DependentUpon>BancosEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Bitacora.resx">
       <DependentUpon>Bitacora.cs</DependentUpon>
     </EmbeddedResource>
@@ -422,6 +443,9 @@
     <EmbeddedResource Include="Views\SQLConnetcionString.resx">
       <DependentUpon>SQLConnetcionString.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\SucursalesBancarias.resx">
+      <DependentUpon>SucursalesBancarias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\TablasCalculo.resx">
       <DependentUpon>TablasCalculo.cs</DependentUpon>
     </EmbeddedResource>
@@ -431,33 +455,62 @@
     <EmbeddedResource Include="Views\WaitForm1.resx">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Connected Services\ServicioTimbradoNTLINK\ServicioTimbrado.wsdl" />
-    <None Include="Connected Services\ServicioTimbradoNTLINK\ServicioTimbrado.xsd">
+    <None Include="Connected Services\ServcioTimbradoNTLINK\ServicioTimbrado.wsdl" />
+    <None Include="Connected Services\ServcioTimbradoNTLINK\ServicioTimbrado.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioTimbradoNTLINK\ServicioTimbrado1.wsdl" />
-    <None Include="Connected Services\ServicioTimbradoNTLINK\ServicioTimbrado1.xsd">
+    <None Include="Connected Services\ServcioTimbradoNTLINK\ServicioTimbrado1.wsdl" />
+    <None Include="Connected Services\ServcioTimbradoNTLINK\ServicioTimbrado1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioTimbradoNTLINK\ServicioTimbrado2.xsd">
+    <None Include="Connected Services\ServcioTimbradoNTLINK\ServicioTimbrado2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioTimbradoNTLINK\ServicioTimbrado3.xsd">
+    <None Include="Connected Services\ServcioTimbradoNTLINK\ServicioTimbrado3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioTimbradoNTLINK\winAsimilados.ServicioTimbradoNTLINK.ClienteNtLink.datasource">
+    <None Include="Connected Services\ServcioTimbradoNTLINK\winAsimilados.ServcioTimbradoNTLINK.ClienteNtLink.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ServicioTimbradoNTLINK\winAsimilados.ServicioTimbradoNTLINK.EmpresaNtLink.datasource">
+    <None Include="Connected Services\ServcioTimbradoNTLINK\winAsimilados.ServcioTimbradoNTLINK.EmpresaNtLink.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ServicioTimbradoNTLINK\winAsimilados.ServicioTimbradoNTLINK.RespuestaCancelacion.datasource">
+    <None Include="Connected Services\ServcioTimbradoNTLINK\winAsimilados.ServcioTimbradoNTLINK.RespuestaCancelacion.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ServicioTimbradoNTLINK\winAsimilados.ServicioTimbradoNTLINK.ResultadoConsulta.datasource">
+    <None Include="Connected Services\ServcioTimbradoNTLINK\winAsimilados.ServcioTimbradoNTLINK.ResultadoConsulta.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ServicioTimbradoNTLINK\winAsimilados.ServicioTimbradoNTLINK.TimbradoResponse.datasource">
+    <None Include="Connected Services\ServcioTimbradoNTLINK\winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\ServicioTimbrado.wsdl" />
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\ServicioTimbrado.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\ServicioTimbrado1.wsdl" />
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\ServicioTimbrado1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\ServicioTimbrado2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\ServicioTimbrado3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\winAsimilados.ServicioPruebasTimbradoNTLINK.ClienteNtLink.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\winAsimilados.ServicioPruebasTimbradoNTLINK.EmpresaNtLink.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\winAsimilados.ServicioPruebasTimbradoNTLINK.RespuestaCancelacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\winAsimilados.ServicioPruebasTimbradoNTLINK.ResultadoConsulta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\winAsimilados.ServicioPruebasTimbradoNTLINK.TimbradoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServicioTimbradoProduccion\Timbrado.wsdl" />
@@ -546,7 +599,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\ServicioTimbradoNTLINK\" />
+    <WCFMetadataStorage Include="Connected Services\ServcioTimbradoNTLINK\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioPruebasTimbradoNTLINK\" />
     <WCFMetadataStorage Include="Connected Services\ServicioTimbradoProduccion\" />
   </ItemGroup>
   <ItemGroup>
@@ -562,10 +616,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServicioTimbradoNTLINK\ServicioTimbrado.disco" />
-    <None Include="Connected Services\ServicioTimbradoNTLINK\configuration91.svcinfo" />
-    <None Include="Connected Services\ServicioTimbradoNTLINK\configuration.svcinfo" />
-    <None Include="Connected Services\ServicioTimbradoNTLINK\Reference.svcmap">
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioPruebasTimbradoNTLINK\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServcioTimbradoNTLINK\configuration91.svcinfo" />
+    <None Include="Connected Services\ServcioTimbradoNTLINK\configuration.svcinfo" />
+    <None Include="Connected Services\ServcioTimbradoNTLINK\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

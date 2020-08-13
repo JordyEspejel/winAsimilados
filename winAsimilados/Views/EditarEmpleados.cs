@@ -222,7 +222,7 @@ namespace winAsimilados.Views
             peri = lookUpEditPeriPago.EditValue.ToString();
 
             empleado.descuento = Convert.ToDecimal(spinEditDesc.EditValue.ToString());
-            empleado.descuento = empleado.descuento / 100;
+            //empleado.descuento = empleado.descuento / 100;
             if (nombre == "")
             {
                 XtraMessageBox.Show("El campo Nombre no puede estar vacio", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);

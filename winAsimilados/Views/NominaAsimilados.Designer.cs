@@ -43,22 +43,19 @@
             DevExpress.DataAccess.Sql.Table table2 = new DevExpress.DataAccess.Sql.Table();
             DevExpress.DataAccess.Sql.Column column4 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression4 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Column column5 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression5 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery3 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column6 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression6 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table3 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column7 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression7 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery3 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NominaAsimilados));
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery4 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery4 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery3 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column5 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression5 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table3 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column6 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression6 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Column column7 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression7 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.Column column8 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression8 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table4 = new DevExpress.DataAccess.Sql.Table();
             DevExpress.DataAccess.Sql.Column column9 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression9 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.Column column10 = new DevExpress.DataAccess.Sql.Column();
@@ -127,16 +124,16 @@
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression41 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.Column column42 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression42 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery4 = new DevExpress.DataAccess.Sql.SelectQuery();
             DevExpress.DataAccess.Sql.Column column43 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression43 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table4 = new DevExpress.DataAccess.Sql.Table();
             DevExpress.DataAccess.Sql.Column column44 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression44 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.Column column45 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression45 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery5 = new DevExpress.DataAccess.Sql.SelectQuery();
             DevExpress.DataAccess.Sql.Column column46 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression46 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table5 = new DevExpress.DataAccess.Sql.Table();
             DevExpress.DataAccess.Sql.Column column47 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression47 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.Column column48 = new DevExpress.DataAccess.Sql.Column();
@@ -161,12 +158,6 @@
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression57 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.Column column58 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression58 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Column column59 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression59 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Column column60 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression60 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Column column61 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression61 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery5 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             this.queryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
@@ -199,9 +190,12 @@
             this.gridColumnID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnTimbrar = new DevExpress.XtraEditors.SimpleButton();
             this.btnValidarTimbrado = new DevExpress.XtraEditors.SimpleButton();
+            this.txtTimbres = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup28 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup29 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem52 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem58 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem27 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem53 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem54 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem28 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -384,12 +378,14 @@
             this.BtnValidarInfo = new DevExpress.XtraEditors.SimpleButton();
             this.BtnValidaInfoMasiv = new DevExpress.XtraEditors.SimpleButton();
             this.BtnMasivIngresos = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.txtTimbresMasiv = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
-            this.layoutControlGroup15 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup12 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup15 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup25 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem51 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -458,6 +454,8 @@
             this.emptySpaceItem24 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem23 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem26 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem56 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem59 = new DevExpress.XtraLayout.LayoutControlItem();
             this.queryEstatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sqlDataSource2 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.layoutHistoricoBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -491,9 +489,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewFactura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.periodicidadPagoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTimbres.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem52)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem58)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem53)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem28)).BeginInit();
@@ -604,12 +605,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.FecIniPeriUni.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FecFinPeriUni.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FecFinPeriUni.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTimbresMasiv.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
@@ -678,6 +680,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem26)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.queryEstatusBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutHistoricoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.caratulaPagoBindingSource)).BeginInit();
@@ -727,40 +731,18 @@
             customSqlQuery2.Name = "QueryEmpresasPago";
             customSqlQuery2.Sql = "SELECT IDEmpresa, RazonSocial\r\nFROM EmpresaPagaAsimilados \r\ngroup by IDEmpresa, R" +
     "azonSocial";
-            columnExpression3.ColumnName = "Banco";
-            table2.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"210\" />";
-            table2.Name = "EmpresaPagaAsimilados";
+            columnExpression3.ColumnName = "c_MetodoPago";
+            table2.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
+            table2.Name = "MetodoPago";
             columnExpression3.Table = table2;
             column3.Expression = columnExpression3;
-            columnExpression4.ColumnName = "Cuenta";
+            columnExpression4.ColumnName = "Descripción";
             columnExpression4.Table = table2;
             column4.Expression = columnExpression4;
-            columnExpression5.ColumnName = "CLABE";
-            columnExpression5.Table = table2;
-            column5.Expression = columnExpression5;
             selectQuery2.Columns.Add(column3);
             selectQuery2.Columns.Add(column4);
-            selectQuery2.Columns.Add(column5);
-            selectQuery2.FilterString = "[EmpresaPagaAsimilados.IDEmpresa] = ?IDEmpresa";
-            selectQuery2.GroupFilterString = "";
-            selectQuery2.Name = "QueryBancos";
-            queryParameter1.Name = "IDEmpresa";
-            queryParameter1.Type = typeof(string);
-            queryParameter1.ValueInfo = "0";
-            selectQuery2.Parameters.Add(queryParameter1);
+            selectQuery2.Name = "MetodoPago";
             selectQuery2.Tables.Add(table2);
-            columnExpression6.ColumnName = "c_MetodoPago";
-            table3.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
-            table3.Name = "MetodoPago";
-            columnExpression6.Table = table3;
-            column6.Expression = columnExpression6;
-            columnExpression7.ColumnName = "Descripción";
-            columnExpression7.Table = table3;
-            column7.Expression = columnExpression7;
-            selectQuery3.Columns.Add(column6);
-            selectQuery3.Columns.Add(column7);
-            selectQuery3.Name = "MetodoPago";
-            selectQuery3.Tables.Add(table3);
             customSqlQuery3.Name = "FormaPago";
             customSqlQuery3.Sql = "SELECT [c_FormaPago]\r\n      ,[Descripción]\r\n  FROM [BSNOMINAS].[dbo].[FormaPago]";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
@@ -768,7 +750,6 @@
             selectQuery1,
             customSqlQuery2,
             selectQuery2,
-            selectQuery3,
             customSqlQuery3});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
@@ -808,6 +789,8 @@
             this.layoutControl1.Controls.Add(this.BtnValidarInfo);
             this.layoutControl1.Controls.Add(this.BtnValidaInfoMasiv);
             this.layoutControl1.Controls.Add(this.BtnMasivIngresos);
+            this.layoutControl1.Controls.Add(this.simpleButton1);
+            this.layoutControl1.Controls.Add(this.txtTimbresMasiv);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -822,8 +805,10 @@
             this.layoutControl3.Controls.Add(this.gridControlFactura);
             this.layoutControl3.Controls.Add(this.btnTimbrar);
             this.layoutControl3.Controls.Add(this.btnValidarTimbrado);
+            this.layoutControl3.Controls.Add(this.txtTimbres);
             this.layoutControl3.Location = new System.Drawing.Point(24, 46);
             this.layoutControl3.Name = "layoutControl3";
+            this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(-8, -8, 1382, 784);
             this.layoutControl3.Root = this.layoutControlGroup28;
             this.layoutControl3.Size = new System.Drawing.Size(919, 704);
             this.layoutControl3.TabIndex = 4;
@@ -831,12 +816,12 @@
             // 
             // gridControlFactura
             // 
-            this.gridControlFactura.Location = new System.Drawing.Point(24, 64);
+            this.gridControlFactura.Location = new System.Drawing.Point(24, 88);
             this.gridControlFactura.MainView = this.gridViewFactura;
             this.gridControlFactura.Name = "gridControlFactura";
             this.gridControlFactura.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1});
-            this.gridControlFactura.Size = new System.Drawing.Size(871, 574);
+            this.gridControlFactura.Size = new System.Drawing.Size(871, 550);
             this.gridControlFactura.TabIndex = 4;
             this.gridControlFactura.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewFactura});
@@ -1106,6 +1091,17 @@
             this.btnValidarTimbrado.Text = "Validar";
             this.btnValidarTimbrado.Click += new System.EventHandler(this.btnValidarTimbrado_Click);
             // 
+            // txtTimbres
+            // 
+            this.txtTimbres.Location = new System.Drawing.Point(119, 64);
+            this.txtTimbres.Name = "txtTimbres";
+            this.txtTimbres.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtTimbres.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.txtTimbres.Properties.ReadOnly = true;
+            this.txtTimbres.Size = new System.Drawing.Size(86, 20);
+            this.txtTimbres.StyleController = this.layoutControl3;
+            this.txtTimbres.TabIndex = 7;
+            // 
             // layoutControlGroup28
             // 
             this.layoutControlGroup28.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -1115,18 +1111,18 @@
             this.layoutControlItem53,
             this.layoutControlItem54,
             this.emptySpaceItem28});
-            this.layoutControlGroup28.Name = "layoutControlGroup28";
+            this.layoutControlGroup28.Name = "Root";
             this.layoutControlGroup28.Size = new System.Drawing.Size(919, 704);
             this.layoutControlGroup28.TextVisible = false;
             // 
             // layoutControlGroup29
             // 
-            this.layoutControlGroup29.AppearanceItemCaption.Image = ((System.Drawing.Image)(resources.GetObject("layoutControlGroup29.AppearanceItemCaption.Image")));
-            this.layoutControlGroup29.AppearanceItemCaption.Options.UseImage = true;
             this.layoutControlGroup29.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutControlGroup29.CaptionImageOptions.Image")));
             this.layoutControlGroup29.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup29.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem52});
+            this.layoutControlItem52,
+            this.layoutControlItem58,
+            this.emptySpaceItem27});
             this.layoutControlGroup29.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup29.Name = "layoutControlGroup29";
             this.layoutControlGroup29.Size = new System.Drawing.Size(899, 642);
@@ -1135,11 +1131,28 @@
             // layoutControlItem52
             // 
             this.layoutControlItem52.Control = this.gridControlFactura;
-            this.layoutControlItem52.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem52.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem52.Name = "layoutControlItem52";
-            this.layoutControlItem52.Size = new System.Drawing.Size(875, 578);
+            this.layoutControlItem52.Size = new System.Drawing.Size(875, 554);
             this.layoutControlItem52.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem52.TextVisible = false;
+            // 
+            // layoutControlItem58
+            // 
+            this.layoutControlItem58.Control = this.txtTimbres;
+            this.layoutControlItem58.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem58.Name = "layoutControlItem58";
+            this.layoutControlItem58.Size = new System.Drawing.Size(185, 24);
+            this.layoutControlItem58.Text = "Timbres disponibles";
+            this.layoutControlItem58.TextSize = new System.Drawing.Size(92, 13);
+            // 
+            // emptySpaceItem27
+            // 
+            this.emptySpaceItem27.AllowHotTrack = false;
+            this.emptySpaceItem27.Location = new System.Drawing.Point(185, 0);
+            this.emptySpaceItem27.Name = "emptySpaceItem27";
+            this.emptySpaceItem27.Size = new System.Drawing.Size(690, 24);
+            this.emptySpaceItem27.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem53
             // 
@@ -2671,16 +2684,17 @@
             // 
             // gridControlNomiMasiv
             // 
-            this.gridControlNomiMasiv.Location = new System.Drawing.Point(48, 341);
+            this.gridControlNomiMasiv.Location = new System.Drawing.Point(48, 293);
             this.gridControlNomiMasiv.MainView = this.gridViewNomiMasiv;
             this.gridControlNomiMasiv.Name = "gridControlNomiMasiv";
             this.gridControlNomiMasiv.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemGridLookUpEdit1,
             this.repositoryItemSpinEdit1});
-            this.gridControlNomiMasiv.Size = new System.Drawing.Size(871, 343);
+            this.gridControlNomiMasiv.Size = new System.Drawing.Size(871, 391);
             this.gridControlNomiMasiv.TabIndex = 1;
             this.gridControlNomiMasiv.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewNomiMasiv});
+            this.gridControlNomiMasiv.Visible = false;
             // 
             // gridViewNomiMasiv
             // 
@@ -3186,9 +3200,9 @@
             // BtnNomiMasiv
             // 
             this.BtnNomiMasiv.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnNomiMasiv.ImageOptions.Image")));
-            this.BtnNomiMasiv.Location = new System.Drawing.Point(789, 688);
+            this.BtnNomiMasiv.Location = new System.Drawing.Point(798, 688);
             this.BtnNomiMasiv.Name = "BtnNomiMasiv";
-            this.BtnNomiMasiv.Size = new System.Drawing.Size(130, 38);
+            this.BtnNomiMasiv.Size = new System.Drawing.Size(121, 38);
             this.BtnNomiMasiv.StyleController = this.layoutControl1;
             this.BtnNomiMasiv.TabIndex = 1;
             this.BtnNomiMasiv.Text = "Generar Nómina";
@@ -3208,9 +3222,9 @@
             // BtnValidaInfoMasiv
             // 
             this.BtnValidaInfoMasiv.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnValidaInfoMasiv.ImageOptions.Image")));
-            this.BtnValidaInfoMasiv.Location = new System.Drawing.Point(636, 688);
+            this.BtnValidaInfoMasiv.Location = new System.Drawing.Point(658, 688);
             this.BtnValidaInfoMasiv.Name = "BtnValidaInfoMasiv";
-            this.BtnValidaInfoMasiv.Size = new System.Drawing.Size(149, 38);
+            this.BtnValidaInfoMasiv.Size = new System.Drawing.Size(136, 38);
             this.BtnValidaInfoMasiv.StyleController = this.layoutControl1;
             this.BtnValidaInfoMasiv.TabIndex = 1;
             this.BtnValidaInfoMasiv.Text = "Validar Información";
@@ -3221,11 +3235,32 @@
             this.BtnMasivIngresos.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnMasivIngresos.ImageOptions.Image")));
             this.BtnMasivIngresos.Location = new System.Drawing.Point(48, 240);
             this.BtnMasivIngresos.Name = "BtnMasivIngresos";
-            this.BtnMasivIngresos.Size = new System.Drawing.Size(132, 38);
+            this.BtnMasivIngresos.Size = new System.Drawing.Size(236, 38);
             this.BtnMasivIngresos.StyleController = this.layoutControl1;
             this.BtnMasivIngresos.TabIndex = 1;
             this.BtnMasivIngresos.Text = "Ingresos Masivo";
             this.BtnMasivIngresos.Click += new System.EventHandler(this.BtnMasivIngresos_Click);
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(578, 688);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(76, 22);
+            this.simpleButton1.StyleController = this.layoutControl1;
+            this.simpleButton1.TabIndex = 5;
+            this.simpleButton1.Text = "simpleButton1";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // txtTimbresMasiv
+            // 
+            this.txtTimbresMasiv.Location = new System.Drawing.Point(386, 240);
+            this.txtTimbresMasiv.Name = "txtTimbresMasiv";
+            this.txtTimbresMasiv.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtTimbresMasiv.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.txtTimbresMasiv.Properties.ReadOnly = true;
+            this.txtTimbresMasiv.Size = new System.Drawing.Size(138, 20);
+            this.txtTimbresMasiv.StyleController = this.layoutControl1;
+            this.txtTimbresMasiv.TabIndex = 6;
             // 
             // layoutControlGroup1
             // 
@@ -3241,8 +3276,8 @@
             // 
             this.tabbedControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
-            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup15;
-            this.tabbedControlGroup1.SelectedTabPageIndex = 1;
+            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup12;
+            this.tabbedControlGroup1.SelectedTabPageIndex = 0;
             this.tabbedControlGroup1.Size = new System.Drawing.Size(947, 754);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup12,
@@ -3251,24 +3286,6 @@
             this.layoutControlGroup2,
             this.layoutControlGroup4});
             this.tabbedControlGroup1.Text = "Timbrado";
-            // 
-            // layoutControlGroup15
-            // 
-            this.layoutControlGroup15.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem35});
-            this.layoutControlGroup15.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup15.Name = "layoutControlGroup15";
-            this.layoutControlGroup15.Size = new System.Drawing.Size(923, 708);
-            this.layoutControlGroup15.Text = "Generar Layout";
-            // 
-            // layoutControlItem35
-            // 
-            this.layoutControlItem35.Control = this.layoutControl4;
-            this.layoutControlItem35.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem35.Name = "layoutControlItem35";
-            this.layoutControlItem35.Size = new System.Drawing.Size(923, 708);
-            this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem35.TextVisible = false;
             // 
             // layoutControlGroup12
             // 
@@ -3287,6 +3304,24 @@
             this.layoutControlItem31.Size = new System.Drawing.Size(923, 708);
             this.layoutControlItem31.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem31.TextVisible = false;
+            // 
+            // layoutControlGroup15
+            // 
+            this.layoutControlGroup15.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem35});
+            this.layoutControlGroup15.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup15.Name = "layoutControlGroup15";
+            this.layoutControlGroup15.Size = new System.Drawing.Size(923, 708);
+            this.layoutControlGroup15.Text = "Generar Layout";
+            // 
+            // layoutControlItem35
+            // 
+            this.layoutControlItem35.Control = this.layoutControl4;
+            this.layoutControlItem35.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem35.Name = "layoutControlItem35";
+            this.layoutControlItem35.Size = new System.Drawing.Size(923, 708);
+            this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem35.TextVisible = false;
             // 
             // layoutControlGroup25
             // 
@@ -3804,8 +3839,7 @@
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
             this.layoutControlGroup4.Size = new System.Drawing.Size(923, 708);
-            this.layoutControlGroup4.Text = "Nomina Masiva";
-            this.layoutControlGroup4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            this.layoutControlGroup4.Text = "Timbrado Masivo";
             // 
             // layoutControlGroup8
             // 
@@ -3878,7 +3912,9 @@
             this.layoutControlItem30,
             this.emptySpaceItem24,
             this.emptySpaceItem23,
-            this.emptySpaceItem26});
+            this.emptySpaceItem26,
+            this.layoutControlItem56,
+            this.layoutControlItem59});
             this.layoutControlGroup10.Location = new System.Drawing.Point(0, 112);
             this.layoutControlGroup10.Name = "layoutControlGroup10";
             this.layoutControlGroup10.Size = new System.Drawing.Size(899, 554);
@@ -3888,27 +3924,27 @@
             // layoutControlItem16
             // 
             this.layoutControlItem16.Control = this.gridControlNomiMasiv;
-            this.layoutControlItem16.Location = new System.Drawing.Point(0, 101);
+            this.layoutControlItem16.Location = new System.Drawing.Point(0, 53);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(875, 347);
+            this.layoutControlItem16.Size = new System.Drawing.Size(875, 395);
             this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem16.TextVisible = false;
             // 
             // layoutControlItem27
             // 
             this.layoutControlItem27.Control = this.BtnNomiMasiv;
-            this.layoutControlItem27.Location = new System.Drawing.Point(741, 448);
+            this.layoutControlItem27.Location = new System.Drawing.Point(750, 448);
             this.layoutControlItem27.Name = "layoutControlItem27";
-            this.layoutControlItem27.Size = new System.Drawing.Size(134, 42);
+            this.layoutControlItem27.Size = new System.Drawing.Size(125, 42);
             this.layoutControlItem27.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem27.TextVisible = false;
             // 
             // layoutControlItem29
             // 
             this.layoutControlItem29.Control = this.BtnValidaInfoMasiv;
-            this.layoutControlItem29.Location = new System.Drawing.Point(588, 448);
+            this.layoutControlItem29.Location = new System.Drawing.Point(610, 448);
             this.layoutControlItem29.Name = "layoutControlItem29";
-            this.layoutControlItem29.Size = new System.Drawing.Size(153, 42);
+            this.layoutControlItem29.Size = new System.Drawing.Size(140, 42);
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem29.TextVisible = false;
             // 
@@ -3917,7 +3953,7 @@
             this.layoutControlItem30.Control = this.BtnMasivIngresos;
             this.layoutControlItem30.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(136, 42);
+            this.layoutControlItem30.Size = new System.Drawing.Size(240, 42);
             this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem30.TextVisible = false;
             // 
@@ -3926,7 +3962,7 @@
             this.emptySpaceItem24.AllowHotTrack = false;
             this.emptySpaceItem24.Location = new System.Drawing.Point(0, 42);
             this.emptySpaceItem24.Name = "emptySpaceItem24";
-            this.emptySpaceItem24.Size = new System.Drawing.Size(875, 59);
+            this.emptySpaceItem24.Size = new System.Drawing.Size(875, 11);
             this.emptySpaceItem24.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem23
@@ -3934,16 +3970,36 @@
             this.emptySpaceItem23.AllowHotTrack = false;
             this.emptySpaceItem23.Location = new System.Drawing.Point(0, 448);
             this.emptySpaceItem23.Name = "emptySpaceItem23";
-            this.emptySpaceItem23.Size = new System.Drawing.Size(588, 42);
+            this.emptySpaceItem23.Size = new System.Drawing.Size(530, 42);
             this.emptySpaceItem23.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem26
             // 
             this.emptySpaceItem26.AllowHotTrack = false;
-            this.emptySpaceItem26.Location = new System.Drawing.Point(136, 0);
+            this.emptySpaceItem26.Location = new System.Drawing.Point(480, 0);
             this.emptySpaceItem26.Name = "emptySpaceItem26";
-            this.emptySpaceItem26.Size = new System.Drawing.Size(739, 42);
+            this.emptySpaceItem26.Size = new System.Drawing.Size(395, 42);
             this.emptySpaceItem26.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem56
+            // 
+            this.layoutControlItem56.Control = this.simpleButton1;
+            this.layoutControlItem56.Location = new System.Drawing.Point(530, 448);
+            this.layoutControlItem56.Name = "layoutControlItem56";
+            this.layoutControlItem56.Size = new System.Drawing.Size(80, 42);
+            this.layoutControlItem56.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem56.TextVisible = false;
+            // 
+            // layoutControlItem59
+            // 
+            this.layoutControlItem59.Control = this.txtTimbresMasiv;
+            this.layoutControlItem59.Location = new System.Drawing.Point(240, 0);
+            this.layoutControlItem59.Name = "layoutControlItem59";
+            this.layoutControlItem59.Size = new System.Drawing.Size(240, 42);
+            this.layoutControlItem59.Text = "Timbres Disponibles";
+            this.layoutControlItem59.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem59.TextSize = new System.Drawing.Size(93, 13);
+            this.layoutControlItem59.TextToControlDistance = 5;
             // 
             // queryEstatusBindingSource
             // 
@@ -3954,240 +4010,240 @@
             // 
             this.sqlDataSource2.ConnectionName = "TableLayoutConnection";
             this.sqlDataSource2.Name = "sqlDataSource2";
-            columnExpression8.ColumnName = "ID";
-            table4.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"856\" />";
-            table4.Name = "CaratulaPago";
-            columnExpression8.Table = table4;
+            columnExpression5.ColumnName = "ID";
+            table3.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"856\" />";
+            table3.Name = "CaratulaPago";
+            columnExpression5.Table = table3;
+            column5.Expression = columnExpression5;
+            columnExpression6.ColumnName = "Caratula";
+            columnExpression6.Table = table3;
+            column6.Expression = columnExpression6;
+            columnExpression7.ColumnName = "Layout";
+            columnExpression7.Table = table3;
+            column7.Expression = columnExpression7;
+            columnExpression8.ColumnName = "IDCliente";
+            columnExpression8.Table = table3;
             column8.Expression = columnExpression8;
-            columnExpression9.ColumnName = "Caratula";
-            columnExpression9.Table = table4;
+            columnExpression9.ColumnName = "Cliente";
+            columnExpression9.Table = table3;
             column9.Expression = columnExpression9;
-            columnExpression10.ColumnName = "Layout";
-            columnExpression10.Table = table4;
+            columnExpression10.ColumnName = "IDEmpresa";
+            columnExpression10.Table = table3;
             column10.Expression = columnExpression10;
-            columnExpression11.ColumnName = "IDCliente";
-            columnExpression11.Table = table4;
+            columnExpression11.ColumnName = "Empresa";
+            columnExpression11.Table = table3;
             column11.Expression = columnExpression11;
-            columnExpression12.ColumnName = "Cliente";
-            columnExpression12.Table = table4;
+            columnExpression12.ColumnName = "FechaCreacion";
+            columnExpression12.Table = table3;
             column12.Expression = columnExpression12;
-            columnExpression13.ColumnName = "IDEmpresa";
-            columnExpression13.Table = table4;
+            columnExpression13.ColumnName = "FechaAplicacion";
+            columnExpression13.Table = table3;
             column13.Expression = columnExpression13;
-            columnExpression14.ColumnName = "Empresa";
-            columnExpression14.Table = table4;
+            columnExpression14.ColumnName = "FechaIniPeriodo";
+            columnExpression14.Table = table3;
             column14.Expression = columnExpression14;
-            columnExpression15.ColumnName = "FechaCreacion";
-            columnExpression15.Table = table4;
+            columnExpression15.ColumnName = "FechaFinPeriodo";
+            columnExpression15.Table = table3;
             column15.Expression = columnExpression15;
-            columnExpression16.ColumnName = "FechaAplicacion";
-            columnExpression16.Table = table4;
+            columnExpression16.ColumnName = "TotalEmpleados";
+            columnExpression16.Table = table3;
             column16.Expression = columnExpression16;
-            columnExpression17.ColumnName = "FechaIniPeriodo";
-            columnExpression17.Table = table4;
+            columnExpression17.ColumnName = "TotalPagoAsimilados";
+            columnExpression17.Table = table3;
             column17.Expression = columnExpression17;
-            columnExpression18.ColumnName = "FechaFinPeriodo";
-            columnExpression18.Table = table4;
+            columnExpression18.ColumnName = "Estatus";
+            columnExpression18.Table = table3;
             column18.Expression = columnExpression18;
-            columnExpression19.ColumnName = "TotalEmpleados";
-            columnExpression19.Table = table4;
+            columnExpression19.ColumnName = "usuario";
+            columnExpression19.Table = table3;
             column19.Expression = columnExpression19;
-            columnExpression20.ColumnName = "TotalPagoAsimilados";
-            columnExpression20.Table = table4;
+            columnExpression20.ColumnName = "TipoPeri";
+            columnExpression20.Table = table3;
             column20.Expression = columnExpression20;
-            columnExpression21.ColumnName = "Estatus";
-            columnExpression21.Table = table4;
+            columnExpression21.ColumnName = "AsimiSalarios";
+            columnExpression21.Table = table3;
             column21.Expression = columnExpression21;
-            columnExpression22.ColumnName = "usuario";
-            columnExpression22.Table = table4;
+            columnExpression22.ColumnName = "ProvAguinaldo";
+            columnExpression22.Table = table3;
             column22.Expression = columnExpression22;
-            columnExpression23.ColumnName = "TipoPeri";
-            columnExpression23.Table = table4;
+            columnExpression23.ColumnName = "ProviVacaciones";
+            columnExpression23.Table = table3;
             column23.Expression = columnExpression23;
-            columnExpression24.ColumnName = "AsimiSalarios";
-            columnExpression24.Table = table4;
+            columnExpression24.ColumnName = "ProviPrimVacacional";
+            columnExpression24.Table = table3;
             column24.Expression = columnExpression24;
-            columnExpression25.ColumnName = "ProvAguinaldo";
-            columnExpression25.Table = table4;
+            columnExpression25.ColumnName = "SubTotalIAS";
+            columnExpression25.Table = table3;
             column25.Expression = columnExpression25;
-            columnExpression26.ColumnName = "ProviVacaciones";
-            columnExpression26.Table = table4;
+            columnExpression26.ColumnName = "ComisionServicio";
+            columnExpression26.Table = table3;
             column26.Expression = columnExpression26;
-            columnExpression27.ColumnName = "ProviPrimVacacional";
-            columnExpression27.Table = table4;
+            columnExpression27.ColumnName = "ImpNomi";
+            columnExpression27.Table = table3;
             column27.Expression = columnExpression27;
-            columnExpression28.ColumnName = "SubTotalIAS";
-            columnExpression28.Table = table4;
+            columnExpression28.ColumnName = "Total";
+            columnExpression28.Table = table3;
             column28.Expression = columnExpression28;
-            columnExpression29.ColumnName = "ComisionServicio";
-            columnExpression29.Table = table4;
+            columnExpression29.ColumnName = "IVA";
+            columnExpression29.Table = table3;
             column29.Expression = columnExpression29;
-            columnExpression30.ColumnName = "ImpNomi";
-            columnExpression30.Table = table4;
+            columnExpression30.ColumnName = "RetencionIVA";
+            columnExpression30.Table = table3;
             column30.Expression = columnExpression30;
-            columnExpression31.ColumnName = "Total";
-            columnExpression31.Table = table4;
+            columnExpression31.ColumnName = "TotalFactura";
+            columnExpression31.Table = table3;
             column31.Expression = columnExpression31;
-            columnExpression32.ColumnName = "IVA";
-            columnExpression32.Table = table4;
+            columnExpression32.ColumnName = "Ajuste";
+            columnExpression32.Table = table3;
             column32.Expression = columnExpression32;
-            columnExpression33.ColumnName = "RetencionIVA";
-            columnExpression33.Table = table4;
+            columnExpression33.ColumnName = "TotalDeposito";
+            columnExpression33.Table = table3;
             column33.Expression = columnExpression33;
-            columnExpression34.ColumnName = "TotalFactura";
-            columnExpression34.Table = table4;
+            columnExpression34.ColumnName = "Banco";
+            columnExpression34.Table = table3;
             column34.Expression = columnExpression34;
-            columnExpression35.ColumnName = "Ajuste";
-            columnExpression35.Table = table4;
+            columnExpression35.ColumnName = "NumCuenta";
+            columnExpression35.Table = table3;
             column35.Expression = columnExpression35;
-            columnExpression36.ColumnName = "TotalDeposito";
-            columnExpression36.Table = table4;
+            columnExpression36.ColumnName = "CLABE";
+            columnExpression36.Table = table3;
             column36.Expression = columnExpression36;
-            columnExpression37.ColumnName = "Banco";
-            columnExpression37.Table = table4;
+            columnExpression37.ColumnName = "ClaveFacturacion";
+            columnExpression37.Table = table3;
             column37.Expression = columnExpression37;
-            columnExpression38.ColumnName = "NumCuenta";
-            columnExpression38.Table = table4;
+            columnExpression38.ColumnName = "TipoPago";
+            columnExpression38.Table = table3;
             column38.Expression = columnExpression38;
-            columnExpression39.ColumnName = "CLABE";
-            columnExpression39.Table = table4;
+            columnExpression39.ColumnName = "FormaPago";
+            columnExpression39.Table = table3;
             column39.Expression = columnExpression39;
-            columnExpression40.ColumnName = "ClaveFacturacion";
-            columnExpression40.Table = table4;
+            columnExpression40.ColumnName = "Observaciones";
+            columnExpression40.Table = table3;
             column40.Expression = columnExpression40;
-            columnExpression41.ColumnName = "TipoPago";
-            columnExpression41.Table = table4;
+            columnExpression41.ColumnName = "RutaLogo";
+            columnExpression41.Table = table3;
             column41.Expression = columnExpression41;
-            columnExpression42.ColumnName = "FormaPago";
-            columnExpression42.Table = table4;
+            columnExpression42.ColumnName = "Imagen";
+            columnExpression42.Table = table3;
             column42.Expression = columnExpression42;
-            columnExpression43.ColumnName = "Observaciones";
+            selectQuery3.Columns.Add(column5);
+            selectQuery3.Columns.Add(column6);
+            selectQuery3.Columns.Add(column7);
+            selectQuery3.Columns.Add(column8);
+            selectQuery3.Columns.Add(column9);
+            selectQuery3.Columns.Add(column10);
+            selectQuery3.Columns.Add(column11);
+            selectQuery3.Columns.Add(column12);
+            selectQuery3.Columns.Add(column13);
+            selectQuery3.Columns.Add(column14);
+            selectQuery3.Columns.Add(column15);
+            selectQuery3.Columns.Add(column16);
+            selectQuery3.Columns.Add(column17);
+            selectQuery3.Columns.Add(column18);
+            selectQuery3.Columns.Add(column19);
+            selectQuery3.Columns.Add(column20);
+            selectQuery3.Columns.Add(column21);
+            selectQuery3.Columns.Add(column22);
+            selectQuery3.Columns.Add(column23);
+            selectQuery3.Columns.Add(column24);
+            selectQuery3.Columns.Add(column25);
+            selectQuery3.Columns.Add(column26);
+            selectQuery3.Columns.Add(column27);
+            selectQuery3.Columns.Add(column28);
+            selectQuery3.Columns.Add(column29);
+            selectQuery3.Columns.Add(column30);
+            selectQuery3.Columns.Add(column31);
+            selectQuery3.Columns.Add(column32);
+            selectQuery3.Columns.Add(column33);
+            selectQuery3.Columns.Add(column34);
+            selectQuery3.Columns.Add(column35);
+            selectQuery3.Columns.Add(column36);
+            selectQuery3.Columns.Add(column37);
+            selectQuery3.Columns.Add(column38);
+            selectQuery3.Columns.Add(column39);
+            selectQuery3.Columns.Add(column40);
+            selectQuery3.Columns.Add(column41);
+            selectQuery3.Columns.Add(column42);
+            selectQuery3.FilterString = "[CaratulaPago.Estatus] = \'Generado\'";
+            selectQuery3.GroupFilterString = "";
+            selectQuery3.Name = "CaratulaPago";
+            selectQuery3.Tables.Add(table3);
+            columnExpression43.ColumnName = "numEmpl";
+            table4.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"894\" />";
+            table4.Name = "LayoutHistorico";
             columnExpression43.Table = table4;
             column43.Expression = columnExpression43;
-            columnExpression44.ColumnName = "RutaLogo";
+            columnExpression44.ColumnName = "nombreEmpleado";
             columnExpression44.Table = table4;
             column44.Expression = columnExpression44;
-            columnExpression45.ColumnName = "Imagen";
+            columnExpression45.ColumnName = "RFCEmpleado";
             columnExpression45.Table = table4;
             column45.Expression = columnExpression45;
-            selectQuery4.Columns.Add(column8);
-            selectQuery4.Columns.Add(column9);
-            selectQuery4.Columns.Add(column10);
-            selectQuery4.Columns.Add(column11);
-            selectQuery4.Columns.Add(column12);
-            selectQuery4.Columns.Add(column13);
-            selectQuery4.Columns.Add(column14);
-            selectQuery4.Columns.Add(column15);
-            selectQuery4.Columns.Add(column16);
-            selectQuery4.Columns.Add(column17);
-            selectQuery4.Columns.Add(column18);
-            selectQuery4.Columns.Add(column19);
-            selectQuery4.Columns.Add(column20);
-            selectQuery4.Columns.Add(column21);
-            selectQuery4.Columns.Add(column22);
-            selectQuery4.Columns.Add(column23);
-            selectQuery4.Columns.Add(column24);
-            selectQuery4.Columns.Add(column25);
-            selectQuery4.Columns.Add(column26);
-            selectQuery4.Columns.Add(column27);
-            selectQuery4.Columns.Add(column28);
-            selectQuery4.Columns.Add(column29);
-            selectQuery4.Columns.Add(column30);
-            selectQuery4.Columns.Add(column31);
-            selectQuery4.Columns.Add(column32);
-            selectQuery4.Columns.Add(column33);
-            selectQuery4.Columns.Add(column34);
-            selectQuery4.Columns.Add(column35);
-            selectQuery4.Columns.Add(column36);
-            selectQuery4.Columns.Add(column37);
-            selectQuery4.Columns.Add(column38);
-            selectQuery4.Columns.Add(column39);
-            selectQuery4.Columns.Add(column40);
-            selectQuery4.Columns.Add(column41);
-            selectQuery4.Columns.Add(column42);
+            columnExpression46.ColumnName = "CURPEmpleado";
+            columnExpression46.Table = table4;
+            column46.Expression = columnExpression46;
+            columnExpression47.ColumnName = "PeriodicidadPago";
+            columnExpression47.Table = table4;
+            column47.Expression = columnExpression47;
+            columnExpression48.ColumnName = "ingresos";
+            columnExpression48.Table = table4;
+            column48.Expression = columnExpression48;
+            columnExpression49.ColumnName = "LimInferior";
+            columnExpression49.Table = table4;
+            column49.Expression = columnExpression49;
+            columnExpression50.ColumnName = "ExLimInf";
+            columnExpression50.Table = table4;
+            column50.Expression = columnExpression50;
+            columnExpression51.ColumnName = "PerExLimInf";
+            columnExpression51.Table = table4;
+            column51.Expression = columnExpression51;
+            columnExpression52.ColumnName = "ImpMarg";
+            columnExpression52.Table = table4;
+            column52.Expression = columnExpression52;
+            columnExpression53.ColumnName = "CF";
+            columnExpression53.Table = table4;
+            column53.Expression = columnExpression53;
+            columnExpression54.ColumnName = "ISR";
+            columnExpression54.Table = table4;
+            column54.Expression = columnExpression54;
+            columnExpression55.ColumnName = "ingresosNeto";
+            columnExpression55.Table = table4;
+            column55.Expression = columnExpression55;
+            columnExpression56.ColumnName = "estatus";
+            columnExpression56.Table = table4;
+            column56.Expression = columnExpression56;
+            columnExpression57.ColumnName = "Caratula";
+            columnExpression57.Table = table4;
+            column57.Expression = columnExpression57;
+            columnExpression58.ColumnName = "Layout";
+            columnExpression58.Table = table4;
+            column58.Expression = columnExpression58;
             selectQuery4.Columns.Add(column43);
             selectQuery4.Columns.Add(column44);
             selectQuery4.Columns.Add(column45);
-            selectQuery4.FilterString = "[CaratulaPago.Estatus] = \'Generado\'";
+            selectQuery4.Columns.Add(column46);
+            selectQuery4.Columns.Add(column47);
+            selectQuery4.Columns.Add(column48);
+            selectQuery4.Columns.Add(column49);
+            selectQuery4.Columns.Add(column50);
+            selectQuery4.Columns.Add(column51);
+            selectQuery4.Columns.Add(column52);
+            selectQuery4.Columns.Add(column53);
+            selectQuery4.Columns.Add(column54);
+            selectQuery4.Columns.Add(column55);
+            selectQuery4.Columns.Add(column56);
+            selectQuery4.Columns.Add(column57);
+            selectQuery4.Columns.Add(column58);
+            selectQuery4.FilterString = "[LayoutHistorico.estatus] = \'Generado\'";
             selectQuery4.GroupFilterString = "";
-            selectQuery4.Name = "CaratulaPago";
+            selectQuery4.Name = "LayoutHistorico";
             selectQuery4.Tables.Add(table4);
-            columnExpression46.ColumnName = "numEmpl";
-            table5.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"894\" />";
-            table5.Name = "LayoutHistorico";
-            columnExpression46.Table = table5;
-            column46.Expression = columnExpression46;
-            columnExpression47.ColumnName = "nombreEmpleado";
-            columnExpression47.Table = table5;
-            column47.Expression = columnExpression47;
-            columnExpression48.ColumnName = "RFCEmpleado";
-            columnExpression48.Table = table5;
-            column48.Expression = columnExpression48;
-            columnExpression49.ColumnName = "CURPEmpleado";
-            columnExpression49.Table = table5;
-            column49.Expression = columnExpression49;
-            columnExpression50.ColumnName = "PeriodicidadPago";
-            columnExpression50.Table = table5;
-            column50.Expression = columnExpression50;
-            columnExpression51.ColumnName = "ingresos";
-            columnExpression51.Table = table5;
-            column51.Expression = columnExpression51;
-            columnExpression52.ColumnName = "LimInferior";
-            columnExpression52.Table = table5;
-            column52.Expression = columnExpression52;
-            columnExpression53.ColumnName = "ExLimInf";
-            columnExpression53.Table = table5;
-            column53.Expression = columnExpression53;
-            columnExpression54.ColumnName = "PerExLimInf";
-            columnExpression54.Table = table5;
-            column54.Expression = columnExpression54;
-            columnExpression55.ColumnName = "ImpMarg";
-            columnExpression55.Table = table5;
-            column55.Expression = columnExpression55;
-            columnExpression56.ColumnName = "CF";
-            columnExpression56.Table = table5;
-            column56.Expression = columnExpression56;
-            columnExpression57.ColumnName = "ISR";
-            columnExpression57.Table = table5;
-            column57.Expression = columnExpression57;
-            columnExpression58.ColumnName = "ingresosNeto";
-            columnExpression58.Table = table5;
-            column58.Expression = columnExpression58;
-            columnExpression59.ColumnName = "estatus";
-            columnExpression59.Table = table5;
-            column59.Expression = columnExpression59;
-            columnExpression60.ColumnName = "Caratula";
-            columnExpression60.Table = table5;
-            column60.Expression = columnExpression60;
-            columnExpression61.ColumnName = "Layout";
-            columnExpression61.Table = table5;
-            column61.Expression = columnExpression61;
-            selectQuery5.Columns.Add(column46);
-            selectQuery5.Columns.Add(column47);
-            selectQuery5.Columns.Add(column48);
-            selectQuery5.Columns.Add(column49);
-            selectQuery5.Columns.Add(column50);
-            selectQuery5.Columns.Add(column51);
-            selectQuery5.Columns.Add(column52);
-            selectQuery5.Columns.Add(column53);
-            selectQuery5.Columns.Add(column54);
-            selectQuery5.Columns.Add(column55);
-            selectQuery5.Columns.Add(column56);
-            selectQuery5.Columns.Add(column57);
-            selectQuery5.Columns.Add(column58);
-            selectQuery5.Columns.Add(column59);
-            selectQuery5.Columns.Add(column60);
-            selectQuery5.Columns.Add(column61);
-            selectQuery5.FilterString = "[LayoutHistorico.estatus] = \'Generado\'";
-            selectQuery5.GroupFilterString = "";
-            selectQuery5.Name = "LayoutHistorico";
-            selectQuery5.Tables.Add(table5);
             customSqlQuery5.Name = "QueryEstatus";
             customSqlQuery5.Sql = "  SELECT \'G\' AS [Estatus], \'Generado\' AS [Descripcion]\r\n  UNION SELECT \'P\' AS [Es" +
     "tatus], \'Pagado\' AS [Descripcion]";
             this.sqlDataSource2.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
+            selectQuery3,
             selectQuery4,
-            selectQuery5,
             customSqlQuery5});
             this.sqlDataSource2.ResultSchemaSerializable = resources.GetString("sqlDataSource2.ResultSchemaSerializable");
             // 
@@ -4345,9 +4401,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewFactura)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.periodicidadPagoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTimbres.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem52)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem58)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem53)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem28)).EndInit();
@@ -4458,12 +4517,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.FecIniPeriUni.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FecFinPeriUni.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FecFinPeriUni.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTimbresMasiv.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
@@ -4532,6 +4592,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem26)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.queryEstatusBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutHistoricoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.caratulaPagoBindingSource)).EndInit();
@@ -4871,5 +4933,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnID;
         private DevExpress.XtraEditors.SimpleButton btnAbrirPeriodo;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlbtnPeriodo;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem56;
+        private DevExpress.XtraEditors.TextEdit txtTimbres;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem58;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem27;
+        private DevExpress.XtraEditors.TextEdit txtTimbresMasiv;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem59;
     }
 }

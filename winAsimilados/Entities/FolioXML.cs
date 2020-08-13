@@ -82,5 +82,17 @@ namespace winAsimilados.Entities
             get { return _RFC; }
             set { _RFC = value; }
         }
+        private string _selloCFD;
+        public string selloCFD
+        {
+            get { return _selloCFD; }
+            set { _selloCFD = value; }
+        }
+        private decimal _total;
+        public decimal total
+        {
+            get { return _total; }
+            set { _total = value; }
+        }
     }
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="67iwMmkQDXodXvFG3fBoy2Yh2ZX+n1QZJoMQKiIKQ90=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="G5gy3gAPUE6QbKh3naItTDiRq7BDKsve6bZfeCMcNtU=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IServicioTimbrado">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IServicioTimbrado1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IServicioTimbrado</serializedValue>
+          <serializedValue>BasicHttpBinding_IServicioTimbrado1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IServicioTimbrado" contract="ServicioTimbradoNTLINK.IServicioTimbrado" bindingType="basicHttpBinding" address="http://ntlink.com.mx/ntfacturacionws/ServicioTimbrado.svc" bindingConfiguration="BasicHttpBinding_IServicioTimbrado">
+    <endpoint name="BasicHttpBinding_IServicioTimbrado1" contract="ServicioPruebasTimbradoNTLINK.IServicioTimbrado" bindingType="basicHttpBinding" address="http://pruebas.ntlink.com.mx/CertificadorWs33/ServicioTimbrado.svc" bindingConfiguration="BasicHttpBinding_IServicioTimbrado1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://ntlink.com.mx/ntfacturacionws/ServicioTimbrado.svc</serializedValue>
+          <serializedValue>http://pruebas.ntlink.com.mx/CertificadorWs33/ServicioTimbrado.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -124,10 +124,10 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IServicioTimbrado</serializedValue>
+          <serializedValue>BasicHttpBinding_IServicioTimbrado1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ServicioTimbradoNTLINK.IServicioTimbrado</serializedValue>
+          <serializedValue>ServicioPruebasTimbradoNTLINK.IServicioTimbrado</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -187,7 +187,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IServicioTimbrado</serializedValue>
+          <serializedValue>BasicHttpBinding_IServicioTimbrado1</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

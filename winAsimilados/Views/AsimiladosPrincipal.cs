@@ -1489,5 +1489,66 @@ namespace winAsimilados.Views
                 XtraMessageBox.Show(masivClte.Message + "\nError Carga Masiva CLiente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void accordionControlBanEmpresa_Click(object sender, EventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Modulo Bancos empresa...");
+            BancosEmpresa bancos = new BancosEmpresa(splashScreenManager1);
+            var frm = Application.OpenForms.OfType<BancosEmpresa>().FirstOrDefault();
+            if (frm != null)
+            {
+                splashScreenManager1.CloseWaitForm();
+                frm.BringToFront();
+                frm.Location = new Point(270, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    //frm.Size = PanelPrincipal.Size;
+                    frm.BringToFront();
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(270, 60);
+                }
+            }
+            else
+            {
+                bancos.Location = new Point(270, 60);
+                //agregarUsuario.Size = PanelPrincipal.Size;
+                bancos.Show();
+                bancos.BringToFront();
+            }
+        }
+
+        private void accordionControlBanSucursales_Click(object sender, EventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Modulo Bancos...");
+            SucursalesBancarias bancos = new SucursalesBancarias(splashScreenManager1);
+            var frm = Application.OpenForms.OfType<SucursalesBancarias>().FirstOrDefault();
+            if (frm != null)
+            {
+                splashScreenManager1.CloseWaitForm();
+                frm.BringToFront();
+                frm.Location = new Point(270, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    //frm.Size = PanelPrincipal.Size;
+                    frm.BringToFront();
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(270, 60);
+                }
+            }
+            else
+            {
+                bancos.Location = new Point(270, 60);
+                //agregarUsuario.Size = PanelPrincipal.Size;
+                bancos.Show();
+                bancos.BringToFront();
+            }
+        }
     }
 }
+

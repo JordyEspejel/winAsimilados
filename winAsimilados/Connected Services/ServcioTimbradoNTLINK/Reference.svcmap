@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c26342a8-d1a5-4817-ba49-e973d3e33d54" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://cfdi33.ntlink.com.mx/ntfacturacionws3.3/ServicioTimbrado.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioTimbrado.wsdl" MetadataType="Wsdl" ID="8fcca589-466a-4044-bd69-c8dfc068e11c" SourceId="1" SourceUrl="http://cfdi33.ntlink.com.mx/ntfacturacionws3.3/ServicioTimbrado.svc?wsdl" />
+    <MetadataFile FileName="ServicioTimbrado.xsd" MetadataType="Schema" ID="868a5058-8ec5-4676-84c4-ac7d421ce5ba" SourceId="1" SourceUrl="http://cfdi33.ntlink.com.mx/ntfacturacionws3.3/ServicioTimbrado.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicioTimbrado1.xsd" MetadataType="Schema" ID="a268f80e-67f1-4a11-b78d-05af73854ddb" SourceId="1" SourceUrl="http://cfdi33.ntlink.com.mx/ntfacturacionws3.3/ServicioTimbrado.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioTimbrado2.xsd" MetadataType="Schema" ID="ee12b53f-6766-4cde-83e5-c48c1eca69df" SourceId="1" SourceUrl="http://cfdi33.ntlink.com.mx/ntfacturacionws3.3/ServicioTimbrado.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServicioTimbrado1.wsdl" MetadataType="Wsdl" ID="4eb98803-d6de-4086-8734-589c4f2e94e0" SourceId="1" SourceUrl="http://cfdi33.ntlink.com.mx/ntfacturacionws3.3/ServicioTimbrado.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="ServicioTimbrado3.xsd" MetadataType="Schema" ID="b1872bc2-a489-4e8f-81b4-3c9a9e65b45d" SourceId="1" SourceUrl="http://cfdi33.ntlink.com.mx/ntfacturacionws3.3/ServicioTimbrado.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

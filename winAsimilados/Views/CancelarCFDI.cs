@@ -23,10 +23,11 @@ namespace winAsimilados.Views
         string fechaIni;
         string fechaFinal;
         string uuid;
-        string folio, fecPago, fecIni, fecFin, empresa;
+        string folio, fecPago, fecIni, fecFin, empresa, rfcEmpl,selloCFD;
         string usuario = Properties.Settings.Default.Usuario.ToString().ToUpper();
         string ip = Dns.GetHostEntry(Dns.GetHostName()).AddressList.Where(ip => ip.AddressFamily.ToString().ToUpper().Equals("INTERNETWORK")).FirstOrDefault().ToString();
         string RFCEmpr, Empr;
+        decimal total;
         C.Controller Controlador = new C.Controller();
         public CancelarCFDI(string RFC, string Empresa)
         {
@@ -70,6 +71,9 @@ namespace winAsimilados.Views
                         fecPago = gridView1.GetRowCellValue(i, gridView1.Columns[7]).ToString();
                         fecIni = gridView1.GetRowCellValue(i, gridView1.Columns[8]).ToString();
                         fecFin = gridView1.GetRowCellValue(i, gridView1.Columns[9]).ToString();
+                        rfcEmpl = gridView1.GetRowCellValue(i, gridView1.Columns[4]).ToString();
+                        selloCFD = gridView1.GetRowCellValue(i, gridView1.Columns[10]).ToString();
+                        total = Convert.ToDecimal(gridView1.GetRowCellValue(i, gridView1.Columns[11]).ToString());
                         UUID.Add(new E.CancelarUUID
                         {
                             Folio = folio,
@@ -79,8 +83,11 @@ namespace winAsimilados.Views
                             FecFinal = Convert.ToDateTime(fecFin),
                             Empresa = Empr,
                             IPMovimiento = ip,
-                            Usuario = usuario
-                    });;
+                            Usuario = usuario,
+                            RFCEmpl = rfcEmpl,
+                            selloCFD = selloCFD,
+                            total = total
+                        });
                         uid = UUID.ToArray();
                     }
 

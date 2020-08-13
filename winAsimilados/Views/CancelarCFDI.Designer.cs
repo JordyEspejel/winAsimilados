@@ -47,6 +47,7 @@
             this.ColFecPago = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColFecIni = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFecFin = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColSelloCFD = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.FecFinal = new System.Windows.Forms.DateTimePicker();
             this.FecIni = new System.Windows.Forms.DateTimePicker();
@@ -61,6 +62,7 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
+            this.ColTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -115,11 +117,15 @@
             this.ColStat,
             this.ColFecPago,
             this.ColFecIni,
-            this.colFecFin});
+            this.colFecFin,
+            this.ColSelloCFD,
+            this.ColTotal});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
@@ -155,7 +161,7 @@
             this.ColEmpleado.Name = "ColEmpleado";
             this.ColEmpleado.OptionsColumn.AllowEdit = false;
             this.ColEmpleado.Visible = true;
-            this.ColEmpleado.VisibleIndex = 3;
+            this.ColEmpleado.VisibleIndex = 4;
             // 
             // ColRFC
             // 
@@ -164,7 +170,7 @@
             this.ColRFC.Name = "ColRFC";
             this.ColRFC.OptionsColumn.AllowEdit = false;
             this.ColRFC.Visible = true;
-            this.ColRFC.VisibleIndex = 4;
+            this.ColRFC.VisibleIndex = 5;
             // 
             // ColImporte
             // 
@@ -173,7 +179,7 @@
             this.ColImporte.Name = "ColImporte";
             this.ColImporte.OptionsColumn.AllowEdit = false;
             this.ColImporte.Visible = true;
-            this.ColImporte.VisibleIndex = 5;
+            this.ColImporte.VisibleIndex = 6;
             // 
             // ColStat
             // 
@@ -182,7 +188,7 @@
             this.ColStat.Name = "ColStat";
             this.ColStat.OptionsColumn.AllowEdit = false;
             this.ColStat.Visible = true;
-            this.ColStat.VisibleIndex = 6;
+            this.ColStat.VisibleIndex = 8;
             // 
             // ColFecPago
             // 
@@ -191,7 +197,7 @@
             this.ColFecPago.Name = "ColFecPago";
             this.ColFecPago.OptionsColumn.AllowEdit = false;
             this.ColFecPago.Visible = true;
-            this.ColFecPago.VisibleIndex = 7;
+            this.ColFecPago.VisibleIndex = 9;
             // 
             // ColFecIni
             // 
@@ -200,7 +206,7 @@
             this.ColFecIni.Name = "ColFecIni";
             this.ColFecIni.OptionsColumn.AllowEdit = false;
             this.ColFecIni.Visible = true;
-            this.ColFecIni.VisibleIndex = 8;
+            this.ColFecIni.VisibleIndex = 10;
             // 
             // colFecFin
             // 
@@ -209,7 +215,15 @@
             this.colFecFin.Name = "colFecFin";
             this.colFecFin.OptionsColumn.AllowEdit = false;
             this.colFecFin.Visible = true;
-            this.colFecFin.VisibleIndex = 9;
+            this.colFecFin.VisibleIndex = 11;
+            // 
+            // ColSelloCFD
+            // 
+            this.ColSelloCFD.Caption = "SelloCFD";
+            this.ColSelloCFD.FieldName = "SelloCFD";
+            this.ColSelloCFD.Name = "ColSelloCFD";
+            this.ColSelloCFD.Visible = true;
+            this.ColSelloCFD.VisibleIndex = 3;
             // 
             // repositoryItemButtonEdit1
             // 
@@ -343,6 +357,14 @@
             // 
             this.splashScreenManager1.ClosingDelay = 500;
             // 
+            // ColTotal
+            // 
+            this.ColTotal.Caption = "Total";
+            this.ColTotal.FieldName = "Total";
+            this.ColTotal.Name = "ColTotal";
+            this.ColTotal.Visible = true;
+            this.ColTotal.VisibleIndex = 7;
+            // 
             // CancelarCFDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -399,5 +421,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
+        private DevExpress.XtraGrid.Columns.GridColumn ColSelloCFD;
+        private DevExpress.XtraGrid.Columns.GridColumn ColTotal;
     }
 }

@@ -344,7 +344,7 @@
             this.spinEditDesc.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.spinEditDesc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditDesc.Properties.Mask.EditMask = "P";
+            this.spinEditDesc.Properties.Mask.EditMask = "c";
             this.spinEditDesc.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.spinEditDesc.Properties.ReadOnly = true;
             this.spinEditDesc.Size = new System.Drawing.Size(127, 20);
