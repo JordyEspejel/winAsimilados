@@ -18,9 +18,26 @@ namespace winAsimilados.Views
     {
         string nombre, CURP, RFC, peri, cuenta, clabe, cve,banco, empresa, idEmpr, numEmpl;
 
+        private void lookUpTipoPago_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lookUpEmpresa_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void lookUpBanco_EditValueChanged(object sender, EventArgs e)
         {
-            TxtCVE.Text = lookUpBanco.EditValue.ToString();
+            try
+            {
+                TxtCVE.Text = lookUpBanco.EditValue.ToString();
+            }catch(Exception exe)
+            {
+
+            }
+
         }
 
         private void TxtIDProv_EditValueChanged(object sender, EventArgs e)
@@ -32,8 +49,16 @@ namespace winAsimilados.Views
 
         private void lookUpEdit2_EditValueChanged(object sender, EventArgs e)
         {
-            //XtraMessageBox.Show("LookUpEdit EditValue = " + (sender as LookUpEdit).EditValue);
-            peri = (sender as LookUpEdit).EditValue.ToString();
+            try
+            {
+                //XtraMessageBox.Show("LookUpEdit EditValue = " + (sender as LookUpEdit).EditValue);
+                peri = (sender as LookUpEdit).EditValue.ToString();
+            }
+            catch(Exception ex)
+            {
+
+            }
+
         }
 
         public AgregarEmpleado()
@@ -53,6 +78,22 @@ namespace winAsimilados.Views
             sqlDataSource1.Fill();
         }
 
+        private void ReiniciaFormulario()
+        {
+            txtCorreo.Text = "";
+            TxtCLABE.Text = "";
+            TxtCuenta.Text = "";
+            TxtCURP.Text = "";
+            TxtCVE.Text = "";
+            TxtNombreEmpl.Text = "";
+            TxtNumEmpl.Text = "";
+            TxtRFC.Text = "";
+            lookUpBanco.EditValue = null;
+            lookUpEmpresa.EditValue = null;
+            lookUpTipoPago.EditValue = null;
+            lookUpEdit2.EditValue = null;
+            spinEdit1.Text = "0";
+        }
         private void AgregarEmpleado_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Dispose();
@@ -213,7 +254,10 @@ namespace winAsimilados.Views
 
                 if (XtraMessageBox.Show("¿Desea Agregar al empleado?:\n" + empleado.Nombre.ToString()/* + "\n\nRFC:" + empleado.RFC.ToString() + "\n\nCURP:" + empleado.CURP.ToString() + "\n\nPeriodicidad pago:" + lookUpEdit2.Text +*/ + "\n\nFavor de verificar los datos.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    Controlador.AgregaEmpleado(empleado);
+                    if (Controlador.AgregaEmpleado(empleado).Equals(true))
+                    {
+                        this.ReiniciaFormulario();
+                    }
                 }
             }
         }

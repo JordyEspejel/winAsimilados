@@ -2276,10 +2276,10 @@ namespace winAsimilados.Controller
 
                     if (destino.Equals("Cliente"))
                     {
-                        pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE + "_"  + fecPago + @"\");
+                        pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_"  + fecPago + @"\");
                     }else if (destino.Equals("Empleado"))
                     {
-                        pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE + "_" + fecPago + @"\");
+                        pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_" + fecPago + @"\");
                     }
 
                     if (!Directory.Exists(pathArchivoXML))
@@ -2493,40 +2493,40 @@ namespace winAsimilados.Controller
                     try
                     {
                         #region TimbradoNTLINK
-                            //// inicia codigo WS NTLINK
-                            ////SERVICIO PRUEBAS
-                            ////ServicioTimbtadoClientPruebas client = new ServicioTimbtadoClientPruebas();
-                            //ServicioTimbradoClient client = new ServicioTimbradoClient();
-                            //client.Open();
-                            //string xmlLINK = Convert.ToString(System.IO.File.ReadAllText(pathArchivoXML));
-                            ////var empersas = client.ObtenerEmpresas("jordyespejel7@gmail.com", "Asimilados2020");
-                            ////var newXML = client.TimbraCfdiQr("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
-                            //var newXML = client.TimbraCfdiQr("angel@inari.mx", "Inari2020.", xmlLINK);
-                            ////string newXML = client.TimbraCfdi("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
+                        //// inicia codigo WS NTLINK
+                        ////SERVICIO PRUEBAS
+                        ////ServicioTimbtadoClientPruebas client = new ServicioTimbtadoClientPruebas();
+                        //ServicioTimbradoClient client = new ServicioTimbradoClient();
+                        //client.Open();
+                        //string xmlLINK = Convert.ToString(System.IO.File.ReadAllText(pathArchivoXML));
+                        ////var empersas = client.ObtenerEmpresas("jordyespejel7@gmail.com", "Asimilados2020");
+                        ////var newXML = client.TimbraCfdiQr("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
+                        //var newXML = client.TimbraCfdiQr("angel@inari.mx", "Inari2020.", xmlLINK);
+                        ////string newXML = client.TimbraCfdi("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
 
-                            //client.Close();
+                        //client.Close();
 
-                            //if (newXML.Valido.Equals(true))
-                            //{
-                            //    genPDF = true;
-                            //    exito++;
-                            //    string cadena = newXML.CadenaTimbre;
-                            //    string[] arrayCadena;
-                            //    arrayCadena = cadena.Split(Convert.ToChar("|"));
-                            //    //XtraMessageBox.Show(arrayCadena[3]);
-                            //    string UUIDNT = arrayCadena[3];
-                            //    string sello = arrayCadena[6];
-                            //    arrayCadena = sello.Split(Convert.ToChar("/"));
-                            //    string ultDigSello = arrayCadena[6];
-                            //    int tamDig = ultDigSello.Length;
-                            //    ultDigSello = ultDigSello.Substring((tamDig - 8), 8);
-                            //    System.IO.File.Delete(pathArchivoXML);
-                            //    pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
+                        //if (newXML.Valido.Equals(true))
+                        //{
+                        //    genPDF = true;
+                        //    exito++;
+                        //    string cadena = newXML.CadenaTimbre;
+                        //    string[] arrayCadena;
+                        //    arrayCadena = cadena.Split(Convert.ToChar("|"));
+                        //    //XtraMessageBox.Show(arrayCadena[3]);
+                        //    string UUIDNT = arrayCadena[3];
+                        //    string sello = arrayCadena[6];
+                        //    arrayCadena = sello.Split(Convert.ToChar("/"));
+                        //    string ultDigSello = arrayCadena[6];
+                        //    int tamDig = ultDigSello.Length;
+                        //    ultDigSello = ultDigSello.Substring((tamDig - 8), 8);
+                        //    System.IO.File.Delete(pathArchivoXML);
+                        //    pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
 
-                            //if (destino.Equals("Cliente"))
-                            //{
-                            //  pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE + "_"  + fecPago + @"\");
-                            //}
+                        //if (destino.Equals("Cliente"))
+                        //{
+                        //  pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_"  + fecPago + @"\");
+                        //}
                         //else if (destino.Equals("Empleado"))
                         //{
                         //    pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE + "_" + fecPago + @"\");
@@ -2628,11 +2628,11 @@ namespace winAsimilados.Controller
 
                                 if (destino.Equals("Cliente"))
                                 {
-                                    pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE +           "_" + fecPago + @"\");
+                                    pathArchivoXML = Path.Combine(pathXml +                                     clienteAsimilado.CLIENTE.Replace(" ", string.Empty) +                       "_" +fecPago + @"\");
                                 }
                                 else if (destino.Equals("Empleado"))
                                 {
-                                    pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE +           "_" + fecPago + @"\");
+                                    pathArchivoXML = Path.Combine(pathXml +                                     clienteAsimilado.CLIENTE.Replace(" ", string.Empty) +"_" + fecPago           + @"\");
                                 }
                                 nombreArchivo = fecPago + "_" + nomiEmpl.RFC + "_" + nomiEmpl.Nombre;
                                 pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo);
@@ -2859,7 +2859,7 @@ namespace winAsimilados.Controller
                 {
                     splashScreenManager1.ShowWaitForm();
                     splashScreenManager1.SetWaitFormCaption("Enviando correo..");
-                    archivos.Add(pathXml + clienteAsimilado.CLIENTE + fecPago);
+                    archivos.Add(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_"+ fecPago);
                     resultCorreo = EnviaFacturaCorreo(clienteAsimilado.correoCliente, archivos, destino);
 
                     if (resultCorreo != "true")
@@ -2930,7 +2930,8 @@ namespace winAsimilados.Controller
             + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
             + "-" + DateTime.Now.Second.ToString());
             string path = Path.Combine(url, NombreArchivo + ".txt");
-
+            string hora = Convert.ToString("," + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
+            + "-" + DateTime.Now.Second.ToString());
             builder = new StringBuilder();
             builder.AppendLine();
             builder.Append("********************************   Erroes Encontrados  ******************************************" + "\r\n");
@@ -2982,8 +2983,7 @@ namespace winAsimilados.Controller
                     pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
                     if (destino.Equals("Cliente"))
                     {
-                        pathArchivoXML = Path.Combine(pathXml + fecPago + Convert.ToString("," + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
-            + "-" + DateTime.Now.Second.ToString()) + "_Recibos"  + @"\");
+                        pathArchivoXML = Path.Combine(pathXml + fecPago + hora + "_Recibos"  + @"\");
                         pathCorreo = pathArchivoXML;
                     }
 
@@ -5461,7 +5461,7 @@ namespace winAsimilados.Controller
             }
         }
 
-        public void AgregaEmpleado(Object _P)
+        public bool AgregaEmpleado(Object _P)
         {
             try
             {
@@ -5526,6 +5526,7 @@ namespace winAsimilados.Controller
                 {
                     XtraMessageBox.Show("El empleado Con RFC: " + empleado.RFC + "Ya se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ReaderEmpl.Close();
+                    return true;
                 }
                 else
                 {
@@ -5534,12 +5535,18 @@ namespace winAsimilados.Controller
                     if (queryInsertaEmpl.ExecuteNonQuery().Equals(1))
                     {
                         XtraMessageBox.Show("¡Empleado agregado satisfactoriamente!", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
             }
             catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: AgregaEmpleado()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
         }

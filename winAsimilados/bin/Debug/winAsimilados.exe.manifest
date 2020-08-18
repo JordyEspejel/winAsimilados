@@ -2179,14 +2179,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="1627072">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="1628096">
       <assemblyIdentity name="winAsimilados" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>CzlUzhQHNcVBV8N0wizDftfDRcP83stSn3uNdxZ2qgs=</dsig:DigestValue>
+        <dsig:DigestValue>ScGv1aI/LzI+u23Q7wa+ZaWIL1tf68cAhwx+CQL+vrI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
