@@ -172,6 +172,15 @@ namespace winAsimilados.Views
         {
             try
             {
+                if (txtCorreo.Text.Equals(""))
+                {
+                    XtraMessageBox.Show("Campo Correo Electronico Requerido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    cliente.correoCliente = txtCorreo.Text;
+                }
                 if (txtNombre.Text.Equals(""))
                 {
                     XtraMessageBox.Show("Campo Nombre Requerido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Information);

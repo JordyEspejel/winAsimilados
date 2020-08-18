@@ -42,6 +42,7 @@ namespace winAsimilados.Entities
         private decimal _PORCENTAJE_FACTURA2;
         private decimal _PORCENTAJE_FACTURA3;
         private decimal _PORCENTAJE_FACTURA4;
+        private string _CorreoCliente;
 
         public string ID{ get { return _ID; } set { _ID = value; } }
         public string CLIENTE{ get { return _CLIENTE; } set { _CLIENTE = value; } }
@@ -79,7 +80,11 @@ namespace winAsimilados.Entities
         public decimal PORCENTAJE_FACTURA3 { get { return _PORCENTAJE_FACTURA3; } set { _PORCENTAJE_FACTURA3 = value; } }
         public decimal PORCENTAJE_FACTURA4 { get { return _PORCENTAJE_FACTURA4; } set { _PORCENTAJE_FACTURA4 = value; } }
 
-
+        public string correoCliente
+        {
+            get { return _CorreoCliente; }
+            set { _CorreoCliente = value; }
+        }
 
 
     }

@@ -92,6 +92,7 @@
             this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionAgregarEmpresaUnitario = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionEditaEmpresa = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlEmprPagaAsim = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionNomiAsim = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionBitacora = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -665,7 +666,8 @@
             // 
             this.accordionControlElement3.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement4,
-            this.accordionEditaEmpresa});
+            this.accordionEditaEmpresa,
+            this.accordionControlEmprPagaAsim});
             this.accordionControlElement3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement3.ImageOptions.Image")));
             this.accordionControlElement3.Name = "accordionControlElement3";
             this.accordionControlElement3.Text = "Empresas";
@@ -693,6 +695,14 @@
             this.accordionEditaEmpresa.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionEditaEmpresa.Text = "Editar";
             this.accordionEditaEmpresa.Click += new System.EventHandler(this.accordionEditaEmpresa_Click);
+            // 
+            // accordionControlEmprPagaAsim
+            // 
+            this.accordionControlEmprPagaAsim.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlEmprPagaAsim.ImageOptions.Image")));
+            this.accordionControlEmprPagaAsim.Name = "accordionControlEmprPagaAsim";
+            this.accordionControlEmprPagaAsim.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlEmprPagaAsim.Text = "Empresas Paga Asimilados";
+            this.accordionControlEmprPagaAsim.Click += new System.EventHandler(this.accordionControlEmprPagaAsim_Click);
             // 
             // accordionControlElement5
             // 
@@ -909,5 +919,6 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement13;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlBanSucursales;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlBanEmpresa;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlEmprPagaAsim;
     }
 }

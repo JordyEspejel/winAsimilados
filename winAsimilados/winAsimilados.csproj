@@ -27,7 +27,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>Asimilados.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationRevision>19</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -131,6 +131,12 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Messaging" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
@@ -176,6 +182,7 @@
     <Compile Include="Entities\BancoEmpresa.cs" />
     <Compile Include="Entities\ClaveProdServ.cs" />
     <Compile Include="Entities\ClaveProdServClte.cs" />
+    <Compile Include="Entities\EmpresaPago.cs" />
     <Compile Include="Entities\ListaBancos.cs" />
     <Compile Include="Entities\BitacoraXML.cs" />
     <Compile Include="Entities\Calculo.cs" />
@@ -312,6 +319,12 @@
     <Compile Include="Views\EditarUsuario.Designer.cs">
       <DependentUpon>EditarUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\EmpresasPagoAsimilados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EmpresasPagoAsimilados.Designer.cs">
+      <DependentUpon>EmpresasPagoAsimilados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\GenPDF12.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -427,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\EditarUsuario.resx">
       <DependentUpon>EditarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EmpresasPagoAsimilados.resx">
+      <DependentUpon>EmpresasPagoAsimilados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\GenPDF12.resx">
       <DependentUpon>GenPDF12.cs</DependentUpon>

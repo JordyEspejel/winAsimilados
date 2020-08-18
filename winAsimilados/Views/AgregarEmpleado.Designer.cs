@@ -83,6 +83,8 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.txtCorreo = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.queryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -121,6 +123,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCorreo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             this.SuspendLayout();
             // 
             // queryBindingSource
@@ -197,6 +201,7 @@
             this.layoutControl1.Controls.Add(this.lookUpBanco);
             this.layoutControl1.Controls.Add(this.lookUpEmpresa);
             this.layoutControl1.Controls.Add(this.lookUpTipoPago);
+            this.layoutControl1.Controls.Add(this.txtCorreo);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -247,7 +252,7 @@
             // 
             // TxtCuenta
             // 
-            this.TxtCuenta.Location = new System.Drawing.Point(76, 234);
+            this.TxtCuenta.Location = new System.Drawing.Point(76, 258);
             this.TxtCuenta.Name = "TxtCuenta";
             this.TxtCuenta.Size = new System.Drawing.Size(321, 20);
             this.TxtCuenta.StyleController = this.layoutControl1;
@@ -255,7 +260,7 @@
             // 
             // TxtCLABE
             // 
-            this.TxtCLABE.Location = new System.Drawing.Point(437, 234);
+            this.TxtCLABE.Location = new System.Drawing.Point(437, 258);
             this.TxtCLABE.Name = "TxtCLABE";
             this.TxtCLABE.Size = new System.Drawing.Size(327, 20);
             this.TxtCLABE.StyleController = this.layoutControl1;
@@ -263,7 +268,7 @@
             // 
             // TxtCVE
             // 
-            this.TxtCVE.Location = new System.Drawing.Point(668, 210);
+            this.TxtCVE.Location = new System.Drawing.Point(668, 234);
             this.TxtCVE.Name = "TxtCVE";
             this.TxtCVE.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCVE.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -299,7 +304,7 @@
             // 
             // lookUpBanco
             // 
-            this.lookUpBanco.Location = new System.Drawing.Point(70, 210);
+            this.lookUpBanco.Location = new System.Drawing.Point(70, 234);
             this.lookUpBanco.Name = "lookUpBanco";
             this.lookUpBanco.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -375,7 +380,7 @@
             this.layoutControlGroup4});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(780, 270);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(780, 294);
             this.layoutControlGroup2.Text = "Información Empleado";
             // 
             // layoutControlGroup3
@@ -389,10 +394,11 @@
             this.layoutControlItem12,
             this.layoutControlItem10,
             this.layoutControlItem11,
-            this.layoutControlItem13});
+            this.layoutControlItem13,
+            this.layoutControlItem14});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(756, 138);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(756, 162);
             this.layoutControlGroup3.Text = "Datos Generales";
             // 
             // layoutControlItem1
@@ -489,7 +495,7 @@
             this.layoutControlItem7,
             this.layoutControlItem8,
             this.layoutControlItem9});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 138);
+            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 162);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
             this.layoutControlGroup4.Size = new System.Drawing.Size(756, 90);
             this.layoutControlGroup4.Text = "Datos Bancarios";
@@ -558,10 +564,29 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 270);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 294);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(780, 106);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(780, 82);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // txtCorreo
+            // 
+            this.txtCorreo.Location = new System.Drawing.Point(129, 168);
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.Size = new System.Drawing.Size(635, 20);
+            this.txtCorreo.StyleController = this.layoutControl1;
+            this.txtCorreo.TabIndex = 22;
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.txtCorreo;
+            this.layoutControlItem14.Location = new System.Drawing.Point(0, 96);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(732, 24);
+            this.layoutControlItem14.Text = "Correo Electronico";
+            this.layoutControlItem14.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(88, 13);
+            this.layoutControlItem14.TextToControlDistance = 5;
             // 
             // AgregarEmpleado
             // 
@@ -612,6 +637,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCorreo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -656,5 +683,7 @@
         private System.Windows.Forms.BindingSource tipoPagoBindingSource;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraEditors.TextEdit txtCorreo;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
     }
 }

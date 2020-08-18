@@ -72,6 +72,14 @@ namespace winAsimilados.Views
             idEmpr = lookUpEmpresa.EditValue.ToString();
             numEmpl = TxtNumEmpl.Text;
             empleado.descuento = Convert.ToDecimal(spinEdit1.EditValue.ToString());
+            if (txtCorreo.Text.Equals(""))
+            {
+                empleado.Correo = "";
+            }
+            else
+            {
+                empleado.Correo = txtCorreo.Text;
+            }
             if (nombre == "")
             {
                 XtraMessageBox.Show("El campo Nombre no puede estar vacio", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -21,11 +21,17 @@ namespace winAsimilados.Views
         //string nomEmpl = null;
         //string nombre, CURP, RFC, peri;
         //int IDEmpl = 0;
-        string nombre, CURP, RFC, peri, cuenta, clabe, cve, banco, empresa, idEmpr, numEmpl;
+        string nombre, CURP, RFC, peri, cuenta, clabe, cve, banco, empresa, idEmpr, numEmpl, correoClte;
         C.Controller Controlador = new C.Controller();
         E.Empleado empleado = new E.Empleado();
         string bd = C.Conexion.PerformConnection().Database.ToString();
         SplashScreenManager splash;
+
+        private void lookUpBanco_EditValueChanged(object sender, EventArgs e)
+        {
+            TxtCVE.Text = lookUpBanco.EditValue.ToString();
+        }
+
         public EditarEmpleados(SplashScreenManager screenManager)
         {
             splash = screenManager;
@@ -104,6 +110,7 @@ namespace winAsimilados.Views
             TxtCVE.Text = empleado.cve_banco;
             TxtCuenta.Text = empleado.cuenta;
             TxtCLABE.Text = empleado.clabe_bancaria;
+            txtCorreoClte.Text = empleado.Correo;
         }
 
         #region funcionTabla
@@ -173,6 +180,7 @@ namespace winAsimilados.Views
             TxtCVE.ReadOnly = false;
             TxtCuenta.ReadOnly = false;
             TxtCLABE.ReadOnly = false;
+            txtCorreoClte.ReadOnly = false;
             layoutControlbtnAceptar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             layoutControlbtnCancelar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             layoutControlbtnEditar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -192,6 +200,7 @@ namespace winAsimilados.Views
             TxtCVE.ReadOnly = true;
             TxtCuenta.ReadOnly = true;
             TxtCLABE.ReadOnly = true;
+            txtCorreoClte.ReadOnly = true;
             layoutControlbtnAceptar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             layoutControlbtnCancelar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             layoutControlbtnEditar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
@@ -220,7 +229,8 @@ namespace winAsimilados.Views
             idEmpr = lookUpEmpresa.EditValue.ToString();
             numEmpl = TxtNumEmpl.Text;
             peri = lookUpEditPeriPago.EditValue.ToString();
-
+            correoClte = txtCorreoClte.Text;
+            empleado.Correo = correoClte;
             empleado.descuento = Convert.ToDecimal(spinEditDesc.EditValue.ToString());
             //empleado.descuento = empleado.descuento / 100;
             if (nombre == "")

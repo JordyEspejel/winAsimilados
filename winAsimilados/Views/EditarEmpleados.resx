@@ -123,6 +123,9 @@
   <metadata name="sqlDataTipoPeri.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>194, 17</value>
   </metadata>
+  <metadata name="sqlDataTipoPeri.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>194, 17</value>
+  </metadata>
   <data name="sqlDataTipoPeri.ResultSchemaSerializable" xml:space="preserve">
     <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVRpcG9QZXJpIj48VmlldyBOYW1lPSJRdWVyeSI+PEZpZWxkIE5hbWU9ImNfUGVyaW9kaWNpZGFkUGFnbyIgVHlwZT0iVW5rbm93biIgLz48RmllbGQgTmFtZT0iRGVzY3JpcGNpb24iIFR5cGU9IlVua25vd24iIC8+PC9WaWV3PjxWaWV3IE5hbWU9IkJhbmNvcyI+PEZpZWxkIE5hbWU9ImNfQmFuY28iIFR5cGU9IlVua25vd24iIC8+PEZpZWxkIE5hbWU9IkRlc2NyaXBjaW9uIiBUeXBlPSJVbmtub3duIiAvPjwvVmlldz48VmlldyBOYW1lPSJDbGllbnRlc0FzaW1pbGFkb3MiPjxGaWVsZCBOYW1lPSJJRCIgVHlwZT0iVW5rbm93biIgLz48RmllbGQgTmFtZT0iQ0xJRU5URSIgVHlwZT0iVW5rbm93biIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iVGlwb1BhZ28iPjxGaWVsZCBOYW1lPSJWYWx1ZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJEZXNjcmlwY2lvbiIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
   </data>
@@ -132,7 +135,10 @@
   <metadata name="sqlDataSourceEmpl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>492, 17</value>
   </metadata>
-  <data name="customSqlQuery3.Sql" xml:space="preserve">
+  <metadata name="sqlDataSourceEmpl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>492, 17</value>
+  </metadata>
+  <data name="customSqlQuery6.Sql" xml:space="preserve">
     <value>SELECT
                 [idempleado]
                 ,cast([NUM_EMPLEADO] as int) as [NUM_EMPLEADO]
@@ -165,9 +171,6 @@
   <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>817, 17</value>
   </metadata>
-  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkVNUExFQURPUyI+PEZpZWxkIE5hbWU9Ik5VTV9FTVBMRUFETyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJOT01CUkUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iUkZDIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnEditar.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -318,6 +321,12 @@
         KPavBK6af/txIcPkvyrgP4Hay0LYQnaEE48kcHUfDoHHfL34+86nnEUPE/9absb/09RC+KpyYraUBTER
         g8c8x+84Rh3/P5oQ/wKtHXLtkLLsUQAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>817, 17</value>
+  </metadata>
+  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkVNUExFQURPUyI+PEZpZWxkIE5hbWU9Ik5VTV9FTVBMRUFETyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJOT01CUkUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iUkZDIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
   </data>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

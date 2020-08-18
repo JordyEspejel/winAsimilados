@@ -123,6 +123,9 @@
   <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>220, 9</value>
   </metadata>
+  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlVzdWFyaW9zU2lzdGVtYSI+PEZpZWxkIE5hbWU9InVzdWFyaW9Ob21icmUiIFR5cGU9IlVua25vd24iIC8+PC9WaWV3PjxWaWV3IE5hbWU9Ik9wY2lvbmVzIj48RmllbGQgTmFtZT0iVmFsdWUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iT3BjacOzbiIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48VmlldyBOYW1lPSJQZXJpb2RpY2lkYWRQYWdvIj48RmllbGQgTmFtZT0iRGVzY3JpcGNpb24iIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iRW1wcmVzYUNhdGFsb2dvQ0ZESSI+PEZpZWxkIE5hbWU9Ik51bUVtcHJlc2EiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iRGVzY3JpcGNpb24iIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iRW1wcmVzYVBhZ2FBc2ltaWxhZG9zIj48RmllbGQgTmFtZT0iSURFbXByZXNhIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlJhem9uU29jaWFsIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjxWaWV3IE5hbWU9Ik1ldG9kb1BhZ28iPjxGaWVsZCBOYW1lPSJjX01ldG9kb1BhZ28iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iRGVzY3JpcGNpw7NuIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjxWaWV3IE5hbWU9IkZvcm1hUGFnbyI+PEZpZWxkIE5hbWU9ImNfRm9ybWFQYWdvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRlc2NyaXBjacOzbiIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+  </data>
   <metadata name="opcionesBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>634, 48</value>
   </metadata>
@@ -196,11 +199,5 @@
         KPavBK6af/txIcPkvyrgP4Hay0LYQnaEE48kcHUfDoHHfL34+86nnEUPE/9absb/09RC+KpyYraUBTER
         g8c8x+84Rh3/P5oQ/wKtHXLtkLLsUQAAAABJRU5ErkJggg==
 </value>
-  </data>
-  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>220, 9</value>
-  </metadata>
-  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlVzdWFyaW9zU2lzdGVtYSI+PEZpZWxkIE5hbWU9InVzdWFyaW9Ob21icmUiIFR5cGU9IlVua25vd24iIC8+PC9WaWV3PjxWaWV3IE5hbWU9Ik9wY2lvbmVzIj48RmllbGQgTmFtZT0iVmFsdWUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iT3BjacOzbiIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48VmlldyBOYW1lPSJQZXJpb2RpY2lkYWRQYWdvIj48RmllbGQgTmFtZT0iRGVzY3JpcGNpb24iIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iRW1wcmVzYUNhdGFsb2dvQ0ZESSI+PEZpZWxkIE5hbWU9Ik51bUVtcHJlc2EiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iRGVzY3JpcGNpb24iIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iRW1wcmVzYVBhZ2FBc2ltaWxhZG9zIj48RmllbGQgTmFtZT0iSURFbXByZXNhIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlJhem9uU29jaWFsIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjxWaWV3IE5hbWU9Ik1ldG9kb1BhZ28iPjxGaWVsZCBOYW1lPSJjX01ldG9kb1BhZ28iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iRGVzY3JpcGNpw7NuIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjxWaWV3IE5hbWU9IkZvcm1hUGFnbyI+PEZpZWxkIE5hbWU9ImNfRm9ybWFQYWdvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRlc2NyaXBjacOzbiIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
   </data>
 </root>

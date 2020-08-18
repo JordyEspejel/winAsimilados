@@ -29,30 +29,30 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery1 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery1 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column1 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression1 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table1 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column2 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression2 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery2 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column3 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression3 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table2 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column4 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression4 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery2 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery4 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery4 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column8 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression8 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table4 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column9 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression9 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery5 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column10 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression10 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table5 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column11 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression11 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery5 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditarEmpleados));
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery3 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery3 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column5 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression5 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table3 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column6 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression6 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Column column7 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression7 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery6 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery6 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column12 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression12 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table6 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column13 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression13 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Column column14 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression14 = new DevExpress.DataAccess.Sql.ColumnExpression();
             this.queryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sqlDataTipoPeri = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
@@ -103,6 +103,8 @@
             this.layoutControlbtnCancelar = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlbtnAceptar = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.txtCorreoClte = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlCorreoCliente = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.queryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.queryBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -147,6 +149,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnCancelar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnAceptar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCorreoClte.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlCorreoCliente)).BeginInit();
             this.SuspendLayout();
             // 
             // queryBindingSource
@@ -158,43 +162,43 @@
             // 
             this.sqlDataTipoPeri.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataTipoPeri.Name = "sqlDataTipoPeri";
-            customSqlQuery1.Name = "Query";
-            customSqlQuery1.Sql = "select \"PeriodicidadPago\".\"c_PeriodicidadPago\",\r\n       \"PeriodicidadPago\".\"Descr" +
+            customSqlQuery4.Name = "Query";
+            customSqlQuery4.Sql = "select \"PeriodicidadPago\".\"c_PeriodicidadPago\",\r\n       \"PeriodicidadPago\".\"Descr" +
     "ipcion\"\r\n  from \"dbo\".\"PeriodicidadPago\" \"PeriodicidadPago\" ";
-            columnExpression1.ColumnName = "c_Banco";
-            table1.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"134\" />";
-            table1.Name = "Bancos";
-            columnExpression1.Table = table1;
-            column1.Expression = columnExpression1;
-            columnExpression2.ColumnName = "Descripcion";
-            columnExpression2.Table = table1;
-            column2.Expression = columnExpression2;
-            selectQuery1.Columns.Add(column1);
-            selectQuery1.Columns.Add(column2);
-            selectQuery1.Name = "Bancos";
-            selectQuery1.Tables.Add(table1);
-            columnExpression3.ColumnName = "ID";
-            table2.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"666\" />";
-            table2.Name = "ClientesAsimilados";
-            columnExpression3.Table = table2;
-            column3.Expression = columnExpression3;
-            columnExpression4.ColumnName = "CLIENTE";
-            columnExpression4.Table = table2;
-            column4.Expression = columnExpression4;
-            selectQuery2.Columns.Add(column3);
-            selectQuery2.Columns.Add(column4);
-            selectQuery2.FilterString = "[ClientesAsimilados.ID] <> \'E00000\'";
-            selectQuery2.GroupFilterString = "";
-            selectQuery2.Name = "ClientesAsimilados";
-            selectQuery2.Tables.Add(table2);
-            customSqlQuery2.Name = "TipoPago";
-            customSqlQuery2.Sql = "SELECT \'010\' AS [Value], \'Num. Cuenta\' AS [Descripcion]\r\nUNION SELECT \'040\' AS [V" +
+            columnExpression8.ColumnName = "c_Banco";
+            table4.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"134\" />";
+            table4.Name = "Bancos";
+            columnExpression8.Table = table4;
+            column8.Expression = columnExpression8;
+            columnExpression9.ColumnName = "Descripcion";
+            columnExpression9.Table = table4;
+            column9.Expression = columnExpression9;
+            selectQuery4.Columns.Add(column8);
+            selectQuery4.Columns.Add(column9);
+            selectQuery4.Name = "Bancos";
+            selectQuery4.Tables.Add(table4);
+            columnExpression10.ColumnName = "ID";
+            table5.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"666\" />";
+            table5.Name = "ClientesAsimilados";
+            columnExpression10.Table = table5;
+            column10.Expression = columnExpression10;
+            columnExpression11.ColumnName = "CLIENTE";
+            columnExpression11.Table = table5;
+            column11.Expression = columnExpression11;
+            selectQuery5.Columns.Add(column10);
+            selectQuery5.Columns.Add(column11);
+            selectQuery5.FilterString = "[ClientesAsimilados.ID] <> \'E00000\'";
+            selectQuery5.GroupFilterString = "";
+            selectQuery5.Name = "ClientesAsimilados";
+            selectQuery5.Tables.Add(table5);
+            customSqlQuery5.Name = "TipoPago";
+            customSqlQuery5.Sql = "SELECT \'010\' AS [Value], \'Num. Cuenta\' AS [Descripcion]\r\nUNION SELECT \'040\' AS [V" +
     "alue], \'CLABE\' AS [Descripcion]\r\n";
             this.sqlDataTipoPeri.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            customSqlQuery1,
-            selectQuery1,
-            selectQuery2,
-            customSqlQuery2});
+            customSqlQuery4,
+            selectQuery4,
+            selectQuery5,
+            customSqlQuery5});
             this.sqlDataTipoPeri.ResultSchemaSerializable = resources.GetString("sqlDataTipoPeri.ResultSchemaSerializable");
             // 
             // splashScreenManager1
@@ -210,10 +214,10 @@
             // 
             this.sqlDataSourceEmpl.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataSourceEmpl.Name = "sqlDataSourceEmpl";
-            customSqlQuery3.Name = "Query";
-            customSqlQuery3.Sql = resources.GetString("customSqlQuery3.Sql");
+            customSqlQuery6.Name = "Query";
+            customSqlQuery6.Sql = resources.GetString("customSqlQuery6.Sql");
             this.sqlDataSourceEmpl.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            customSqlQuery3});
+            customSqlQuery6});
             this.sqlDataSourceEmpl.ResultSchemaSerializable = resources.GetString("sqlDataSourceEmpl.ResultSchemaSerializable");
             // 
             // layoutControl1
@@ -234,6 +238,7 @@
             this.layoutControl1.Controls.Add(this.btnEditar);
             this.layoutControl1.Controls.Add(this.btnCancelar);
             this.layoutControl1.Controls.Add(this.btnAceptar);
+            this.layoutControl1.Controls.Add(this.txtCorreoClte);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -375,7 +380,7 @@
             // 
             // TxtCuenta
             // 
-            this.TxtCuenta.Location = new System.Drawing.Point(76, 276);
+            this.TxtCuenta.Location = new System.Drawing.Point(76, 300);
             this.TxtCuenta.Name = "TxtCuenta";
             this.TxtCuenta.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCuenta.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -386,7 +391,7 @@
             // 
             // TxtCLABE
             // 
-            this.TxtCLABE.Location = new System.Drawing.Point(437, 276);
+            this.TxtCLABE.Location = new System.Drawing.Point(437, 300);
             this.TxtCLABE.Name = "TxtCLABE";
             this.TxtCLABE.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCLABE.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -397,7 +402,7 @@
             // 
             // lookUpBanco
             // 
-            this.lookUpBanco.Location = new System.Drawing.Point(70, 252);
+            this.lookUpBanco.Location = new System.Drawing.Point(70, 276);
             this.lookUpBanco.Name = "lookUpBanco";
             this.lookUpBanco.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.lookUpBanco.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -411,6 +416,7 @@
             this.lookUpBanco.Size = new System.Drawing.Size(538, 20);
             this.lookUpBanco.StyleController = this.layoutControl1;
             this.lookUpBanco.TabIndex = 15;
+            this.lookUpBanco.EditValueChanged += new System.EventHandler(this.lookUpBanco_EditValueChanged);
             // 
             // bancosBindingSource
             // 
@@ -419,7 +425,7 @@
             // 
             // TxtCVE
             // 
-            this.TxtCVE.Location = new System.Drawing.Point(668, 252);
+            this.TxtCVE.Location = new System.Drawing.Point(668, 276);
             this.TxtCVE.Name = "TxtCVE";
             this.TxtCVE.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCVE.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -452,24 +458,24 @@
             // 
             this.sqlDataSource1.ConnectionName = "Nomina_Empresa19_Connection";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            columnExpression5.ColumnName = "NUM_EMPLEADO";
-            table3.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"571\" />";
-            table3.Name = "EMPLEADOS";
-            columnExpression5.Table = table3;
-            column5.Expression = columnExpression5;
-            columnExpression6.ColumnName = "NOMBRE";
-            columnExpression6.Table = table3;
-            column6.Expression = columnExpression6;
-            columnExpression7.ColumnName = "RFC";
-            columnExpression7.Table = table3;
-            column7.Expression = columnExpression7;
-            selectQuery3.Columns.Add(column5);
-            selectQuery3.Columns.Add(column6);
-            selectQuery3.Columns.Add(column7);
-            selectQuery3.Name = "EMPLEADOS";
-            selectQuery3.Tables.Add(table3);
+            columnExpression12.ColumnName = "NUM_EMPLEADO";
+            table6.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"571\" />";
+            table6.Name = "EMPLEADOS";
+            columnExpression12.Table = table6;
+            column12.Expression = columnExpression12;
+            columnExpression13.ColumnName = "NOMBRE";
+            columnExpression13.Table = table6;
+            column13.Expression = columnExpression13;
+            columnExpression14.ColumnName = "RFC";
+            columnExpression14.Table = table6;
+            column14.Expression = columnExpression14;
+            selectQuery6.Columns.Add(column12);
+            selectQuery6.Columns.Add(column13);
+            selectQuery6.Columns.Add(column14);
+            selectQuery6.Name = "EMPLEADOS";
+            selectQuery6.Tables.Add(table6);
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            selectQuery3});
+            selectQuery6});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // btnEditar
@@ -544,10 +550,11 @@
             this.layoutControlItem12,
             this.layoutControlItem10,
             this.layoutControlItem11,
-            this.layoutControlItem13});
+            this.layoutControlItem13,
+            this.layoutControlCorreoCliente});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 42);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(756, 138);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(756, 162);
             this.layoutControlGroup4.Text = "Datos Generales";
             // 
             // layoutControlItem1
@@ -654,9 +661,9 @@
             this.layoutControlItem8,
             this.layoutControlItem9,
             this.emptySpaceItem1});
-            this.layoutControlGroup5.Location = new System.Drawing.Point(0, 180);
+            this.layoutControlGroup5.Location = new System.Drawing.Point(0, 204);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
-            this.layoutControlGroup5.Size = new System.Drawing.Size(756, 166);
+            this.layoutControlGroup5.Size = new System.Drawing.Size(756, 142);
             this.layoutControlGroup5.Text = "Datos Bancarios";
             // 
             // layoutControlItem6
@@ -712,7 +719,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 48);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(732, 76);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(732, 52);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem5
@@ -761,6 +768,28 @@
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(580, 42);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // txtCorreoClte
+            // 
+            this.txtCorreoClte.Location = new System.Drawing.Point(129, 210);
+            this.txtCorreoClte.Name = "txtCorreoClte";
+            this.txtCorreoClte.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtCorreoClte.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.txtCorreoClte.Properties.ReadOnly = true;
+            this.txtCorreoClte.Size = new System.Drawing.Size(635, 20);
+            this.txtCorreoClte.StyleController = this.layoutControl1;
+            this.txtCorreoClte.TabIndex = 26;
+            // 
+            // layoutControlCorreoCliente
+            // 
+            this.layoutControlCorreoCliente.Control = this.txtCorreoClte;
+            this.layoutControlCorreoCliente.Location = new System.Drawing.Point(0, 96);
+            this.layoutControlCorreoCliente.Name = "layoutControlCorreoCliente";
+            this.layoutControlCorreoCliente.Size = new System.Drawing.Size(732, 24);
+            this.layoutControlCorreoCliente.Text = "Correo Electronico";
+            this.layoutControlCorreoCliente.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlCorreoCliente.TextSize = new System.Drawing.Size(88, 13);
+            this.layoutControlCorreoCliente.TextToControlDistance = 5;
             // 
             // EditarEmpleados
             // 
@@ -822,6 +851,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnCancelar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnAceptar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCorreoClte.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlCorreoCliente)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -877,5 +908,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlbtnCancelar;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlbtnAceptar;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraEditors.TextEdit txtCorreoClte;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlCorreoCliente;
     }
 }

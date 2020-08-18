@@ -199,6 +199,13 @@ namespace winAsimilados.Entities
         public DateTime fecFinPeri { get { return _fecFinPeri; } set { _fecFinPeri = value; } }
         private int _IDLayout;
         public int IDLayout { get { return _IDLayout; } set { _IDLayout = value; } }
+
+        private string _Correo;
+        public string Correo
+        {
+            get { return _Correo; }
+            set { _Correo = value; }
+        }
     }
 }
 

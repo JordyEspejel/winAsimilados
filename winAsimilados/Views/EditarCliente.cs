@@ -110,7 +110,7 @@ namespace winAsimilados.Views
             spinEditComi.EditValue = cliente.PORCENTAJE_COMISIONISTA * 100;
             spinEditComi2.EditValue = cliente.PORCENTAJE_COMISIONISTA2 * 100;
             spinEditComi3.EditValue = cliente.PORCENTAJE_COMISIONISTA3 * 100;
-
+            txtCorreo.Text = cliente.correoCliente;
             if (cliente.EMPRESA_QUE_FACTURA_A_CLIENTE1 != "")
             {
                 chBoxEmpFactura.Checked = true;
@@ -233,7 +233,7 @@ namespace winAsimilados.Views
             spinEditEmpFact2.ReadOnly = false;
             spinEditEmpFact3.ReadOnly = false;
             spinEditEmpFact4.ReadOnly = false;
-
+            txtCorreo.ReadOnly = false;
             lookUpMetodoPago.ReadOnly = false;
             lookUpFormaPago.ReadOnly = false;
         }
@@ -267,7 +267,7 @@ namespace winAsimilados.Views
             spinEditEmpFact2.ReadOnly = true;
             spinEditEmpFact3.ReadOnly = true;
             spinEditEmpFact4.ReadOnly = true;
-
+            txtCorreo.ReadOnly = true;
 
 
             lookUpMetodoPago.ReadOnly = true;
@@ -288,6 +288,15 @@ namespace winAsimilados.Views
         {
             try
             {
+                if (txtCorreo.Text.Equals(""))
+                {
+                    XtraMessageBox.Show("Campo Correo Electronico Requerido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    cliente.correoCliente = txtCorreo.Text;
+                }
                 if (txtNombre.Text.Equals(""))
                 {
                     XtraMessageBox.Show("Campo Nombre Requerido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Information);

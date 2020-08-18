@@ -1549,6 +1549,36 @@ namespace winAsimilados.Views
                 bancos.BringToFront();
             }
         }
+
+        private void accordionControlEmprPagaAsim_Click(object sender, EventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Modulo Empresas Paga Asimilados...");
+            EmpresasPagoAsimilados empresasPago = new EmpresasPagoAsimilados(splashScreenManager1);
+            var frm = Application.OpenForms.OfType<SucursalesBancarias>().FirstOrDefault();
+            if (frm != null)
+            {
+                splashScreenManager1.CloseWaitForm();
+                frm.BringToFront();
+                frm.Location = new Point(270, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    //frm.Size = PanelPrincipal.Size;
+                    frm.BringToFront();
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(270, 60);
+                }
+            }
+            else
+            {
+                empresasPago.Location = new Point(270, 60);
+                //agregarUsuario.Size = PanelPrincipal.Size;
+                empresasPago.Show();
+                empresasPago.BringToFront();
+            }
+        }
     }
 }
 
