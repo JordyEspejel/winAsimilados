@@ -86,6 +86,7 @@ namespace winAsimilados.Views
         string nombreCaratula;
         string idEmpresaCaratula;
         string periPagoLayout;
+        string nombreEmpleado;
         decimal totalPagoAsimilados = 0, otrosConceptos = 0, depositoNeto = 0, aguinaldo = 0, vacaciones = 0, primaVac = 0, descuento = 0;
         //variables pestáña Genlayout
         string nomCaratulaGenLayout, EstatusCaratula, nomGenLayout, IDClienteLayout;
@@ -1888,7 +1889,10 @@ namespace winAsimilados.Views
                 }
                 else
                 {
-                    splashScreenManager1.CloseWaitForm();
+                    if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                    {
+                        splashScreenManager1.CloseWaitForm();
+                    }
                 }
 
             }
@@ -3535,8 +3539,10 @@ namespace winAsimilados.Views
                                 ISRMasiv = Convert.ToDecimal(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[6]));
                                 rfcEmplMasiv = gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[2]).ToString();
                                 netoMasiv = Convert.ToDecimal(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[7]));
+                                nombreEmpleado = gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[1]).ToString();
                                 empleadoMasivo.Add(new E.Empleado
                                 {
+                                    Nombre = nombreEmpleado,
                                     RFC = rfcEmplMasiv,
                                     //IngresosBrutos = ingresosMasiv,
                                     IngresosBrutos = netoMasiv,
@@ -3594,8 +3600,10 @@ namespace winAsimilados.Views
                             ISRMasiv = Convert.ToDecimal(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[6]));
                             rfcEmplMasiv = gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[2]).ToString();
                             netoMasiv = Convert.ToDecimal(gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[7]));
+                            nombreEmpleado = gridViewNomiMasiv.GetRowCellValue(i, gridViewNomiMasiv.Columns[1]).ToString();
                             empleadoMasivo.Add(new E.Empleado
                             {
+                                Nombre = nombreEmpleado,
                                 RFC = rfcEmplMasiv,
                                 //IngresosBrutos = ingresosMasiv,
                                 IngresosBrutos = netoMasiv,

@@ -291,9 +291,10 @@ namespace winAsimilados.Views
                 }
                 else
                 {
-                    splashScreenManager1.ShowWaitForm();
+                   
                     if (XtraMessageBox.Show("¿Desea Agregar la empresa?:\n" + Empresa.empresa.ToString() + "\n\nRFC:" + Empresa.RFC.ToString() + "\n\nFavor de verificar los datos.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                     {
+                        splashScreenManager1.ShowWaitForm();
                         Controlador.CreaBDEmpresa(bd, Empresa, splashScreenManager1, Parametros);
                     }
                 }

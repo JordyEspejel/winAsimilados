@@ -80,7 +80,7 @@ namespace winAsimilados.Views
                     //XtraMessageBox.Show(message);
                     //C.Conexion.PerformConnection().Close();
                     this.Dispose();
-                    V.AsimiladosPrincipal principal = new V.AsimiladosPrincipal();
+                    V.AsimiladosPrincipal principal = new V.AsimiladosPrincipal(Properties.Settings.Default.Tema.ToString());
                     principal.lblEmpresa.Caption = empresa.empresa;
                     principal.lblRFC.Caption = empresa.RFC;
                     //principal.Text = "WinAsimilados - " + empresa.empresa + " - " + empresa.RFC;
@@ -123,11 +123,12 @@ namespace winAsimilados.Views
             if (Controlador.GetAdminUsuario(Properties.Settings.Default.Usuario.ToString().ToUpper(), bd, true).Equals(true))
             {
                 layoutControlOpciones.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                layoutControlbtnAgregaEmpresa.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             }
             else
             {
                 layoutControlOpciones.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-
+                layoutControlbtnAgregaEmpresa.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             }
 
         }

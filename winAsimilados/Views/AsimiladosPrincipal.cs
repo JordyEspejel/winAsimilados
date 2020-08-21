@@ -18,6 +18,7 @@ using DevExpress.XtraWaitForm;
 using System.IO;
 using DevExpress.Persistent.Base;
 using Org.BouncyCastle.Asn1.Cmp;
+using DevExpress.Xpf.Core;
 
 namespace winAsimilados.Views
 {
@@ -38,8 +39,10 @@ namespace winAsimilados.Views
         string idEmpr;
         decimal perDescuento;
         string TipoPago;
-        public AsimiladosPrincipal()
+        string devTema;
+        public AsimiladosPrincipal(string tema)
         {
+            devTema = tema;
             InitializeComponent();
         }
 
@@ -51,6 +54,9 @@ namespace winAsimilados.Views
                 DialogResult result = XtraMessageBox.Show("¿Desea salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
+                    devTema = this.defaultLookAndFeel1.LookAndFeel.SkinName;
+                    Properties.Settings.Default["Tema"] = devTema;
+                    Properties.Settings.Default.Save();
                     this.Dispose();
                     Application.Exit();
                 }
@@ -376,6 +382,8 @@ namespace winAsimilados.Views
 
         private void AsimiladosPrincipal_Load(object sender, EventArgs e)
         {
+            DevExpress.Skins.SkinManager.EnableFormSkins();
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = devTema;
             string bd = C.Conexion.PerformConnection().Database;
             LblUsuario.Caption = Properties.Settings.Default.Usuario.ToString().ToUpper();
 
@@ -384,6 +392,9 @@ namespace winAsimilados.Views
                 //accordionBitacora.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 //accordionControlElement8.Visible = true;
                 accordionControlElement7.Visible = true;
+                accordionControlElement4.Visible = true;
+                accordionBitacora.Visible = true;
+                accordionEditaEmpresa.Visible = true;
             }
         }
 
@@ -1577,6 +1588,20 @@ namespace winAsimilados.Views
                 //agregarUsuario.Size = PanelPrincipal.Size;
                 empresasPago.Show();
                 empresasPago.BringToFront();
+            }
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                string nombreTema = ApplicationThemeHelper.ApplicationThemeName;
+
+                XtraMessageBox.Show(nombreTema);
+            }
+            catch(Exception boton)
+            {
+                XtraMessageBox.Show(boton.Message);
             }
         }
     }

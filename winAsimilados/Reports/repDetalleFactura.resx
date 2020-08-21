@@ -148,7 +148,7 @@
 	  ,a.IVA
 	  ,a.RetencionIVA	
   	  ,r.Detalles as [Observaciones]
-  FROM [Nomina_Empresa19].[dbo].[CaratulaPago] a
+  FROM [dbo].[CaratulaPago] a
   inner join LayoutHistorico b on b.Caratula = a.Caratula
   inner join ResumenLayout r on a.Caratula = r.Caratula</value>
   </data>

@@ -45,6 +45,7 @@
             this.barHeaderItem4 = new DevExpress.XtraBars.BarHeaderItem();
             this.LblUsuario = new DevExpress.XtraBars.BarStaticItem();
             this.bar2 = new DevExpress.XtraBars.Bar();
+            this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -106,6 +107,8 @@
             this.accordionControlElement9 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlEditaUsuario = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.repositoryItemHypertextLabel1 = new DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpleados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -113,6 +116,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnNomi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpresas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).BeginInit();
             this.SuspendLayout();
             // 
             // PopBtnEmpleados
@@ -218,11 +222,13 @@
             this.barHeaderItem3,
             this.barStaticItem1,
             this.barHeaderItem4,
-            this.LblUsuario});
+            this.LblUsuario,
+            this.skinDropDownButtonItem1});
             this.barManager1.MainMenu = this.bar1;
-            this.barManager1.MaxItemId = 44;
+            this.barManager1.MaxItemId = 49;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemTextEdit1});
+            this.repositoryItemTextEdit1,
+            this.repositoryItemHypertextLabel1});
             this.barManager1.ShowFullMenus = true;
             this.barManager1.ShowScreenTipsInMenus = true;
             this.barManager1.StatusBar = this.bar2;
@@ -299,10 +305,17 @@
             this.bar2.DockCol = 0;
             this.bar2.DockRow = 0;
             this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.skinDropDownButtonItem1)});
             this.bar2.OptionsBar.AllowQuickCustomization = false;
             this.bar2.OptionsBar.DrawDragBorder = false;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Personalizada 3";
+            // 
+            // skinDropDownButtonItem1
+            // 
+            this.skinDropDownButtonItem1.Id = 46;
+            this.skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
             // 
             // barDockControlTop
             // 
@@ -316,9 +329,9 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 706);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 702);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1350, 23);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1350, 27);
             // 
             // barDockControlLeft
             // 
@@ -326,7 +339,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 34);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 672);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 668);
             // 
             // barDockControlRight
             // 
@@ -334,7 +347,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1350, 34);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 672);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 668);
             // 
             // barSubItem1
             // 
@@ -510,7 +523,7 @@
             this.PanelPrincipal.Dock = System.Windows.Forms.DockStyle.Right;
             this.PanelPrincipal.Location = new System.Drawing.Point(266, 34);
             this.PanelPrincipal.Name = "PanelPrincipal";
-            this.PanelPrincipal.Size = new System.Drawing.Size(1084, 672);
+            this.PanelPrincipal.Size = new System.Drawing.Size(1084, 668);
             this.PanelPrincipal.TabIndex = 9;
             this.PanelPrincipal.Text = "sidePanel1";
             this.PanelPrincipal.Visible = false;
@@ -531,7 +544,7 @@
             this.accordionControl1.OptionsMinimizing.NormalWidth = 260;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
             this.accordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
-            this.accordionControl1.Size = new System.Drawing.Size(260, 672);
+            this.accordionControl1.Size = new System.Drawing.Size(260, 668);
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.Text = "Menu";
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
@@ -679,6 +692,7 @@
             this.accordionControlElement4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement4.ImageOptions.Image")));
             this.accordionControlElement4.Name = "accordionControlElement4";
             this.accordionControlElement4.Text = "Agregar";
+            this.accordionControlElement4.Visible = false;
             // 
             // accordionAgregarEmpresaUnitario
             // 
@@ -694,6 +708,7 @@
             this.accordionEditaEmpresa.Name = "accordionEditaEmpresa";
             this.accordionEditaEmpresa.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionEditaEmpresa.Text = "Editar";
+            this.accordionEditaEmpresa.Visible = false;
             this.accordionEditaEmpresa.Click += new System.EventHandler(this.accordionEditaEmpresa_Click);
             // 
             // accordionControlEmprPagaAsim
@@ -729,6 +744,7 @@
             this.accordionBitacora.Name = "accordionBitacora";
             this.accordionBitacora.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionBitacora.Text = "Bitacora";
+            this.accordionBitacora.Visible = false;
             this.accordionBitacora.Click += new System.EventHandler(this.accordionBitacora_Click);
             // 
             // accordionCancelarCFDI
@@ -811,6 +827,10 @@
             // 
             this.splashScreenManager1.ClosingDelay = 500;
             // 
+            // repositoryItemHypertextLabel1
+            // 
+            this.repositoryItemHypertextLabel1.Name = "repositoryItemHypertextLabel1";
+            // 
             // AsimiladosPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -838,6 +858,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnNomi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpresas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -920,5 +941,8 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlBanSucursales;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlBanEmpresa;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlEmprPagaAsim;
+        private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
+        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel repositoryItemHypertextLabel1;
     }
 }

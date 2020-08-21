@@ -21,6 +21,7 @@ namespace winAsimilados.Views
         C.Controller Controlador = new C.Controller();
         E.User User = new E.User();
         bool salida;
+        string tema;
 
         public Login()
         {
@@ -101,6 +102,12 @@ namespace winAsimilados.Views
 
         private void Login_Load(object sender, EventArgs e)
         {
+            DevExpress.Skins.SkinManager.EnableFormSkins();
+            tema = Properties.Settings.Default.Tema.ToString();
+            Properties.Settings.Default["Tema"] = tema;
+            Properties.Settings.Default.Save();
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = Properties.Settings.Default.Tema.ToString();
+
             txtUsua.Text = Properties.Settings.Default.Usuario.ToString();
         }
 

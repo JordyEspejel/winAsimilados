@@ -318,6 +318,10 @@ namespace winAsimilados.Views
                     DesactivarCampos();
                 }
             }
+            else
+            {
+                XtraMessageBox.Show("Error al validar campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 

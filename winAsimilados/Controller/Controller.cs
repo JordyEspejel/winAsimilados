@@ -1106,19 +1106,17 @@ namespace winAsimilados.Controller
                             byte[] bKey = File.ReadAllBytes(pathKey);
                             /* servicio de prueba 
                             * ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);                        */
-                            //ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.cancelar("testing@solucionfactible.com", "timbrado.SF.16672", uuid, bCer, bKey,pass);                                                                 //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
-
-                            //ServicioTimbtadoClientPruebas client = new ServicioTimbtadoClientPruebas();
+                            //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
+                            #region cancelacionNTLINK
                             ServicioTimbradoClient clientProduccion = new ServcioTimbradoNTLINK.ServicioTimbradoClient();
                             //client.Open();
                             clientProduccion.Open();
                             int totalTimbres = clientProduccion.ConsultaSaldo("angel@inari.mx", "Inari2020.");
-                            string xmlLINK = @"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?&amp;id=" + item.UUID + "&amp;re="+ rfc + "&amp;rr="+item.RFCEmpl + "&amp;tt=" + Math.Round(item.total,2) + "&amp;fe=" + item.selloCFD;
-
-                            var estatusUUID = clientProduccion.ObtenerStatusUuid("karina@inari.mx", "Inari2020.", item.UUID);
+                            string xmlLINK = @"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?&amp;id=" + item.UUID + "&amp;re=" + rfc + "&amp;rr=" + item.RFCEmpl + "&amp;tt=" + Math.Round(item.total, 2) + "&amp;fe=" + item.selloCFD;
 
                             string UUIDCFDI = item.UUID;
                             string rfcEmpl = item.RFCEmpl;
+                            //var cancelacionpac = clientProduccion.CancelaCfdiOtrosPACs(UUIDCFDI, rfc, xmlLINK, rfcEmpl, pathCer, pathKey, pass);
 
                             var cancelacion = clientProduccion.CancelaCfdi("angel@inari.mx", "Inari2020.", UUIDCFDI, rfc, xmlLINK, rfcEmpl);
                             //var cancelacion = clientProduccion.CancelaCfdi("karina@inari", "Inari2020.", item.UIID,rfc);
@@ -1137,79 +1135,87 @@ namespace winAsimilados.Controller
                             else
                             {
                                 exito++;
+                                var estatusUUID = clientProduccion.ObtenerStatusUuid("karina@inari.mx", "Inari2020.", item.UUID);
+                                ActualizaFolio(bitacora.UUID, estatusUUID.Status.ToString());
+                                InsertaBitacora(bitacora, splashScreenManager);
+                                LogCancelacion(UUIDCFDI, estatusUUID.AcuseCancelacion);
                             }
 
                             //client.Close();
-                            ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.cancelar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", uuid, bCer, bKey, pass);
-                            ServicioTimbradoProduccion.CFDIResultadoCancelacion[] resultados = respuesta.resultados;
-                            if (respuesta.status.Equals(200))
-                            {
-                                if (resultados[0].status.Equals(200))
-                                {
-                                    splashScreenManager.CloseWaitForm();
-                                    if (resultados[0].statusUUID.Equals("202"))
-                                    {
-                                        if (splashScreenManager.IsSplashFormVisible.Equals(true))
-                                        {
-                                            splashScreenManager.CloseWaitForm();
-                                        }
-                                        XtraMessageBox.Show(resultados[0].mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    }
-                                    else if (resultados[0].statusUUID.Equals("211"))
-                                    {
-                                        bitacora.StatusSAT = "En Proceso de Cancelación";
-                                        ActualizaFolio(bitacora.UUID, "En proceso de Cancelación");
-                                        InsertaBitacora(bitacora, splashScreenManager);
-                                        if (splashScreenManager.IsSplashFormVisible.Equals(true))
-                                        {
-                                            splashScreenManager.CloseWaitForm();
-                                        }
-                                        XtraMessageBox.Show(resultados[0].mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    }
-                                    else if (resultados[0].statusUUID.Equals("201"))
-                                    {
-                                        bitacora.StatusSAT = "Cancelado";
-                                        ActualizaFolio(resultados[0].uuid, "Cancelado");
-                                        InsertaBitacora(bitacora, splashScreenManager);
-                                        LogCancelacion(resultados[0].uuid, resultados[0].mensaje);
-                                        if (splashScreenManager.IsSplashFormVisible.Equals(true))
-                                        {
-                                            splashScreenManager.CloseWaitForm();
-                                        }
-                                        XtraMessageBox.Show("¡Folio: " + resultados[0].uuid + " Cancelado con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    }
-                                    else
-                                    {
-                                        if (splashScreenManager.IsSplashFormVisible.Equals(true))
-                                        {
-                                            splashScreenManager.CloseWaitForm();
-                                        }
-                                        XtraMessageBox.Show(resultados[0].mensaje, "Error",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
-                                }
-                                else
-                                {
-                                    if (splashScreenManager.IsSplashFormVisible.Equals(true))
-                                    {
-                                        splashScreenManager.CloseWaitForm();
-                                    }
-                                    XtraMessageBox.Show(resultados[0].mensaje, "Error",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                            }
-                            else
-                            {
-                                if (splashScreenManager.IsSplashFormVisible.Equals(true))
-                                {
-                                    splashScreenManager.CloseWaitForm();
-                                }
-                                //XtraMessageBox.Show(resultados[0].mensaje);
-                                XtraMessageBox.Show(respuesta.mensaje, "Error",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-
+                            #endregion
+                            #region Cancelación Solución
+                            //Pruebas
+                            //ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.cancelar("testing@solucionfactible.com", "timbrado.SF.16672", uuid, bCer, bKey, pass);
+                            ////ServicioTimbradoProduccion.CFDICancelacion respuesta = portTypeClient.cancelar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", uuid, bCer, bKey, pass);
+                            //ServicioTimbradoProduccion.CFDIResultadoCancelacion[] resultados = respuesta.resultados;
+                            //if (respuesta.status.Equals(200))
+                            //{
+                            //    if (resultados[0].status.Equals(200))
+                            //    {
+                            //        splashScreenManager.CloseWaitForm();
+                            //        if (resultados[0].statusUUID.Equals("202"))
+                            //        {
+                            //            if (splashScreenManager.IsSplashFormVisible.Equals(true))
+                            //            {
+                            //                splashScreenManager.CloseWaitForm();
+                            //            }
+                            //            XtraMessageBox.Show(resultados[0].mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //        }
+                            //        else if (resultados[0].statusUUID.Equals("211"))
+                            //        {
+                            //            bitacora.StatusSAT = "En Proceso de Cancelación";
+                            //            ActualizaFolio(bitacora.UUID, "En proceso de Cancelación");
+                            //            InsertaBitacora(bitacora, splashScreenManager);
+                            //            if (splashScreenManager.IsSplashFormVisible.Equals(true))
+                            //            {
+                            //                splashScreenManager.CloseWaitForm();
+                            //            }
+                            //            XtraMessageBox.Show(resultados[0].mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //        }
+                            //        else if (resultados[0].statusUUID.Equals("201"))
+                            //        {
+                            //            bitacora.StatusSAT = "Cancelado";
+                            //            ActualizaFolio(resultados[0].uuid, "Cancelado");
+                            //            InsertaBitacora(bitacora, splashScreenManager);
+                            //            LogCancelacion(resultados[0].uuid, resultados[0].mensaje);
+                            //            if (splashScreenManager.IsSplashFormVisible.Equals(true))
+                            //            {
+                            //                splashScreenManager.CloseWaitForm();
+                            //            }
+                            //            XtraMessageBox.Show("¡Folio: " + resultados[0].uuid + " Cancelado con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //        }
+                            //        else
+                            //        {
+                            //            if (splashScreenManager.IsSplashFormVisible.Equals(true))
+                            //            {
+                            //                splashScreenManager.CloseWaitForm();
+                            //            }
+                            //            XtraMessageBox.Show(resultados[0].mensaje, "Error",
+                            //                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        if (splashScreenManager.IsSplashFormVisible.Equals(true))
+                            //        {
+                            //            splashScreenManager.CloseWaitForm();
+                            //        }
+                            //        XtraMessageBox.Show(resultados[0].mensaje, "Error",
+                            //            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    if (splashScreenManager.IsSplashFormVisible.Equals(true))
+                            //    {
+                            //        splashScreenManager.CloseWaitForm();
+                            //    }
+                            //    //XtraMessageBox.Show(resultados[0].mensaje);
+                            //    XtraMessageBox.Show(respuesta.mensaje, "Error",
+                            //            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //    return;
+                            //}
+                            #endregion
                             if (cont.Equals(list.Count()))
                             {
                                 if (splashScreenManager.IsSplashFormVisible.Equals(true))
@@ -1261,8 +1267,6 @@ namespace winAsimilados.Controller
                                     }
                                     XtraMessageBox.Show("¡UUID cancelados con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
-
-
                             }
                         }
 
@@ -2279,7 +2283,7 @@ namespace winAsimilados.Controller
                         pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_"  + fecPago + @"\");
                     }else if (destino.Equals("Empleado"))
                     {
-                        pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_" + fecPago + @"\");
+                        pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_" + nomiEmpl.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
                     }
 
                     if (!Directory.Exists(pathArchivoXML))
@@ -2493,223 +2497,223 @@ namespace winAsimilados.Controller
                     try
                     {
                         #region TimbradoNTLINK
-                        //// inicia codigo WS NTLINK
-                        ////SERVICIO PRUEBAS
-                        ////ServicioTimbtadoClientPruebas client = new ServicioTimbtadoClientPruebas();
-                        //ServicioTimbradoClient client = new ServicioTimbradoClient();
-                        //client.Open();
-                        //string xmlLINK = Convert.ToString(System.IO.File.ReadAllText(pathArchivoXML));
-                        ////var empersas = client.ObtenerEmpresas("jordyespejel7@gmail.com", "Asimilados2020");
-                        ////var newXML = client.TimbraCfdiQr("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
-                        //var newXML = client.TimbraCfdiQr("angel@inari.mx", "Inari2020.", xmlLINK);
-                        ////string newXML = client.TimbraCfdi("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
+                        // inicia codigo WS NTLINK
+                        //SERVICIO PRUEBAS
+                        //ServicioTimbtadoClientPruebas client = new ServicioTimbtadoClientPruebas();
+                        ServicioTimbradoClient client = new ServicioTimbradoClient();
+                        client.Open();
+                        string xmlLINK = Convert.ToString(System.IO.File.ReadAllText(pathArchivoXML));
+                        //var empersas = client.ObtenerEmpresas("jordyespejel7@gmail.com", "Asimilados2020");
+                        //var newXML = client.TimbraCfdiQr("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
+                        var newXML = client.TimbraCfdiQr("angel@inari.mx", "Inari2020.", xmlLINK);
+                        //string newXML = client.TimbraCfdi("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
 
-                        //client.Close();
+                        client.Close();
 
-                        //if (newXML.Valido.Equals(true))
-                        //{
-                        //    genPDF = true;
-                        //    exito++;
-                        //    string cadena = newXML.CadenaTimbre;
-                        //    string[] arrayCadena;
-                        //    arrayCadena = cadena.Split(Convert.ToChar("|"));
-                        //    //XtraMessageBox.Show(arrayCadena[3]);
-                        //    string UUIDNT = arrayCadena[3];
-                        //    string sello = arrayCadena[6];
-                        //    arrayCadena = sello.Split(Convert.ToChar("/"));
-                        //    string ultDigSello = arrayCadena[6];
-                        //    int tamDig = ultDigSello.Length;
-                        //    ultDigSello = ultDigSello.Substring((tamDig - 8), 8);
-                        //    System.IO.File.Delete(pathArchivoXML);
-                        //    pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
-
-                        //if (destino.Equals("Cliente"))
-                        //{
-                        //  pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_"  + fecPago + @"\");
-                        //}
-                        //else if (destino.Equals("Empleado"))
-                        //{
-                        //    pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE + "_" + fecPago + @"\");
-                        //}
-                        //    nombreArchivo = fecPago + "_" + nomiEmpl.RFC + "_" + nomiEmpl.Nombre;
-                        //    pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo);
-                        //    pathArchivoXMLF = Path.Combine(pathArchivoXML + "_" + UUIDNT);
-                        //    pathArchivoXML = Path.Combine(pathArchivoXML + "_" + UUIDNT + ".xml");
-                        //    byte[] info = Encoding.ASCII.GetBytes(newXML.Cfdi);
-                        //    FileStream fs = new FileStream(path: pathArchivoXML, mode: FileMode.Create);
-                        //    fs.Write(info, 0, info.Length);
-                        //    fs.Close();
-
-                        //    Folio.UUID = UUIDNT;
-                        //    Folio.RutaXML = pathArchivoXML;
-                        //    Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
-                        //    Folio.StatusSAT = "Vigente";
-                        //    Folio.selloCFD = ultDigSello;
-                        //    Bitacora.UUID = UUIDNT;
-                        //    Bitacora.StatusSAT = "Vigente";
-                        //    Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
-                        //    splashScreenManager1.SetWaitFormCaption("Guardando Movimiento..");
-
-                        //    string resultFolio = InsertaFolio(Folio, splashScreenManager1);
-                        //    if (resultFolio != "true")
-                        //    {
-                        //        error++;
-                        //        builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
-                        //        builder.AppendLine();
-                        //        builder.Append("Error al intentar guardar información de timbrado\nUUID detimbre: " + UUIDNT);
-                        //        builder.AppendLine();
-                        //        builder.Append("Error: " + resultFolio);
-                        //        builder.AppendLine();
-                        //        //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en la base de datos.\n");
-                        //    }
-                        //    splashScreenManager1.SetWaitFormCaption("Guardando Historico..");
-                        //    string resultBitacora = InsertaBitacora(Bitacora, splashScreenManager1);
-                        //    if (resultBitacora != "true")
-                        //    {
-                        //        error++;
-                        //        builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
-                        //        builder.AppendLine();
-                        //        builder.Append("Error al intentar guardar información de timbrado en bitacora\nUUID de timbre: " + UUIDNT);
-                        //        builder.AppendLine();
-                        //        builder.Append("Error: " + resultBitacora);
-                        //        builder.AppendLine();
-                        //        //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en bitacora de la base de datos.\n");
-                        //    }
-                        //    estatusLayout = "Timbrado";
-                        //    ActualizaStatusFolio(item.IDLayout, estatusLayout);
-                        //}
-                        //else
-                        //{
-                        //    genPDF = false;
-                        //    error++;
-                        //    builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
-                        //    builder.AppendLine();
-                        //    builder.Append(newXML.DescripcionError);
-                        //    builder.AppendLine();
-                        //    builder.AppendLine();
-                        //    System.IO.File.Delete(pathArchivoXML);
-                        //    if (cont + 1 < Lista.Count())
-                        //    {
-                        //        builder.Append("*************************************************************************************************");
-                        //        builder.AppendLine();
-                        //    }
-                        //    //splashScreenManager1.CloseWaitForm();
-                        //    //XtraMessageBox.Show(cFDIResultados[0].mensaje + "\nEmpleado #: " + nomiEmpl.NumEmpl + " (" + nomiEmpl.Nombre + ")"
-                        //    //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //}
-                        //fin codigo WS NTLINK
-                        #endregion
-                        #region TimbradoSolucion
-                        ServicioTimbradoProduccion.TimbradoPortTypeClient portTypeClient = null;
-                        portTypeClient = (produccion)
-                            ? new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint)
-                            : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint);
-
-                        byte[] bxml = Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(pathArchivoXML));
-                        //servicio de prueba
-                        ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
-
-
-                        //ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", bxml, false);
-                        //splashScreenManager1.SetWaitFormCaption(respuesta.status.ToString());
-                        //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
-                        ServicioTimbradoProduccion.CFDIResultadoCertificacion[] cFDIResultados = respuesta.resultados;
-                        if (respuesta.status.Equals(200))
+                        if (newXML.Valido.Equals(true))
                         {
-                            //XtraMessageBox.Show(cFDIResultados[0].uuid);
-                            //XtraMessageBox.Show(cFDIResultados[0].certificadoSAT);
-                            //XtraMessageBox.Show(cFDIResultados[0].mensaje);
-                            if (cFDIResultados[0].status.Equals(200))
+                            genPDF = true;
+                            exito++;
+                            string cadena = newXML.CadenaTimbre;
+                            string[] arrayCadena;
+                            arrayCadena = cadena.Split(Convert.ToChar("|"));
+                            //XtraMessageBox.Show(arrayCadena[3]);
+                            string UUIDNT = arrayCadena[3];
+                            string sello = arrayCadena[6];
+                            arrayCadena = sello.Split(Convert.ToChar("/"));
+                            string ultDigSello = arrayCadena[6];
+                            int tamDig = ultDigSello.Length;
+                            ultDigSello = ultDigSello.Substring((tamDig - 8), 8);
+                            System.IO.File.Delete(pathArchivoXML);
+                            pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
+
+                            if (destino.Equals("Cliente"))
                             {
-                                genPDF = true;
-                                exito++;
-                                System.IO.File.Delete(pathArchivoXML);
-                                pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
-
-                                if (destino.Equals("Cliente"))
-                                {
-                                    pathArchivoXML = Path.Combine(pathXml +                                     clienteAsimilado.CLIENTE.Replace(" ", string.Empty) +                       "_" +fecPago + @"\");
-                                }
-                                else if (destino.Equals("Empleado"))
-                                {
-                                    pathArchivoXML = Path.Combine(pathXml +                                     clienteAsimilado.CLIENTE.Replace(" ", string.Empty) +"_" + fecPago           + @"\");
-                                }
-                                nombreArchivo = fecPago + "_" + nomiEmpl.RFC + "_" + nomiEmpl.Nombre;
-                                pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo);
-                                pathArchivoXMLF = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid);
-                                pathArchivoXML = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid + ".xml");
-                                byte[] info = cFDIResultados[0].cfdiTimbrado;
-                                FileStream fs = new FileStream(path: pathArchivoXML, mode: FileMode.Create);
-                                fs.Write(info, 0, info.Length);
-                                fs.Close();
-
-                                Folio.UUID = cFDIResultados[0].uuid;
-                                Folio.RutaXML = pathArchivoXML;
-                                Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
-                                Folio.StatusSAT = "Vigente";
-                                Bitacora.UUID = cFDIResultados[0].uuid;
-                                Bitacora.StatusSAT = "Vigente";
-                                Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
-                                splashScreenManager1.SetWaitFormCaption("Guardando Movimiento..");
-                                string resultFolio = InsertaFolio(Folio, splashScreenManager1);
-                                if (resultFolio != "true")
-                                {
-                                    error++;
-                                    builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
-                                    builder.AppendLine();
-                                    builder.Append("Error al intentar guardar información de timbrado\nUUID detimbre: " + cFDIResultados[0].uuid);
-                                    builder.AppendLine();
-                                    builder.Append("Error: " + resultFolio);
-                                    builder.AppendLine();
-                                    //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en la base de datos.\n");
-                                }
-                                splashScreenManager1.SetWaitFormCaption("Guardando Historico..");
-                                string resultBitacora = InsertaBitacora(Bitacora, splashScreenManager1);
-                                if (resultBitacora != "true")
-                                {
-                                    error++;
-                                    builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
-                                    builder.AppendLine();
-                                    builder.Append("Error al intentar guardar información de timbrado en bitacora\nUUID de timbre: " + cFDIResultados[0].uuid);
-                                    builder.AppendLine();
-                                    builder.Append("Error: " + resultBitacora);
-                                    builder.AppendLine();
-                                    //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en bitacora de la base de datos.\n");
-                                }
-                                estatusLayout = "Timbrado";
-                                ActualizaStatusFolio(item.IDLayout, estatusLayout);
+                                pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_" + fecPago + @"\");
                             }
-                            else
+                            else if (destino.Equals("Empleado"))
                             {
-                                genPDF = false;
+                                pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_" + nomiEmpl.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
+                            }
+                            nombreArchivo = fecPago + "_" + nomiEmpl.RFC + "_" + nomiEmpl.Nombre;
+                            pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo);
+                            pathArchivoXMLF = Path.Combine(pathArchivoXML + "_" + UUIDNT);
+                            pathArchivoXML = Path.Combine(pathArchivoXML + "_" + UUIDNT + ".xml");
+                            byte[] info = Encoding.ASCII.GetBytes(newXML.Cfdi);
+                            FileStream fs = new FileStream(path: pathArchivoXML, mode: FileMode.Create);
+                            fs.Write(info, 0, info.Length);
+                            fs.Close();
+
+                            Folio.UUID = UUIDNT;
+                            Folio.RutaXML = pathArchivoXML;
+                            Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
+                            Folio.StatusSAT = "Vigente";
+                            Folio.selloCFD = ultDigSello;
+                            Bitacora.UUID = UUIDNT;
+                            Bitacora.StatusSAT = "Vigente";
+                            Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
+                            splashScreenManager1.SetWaitFormCaption("Guardando Movimiento..");
+
+                            string resultFolio = InsertaFolio(Folio, splashScreenManager1);
+                            if (resultFolio != "true")
+                            {
                                 error++;
                                 builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
                                 builder.AppendLine();
-                                builder.Append(cFDIResultados[0].mensaje);
+                                builder.Append("Error al intentar guardar información de timbrado\nUUID detimbre: " + UUIDNT);
                                 builder.AppendLine();
+                                builder.Append("Error: " + resultFolio);
                                 builder.AppendLine();
-                                System.IO.File.Delete(pathArchivoXML);
-                                if (cont + 1 < Lista.Count())
-                                {
-                                    builder.Append("*************************************************************************************************");
-                                    builder.AppendLine();
-                                }
-                                //splashScreenManager1.CloseWaitForm();
-                                //XtraMessageBox.Show(cFDIResultados[0].mensaje + "\nEmpleado #: " + nomiEmpl.NumEmpl + " (" + nomiEmpl.Nombre + ")"
-                                //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en la base de datos.\n");
                             }
+                            splashScreenManager1.SetWaitFormCaption("Guardando Historico..");
+                            string resultBitacora = InsertaBitacora(Bitacora, splashScreenManager1);
+                            if (resultBitacora != "true")
+                            {
+                                error++;
+                                builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                builder.AppendLine();
+                                builder.Append("Error al intentar guardar información de timbrado en bitacora\nUUID de timbre: " + UUIDNT);
+                                builder.AppendLine();
+                                builder.Append("Error: " + resultBitacora);
+                                builder.AppendLine();
+                                //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en bitacora de la base de datos.\n");
+                            }
+                            estatusLayout = "Timbrado";
+                            ActualizaStatusFolio(item.IDLayout, estatusLayout);
                         }
                         else
                         {
-                            estatusLayout = "Error al timbrar";
-                            ActualizaStatusFolio(item.IDLayout, estatusLayout);
-                            if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                            genPDF = false;
+                            error++;
+                            builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                            builder.AppendLine();
+                            builder.Append(newXML.DescripcionError);
+                            builder.AppendLine();
+                            builder.AppendLine();
+                            System.IO.File.Delete(pathArchivoXML);
+                            if (cont + 1 < Lista.Count())
                             {
-                                splashScreenManager1.CloseWaitForm();
+                                builder.Append("*************************************************************************************************");
+                                builder.AppendLine();
                             }
-                            XtraMessageBox.Show(cFDIResultados[0].mensaje);
-                            return;
+                            //splashScreenManager1.CloseWaitForm();
+                            //XtraMessageBox.Show(cFDIResultados[0].mensaje + "\nEmpleado #: " + nomiEmpl.NumEmpl + " (" + nomiEmpl.Nombre + ")"
+                            //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                        //fin codigo WS NTLINK
+                        #endregion
+                        #region TimbradoSolucion
+                        //ServicioTimbradoProduccion.TimbradoPortTypeClient portTypeClient = null;
+                        //portTypeClient = (produccion)
+                        //    ? new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint)
+                        //    : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint);
+
+                        //byte[] bxml = Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(pathArchivoXML));
+                        ////servicio de prueba
+                        //ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
+
+
+                        ////ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", bxml, false);
+                        ////splashScreenManager1.SetWaitFormCaption(respuesta.status.ToString());
+                        ////splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
+                        //ServicioTimbradoProduccion.CFDIResultadoCertificacion[] cFDIResultados = respuesta.resultados;
+                        //if (respuesta.status.Equals(200))
+                        //{
+                        //    //XtraMessageBox.Show(cFDIResultados[0].uuid);
+                        //    //XtraMessageBox.Show(cFDIResultados[0].certificadoSAT);
+                        //    //XtraMessageBox.Show(cFDIResultados[0].mensaje);
+                        //    if (cFDIResultados[0].status.Equals(200))
+                        //    {
+                        //        genPDF = true;
+                        //        exito++;
+                        //        System.IO.File.Delete(pathArchivoXML);
+                        //        pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
+
+                        //        if (destino.Equals("Cliente"))
+                        //        {
+                        //            pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_" + fecPago + @"\");
+                        //        }
+                        //        else if (destino.Equals("Empleado"))
+                        //        {
+                        //            pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_" + nomiEmpl.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
+                        //        }
+                        //        nombreArchivo = fecPago + "_" + nomiEmpl.RFC + "_" + nomiEmpl.Nombre;
+                        //        pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo);
+                        //        pathArchivoXMLF = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid);
+                        //        pathArchivoXML = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid + ".xml");
+                        //        byte[] info = cFDIResultados[0].cfdiTimbrado;
+                        //        FileStream fs = new FileStream(path: pathArchivoXML, mode: FileMode.Create);
+                        //        fs.Write(info, 0, info.Length);
+                        //        fs.Close();
+
+                        //        Folio.UUID = cFDIResultados[0].uuid;
+                        //        Folio.RutaXML = pathArchivoXML;
+                        //        Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
+                        //        Folio.StatusSAT = "Vigente";
+                        //        Bitacora.UUID = cFDIResultados[0].uuid;
+                        //        Bitacora.StatusSAT = "Vigente";
+                        //        Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
+                        //        splashScreenManager1.SetWaitFormCaption("Guardando Movimiento..");
+                        //        string resultFolio = InsertaFolio(Folio, splashScreenManager1);
+                        //        if (resultFolio != "true")
+                        //        {
+                        //            error++;
+                        //            builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                        //            builder.AppendLine();
+                        //            builder.Append("Error al intentar guardar información de timbrado\nUUID detimbre: " + cFDIResultados[0].uuid);
+                        //            builder.AppendLine();
+                        //            builder.Append("Error: " + resultFolio);
+                        //            builder.AppendLine();
+                        //            //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en la base de datos.\n");
+                        //        }
+                        //        splashScreenManager1.SetWaitFormCaption("Guardando Historico..");
+                        //        string resultBitacora = InsertaBitacora(Bitacora, splashScreenManager1);
+                        //        if (resultBitacora != "true")
+                        //        {
+                        //            error++;
+                        //            builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                        //            builder.AppendLine();
+                        //            builder.Append("Error al intentar guardar información de timbrado en bitacora\nUUID de timbre: " + cFDIResultados[0].uuid);
+                        //            builder.AppendLine();
+                        //            builder.Append("Error: " + resultBitacora);
+                        //            builder.AppendLine();
+                        //            //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en bitacora de la base de datos.\n");
+                        //        }
+                        //        estatusLayout = "Timbrado";
+                        //        ActualizaStatusFolio(item.IDLayout, estatusLayout);
+                        //    }
+                        //    else
+                        //    {
+                        //        genPDF = false;
+                        //        error++;
+                        //        builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                        //        builder.AppendLine();
+                        //        builder.Append(cFDIResultados[0].mensaje);
+                        //        builder.AppendLine();
+                        //        builder.AppendLine();
+                        //        System.IO.File.Delete(pathArchivoXML);
+                        //        if (cont + 1 < Lista.Count())
+                        //        {
+                        //            builder.Append("*************************************************************************************************");
+                        //            builder.AppendLine();
+                        //        }
+                        //        //splashScreenManager1.CloseWaitForm();
+                        //        //XtraMessageBox.Show(cFDIResultados[0].mensaje + "\nEmpleado #: " + nomiEmpl.NumEmpl + " (" + nomiEmpl.Nombre + ")"
+                        //        //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    estatusLayout = "Error al timbrar";
+                        //    ActualizaStatusFolio(item.IDLayout, estatusLayout);
+                        //    if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                        //    {
+                        //        splashScreenManager1.CloseWaitForm();
+                        //    }
+                        //    XtraMessageBox.Show(cFDIResultados[0].mensaje);
+                        //    return;
+                        //}
                         #endregion
                         //XtraMessageBox.Show(cFDIResultados.ToString());
                         //System.IO.File.WriteAllText(pathXml,);
@@ -2759,6 +2763,7 @@ namespace winAsimilados.Controller
                             if (destino.Equals("Empleado"))
                             {
                                 resultCorreo = EnviaFacturaCorreo(nomiEmpl.Correo, archivos, destino);
+                                archivos.Clear();
 
                                 if (resultCorreo != "true")
                                 {
@@ -2849,7 +2854,14 @@ namespace winAsimilados.Controller
                         {
                             splashScreenManager1.CloseWaitForm();
                         }
-                        XtraMessageBox.Show("¡Nóminas generadas con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (destino.Equals("Empleado"))
+                        {
+                            XtraMessageBox.Show("¡Nóminas generadas y correos enviados con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            XtraMessageBox.Show("¡Nóminas generadas con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
             } //termina foreach
@@ -2980,11 +2992,14 @@ namespace winAsimilados.Controller
                     Bitacora.Movimiento = "Timbrado";
 
                     fecPago = Convert.ToDateTime(FecPagoMasiv).ToString("dd-MM-yyyy");
-                    pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
+                    pathArchivoXML = Path.Combine(pathXml+ fecPago + @"\");
                     if (destino.Equals("Cliente"))
                     {
                         pathArchivoXML = Path.Combine(pathXml + fecPago + hora + "_Recibos"  + @"\");
                         pathCorreo = pathArchivoXML;
+                    }else if (destino.Equals("Empleado"))
+                    {
+                        pathArchivoXML = Path.Combine(pathXml + item.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
                     }
 
                     if (!Directory.Exists(pathArchivoXML))
@@ -3197,213 +3212,221 @@ namespace winAsimilados.Controller
                     try
                     {
                         #region TimbradoNTLINK
-                        //// inicia codigo WS NTLINK
-                        ////SERVICIO PRUEBAS
-                        ////ServicioTimbtadoClientPruebas client = new ServicioTimbtadoClientPruebas();
-                        //ServicioTimbradoClient client = new ServicioTimbradoClient();
-                        //client.Open();
-                        //string xmlLINK = Convert.ToString(System.IO.File.ReadAllText(pathArchivoXML));
-                        ////var empersas = client.ObtenerEmpresas("jordyespejel7@gmail.com", "Asimilados2020");
-                        ////var newXML = client.TimbraCfdiQr("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
-                        //var newXML = client.TimbraCfdiQr("angel@inari.mx", "Inari2020.", xmlLINK);
-                        ////string newXML = client.TimbraCfdi("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
+                        // inicia codigo WS NTLINK
+                        //SERVICIO PRUEBAS
+                        //ServicioTimbtadoClientPruebas client = new ServicioTimbtadoClientPruebas();
+                        ServicioTimbradoClient client = new ServicioTimbradoClient();
+                        client.Open();
+                        string xmlLINK = Convert.ToString(System.IO.File.ReadAllText(pathArchivoXML));
+                        //var empersas = client.ObtenerEmpresas("jordyespejel7@gmail.com", "Asimilados2020");
+                        //var newXML = client.TimbraCfdiQr("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
+                        var newXML = client.TimbraCfdiQr("angel@inari.mx", "Inari2020.", xmlLINK);
+                        //string newXML = client.TimbraCfdi("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
 
-                        //client.Close();
+                        client.Close();
 
-                        //if (newXML.Valido.Equals(true))
-                        //{
-                        //    genPDF = true;
-                        //    exito++;
-
-                        //    string cadena = newXML.CadenaTimbre;
-                        //    string[] arrayCadena;
-                        //    arrayCadena = cadena.Split(Convert.ToChar("|"));
-                        //    //XtraMessageBox.Show(arrayCadena[3]);
-                        //    string UUIDNT = arrayCadena[3];
-                        //    string ultDigSello = arrayCadena[6];
-                        //    int tamDig = ultDigSello.Length;
-                        //    ultDigSello = ultDigSello.Substring((tamDig - 8), 8);
-                        //    System.IO.File.Delete(pathArchivoXML);
-                        //    pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
-                        //if (destino.Equals("Cliente"))
-                        //{
-                        //                            pathArchivoXML = pathCorreo;
-                        //}
-                        //    nombreArchivo = fecPago + "_" + nomiEmpl.RFC + "_" + nomiEmpl.Nombre;
-                        //    pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo);
-                        //    pathArchivoXMLF = Path.Combine(pathArchivoXML + "_" + UUIDNT);
-                        //    pathArchivoXML = Path.Combine(pathArchivoXML + "_" + UUIDNT + ".xml");
-                        //    byte[] info = Encoding.ASCII.GetBytes(newXML.Cfdi);
-                        //    FileStream fs = new FileStream(path: pathArchivoXML, mode: FileMode.Create);
-                        //    fs.Write(info, 0, info.Length);
-                        //    fs.Close();
-
-                        //    Folio.UUID = UUIDNT;
-                        //    Folio.RutaXML = pathArchivoXML;
-                        //    Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
-                        //    Folio.StatusSAT = "Vigente";
-                        //    Folio.selloCFD = ultDigSello;
-                        //    Bitacora.UUID = UUIDNT;
-                        //    Bitacora.StatusSAT = "Vigente";
-                        //    Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
-                        //    splashScreenManager1.SetWaitFormCaption("Guardando Movimiento..");
-
-                        //    string resultFolio = InsertaFolio(Folio, splashScreenManager1);
-                        //    if (resultFolio != "true")
-                        //    {
-                        //        error++;
-                        //        builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
-                        //        builder.AppendLine();
-                        //        builder.Append("Error al intentar guardar información de timbrado\nUUID detimbre: " + UUIDNT);
-                        //        builder.AppendLine();
-                        //        builder.Append("Error: " + resultFolio);
-                        //        builder.AppendLine();
-                        //        //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en la base de datos.\n");
-                        //    }
-                        //    splashScreenManager1.SetWaitFormCaption("Guardando Historico..");
-                        //    string resultBitacora = InsertaBitacora(Bitacora, splashScreenManager1);
-                        //    if (resultBitacora != "true")
-                        //    {
-                        //        error++;
-                        //        builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
-                        //        builder.AppendLine();
-                        //        builder.Append("Error al intentar guardar información de timbrado en bitacora\nUUID de timbre: " + UUIDNT);
-                        //        builder.AppendLine();
-                        //        builder.Append("Error: " + resultBitacora);
-                        //        builder.AppendLine();
-                        //        //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en bitacora de la base de datos.\n");
-                        //    }
-                        //    estatusLayout = "Timbrado";
-                        //    ActualizaStatusFolio(item.IDLayout, estatusLayout);
-                        //}
-                        //else
-                        //{
-                        //    genPDF = false;
-                        //    error++;
-                        //    builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
-                        //    builder.AppendLine();
-                        //    builder.Append(newXML.DescripcionError);
-                        //    builder.AppendLine();
-                        //    builder.AppendLine();
-                        //    System.IO.File.Delete(pathArchivoXML);
-                        //    if (cont + 1 < Lista.Count())
-                        //    {
-                        //        builder.Append("*************************************************************************************************");
-                        //        builder.AppendLine();
-                        //    }
-                        //    //splashScreenManager1.CloseWaitForm();
-                        //    //XtraMessageBox.Show(cFDIResultados[0].mensaje + "\nEmpleado #: " + nomiEmpl.NumEmpl + " (" + nomiEmpl.Nombre + ")"
-                        //    //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //}
-                        ////fin codigo WS NTLINK
-                        #endregion
-
-                        #region TimbradoSolucion
-                        ServicioTimbradoProduccion.TimbradoPortTypeClient portTypeClient = null;
-                        portTypeClient = (produccion)
-                            ? new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint)
-                            : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint);
-
-                        byte[] bxml = Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(pathArchivoXML));
-                        //servicio de prueba
-                        ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
-
-
-                        //ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", bxml, false);
-                        //splashScreenManager1.SetWaitFormCaption(respuesta.status.ToString());
-                        //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
-                        ServicioTimbradoProduccion.CFDIResultadoCertificacion[] cFDIResultados = respuesta.resultados;
-                        if (respuesta.status.Equals(200))
+                        if (newXML.Valido.Equals(true))
                         {
-                            //XtraMessageBox.Show(cFDIResultados[0].uuid);
-                            //XtraMessageBox.Show(cFDIResultados[0].certificadoSAT);
-                            //XtraMessageBox.Show(cFDIResultados[0].mensaje);
-                            if (cFDIResultados[0].status.Equals(200))
-                            {
-                                genPDF = true;
-                                exito++;
-                                System.IO.File.Delete(pathArchivoXML);
-                                pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
-                                if (destino.Equals("Cliente"))
-                                {
-                                    pathArchivoXML = pathCorreo;
-                                }
-                                nombreArchivo = fecPago + "_" + nomiEmpl.RFC + "_" + nomiEmpl.Nombre;
-                                pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo);
-                                pathArchivoXMLF = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid);
-                                pathArchivoXML = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid + ".xml");
-                                byte[] info = cFDIResultados[0].cfdiTimbrado;
-                                FileStream fs = new FileStream(path: pathArchivoXML, mode: FileMode.Create);
-                                fs.Write(info, 0, info.Length);
-                                fs.Close();
+                            genPDF = true;
+                            exito++;
 
-                                Folio.UUID = cFDIResultados[0].uuid;
-                                Folio.RutaXML = pathArchivoXML;
-                                Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
-                                Folio.StatusSAT = "Vigente";
-                                Bitacora.UUID = cFDIResultados[0].uuid;
-                                Bitacora.StatusSAT = "Vigente";
-                                Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
-                                splashScreenManager1.SetWaitFormCaption("Guardando Movimiento..");
-                                string resultFolio = InsertaFolio(Folio, splashScreenManager1);
-                                if (resultFolio != "true")
-                                {
-                                    error++;
-                                    builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
-                                    builder.AppendLine();
-                                    builder.Append("Error al intentar guardar información de timbrado\nUUID detimbre: " + cFDIResultados[0].uuid);
-                                    builder.AppendLine();
-                                    builder.Append("Error: " + resultFolio);
-                                    builder.AppendLine();
-                                    //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en la base de datos.\n");
-                                }
-                                splashScreenManager1.SetWaitFormCaption("Guardando Historico..");
-                                string resultBitacora = InsertaBitacora(Bitacora, splashScreenManager1);
-                                if (resultBitacora != "true")
-                                {
-                                    error++;
-                                    builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
-                                    builder.AppendLine();
-                                    builder.Append("Error al intentar guardar información de timbrado en bitacora\nUUID de timbre: " + cFDIResultados[0].uuid);
-                                    builder.AppendLine();
-                                    builder.Append("Error: " + resultBitacora);
-                                    builder.AppendLine();
-                                    //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en bitacora de la base de datos.\n");
-                                }
-                                estatusLayout = "Timbrado";
-                                ActualizaStatusFolio(item.IDLayout, estatusLayout);
-                            }
-                            else
+                            string cadena = newXML.CadenaTimbre;
+                            string[] arrayCadena;
+                            arrayCadena = cadena.Split(Convert.ToChar("|"));
+                            //XtraMessageBox.Show(arrayCadena[3]);
+                            string UUIDNT = arrayCadena[3];
+                            string ultDigSello = arrayCadena[6];
+                            int tamDig = ultDigSello.Length;
+                            ultDigSello = ultDigSello.Substring((tamDig - 8), 8);
+                            System.IO.File.Delete(pathArchivoXML);
+                            pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
+                            if (destino.Equals("Cliente"))
                             {
-                                genPDF = false;
+                                pathArchivoXML = pathCorreo;
+                            }
+                            else if (destino.Equals("Empleado"))
+                            {
+                                pathArchivoXML = Path.Combine(pathXml + item.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
+                            }
+                            nombreArchivo = fecPago + "_" + nomiEmpl.RFC + "_" + nomiEmpl.Nombre;
+                            pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo);
+                            pathArchivoXMLF = Path.Combine(pathArchivoXML + "_" + UUIDNT);
+                            pathArchivoXML = Path.Combine(pathArchivoXML + "_" + UUIDNT + ".xml");
+                            byte[] info = Encoding.ASCII.GetBytes(newXML.Cfdi);
+                            FileStream fs = new FileStream(path: pathArchivoXML, mode: FileMode.Create);
+                            fs.Write(info, 0, info.Length);
+                            fs.Close();
+
+                            Folio.UUID = UUIDNT;
+                            Folio.RutaXML = pathArchivoXML;
+                            Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
+                            Folio.StatusSAT = "Vigente";
+                            Folio.selloCFD = ultDigSello;
+                            Bitacora.UUID = UUIDNT;
+                            Bitacora.StatusSAT = "Vigente";
+                            Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
+                            splashScreenManager1.SetWaitFormCaption("Guardando Movimiento..");
+
+                            string resultFolio = InsertaFolio(Folio, splashScreenManager1);
+                            if (resultFolio != "true")
+                            {
                                 error++;
                                 builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
                                 builder.AppendLine();
-                                builder.Append(cFDIResultados[0].mensaje);
+                                builder.Append("Error al intentar guardar información de timbrado\nUUID detimbre: " + UUIDNT);
                                 builder.AppendLine();
+                                builder.Append("Error: " + resultFolio);
                                 builder.AppendLine();
-                                System.IO.File.Delete(pathArchivoXML);
-                                if (cont + 1 < Lista.Count())
-                                {
-                                    builder.Append("*************************************************************************************************");
-                                    builder.AppendLine();
-                                }
-                                //splashScreenManager1.CloseWaitForm();
-                                //XtraMessageBox.Show(cFDIResultados[0].mensaje + "\nEmpleado #: " + nomiEmpl.NumEmpl + " (" + nomiEmpl.Nombre + ")"
-                                //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en la base de datos.\n");
                             }
+                            splashScreenManager1.SetWaitFormCaption("Guardando Historico..");
+                            string resultBitacora = InsertaBitacora(Bitacora, splashScreenManager1);
+                            if (resultBitacora != "true")
+                            {
+                                error++;
+                                builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                builder.AppendLine();
+                                builder.Append("Error al intentar guardar información de timbrado en bitacora\nUUID de timbre: " + UUIDNT);
+                                builder.AppendLine();
+                                builder.Append("Error: " + resultBitacora);
+                                builder.AppendLine();
+                                //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en bitacora de la base de datos.\n");
+                            }
+                            estatusLayout = "Timbrado";
+                            ActualizaStatusFolio(item.IDLayout, estatusLayout);
                         }
                         else
                         {
-                            estatusLayout = "Error al timbrar";
-                            ActualizaStatusFolio(item.IDLayout, estatusLayout);
-                            if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                            genPDF = false;
+                            error++;
+                            builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                            builder.AppendLine();
+                            builder.Append(newXML.DescripcionError);
+                            builder.AppendLine();
+                            builder.AppendLine();
+                            System.IO.File.Delete(pathArchivoXML);
+                            if (cont + 1 < Lista.Count())
                             {
-                                splashScreenManager1.CloseWaitForm();
+                                builder.Append("*************************************************************************************************");
+                                builder.AppendLine();
                             }
-                            XtraMessageBox.Show(cFDIResultados[0].mensaje);
-                            return;
+                            //splashScreenManager1.CloseWaitForm();
+                            //XtraMessageBox.Show(cFDIResultados[0].mensaje + "\nEmpleado #: " + nomiEmpl.NumEmpl + " (" + nomiEmpl.Nombre + ")"
+                            //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                        //fin codigo WS NTLINK
+                        #endregion
+
+                        #region TimbradoSolucion
+                        //ServicioTimbradoProduccion.TimbradoPortTypeClient portTypeClient = null;
+                        //portTypeClient = (produccion)
+                        //    ? new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint)
+                        //    : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint);
+
+                        //byte[] bxml = Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(pathArchivoXML));
+                        ////servicio de prueba
+                        //ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
+
+
+                        ////ServicioTimbradoProduccion.CFDICertificacion respuesta = portTypeClient.timbrar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", bxml, false);
+                        ////splashScreenManager1.SetWaitFormCaption(respuesta.status.ToString());
+                        ////splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
+                        //ServicioTimbradoProduccion.CFDIResultadoCertificacion[] cFDIResultados = respuesta.resultados;
+                        //if (respuesta.status.Equals(200))
+                        //{
+                        //    //XtraMessageBox.Show(cFDIResultados[0].uuid);
+                        //    //XtraMessageBox.Show(cFDIResultados[0].certificadoSAT);
+                        //    //XtraMessageBox.Show(cFDIResultados[0].mensaje);
+                        //    if (cFDIResultados[0].status.Equals(200))
+                        //    {
+                        //        genPDF = true;
+                        //        exito++;
+                        //        System.IO.File.Delete(pathArchivoXML);
+                        //        pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
+                        //        if (destino.Equals("Cliente"))
+                        //        {
+                        //            pathArchivoXML = pathCorreo;
+                        //        }
+                        //        else if (destino.Equals("Empleado"))
+                        //        {
+                        //            pathArchivoXML = Path.Combine(pathXml + item.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
+                        //        }
+                        //        nombreArchivo = fecPago + "_" + nomiEmpl.RFC + "_" + nomiEmpl.Nombre;
+                        //        pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo);
+                        //        pathArchivoXMLF = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid);
+                        //        pathArchivoXML = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid + ".xml");
+                        //        byte[] info = cFDIResultados[0].cfdiTimbrado;
+                        //        FileStream fs = new FileStream(path: pathArchivoXML, mode: FileMode.Create);
+                        //        fs.Write(info, 0, info.Length);
+                        //        fs.Close();
+
+                        //        Folio.UUID = cFDIResultados[0].uuid;
+                        //        Folio.RutaXML = pathArchivoXML;
+                        //        Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
+                        //        Folio.StatusSAT = "Vigente";
+                        //        Bitacora.UUID = cFDIResultados[0].uuid;
+                        //        Bitacora.StatusSAT = "Vigente";
+                        //        Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
+                        //        splashScreenManager1.SetWaitFormCaption("Guardando Movimiento..");
+                        //        string resultFolio = InsertaFolio(Folio, splashScreenManager1);
+                        //        if (resultFolio != "true")
+                        //        {
+                        //            error++;
+                        //            builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                        //            builder.AppendLine();
+                        //            builder.Append("Error al intentar guardar información de timbrado\nUUID detimbre: " + cFDIResultados[0].uuid);
+                        //            builder.AppendLine();
+                        //            builder.Append("Error: " + resultFolio);
+                        //            builder.AppendLine();
+                        //            //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en la base de datos.\n");
+                        //        }
+                        //        splashScreenManager1.SetWaitFormCaption("Guardando Historico..");
+                        //        string resultBitacora = InsertaBitacora(Bitacora, splashScreenManager1);
+                        //        if (resultBitacora != "true")
+                        //        {
+                        //            error++;
+                        //            builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                        //            builder.AppendLine();
+                        //            builder.Append("Error al intentar guardar información de timbrado en bitacora\nUUID de timbre: " + cFDIResultados[0].uuid);
+                        //            builder.AppendLine();
+                        //            builder.Append("Error: " + resultBitacora);
+                        //            builder.AppendLine();
+                        //            //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en bitacora de la base de datos.\n");
+                        //        }
+                        //        estatusLayout = "Timbrado";
+                        //        ActualizaStatusFolio(item.IDLayout, estatusLayout);
+                        //    }
+                        //    else
+                        //    {
+                        //        genPDF = false;
+                        //        error++;
+                        //        builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                        //        builder.AppendLine();
+                        //        builder.Append(cFDIResultados[0].mensaje);
+                        //        builder.AppendLine();
+                        //        builder.AppendLine();
+                        //        System.IO.File.Delete(pathArchivoXML);
+                        //        if (cont + 1 < Lista.Count())
+                        //        {
+                        //            builder.Append("*************************************************************************************************");
+                        //            builder.AppendLine();
+                        //        }
+                        //        //splashScreenManager1.CloseWaitForm();
+                        //        //XtraMessageBox.Show(cFDIResultados[0].mensaje + "\nEmpleado #: " + nomiEmpl.NumEmpl + " (" + nomiEmpl.Nombre + ")"
+                        //        //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    estatusLayout = "Error al timbrar";
+                        //    ActualizaStatusFolio(item.IDLayout, estatusLayout);
+                        //    if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                        //    {
+                        //        splashScreenManager1.CloseWaitForm();
+                        //    }
+                        //    XtraMessageBox.Show(cFDIResultados[0].mensaje);
+                        //    return;
+                        //}
                         #endregion
                         //XtraMessageBox.Show(cFDIResultados.ToString());
                         //System.IO.File.WriteAllText(pathXml,);
@@ -3452,6 +3475,7 @@ namespace winAsimilados.Controller
                             if (destino.Equals("Empleado"))
                             {
                                 resultCorreo = EnviaFacturaCorreo(nomiEmpl.Correo, archivos, destino);
+                                archivos.Clear();
 
                                 if (resultCorreo != "true")
                                 {
@@ -3593,7 +3617,10 @@ namespace winAsimilados.Controller
                     {
                         if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                         {
-                            splashScreenManager1.CloseWaitForm();
+                            if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                            {
+                                splashScreenManager1.CloseWaitForm();
+                            }
                             XtraMessageBox.Show("¡Correo enviado con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -5238,7 +5265,7 @@ namespace winAsimilados.Controller
                                                "'" + parametros.ARCHIVO_KEY + "'," +
                                                "'" + parametros.ASUNTO_CERTIFICADO + "'," +
                                                "'" + parametros.COLONIA + "'," +
-                                               "'" + parametros.RUTA_ALMACEN_PDF + "'" +
+                                               "'" + parametros.RUTA_ALMACEN_PDF + "'," +
                                                "'" + parametros.cuentaOrigen + "')";
 
                 if (queryInsertEmpr.ExecuteNonQuery().Equals(1))
@@ -5254,7 +5281,7 @@ namespace winAsimilados.Controller
                             if (queryParametros.ExecuteNonQuery().Equals(1))
                             {
                                 splashScreenManager.CloseWaitForm();
-                                XtraMessageBox.Show("¡Empresa Agregada con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                XtraMessageBox.Show("¡Empresa Agregada con Éxito!", "Mensaje",              MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
 
@@ -5267,8 +5294,12 @@ namespace winAsimilados.Controller
             }
             catch (Exception e)
             {
+                if (splashScreenManager.IsSplashFormVisible.Equals(true))
+                {
+                    splashScreenManager.CloseWaitForm();
+                }
                 XtraMessageBox.Show(e.Message + "\nError Controlador:CrearBDEmpresa()" , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                splashScreenManager.CloseWaitForm();
+
             }
         }
         public bool AccedeEmpresa(string Empresa)
@@ -6137,6 +6168,24 @@ namespace winAsimilados.Controller
         {
             try
             {
+                StreamWriter writer = null;
+                StringBuilder builder = null;
+                string url = @"C:\AsimiladosLogs\";
+                string nombreEmpleado = "";
+                int error = 0;
+                if (!Directory.Exists(url))
+                {
+                    Directory.CreateDirectory(url);
+                }
+                string NombreArchivo = "GenLayOut" + "_" + "GuardarMovimiento" + "_" + Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
+                + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
+                + "-" + DateTime.Now.Second.ToString());
+                string path = Path.Combine(url, NombreArchivo + ".txt");
+
+                builder = new StringBuilder();
+                builder.AppendLine();
+                builder.Append("********************************   Erroes Encontrados  ******************************************" + "\r\n");
+                builder.AppendLine();
                 //N.Conexion.PerformConnection().Close();
                 //N.Conexion.PerformConnection().Open();
 
@@ -6146,7 +6195,12 @@ namespace winAsimilados.Controller
                 {
                     try
                     {
-                        splash.SetWaitFormCaption("Guardando Movimientos..");
+                        nombreEmpleado = item.nombreEmpleado;
+                        if (splash.IsSplashFormVisible.Equals(false))
+                        {
+                            splash.ShowWaitForm();
+                        }
+                        splash.SetWaitFormCaption("Guardando Movimientos de\n" + item.nombreEmpleado +"..");
                         queryInsertaLayout.CommandText = @"INSERT INTO [dbo].[LayoutHistorico]
                        ([numEmpl]
                        ,[nombreEmpleado]
@@ -6234,20 +6288,39 @@ namespace winAsimilados.Controller
                       ",'" + item.CLABE + "'" +
                       ",'" + item.bancoEmpresaPago + "'" +
                       "," + item.descuentos + ")";
-
                         queryInsertaLayout.ExecuteNonQuery();
-
 
                     }catch(Exception lista)
                     {
-                        if (splash.IsSplashFormVisible.Equals(true))
+                        error++;
+                        if (error + 1 < listaLayout.Count())
                         {
-                            splash.CloseWaitForm();
+                            builder.Append("*************************************************************************************************");
+                            builder.AppendLine();
                         }
-                        XtraMessageBox.Show(lista.Message + "\nError Controlador: InsertaLayout(foreach())", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        builder.Append("Nombre del empleado:" + nombreEmpleado + "\r\n");
+                        builder.AppendLine();
+                        builder.Append("Error al intentar guardar el movimiento del empleado:" + lista.Message);
+                        builder.AppendLine();
+                        //if (splash.IsSplashFormVisible.Equals(true))
+                        //{
+                        //    splash.CloseWaitForm();
+                        //}
+                        //XtraMessageBox.Show(lista.Message + "\nError Controlador: InsertaLayout(foreach())", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
+                if (error > 0)
+                {
+                    builder.AppendLine();
+                    builder.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
+                    writer = new StreamWriter(path, true);
+                    writer.Write(builder);
+                    writer.Close();
+                    Process proceso = new Process();
+                    proceso.StartInfo.FileName = path;
+                    proceso.Start();
+                }
             }catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaLayout()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -7443,7 +7516,7 @@ namespace winAsimilados.Controller
                   ,[ID]
                   ,[IDCliente]
               FROM [LayoutHistorico]
-              WHERE [estatus] != 'Timbrado'";
+              WHERE [estatus] = 'Pagado'";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryListado;
                 DataSet dataSet = new DataSet();
@@ -7593,7 +7666,7 @@ namespace winAsimilados.Controller
                 ,[FecIni] AS [Fecha Inicio]
                 ,[FecFin] AS [Fecha Final]
                 ,[Empresa] from [FolioXML]
-                where FecFin >= @fechIni and FecFin <= @fechFinal
+                where FecIni >= @fechIni and FecFin <= @fechFinal
                 group by [Folio]
                 ,UUID
 				,[SelloCFD]
