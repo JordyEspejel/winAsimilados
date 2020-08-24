@@ -94,25 +94,25 @@ namespace winAsimilados.Views
                     rsocial = gridViewSucursales.GetRowCellValue(i, gridViewSucursales.Columns[2]).ToString();
                     seleccion = true;
                 }
-                if (seleccion.Equals(false))
-                {
-                    XtraMessageBox.Show("Por favor, seleccione una celda", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    var respuesta2 = XtraMessageBox.Show("¿Desea eliminar el banco " + desc + "?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+            if (seleccion.Equals(false))
+            {
+                XtraMessageBox.Show("Por favor, seleccione una celda", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                var respuesta2 = XtraMessageBox.Show("¿Desea eliminar el banco " + desc + "?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (respuesta2.Equals(DialogResult.Yes))
+                if (respuesta2.Equals(DialogResult.Yes))
+                {
+                    //XtraMessageBox.Show("Entra borrar");
+                    if (controlador.EliminaBanco(cve).Equals(true))
                     {
-                        //XtraMessageBox.Show("Entra borrar");
-                        if (controlador.EliminaBanco(cve).Equals(true))
-                        {
-                            this.LlenaTabla();
-                        }
-                        else
-                        {
-                            XtraMessageBox.Show("¡Error al intentar eliminar banco ligado al cliente!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        this.LlenaTabla();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("¡Error al intentar eliminar banco ligado al cliente!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

@@ -55,7 +55,7 @@ namespace winAsimilados.Controller
                 MailMessage email = new MailMessage();
                 //email.To.Add(new MailAddress("jordyespejel7@gmail.com"));
                 email.To.Add(new MailAddress(correo));
-                email.From = new MailAddress("sistemas@inari.mx");
+                email.From = new MailAddress("rbo.asimilado@gmail.com");
                 email.Subject ="Recibos de nómina asimilados.";
                 email.Body = "Correo enviado desde AppAsimilados, favor de no responder.";
                 email.IsBodyHtml = false;
@@ -65,7 +65,7 @@ namespace winAsimilados.Controller
                 //smtp.Host = "inari.mx";
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential("sistemas@inari.mx", "Inari2020");
+                smtp.Credentials = new NetworkCredential("rbo.asimilado@gmail.com", "4S1m1l4d02020");
 
                 if (destino.Equals("Empleado"))
                 {
@@ -5485,9 +5485,9 @@ namespace winAsimilados.Controller
 
                            
             }catch (Exception e)
-            {
+            //{
                 XtraMessageBox.Show(e.Message + "Error login()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                N.Conexion.PerformConnectionSoprade().Close();
+                //N.Conexion.PerformConnectionSoprade().Close();
                 return false;
             }
         }

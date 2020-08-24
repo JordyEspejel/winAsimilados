@@ -830,7 +830,7 @@
             this.layoutControl3.Controls.Add(this.txtTimbres);
             this.layoutControl3.Controls.Add(this.chBoxCorreoEmpleado2);
             this.layoutControl3.Controls.Add(this.chBoxCorreoClte2);
-            this.layoutControl3.Location = new System.Drawing.Point(24, 46);
+            this.layoutControl3.Location = new System.Drawing.Point(24, -119);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(-8, -8, 1382, 784);
             this.layoutControl3.Root = this.layoutControlGroup28;
@@ -1262,7 +1262,7 @@
             this.layoutControl4.Controls.Add(this.btnVerInfoCaratula);
             this.layoutControl4.Controls.Add(this.gridControlLayout);
             this.layoutControl4.Controls.Add(this.btnAbrirPeriodo);
-            this.layoutControl4.Location = new System.Drawing.Point(24, 46);
+            this.layoutControl4.Location = new System.Drawing.Point(24, -119);
             this.layoutControl4.Name = "layoutControl4";
             this.layoutControl4.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(127, 70, 650, 397);
             this.layoutControl4.Root = this.layoutControlGroup18;
@@ -1873,7 +1873,7 @@
             this.layoutControl2.Controls.Add(this.lookUpTipoPago);
             this.layoutControl2.Controls.Add(this.lookUpFormaPago);
             this.layoutControl2.Controls.Add(this.dateEdit1);
-            this.layoutControl2.Location = new System.Drawing.Point(24, 46);
+            this.layoutControl2.Location = new System.Drawing.Point(24, -119);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(489, 123, 650, 400);
             this.layoutControl2.Root = this.Root;
@@ -2757,7 +2757,7 @@
             // 
             // gridControlNomiMasiv
             // 
-            this.gridControlNomiMasiv.Location = new System.Drawing.Point(48, 299);
+            this.gridControlNomiMasiv.Location = new System.Drawing.Point(48, 134);
             this.gridControlNomiMasiv.MainView = this.gridViewNomiMasiv;
             this.gridControlNomiMasiv.Name = "gridControlNomiMasiv";
             this.gridControlNomiMasiv.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -2908,7 +2908,7 @@
             // 
             // LookUpEmpl
             // 
-            this.LookUpEmpl.Location = new System.Drawing.Point(222, 76);
+            this.LookUpEmpl.Location = new System.Drawing.Point(222, -89);
             this.LookUpEmpl.Name = "LookUpEmpl";
             this.LookUpEmpl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -2934,7 +2934,7 @@
             // BtnSelEmpl
             // 
             this.BtnSelEmpl.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnSelEmpl.ImageOptions.Image")));
-            this.BtnSelEmpl.Location = new System.Drawing.Point(734, 76);
+            this.BtnSelEmpl.Location = new System.Drawing.Point(734, -89);
             this.BtnSelEmpl.Name = "BtnSelEmpl";
             this.BtnSelEmpl.Size = new System.Drawing.Size(197, 38);
             this.BtnSelEmpl.StyleController = this.layoutControl1;
@@ -2944,7 +2944,7 @@
             // 
             // TxtNumEmpl
             // 
-            this.TxtNumEmpl.Location = new System.Drawing.Point(234, 170);
+            this.TxtNumEmpl.Location = new System.Drawing.Point(234, 5);
             this.TxtNumEmpl.Name = "TxtNumEmpl";
             this.TxtNumEmpl.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtNumEmpl.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -2955,7 +2955,7 @@
             // 
             // TxtRFC
             // 
-            this.TxtRFC.Location = new System.Drawing.Point(234, 194);
+            this.TxtRFC.Location = new System.Drawing.Point(234, 29);
             this.TxtRFC.Name = "TxtRFC";
             this.TxtRFC.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtRFC.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -2966,7 +2966,7 @@
             // 
             // TxtCurp
             // 
-            this.TxtCurp.Location = new System.Drawing.Point(654, 194);
+            this.TxtCurp.Location = new System.Drawing.Point(654, 29);
             this.TxtCurp.Name = "TxtCurp";
             this.TxtCurp.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCurp.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -2978,7 +2978,7 @@
             // TxtIngresos
             // 
             this.TxtIngresos.EditValue = "$0";
-            this.TxtIngresos.Location = new System.Drawing.Point(234, 260);
+            this.TxtIngresos.Location = new System.Drawing.Point(234, 95);
             this.TxtIngresos.Name = "TxtIngresos";
             this.TxtIngresos.Properties.Mask.BeepOnError = true;
             this.TxtIngresos.Properties.Mask.EditMask = "c2";
@@ -2991,7 +2991,7 @@
             // 
             // ChBruto
             // 
-            this.ChBruto.Location = new System.Drawing.Point(450, 260);
+            this.ChBruto.Location = new System.Drawing.Point(450, 95);
             this.ChBruto.Name = "ChBruto";
             this.ChBruto.Properties.Caption = "Ingresos Brutos";
             this.ChBruto.Size = new System.Drawing.Size(162, 19);
@@ -3001,7 +3001,7 @@
             // 
             // ChNeto
             // 
-            this.ChNeto.Location = new System.Drawing.Point(616, 260);
+            this.ChNeto.Location = new System.Drawing.Point(616, 95);
             this.ChNeto.Name = "ChNeto";
             this.ChNeto.Properties.Caption = "Ingresos Netos";
             this.ChNeto.Size = new System.Drawing.Size(303, 19);
@@ -3012,7 +3012,7 @@
             // TxtIngBru
             // 
             this.TxtIngBru.EditValue = "0";
-            this.TxtIngBru.Location = new System.Drawing.Point(507, 460);
+            this.TxtIngBru.Location = new System.Drawing.Point(507, 295);
             this.TxtIngBru.Name = "TxtIngBru";
             this.TxtIngBru.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtIngBru.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3029,7 +3029,7 @@
             // TxtLimInf
             // 
             this.TxtLimInf.EditValue = "0";
-            this.TxtLimInf.Location = new System.Drawing.Point(507, 484);
+            this.TxtLimInf.Location = new System.Drawing.Point(507, 319);
             this.TxtLimInf.Name = "TxtLimInf";
             this.TxtLimInf.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtLimInf.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3044,7 +3044,7 @@
             // TxtExcLimInf
             // 
             this.TxtExcLimInf.EditValue = "0";
-            this.TxtExcLimInf.Location = new System.Drawing.Point(507, 508);
+            this.TxtExcLimInf.Location = new System.Drawing.Point(507, 343);
             this.TxtExcLimInf.Name = "TxtExcLimInf";
             this.TxtExcLimInf.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtExcLimInf.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3060,7 +3060,7 @@
             // TxtPorExcLimInf
             // 
             this.TxtPorExcLimInf.EditValue = "0";
-            this.TxtPorExcLimInf.Location = new System.Drawing.Point(507, 532);
+            this.TxtPorExcLimInf.Location = new System.Drawing.Point(507, 367);
             this.TxtPorExcLimInf.Name = "TxtPorExcLimInf";
             this.TxtPorExcLimInf.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtPorExcLimInf.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3075,7 +3075,7 @@
             // TxtCF
             // 
             this.TxtCF.EditValue = "0";
-            this.TxtCF.Location = new System.Drawing.Point(507, 580);
+            this.TxtCF.Location = new System.Drawing.Point(507, 415);
             this.TxtCF.Name = "TxtCF";
             this.TxtCF.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCF.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3090,7 +3090,7 @@
             // TxtISR
             // 
             this.TxtISR.EditValue = "0";
-            this.TxtISR.Location = new System.Drawing.Point(507, 604);
+            this.TxtISR.Location = new System.Drawing.Point(507, 439);
             this.TxtISR.Name = "TxtISR";
             this.TxtISR.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtISR.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3105,7 +3105,7 @@
             // TxtSubEmpl
             // 
             this.TxtSubEmpl.EditValue = "0";
-            this.TxtSubEmpl.Location = new System.Drawing.Point(507, 628);
+            this.TxtSubEmpl.Location = new System.Drawing.Point(507, 463);
             this.TxtSubEmpl.Name = "TxtSubEmpl";
             this.TxtSubEmpl.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtSubEmpl.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3120,7 +3120,7 @@
             // TxtIngNet
             // 
             this.TxtIngNet.EditValue = "0";
-            this.TxtIngNet.Location = new System.Drawing.Point(507, 652);
+            this.TxtIngNet.Location = new System.Drawing.Point(507, 487);
             this.TxtIngNet.Name = "TxtIngNet";
             this.TxtIngNet.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtIngNet.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3135,7 +3135,7 @@
             // TxtImpMar
             // 
             this.TxtImpMar.EditValue = "0";
-            this.TxtImpMar.Location = new System.Drawing.Point(507, 556);
+            this.TxtImpMar.Location = new System.Drawing.Point(507, 391);
             this.TxtImpMar.Name = "TxtImpMar";
             this.TxtImpMar.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtImpMar.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3149,7 +3149,7 @@
             // 
             // TxtPeriPago
             // 
-            this.TxtPeriPago.Location = new System.Drawing.Point(654, 170);
+            this.TxtPeriPago.Location = new System.Drawing.Point(654, 5);
             this.TxtPeriPago.Name = "TxtPeriPago";
             this.TxtPeriPago.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtPeriPago.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3171,7 +3171,7 @@
             // 
             // ChCambioPeri
             // 
-            this.ChCambioPeri.Location = new System.Drawing.Point(553, 76);
+            this.ChCambioPeri.Location = new System.Drawing.Point(553, -89);
             this.ChCambioPeri.Name = "ChCambioPeri";
             this.ChCambioPeri.Properties.Caption = "Cambiar Periodicidad";
             this.ChCambioPeri.Size = new System.Drawing.Size(177, 19);
@@ -3182,7 +3182,7 @@
             // BtnGenNom
             // 
             this.BtnGenNom.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnGenNom.ImageOptions.Image")));
-            this.BtnGenNom.Location = new System.Drawing.Point(800, 700);
+            this.BtnGenNom.Location = new System.Drawing.Point(800, 535);
             this.BtnGenNom.Name = "BtnGenNom";
             this.BtnGenNom.Size = new System.Drawing.Size(131, 38);
             this.BtnGenNom.StyleController = this.layoutControl1;
@@ -3193,7 +3193,7 @@
             // FecPagoUni
             // 
             this.FecPagoUni.EditValue = null;
-            this.FecPagoUni.Location = new System.Drawing.Point(246, 348);
+            this.FecPagoUni.Location = new System.Drawing.Point(246, 183);
             this.FecPagoUni.Name = "FecPagoUni";
             this.FecPagoUni.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3207,7 +3207,7 @@
             // FecPagoMasiv
             // 
             this.FecPagoMasiv.EditValue = null;
-            this.FecPagoMasiv.Location = new System.Drawing.Point(234, 128);
+            this.FecPagoMasiv.Location = new System.Drawing.Point(234, -37);
             this.FecPagoMasiv.Name = "FecPagoMasiv";
             this.FecPagoMasiv.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3221,7 +3221,7 @@
             // FecIniPeriMasiv
             // 
             this.FecIniPeriMasiv.EditValue = null;
-            this.FecIniPeriMasiv.Location = new System.Drawing.Point(234, 152);
+            this.FecIniPeriMasiv.Location = new System.Drawing.Point(234, -13);
             this.FecIniPeriMasiv.Name = "FecIniPeriMasiv";
             this.FecIniPeriMasiv.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3234,7 +3234,7 @@
             // FecFinPeriMasiv
             // 
             this.FecFinPeriMasiv.EditValue = null;
-            this.FecFinPeriMasiv.Location = new System.Drawing.Point(639, 152);
+            this.FecFinPeriMasiv.Location = new System.Drawing.Point(639, -13);
             this.FecFinPeriMasiv.Name = "FecFinPeriMasiv";
             this.FecFinPeriMasiv.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3247,7 +3247,7 @@
             // FecIniPeriUni
             // 
             this.FecIniPeriUni.EditValue = null;
-            this.FecIniPeriUni.Location = new System.Drawing.Point(246, 372);
+            this.FecIniPeriUni.Location = new System.Drawing.Point(246, 207);
             this.FecIniPeriUni.Name = "FecIniPeriUni";
             this.FecIniPeriUni.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3260,7 +3260,7 @@
             // FecFinPeriUni
             // 
             this.FecFinPeriUni.EditValue = null;
-            this.FecFinPeriUni.Location = new System.Drawing.Point(681, 372);
+            this.FecFinPeriUni.Location = new System.Drawing.Point(681, 207);
             this.FecFinPeriUni.Name = "FecFinPeriUni";
             this.FecFinPeriUni.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3273,7 +3273,7 @@
             // BtnNomiMasiv
             // 
             this.BtnNomiMasiv.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnNomiMasiv.ImageOptions.Image")));
-            this.BtnNomiMasiv.Location = new System.Drawing.Point(798, 688);
+            this.BtnNomiMasiv.Location = new System.Drawing.Point(798, 523);
             this.BtnNomiMasiv.Name = "BtnNomiMasiv";
             this.BtnNomiMasiv.Size = new System.Drawing.Size(121, 38);
             this.BtnNomiMasiv.StyleController = this.layoutControl1;
@@ -3284,7 +3284,7 @@
             // BtnValidarInfo
             // 
             this.BtnValidarInfo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnValidarInfo.ImageOptions.Image")));
-            this.BtnValidarInfo.Location = new System.Drawing.Point(648, 700);
+            this.BtnValidarInfo.Location = new System.Drawing.Point(648, 535);
             this.BtnValidarInfo.Name = "BtnValidarInfo";
             this.BtnValidarInfo.Size = new System.Drawing.Size(148, 38);
             this.BtnValidarInfo.StyleController = this.layoutControl1;
@@ -3295,7 +3295,7 @@
             // BtnValidaInfoMasiv
             // 
             this.BtnValidaInfoMasiv.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnValidaInfoMasiv.ImageOptions.Image")));
-            this.BtnValidaInfoMasiv.Location = new System.Drawing.Point(658, 688);
+            this.BtnValidaInfoMasiv.Location = new System.Drawing.Point(658, 523);
             this.BtnValidaInfoMasiv.Name = "BtnValidaInfoMasiv";
             this.BtnValidaInfoMasiv.Size = new System.Drawing.Size(136, 38);
             this.BtnValidaInfoMasiv.StyleController = this.layoutControl1;
@@ -3306,7 +3306,7 @@
             // BtnMasivIngresos
             // 
             this.BtnMasivIngresos.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnMasivIngresos.ImageOptions.Image")));
-            this.BtnMasivIngresos.Location = new System.Drawing.Point(48, 240);
+            this.BtnMasivIngresos.Location = new System.Drawing.Point(48, 75);
             this.BtnMasivIngresos.Name = "BtnMasivIngresos";
             this.BtnMasivIngresos.Size = new System.Drawing.Size(122, 38);
             this.BtnMasivIngresos.StyleController = this.layoutControl1;
@@ -3316,7 +3316,7 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(578, 688);
+            this.simpleButton1.Location = new System.Drawing.Point(578, 523);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(76, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
@@ -3326,7 +3326,7 @@
             // 
             // txtTimbresMasiv
             // 
-            this.txtTimbresMasiv.Location = new System.Drawing.Point(272, 240);
+            this.txtTimbresMasiv.Location = new System.Drawing.Point(272, 75);
             this.txtTimbresMasiv.Name = "txtTimbresMasiv";
             this.txtTimbresMasiv.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.txtTimbresMasiv.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3337,7 +3337,7 @@
             // 
             // chBoxCorreoEmpleado
             // 
-            this.chBoxCorreoEmpleado.Location = new System.Drawing.Point(521, 240);
+            this.chBoxCorreoEmpleado.Location = new System.Drawing.Point(521, 75);
             this.chBoxCorreoEmpleado.Name = "chBoxCorreoEmpleado";
             this.chBoxCorreoEmpleado.Properties.Caption = "Enviar correo por Empleado";
             this.chBoxCorreoEmpleado.Size = new System.Drawing.Size(398, 19);
@@ -3347,7 +3347,7 @@
             // 
             // chBoxClte
             // 
-            this.chBoxClte.Location = new System.Drawing.Point(521, 264);
+            this.chBoxClte.Location = new System.Drawing.Point(521, 99);
             this.chBoxClte.Name = "chBoxClte";
             this.chBoxClte.Properties.Caption = "Enviar correo a Cliente";
             this.chBoxClte.Size = new System.Drawing.Size(398, 19);
@@ -3357,7 +3357,7 @@
             // 
             // txtCorreoClte
             // 
-            this.txtCorreoClte.Location = new System.Drawing.Point(248, 264);
+            this.txtCorreoClte.Location = new System.Drawing.Point(248, 99);
             this.txtCorreoClte.Name = "txtCorreoClte";
             this.txtCorreoClte.Size = new System.Drawing.Size(269, 20);
             this.txtCorreoClte.StyleController = this.layoutControl1;
@@ -4132,7 +4132,7 @@
             // 
             // sqlDataSource2
             // 
-            this.sqlDataSource2.ConnectionName = "TableLayoutConnection";
+            this.sqlDataSource2.ConnectionName = "Nomina_Empresa19_Connection";
             this.sqlDataSource2.Name = "sqlDataSource2";
             columnExpression5.ColumnName = "ID";
             table3.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"856\" />";
