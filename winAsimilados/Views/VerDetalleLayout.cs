@@ -119,6 +119,8 @@ namespace winAsimilados.Views
             }
             txtRetIVALayout.Text = caratula.RetencionIVA.ToString();
             txtTotalLayout.Text = caratula.TotalFactura.ToString();
+
+            txtSubLayout.Text = (Math.Round(caratula.ImpNomi + caratula.ComisionServicio,2)).ToString();
         }
 
         private void PutDataGral()

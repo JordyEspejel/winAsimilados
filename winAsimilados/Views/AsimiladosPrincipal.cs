@@ -40,6 +40,7 @@ namespace winAsimilados.Views
         decimal perDescuento;
         string TipoPago;
         string devTema;
+        string correo;
         public AsimiladosPrincipal(string tema)
         {
             devTema = tema;
@@ -391,10 +392,12 @@ namespace winAsimilados.Views
             {
                 //accordionBitacora.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 //accordionControlElement8.Visible = true;
+                accordionControlEmpresas.Visible = true;
                 accordionControlElement7.Visible = true;
                 accordionControlElement4.Visible = true;
                 accordionBitacora.Visible = true;
                 accordionEditaEmpresa.Visible = true;
+                accordionControlPACSTimbrado.Visible = true;
             }
         }
 
@@ -512,7 +515,7 @@ namespace winAsimilados.Views
         {
             E.Empleado empl = new E.Empleado();
             C.Controller Controlador = new C.Controller();
-            OpenFileDialog dialog = new OpenFileDialog();
+            XtraOpenFileDialog dialog = new XtraOpenFileDialog();
             dialog.Filter = "Archivos de Excel (*.xls;*.xlsx)|*.xls;*.xlsx"; //le indicamos el tipo de filtro en este caso que busque
                                                                              //solo los archivos excel
 
@@ -1143,7 +1146,7 @@ namespace winAsimilados.Views
 
                 E.ClienteAsimilado cliente = new E.ClienteAsimilado();
                 C.Controller Controlador = new C.Controller();
-                OpenFileDialog dialog = new OpenFileDialog();
+                XtraOpenFileDialog dialog = new XtraOpenFileDialog();
                 dialog.Filter = "Archivos de Excel (*.xls;*.xlsx)|*.xls;*.xlsx"; //le indicamos el tipo de filtro en este caso que busque
                                                                                  //solo los archivos excel
 
@@ -1215,11 +1218,11 @@ namespace winAsimilados.Views
                         }
                         try
                         {
-                            cliente.FECHA_ALTA_PRIMER_PAGO = Convert.ToDateTime((range.Cells[rCnt, "B"] as Excel.Range).Value2.ToString());
+                            cliente.FECHA_ALTA_PRIMER_PAGO = Convert.ToDateTime(range.Cells[rCnt, "B"].Value2.ToString("yyyy-MM-dd"));
                         }
                         catch
                         {
-                            cliente.FECHA_ALTA_PRIMER_PAGO = Convert.ToDateTime("");
+                            cliente.FECHA_ALTA_PRIMER_PAGO = Convert.ToDateTime("1900/01/01");
                         }
                         try
                         {
@@ -1255,7 +1258,7 @@ namespace winAsimilados.Views
                         }
                         try
                         {
-                            cliente.COMISIONISTA = (range.Cells[rCnt, "G"] as Excel.Range).Value2.ToString();
+                            cliente.COMISIONISTA3 = (range.Cells[rCnt, "G"] as Excel.Range).Value2.ToString();
                         }
                         catch
                         {
@@ -1436,6 +1439,15 @@ namespace winAsimilados.Views
                         {
                             cliente.Forma_Pago = "";
                         }
+                        try
+                        {
+                            cliente.correoCliente = (range.Cells[rCnt, "AD"] as Excel.Range).Value2.ToString();
+                        }
+                        catch
+                        {
+                            cliente.correoCliente = "";
+                        }
+                    
 
                         clientes.Add(new E.ClienteAsimilado
                         {
@@ -1468,7 +1480,8 @@ namespace winAsimilados.Views
                             PORCENTAJE_FACTURA4 = cliente.PORCENTAJE_FACTURA4,
                             Metodo_Pago = cliente.Metodo_Pago,
                             Observaciones = cliente.Observaciones,
-                            Forma_Pago = cliente.Forma_Pago
+                            Forma_Pago = cliente.Forma_Pago,
+                            correoCliente = cliente.correoCliente
                         });
                     }
                     string nombreArchivo = xlWorkBook.Name;
@@ -1602,6 +1615,35 @@ namespace winAsimilados.Views
             catch(Exception boton)
             {
                 XtraMessageBox.Show(boton.Message);
+            }
+        }
+
+        private void accordionControlPACSTimbrado_Click(object sender, EventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Modulo PACS de Timbrado...");
+            PacsTimbrado pacsTimbrado = new PacsTimbrado(splashScreenManager1);
+            var frm = Application.OpenForms.OfType<SucursalesBancarias>().FirstOrDefault();
+            if (frm != null)
+            {
+                splashScreenManager1.CloseWaitForm();
+                frm.BringToFront();
+                frm.Location = new Point(270, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    //frm.Size = PanelPrincipal.Size;
+                    frm.BringToFront();
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(270, 60);
+                }
+            }
+            else
+            {
+                pacsTimbrado.Location = new Point(270, 60);
+                //agregarUsuario.Size = PanelPrincipal.Size;
+                pacsTimbrado.Show();
             }
         }
     }

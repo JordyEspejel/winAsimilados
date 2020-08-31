@@ -46,5 +46,29 @@ namespace winAsimilados.Properties {
                 this["Tema"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PAC {
+            get {
+                return ((string)(this["PAC"]));
+            }
+            set {
+                this["PAC"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Ambiente {
+            get {
+                return ((string)(this["Ambiente"]));
+            }
+            set {
+                this["Ambiente"] = value;
+            }
+        }
     }
 }

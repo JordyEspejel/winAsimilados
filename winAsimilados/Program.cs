@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using V = winAsimilados.Views;
 using C = winAsimilados.Controller;
-
+using DevExpress.XtraEditors;
 
 namespace winAsimilados
 {

@@ -1280,12 +1280,14 @@
             // 
             // layoutControlGroup9
             // 
+            this.layoutControlGroup9.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup9.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem10,
             this.layoutControlItem12});
             this.layoutControlGroup9.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup9.Name = "layoutControlGroup9";
             this.layoutControlGroup9.Size = new System.Drawing.Size(884, 114);
+            this.layoutControlGroup9.Text = "Información layout";
             // 
             // layoutControlItem10
             // 

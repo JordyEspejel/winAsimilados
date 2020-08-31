@@ -28,6 +28,7 @@ namespace winAsimilados.Views
         string ip = Dns.GetHostEntry(Dns.GetHostName()).AddressList.Where(ip => ip.AddressFamily.ToString().ToUpper().Equals("INTERNETWORK")).FirstOrDefault().ToString();
         string RFCEmpr, Empr;
         decimal total;
+        string pacTimbrado, ambiente;
         C.Controller Controlador = new C.Controller();
         public CancelarCFDI(string RFC, string Empresa)
         {
@@ -38,6 +39,8 @@ namespace winAsimilados.Views
 
         private void CancelarCFDI_Load(object sender, EventArgs e)
         {
+            pacTimbrado = Properties.Settings.Default.PAC.ToString();
+            ambiente = Properties.Settings.Default.Ambiente.ToString();
             RefrescaTabla();
         }
 
@@ -60,6 +63,13 @@ namespace winAsimilados.Views
         {
             try
             {
+
+                if (pacTimbrado.Equals("NT") && ambiente.Equals("Pruebas"))
+                {
+                    XtraMessageBox.Show("Cancelacíón NT-LINK en ambiente de pruebas no sportado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 var UUID = new List<E.CancelarUUID>();
                 E.CancelarUUID[] uid = null;
                 for (int i = 0; i < gridView1.RowCount; i++)
@@ -93,7 +103,7 @@ namespace winAsimilados.Views
 
                 }
                 //Controlador.Generar12(UUID, splashScreenManager1);
-                Controlador.CancelarCFDI(UUID, splashScreenManager1, RFCEmpr);
+                Controlador.CancelarCFDI(UUID, splashScreenManager1, RFCEmpr,pacTimbrado, ambiente);
                 RefrescaTabla();
             }
             catch (Exception btn)

@@ -183,12 +183,16 @@ namespace winAsimilados.Views
             if (cuenta.Equals(""))
             {
                 XtraMessageBox.Show("El campo cuenta no puede estar vacio.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }else if (cuenta.Length < 10)
+            } else if (cuenta.Length < 10)
             {
                 XtraMessageBox.Show("Cuenta no cumple con el formato correcto, debe contener al menos 10 digitos.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }else if (cuenta.Length > 10)
+            } else if (cuenta.Length > 10)
             {
                 XtraMessageBox.Show("Cuenta no cumple con el formato correcto, debe contener máximo 10 dígitos.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (cuenta.Equals("0"))
+            {
+                empleado.cuenta = cuenta;
             }
             else
             {
@@ -205,7 +209,10 @@ namespace winAsimilados.Views
             {
                 XtraMessageBox.Show("CLABE no cumple con el formato correcto, debe contener máximo 18 dígitos.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
+            else if (clabe.Equals("0"))
+            {
+                empleado.clabe_bancaria = clabe;
+            }
             {
                 empleado.clabe_bancaria = clabe;
             }

@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery1 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column1 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression1 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table1 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column2 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression2 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Group group1 = new DevExpress.DataAccess.Sql.Group();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression3 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Group group2 = new DevExpress.DataAccess.Sql.Group();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression4 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery2 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column3 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression5 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table2 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column4 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression6 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery9 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column17 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression25 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table9 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column18 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression26 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Group group9 = new DevExpress.DataAccess.Sql.Group();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression27 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Group group10 = new DevExpress.DataAccess.Sql.Group();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression28 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery10 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column19 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression29 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table10 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column20 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression30 = new DevExpress.DataAccess.Sql.ColumnExpression();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VerDetalleLayout));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.dateTimePickerFecFinPeri = new System.Windows.Forms.DateTimePicker();
@@ -150,6 +150,8 @@
             this.txtRetIVAGral = new DevExpress.XtraEditors.TextEdit();
             this.txtBancoCaratula = new DevExpress.XtraEditors.TextEdit();
             this.lookUpClveFact = new DevExpress.XtraEditors.TextEdit();
+            this.txtFecReactiva = new DevExpress.XtraEditors.TextEdit();
+            this.txtUsuaFecReactiva = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
@@ -181,6 +183,8 @@
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem48 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem49 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem15 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem43 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem16 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -238,10 +242,6 @@
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.txtFecReactiva = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem48 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtUsuaFecReactiva = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem49 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlViewLayout)).BeginInit();
@@ -297,6 +297,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtRetIVAGral.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBancoCaratula.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpClveFact.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFecReactiva.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUsuaFecReactiva.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).BeginInit();
@@ -328,6 +330,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem48)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem49)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem43)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem16)).BeginInit();
@@ -385,10 +389,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFecReactiva.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem48)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUsuaFecReactiva.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem49)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -1017,43 +1017,43 @@
             // 
             this.sqlDataSource1.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            columnExpression1.ColumnName = "IDEmpresa";
-            table1.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"210\" />";
-            table1.Name = "EmpresaPagaAsimilados";
-            columnExpression1.Table = table1;
-            column1.Expression = columnExpression1;
-            columnExpression2.ColumnName = "RazonSocial";
-            columnExpression2.Table = table1;
-            column2.Expression = columnExpression2;
-            selectQuery1.Columns.Add(column1);
-            selectQuery1.Columns.Add(column2);
-            columnExpression3.ColumnName = "IDEmpresa";
-            columnExpression3.Table = table1;
-            group1.Expression = columnExpression3;
-            columnExpression4.ColumnName = "RazonSocial";
-            columnExpression4.Table = table1;
-            group2.Expression = columnExpression4;
-            selectQuery1.Groups.Add(group1);
-            selectQuery1.Groups.Add(group2);
-            selectQuery1.Name = "EmpresaPagaAsimilados";
-            selectQuery1.Tables.Add(table1);
-            columnExpression5.ColumnName = "ID";
-            table2.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"419\" />";
-            table2.Name = "ClientesAsimilados";
-            columnExpression5.Table = table2;
-            column3.Expression = columnExpression5;
-            columnExpression6.ColumnName = "CLIENTE";
-            columnExpression6.Table = table2;
-            column4.Expression = columnExpression6;
-            selectQuery2.Columns.Add(column3);
-            selectQuery2.Columns.Add(column4);
-            selectQuery2.FilterString = "[ClientesAsimilados.ID] > \'E00000\'";
-            selectQuery2.GroupFilterString = "";
-            selectQuery2.Name = "ClientesAsimilados";
-            selectQuery2.Tables.Add(table2);
+            columnExpression25.ColumnName = "IDEmpresa";
+            table9.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"210\" />";
+            table9.Name = "EmpresaPagaAsimilados";
+            columnExpression25.Table = table9;
+            column17.Expression = columnExpression25;
+            columnExpression26.ColumnName = "RazonSocial";
+            columnExpression26.Table = table9;
+            column18.Expression = columnExpression26;
+            selectQuery9.Columns.Add(column17);
+            selectQuery9.Columns.Add(column18);
+            columnExpression27.ColumnName = "IDEmpresa";
+            columnExpression27.Table = table9;
+            group9.Expression = columnExpression27;
+            columnExpression28.ColumnName = "RazonSocial";
+            columnExpression28.Table = table9;
+            group10.Expression = columnExpression28;
+            selectQuery9.Groups.Add(group9);
+            selectQuery9.Groups.Add(group10);
+            selectQuery9.Name = "EmpresaPagaAsimilados";
+            selectQuery9.Tables.Add(table9);
+            columnExpression29.ColumnName = "ID";
+            table10.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"419\" />";
+            table10.Name = "ClientesAsimilados";
+            columnExpression29.Table = table10;
+            column19.Expression = columnExpression29;
+            columnExpression30.ColumnName = "CLIENTE";
+            columnExpression30.Table = table10;
+            column20.Expression = columnExpression30;
+            selectQuery10.Columns.Add(column19);
+            selectQuery10.Columns.Add(column20);
+            selectQuery10.FilterString = "[ClientesAsimilados.ID] > \'E00000\'";
+            selectQuery10.GroupFilterString = "";
+            selectQuery10.Name = "ClientesAsimilados";
+            selectQuery10.Tables.Add(table10);
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            selectQuery1,
-            selectQuery2});
+            selectQuery9,
+            selectQuery10});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // txtProAguinaldo
@@ -1701,6 +1701,28 @@
             this.lookUpClveFact.StyleController = this.layoutControl1;
             this.lookUpClveFact.TabIndex = 67;
             // 
+            // txtFecReactiva
+            // 
+            this.txtFecReactiva.Location = new System.Drawing.Point(184, 232);
+            this.txtFecReactiva.Name = "txtFecReactiva";
+            this.txtFecReactiva.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtFecReactiva.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.txtFecReactiva.Properties.ReadOnly = true;
+            this.txtFecReactiva.Size = new System.Drawing.Size(207, 20);
+            this.txtFecReactiva.StyleController = this.layoutControl1;
+            this.txtFecReactiva.TabIndex = 68;
+            // 
+            // txtUsuaFecReactiva
+            // 
+            this.txtUsuaFecReactiva.Location = new System.Drawing.Point(446, 232);
+            this.txtUsuaFecReactiva.Name = "txtUsuaFecReactiva";
+            this.txtUsuaFecReactiva.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtUsuaFecReactiva.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.txtUsuaFecReactiva.Properties.ReadOnly = true;
+            this.txtUsuaFecReactiva.Size = new System.Drawing.Size(158, 20);
+            this.txtUsuaFecReactiva.StyleController = this.layoutControl1;
+            this.txtUsuaFecReactiva.TabIndex = 69;
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -2039,6 +2061,27 @@
             this.emptySpaceItem9.Name = "emptySpaceItem9";
             this.emptySpaceItem9.Size = new System.Drawing.Size(10, 96);
             this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem48
+            // 
+            this.layoutControlItem48.Control = this.txtFecReactiva;
+            this.layoutControlItem48.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem48.Name = "layoutControlItem48";
+            this.layoutControlItem48.Size = new System.Drawing.Size(335, 24);
+            this.layoutControlItem48.Text = "Fecha Reactivación";
+            this.layoutControlItem48.TextSize = new System.Drawing.Size(121, 13);
+            // 
+            // layoutControlItem49
+            // 
+            this.layoutControlItem49.Control = this.txtUsuaFecReactiva;
+            this.layoutControlItem49.CustomizationFormText = "layoutControlItem49";
+            this.layoutControlItem49.Location = new System.Drawing.Point(345, 72);
+            this.layoutControlItem49.Name = "layoutControlItem49";
+            this.layoutControlItem49.Size = new System.Drawing.Size(203, 24);
+            this.layoutControlItem49.Text = "Usuario";
+            this.layoutControlItem49.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem49.TextSize = new System.Drawing.Size(36, 13);
+            this.layoutControlItem49.TextToControlDistance = 5;
             // 
             // emptySpaceItem15
             // 
@@ -2619,49 +2662,6 @@
             this.emptySpaceItem12.Size = new System.Drawing.Size(953, 409);
             this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // txtFecReactiva
-            // 
-            this.txtFecReactiva.Location = new System.Drawing.Point(184, 232);
-            this.txtFecReactiva.Name = "txtFecReactiva";
-            this.txtFecReactiva.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtFecReactiva.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.txtFecReactiva.Properties.ReadOnly = true;
-            this.txtFecReactiva.Size = new System.Drawing.Size(207, 20);
-            this.txtFecReactiva.StyleController = this.layoutControl1;
-            this.txtFecReactiva.TabIndex = 68;
-            // 
-            // layoutControlItem48
-            // 
-            this.layoutControlItem48.Control = this.txtFecReactiva;
-            this.layoutControlItem48.Location = new System.Drawing.Point(0, 72);
-            this.layoutControlItem48.Name = "layoutControlItem48";
-            this.layoutControlItem48.Size = new System.Drawing.Size(335, 24);
-            this.layoutControlItem48.Text = "Fecha Reactivación";
-            this.layoutControlItem48.TextSize = new System.Drawing.Size(121, 13);
-            // 
-            // txtUsuaFecReactiva
-            // 
-            this.txtUsuaFecReactiva.Location = new System.Drawing.Point(446, 232);
-            this.txtUsuaFecReactiva.Name = "txtUsuaFecReactiva";
-            this.txtUsuaFecReactiva.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtUsuaFecReactiva.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.txtUsuaFecReactiva.Properties.ReadOnly = true;
-            this.txtUsuaFecReactiva.Size = new System.Drawing.Size(158, 20);
-            this.txtUsuaFecReactiva.StyleController = this.layoutControl1;
-            this.txtUsuaFecReactiva.TabIndex = 69;
-            // 
-            // layoutControlItem49
-            // 
-            this.layoutControlItem49.Control = this.txtUsuaFecReactiva;
-            this.layoutControlItem49.CustomizationFormText = "layoutControlItem49";
-            this.layoutControlItem49.Location = new System.Drawing.Point(345, 72);
-            this.layoutControlItem49.Name = "layoutControlItem49";
-            this.layoutControlItem49.Size = new System.Drawing.Size(203, 24);
-            this.layoutControlItem49.Text = "Usuario";
-            this.layoutControlItem49.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem49.TextSize = new System.Drawing.Size(36, 13);
-            this.layoutControlItem49.TextToControlDistance = 5;
-            // 
             // VerDetalleLayout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2729,6 +2729,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtRetIVAGral.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBancoCaratula.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpClveFact.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFecReactiva.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUsuaFecReactiva.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).EndInit();
@@ -2760,6 +2762,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem48)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem49)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem43)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem16)).EndInit();
@@ -2817,10 +2821,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFecReactiva.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem48)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUsuaFecReactiva.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem49)).EndInit();
             this.ResumeLayout(false);
 
         }

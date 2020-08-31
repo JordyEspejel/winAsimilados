@@ -44,8 +44,9 @@
             DevExpress.DataAccess.Sql.Column column4 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression4 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery3 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NominaAsimilados));
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery4 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NominaAsimilados));
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery5 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             DevExpress.DataAccess.Sql.SelectQuery selectQuery3 = new DevExpress.DataAccess.Sql.SelectQuery();
             DevExpress.DataAccess.Sql.Column column5 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression5 = new DevExpress.DataAccess.Sql.ColumnExpression();
@@ -158,7 +159,7 @@
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression57 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.Column column58 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression58 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery5 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery6 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             this.queryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -194,13 +195,15 @@
             this.txtTimbres = new DevExpress.XtraEditors.TextEdit();
             this.chBoxCorreoEmpleado2 = new DevExpress.XtraEditors.CheckEdit();
             this.chBoxCorreoClte2 = new DevExpress.XtraEditors.CheckEdit();
+            this.txtPacActiv = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup28 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup29 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem52 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem58 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlTimbresNT = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem62 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem63 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem27 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlPacActivo = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem53 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem54 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem28 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -388,14 +391,20 @@
             this.chBoxCorreoEmpleado = new DevExpress.XtraEditors.CheckEdit();
             this.chBoxClte = new DevExpress.XtraEditors.CheckEdit();
             this.txtCorreoClte = new DevExpress.XtraEditors.TextEdit();
+            this.chEditSolucion = new DevExpress.XtraEditors.CheckEdit();
+            this.lookUpPAC = new DevExpress.XtraEditors.LookUpEdit();
+            this.pacsTimbradoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.chNtLink = new DevExpress.XtraEditors.CheckEdit();
+            this.txtPACActivo = new DevExpress.XtraEditors.TextEdit();
+            this.txtPacActiv2 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
+            this.tabbedConntrolPAC = new DevExpress.XtraLayout.TabbedControlGroup();
+            this.layoutControlGroup25 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem51 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup12 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup15 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup25 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem51 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -462,10 +471,18 @@
             this.emptySpaceItem24 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem23 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem56 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem59 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlTimbresNT2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem60 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem61 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem64 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlPacActivo2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroupPAC = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlPacsTimbrado = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem65 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lookUpAmbiente = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem66 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem67 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem33 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.queryEstatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sqlDataSource2 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.layoutHistoricoBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -502,13 +519,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTimbres.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chBoxCorreoEmpleado2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chBoxCorreoClte2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPacActiv.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem52)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem58)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlTimbresNT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem62)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem63)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlPacActivo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem53)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem28)).BeginInit();
@@ -623,14 +642,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.chBoxCorreoEmpleado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chBoxClte.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCorreoClte.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chEditSolucion.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpPAC.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pacsTimbradoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chNtLink.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPACActivo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPacActiv2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tabbedConntrolPAC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
@@ -697,10 +722,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlTimbresNT2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem61)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem64)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlPacActivo2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupPAC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlPacsTimbrado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem65)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpAmbiente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem66)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem67)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem33)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.queryEstatusBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutHistoricoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.caratulaPagoBindingSource)).BeginInit();
@@ -764,12 +797,16 @@
             selectQuery2.Tables.Add(table2);
             customSqlQuery3.Name = "FormaPago";
             customSqlQuery3.Sql = "SELECT [c_FormaPago]\r\n      ,[Descripción]\r\n  FROM [BSNOMINAS].[dbo].[FormaPago]";
+            customSqlQuery4.Name = "PacsTimbrado";
+            customSqlQuery4.Sql = "select \'Produccion\' as [value], \'Ambiente De Produccuión\' as [Descripcion]\r\nunion" +
+    " select \'Pruebas\' as [Value], \'Ambiente de Pruebas\' as [Descripción]";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             customSqlQuery1,
             selectQuery1,
             customSqlQuery2,
             selectQuery2,
-            customSqlQuery3});
+            customSqlQuery3,
+            customSqlQuery4});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // layoutControl1
@@ -813,6 +850,11 @@
             this.layoutControl1.Controls.Add(this.chBoxCorreoEmpleado);
             this.layoutControl1.Controls.Add(this.chBoxClte);
             this.layoutControl1.Controls.Add(this.txtCorreoClte);
+            this.layoutControl1.Controls.Add(this.chEditSolucion);
+            this.layoutControl1.Controls.Add(this.lookUpPAC);
+            this.layoutControl1.Controls.Add(this.chNtLink);
+            this.layoutControl1.Controls.Add(this.txtPACActivo);
+            this.layoutControl1.Controls.Add(this.txtPacActiv2);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -830,9 +872,10 @@
             this.layoutControl3.Controls.Add(this.txtTimbres);
             this.layoutControl3.Controls.Add(this.chBoxCorreoEmpleado2);
             this.layoutControl3.Controls.Add(this.chBoxCorreoClte2);
-            this.layoutControl3.Location = new System.Drawing.Point(24, -119);
+            this.layoutControl3.Controls.Add(this.txtPacActiv);
+            this.layoutControl3.Location = new System.Drawing.Point(24, 46);
             this.layoutControl3.Name = "layoutControl3";
-            this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(-8, -8, 1382, 784);
+            this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(0, 0, 1382, 784);
             this.layoutControl3.Root = this.layoutControlGroup28;
             this.layoutControl3.Size = new System.Drawing.Size(919, 704);
             this.layoutControl3.TabIndex = 4;
@@ -840,12 +883,12 @@
             // 
             // gridControlFactura
             // 
-            this.gridControlFactura.Location = new System.Drawing.Point(24, 88);
+            this.gridControlFactura.Location = new System.Drawing.Point(24, 112);
             this.gridControlFactura.MainView = this.gridViewFactura;
             this.gridControlFactura.Name = "gridControlFactura";
             this.gridControlFactura.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1});
-            this.gridControlFactura.Size = new System.Drawing.Size(871, 550);
+            this.gridControlFactura.Size = new System.Drawing.Size(871, 526);
             this.gridControlFactura.TabIndex = 4;
             this.gridControlFactura.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewFactura});
@@ -950,12 +993,12 @@
             // 
             this.SqlTipoPeri.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.SqlTipoPeri.Name = "SqlTipoPeri";
-            customSqlQuery4.Name = "PeriodicidadPago";
-            customSqlQuery4.Sql = "select \"PeriodicidadPago\".\"c_PeriodicidadPago\",\r\n       \"PeriodicidadPago\".\"Descr" +
+            customSqlQuery5.Name = "PeriodicidadPago";
+            customSqlQuery5.Sql = "select \"PeriodicidadPago\".\"c_PeriodicidadPago\",\r\n       \"PeriodicidadPago\".\"Descr" +
     "ipcion\"\r\n  from \"dbo\".\"PeriodicidadPago\" \"PeriodicidadPago\" \r\n -- where \"Periodi" +
     "cidadPago\".\"id\" in (02,04,05)";
             this.SqlTipoPeri.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            customSqlQuery4});
+            customSqlQuery5});
             this.SqlTipoPeri.ResultSchemaSerializable = resources.GetString("SqlTipoPeri.ResultSchemaSerializable");
             // 
             // colingresos
@@ -1126,34 +1169,45 @@
             // 
             // txtTimbres
             // 
-            this.txtTimbres.Location = new System.Drawing.Point(119, 64);
+            this.txtTimbres.Location = new System.Drawing.Point(161, 88);
             this.txtTimbres.Name = "txtTimbres";
             this.txtTimbres.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.txtTimbres.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.txtTimbres.Properties.ReadOnly = true;
-            this.txtTimbres.Size = new System.Drawing.Size(86, 20);
+            this.txtTimbres.Size = new System.Drawing.Size(146, 20);
             this.txtTimbres.StyleController = this.layoutControl3;
             this.txtTimbres.TabIndex = 7;
             // 
             // chBoxCorreoEmpleado2
             // 
-            this.chBoxCorreoEmpleado2.Location = new System.Drawing.Point(209, 64);
+            this.chBoxCorreoEmpleado2.Location = new System.Drawing.Point(311, 64);
             this.chBoxCorreoEmpleado2.Name = "chBoxCorreoEmpleado2";
             this.chBoxCorreoEmpleado2.Properties.Caption = "Enviar Correo por Empleado";
-            this.chBoxCorreoEmpleado2.Size = new System.Drawing.Size(156, 19);
+            this.chBoxCorreoEmpleado2.Size = new System.Drawing.Size(304, 19);
             this.chBoxCorreoEmpleado2.StyleController = this.layoutControl3;
             this.chBoxCorreoEmpleado2.TabIndex = 8;
             this.chBoxCorreoEmpleado2.CheckedChanged += new System.EventHandler(this.chBoxCorreoEmpleado2_CheckedChanged);
             // 
             // chBoxCorreoClte2
             // 
-            this.chBoxCorreoClte2.Location = new System.Drawing.Point(369, 64);
+            this.chBoxCorreoClte2.Location = new System.Drawing.Point(619, 64);
             this.chBoxCorreoClte2.Name = "chBoxCorreoClte2";
             this.chBoxCorreoClte2.Properties.Caption = "Enviar correo a Cliente";
-            this.chBoxCorreoClte2.Size = new System.Drawing.Size(131, 19);
+            this.chBoxCorreoClte2.Size = new System.Drawing.Size(257, 19);
             this.chBoxCorreoClte2.StyleController = this.layoutControl3;
             this.chBoxCorreoClte2.TabIndex = 9;
             this.chBoxCorreoClte2.CheckedChanged += new System.EventHandler(this.chBoxCorreoClte2_CheckedChanged);
+            // 
+            // txtPacActiv
+            // 
+            this.txtPacActiv.Location = new System.Drawing.Point(142, 64);
+            this.txtPacActiv.Name = "txtPacActiv";
+            this.txtPacActiv.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtPacActiv.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.txtPacActiv.Properties.ReadOnly = true;
+            this.txtPacActiv.Size = new System.Drawing.Size(165, 20);
+            this.txtPacActiv.StyleController = this.layoutControl3;
+            this.txtPacActiv.TabIndex = 10;
             // 
             // layoutControlGroup28
             // 
@@ -1174,10 +1228,11 @@
             this.layoutControlGroup29.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             this.layoutControlGroup29.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem52,
-            this.layoutControlItem58,
+            this.layoutControlTimbresNT,
             this.layoutControlItem62,
             this.layoutControlItem63,
-            this.emptySpaceItem27});
+            this.emptySpaceItem27,
+            this.layoutControlPacActivo});
             this.layoutControlGroup29.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup29.Name = "layoutControlGroup29";
             this.layoutControlGroup29.Size = new System.Drawing.Size(899, 642);
@@ -1186,46 +1241,57 @@
             // layoutControlItem52
             // 
             this.layoutControlItem52.Control = this.gridControlFactura;
-            this.layoutControlItem52.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem52.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem52.Name = "layoutControlItem52";
-            this.layoutControlItem52.Size = new System.Drawing.Size(875, 554);
+            this.layoutControlItem52.Size = new System.Drawing.Size(875, 530);
             this.layoutControlItem52.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem52.TextVisible = false;
             // 
-            // layoutControlItem58
+            // layoutControlTimbresNT
             // 
-            this.layoutControlItem58.Control = this.txtTimbres;
-            this.layoutControlItem58.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem58.Name = "layoutControlItem58";
-            this.layoutControlItem58.Size = new System.Drawing.Size(185, 24);
-            this.layoutControlItem58.Text = "Timbres disponibles";
-            this.layoutControlItem58.TextSize = new System.Drawing.Size(92, 13);
+            this.layoutControlTimbresNT.Control = this.txtTimbres;
+            this.layoutControlTimbresNT.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlTimbresNT.Name = "layoutControlTimbresNT";
+            this.layoutControlTimbresNT.Size = new System.Drawing.Size(287, 24);
+            this.layoutControlTimbresNT.Text = "Timbres disponibles NT-LINK";
+            this.layoutControlTimbresNT.TextSize = new System.Drawing.Size(134, 13);
             // 
             // layoutControlItem62
             // 
             this.layoutControlItem62.Control = this.chBoxCorreoEmpleado2;
-            this.layoutControlItem62.Location = new System.Drawing.Point(185, 0);
+            this.layoutControlItem62.Location = new System.Drawing.Point(287, 0);
             this.layoutControlItem62.Name = "layoutControlItem62";
-            this.layoutControlItem62.Size = new System.Drawing.Size(160, 24);
+            this.layoutControlItem62.Size = new System.Drawing.Size(308, 48);
             this.layoutControlItem62.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem62.TextVisible = false;
             // 
             // layoutControlItem63
             // 
             this.layoutControlItem63.Control = this.chBoxCorreoClte2;
-            this.layoutControlItem63.Location = new System.Drawing.Point(345, 0);
+            this.layoutControlItem63.Location = new System.Drawing.Point(595, 0);
             this.layoutControlItem63.Name = "layoutControlItem63";
-            this.layoutControlItem63.Size = new System.Drawing.Size(135, 24);
+            this.layoutControlItem63.Size = new System.Drawing.Size(261, 48);
             this.layoutControlItem63.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem63.TextVisible = false;
             // 
             // emptySpaceItem27
             // 
             this.emptySpaceItem27.AllowHotTrack = false;
-            this.emptySpaceItem27.Location = new System.Drawing.Point(480, 0);
+            this.emptySpaceItem27.Location = new System.Drawing.Point(856, 0);
             this.emptySpaceItem27.Name = "emptySpaceItem27";
-            this.emptySpaceItem27.Size = new System.Drawing.Size(395, 24);
+            this.emptySpaceItem27.Size = new System.Drawing.Size(19, 48);
             this.emptySpaceItem27.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlPacActivo
+            // 
+            this.layoutControlPacActivo.Control = this.txtPacActiv;
+            this.layoutControlPacActivo.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlPacActivo.Name = "layoutControlPacActivo";
+            this.layoutControlPacActivo.Size = new System.Drawing.Size(287, 24);
+            this.layoutControlPacActivo.Text = "PAC de timbrado Activo";
+            this.layoutControlPacActivo.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlPacActivo.TextSize = new System.Drawing.Size(113, 13);
+            this.layoutControlPacActivo.TextToControlDistance = 5;
             // 
             // layoutControlItem53
             // 
@@ -1262,7 +1328,7 @@
             this.layoutControl4.Controls.Add(this.btnVerInfoCaratula);
             this.layoutControl4.Controls.Add(this.gridControlLayout);
             this.layoutControl4.Controls.Add(this.btnAbrirPeriodo);
-            this.layoutControl4.Location = new System.Drawing.Point(24, -119);
+            this.layoutControl4.Location = new System.Drawing.Point(24, 46);
             this.layoutControl4.Name = "layoutControl4";
             this.layoutControl4.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(127, 70, 650, 397);
             this.layoutControl4.Root = this.layoutControlGroup18;
@@ -1873,7 +1939,7 @@
             this.layoutControl2.Controls.Add(this.lookUpTipoPago);
             this.layoutControl2.Controls.Add(this.lookUpFormaPago);
             this.layoutControl2.Controls.Add(this.dateEdit1);
-            this.layoutControl2.Location = new System.Drawing.Point(24, -119);
+            this.layoutControl2.Location = new System.Drawing.Point(24, 46);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(489, 123, 650, 400);
             this.layoutControl2.Root = this.Root;
@@ -2757,13 +2823,13 @@
             // 
             // gridControlNomiMasiv
             // 
-            this.gridControlNomiMasiv.Location = new System.Drawing.Point(48, 134);
+            this.gridControlNomiMasiv.Location = new System.Drawing.Point(48, 322);
             this.gridControlNomiMasiv.MainView = this.gridViewNomiMasiv;
             this.gridControlNomiMasiv.Name = "gridControlNomiMasiv";
             this.gridControlNomiMasiv.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemGridLookUpEdit1,
             this.repositoryItemSpinEdit1});
-            this.gridControlNomiMasiv.Size = new System.Drawing.Size(871, 385);
+            this.gridControlNomiMasiv.Size = new System.Drawing.Size(871, 362);
             this.gridControlNomiMasiv.TabIndex = 1;
             this.gridControlNomiMasiv.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewNomiMasiv});
@@ -2908,7 +2974,7 @@
             // 
             // LookUpEmpl
             // 
-            this.LookUpEmpl.Location = new System.Drawing.Point(222, -89);
+            this.LookUpEmpl.Location = new System.Drawing.Point(222, 76);
             this.LookUpEmpl.Name = "LookUpEmpl";
             this.LookUpEmpl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -2934,7 +3000,7 @@
             // BtnSelEmpl
             // 
             this.BtnSelEmpl.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnSelEmpl.ImageOptions.Image")));
-            this.BtnSelEmpl.Location = new System.Drawing.Point(734, -89);
+            this.BtnSelEmpl.Location = new System.Drawing.Point(734, 76);
             this.BtnSelEmpl.Name = "BtnSelEmpl";
             this.BtnSelEmpl.Size = new System.Drawing.Size(197, 38);
             this.BtnSelEmpl.StyleController = this.layoutControl1;
@@ -2944,7 +3010,7 @@
             // 
             // TxtNumEmpl
             // 
-            this.TxtNumEmpl.Location = new System.Drawing.Point(234, 5);
+            this.TxtNumEmpl.Location = new System.Drawing.Point(234, 170);
             this.TxtNumEmpl.Name = "TxtNumEmpl";
             this.TxtNumEmpl.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtNumEmpl.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -2955,7 +3021,7 @@
             // 
             // TxtRFC
             // 
-            this.TxtRFC.Location = new System.Drawing.Point(234, 29);
+            this.TxtRFC.Location = new System.Drawing.Point(234, 194);
             this.TxtRFC.Name = "TxtRFC";
             this.TxtRFC.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtRFC.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -2966,7 +3032,7 @@
             // 
             // TxtCurp
             // 
-            this.TxtCurp.Location = new System.Drawing.Point(654, 29);
+            this.TxtCurp.Location = new System.Drawing.Point(654, 194);
             this.TxtCurp.Name = "TxtCurp";
             this.TxtCurp.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCurp.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -2978,7 +3044,7 @@
             // TxtIngresos
             // 
             this.TxtIngresos.EditValue = "$0";
-            this.TxtIngresos.Location = new System.Drawing.Point(234, 95);
+            this.TxtIngresos.Location = new System.Drawing.Point(234, 260);
             this.TxtIngresos.Name = "TxtIngresos";
             this.TxtIngresos.Properties.Mask.BeepOnError = true;
             this.TxtIngresos.Properties.Mask.EditMask = "c2";
@@ -2991,7 +3057,7 @@
             // 
             // ChBruto
             // 
-            this.ChBruto.Location = new System.Drawing.Point(450, 95);
+            this.ChBruto.Location = new System.Drawing.Point(450, 260);
             this.ChBruto.Name = "ChBruto";
             this.ChBruto.Properties.Caption = "Ingresos Brutos";
             this.ChBruto.Size = new System.Drawing.Size(162, 19);
@@ -3001,7 +3067,7 @@
             // 
             // ChNeto
             // 
-            this.ChNeto.Location = new System.Drawing.Point(616, 95);
+            this.ChNeto.Location = new System.Drawing.Point(616, 260);
             this.ChNeto.Name = "ChNeto";
             this.ChNeto.Properties.Caption = "Ingresos Netos";
             this.ChNeto.Size = new System.Drawing.Size(303, 19);
@@ -3012,7 +3078,7 @@
             // TxtIngBru
             // 
             this.TxtIngBru.EditValue = "0";
-            this.TxtIngBru.Location = new System.Drawing.Point(507, 295);
+            this.TxtIngBru.Location = new System.Drawing.Point(507, 460);
             this.TxtIngBru.Name = "TxtIngBru";
             this.TxtIngBru.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtIngBru.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3029,7 +3095,7 @@
             // TxtLimInf
             // 
             this.TxtLimInf.EditValue = "0";
-            this.TxtLimInf.Location = new System.Drawing.Point(507, 319);
+            this.TxtLimInf.Location = new System.Drawing.Point(507, 484);
             this.TxtLimInf.Name = "TxtLimInf";
             this.TxtLimInf.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtLimInf.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3044,7 +3110,7 @@
             // TxtExcLimInf
             // 
             this.TxtExcLimInf.EditValue = "0";
-            this.TxtExcLimInf.Location = new System.Drawing.Point(507, 343);
+            this.TxtExcLimInf.Location = new System.Drawing.Point(507, 508);
             this.TxtExcLimInf.Name = "TxtExcLimInf";
             this.TxtExcLimInf.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtExcLimInf.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3060,7 +3126,7 @@
             // TxtPorExcLimInf
             // 
             this.TxtPorExcLimInf.EditValue = "0";
-            this.TxtPorExcLimInf.Location = new System.Drawing.Point(507, 367);
+            this.TxtPorExcLimInf.Location = new System.Drawing.Point(507, 532);
             this.TxtPorExcLimInf.Name = "TxtPorExcLimInf";
             this.TxtPorExcLimInf.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtPorExcLimInf.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3075,7 +3141,7 @@
             // TxtCF
             // 
             this.TxtCF.EditValue = "0";
-            this.TxtCF.Location = new System.Drawing.Point(507, 415);
+            this.TxtCF.Location = new System.Drawing.Point(507, 580);
             this.TxtCF.Name = "TxtCF";
             this.TxtCF.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCF.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3090,7 +3156,7 @@
             // TxtISR
             // 
             this.TxtISR.EditValue = "0";
-            this.TxtISR.Location = new System.Drawing.Point(507, 439);
+            this.TxtISR.Location = new System.Drawing.Point(507, 604);
             this.TxtISR.Name = "TxtISR";
             this.TxtISR.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtISR.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3105,7 +3171,7 @@
             // TxtSubEmpl
             // 
             this.TxtSubEmpl.EditValue = "0";
-            this.TxtSubEmpl.Location = new System.Drawing.Point(507, 463);
+            this.TxtSubEmpl.Location = new System.Drawing.Point(507, 628);
             this.TxtSubEmpl.Name = "TxtSubEmpl";
             this.TxtSubEmpl.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtSubEmpl.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3120,7 +3186,7 @@
             // TxtIngNet
             // 
             this.TxtIngNet.EditValue = "0";
-            this.TxtIngNet.Location = new System.Drawing.Point(507, 487);
+            this.TxtIngNet.Location = new System.Drawing.Point(507, 652);
             this.TxtIngNet.Name = "TxtIngNet";
             this.TxtIngNet.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtIngNet.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3135,7 +3201,7 @@
             // TxtImpMar
             // 
             this.TxtImpMar.EditValue = "0";
-            this.TxtImpMar.Location = new System.Drawing.Point(507, 391);
+            this.TxtImpMar.Location = new System.Drawing.Point(507, 556);
             this.TxtImpMar.Name = "TxtImpMar";
             this.TxtImpMar.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtImpMar.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3149,7 +3215,7 @@
             // 
             // TxtPeriPago
             // 
-            this.TxtPeriPago.Location = new System.Drawing.Point(654, 5);
+            this.TxtPeriPago.Location = new System.Drawing.Point(654, 170);
             this.TxtPeriPago.Name = "TxtPeriPago";
             this.TxtPeriPago.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtPeriPago.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -3171,7 +3237,7 @@
             // 
             // ChCambioPeri
             // 
-            this.ChCambioPeri.Location = new System.Drawing.Point(553, -89);
+            this.ChCambioPeri.Location = new System.Drawing.Point(553, 76);
             this.ChCambioPeri.Name = "ChCambioPeri";
             this.ChCambioPeri.Properties.Caption = "Cambiar Periodicidad";
             this.ChCambioPeri.Size = new System.Drawing.Size(177, 19);
@@ -3182,7 +3248,7 @@
             // BtnGenNom
             // 
             this.BtnGenNom.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnGenNom.ImageOptions.Image")));
-            this.BtnGenNom.Location = new System.Drawing.Point(800, 535);
+            this.BtnGenNom.Location = new System.Drawing.Point(800, 700);
             this.BtnGenNom.Name = "BtnGenNom";
             this.BtnGenNom.Size = new System.Drawing.Size(131, 38);
             this.BtnGenNom.StyleController = this.layoutControl1;
@@ -3193,7 +3259,7 @@
             // FecPagoUni
             // 
             this.FecPagoUni.EditValue = null;
-            this.FecPagoUni.Location = new System.Drawing.Point(246, 183);
+            this.FecPagoUni.Location = new System.Drawing.Point(246, 348);
             this.FecPagoUni.Name = "FecPagoUni";
             this.FecPagoUni.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3207,7 +3273,7 @@
             // FecPagoMasiv
             // 
             this.FecPagoMasiv.EditValue = null;
-            this.FecPagoMasiv.Location = new System.Drawing.Point(234, -37);
+            this.FecPagoMasiv.Location = new System.Drawing.Point(234, 128);
             this.FecPagoMasiv.Name = "FecPagoMasiv";
             this.FecPagoMasiv.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3221,7 +3287,7 @@
             // FecIniPeriMasiv
             // 
             this.FecIniPeriMasiv.EditValue = null;
-            this.FecIniPeriMasiv.Location = new System.Drawing.Point(234, -13);
+            this.FecIniPeriMasiv.Location = new System.Drawing.Point(234, 152);
             this.FecIniPeriMasiv.Name = "FecIniPeriMasiv";
             this.FecIniPeriMasiv.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3234,7 +3300,7 @@
             // FecFinPeriMasiv
             // 
             this.FecFinPeriMasiv.EditValue = null;
-            this.FecFinPeriMasiv.Location = new System.Drawing.Point(639, -13);
+            this.FecFinPeriMasiv.Location = new System.Drawing.Point(639, 152);
             this.FecFinPeriMasiv.Name = "FecFinPeriMasiv";
             this.FecFinPeriMasiv.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3247,7 +3313,7 @@
             // FecIniPeriUni
             // 
             this.FecIniPeriUni.EditValue = null;
-            this.FecIniPeriUni.Location = new System.Drawing.Point(246, 207);
+            this.FecIniPeriUni.Location = new System.Drawing.Point(246, 372);
             this.FecIniPeriUni.Name = "FecIniPeriUni";
             this.FecIniPeriUni.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3260,7 +3326,7 @@
             // FecFinPeriUni
             // 
             this.FecFinPeriUni.EditValue = null;
-            this.FecFinPeriUni.Location = new System.Drawing.Point(681, 207);
+            this.FecFinPeriUni.Location = new System.Drawing.Point(681, 372);
             this.FecFinPeriUni.Name = "FecFinPeriUni";
             this.FecFinPeriUni.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3273,7 +3339,7 @@
             // BtnNomiMasiv
             // 
             this.BtnNomiMasiv.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnNomiMasiv.ImageOptions.Image")));
-            this.BtnNomiMasiv.Location = new System.Drawing.Point(798, 523);
+            this.BtnNomiMasiv.Location = new System.Drawing.Point(798, 688);
             this.BtnNomiMasiv.Name = "BtnNomiMasiv";
             this.BtnNomiMasiv.Size = new System.Drawing.Size(121, 38);
             this.BtnNomiMasiv.StyleController = this.layoutControl1;
@@ -3284,7 +3350,7 @@
             // BtnValidarInfo
             // 
             this.BtnValidarInfo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnValidarInfo.ImageOptions.Image")));
-            this.BtnValidarInfo.Location = new System.Drawing.Point(648, 535);
+            this.BtnValidarInfo.Location = new System.Drawing.Point(648, 700);
             this.BtnValidarInfo.Name = "BtnValidarInfo";
             this.BtnValidarInfo.Size = new System.Drawing.Size(148, 38);
             this.BtnValidarInfo.StyleController = this.layoutControl1;
@@ -3295,7 +3361,7 @@
             // BtnValidaInfoMasiv
             // 
             this.BtnValidaInfoMasiv.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnValidaInfoMasiv.ImageOptions.Image")));
-            this.BtnValidaInfoMasiv.Location = new System.Drawing.Point(658, 523);
+            this.BtnValidaInfoMasiv.Location = new System.Drawing.Point(658, 688);
             this.BtnValidaInfoMasiv.Name = "BtnValidaInfoMasiv";
             this.BtnValidaInfoMasiv.Size = new System.Drawing.Size(136, 38);
             this.BtnValidaInfoMasiv.StyleController = this.layoutControl1;
@@ -3306,7 +3372,7 @@
             // BtnMasivIngresos
             // 
             this.BtnMasivIngresos.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnMasivIngresos.ImageOptions.Image")));
-            this.BtnMasivIngresos.Location = new System.Drawing.Point(48, 75);
+            this.BtnMasivIngresos.Location = new System.Drawing.Point(48, 240);
             this.BtnMasivIngresos.Name = "BtnMasivIngresos";
             this.BtnMasivIngresos.Size = new System.Drawing.Size(122, 38);
             this.BtnMasivIngresos.StyleController = this.layoutControl1;
@@ -3316,7 +3382,7 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(578, 523);
+            this.simpleButton1.Location = new System.Drawing.Point(578, 688);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(76, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
@@ -3326,18 +3392,18 @@
             // 
             // txtTimbresMasiv
             // 
-            this.txtTimbresMasiv.Location = new System.Drawing.Point(272, 75);
+            this.txtTimbresMasiv.Location = new System.Drawing.Point(314, 264);
             this.txtTimbresMasiv.Name = "txtTimbresMasiv";
             this.txtTimbresMasiv.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.txtTimbresMasiv.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.txtTimbresMasiv.Properties.ReadOnly = true;
-            this.txtTimbresMasiv.Size = new System.Drawing.Size(245, 20);
+            this.txtTimbresMasiv.Size = new System.Drawing.Size(203, 20);
             this.txtTimbresMasiv.StyleController = this.layoutControl1;
             this.txtTimbresMasiv.TabIndex = 6;
             // 
             // chBoxCorreoEmpleado
             // 
-            this.chBoxCorreoEmpleado.Location = new System.Drawing.Point(521, 75);
+            this.chBoxCorreoEmpleado.Location = new System.Drawing.Point(521, 240);
             this.chBoxCorreoEmpleado.Name = "chBoxCorreoEmpleado";
             this.chBoxCorreoEmpleado.Properties.Caption = "Enviar correo por Empleado";
             this.chBoxCorreoEmpleado.Size = new System.Drawing.Size(398, 19);
@@ -3347,7 +3413,7 @@
             // 
             // chBoxClte
             // 
-            this.chBoxClte.Location = new System.Drawing.Point(521, 99);
+            this.chBoxClte.Location = new System.Drawing.Point(521, 263);
             this.chBoxClte.Name = "chBoxClte";
             this.chBoxClte.Properties.Caption = "Enviar correo a Cliente";
             this.chBoxClte.Size = new System.Drawing.Size(398, 19);
@@ -3357,36 +3423,117 @@
             // 
             // txtCorreoClte
             // 
-            this.txtCorreoClte.Location = new System.Drawing.Point(248, 99);
+            this.txtCorreoClte.Location = new System.Drawing.Point(248, 288);
             this.txtCorreoClte.Name = "txtCorreoClte";
             this.txtCorreoClte.Size = new System.Drawing.Size(269, 20);
             this.txtCorreoClte.StyleController = this.layoutControl1;
             this.txtCorreoClte.TabIndex = 9;
+            // 
+            // chEditSolucion
+            // 
+            this.chEditSolucion.Location = new System.Drawing.Point(36, 76);
+            this.chEditSolucion.Name = "chEditSolucion";
+            this.chEditSolucion.Properties.Caption = "Solución Factible";
+            this.chEditSolucion.Size = new System.Drawing.Size(445, 19);
+            this.chEditSolucion.StyleController = this.layoutControl1;
+            this.chEditSolucion.TabIndex = 10;
+            this.chEditSolucion.CheckedChanged += new System.EventHandler(this.chEditSolucion_CheckedChanged);
+            // 
+            // lookUpPAC
+            // 
+            this.lookUpPAC.Location = new System.Drawing.Point(86, 99);
+            this.lookUpPAC.Name = "lookUpPAC";
+            this.lookUpPAC.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpPAC.Properties.DataSource = this.pacsTimbradoBindingSource;
+            this.lookUpPAC.Properties.DisplayMember = "Descripcion";
+            this.lookUpPAC.Properties.NullText = "Seleccione";
+            this.lookUpPAC.Properties.ValueMember = "value";
+            this.lookUpPAC.Size = new System.Drawing.Size(845, 20);
+            this.lookUpPAC.StyleController = this.layoutControl1;
+            this.lookUpPAC.TabIndex = 12;
+            this.lookUpPAC.EditValueChanged += new System.EventHandler(this.lookUpPAC_EditValueChanged);
+            // 
+            // pacsTimbradoBindingSource
+            // 
+            this.pacsTimbradoBindingSource.DataMember = "PacsTimbrado";
+            this.pacsTimbradoBindingSource.DataSource = this.sqlDataSource1;
+            // 
+            // chNtLink
+            // 
+            this.chNtLink.Location = new System.Drawing.Point(485, 76);
+            this.chNtLink.Name = "chNtLink";
+            this.chNtLink.Properties.Caption = "NT-Link";
+            this.chNtLink.Size = new System.Drawing.Size(446, 19);
+            this.chNtLink.StyleController = this.layoutControl1;
+            this.chNtLink.TabIndex = 11;
+            this.chNtLink.CheckedChanged += new System.EventHandler(this.chNtLink_CheckedChanged);
+            // 
+            // txtPACActivo
+            // 
+            this.txtPACActivo.Location = new System.Drawing.Point(154, 123);
+            this.txtPACActivo.Name = "txtPACActivo";
+            this.txtPACActivo.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtPACActivo.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.txtPACActivo.Properties.ReadOnly = true;
+            this.txtPACActivo.Size = new System.Drawing.Size(777, 20);
+            this.txtPACActivo.StyleController = this.layoutControl1;
+            this.txtPACActivo.TabIndex = 13;
+            // 
+            // txtPacActiv2
+            // 
+            this.txtPacActiv2.Location = new System.Drawing.Point(292, 240);
+            this.txtPacActiv2.Name = "txtPacActiv2";
+            this.txtPacActiv2.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtPacActiv2.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.txtPacActiv2.Properties.ReadOnly = true;
+            this.txtPacActiv2.Size = new System.Drawing.Size(225, 20);
+            this.txtPacActiv2.StyleController = this.layoutControl1;
+            this.txtPacActiv2.TabIndex = 14;
             // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.tabbedControlGroup1});
+            this.tabbedConntrolPAC});
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(967, 774);
             this.layoutControlGroup1.TextVisible = false;
             // 
-            // tabbedControlGroup1
+            // tabbedConntrolPAC
             // 
-            this.tabbedControlGroup1.Location = new System.Drawing.Point(0, 0);
-            this.tabbedControlGroup1.Name = "tabbedControlGroup1";
-            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup12;
-            this.tabbedControlGroup1.SelectedTabPageIndex = 0;
-            this.tabbedControlGroup1.Size = new System.Drawing.Size(947, 754);
-            this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.tabbedConntrolPAC.Location = new System.Drawing.Point(0, 0);
+            this.tabbedConntrolPAC.Name = "tabbedConntrolPAC";
+            this.tabbedConntrolPAC.SelectedTabPage = this.layoutControlGroup12;
+            this.tabbedConntrolPAC.SelectedTabPageIndex = 0;
+            this.tabbedConntrolPAC.Size = new System.Drawing.Size(947, 754);
+            this.tabbedConntrolPAC.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup12,
             this.layoutControlGroup15,
             this.layoutControlGroup25,
             this.layoutControlGroup2,
-            this.layoutControlGroup4});
-            this.tabbedControlGroup1.Text = "Timbrado";
+            this.layoutControlGroup4,
+            this.layoutControlGroupPAC});
+            this.tabbedConntrolPAC.Text = "Timbrado";
+            // 
+            // layoutControlGroup25
+            // 
+            this.layoutControlGroup25.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem51});
+            this.layoutControlGroup25.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup25.Name = "layoutControlGroup25";
+            this.layoutControlGroup25.Size = new System.Drawing.Size(923, 708);
+            this.layoutControlGroup25.Text = "Timbrado";
+            // 
+            // layoutControlItem51
+            // 
+            this.layoutControlItem51.Control = this.layoutControl3;
+            this.layoutControlItem51.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem51.Name = "layoutControlItem51";
+            this.layoutControlItem51.Size = new System.Drawing.Size(923, 708);
+            this.layoutControlItem51.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem51.TextVisible = false;
             // 
             // layoutControlGroup12
             // 
@@ -3423,24 +3570,6 @@
             this.layoutControlItem35.Size = new System.Drawing.Size(923, 708);
             this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem35.TextVisible = false;
-            // 
-            // layoutControlGroup25
-            // 
-            this.layoutControlGroup25.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem51});
-            this.layoutControlGroup25.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup25.Name = "layoutControlGroup25";
-            this.layoutControlGroup25.Size = new System.Drawing.Size(923, 708);
-            this.layoutControlGroup25.Text = "Timbrado";
-            // 
-            // layoutControlItem51
-            // 
-            this.layoutControlItem51.Control = this.layoutControl3;
-            this.layoutControlItem51.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem51.Name = "layoutControlItem51";
-            this.layoutControlItem51.Size = new System.Drawing.Size(923, 708);
-            this.layoutControlItem51.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem51.TextVisible = false;
             // 
             // layoutControlGroup2
             // 
@@ -4014,10 +4143,11 @@
             this.emptySpaceItem24,
             this.emptySpaceItem23,
             this.layoutControlItem56,
-            this.layoutControlItem59,
+            this.layoutControlTimbresNT2,
             this.layoutControlItem60,
             this.layoutControlItem61,
-            this.layoutControlItem64});
+            this.layoutControlItem64,
+            this.layoutControlPacActivo2});
             this.layoutControlGroup10.Location = new System.Drawing.Point(0, 112);
             this.layoutControlGroup10.Name = "layoutControlGroup10";
             this.layoutControlGroup10.Size = new System.Drawing.Size(899, 554);
@@ -4027,9 +4157,9 @@
             // layoutControlItem16
             // 
             this.layoutControlItem16.Control = this.gridControlNomiMasiv;
-            this.layoutControlItem16.Location = new System.Drawing.Point(0, 59);
+            this.layoutControlItem16.Location = new System.Drawing.Point(0, 82);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(875, 389);
+            this.layoutControlItem16.Size = new System.Drawing.Size(875, 366);
             this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem16.TextVisible = false;
             // 
@@ -4056,16 +4186,16 @@
             this.layoutControlItem30.Control = this.BtnMasivIngresos;
             this.layoutControlItem30.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(126, 48);
+            this.layoutControlItem30.Size = new System.Drawing.Size(126, 72);
             this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem30.TextVisible = false;
             // 
             // emptySpaceItem24
             // 
             this.emptySpaceItem24.AllowHotTrack = false;
-            this.emptySpaceItem24.Location = new System.Drawing.Point(0, 48);
+            this.emptySpaceItem24.Location = new System.Drawing.Point(0, 72);
             this.emptySpaceItem24.Name = "emptySpaceItem24";
-            this.emptySpaceItem24.Size = new System.Drawing.Size(875, 11);
+            this.emptySpaceItem24.Size = new System.Drawing.Size(875, 10);
             this.emptySpaceItem24.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem23
@@ -4085,45 +4215,133 @@
             this.layoutControlItem56.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem56.TextVisible = false;
             // 
-            // layoutControlItem59
+            // layoutControlTimbresNT2
             // 
-            this.layoutControlItem59.Control = this.txtTimbresMasiv;
-            this.layoutControlItem59.Location = new System.Drawing.Point(126, 0);
-            this.layoutControlItem59.Name = "layoutControlItem59";
-            this.layoutControlItem59.Size = new System.Drawing.Size(347, 24);
-            this.layoutControlItem59.Text = "Timbres Disponibles";
-            this.layoutControlItem59.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem59.TextSize = new System.Drawing.Size(93, 13);
-            this.layoutControlItem59.TextToControlDistance = 5;
+            this.layoutControlTimbresNT2.Control = this.txtTimbresMasiv;
+            this.layoutControlTimbresNT2.Location = new System.Drawing.Point(126, 24);
+            this.layoutControlTimbresNT2.Name = "layoutControlTimbresNT2";
+            this.layoutControlTimbresNT2.Size = new System.Drawing.Size(347, 24);
+            this.layoutControlTimbresNT2.Text = "Timbres Disponibles NT-LINK";
+            this.layoutControlTimbresNT2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlTimbresNT2.TextSize = new System.Drawing.Size(135, 13);
+            this.layoutControlTimbresNT2.TextToControlDistance = 5;
             // 
             // layoutControlItem60
             // 
             this.layoutControlItem60.Control = this.chBoxCorreoEmpleado;
             this.layoutControlItem60.Location = new System.Drawing.Point(473, 0);
             this.layoutControlItem60.Name = "layoutControlItem60";
-            this.layoutControlItem60.Size = new System.Drawing.Size(402, 24);
+            this.layoutControlItem60.Size = new System.Drawing.Size(402, 23);
             this.layoutControlItem60.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem60.TextVisible = false;
             // 
             // layoutControlItem61
             // 
             this.layoutControlItem61.Control = this.chBoxClte;
-            this.layoutControlItem61.Location = new System.Drawing.Point(473, 24);
+            this.layoutControlItem61.Location = new System.Drawing.Point(473, 23);
             this.layoutControlItem61.Name = "layoutControlItem61";
-            this.layoutControlItem61.Size = new System.Drawing.Size(402, 24);
+            this.layoutControlItem61.Size = new System.Drawing.Size(402, 49);
             this.layoutControlItem61.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem61.TextVisible = false;
             // 
             // layoutControlItem64
             // 
             this.layoutControlItem64.Control = this.txtCorreoClte;
-            this.layoutControlItem64.Location = new System.Drawing.Point(126, 24);
+            this.layoutControlItem64.Location = new System.Drawing.Point(126, 48);
             this.layoutControlItem64.Name = "layoutControlItem64";
             this.layoutControlItem64.Size = new System.Drawing.Size(347, 24);
             this.layoutControlItem64.Text = "Correo Cliente";
             this.layoutControlItem64.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem64.TextSize = new System.Drawing.Size(69, 13);
             this.layoutControlItem64.TextToControlDistance = 5;
+            // 
+            // layoutControlPacActivo2
+            // 
+            this.layoutControlPacActivo2.Control = this.txtPacActiv2;
+            this.layoutControlPacActivo2.Location = new System.Drawing.Point(126, 0);
+            this.layoutControlPacActivo2.Name = "layoutControlPacActivo2";
+            this.layoutControlPacActivo2.Size = new System.Drawing.Size(347, 24);
+            this.layoutControlPacActivo2.Text = "PAC de timbrado Activo";
+            this.layoutControlPacActivo2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlPacActivo2.TextSize = new System.Drawing.Size(113, 13);
+            this.layoutControlPacActivo2.TextToControlDistance = 5;
+            // 
+            // layoutControlGroupPAC
+            // 
+            this.layoutControlGroupPAC.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlPacsTimbrado,
+            this.emptySpaceItem33});
+            this.layoutControlGroupPAC.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroupPAC.Name = "layoutControlGroupPAC";
+            this.layoutControlGroupPAC.Size = new System.Drawing.Size(923, 708);
+            this.layoutControlGroupPAC.Text = "Pacs Timbrado";
+            this.layoutControlGroupPAC.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
+            // layoutControlPacsTimbrado
+            // 
+            this.layoutControlPacsTimbrado.CustomizationFormText = "Pac de timbrado";
+            this.layoutControlPacsTimbrado.GroupStyle = DevExpress.Utils.GroupStyle.Light;
+            this.layoutControlPacsTimbrado.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem65,
+            this.lookUpAmbiente,
+            this.layoutControlItem66,
+            this.layoutControlItem67});
+            this.layoutControlPacsTimbrado.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlPacsTimbrado.Name = "layoutControlPacsTimbrado";
+            this.layoutControlPacsTimbrado.Size = new System.Drawing.Size(923, 113);
+            this.layoutControlPacsTimbrado.Text = "Pac de timbrado";
+            // 
+            // layoutControlItem65
+            // 
+            this.layoutControlItem65.Control = this.chEditSolucion;
+            this.layoutControlItem65.CustomizationFormText = "layoutControlItem65";
+            this.layoutControlItem65.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem65.Name = "layoutControlItem65";
+            this.layoutControlItem65.Size = new System.Drawing.Size(449, 23);
+            this.layoutControlItem65.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem65.TextVisible = false;
+            // 
+            // lookUpAmbiente
+            // 
+            this.lookUpAmbiente.Control = this.lookUpPAC;
+            this.lookUpAmbiente.CustomizationFormText = "Ambiente";
+            this.lookUpAmbiente.Location = new System.Drawing.Point(0, 23);
+            this.lookUpAmbiente.Name = "lookUpAmbiente";
+            this.lookUpAmbiente.Size = new System.Drawing.Size(899, 24);
+            this.lookUpAmbiente.Text = "Ambiente";
+            this.lookUpAmbiente.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.lookUpAmbiente.TextSize = new System.Drawing.Size(45, 13);
+            this.lookUpAmbiente.TextToControlDistance = 5;
+            // 
+            // layoutControlItem66
+            // 
+            this.layoutControlItem66.Control = this.chNtLink;
+            this.layoutControlItem66.CustomizationFormText = "layoutControlItem66";
+            this.layoutControlItem66.Location = new System.Drawing.Point(449, 0);
+            this.layoutControlItem66.Name = "layoutControlItem66";
+            this.layoutControlItem66.Size = new System.Drawing.Size(450, 23);
+            this.layoutControlItem66.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem66.TextVisible = false;
+            // 
+            // layoutControlItem67
+            // 
+            this.layoutControlItem67.Control = this.txtPACActivo;
+            this.layoutControlItem67.Location = new System.Drawing.Point(0, 47);
+            this.layoutControlItem67.Name = "layoutControlItem67";
+            this.layoutControlItem67.Size = new System.Drawing.Size(899, 24);
+            this.layoutControlItem67.Text = "PAC de timbtado Activo";
+            this.layoutControlItem67.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem67.TextSize = new System.Drawing.Size(113, 13);
+            this.layoutControlItem67.TextToControlDistance = 5;
+            // 
+            // emptySpaceItem33
+            // 
+            this.emptySpaceItem33.AllowHotTrack = false;
+            this.emptySpaceItem33.Location = new System.Drawing.Point(0, 113);
+            this.emptySpaceItem33.Name = "emptySpaceItem33";
+            this.emptySpaceItem33.Size = new System.Drawing.Size(923, 595);
+            this.emptySpaceItem33.TextSize = new System.Drawing.Size(0, 0);
+            this.emptySpaceItem33.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // queryEstatusBindingSource
             // 
@@ -4362,13 +4580,13 @@
             selectQuery4.GroupFilterString = "";
             selectQuery4.Name = "LayoutHistorico";
             selectQuery4.Tables.Add(table4);
-            customSqlQuery5.Name = "QueryEstatus";
-            customSqlQuery5.Sql = "  SELECT \'G\' AS [Estatus], \'Generado\' AS [Descripcion]\r\n  UNION SELECT \'P\' AS [Es" +
+            customSqlQuery6.Name = "QueryEstatus";
+            customSqlQuery6.Sql = "  SELECT \'G\' AS [Estatus], \'Generado\' AS [Descripcion]\r\n  UNION SELECT \'P\' AS [Es" +
     "tatus], \'Pagado\' AS [Descripcion]";
             this.sqlDataSource2.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             selectQuery3,
             selectQuery4,
-            customSqlQuery5});
+            customSqlQuery6});
             this.sqlDataSource2.ResultSchemaSerializable = resources.GetString("sqlDataSource2.ResultSchemaSerializable");
             // 
             // layoutHistoricoBindingSource
@@ -4528,13 +4746,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTimbres.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chBoxCorreoEmpleado2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chBoxCorreoClte2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPacActiv.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem52)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem58)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlTimbresNT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem62)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem63)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlPacActivo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem53)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem28)).EndInit();
@@ -4649,14 +4869,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.chBoxCorreoEmpleado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chBoxClte.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCorreoClte.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chEditSolucion.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpPAC.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pacsTimbradoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chNtLink.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPACActivo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPacActiv2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tabbedConntrolPAC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
@@ -4723,10 +4949,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlTimbresNT2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem61)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem64)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlPacActivo2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupPAC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlPacsTimbrado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem65)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpAmbiente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem66)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem67)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem33)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.queryEstatusBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutHistoricoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.caratulaPagoBindingSource)).EndInit();
@@ -4774,7 +5008,7 @@
         private DevExpress.XtraEditors.TextEdit TxtSubEmpl;
         private DevExpress.XtraEditors.TextEdit TxtIngNet;
         private DevExpress.XtraEditors.TextEdit TxtImpMar;
-        private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroup1;
+        private DevExpress.XtraLayout.TabbedControlGroup tabbedConntrolPAC;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup8;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
@@ -5068,10 +5302,10 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem56;
         private DevExpress.XtraEditors.TextEdit txtTimbres;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem58;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlTimbresNT;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem27;
         private DevExpress.XtraEditors.TextEdit txtTimbresMasiv;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem59;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlTimbresNT2;
         private DevExpress.XtraEditors.CheckEdit chBoxCorreoEmpleado;
         private DevExpress.XtraEditors.CheckEdit chBoxClte;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem60;
@@ -5083,5 +5317,21 @@
         private DevExpress.XtraEditors.TextEdit txtCorreoClte;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem64;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCliente;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroupPAC;
+        private DevExpress.XtraEditors.CheckEdit chEditSolucion;
+        private DevExpress.XtraEditors.LookUpEdit lookUpPAC;
+        private DevExpress.XtraEditors.CheckEdit chNtLink;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlPacsTimbrado;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem65;
+        private DevExpress.XtraLayout.LayoutControlItem lookUpAmbiente;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem66;
+        private DevExpress.XtraEditors.TextEdit txtPACActivo;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem67;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem33;
+        private System.Windows.Forms.BindingSource pacsTimbradoBindingSource;
+        private DevExpress.XtraEditors.TextEdit txtPacActiv;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlPacActivo;
+        private DevExpress.XtraEditors.TextEdit txtPacActiv2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlPacActivo2;
     }
 }

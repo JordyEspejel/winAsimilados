@@ -69,16 +69,18 @@
             this.barHeaderItem3 = new DevExpress.XtraBars.BarHeaderItem();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.repositoryItemHypertextLabel1 = new DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel();
             this.PopBtnOpciones = new DevExpress.XtraBars.PopupMenu(this.components);
             this.PopBtnNomi = new DevExpress.XtraBars.PopupMenu(this.components);
             this.PopBtnEmpresas = new DevExpress.XtraBars.PopupMenu(this.components);
             this.PanelPrincipal = new DevExpress.XtraEditors.SidePanel();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordionControlElement12 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElementClaveSAT = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement13 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlBanSucursales = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlBanEmpresa = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElementClaveSAT = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlEmprPagaAsim = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement10 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement11 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElemenAddClteUnit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -89,11 +91,10 @@
             this.accordionAgregaEmplUni = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionAgregaEmplMasiv = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.acoordionEditaEmpleado = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlEmpresas = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionAgregarEmpresaUnitario = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionEditaEmpresa = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlEmprPagaAsim = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionNomiAsim = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionBitacora = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -106,17 +107,17 @@
             this.accordionControlElement7 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement9 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlEditaUsuario = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlPACSTimbrado = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.repositoryItemHypertextLabel1 = new DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpleados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnOpciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnNomi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpresas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).BeginInit();
             this.SuspendLayout();
             // 
             // PopBtnEmpleados
@@ -496,6 +497,10 @@
             this.repositoryItemTextEdit1.AutoHeight = false;
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
+            // repositoryItemHypertextLabel1
+            // 
+            this.repositoryItemHypertextLabel1.Name = "repositoryItemHypertextLabel1";
+            // 
             // PopBtnOpciones
             // 
             this.PopBtnOpciones.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
@@ -535,7 +540,7 @@
             this.accordionControlElement12,
             this.accordionControlElement10,
             this.accordionControlElement1,
-            this.accordionControlElement3,
+            this.accordionControlEmpresas,
             this.accordionControlElement5,
             this.accordionControlElement8});
             this.accordionControl1.Location = new System.Drawing.Point(0, 34);
@@ -552,19 +557,12 @@
             // accordionControlElement12
             // 
             this.accordionControlElement12.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlElement13,
             this.accordionControlElementClaveSAT,
-            this.accordionControlElement13});
+            this.accordionControlEmprPagaAsim});
             this.accordionControlElement12.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement12.ImageOptions.Image")));
             this.accordionControlElement12.Name = "accordionControlElement12";
             this.accordionControlElement12.Text = "Catalogos";
-            // 
-            // accordionControlElementClaveSAT
-            // 
-            this.accordionControlElementClaveSAT.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElementClaveSAT.ImageOptions.Image")));
-            this.accordionControlElementClaveSAT.Name = "accordionControlElementClaveSAT";
-            this.accordionControlElementClaveSAT.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElementClaveSAT.Text = "Claves SAT";
-            this.accordionControlElementClaveSAT.Click += new System.EventHandler(this.accordionControlElementClaveSAT_Click);
             // 
             // accordionControlElement13
             // 
@@ -591,6 +589,22 @@
             this.accordionControlBanEmpresa.Text = "Bancos Empresa";
             this.accordionControlBanEmpresa.Click += new System.EventHandler(this.accordionControlBanEmpresa_Click);
             // 
+            // accordionControlElementClaveSAT
+            // 
+            this.accordionControlElementClaveSAT.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElementClaveSAT.ImageOptions.Image")));
+            this.accordionControlElementClaveSAT.Name = "accordionControlElementClaveSAT";
+            this.accordionControlElementClaveSAT.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElementClaveSAT.Text = "Claves SAT";
+            this.accordionControlElementClaveSAT.Click += new System.EventHandler(this.accordionControlElementClaveSAT_Click);
+            // 
+            // accordionControlEmprPagaAsim
+            // 
+            this.accordionControlEmprPagaAsim.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlEmprPagaAsim.ImageOptions.Image")));
+            this.accordionControlEmprPagaAsim.Name = "accordionControlEmprPagaAsim";
+            this.accordionControlEmprPagaAsim.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlEmprPagaAsim.Text = "Empresas Paga Asimilados";
+            this.accordionControlEmprPagaAsim.Click += new System.EventHandler(this.accordionControlEmprPagaAsim_Click);
+            // 
             // accordionControlElement10
             // 
             this.accordionControlElement10.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
@@ -605,6 +619,7 @@
             this.accordionControlElement11.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElemenAddClteUnit,
             this.accordionControlbtnMasivClte});
+            this.accordionControlElement11.Expanded = true;
             this.accordionControlElement11.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement11.ImageOptions.Image")));
             this.accordionControlElement11.Name = "accordionControlElement11";
             this.accordionControlElement11.Text = "Agregar";
@@ -675,15 +690,15 @@
             this.acoordionEditaEmpleado.Text = "Editar";
             this.acoordionEditaEmpleado.Click += new System.EventHandler(this.acoordionEditaEmpleado_Click);
             // 
-            // accordionControlElement3
+            // accordionControlEmpresas
             // 
-            this.accordionControlElement3.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlEmpresas.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement4,
-            this.accordionEditaEmpresa,
-            this.accordionControlEmprPagaAsim});
-            this.accordionControlElement3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement3.ImageOptions.Image")));
-            this.accordionControlElement3.Name = "accordionControlElement3";
-            this.accordionControlElement3.Text = "Empresas";
+            this.accordionEditaEmpresa});
+            this.accordionControlEmpresas.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlEmpresas.ImageOptions.Image")));
+            this.accordionControlEmpresas.Name = "accordionControlEmpresas";
+            this.accordionControlEmpresas.Text = "Empresas";
+            this.accordionControlEmpresas.Visible = false;
             // 
             // accordionControlElement4
             // 
@@ -710,14 +725,6 @@
             this.accordionEditaEmpresa.Text = "Editar";
             this.accordionEditaEmpresa.Visible = false;
             this.accordionEditaEmpresa.Click += new System.EventHandler(this.accordionEditaEmpresa_Click);
-            // 
-            // accordionControlEmprPagaAsim
-            // 
-            this.accordionControlEmprPagaAsim.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlEmprPagaAsim.ImageOptions.Image")));
-            this.accordionControlEmprPagaAsim.Name = "accordionControlEmprPagaAsim";
-            this.accordionControlEmprPagaAsim.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlEmprPagaAsim.Text = "Empresas Paga Asimilados";
-            this.accordionControlEmprPagaAsim.Click += new System.EventHandler(this.accordionControlEmprPagaAsim_Click);
             // 
             // accordionControlElement5
             // 
@@ -784,7 +791,8 @@
             // 
             this.accordionControlElement8.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionCambiarEmpresa,
-            this.accordionControlElement7});
+            this.accordionControlElement7,
+            this.accordionControlPACSTimbrado});
             this.accordionControlElement8.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement8.ImageOptions.Image")));
             this.accordionControlElement8.Name = "accordionControlElement8";
             this.accordionControlElement8.Text = "Opciones";
@@ -823,13 +831,18 @@
             this.accordionControlEditaUsuario.Text = "Editar";
             this.accordionControlEditaUsuario.Click += new System.EventHandler(this.accordionControlEditaUsuario_Click);
             // 
+            // accordionControlPACSTimbrado
+            // 
+            this.accordionControlPACSTimbrado.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlPACSTimbrado.ImageOptions.Image")));
+            this.accordionControlPACSTimbrado.Name = "accordionControlPACSTimbrado";
+            this.accordionControlPACSTimbrado.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlPACSTimbrado.Text = "PACS de Timbrado";
+            this.accordionControlPACSTimbrado.Visible = false;
+            this.accordionControlPACSTimbrado.Click += new System.EventHandler(this.accordionControlPACSTimbrado_Click);
+            // 
             // splashScreenManager1
             // 
             this.splashScreenManager1.ClosingDelay = 500;
-            // 
-            // repositoryItemHypertextLabel1
-            // 
-            this.repositoryItemHypertextLabel1.Name = "repositoryItemHypertextLabel1";
             // 
             // AsimiladosPrincipal
             // 
@@ -854,11 +867,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpleados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnOpciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnNomi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpresas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -914,7 +927,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionAgregaEmplUni;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionAgregaEmplMasiv;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acoordionEditaEmpleado;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlEmpresas;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionAgregarEmpresaUnitario;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionEditaEmpresa;
@@ -944,5 +957,6 @@
         private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
         private DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel repositoryItemHypertextLabel1;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlPACSTimbrado;
     }
 }

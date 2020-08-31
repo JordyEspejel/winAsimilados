@@ -531,7 +531,7 @@ namespace winAsimilados.Views
                 calcUnitario = false;
                 E.Empleado empl = new E.Empleado();
                 C.Controller Controlador = new C.Controller();
-                OpenFileDialog dialog = new OpenFileDialog();
+                XtraOpenFileDialog dialog = new XtraOpenFileDialog();
                 dialog.Filter = "Archivos de Excel (*.xls;*.xlsx)|*.xls;*.xlsx"; //le indicamos el tipo de filtro en este caso que busque
                                                                                  //solo los archivos excel
 
@@ -875,7 +875,10 @@ namespace winAsimilados.Views
                 }
                 else
                 {
-                    splashScreenManager1.CloseWaitForm();
+                    if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                    {
+                        splashScreenManager1.CloseWaitForm();
+                    }
                 }
             }
             catch (Exception importar)

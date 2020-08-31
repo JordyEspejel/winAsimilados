@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery1 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery2 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmpresasPagoAsimilados));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gridControlEmpr = new DevExpress.XtraGrid.GridControl();
@@ -206,17 +206,18 @@
             // 
             this.sqlDataSource1.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            customSqlQuery1.Name = "QueryStatus";
-            customSqlQuery1.Sql = "SELECT \'A\' AS [c_Status], \'Activa\' AS [Descripcion]\r\nUNION SELECT \'I\' AS [c_Statu" +
+            customSqlQuery2.Name = "QueryStatus";
+            customSqlQuery2.Sql = "SELECT \'A\' AS [c_Status], \'Activa\' AS [Descripcion]\r\nUNION SELECT \'I\' AS [c_Statu" +
     "s], \'Inactiva\' AS [Descripcion]";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            customSqlQuery1});
+            customSqlQuery2});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // txtRazon
             // 
             this.txtRazon.Location = new System.Drawing.Point(89, 84);
             this.txtRazon.Name = "txtRazon";
+            this.txtRazon.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRazon.Size = new System.Drawing.Size(469, 20);
             this.txtRazon.StyleController = this.layoutControl1;
             this.txtRazon.TabIndex = 4;
@@ -236,6 +237,7 @@
             // 
             this.txtRFC.Location = new System.Drawing.Point(587, 84);
             this.txtRFC.Name = "txtRFC";
+            this.txtRFC.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRFC.Size = new System.Drawing.Size(189, 20);
             this.txtRFC.StyleController = this.layoutControl1;
             this.txtRFC.TabIndex = 6;
