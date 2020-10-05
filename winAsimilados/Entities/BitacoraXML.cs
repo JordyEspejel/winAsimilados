@@ -75,5 +75,12 @@ namespace winAsimilados.Entities
             get { return _Usuario; }
             set { _Usuario = value; }
         }
+
+        private string _Origen;
+        public string Origen
+        {
+            get { return _Origen; }
+            set { _Origen = value; }
+        }
     }
 }

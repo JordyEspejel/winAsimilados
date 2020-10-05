@@ -14,7 +14,7 @@ namespace winAsimilados.Reports
         {
             InitializeComponent();
             bd = BD;
-            sqlDataSource1.Connection.ConnectionString = "Data Source=192.168.16.248\\COMPAC;Initial Catalog=" + bd + ";User ID=sa;Password=Supervisor;";
+            sqlDataSource1.Connection.ConnectionString = @"Data Source=192.168.16.20\inari;Initial Catalog=" + bd + ";User ID=sa;Password=20201N4r1SQL;";
             sqlDataSource1.Fill();
 
         }

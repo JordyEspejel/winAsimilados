@@ -66,6 +66,18 @@ namespace winAsimilados.Views
             cuenta = TxtCuenta.Text;
         }
 
+        private void ChMostrar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChMostrar.Checked.Equals(true))
+            {
+                TxtPssw.Properties.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                TxtPssw.Properties.UseSystemPasswordChar = true;
+            }
+        }
+
         public AgregarEmpresa(bool listado, SplashScreenManager screenManager)
         {
             splash = screenManager;

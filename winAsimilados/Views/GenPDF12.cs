@@ -29,16 +29,16 @@ namespace winAsimilados.Views
 
         private void GenPDF12_Load(object sender, EventArgs e)
         {
-            fechaIni = FecIni.Value.ToString("yyyy/MM/dd");
-            fechaFinal = FecFinal.Value.ToString("yyyy/MM/dd");
+            fechaIni = FecIni.Value.ToString("dd/MM/yyyy");
+            fechaFinal = FecFinal.Value.ToString("dd/MM/yyyy");
             Controlador.Buscar12(gridControl1, fechaIni, fechaFinal);
             gridControl1.Visible = true;
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            fechaIni = FecIni.Value.ToString("yyyy/MM/dd");
-            fechaFinal = FecFinal.Value.ToString("yyyy/MM/dd");
+            fechaIni = FecIni.Value.ToString("dd/MM/yyyy");
+            fechaFinal = FecFinal.Value.ToString("dd/MM/yyyy");
             Controlador.Buscar12(gridControl1, fechaIni, fechaFinal);
             gridControl1.Visible = true;
         }
@@ -67,6 +67,10 @@ namespace winAsimilados.Views
             }
             catch (Exception btn)
             {
+                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                {
+                    splashScreenManager1.CloseWaitForm();
+                }
                 XtraMessageBox.Show(btn.Message + "Error modulo GenPDF1.2: \nBtnAceptar", "Error", MessageBoxButtons.OK
                     , MessageBoxIcon.Error);
             }

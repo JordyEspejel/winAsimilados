@@ -46,15 +46,15 @@ namespace winAsimilados.Views
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            fechaIni = FecIni.Value.ToString("yyyy/MM/dd");
-            fechaFinal = FecFinal.Value.ToString("yyyy/MM/dd");
+            fechaIni = FecIni.Value.ToString("dd/MM/yyyy");
+            fechaFinal = FecFinal.Value.ToString("dd/MM/yyyy");
             Controlador.Buscar12(gridControl1, fechaIni, fechaFinal);
             gridControl1.Visible = true;
         }
         private  void RefrescaTabla()
         {
-            fechaIni = FecIni.Value.ToString("yyyy/MM/dd");
-            fechaFinal = FecFinal.Value.ToString("yyyy/MM/dd");
+            fechaIni = FecIni.Value.ToString("dd/MM/yyyy");
+            fechaFinal = FecFinal.Value.ToString("dd/MM/yyyy");
             Controlador.Buscar12(gridControl1, fechaIni, fechaFinal);
             gridControl1.Visible = true;
         }

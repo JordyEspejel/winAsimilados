@@ -42,6 +42,10 @@ using ServicioTimbradoClient = winAsimilados.ServcioTimbradoNTLINK.ServicioTimbr
 using ServicioTimbtadoClientPruebas = winAsimilados.ServicioPruebasTimbradoNTLINK.ServicioTimbradoClient;
 using System.Net.Mail;
 using System.IO.Compression;
+using Pechkin.Synchronized;
+using Pechkin;
+using System.Drawing.Printing;
+using WkHtmlToPdf;
 
 namespace winAsimilados.Controller
 {
@@ -488,14 +492,14 @@ namespace winAsimilados.Controller
                    ",[PORCENTAJE_ISN] = " + cliente.PORCENTAJE_ISN + "" +
                    ",[PORCENTAJE_COMISION] = " + cliente.PORCENTAJE_COMISION + "" +
                    ",[TOTAL] = " + cliente.TOTAL + "" +
-                   ",[FACTURACION_CON IVA _SIN IVA] = '" + cliente.FACTURACION_CON_IVA_SIN_IVA + "'" +
+                   ",[FACTURACION_CON_IVA_SIN_IVA] = '" + cliente.FACTURACION_CON_IVA_SIN_IVA + "'" +
                    ",[RETENCION] = '" + cliente.RETENCION + "'" +
                    ",[PORCENTAJE_RETENCION] = " + cliente.PORCENTAJE_RETENCION + "" +
                    ",[PERIODO_DE_PAGO] = '" + cliente.PERIODO_DE_PAGO + "'" +
                    ",[EJECUTIVO_RESPONSABLE] = '" + cliente.EJECUTIVO_RESPONSABLE + "'" +
-                   ",[EMPRESA_PAGADORA_EMITE CFDI] = '" + cliente.EMPRESA_PAGADORA_EMITE_CFDI + "'" +
+                   ",[EMPRESA_PAGADORA_EMITE_CFDI] = '" + cliente.EMPRESA_PAGADORA_EMITE_CFDI + "'" +
                    ",[PROVEEDOR] = '" + cliente.PROVEEDOR + "'" +
-                   ",[EMPRESA_QUE_FACTUR_A _CLIENTE] = '" + cliente.EMPRESA_QUE_FACTUR_A_CLIENTE + "'" +
+                   ",[EMPRESA_QUE_FACTURA_A_CLIENTE] = '" + cliente.EMPRESA_QUE_FACTUR_A_CLIENTE + "'" +
                    ",[EMPRESA_QUE_FACTURA_A_CLIENTE1] = '" + cliente.EMPRESA_QUE_FACTURA_A_CLIENTE1 + "'" +
                    ",[EMPRESA_QUE_FACTURA_A_CLIENTE2] = '" + cliente.EMPRESA_QUE_FACTURA_A_CLIENTE2 + "'" +
                    ",[EMPRESA_QUE_FACTURA_A_CLIENTE3] = '" + cliente.EMPRESA_QUE_FACTURA_A_CLIENTE3 + "'" +
@@ -506,7 +510,7 @@ namespace winAsimilados.Controller
                     ",[COMISIONISTA2] = '" + cliente.COMISIONISTA2 + "'" +
                     ",[PORCENTAJE_COMISIONISTA2] = " + cliente.PORCENTAJE_COMISIONISTA2 + "" +
                     ",[COMISIONISTA3] = '" + cliente.COMISIONISTA3 + "'" +
-                    ",[PORCENTAJE_COMISIONIST3] = " + cliente.PORCENTAJE_COMISIONISTA3 + "" +
+                    ",[PORCENTAJE_COMISIONISTA3] = " + cliente.PORCENTAJE_COMISIONISTA3 + "" +
                     ",[PORCENTAJE_FACTURA] = " + cliente.PORCENTAJE_FACTURA + "" +
                     ",[PORCENTAJE_FACTURA2] = " + cliente.PORCENTAJE_FACTURA2 + "" +
                     ",[PORCENTAJE_FACTURA3] = " + cliente.PORCENTAJE_FACTURA3 + "" +
@@ -889,6 +893,7 @@ namespace winAsimilados.Controller
                 ,[FecMov]
                 ,[IPMov]
                 ,[Usuario]
+                ,ISNULL([Origen], '') AS [Origen]
                 FROM [dbo].[BitacoraXML]
                 WHERE Usuario = @User
                 AND MONTH(FecPago) = @Month
@@ -2297,6 +2302,7 @@ namespace winAsimilados.Controller
                     Bitacora.FecFin = item.fecFinPeri;
                     Bitacora.FecMovimiento = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
                     Bitacora.Movimiento = "Timbrado";
+                    Bitacora.Origen = "Nomina";
 
                     fecPago = Convert.ToDateTime(item.fechaAplicacion).ToString("dd-MM-yyyy");
                     pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
@@ -2712,6 +2718,7 @@ namespace winAsimilados.Controller
                                     Bitacora.UUID = cFDIResultados[0].uuid;
                                     Bitacora.StatusSAT = "Vigente";
                                     Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
+                                    Bitacora.Origen = "Nomina";
                                     splashScreenManager1.SetWaitFormCaption("Guardando Movimiento..");
                                     string resultFolio = InsertaFolio(Folio, splashScreenManager1);
                                     if (resultFolio != "true")
@@ -3049,6 +3056,7 @@ namespace winAsimilados.Controller
                     Bitacora.FecFin = FecFinPeriMasiv;
                     Bitacora.FecMovimiento = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
                     Bitacora.Movimiento = "Timbrado";
+                    Bitacora.Origen = "Timbrado Masivo";
 
                     fecPago = Convert.ToDateTime(FecPagoMasiv).ToString("dd-MM-yyyy");
                     pathArchivoXML = Path.Combine(pathXml+ fecPago + @"\");
@@ -3633,8 +3641,12 @@ namespace winAsimilados.Controller
                             archivos.Add(pathArchivoXML);
                         }
                         splashScreenManager1.SetWaitFormCaption("Generando PDF..");
+                        string nomPDF = Path.GetFileNameWithoutExtension(pathArchivoXML);
+                        nomPDF = nomPDF  + ".pdf";
                         string resultPDF = LeerXMLModAsim(pathArchivoXML, pathArchivoXMLF, splashScreenManager1);
-                        if (resultPDF.Equals("false"))
+                        string nomPDFResult = Path.GetFileNameWithoutExtension(resultPDF);
+                        nomPDFResult = nomPDFResult + ".pdf";
+                        if (nomPDFResult != nomPDF)
                         {
                             //XtraMessageBox.Show("Hubo un error al generar archivo pdf", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             error++;
@@ -3725,7 +3737,10 @@ namespace winAsimilados.Controller
                             writerLog.Write(builder);
                             writerLog.Close();
 
-                            splashScreenManager1.CloseWaitForm();
+                            if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                            {
+                                splashScreenManager1.CloseWaitForm();
+                            }
 
                             XtraMessageBox.Show("¡Nomina generada con " + error + " errores registrados y "
                                 + exito + " registros con éxito! \n(Presione aceptar para ver errores)", "Mensaje"
@@ -3856,19 +3871,21 @@ namespace winAsimilados.Controller
                 ,[Movimiento]
                 ,[FecMov]
                 ,[IPMov]
-                ,[Usuario])
+                ,[Usuario]
+                ,[Origen])
                   VALUES
                 ('" + bitacora.Folio + "'" +
                 ",'" + bitacora.UUID + "'" +
                 ",'" + bitacora.StatusSAT + "'" +
-                ",'" + bitacora.FecPago.ToString("yyyy/MM/dd") + "'" +
-                ",'" + bitacora.FecIni.ToString("yyyy/MM/dd") + "'" +
-                ",'" + bitacora.FecFin.ToString("yyyy/MM/dd") + "'" +
+                ",'" + bitacora.FecPago.ToString("dd/MM/yyyy") + "'" +
+                ",'" + bitacora.FecIni.ToString("dd/MM/yyyy") + "'" +
+                ",'" + bitacora.FecFin.ToString("dd/MM/yyyy") + "'" +
                 ",'" + bitacora.Empresa + "'" +
                 ",'" + bitacora.Movimiento + "'" +
-                ",'" + bitacora.FecMovimiento.ToString("yyyy/MM/dd") + "'" +
+                ",'" + bitacora.FecMovimiento.ToString("dd/MM/yyyy") + "'" +
                 ",'" + bitacora.IPMovimiento + "'" +
-                ",'" + bitacora.Usuario.ToUpper() + "')";
+                ",'" + bitacora.Usuario.ToUpper() + "'" +
+                ",'" + bitacora.Origen + "')";
 
                 if (queryInserta.ExecuteNonQuery().Equals(1))
                 {
@@ -3921,9 +3938,9 @@ namespace winAsimilados.Controller
                 ",'" + folio.Empleado + "'" +
                 "," + folio.Importe +
                 ",'" + folio.StatusSAT + "'" +
-                ",'" + folio.FecPago.ToString("yyyy/MM/dd") + "'" +
-                ",'" + folio.FecIni.ToString("yyyy/MM/dd") + "'" +
-                ",'" + folio.FecFin.ToString("yyyy/MM/dd") + "'" +
+                ",'" + folio.FecPago.ToString("dd/MM/yyyy") + "'" +
+                ",'" + folio.FecIni.ToString("dd/MM/yyyy") + "'" +
+                ",'" + folio.FecFin.ToString("dd/MM/yyyy") + "'" +
                 ",'" + folio.Empresa + "'" +
                 ",'" + folio.RFC + "'" +
                 ",'" + folio.selloCFD + "'" +
@@ -4156,32 +4173,32 @@ namespace winAsimilados.Controller
                 SqlCommand queryCliente = N.Conexion.PerformConnection().CreateCommand();
                 queryCliente.CommandText = @"SELECT [ID]
                   ,[CLIENTE]
-                  ,[FECHA_ALTA _PRIMER PAGO]
+                  ,[FECHA_ALTA_PRIMER_PAGO]
                   ,ISNULL([FECHA_BAJA], '') AS [FECHA_BAJA]
-                  ,[COMISIONISTA]
+                  ,ISNULL([COMISIONISTA], 'No Definido') AS [COMISIONISTA]
                   ,[PORCENTAJE_ISN]
                   ,[PORCENTAJE_COMISION]
                   ,[TOTAL]
-                  ,[FACTURACION_CON IVA _SIN IVA]
-                  ,[RETENCION]
+                  ,[FACTURACION_CON_IVA_SIN_IVA]
+                  ,ISNULL([RETENCION], 'ND') as [RETENCION]
                   ,[PERIODO_DE_PAGO]
                   ,[ESTATUS]
                   ,[EJECUTIVO_RESPONSABLE]
-                  ,[EMPRESA_PAGADORA_EMITE CFDI]
+                  ,[EMPRESA_PAGADORA_EMITE_CFDI]
                   ,[PROVEEDOR]
-                  ,ISNULL([EMPRESA_QUE_FACTUR_A _CLIENTE], '') AS [EMPRESA_QUE_FACTUR_A _CLIENTE]
+                  ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE], '') AS [EMPRESA_QUE_FACTUR_A _CLIENTE]
                   ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE1], '') AS [EMPRESA_QUE_FACTURA_A_CLIENTE1]
                   ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE2], '') AS [EMPRESA_QUE_FACTURA_A_CLIENTE2]
                   ,ISNULL([EMPRESA_QUE_FACTURA_A_CLIENTE3], '') AS [EMPRESA_QUE_FACTURA_A_CLIENTE3]
-                  ,[Metodo_Pago]
+                  ,ISNULL([Metodo_Pago], 'No Definido') AS [Metodo_Pago]
                   ,ISNULL([Observaciones], '') AS [Observaciones]
-                  ,[Forma_Pago]
-                  ,[PORCENTAJE_RETENCION]
+                  ,ISNULL([Forma_Pago], 'No Definido') AS [Forma_Pago]
+                  ,ISNULL([PORCENTAJE_RETENCION], 0) as [PORCENTAJE_RETENCION]
                 ,ISNULL([PORCENTAJE_COMISIONISTA], 0) as[PORCENTAJE_COMISIONISTA]
                 ,ISNULL([COMISIONISTA2], '') as[COMISIONISTA2]
                 ,ISNULL([PORCENTAJE_COMISIONISTA2], 0) as[PORCENTAJE_COMISIONISTA2]
                 ,ISNULL([COMISIONISTA3], '') as[COMISIONISTA3]
-                ,ISNULL([PORCENTAJE_COMISIONIST3], 0) as[PORCENTAJE_COMISIONISTA3]
+                ,ISNULL([PORCENTAJE_COMISIONISTA3], 0) as[PORCENTAJE_COMISIONISTA3]
                 ,ISNULL([PORCENTAJE_FACTURA], 0) AS [PORCENTAJE_FACTURA]
                 ,ISNULL([PORCENTAJE_FACTURA2], 0) AS [PORCENTAJE_FACTURA2]
                 ,ISNULL([PORCENTAJE_FACTURA3], 0) AS [PORCENTAJE_FACTURA3]
@@ -5116,8 +5133,8 @@ namespace winAsimilados.Controller
                 queryBancos.CommandText = @"SELECT
                 [ID]
                 ,[Banco]
-                ,[Cuenta]
-                ,[CLABE]
+                ,ISNULL([Cuenta], 'No Definido') As [Cuenta]
+                ,ISNULL([CLABE], 'No Definido') AS [CLABE]
              FROM [BSNOMINAS].[dbo].[CatalogoBancosEmpresaPagaAsimilados]
                 WHERE IDEmpresa = @ID";
                 queryBancos.Parameters.AddWithValue("ID", empresa);
@@ -5292,8 +5309,8 @@ namespace winAsimilados.Controller
                 "',[RIESGO_PUESTO] = '" + parametros.RIESGO_PUESTO +
                 "',[CLAVE_CERTIFICADO] = '" + parametros.CLAVE_CERTIFICADO +
                 "',[NUMERO_CERTIFICADO] = '" + parametros.NUMERO_CERTIFICADO +
-                "',[FECHA_VENCIMIENTO_CERTIFICADO] = '" + parametros.FECHA_VENCIMIENTO_CERTIFICADO.ToString("yyyy-MM-dd") +
-                "',[FECHA_INICIO_CERTIFICADO] = '" + parametros.FECHA_INICIO_CERTIFICADO.ToString("yyyy-MM-dd") +
+                "',[FECHA_VENCIMIENTO_CERTIFICADO] = '" + parametros.FECHA_VENCIMIENTO_CERTIFICADO.ToString("dd/MM/yyyy") +
+                "',[FECHA_INICIO_CERTIFICADO] = '" + parametros.FECHA_INICIO_CERTIFICADO.ToString("dd/MM/yyyy") +
                  "',[ORIGEN_RECURSOS] = '" + parametros.ORIGEN_RECURSOS +
                 "',[TIPO_NOMINA] = '" + parametros.TIPO_NOMINA +
                 "',[ARCHIVO_CER] = '" + parametros.ARCHIVO_CER +
@@ -5335,7 +5352,7 @@ namespace winAsimilados.Controller
                 E.Parametros parametros = (E.Parametros)_A;
 
                 //splashScreenManager.WaitForSplashFormClose();
-                string nameDB = "Nomina_Empresa", newNameDB = null, localidad = null, fechaIniCer = parametros.FECHA_INICIO_CERTIFICADO.ToString("yyyy-MM-dd"), fechaFincer = parametros.FECHA_VENCIMIENTO_CERTIFICADO.ToString("yyy-MM-dd");
+                string nameDB = "Nomina_Empresa", newNameDB = null, localidad = null, fechaIniCer = parametros.FECHA_INICIO_CERTIFICADO.ToString("dd/MM/yyyy"), fechaFincer = parametros.FECHA_VENCIMIENTO_CERTIFICADO.ToString("yyy-MM-dd");
                 int num = 0, nextNum = 0;
                 string ruta = @"C:/XML/";
                 parametros.RUTA_ALMACEN_PDF = ruta;
@@ -5520,7 +5537,7 @@ namespace winAsimilados.Controller
                 ('" + user.nombre + "'" +
                 ",'" + user.usuario + "'" +
                 ",'" + user.pass + "'" +
-                ",'" + user.fecReg.ToString("yyyy-MM-dd") + "'" +
+                ",'" + user.fecReg.ToString("dd/MM/yyyy") + "'" +
                 ",'" + user.estatusUsuario + "'" +
                 ",'" + user.tipoUsiario + "')";
 
@@ -5557,7 +5574,7 @@ namespace winAsimilados.Controller
                  ",[usuarioPass] = '" + user.pass + "'" +
                  ",[usuarioStatus] = '" + user.estatusUsuario + "'" +
                  ",[usuarioTipo] = '" + user.tipoUsiario + "'" +
-                 ",[usuarioFecMod] = '" + user.fecMod.ToString("yyyy-MM-dd") +"'" +
+                 ",[usuarioFecMod] = '" + user.fecMod.ToString("dd/MM/yyyy") +"'" +
                  "WHERE [ID] = " + user.ID;
                 if (queryEditaUsuario.ExecuteNonQuery().Equals(1))
                 {
@@ -6192,9 +6209,9 @@ namespace winAsimilados.Controller
                ",'" + caratula.IDEmpresa + "'" +
                ",'" + caratula.Empresa + "'" +
                "," + "GETDATE()" + "" +
-               ",'" + caratula.FechaAplicacion.ToString("yyyy-MM-dd") + "'" +
-               ",'" + caratula.FechaIniPeriodo.ToString("yyyy-MM-dd") + "'" +
-               ",'" + caratula.FechaFinPeriodo.ToString("yyyy-MM-dd") + "'" +
+               ",'" + caratula.FechaAplicacion.ToString("dd/MM/yyyy") + "'" +
+               ",'" + caratula.FechaIniPeriodo.ToString("dd/MM/yyyy") + "'" +
+               ",'" + caratula.FechaFinPeriodo.ToString("dd/MM/yyyy") + "'" +
                "," + caratula.TotalEmpleados + "" +
                "," + caratula.TotalPagoAsimilados +"" +
                ",'" + caratula.usuario + "'" +
@@ -6317,9 +6334,9 @@ namespace winAsimilados.Controller
                   ",[Cliente] = '" + caratula.Cliente + "'" +
                   ",[IDEmpresa] = '" + caratula.IDEmpresa + "'" +
                   ",[Empresa] = '" + caratula.Empresa + "'" +
-                  ",[FechaAplicacion] = '" + caratula.FechaAplicacion.ToString("yyyy-MM-dd") + "'" +
-                  ",[FechaIniPeriodo] = '" + caratula.FechaIniPeriodo.ToString("yyyy-MM-dd") + "'" +
-                  ",[FechaFinPeriodo] = '" + caratula.FechaFinPeriodo.ToString("yyyy-MM-dd") + "'" +
+                  ",[FechaAplicacion] = '" + caratula.FechaAplicacion.ToString("dd/MM/yyyy") + "'" +
+                  ",[FechaIniPeriodo] = '" + caratula.FechaIniPeriodo.ToString("dd/MM/yyyy") + "'" +
+                  ",[FechaFinPeriodo] = '" + caratula.FechaFinPeriodo.ToString("dd/MM/yyyy") + "'" +
                   ",[TotalEmpleados] = " + caratula.TotalEmpleados + "" +
                   ",[TotalPagoAsimilados] = " + caratula.TotalPagoAsimilados + "" +
                   ",[TipoPeri] = '" + caratula.TipoPeri + "'" +
@@ -6470,9 +6487,9 @@ namespace winAsimilados.Controller
                        ",'" + item.descripcion + "'" +
                        ",'" + item.RFCOrdenante + "'" +
                        "," + item.IVA + "" +
-                       ",'" + item.fechaAplicacion.ToString("yyyy-MM-dd") +"'" +
-                       ",'" + item.fecIniPeri.ToString("yyyy-MM-dd") + "'" +
-                       ",'" + item.fecFinPeri.ToString("yyyy-MM-dd") +"'" 
+                       ",'" + item.fechaAplicacion.ToString("dd/MM/yyyy") +"'" +
+                       ",'" + item.fecIniPeri.ToString("dd/MM/yyyy") + "'" +
+                       ",'" + item.fecFinPeri.ToString("dd/MM/yyyy") +"'" 
                        + ",'"+ item.institucionPago + "'" +
                        ",'" + item.claveTipoCambio + "'" +
                        "," + "GETDATE()" + "" +
@@ -6551,9 +6568,9 @@ namespace winAsimilados.Controller
                             ",[ingresosNeto] = " + item.ingresosNet + "" +
                             ",[importe] = " + item.importe + "" +
                             ",[IVA] = " + item.IVA + "" +
-                            ",[fechaAplicacion] = '" + item.fechaAplicacion.ToString("yyyy-MM-dd") + "'" +
-                            ",[fecIniPeri] = '" + item.fecIniPeri.ToString("yyyy-MM-dd") + "'" +
-                            ",[fecFinPeri] = '" + item.fecFinPeri.ToString("yyyy-MM-dd") + "'" +
+                            ",[fechaAplicacion] = '" + item.fechaAplicacion.ToString("dd/MM/yyyy") + "'" +
+                            ",[fecIniPeri] = '" + item.fecIniPeri.ToString("dd/MM/yyyy") + "'" +
+                            ",[fecFinPeri] = '" + item.fecFinPeri.ToString("dd/MM/yyyy") + "'" +
                             ",[IDEmpresaPago] = '" + item.IDEmpresa + "'" +
                             ",[bancoEmpresaPago] = '" + item.bancoEmpresaPago + "'" +
                             ",[IDPeriodo] = '" + item.periodo + "'" +
@@ -8037,6 +8054,8 @@ namespace winAsimilados.Controller
             }
         }
 
+
+
         [Obsolete]
         public string LeerXMLModAsim(string pathXML, string pathF, SplashScreenManager splashScreenManager)
         {
@@ -8096,22 +8115,40 @@ namespace winAsimilados.Controller
                 System.IO.File.WriteAllText(pathHTMLTemp, resultHtml);
 
                 //string pathWKHTMLTOPDF = @"C:\Users\aespejel\Downloads\Facturacion3.3-tutorial-pdf\XMLToClassSAT\wkhtmltopdf\wkhtmltopdf.exe";
-                string pathWKHTMLTOPDF = path + "wkhtmltopdf\\wkhtmltopdf.exe";
-                ProcessStartInfo oProcessStartInfo = new ProcessStartInfo();
-                oProcessStartInfo.CreateNoWindow = true;
-                oProcessStartInfo.UseShellExecute = false;
-                oProcessStartInfo.FileName = pathWKHTMLTOPDF;
-                oProcessStartInfo.Arguments = "miHtml.html mipdf.pdf";
-                //oProcessStartInfo.Arguments = pathF + ".html "+ pathF +".pdf";
 
-                using (Process oProcess = Process.Start(oProcessStartInfo))
-                {
-                    oProcess.WaitForExit();
-                }
+                GlobalConfig gc = new GlobalConfig();
+                //gc.SetMargins(new Margins(100, 100, 100, 100))
+                //.SetDocumentTitle("Test document")
+                //.SetPaperSize(PaperKind.Letter);
+
+                // Create converter
+                IPechkin pechkin = new SynchronizedPechkin(gc);
+
+                // Create document configuration object
+                ObjectConfig configuration = new ObjectConfig();
+
+                configuration.SetAllowLocalContent(true)
+                .SetPrintBackground(true);
+                byte[] pdfContent = pechkin.Convert(configuration, resultHtml);
+
+                ByteArrayToFile(pathF + ".pdf", pdfContent);
+
+                //string pathWKHTMLTOPDF = path + "wkhtmltopdf\\wkhtmltopdf.exe";
+                //ProcessStartInfo oProcessStartInfo = new ProcessStartInfo();
+                ////oProcessStartInfo.CreateNoWindow = true;
+                //oProcessStartInfo.UseShellExecute = false;
+                //oProcessStartInfo.FileName = pathWKHTMLTOPDF;
+                //oProcessStartInfo.Arguments = "miHtml.html mipdf.pdf";
+                ////oProcessStartInfo.Arguments = pathF + ".html "+ pathF +".pdf";
+
+                //using (Process oProcess = Process.Start(oProcessStartInfo))
+                //{
+                //    oProcess.WaitForExit();
+                //}
                 //eliminamos el archivo temporal
                 System.IO.File.Delete(pathHTMLTemp);
-                File.Move(path + "mipdf.pdf", pathF + ".pdf");
-                System.IO.File.Delete(path + "mipdf.pdf");
+                //File.Move(path + "mipdf.pdf", pathF + ".pdf");
+                //System.IO.File.Delete(path + "mipdf.pdf");
                 string respuesta;
                 respuesta = pathF + ".pdf";
                 return respuesta;
@@ -8126,10 +8163,32 @@ namespace winAsimilados.Controller
                     splashScreenManager.CloseWaitForm();
                 }
                 //XtraMessageBox.Show(e.Message + "\nControlador: LeerXML()", "Error");
-                respuesta = "false";
+                respuesta = e.Message.ToString();
                 return respuesta;
             }
 
+        }
+
+        public bool ByteArrayToFile(string _FileName, byte[] _ByteArray)
+        {
+            try
+            {
+                // Open file for reading
+                FileStream _FileStream = new FileStream(_FileName, FileMode.Create, FileAccess.Write);
+                // Writes a block of bytes to this stream using data from  a byte array.
+                _FileStream.Write(_ByteArray, 0, _ByteArray.Length);
+
+                // Close file stream
+                _FileStream.Close();
+
+                return true;
+            }
+            catch (Exception _Exception)
+            {
+                XtraMessageBox.Show("Exception caught in process while trying to save : {0}"  + _Exception.ToString(),"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
         }
 
         [Obsolete]
@@ -8219,6 +8278,7 @@ namespace winAsimilados.Controller
 
         }
 
+        [Obsolete]
         public void LeerXML12(string pathXML, string pathF, SplashScreenManager splashScreenManager)
         {
             try
@@ -8277,25 +8337,39 @@ namespace winAsimilados.Controller
                 System.IO.File.WriteAllText(pathHTMLTemp, resultHtml);
 
                 //string pathWKHTMLTOPDF = @"C:\Users\aespejel\Downloads\Facturacion3.3-tutorial-pdf\XMLToClassSAT\wkhtmltopdf\wkhtmltopdf.exe";
-                string pathWKHTMLTOPDF = path + "wkhtmltopdf\\wkhtmltopdf.exe";
-                ProcessStartInfo oProcessStartInfo = new ProcessStartInfo();
-                oProcessStartInfo.CreateNoWindow = true;
-                oProcessStartInfo.UseShellExecute = false;
-                oProcessStartInfo.FileName = pathWKHTMLTOPDF;
-                oProcessStartInfo.Arguments = "miHtml.html mipdf.pdf";
-                //oProcessStartInfo.Arguments = pathF + ".html "+ pathF +".pdf";
+                GlobalConfig gc = new GlobalConfig();
+                //gc.SetMargins(new Margins(100, 100, 100, 100))
+                //.SetDocumentTitle("Test document")
+                //.SetPaperSize(PaperKind.Letter);
 
-                using (Process oProcess = Process.Start(oProcessStartInfo))
-                {
-                    oProcess.WaitForExit();
-                }
+                // Create converter
+                SynchronizedPechkin pechkin = new SynchronizedPechkin(gc);
 
+                // Create document configuration object
+                ObjectConfig configuration = new ObjectConfig();
+
+                configuration.SetAllowLocalContent(true)
+                .SetPrintBackground(true);          
+                byte[] pdfContent = pechkin.Convert(configuration, resultHtml);           
+
+                ByteArrayToFile(pathF + ".pdf", pdfContent);
+
+                //string pathWKHTMLTOPDF = path + "wkhtmltopdf\\wkhtmltopdf.exe";
+                //ProcessStartInfo oProcessStartInfo = new ProcessStartInfo();
+                ////oProcessStartInfo.CreateNoWindow = true;
+                //oProcessStartInfo.UseShellExecute = false;
+                //oProcessStartInfo.FileName = pathWKHTMLTOPDF;
+                //oProcessStartInfo.Arguments = "miHtml.html mipdf.pdf";
+                ////oProcessStartInfo.Arguments = pathF + ".html "+ pathF +".pdf";
+
+                //using (Process oProcess = Process.Start(oProcessStartInfo))
+                //{
+                //    oProcess.WaitForExit();
+                //}
                 //eliminamos el archivo temporal
-                System.IO.File.Delete(pathHTMLTemp);
-                File.Move(path + "mipdf.pdf", pathF);
-                System.IO.File.Delete(path + "mipdf.pdf");
-
-
+                //System.IO.File.Delete(pathHTMLTemp);
+                //File.Move(path + "mipdf.pdf", pathF + ".pdf");
+                //System.IO.File.Delete(path + "mipdf.pdf");
             }
             catch (Exception e)
             {
@@ -8304,7 +8378,6 @@ namespace winAsimilados.Controller
             }
 
         }
-
         [Obsolete]
         public void Generar12(List<E.UUID> list, SplashScreenManager splashScreenManager)
         {
@@ -8357,7 +8430,14 @@ namespace winAsimilados.Controller
                     }
                     readerUUID.Close();
                     //pathPDF = pathPDF + fecPago + @"\";
-                    string ruta = @"C:/XML/" + fecPago + "/";
+
+                    string cadena = rutaXML;
+                    string[] arrayCadena;
+                    arrayCadena = cadena.Split(Convert.ToChar(@"\"));
+                    //XtraMessageBox.Show(arrayCadena[3]);
+                    string newRuta = Path.Combine(arrayCadena[0], arrayCadena[1], arrayCadena[2]);
+
+                    string ruta = arrayCadena[0] + "/" + arrayCadena[1] + "/" + arrayCadena[2] + "/"; //@"C:/XML/" + fecPago + "/";
                     if (!Directory.Exists(ruta))
                     {
                         Directory.CreateDirectory(ruta);

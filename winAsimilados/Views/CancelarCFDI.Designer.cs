@@ -48,6 +48,7 @@
             this.ColFecIni = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFecFin = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColSelloCFD = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.FecFinal = new System.Windows.Forms.DateTimePicker();
             this.FecIni = new System.Windows.Forms.DateTimePicker();
@@ -62,7 +63,6 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
-            this.ColTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -120,6 +120,7 @@
             this.colFecFin,
             this.ColSelloCFD,
             this.ColTotal});
+            this.gridView1.DetailHeight = 200;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -224,6 +225,14 @@
             this.ColSelloCFD.Name = "ColSelloCFD";
             this.ColSelloCFD.Visible = true;
             this.ColSelloCFD.VisibleIndex = 3;
+            // 
+            // ColTotal
+            // 
+            this.ColTotal.Caption = "Total";
+            this.ColTotal.FieldName = "Total";
+            this.ColTotal.Name = "ColTotal";
+            this.ColTotal.Visible = true;
+            this.ColTotal.VisibleIndex = 7;
             // 
             // repositoryItemButtonEdit1
             // 
@@ -356,14 +365,6 @@
             // splashScreenManager1
             // 
             this.splashScreenManager1.ClosingDelay = 500;
-            // 
-            // ColTotal
-            // 
-            this.ColTotal.Caption = "Total";
-            this.ColTotal.FieldName = "Total";
-            this.ColTotal.Name = "ColTotal";
-            this.ColTotal.Visible = true;
-            this.ColTotal.VisibleIndex = 7;
             // 
             // CancelarCFDI
             // 

@@ -29,62 +29,62 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery1 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column1 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression1 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table1 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column2 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression2 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery2 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column3 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression3 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table2 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column4 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression4 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery3 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column5 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression5 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table3 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column6 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression6 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery4 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column7 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression7 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table4 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column8 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression8 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery5 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column9 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression9 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table5 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column10 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression10 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Column column11 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression11 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Column column12 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression12 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.SelectQuery selectQuery6 = new DevExpress.DataAccess.Sql.SelectQuery();
-            DevExpress.DataAccess.Sql.Column column13 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression13 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Table table6 = new DevExpress.DataAccess.Sql.Table();
-            DevExpress.DataAccess.Sql.Column column14 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression14 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Column column15 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression15 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Column column16 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression16 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery7 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column17 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression17 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table7 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column18 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression18 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery8 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column19 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression19 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table8 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column20 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression20 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery9 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column21 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression21 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table9 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column22 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression22 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter2 = new DevExpress.DataAccess.Sql.QueryParameter();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery10 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column23 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression23 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table10 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column24 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression24 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery11 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column25 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression25 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table11 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column26 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression26 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Column column27 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression27 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Column column28 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression28 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.SelectQuery selectQuery12 = new DevExpress.DataAccess.Sql.SelectQuery();
+            DevExpress.DataAccess.Sql.Column column29 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression29 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table12 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column30 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression30 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Column column31 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression31 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Column column32 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression32 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarEmpresa));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.sidePanel1 = new DevExpress.XtraEditors.SidePanel();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.LookUpMunicipios2 = new DevExpress.XtraEditors.LookUpEdit();
@@ -116,6 +116,7 @@
             this.Estados = new DevExpress.XtraEditors.LookUpEdit();
             this.estados_RepublicaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ChAsim = new DevExpress.XtraEditors.CheckEdit();
+            this.TxtCuenta = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -147,8 +148,11 @@
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
             this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -158,10 +162,8 @@
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.TxtCuenta = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.ChMostrar = new DevExpress.XtraEditors.CheckEdit();
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.sidePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
@@ -192,6 +194,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Estados.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estados_RepublicaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChAsim.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtCuenta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
@@ -223,18 +226,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtCuenta.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChMostrar.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             this.SuspendLayout();
             // 
             // sidePanel1
@@ -273,6 +277,7 @@
             this.layoutControl2.Controls.Add(this.Estados);
             this.layoutControl2.Controls.Add(this.ChAsim);
             this.layoutControl2.Controls.Add(this.TxtCuenta);
+            this.layoutControl2.Controls.Add(this.ChMostrar);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
             this.layoutControl2.Name = "layoutControl2";
@@ -284,7 +289,7 @@
             // 
             // LookUpMunicipios2
             // 
-            this.LookUpMunicipios2.Location = new System.Drawing.Point(669, 225);
+            this.LookUpMunicipios2.Location = new System.Drawing.Point(669, 285);
             this.LookUpMunicipios2.Name = "LookUpMunicipios2";
             this.LookUpMunicipios2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -297,7 +302,7 @@
             // 
             // LookUpRecu
             // 
-            this.LookUpRecu.Location = new System.Drawing.Point(669, 87);
+            this.LookUpRecu.Location = new System.Drawing.Point(669, 147);
             this.LookUpRecu.Name = "LookUpRecu";
             this.LookUpRecu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -319,127 +324,127 @@
             // 
             this.sqlDataSource1.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            columnExpression1.ColumnName = "c_OrigenRecurso";
-            table1.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
-            table1.Name = "OrigenRecurso";
-            columnExpression1.Table = table1;
-            column1.Expression = columnExpression1;
-            columnExpression2.ColumnName = "Descripcion";
-            columnExpression2.Table = table1;
-            column2.Expression = columnExpression2;
-            selectQuery1.Columns.Add(column1);
-            selectQuery1.Columns.Add(column2);
-            selectQuery1.Name = "OrigenRecurso";
-            selectQuery1.Tables.Add(table1);
-            columnExpression3.ColumnName = "Descripcion";
-            table2.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
-            table2.Name = "TipoNomina";
-            columnExpression3.Table = table2;
-            column3.Expression = columnExpression3;
-            columnExpression4.ColumnName = "c_TipoNomina";
-            columnExpression4.Table = table2;
-            column4.Expression = columnExpression4;
-            selectQuery2.Columns.Add(column3);
-            selectQuery2.Columns.Add(column4);
-            selectQuery2.Name = "TipoNomina";
-            selectQuery2.Tables.Add(table2);
-            columnExpression5.ColumnName = "id";
-            table3.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"153\" />";
-            table3.Name = "Municipios";
-            columnExpression5.Table = table3;
-            column5.Expression = columnExpression5;
-            columnExpression6.ColumnName = "nombre";
-            columnExpression6.Table = table3;
-            column6.Expression = columnExpression6;
-            selectQuery3.Columns.Add(column5);
-            selectQuery3.Columns.Add(column6);
-            selectQuery3.FilterString = "[Municipios.estado_id] = ?IdEstado";
-            selectQuery3.GroupFilterString = "";
-            selectQuery3.Name = "Municipios";
-            queryParameter1.Name = "IdEstado";
-            queryParameter1.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter1.Value = new DevExpress.DataAccess.Expression("0", typeof(int));
-            selectQuery3.Parameters.Add(queryParameter1);
-            selectQuery3.Tables.Add(table3);
-            columnExpression7.ColumnName = "c_RiesgoPuesto";
-            table4.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
-            table4.Name = "RiesgoPuesto";
-            columnExpression7.Table = table4;
-            column7.Expression = columnExpression7;
-            columnExpression8.ColumnName = "Descripcion";
-            columnExpression8.Table = table4;
-            column8.Expression = columnExpression8;
-            selectQuery4.Columns.Add(column7);
-            selectQuery4.Columns.Add(column8);
-            selectQuery4.Name = "RiesgoPuesto";
-            selectQuery4.Tables.Add(table4);
-            columnExpression9.ColumnName = "Nombre del estado";
-            table5.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"134\" />";
-            table5.Name = "Estados_Republica";
-            columnExpression9.Table = table5;
-            column9.Expression = columnExpression9;
-            columnExpression10.ColumnName = "c_Estado";
-            columnExpression10.Table = table5;
-            column10.Expression = columnExpression10;
-            columnExpression11.ColumnName = "c_Pais";
-            columnExpression11.Table = table5;
-            column11.Expression = columnExpression11;
-            columnExpression12.ColumnName = "id";
-            columnExpression12.Table = table5;
-            column12.Expression = columnExpression12;
-            selectQuery5.Columns.Add(column9);
-            selectQuery5.Columns.Add(column10);
-            selectQuery5.Columns.Add(column11);
-            selectQuery5.Columns.Add(column12);
-            selectQuery5.Name = "Estados_Republica";
-            selectQuery5.Tables.Add(table5);
-            columnExpression13.ColumnName = "c_RegimenFiscal";
-            table6.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"153\" />";
-            table6.Name = "RegimenFiscal";
-            columnExpression13.Table = table6;
-            column13.Expression = columnExpression13;
-            columnExpression14.ColumnName = "Descripcion";
-            columnExpression14.Table = table6;
-            column14.Expression = columnExpression14;
-            columnExpression15.ColumnName = "Física";
-            columnExpression15.Table = table6;
-            column15.Expression = columnExpression15;
-            columnExpression16.ColumnName = "Moral";
-            columnExpression16.Table = table6;
-            column16.Expression = columnExpression16;
-            selectQuery6.Columns.Add(column13);
-            selectQuery6.Columns.Add(column14);
-            selectQuery6.Columns.Add(column15);
-            selectQuery6.Columns.Add(column16);
-            selectQuery6.Name = "RegimenFiscal";
-            selectQuery6.Tables.Add(table6);
+            columnExpression17.ColumnName = "c_OrigenRecurso";
+            table7.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
+            table7.Name = "OrigenRecurso";
+            columnExpression17.Table = table7;
+            column17.Expression = columnExpression17;
+            columnExpression18.ColumnName = "Descripcion";
+            columnExpression18.Table = table7;
+            column18.Expression = columnExpression18;
+            selectQuery7.Columns.Add(column17);
+            selectQuery7.Columns.Add(column18);
+            selectQuery7.Name = "OrigenRecurso";
+            selectQuery7.Tables.Add(table7);
+            columnExpression19.ColumnName = "Descripcion";
+            table8.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
+            table8.Name = "TipoNomina";
+            columnExpression19.Table = table8;
+            column19.Expression = columnExpression19;
+            columnExpression20.ColumnName = "c_TipoNomina";
+            columnExpression20.Table = table8;
+            column20.Expression = columnExpression20;
+            selectQuery8.Columns.Add(column19);
+            selectQuery8.Columns.Add(column20);
+            selectQuery8.Name = "TipoNomina";
+            selectQuery8.Tables.Add(table8);
+            columnExpression21.ColumnName = "id";
+            table9.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"153\" />";
+            table9.Name = "Municipios";
+            columnExpression21.Table = table9;
+            column21.Expression = columnExpression21;
+            columnExpression22.ColumnName = "nombre";
+            columnExpression22.Table = table9;
+            column22.Expression = columnExpression22;
+            selectQuery9.Columns.Add(column21);
+            selectQuery9.Columns.Add(column22);
+            selectQuery9.FilterString = "[Municipios.estado_id] = ?IdEstado";
+            selectQuery9.GroupFilterString = "";
+            selectQuery9.Name = "Municipios";
+            queryParameter2.Name = "IdEstado";
+            queryParameter2.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter2.Value = new DevExpress.DataAccess.Expression("0", typeof(int));
+            selectQuery9.Parameters.Add(queryParameter2);
+            selectQuery9.Tables.Add(table9);
+            columnExpression23.ColumnName = "c_RiesgoPuesto";
+            table10.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"115\" />";
+            table10.Name = "RiesgoPuesto";
+            columnExpression23.Table = table10;
+            column23.Expression = columnExpression23;
+            columnExpression24.ColumnName = "Descripcion";
+            columnExpression24.Table = table10;
+            column24.Expression = columnExpression24;
+            selectQuery10.Columns.Add(column23);
+            selectQuery10.Columns.Add(column24);
+            selectQuery10.Name = "RiesgoPuesto";
+            selectQuery10.Tables.Add(table10);
+            columnExpression25.ColumnName = "Nombre del estado";
+            table11.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"134\" />";
+            table11.Name = "Estados_Republica";
+            columnExpression25.Table = table11;
+            column25.Expression = columnExpression25;
+            columnExpression26.ColumnName = "c_Estado";
+            columnExpression26.Table = table11;
+            column26.Expression = columnExpression26;
+            columnExpression27.ColumnName = "c_Pais";
+            columnExpression27.Table = table11;
+            column27.Expression = columnExpression27;
+            columnExpression28.ColumnName = "id";
+            columnExpression28.Table = table11;
+            column28.Expression = columnExpression28;
+            selectQuery11.Columns.Add(column25);
+            selectQuery11.Columns.Add(column26);
+            selectQuery11.Columns.Add(column27);
+            selectQuery11.Columns.Add(column28);
+            selectQuery11.Name = "Estados_Republica";
+            selectQuery11.Tables.Add(table11);
+            columnExpression29.ColumnName = "c_RegimenFiscal";
+            table12.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"153\" />";
+            table12.Name = "RegimenFiscal";
+            columnExpression29.Table = table12;
+            column29.Expression = columnExpression29;
+            columnExpression30.ColumnName = "Descripcion";
+            columnExpression30.Table = table12;
+            column30.Expression = columnExpression30;
+            columnExpression31.ColumnName = "Física";
+            columnExpression31.Table = table12;
+            column31.Expression = columnExpression31;
+            columnExpression32.ColumnName = "Moral";
+            columnExpression32.Table = table12;
+            column32.Expression = columnExpression32;
+            selectQuery12.Columns.Add(column29);
+            selectQuery12.Columns.Add(column30);
+            selectQuery12.Columns.Add(column31);
+            selectQuery12.Columns.Add(column32);
+            selectQuery12.Name = "RegimenFiscal";
+            selectQuery12.Tables.Add(table12);
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            selectQuery1,
-            selectQuery2,
-            selectQuery3,
-            selectQuery4,
-            selectQuery5,
-            selectQuery6});
+            selectQuery7,
+            selectQuery8,
+            selectQuery9,
+            selectQuery10,
+            selectQuery11,
+            selectQuery12});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // TxtPssw
             // 
-            this.TxtPssw.Location = new System.Drawing.Point(263, 393);
+            this.TxtPssw.Location = new System.Drawing.Point(263, 453);
             this.TxtPssw.Name = "TxtPssw";
             this.TxtPssw.Properties.UseSystemPasswordChar = true;
-            this.TxtPssw.Size = new System.Drawing.Size(175, 20);
+            this.TxtPssw.Size = new System.Drawing.Size(177, 20);
             this.TxtPssw.StyleController = this.layoutControl2;
             this.TxtPssw.TabIndex = 6;
             // 
             // TxtKey
             // 
-            this.TxtKey.Location = new System.Drawing.Point(263, 369);
+            this.TxtKey.Location = new System.Drawing.Point(263, 429);
             this.TxtKey.Name = "TxtKey";
             this.TxtKey.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search, "Buscar", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search, "Buscar", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.TxtKey.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.TxtKey.Properties.Click += new System.EventHandler(this.buttonEdit1_Properties_Click);
-            this.TxtKey.Size = new System.Drawing.Size(175, 20);
+            this.TxtKey.Size = new System.Drawing.Size(177, 20);
             this.TxtKey.StyleController = this.layoutControl2;
             this.TxtKey.TabIndex = 5;
             // 
@@ -447,7 +452,7 @@
             // 
             this.BtnAgregarEmpresa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgregarEmpresa.ImageOptions.Image")));
             this.BtnAgregarEmpresa.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
-            this.BtnAgregarEmpresa.Location = new System.Drawing.Point(754, 531);
+            this.BtnAgregarEmpresa.Location = new System.Drawing.Point(754, 591);
             this.BtnAgregarEmpresa.Name = "BtnAgregarEmpresa";
             this.BtnAgregarEmpresa.Size = new System.Drawing.Size(127, 55);
             this.BtnAgregarEmpresa.StyleController = this.layoutControl2;
@@ -457,7 +462,7 @@
             // 
             // TxtNomEmpresa
             // 
-            this.TxtNomEmpresa.Location = new System.Drawing.Point(251, 39);
+            this.TxtNomEmpresa.Location = new System.Drawing.Point(251, 99);
             this.TxtNomEmpresa.Name = "TxtNomEmpresa";
             this.TxtNomEmpresa.Size = new System.Drawing.Size(618, 20);
             this.TxtNomEmpresa.StyleController = this.layoutControl2;
@@ -467,24 +472,24 @@
             // txtCER
             // 
             this.txtCER.EditValue = "";
-            this.txtCER.Location = new System.Drawing.Point(263, 345);
+            this.txtCER.Location = new System.Drawing.Point(263, 405);
             this.txtCER.Name = "txtCER";
             this.txtCER.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.txtCER.Properties.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("txtCER.Properties.Appearance.Image")));
             this.txtCER.Properties.Appearance.Options.UseFont = true;
             this.txtCER.Properties.Appearance.Options.UseImage = true;
             this.txtCER.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search, "Buscar", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search, "Buscar", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.txtCER.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.txtCER.Properties.Click += new System.EventHandler(this.textEdit1_Properties_Click);
             this.txtCER.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtCER.Size = new System.Drawing.Size(175, 20);
+            this.txtCER.Size = new System.Drawing.Size(177, 20);
             this.txtCER.StyleController = this.layoutControl2;
             this.txtCER.TabIndex = 4;
             // 
             // TxtRFCEmpresa
             // 
-            this.TxtRFCEmpresa.Location = new System.Drawing.Point(251, 63);
+            this.TxtRFCEmpresa.Location = new System.Drawing.Point(251, 123);
             this.TxtRFCEmpresa.Name = "TxtRFCEmpresa";
             this.TxtRFCEmpresa.Size = new System.Drawing.Size(199, 20);
             this.TxtRFCEmpresa.StyleController = this.layoutControl2;
@@ -493,7 +498,7 @@
             // 
             // TxtCalle
             // 
-            this.TxtCalle.Location = new System.Drawing.Point(251, 177);
+            this.TxtCalle.Location = new System.Drawing.Point(251, 237);
             this.TxtCalle.Name = "TxtCalle";
             this.TxtCalle.Size = new System.Drawing.Size(618, 20);
             this.TxtCalle.StyleController = this.layoutControl2;
@@ -502,7 +507,7 @@
             // 
             // TxtRegPat
             // 
-            this.TxtRegPat.Location = new System.Drawing.Point(669, 63);
+            this.TxtRegPat.Location = new System.Drawing.Point(669, 123);
             this.TxtRegPat.Name = "TxtRegPat";
             this.TxtRegPat.Size = new System.Drawing.Size(200, 20);
             this.TxtRegPat.StyleController = this.layoutControl2;
@@ -511,7 +516,7 @@
             // 
             // LookUpRiePue
             // 
-            this.LookUpRiePue.Location = new System.Drawing.Point(251, 111);
+            this.LookUpRiePue.Location = new System.Drawing.Point(251, 171);
             this.LookUpRiePue.Name = "LookUpRiePue";
             this.LookUpRiePue.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -531,7 +536,7 @@
             // 
             // LookUpNomi
             // 
-            this.LookUpNomi.Location = new System.Drawing.Point(669, 111);
+            this.LookUpNomi.Location = new System.Drawing.Point(669, 171);
             this.LookUpNomi.Name = "LookUpNomi";
             this.LookUpNomi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -551,7 +556,7 @@
             // 
             // TxtNumInt
             // 
-            this.TxtNumInt.Location = new System.Drawing.Point(251, 201);
+            this.TxtNumInt.Location = new System.Drawing.Point(251, 261);
             this.TxtNumInt.Name = "TxtNumInt";
             this.TxtNumInt.Size = new System.Drawing.Size(199, 20);
             this.TxtNumInt.StyleController = this.layoutControl2;
@@ -559,7 +564,7 @@
             // 
             // TxtNumExt
             // 
-            this.TxtNumExt.Location = new System.Drawing.Point(669, 201);
+            this.TxtNumExt.Location = new System.Drawing.Point(669, 261);
             this.TxtNumExt.Name = "TxtNumExt";
             this.TxtNumExt.Size = new System.Drawing.Size(200, 20);
             this.TxtNumExt.StyleController = this.layoutControl2;
@@ -567,7 +572,7 @@
             // 
             // TxtCP
             // 
-            this.TxtCP.Location = new System.Drawing.Point(251, 249);
+            this.TxtCP.Location = new System.Drawing.Point(251, 309);
             this.TxtCP.Name = "TxtCP";
             this.TxtCP.Size = new System.Drawing.Size(199, 20);
             this.TxtCP.StyleController = this.layoutControl2;
@@ -576,7 +581,7 @@
             // 
             // LookUpColonia
             // 
-            this.LookUpColonia.Location = new System.Drawing.Point(669, 249);
+            this.LookUpColonia.Location = new System.Drawing.Point(669, 309);
             this.LookUpColonia.Name = "LookUpColonia";
             this.LookUpColonia.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -588,42 +593,42 @@
             // 
             // TxtSerie
             // 
-            this.TxtSerie.Location = new System.Drawing.Point(681, 369);
+            this.TxtSerie.Location = new System.Drawing.Point(683, 429);
             this.TxtSerie.Name = "TxtSerie";
             this.TxtSerie.Properties.ReadOnly = true;
-            this.TxtSerie.Size = new System.Drawing.Size(176, 20);
+            this.TxtSerie.Size = new System.Drawing.Size(174, 20);
             this.TxtSerie.StyleController = this.layoutControl2;
             this.TxtSerie.TabIndex = 22;
             // 
             // TxtCerFecIni
             // 
-            this.TxtCerFecIni.Location = new System.Drawing.Point(681, 393);
+            this.TxtCerFecIni.Location = new System.Drawing.Point(683, 453);
             this.TxtCerFecIni.Name = "TxtCerFecIni";
             this.TxtCerFecIni.Properties.ReadOnly = true;
-            this.TxtCerFecIni.Size = new System.Drawing.Size(176, 20);
+            this.TxtCerFecIni.Size = new System.Drawing.Size(174, 20);
             this.TxtCerFecIni.StyleController = this.layoutControl2;
             this.TxtCerFecIni.TabIndex = 23;
             // 
             // TxtCerFecExp
             // 
-            this.TxtCerFecExp.Location = new System.Drawing.Point(681, 417);
+            this.TxtCerFecExp.Location = new System.Drawing.Point(683, 477);
             this.TxtCerFecExp.Name = "TxtCerFecExp";
             this.TxtCerFecExp.Properties.ReadOnly = true;
-            this.TxtCerFecExp.Size = new System.Drawing.Size(176, 20);
+            this.TxtCerFecExp.Size = new System.Drawing.Size(174, 20);
             this.TxtCerFecExp.StyleController = this.layoutControl2;
             this.TxtCerFecExp.TabIndex = 24;
             // 
             // TxtCerSubj
             // 
-            this.TxtCerSubj.Location = new System.Drawing.Point(681, 345);
+            this.TxtCerSubj.Location = new System.Drawing.Point(683, 405);
             this.TxtCerSubj.Name = "TxtCerSubj";
-            this.TxtCerSubj.Size = new System.Drawing.Size(176, 20);
+            this.TxtCerSubj.Size = new System.Drawing.Size(174, 20);
             this.TxtCerSubj.StyleController = this.layoutControl2;
             this.TxtCerSubj.TabIndex = 25;
             // 
             // LookUpRegFis
             // 
-            this.LookUpRegFis.Location = new System.Drawing.Point(251, 87);
+            this.LookUpRegFis.Location = new System.Drawing.Point(251, 147);
             this.LookUpRegFis.Name = "LookUpRegFis";
             this.LookUpRegFis.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -643,7 +648,7 @@
             // 
             // Estados
             // 
-            this.Estados.Location = new System.Drawing.Point(251, 225);
+            this.Estados.Location = new System.Drawing.Point(251, 285);
             this.Estados.Name = "Estados";
             this.Estados.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -664,13 +669,22 @@
             // 
             // ChAsim
             // 
-            this.ChAsim.Location = new System.Drawing.Point(454, -14);
+            this.ChAsim.Location = new System.Drawing.Point(454, 46);
             this.ChAsim.Name = "ChAsim";
             this.ChAsim.Properties.Caption = "Asimilados";
             this.ChAsim.Size = new System.Drawing.Size(427, 19);
             this.ChAsim.StyleController = this.layoutControl2;
             this.ChAsim.TabIndex = 27;
             this.ChAsim.CheckedChanged += new System.EventHandler(this.ChAsim_CheckedChanged);
+            // 
+            // TxtCuenta
+            // 
+            this.TxtCuenta.Location = new System.Drawing.Point(251, 555);
+            this.TxtCuenta.Name = "TxtCuenta";
+            this.TxtCuenta.Size = new System.Drawing.Size(286, 20);
+            this.TxtCuenta.StyleController = this.layoutControl2;
+            this.TxtCuenta.TabIndex = 28;
+            this.TxtCuenta.EditValueChanged += new System.EventHandler(this.TxtCuenta_EditValueChanged);
             // 
             // layoutControlGroup4
             // 
@@ -724,10 +738,11 @@
             this.layoutControlGroup10.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlItem2,
-            this.layoutControlItem4});
+            this.layoutControlItem4,
+            this.layoutControlItem25});
             this.layoutControlGroup10.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup10.Name = "layoutControlGroup10";
-            this.layoutControlGroup10.Size = new System.Drawing.Size(418, 138);
+            this.layoutControlGroup10.Size = new System.Drawing.Size(420, 138);
             this.layoutControlGroup10.Text = "Configuración CSD";
             // 
             // layoutControlItem1
@@ -739,7 +754,7 @@
             this.layoutControlItem1.Control = this.txtCER;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(394, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(396, 24);
             this.layoutControlItem1.Text = "Archivo .cer";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(212, 13);
             // 
@@ -752,7 +767,7 @@
             this.layoutControlItem2.Control = this.TxtKey;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(394, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(396, 24);
             this.layoutControlItem2.Text = "Archivo .key";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(212, 13);
             // 
@@ -765,7 +780,7 @@
             this.layoutControlItem4.Control = this.TxtPssw;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(394, 48);
+            this.layoutControlItem4.Size = new System.Drawing.Size(396, 24);
             this.layoutControlItem4.Text = "Contraseña";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(212, 13);
             // 
@@ -777,9 +792,9 @@
             this.layoutControlItem5,
             this.layoutControlItem6,
             this.layoutControlItem7});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(418, 0);
+            this.layoutControlGroup3.Location = new System.Drawing.Point(420, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(419, 138);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(417, 138);
             this.layoutControlGroup3.Text = "Información Certificado";
             // 
             // layoutControlItem3
@@ -787,7 +802,7 @@
             this.layoutControlItem3.Control = this.TxtSerie;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(395, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(393, 24);
             this.layoutControlItem3.Text = "Serie";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(212, 13);
             // 
@@ -796,7 +811,7 @@
             this.layoutControlItem5.Control = this.TxtCerFecIni;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(395, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(393, 24);
             this.layoutControlItem5.Text = "Valido Desde";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(212, 13);
             // 
@@ -806,7 +821,7 @@
             this.layoutControlItem6.CustomizationFormText = "Valido Hasta";
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(395, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(393, 24);
             this.layoutControlItem6.Text = "Valido Hasta";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(212, 13);
             // 
@@ -815,7 +830,7 @@
             this.layoutControlItem7.Control = this.TxtCerSubj;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(395, 24);
+            this.layoutControlItem7.Size = new System.Drawing.Size(393, 24);
             this.layoutControlItem7.Text = "Asunto Certificado";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(212, 13);
             // 
@@ -1047,14 +1062,32 @@
             this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem24.TextVisible = false;
             // 
-            // layoutControlItem8
+            // layoutControlGroup6
             // 
-            this.layoutControlItem8.Control = this.BtnAgregarEmpresa;
-            this.layoutControlItem8.Location = new System.Drawing.Point(730, 545);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(131, 59);
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
+            this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem11,
+            this.emptySpaceItem2});
+            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 479);
+            this.layoutControlGroup6.Name = "layoutControlGroup6";
+            this.layoutControlGroup6.Size = new System.Drawing.Size(861, 66);
+            this.layoutControlGroup6.Text = "Datos Bancarios";
+            // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.Control = this.TxtCuenta;
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Size = new System.Drawing.Size(505, 24);
+            this.layoutControlItem11.Text = "Número de cuenta";
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(212, 13);
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(505, 0);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(332, 24);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem3
             // 
@@ -1063,6 +1096,15 @@
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(730, 59);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.BtnAgregarEmpresa;
+            this.layoutControlItem8.Location = new System.Drawing.Point(730, 545);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(131, 59);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
             // 
             // splashScreenManager1
             // 
@@ -1116,41 +1158,24 @@
             this.layoutControlItem9.Size = new System.Drawing.Size(889, 223);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(93, 13);
             // 
-            // TxtCuenta
+            // ChMostrar
             // 
-            this.TxtCuenta.Location = new System.Drawing.Point(251, 495);
-            this.TxtCuenta.Name = "TxtCuenta";
-            this.TxtCuenta.Size = new System.Drawing.Size(286, 20);
-            this.TxtCuenta.StyleController = this.layoutControl2;
-            this.TxtCuenta.TabIndex = 28;
-            this.TxtCuenta.EditValueChanged += new System.EventHandler(this.TxtCuenta_EditValueChanged);
+            this.ChMostrar.Location = new System.Drawing.Point(48, 477);
+            this.ChMostrar.Name = "ChMostrar";
+            this.ChMostrar.Properties.Caption = "Mostrar";
+            this.ChMostrar.Size = new System.Drawing.Size(392, 19);
+            this.ChMostrar.StyleController = this.layoutControl2;
+            this.ChMostrar.TabIndex = 29;
+            this.ChMostrar.CheckedChanged += new System.EventHandler(this.ChMostrar_CheckedChanged);
             // 
-            // layoutControlItem11
+            // layoutControlItem25
             // 
-            this.layoutControlItem11.Control = this.TxtCuenta;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(505, 24);
-            this.layoutControlItem11.Text = "Número de cuenta";
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(212, 13);
-            // 
-            // layoutControlGroup6
-            // 
-            this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem11,
-            this.emptySpaceItem2});
-            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 479);
-            this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(861, 66);
-            this.layoutControlGroup6.Text = "Datos Bancarios";
-            // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(505, 0);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(332, 24);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem25.Control = this.ChMostrar;
+            this.layoutControlItem25.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(396, 24);
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem25.TextVisible = false;
             // 
             // AgregarEmpresa
             // 
@@ -1192,6 +1217,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Estados.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estados_RepublicaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChAsim.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtCuenta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
@@ -1223,18 +1249,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtCuenta.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChMostrar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1318,5 +1345,7 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraEditors.CheckEdit ChMostrar;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
     }
 }

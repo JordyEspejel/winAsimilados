@@ -108,6 +108,7 @@
             this.spinEditEmpFact2 = new DevExpress.XtraEditors.SpinEdit();
             this.spinEditEmpFact3 = new DevExpress.XtraEditors.SpinEdit();
             this.spinEditEmpFact4 = new DevExpress.XtraEditors.SpinEdit();
+            this.txtCorreo = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -123,6 +124,7 @@
             this.layoutControlSpinComi2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlComi3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlSpinComi3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -146,8 +148,6 @@
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtCorreo = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).BeginInit();
@@ -188,6 +188,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCorreo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
@@ -203,6 +204,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlSpinComi2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlComi3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlSpinComi3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
@@ -226,8 +228,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCorreo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -268,7 +268,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(800, 542);
+            this.layoutControl1.Size = new System.Drawing.Size(811, 542);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -277,7 +277,7 @@
             this.txtNombre.Location = new System.Drawing.Point(78, 96);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNombre.Size = new System.Drawing.Size(669, 20);
+            this.txtNombre.Size = new System.Drawing.Size(680, 20);
             this.txtNombre.StyleController = this.layoutControl1;
             this.txtNombre.TabIndex = 5;
             // 
@@ -285,7 +285,7 @@
             // 
             this.txtComisionista.Location = new System.Drawing.Point(100, 120);
             this.txtComisionista.Name = "txtComisionista";
-            this.txtComisionista.Size = new System.Drawing.Size(213, 20);
+            this.txtComisionista.Size = new System.Drawing.Size(217, 20);
             this.txtComisionista.StyleController = this.layoutControl1;
             this.txtComisionista.TabIndex = 6;
             // 
@@ -302,7 +302,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditPerISN.Properties.Mask.EditMask = "P";
             this.spinEditPerISN.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditPerISN.Size = new System.Drawing.Size(200, 20);
+            this.spinEditPerISN.Size = new System.Drawing.Size(204, 20);
             this.spinEditPerISN.StyleController = this.layoutControl1;
             this.spinEditPerISN.TabIndex = 7;
             // 
@@ -313,13 +313,13 @@
             0,
             0,
             0});
-            this.spinEditPerServ.Location = new System.Drawing.Point(377, 306);
+            this.spinEditPerServ.Location = new System.Drawing.Point(381, 306);
             this.spinEditPerServ.Name = "spinEditPerServ";
             this.spinEditPerServ.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditPerServ.Properties.Mask.EditMask = "P";
             this.spinEditPerServ.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditPerServ.Size = new System.Drawing.Size(89, 20);
+            this.spinEditPerServ.Size = new System.Drawing.Size(92, 20);
             this.spinEditPerServ.StyleController = this.layoutControl1;
             this.spinEditPerServ.TabIndex = 8;
             // 
@@ -330,7 +330,7 @@
             0,
             0,
             0});
-            this.spinEditRetIVA.Location = new System.Drawing.Point(557, 306);
+            this.spinEditRetIVA.Location = new System.Drawing.Point(564, 306);
             this.spinEditRetIVA.Name = "spinEditRetIVA";
             this.spinEditRetIVA.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.spinEditRetIVA.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -338,7 +338,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditRetIVA.Properties.Mask.EditMask = "P";
             this.spinEditRetIVA.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditRetIVA.Size = new System.Drawing.Size(190, 20);
+            this.spinEditRetIVA.Size = new System.Drawing.Size(194, 20);
             this.spinEditRetIVA.StyleController = this.layoutControl1;
             this.spinEditRetIVA.TabIndex = 9;
             // 
@@ -355,7 +355,7 @@
             this.lookUpFacIva.Properties.DisplayMember = "Opción";
             this.lookUpFacIva.Properties.NullText = "Seleccione";
             this.lookUpFacIva.Properties.ValueMember = "Value";
-            this.lookUpFacIva.Size = new System.Drawing.Size(250, 20);
+            this.lookUpFacIva.Size = new System.Drawing.Size(255, 20);
             this.lookUpFacIva.StyleController = this.layoutControl1;
             this.lookUpFacIva.TabIndex = 10;
             // 
@@ -457,7 +457,7 @@
             // 
             // lookUpRetIva
             // 
-            this.lookUpRetIva.Location = new System.Drawing.Point(466, 282);
+            this.lookUpRetIva.Location = new System.Drawing.Point(471, 282);
             this.lookUpRetIva.Name = "lookUpRetIva";
             this.lookUpRetIva.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -468,7 +468,7 @@
             this.lookUpRetIva.Properties.DisplayMember = "Opción";
             this.lookUpRetIva.Properties.NullText = "Seleccione";
             this.lookUpRetIva.Properties.ValueMember = "Value";
-            this.lookUpRetIva.Size = new System.Drawing.Size(281, 20);
+            this.lookUpRetIva.Size = new System.Drawing.Size(287, 20);
             this.lookUpRetIva.StyleController = this.layoutControl1;
             this.lookUpRetIva.TabIndex = 11;
             this.lookUpRetIva.EditValueChanged += new System.EventHandler(this.lookUpRetIva_EditValueChanged);
@@ -480,7 +480,7 @@
             // 
             // lookUpEjecutivo
             // 
-            this.lookUpEjecutivo.Location = new System.Drawing.Point(526, 120);
+            this.lookUpEjecutivo.Location = new System.Drawing.Point(532, 120);
             this.lookUpEjecutivo.Name = "lookUpEjecutivo";
             this.lookUpEjecutivo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -490,7 +490,7 @@
             this.lookUpEjecutivo.Properties.DisplayMember = "usuarioNombre";
             this.lookUpEjecutivo.Properties.NullText = "Seleccione";
             this.lookUpEjecutivo.Properties.ValueMember = "usuarioNombre";
-            this.lookUpEjecutivo.Size = new System.Drawing.Size(221, 20);
+            this.lookUpEjecutivo.Size = new System.Drawing.Size(226, 20);
             this.lookUpEjecutivo.StyleController = this.layoutControl1;
             this.lookUpEjecutivo.TabIndex = 12;
             // 
@@ -503,13 +503,13 @@
             // 
             this.txtProveedor.Location = new System.Drawing.Point(91, 168);
             this.txtProveedor.Name = "txtProveedor";
-            this.txtProveedor.Size = new System.Drawing.Size(276, 20);
+            this.txtProveedor.Size = new System.Drawing.Size(281, 20);
             this.txtProveedor.StyleController = this.layoutControl1;
             this.txtProveedor.TabIndex = 14;
             // 
             // lookUpPeriodo
             // 
-            this.lookUpPeriodo.Location = new System.Drawing.Point(454, 168);
+            this.lookUpPeriodo.Location = new System.Drawing.Point(459, 168);
             this.lookUpPeriodo.Name = "lookUpPeriodo";
             this.lookUpPeriodo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -517,7 +517,7 @@
             this.lookUpPeriodo.Properties.DisplayMember = "Descripcion";
             this.lookUpPeriodo.Properties.NullText = "Seleccione";
             this.lookUpPeriodo.Properties.ValueMember = "Descripcion";
-            this.lookUpPeriodo.Size = new System.Drawing.Size(293, 20);
+            this.lookUpPeriodo.Size = new System.Drawing.Size(299, 20);
             this.lookUpPeriodo.StyleController = this.layoutControl1;
             this.lookUpPeriodo.TabIndex = 13;
             // 
@@ -536,7 +536,7 @@
             this.lookUpEmpCFDI.Properties.DisplayMember = "Descripcion";
             this.lookUpEmpCFDI.Properties.NullText = "Seleccione";
             this.lookUpEmpCFDI.Properties.ValueMember = "NumEmpresa";
-            this.lookUpEmpCFDI.Size = new System.Drawing.Size(609, 20);
+            this.lookUpEmpCFDI.Size = new System.Drawing.Size(620, 20);
             this.lookUpEmpCFDI.StyleController = this.layoutControl1;
             this.lookUpEmpCFDI.TabIndex = 15;
             // 
@@ -555,7 +555,7 @@
             this.lookUpEmprFact.Properties.DisplayMember = "RazonSocial";
             this.lookUpEmprFact.Properties.NullText = "Seleccione";
             this.lookUpEmprFact.Properties.ValueMember = "IDEmpresa";
-            this.lookUpEmprFact.Size = new System.Drawing.Size(499, 20);
+            this.lookUpEmprFact.Size = new System.Drawing.Size(508, 20);
             this.lookUpEmprFact.StyleController = this.layoutControl1;
             this.lookUpEmprFact.TabIndex = 16;
             // 
@@ -566,10 +566,10 @@
             // 
             // chBoxEmpFactura
             // 
-            this.chBoxEmpFactura.Location = new System.Drawing.Point(469, 42);
+            this.chBoxEmpFactura.Location = new System.Drawing.Point(475, 42);
             this.chBoxEmpFactura.Name = "chBoxEmpFactura";
             this.chBoxEmpFactura.Properties.Caption = "Cliente Factura  Con más De Una Empresa";
-            this.chBoxEmpFactura.Size = new System.Drawing.Size(290, 19);
+            this.chBoxEmpFactura.Size = new System.Drawing.Size(295, 19);
             this.chBoxEmpFactura.StyleController = this.layoutControl1;
             this.chBoxEmpFactura.TabIndex = 17;
             this.chBoxEmpFactura.CheckedChanged += new System.EventHandler(this.chBoxEmpFactura_CheckedChanged);
@@ -584,7 +584,7 @@
             this.lookUpEmprFact2.Properties.DisplayMember = "RazonSocial";
             this.lookUpEmprFact2.Properties.NullText = "Seleccione";
             this.lookUpEmprFact2.Properties.ValueMember = "IDEmpresa";
-            this.lookUpEmprFact2.Size = new System.Drawing.Size(490, 20);
+            this.lookUpEmprFact2.Size = new System.Drawing.Size(499, 20);
             this.lookUpEmprFact2.StyleController = this.layoutControl1;
             this.lookUpEmprFact2.TabIndex = 18;
             // 
@@ -598,7 +598,7 @@
             this.lookUpEmprFact3.Properties.DisplayMember = "RazonSocial";
             this.lookUpEmprFact3.Properties.NullText = "Seleccione";
             this.lookUpEmprFact3.Properties.ValueMember = "IDEmpresa";
-            this.lookUpEmprFact3.Size = new System.Drawing.Size(490, 20);
+            this.lookUpEmprFact3.Size = new System.Drawing.Size(499, 20);
             this.lookUpEmprFact3.StyleController = this.layoutControl1;
             this.lookUpEmprFact3.TabIndex = 20;
             // 
@@ -612,7 +612,7 @@
             this.lookUpEmprFact4.Properties.DisplayMember = "RazonSocial";
             this.lookUpEmprFact4.Properties.NullText = "Seleccione";
             this.lookUpEmprFact4.Properties.ValueMember = "IDEmpresa";
-            this.lookUpEmprFact4.Size = new System.Drawing.Size(490, 20);
+            this.lookUpEmprFact4.Size = new System.Drawing.Size(499, 20);
             this.lookUpEmprFact4.StyleController = this.layoutControl1;
             this.lookUpEmprFact4.TabIndex = 19;
             // 
@@ -626,7 +626,7 @@
             this.lookUpMetodoPago.Properties.DisplayMember = "Descripción";
             this.lookUpMetodoPago.Properties.NullText = "Seleccione";
             this.lookUpMetodoPago.Properties.ValueMember = "c_MetodoPago";
-            this.lookUpMetodoPago.Size = new System.Drawing.Size(197, 20);
+            this.lookUpMetodoPago.Size = new System.Drawing.Size(201, 20);
             this.lookUpMetodoPago.StyleController = this.layoutControl1;
             this.lookUpMetodoPago.TabIndex = 21;
             // 
@@ -637,7 +637,7 @@
             // 
             // lookUpFormaPago
             // 
-            this.lookUpFormaPago.Location = new System.Drawing.Point(397, 450);
+            this.lookUpFormaPago.Location = new System.Drawing.Point(401, 450);
             this.lookUpFormaPago.Name = "lookUpFormaPago";
             this.lookUpFormaPago.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -645,7 +645,7 @@
             this.lookUpFormaPago.Properties.DisplayMember = "Descripción";
             this.lookUpFormaPago.Properties.NullText = "Seleccione";
             this.lookUpFormaPago.Properties.ValueMember = "c_FormaPago";
-            this.lookUpFormaPago.Size = new System.Drawing.Size(350, 20);
+            this.lookUpFormaPago.Size = new System.Drawing.Size(357, 20);
             this.lookUpFormaPago.StyleController = this.layoutControl1;
             this.lookUpFormaPago.TabIndex = 22;
             // 
@@ -658,16 +658,16 @@
             // 
             this.txtObservaciones.Location = new System.Drawing.Point(112, 192);
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(635, 20);
+            this.txtObservaciones.Size = new System.Drawing.Size(646, 20);
             this.txtObservaciones.StyleController = this.layoutControl1;
             this.txtObservaciones.TabIndex = 23;
             // 
             // btnAgregar
             // 
             this.btnAgregar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.ImageOptions.Image")));
-            this.btnAgregar.Location = new System.Drawing.Point(629, 486);
+            this.btnAgregar.Location = new System.Drawing.Point(638, 486);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(130, 38);
+            this.btnAgregar.Size = new System.Drawing.Size(132, 38);
             this.btnAgregar.StyleController = this.layoutControl1;
             this.btnAgregar.TabIndex = 24;
             this.btnAgregar.Text = "Agregar";
@@ -680,17 +680,17 @@
             this.txtIDClte.Name = "txtIDClte";
             this.txtIDClte.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.txtIDClte.Properties.AppearanceReadOnly.Options.UseBackColor = true;
-            this.txtIDClte.Size = new System.Drawing.Size(74, 20);
+            this.txtIDClte.Size = new System.Drawing.Size(75, 20);
             this.txtIDClte.StyleController = this.layoutControl1;
             this.txtIDClte.TabIndex = 25;
             // 
             // chComi
             // 
-            this.chComi.Location = new System.Drawing.Point(271, 42);
+            this.chComi.Location = new System.Drawing.Point(274, 42);
             this.chComi.Name = "chComi";
             this.chComi.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.chComi.Properties.Caption = "Cliente tiene más de un comisionista";
-            this.chComi.Size = new System.Drawing.Size(194, 19);
+            this.chComi.Size = new System.Drawing.Size(197, 19);
             this.chComi.StyleController = this.layoutControl1;
             this.chComi.TabIndex = 26;
             this.chComi.CheckedChanged += new System.EventHandler(this.chComi_CheckedChanged);
@@ -702,7 +702,7 @@
             0,
             0,
             0});
-            this.spinEditComi.Location = new System.Drawing.Point(333, 120);
+            this.spinEditComi.Location = new System.Drawing.Point(337, 120);
             this.spinEditComi.Name = "spinEditComi";
             this.spinEditComi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -713,7 +713,7 @@
             0,
             0,
             0});
-            this.spinEditComi.Size = new System.Drawing.Size(76, 20);
+            this.spinEditComi.Size = new System.Drawing.Size(78, 20);
             this.spinEditComi.StyleController = this.layoutControl1;
             this.spinEditComi.TabIndex = 27;
             // 
@@ -721,7 +721,7 @@
             // 
             this.txtComi2.Location = new System.Drawing.Point(107, 144);
             this.txtComi2.Name = "txtComi2";
-            this.txtComi2.Size = new System.Drawing.Size(206, 20);
+            this.txtComi2.Size = new System.Drawing.Size(210, 20);
             this.txtComi2.StyleController = this.layoutControl1;
             this.txtComi2.TabIndex = 28;
             // 
@@ -732,7 +732,7 @@
             0,
             0,
             0});
-            this.spinEditComi2.Location = new System.Drawing.Point(333, 144);
+            this.spinEditComi2.Location = new System.Drawing.Point(337, 144);
             this.spinEditComi2.Name = "spinEditComi2";
             this.spinEditComi2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -743,15 +743,15 @@
             0,
             0,
             0});
-            this.spinEditComi2.Size = new System.Drawing.Size(76, 20);
+            this.spinEditComi2.Size = new System.Drawing.Size(78, 20);
             this.spinEditComi2.StyleController = this.layoutControl1;
             this.spinEditComi2.TabIndex = 29;
             // 
             // txtComi3
             // 
-            this.txtComi3.Location = new System.Drawing.Point(484, 144);
+            this.txtComi3.Location = new System.Drawing.Point(490, 144);
             this.txtComi3.Name = "txtComi3";
-            this.txtComi3.Size = new System.Drawing.Size(185, 20);
+            this.txtComi3.Size = new System.Drawing.Size(189, 20);
             this.txtComi3.StyleController = this.layoutControl1;
             this.txtComi3.TabIndex = 30;
             // 
@@ -762,7 +762,7 @@
             0,
             0,
             0});
-            this.spinEditComi3.Location = new System.Drawing.Point(689, 144);
+            this.spinEditComi3.Location = new System.Drawing.Point(699, 144);
             this.spinEditComi3.Name = "spinEditComi3";
             this.spinEditComi3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -773,7 +773,7 @@
             0,
             0,
             0});
-            this.spinEditComi3.Size = new System.Drawing.Size(58, 20);
+            this.spinEditComi3.Size = new System.Drawing.Size(59, 20);
             this.spinEditComi3.StyleController = this.layoutControl1;
             this.spinEditComi3.TabIndex = 31;
             // 
@@ -784,7 +784,7 @@
             0,
             0,
             0});
-            this.spinEditEmpFact.Location = new System.Drawing.Point(660, 354);
+            this.spinEditEmpFact.Location = new System.Drawing.Point(669, 354);
             this.spinEditEmpFact.Name = "spinEditEmpFact";
             this.spinEditEmpFact.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -795,7 +795,7 @@
             0,
             0,
             0});
-            this.spinEditEmpFact.Size = new System.Drawing.Size(87, 20);
+            this.spinEditEmpFact.Size = new System.Drawing.Size(89, 20);
             this.spinEditEmpFact.StyleController = this.layoutControl1;
             this.spinEditEmpFact.TabIndex = 32;
             // 
@@ -806,7 +806,7 @@
             0,
             0,
             0});
-            this.spinEditEmpFact2.Location = new System.Drawing.Point(660, 378);
+            this.spinEditEmpFact2.Location = new System.Drawing.Point(669, 378);
             this.spinEditEmpFact2.Name = "spinEditEmpFact2";
             this.spinEditEmpFact2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -817,7 +817,7 @@
             0,
             0,
             0});
-            this.spinEditEmpFact2.Size = new System.Drawing.Size(87, 20);
+            this.spinEditEmpFact2.Size = new System.Drawing.Size(89, 20);
             this.spinEditEmpFact2.StyleController = this.layoutControl1;
             this.spinEditEmpFact2.TabIndex = 33;
             // 
@@ -828,7 +828,7 @@
             0,
             0,
             0});
-            this.spinEditEmpFact3.Location = new System.Drawing.Point(660, 402);
+            this.spinEditEmpFact3.Location = new System.Drawing.Point(669, 402);
             this.spinEditEmpFact3.Name = "spinEditEmpFact3";
             this.spinEditEmpFact3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -839,7 +839,7 @@
             0,
             0,
             0});
-            this.spinEditEmpFact3.Size = new System.Drawing.Size(87, 20);
+            this.spinEditEmpFact3.Size = new System.Drawing.Size(89, 20);
             this.spinEditEmpFact3.StyleController = this.layoutControl1;
             this.spinEditEmpFact3.TabIndex = 34;
             // 
@@ -850,7 +850,7 @@
             0,
             0,
             0});
-            this.spinEditEmpFact4.Location = new System.Drawing.Point(660, 426);
+            this.spinEditEmpFact4.Location = new System.Drawing.Point(669, 426);
             this.spinEditEmpFact4.Name = "spinEditEmpFact4";
             this.spinEditEmpFact4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -861,9 +861,17 @@
             0,
             0,
             0});
-            this.spinEditEmpFact4.Size = new System.Drawing.Size(87, 20);
+            this.spinEditEmpFact4.Size = new System.Drawing.Size(89, 20);
             this.spinEditEmpFact4.StyleController = this.layoutControl1;
             this.spinEditEmpFact4.TabIndex = 35;
+            // 
+            // txtCorreo
+            // 
+            this.txtCorreo.Location = new System.Drawing.Point(129, 216);
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.Size = new System.Drawing.Size(629, 20);
+            this.txtCorreo.StyleController = this.layoutControl1;
+            this.txtCorreo.TabIndex = 36;
             // 
             // layoutControlGroup1
             // 
@@ -872,7 +880,7 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup2});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(783, 548);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(794, 548);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlGroup2
@@ -889,15 +897,15 @@
             this.layoutControlItem1});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(763, 528);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(774, 528);
             this.layoutControlGroup2.Text = "Ingrese Información del Cliente ";
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(94, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(95, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(153, 24);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(155, 24);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup3
@@ -919,15 +927,15 @@
             this.layoutControlItem28});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 24);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(739, 186);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(750, 186);
             this.layoutControlGroup3.Text = "Datos Generales";
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.lookUpEjecutivo;
-            this.layoutControlItem6.Location = new System.Drawing.Point(377, 24);
+            this.layoutControlItem6.Location = new System.Drawing.Point(383, 24);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(338, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(343, 24);
             this.layoutControlItem6.Text = "Ejecutivo Responsable";
             this.layoutControlItem6.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(108, 13);
@@ -938,7 +946,7 @@
             this.layoutControlItem3.Control = this.txtComisionista;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(281, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(285, 24);
             this.layoutControlItem3.Text = "Comisionista";
             this.layoutControlItem3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(59, 13);
@@ -947,9 +955,9 @@
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.lookUpPeriodo;
-            this.layoutControlItem9.Location = new System.Drawing.Point(335, 72);
+            this.layoutControlItem9.Location = new System.Drawing.Point(340, 72);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(380, 24);
+            this.layoutControlItem9.Size = new System.Drawing.Size(386, 24);
             this.layoutControlItem9.Text = "Periodo de Pago";
             this.layoutControlItem9.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem9.TextSize = new System.Drawing.Size(78, 13);
@@ -960,7 +968,7 @@
             this.layoutControlItem10.Control = this.txtProveedor;
             this.layoutControlItem10.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(335, 24);
+            this.layoutControlItem10.Size = new System.Drawing.Size(340, 24);
             this.layoutControlItem10.Text = "Proveedor";
             this.layoutControlItem10.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem10.TextSize = new System.Drawing.Size(50, 13);
@@ -971,7 +979,7 @@
             this.layoutControlItem17.Control = this.txtNombre;
             this.layoutControlItem17.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(715, 24);
+            this.layoutControlItem17.Size = new System.Drawing.Size(726, 24);
             this.layoutControlItem17.Text = "Nombre";
             this.layoutControlItem17.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem17.TextSize = new System.Drawing.Size(37, 13);
@@ -982,7 +990,7 @@
             this.layoutControlItem20.Control = this.txtObservaciones;
             this.layoutControlItem20.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(715, 24);
+            this.layoutControlItem20.Size = new System.Drawing.Size(726, 24);
             this.layoutControlItem20.Text = "Observaciones";
             this.layoutControlItem20.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem20.TextSize = new System.Drawing.Size(71, 13);
@@ -991,9 +999,9 @@
             // layoutControlItem23
             // 
             this.layoutControlItem23.Control = this.spinEditComi;
-            this.layoutControlItem23.Location = new System.Drawing.Point(281, 24);
+            this.layoutControlItem23.Location = new System.Drawing.Point(285, 24);
             this.layoutControlItem23.Name = "layoutControlItem23";
-            this.layoutControlItem23.Size = new System.Drawing.Size(96, 24);
+            this.layoutControlItem23.Size = new System.Drawing.Size(98, 24);
             this.layoutControlItem23.Text = "%";
             this.layoutControlItem23.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem23.TextSize = new System.Drawing.Size(11, 13);
@@ -1004,7 +1012,7 @@
             this.layoutControlComi2.Control = this.txtComi2;
             this.layoutControlComi2.Location = new System.Drawing.Point(0, 48);
             this.layoutControlComi2.Name = "layoutControlComi2";
-            this.layoutControlComi2.Size = new System.Drawing.Size(281, 24);
+            this.layoutControlComi2.Size = new System.Drawing.Size(285, 24);
             this.layoutControlComi2.Text = "Comisionista 2";
             this.layoutControlComi2.TextSize = new System.Drawing.Size(68, 13);
             this.layoutControlComi2.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -1012,9 +1020,9 @@
             // layoutControlSpinComi2
             // 
             this.layoutControlSpinComi2.Control = this.spinEditComi2;
-            this.layoutControlSpinComi2.Location = new System.Drawing.Point(281, 48);
+            this.layoutControlSpinComi2.Location = new System.Drawing.Point(285, 48);
             this.layoutControlSpinComi2.Name = "layoutControlSpinComi2";
-            this.layoutControlSpinComi2.Size = new System.Drawing.Size(96, 24);
+            this.layoutControlSpinComi2.Size = new System.Drawing.Size(98, 24);
             this.layoutControlSpinComi2.Text = "%";
             this.layoutControlSpinComi2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlSpinComi2.TextSize = new System.Drawing.Size(11, 13);
@@ -1024,9 +1032,9 @@
             // layoutControlComi3
             // 
             this.layoutControlComi3.Control = this.txtComi3;
-            this.layoutControlComi3.Location = new System.Drawing.Point(377, 48);
+            this.layoutControlComi3.Location = new System.Drawing.Point(383, 48);
             this.layoutControlComi3.Name = "layoutControlComi3";
-            this.layoutControlComi3.Size = new System.Drawing.Size(260, 24);
+            this.layoutControlComi3.Size = new System.Drawing.Size(264, 24);
             this.layoutControlComi3.Text = "Comicionista 3";
             this.layoutControlComi3.TextSize = new System.Drawing.Size(68, 13);
             this.layoutControlComi3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -1034,30 +1042,41 @@
             // layoutControlSpinComi3
             // 
             this.layoutControlSpinComi3.Control = this.spinEditComi3;
-            this.layoutControlSpinComi3.Location = new System.Drawing.Point(637, 48);
+            this.layoutControlSpinComi3.Location = new System.Drawing.Point(647, 48);
             this.layoutControlSpinComi3.Name = "layoutControlSpinComi3";
-            this.layoutControlSpinComi3.Size = new System.Drawing.Size(78, 24);
+            this.layoutControlSpinComi3.Size = new System.Drawing.Size(79, 24);
             this.layoutControlSpinComi3.Text = "%";
             this.layoutControlSpinComi3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlSpinComi3.TextSize = new System.Drawing.Size(11, 13);
             this.layoutControlSpinComi3.TextToControlDistance = 5;
             this.layoutControlSpinComi3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
+            // layoutControlItem28
+            // 
+            this.layoutControlItem28.Control = this.txtCorreo;
+            this.layoutControlItem28.Location = new System.Drawing.Point(0, 120);
+            this.layoutControlItem28.Name = "layoutControlItem28";
+            this.layoutControlItem28.Size = new System.Drawing.Size(726, 24);
+            this.layoutControlItem28.Text = "Correo Electronico";
+            this.layoutControlItem28.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem28.TextSize = new System.Drawing.Size(88, 13);
+            this.layoutControlItem28.TextToControlDistance = 5;
+            // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.chBoxEmpFactura;
-            this.layoutControlItem13.Location = new System.Drawing.Point(445, 0);
+            this.layoutControlItem13.Location = new System.Drawing.Point(451, 0);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(294, 24);
+            this.layoutControlItem13.Size = new System.Drawing.Size(299, 24);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.btnAgregar;
-            this.layoutControlItem21.Location = new System.Drawing.Point(605, 444);
+            this.layoutControlItem21.Location = new System.Drawing.Point(614, 444);
             this.layoutControlItem21.Name = "layoutControlItem21";
-            this.layoutControlItem21.Size = new System.Drawing.Size(134, 42);
+            this.layoutControlItem21.Size = new System.Drawing.Size(136, 42);
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
             // 
@@ -1084,7 +1103,7 @@
             this.layoutControlItem27});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 210);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(739, 234);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(750, 234);
             this.layoutControlGroup4.Text = "Datos Facturación";
             // 
             // layoutControlItem4
@@ -1092,7 +1111,7 @@
             this.layoutControlItem4.Control = this.spinEditPerISN;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(240, 24);
+            this.layoutControlItem4.Size = new System.Drawing.Size(244, 24);
             this.layoutControlItem4.Text = "% ISN";
             this.layoutControlItem4.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem4.TextSize = new System.Drawing.Size(31, 13);
@@ -1101,9 +1120,9 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.spinEditPerServ;
-            this.layoutControlItem5.Location = new System.Drawing.Point(240, 24);
+            this.layoutControlItem5.Location = new System.Drawing.Point(244, 24);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(194, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(197, 24);
             this.layoutControlItem5.Text = "% Comisión Servicio";
             this.layoutControlItem5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(96, 13);
@@ -1112,9 +1131,9 @@
             // layoutControlItemRetIVA
             // 
             this.layoutControlItemRetIVA.Control = this.spinEditRetIVA;
-            this.layoutControlItemRetIVA.Location = new System.Drawing.Point(434, 24);
+            this.layoutControlItemRetIVA.Location = new System.Drawing.Point(441, 24);
             this.layoutControlItemRetIVA.Name = "layoutControlItemRetIVA";
-            this.layoutControlItemRetIVA.Size = new System.Drawing.Size(281, 24);
+            this.layoutControlItemRetIVA.Size = new System.Drawing.Size(285, 24);
             this.layoutControlItemRetIVA.Text = "% Retención IVA";
             this.layoutControlItemRetIVA.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItemRetIVA.TextSize = new System.Drawing.Size(82, 13);
@@ -1125,7 +1144,7 @@
             this.layoutControlItem14.Control = this.lookUpEmprFact2;
             this.layoutControlItem14.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(608, 24);
+            this.layoutControlItem14.Size = new System.Drawing.Size(617, 24);
             this.layoutControlItem14.Text = "Empresa que factura 2";
             this.layoutControlItem14.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem14.TextSize = new System.Drawing.Size(109, 13);
@@ -1137,7 +1156,7 @@
             this.layoutControlItem11.Control = this.lookUpEmpCFDI;
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(715, 24);
+            this.layoutControlItem11.Size = new System.Drawing.Size(726, 24);
             this.layoutControlItem11.Text = "Empresa Emite CFDI";
             this.layoutControlItem11.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem11.TextSize = new System.Drawing.Size(97, 13);
@@ -1148,7 +1167,7 @@
             this.layoutControlItem18.Control = this.lookUpMetodoPago;
             this.layoutControlItem18.Location = new System.Drawing.Point(0, 168);
             this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(284, 24);
+            this.layoutControlItem18.Size = new System.Drawing.Size(288, 24);
             this.layoutControlItem18.Text = "Metodo de Pago";
             this.layoutControlItem18.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem18.TextSize = new System.Drawing.Size(78, 13);
@@ -1157,9 +1176,9 @@
             // layoutControlItem19
             // 
             this.layoutControlItem19.Control = this.lookUpFormaPago;
-            this.layoutControlItem19.Location = new System.Drawing.Point(284, 168);
+            this.layoutControlItem19.Location = new System.Drawing.Point(288, 168);
             this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(431, 24);
+            this.layoutControlItem19.Size = new System.Drawing.Size(438, 24);
             this.layoutControlItem19.Text = "Forma de Pago";
             this.layoutControlItem19.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem19.TextSize = new System.Drawing.Size(72, 13);
@@ -1170,7 +1189,7 @@
             this.layoutControlItem7.Control = this.lookUpFacIva;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(357, 24);
+            this.layoutControlItem7.Size = new System.Drawing.Size(362, 24);
             this.layoutControlItem7.Text = "Facturación Con IVA";
             this.layoutControlItem7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem7.TextSize = new System.Drawing.Size(98, 13);
@@ -1181,7 +1200,7 @@
             this.layoutControlItem12.Control = this.lookUpEmprFact;
             this.layoutControlItem12.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(608, 24);
+            this.layoutControlItem12.Size = new System.Drawing.Size(617, 24);
             this.layoutControlItem12.Text = "Empresa que factura";
             this.layoutControlItem12.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem12.TextSize = new System.Drawing.Size(100, 13);
@@ -1191,9 +1210,9 @@
             // 
             this.layoutControlItem8.Control = this.lookUpRetIva;
             this.layoutControlItem8.CustomizationFormText = "Retención IVA";
-            this.layoutControlItem8.Location = new System.Drawing.Point(357, 0);
+            this.layoutControlItem8.Location = new System.Drawing.Point(362, 0);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(358, 24);
+            this.layoutControlItem8.Size = new System.Drawing.Size(364, 24);
             this.layoutControlItem8.Text = "Retención IVA";
             this.layoutControlItem8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem8.TextSize = new System.Drawing.Size(68, 13);
@@ -1202,9 +1221,9 @@
             // layoutControlItem24
             // 
             this.layoutControlItem24.Control = this.spinEditEmpFact;
-            this.layoutControlItem24.Location = new System.Drawing.Point(608, 72);
+            this.layoutControlItem24.Location = new System.Drawing.Point(617, 72);
             this.layoutControlItem24.Name = "layoutControlItem24";
-            this.layoutControlItem24.Size = new System.Drawing.Size(107, 24);
+            this.layoutControlItem24.Size = new System.Drawing.Size(109, 24);
             this.layoutControlItem24.Text = "%";
             this.layoutControlItem24.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem24.TextSize = new System.Drawing.Size(11, 13);
@@ -1215,7 +1234,7 @@
             this.layoutControlItem16.Control = this.lookUpEmprFact3;
             this.layoutControlItem16.Location = new System.Drawing.Point(0, 120);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(608, 24);
+            this.layoutControlItem16.Size = new System.Drawing.Size(617, 24);
             this.layoutControlItem16.Text = "Empresa que factura 3";
             this.layoutControlItem16.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem16.TextSize = new System.Drawing.Size(109, 13);
@@ -1227,7 +1246,7 @@
             this.layoutControlItem15.Control = this.lookUpEmprFact4;
             this.layoutControlItem15.Location = new System.Drawing.Point(0, 144);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(608, 24);
+            this.layoutControlItem15.Size = new System.Drawing.Size(617, 24);
             this.layoutControlItem15.Text = "Empresa que factura 4";
             this.layoutControlItem15.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem15.TextSize = new System.Drawing.Size(109, 13);
@@ -1237,9 +1256,9 @@
             // layoutControlItem25
             // 
             this.layoutControlItem25.Control = this.spinEditEmpFact2;
-            this.layoutControlItem25.Location = new System.Drawing.Point(608, 96);
+            this.layoutControlItem25.Location = new System.Drawing.Point(617, 96);
             this.layoutControlItem25.Name = "layoutControlItem25";
-            this.layoutControlItem25.Size = new System.Drawing.Size(107, 24);
+            this.layoutControlItem25.Size = new System.Drawing.Size(109, 24);
             this.layoutControlItem25.Text = "%";
             this.layoutControlItem25.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem25.TextSize = new System.Drawing.Size(11, 13);
@@ -1249,9 +1268,9 @@
             // layoutControlItem26
             // 
             this.layoutControlItem26.Control = this.spinEditEmpFact3;
-            this.layoutControlItem26.Location = new System.Drawing.Point(608, 120);
+            this.layoutControlItem26.Location = new System.Drawing.Point(617, 120);
             this.layoutControlItem26.Name = "layoutControlItem26";
-            this.layoutControlItem26.Size = new System.Drawing.Size(107, 24);
+            this.layoutControlItem26.Size = new System.Drawing.Size(109, 24);
             this.layoutControlItem26.Text = "%";
             this.layoutControlItem26.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem26.TextSize = new System.Drawing.Size(11, 13);
@@ -1261,9 +1280,9 @@
             // layoutControlItem27
             // 
             this.layoutControlItem27.Control = this.spinEditEmpFact4;
-            this.layoutControlItem27.Location = new System.Drawing.Point(608, 144);
+            this.layoutControlItem27.Location = new System.Drawing.Point(617, 144);
             this.layoutControlItem27.Name = "layoutControlItem27";
-            this.layoutControlItem27.Size = new System.Drawing.Size(107, 24);
+            this.layoutControlItem27.Size = new System.Drawing.Size(109, 24);
             this.layoutControlItem27.Text = "%";
             this.layoutControlItem27.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem27.TextSize = new System.Drawing.Size(11, 13);
@@ -1275,7 +1294,7 @@
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(0, 444);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(605, 42);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(614, 42);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem22
@@ -1283,7 +1302,7 @@
             this.layoutControlItem22.Control = this.txtIDClte;
             this.layoutControlItem22.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem22.Name = "layoutControlItem22";
-            this.layoutControlItem22.Size = new System.Drawing.Size(94, 24);
+            this.layoutControlItem22.Size = new System.Drawing.Size(95, 24);
             this.layoutControlItem22.Text = "ID";
             this.layoutControlItem22.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem22.TextSize = new System.Drawing.Size(11, 13);
@@ -1292,9 +1311,9 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.chComi;
-            this.layoutControlItem1.Location = new System.Drawing.Point(247, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(250, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(198, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(201, 24);
             this.layoutControlItem1.Text = "Cliente tiene más de un comisionista";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
@@ -1310,30 +1329,11 @@
             this.layoutControlItem2.TextSize = new System.Drawing.Size(37, 13);
             this.layoutControlItem2.TextToControlDistance = 5;
             // 
-            // txtCorreo
-            // 
-            this.txtCorreo.Location = new System.Drawing.Point(129, 216);
-            this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(618, 20);
-            this.txtCorreo.StyleController = this.layoutControl1;
-            this.txtCorreo.TabIndex = 36;
-            // 
-            // layoutControlItem28
-            // 
-            this.layoutControlItem28.Control = this.txtCorreo;
-            this.layoutControlItem28.Location = new System.Drawing.Point(0, 120);
-            this.layoutControlItem28.Name = "layoutControlItem28";
-            this.layoutControlItem28.Size = new System.Drawing.Size(715, 24);
-            this.layoutControlItem28.Text = "Correo Electronico";
-            this.layoutControlItem28.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem28.TextSize = new System.Drawing.Size(88, 13);
-            this.layoutControlItem28.TextToControlDistance = 5;
-            // 
             // AgregarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 542);
+            this.ClientSize = new System.Drawing.Size(811, 542);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "AgregarCliente";
@@ -1380,6 +1380,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditEmpFact4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCorreo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
@@ -1395,6 +1396,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlSpinComi2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlComi3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlSpinComi3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
@@ -1418,8 +1420,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCorreo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             this.ResumeLayout(false);
 
         }
