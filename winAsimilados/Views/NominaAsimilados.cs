@@ -3680,7 +3680,7 @@ namespace winAsimilados.Views
             FecAplicacionLayoutBanorte.Value = System.DateTime.Today;
             FecIniLayout.Value = System.DateTime.Today;
             FecFinLayout.Value = System.DateTime.Today;
-            sqlDataSource1.Connection.ConnectionString = "Data Source=192.168.16.248\\COMPAC;Initial Catalog=" + bd + ";User ID=sa;Password=Supervisor;";
+            sqlDataSource1.Connection.ConnectionString = "Data Source=192.168.16.242\\COMPAC;Initial Catalog=" + bd + ";User ID=sa;Password=Supervisor;";
             sqlDataSource1.Fill();
             //lookUpCliente.EditValue = "E00000";
             ChNeto.Visible = true;

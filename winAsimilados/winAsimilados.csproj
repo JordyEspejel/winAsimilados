@@ -201,6 +201,7 @@
     <Compile Include="Entities\BancoEmpresa.cs" />
     <Compile Include="Entities\ClaveProdServ.cs" />
     <Compile Include="Entities\ClaveProdServClte.cs" />
+    <Compile Include="Entities\EmpresaCFDI.cs" />
     <Compile Include="Entities\EmpresaPago.cs" />
     <Compile Include="Entities\ListaBancos.cs" />
     <Compile Include="Entities\BitacoraXML.cs" />
@@ -338,6 +339,12 @@
     <Compile Include="Views\EditarUsuario.Designer.cs">
       <DependentUpon>EditarUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\EmpresasEmitenCFDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EmpresasEmitenCFDI.Designer.cs">
+      <DependentUpon>EmpresasEmitenCFDI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\EmpresasPagoAsimilados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -465,6 +472,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\EditarUsuario.resx">
       <DependentUpon>EditarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EmpresasEmitenCFDI.resx">
+      <DependentUpon>EmpresasEmitenCFDI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\EmpresasPagoAsimilados.resx">
       <DependentUpon>EmpresasPagoAsimilados.cs</DependentUpon>

@@ -526,3 +526,4 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilad
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.exe
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.pdb
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.csprojAssemblyReference.cache
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.EmpresasEmitenCFDI.resources

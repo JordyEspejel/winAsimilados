@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery2 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
+            DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery1 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmpresasPagoAsimilados));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gridControlEmpr = new DevExpress.XtraGrid.GridControl();
@@ -59,14 +59,14 @@
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlbtnEditar = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlbtnGuardar = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlbtnBaja = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlbtnCancelar = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlbtnAlta = new DevExpress.XtraLayout.LayoutControlItem();
             this.btnAgregar = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlbtnGuardar = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmpr)).BeginInit();
@@ -84,14 +84,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnEditar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnGuardar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnBaja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnCancelar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnAlta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnGuardar)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -109,6 +109,7 @@
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(447, 85, 650, 400);
             this.layoutControl1.Root = this.layoutControlGroup1;
             this.layoutControl1.Size = new System.Drawing.Size(800, 481);
             this.layoutControl1.TabIndex = 0;
@@ -206,11 +207,11 @@
             // 
             this.sqlDataSource1.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            customSqlQuery2.Name = "QueryStatus";
-            customSqlQuery2.Sql = "SELECT \'A\' AS [c_Status], \'Activa\' AS [Descripcion]\r\nUNION SELECT \'I\' AS [c_Statu" +
+            customSqlQuery1.Name = "QueryStatus";
+            customSqlQuery1.Sql = "SELECT \'A\' AS [c_Status], \'Activa\' AS [Descripcion]\r\nUNION SELECT \'I\' AS [c_Statu" +
     "s], \'Inactiva\' AS [Descripcion]";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            customSqlQuery2});
+            customSqlQuery1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // txtRazon
@@ -314,7 +315,7 @@
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup2});
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(800, 481);
             this.layoutControlGroup1.TextVisible = false;
             // 
@@ -401,24 +402,6 @@
             this.layoutControlbtnEditar.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlbtnEditar.TextVisible = false;
             // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(401, 0);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(255, 42);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // layoutControlbtnGuardar
-            // 
-            this.layoutControlbtnGuardar.Control = this.btnGuardar;
-            this.layoutControlbtnGuardar.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlbtnGuardar.Name = "layoutControlbtnGuardar";
-            this.layoutControlbtnGuardar.Size = new System.Drawing.Size(87, 42);
-            this.layoutControlbtnGuardar.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlbtnGuardar.TextVisible = false;
-            this.layoutControlbtnGuardar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-            // 
             // layoutControlbtnBaja
             // 
             this.layoutControlbtnBaja.Control = this.btnBaja;
@@ -474,6 +457,24 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(94, 18);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(401, 0);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(255, 42);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlbtnGuardar
+            // 
+            this.layoutControlbtnGuardar.Control = this.btnGuardar;
+            this.layoutControlbtnGuardar.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlbtnGuardar.Name = "layoutControlbtnGuardar";
+            this.layoutControlbtnGuardar.Size = new System.Drawing.Size(87, 42);
+            this.layoutControlbtnGuardar.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlbtnGuardar.TextVisible = false;
+            this.layoutControlbtnGuardar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
             // EmpresasPagoAsimilados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,7 +484,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "EmpresasPagoAsimilados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Empresas Paga Asimilados";
+            this.Text = "Empresas Intermediarias - Proveedores";
             this.Load += new System.EventHandler(this.EmpresasPagoAsimilados_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
@@ -502,14 +503,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnEditar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnGuardar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnBaja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnCancelar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnAlta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnGuardar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -537,7 +538,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnEstatus;
         private DevExpress.XtraEditors.SimpleButton btnEditar;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlbtnEditar;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private System.Windows.Forms.BindingSource queryStatusBindingSource;
         private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
@@ -547,10 +547,11 @@
         private DevExpress.XtraEditors.SimpleButton btnGuardar;
         private DevExpress.XtraEditors.SimpleButton btnBaja;
         private DevExpress.XtraEditors.SimpleButton btnCancelar;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlbtnGuardar;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlbtnBaja;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlbtnCancelar;
         private DevExpress.XtraEditors.SimpleButton btnAltaEmpr;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlbtnAlta;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlbtnGuardar;
     }
 }

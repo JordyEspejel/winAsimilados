@@ -1579,7 +1579,7 @@ namespace winAsimilados.Views
             splashScreenManager1.ShowWaitForm();
             splashScreenManager1.SetWaitFormCaption("Cargando Modulo Empresas Paga Asimilados...");
             EmpresasPagoAsimilados empresasPago = new EmpresasPagoAsimilados(splashScreenManager1);
-            var frm = Application.OpenForms.OfType<SucursalesBancarias>().FirstOrDefault();
+            var frm = Application.OpenForms.OfType<EmpresasPagoAsimilados>().FirstOrDefault();
             if (frm != null)
             {
                 splashScreenManager1.CloseWaitForm();
@@ -1623,7 +1623,7 @@ namespace winAsimilados.Views
             splashScreenManager1.ShowWaitForm();
             splashScreenManager1.SetWaitFormCaption("Cargando Modulo PACS de Timbrado...");
             PacsTimbrado pacsTimbrado = new PacsTimbrado(splashScreenManager1);
-            var frm = Application.OpenForms.OfType<SucursalesBancarias>().FirstOrDefault();
+            var frm = Application.OpenForms.OfType<PacsTimbrado>().FirstOrDefault();
             if (frm != null)
             {
                 splashScreenManager1.CloseWaitForm();
@@ -1644,6 +1644,35 @@ namespace winAsimilados.Views
                 pacsTimbrado.Location = new Point(270, 60);
                 //agregarUsuario.Size = PanelPrincipal.Size;
                 pacsTimbrado.Show();
+            }
+        }
+
+        private void accordionControlEmpreasCFDI_Click(object sender, EventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Empresas Emiten CFDI...");
+            EmpresasEmitenCFDI empresasEmitenCFDI = new EmpresasEmitenCFDI(splashScreenManager1);
+            var frm = Application.OpenForms.OfType<EmpresasEmitenCFDI>().FirstOrDefault();
+            if (frm != null)
+            {
+                splashScreenManager1.CloseWaitForm();
+                frm.BringToFront();
+                frm.Location = new Point(270, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    //frm.Size = PanelPrincipal.Size;
+                    frm.BringToFront();
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(270, 60);
+                }
+            }
+            else
+            {
+                empresasEmitenCFDI.Location = new Point(270, 60);
+                //agregarUsuario.Size = PanelPrincipal.Size;
+                empresasEmitenCFDI.Show();
             }
         }
     }

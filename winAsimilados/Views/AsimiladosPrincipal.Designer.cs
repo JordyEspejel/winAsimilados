@@ -81,6 +81,7 @@
             this.accordionControlBanEmpresa = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElementClaveSAT = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlEmprPagaAsim = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlEmpreasCFDI = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement10 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement11 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElemenAddClteUnit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -559,7 +560,8 @@
             this.accordionControlElement12.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement13,
             this.accordionControlElementClaveSAT,
-            this.accordionControlEmprPagaAsim});
+            this.accordionControlEmprPagaAsim,
+            this.accordionControlEmpreasCFDI});
             this.accordionControlElement12.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement12.ImageOptions.Image")));
             this.accordionControlElement12.Name = "accordionControlElement12";
             this.accordionControlElement12.Text = "Catalogos";
@@ -602,8 +604,16 @@
             this.accordionControlEmprPagaAsim.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlEmprPagaAsim.ImageOptions.Image")));
             this.accordionControlEmprPagaAsim.Name = "accordionControlEmprPagaAsim";
             this.accordionControlEmprPagaAsim.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlEmprPagaAsim.Text = "Empresas Paga Asimilados";
+            this.accordionControlEmprPagaAsim.Text = "Empresas Intermediarias - Proveedores";
             this.accordionControlEmprPagaAsim.Click += new System.EventHandler(this.accordionControlEmprPagaAsim_Click);
+            // 
+            // accordionControlEmpreasCFDI
+            // 
+            this.accordionControlEmpreasCFDI.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlEmpreasCFDI.ImageOptions.Image")));
+            this.accordionControlEmpreasCFDI.Name = "accordionControlEmpreasCFDI";
+            this.accordionControlEmpreasCFDI.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlEmpreasCFDI.Text = "Empresas Emiten CFDI";
+            this.accordionControlEmpreasCFDI.Click += new System.EventHandler(this.accordionControlEmpreasCFDI_Click);
             // 
             // accordionControlElement10
             // 
@@ -958,5 +968,6 @@
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
         private DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel repositoryItemHypertextLabel1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlPACSTimbrado;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlEmpreasCFDI;
     }
 }

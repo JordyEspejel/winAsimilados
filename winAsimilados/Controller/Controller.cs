@@ -60,7 +60,7 @@ namespace winAsimilados.Controller
                 //email.To.Add(new MailAddress("jordyespejel7@gmail.com"));
                 email.To.Add(new MailAddress(correo));
                 email.From = new MailAddress("rbo.asimilado@gmail.com");
-                email.Subject ="Recibos de nómina asimilados.";
+                email.Subject = "Recibos de nómina asimilados.";
                 email.Body = "Correo enviado desde AppAsimilados, favor de no responder.";
                 email.IsBodyHtml = false;
                 email.Priority = MailPriority.Normal;
@@ -83,16 +83,16 @@ namespace winAsimilados.Controller
                             }
                         }
                     }
-                }else if (destino.Equals("Cliente"))
+                } else if (destino.Equals("Cliente"))
                 {
                     if (archivos != null)
                     {
-                        foreach(var item in archivos)
+                        foreach (var item in archivos)
                         {
                             string cadena = item;
                             string[] arrayCadena;
                             arrayCadena = cadena.Split(Convert.ToChar("\\"));
-                            string path = Path.Combine(arrayCadena[0] + "\\",arrayCadena[1] + "\\");
+                            string path = Path.Combine(arrayCadena[0] + "\\", arrayCadena[1] + "\\");
                             string fecha = arrayCadena[2];
                             string nombreArchvo = Path.Combine(fecha + "_Nomina Asimilados.zip");
                             ZipFile.CreateFromDirectory(item, path + nombreArchvo);
@@ -106,7 +106,7 @@ namespace winAsimilados.Controller
                 resultado = "true";
                 return resultado;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 string resultado;
                 resultado = e.Message;
@@ -123,7 +123,7 @@ namespace winAsimilados.Controller
                     "WHERE [ID] = " + ID + "";
 
                 updateEstatus.ExecuteNonQuery();
-            }catch(Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: ActualizaStatusFolio()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -144,7 +144,7 @@ namespace winAsimilados.Controller
                 {
                     return false;
                 }
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: EliminaClaveSAT", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -201,13 +201,13 @@ namespace winAsimilados.Controller
 
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: InsertaClaveSAT", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
-        public bool ModificaBancoEmpresa(List <E.BancoEmpresa> lista)
+        public bool ModificaBancoEmpresa(List<E.BancoEmpresa> lista)
         {
             try
             {
@@ -234,13 +234,13 @@ namespace winAsimilados.Controller
                 {
                     return false;
                 }
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: ModificaBancoEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
-        public bool modificaListaBancos(List <E.Banco> lista, SplashScreenManager splash)
+        public bool modificaListaBancos(List<E.Banco> lista, SplashScreenManager splash)
         {
             try
             {
@@ -375,7 +375,7 @@ namespace winAsimilados.Controller
                 return false;
             }
         }
-        public bool InsertaBancoEmpresa (E.BancoEmpresa banco)
+        public bool InsertaBancoEmpresa(E.BancoEmpresa banco)
         {
             try
             {
@@ -427,7 +427,7 @@ namespace winAsimilados.Controller
                     }
                 }
 
-            }catch(Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: InsertaBancoEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -475,7 +475,7 @@ namespace winAsimilados.Controller
                 {
                     return false;
                 }
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: BajaCliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -488,7 +488,7 @@ namespace winAsimilados.Controller
                 SqlCommand updateCliente = N.Conexion.PerformConnection().CreateCommand();
                 updateCliente.CommandText = @"UPDATE [BSNOMINAS].[dbo].[ClientesAsimilados]
                    SET [COMISIONISTA] = '" + cliente.COMISIONISTA + "'" +
-                   ",[CLIENTE] = '" + cliente.CLIENTE + "'" +               
+                   ",[CLIENTE] = '" + cliente.CLIENTE + "'" +
                    ",[PORCENTAJE_ISN] = " + cliente.PORCENTAJE_ISN + "" +
                    ",[PORCENTAJE_COMISION] = " + cliente.PORCENTAJE_COMISION + "" +
                    ",[TOTAL] = " + cliente.TOTAL + "" +
@@ -505,7 +505,7 @@ namespace winAsimilados.Controller
                    ",[EMPRESA_QUE_FACTURA_A_CLIENTE3] = '" + cliente.EMPRESA_QUE_FACTURA_A_CLIENTE3 + "'" +
                    ",[Metodo_Pago] = '" + cliente.Metodo_Pago + "'" +
                     ",[Observaciones] = '" + cliente.Observaciones + "'" +
-                    ",[Forma_Pago] = '" + cliente.Forma_Pago +"'" +
+                    ",[Forma_Pago] = '" + cliente.Forma_Pago + "'" +
                     ",[PORCENTAJE_COMISIONISTA] = " + cliente.PORCENTAJE_COMISIONISTA + "" +
                     ",[COMISIONISTA2] = '" + cliente.COMISIONISTA2 + "'" +
                     ",[PORCENTAJE_COMISIONISTA2] = " + cliente.PORCENTAJE_COMISIONISTA2 + "" +
@@ -527,7 +527,7 @@ namespace winAsimilados.Controller
                     return false;
                 }
 
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: updateClte", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -621,6 +621,30 @@ namespace winAsimilados.Controller
                 return false;
             }
         }
+
+        public bool AltaEmpresaCFDI(string ID)
+        {
+            try
+            {
+                SqlCommand updateEstatus = N.Conexion.PerformConnection().CreateCommand();
+                updateEstatus.CommandText = @"UPDATE [BSNOMINAS].[dbo].[EmpresaCatalogoCFDI]
+                SET [Estatus] = 'A' WHERE [NumEmpresa] = '" + ID + "'";
+
+                if (updateEstatus.ExecuteNonQuery().Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: AltaEmpresaCFDI()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         public bool AltaEmpresaPago(int ID)
         {
             try
@@ -644,6 +668,30 @@ namespace winAsimilados.Controller
                 return false;
             }
         }
+
+        public bool BajaEmpresaCFDI(string ID)
+        {
+            try
+            {
+                SqlCommand updateEstatus = N.Conexion.PerformConnection().CreateCommand();
+                updateEstatus.CommandText = @"UPDATE [BSNOMINAS].[dbo].[EmpresaCatalogoCFDI]
+                SET [Estatus] = 'I' WHERE [NumEmpresa] = '" + ID + "'";
+
+                if (updateEstatus.ExecuteNonQuery().Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: BajaEmpresaCFDI()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         public bool BajaEmpresaPago(int ID)
         {
             try
@@ -664,6 +712,40 @@ namespace winAsimilados.Controller
             catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: BajaEmpresaPago()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public bool ModificaEmpresaCFDI(List <E.EmpresaCFDI> lista)
+        {
+            try
+            {
+                int cont = 0;
+                foreach (var item in lista)
+                {
+                    SqlCommand updateEmpresa = N.Conexion.PerformConnection().CreateCommand();
+                    updateEmpresa.CommandText = @"UPDATE [BSNOMINAS].[dbo].[EmpresaCatalogoCFDI]
+                   SET [NumEmpresa] = '" + item.IDEmpresa + "'" +
+                   ",[Descripcion] = '" + item.razonSocial + "'" +
+                   "WHERE [NumEmpresa] = '" + item.IDEmpresa + "'";
+
+                    if (updateEmpresa.ExecuteNonQuery().Equals(1))
+                    {
+                        cont++;
+                    }
+                }
+
+                if (cont.Equals(lista.Count()))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: ModificaEmpresaCFDI()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -703,6 +785,36 @@ namespace winAsimilados.Controller
                 return false;
             }
         }
+        public bool InsertaEmpresaCFDI(E.EmpresaCFDI empresaCFDI)
+        {
+            try
+            {
+                SqlCommand insertaEmpresa = N.Conexion.PerformConnection().CreateCommand();
+                insertaEmpresa.CommandText = @"INSERT INTO [BSNOMINAS].[dbo].[EmpresaCatalogoCFDI]
+                ([NumEmpresa]
+                ,[Descripcion]
+                ,[Estatus])
+                 VALUES
+                ('" + empresaCFDI.IDEmpresa + "'" +
+                ",'" + empresaCFDI.razonSocial + "'" +
+                ",'A')";
+
+
+                if (insertaEmpresa.ExecuteNonQuery().Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: InsertaEmpresaCFDI()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         public bool InsertaEmpresaPago(E.EmpresaPago empresa)
         {
             try
@@ -739,7 +851,7 @@ namespace winAsimilados.Controller
         {
             try
             {
-                foreach(var item in lista)
+                foreach (var item in lista)
                 {
                     if (item.CLIENTE != "" && item.ID != "")
                     {
@@ -824,6 +936,34 @@ namespace winAsimilados.Controller
                 return;
             }
         }
+
+        public string GetIDEmpresaCFDI()
+        {
+            try
+            {
+                string ID = "";
+                SqlCommand getID = N.Conexion.PerformConnection().CreateCommand();
+                getID.CommandText = @"SELECT TOP (1) [NumEmpresa]
+                ,[Descripcion]
+                FROM [BSNOMINAS].[dbo].[EmpresaCatalogoCFDI]
+                ORDER BY NumEmpresa DESC";
+
+                SqlDataReader readerID;
+                readerID = getID.ExecuteReader();
+
+                if (readerID.Read())
+                {
+                    ID = readerID.GetString(0);
+                }
+                readerID.Close();
+                return ID;
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\n Controller: GetIDEmpresaCFDI", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
         public string GetIDEmpresaPago()
         {
             try
@@ -870,13 +1010,13 @@ namespace winAsimilados.Controller
                 readerID.Close();
                 return ID;
             }
-            catch( Exception e)
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: GetIDCliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
-        public void GetBitacora(GridControl grid, string User,  string Month, string Year, SplashScreenManager splashScreenManager)
+        public void GetBitacora(GridControl grid, string User, string Month, string Year, SplashScreenManager splashScreenManager)
         {
             try
             {
@@ -918,7 +1058,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand queryUpdate = N.Conexion.PerformConnection().CreateCommand();
-                queryUpdate.CommandText = @"UPDATE FolioXML set StatusSAT = '" + status + "' where UUID ='" + uuid +"'";
+                queryUpdate.CommandText = @"UPDATE FolioXML set StatusSAT = '" + status + "' where UUID ='" + uuid + "'";
                 queryUpdate.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -949,7 +1089,7 @@ namespace winAsimilados.Controller
 
                 return nombre;
             }
-            catch( Exception e)
+            catch (Exception e)
             {
                 N.Conexion.PerformConnectionSoprade().Close();
                 XtraMessageBox.Show(e.Message + "\nError Controlador: GetNombreUsuario()",
@@ -984,7 +1124,7 @@ namespace winAsimilados.Controller
                 N.Conexion.PerformConnection().Close();
                 return tipoUsua;
 
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 N.Conexion.PerformConnection().Close();
 
@@ -1033,9 +1173,9 @@ namespace winAsimilados.Controller
                 {
                     N.Conexion.PerformConnection().ChangeDatabase(BD);
                 }
-                
+
                 return Admin;
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 N.Conexion.PerformConnectionSoprade().Close();
                 XtraMessageBox.Show(e.Message + "\nError Controlador: GetAdminUser()",
@@ -1043,7 +1183,7 @@ namespace winAsimilados.Controller
                 return false;
             }
         }
-        public void CancelarCFDI(List<E.CancelarUUID> list, SplashScreenManager splashScreenManager, string rfc,string PAC, string ambiente)
+        public void CancelarCFDI(List<E.CancelarUUID> list, SplashScreenManager splashScreenManager, string rfc, string PAC, string ambiente)
         {
             try
             {
@@ -1068,7 +1208,7 @@ namespace winAsimilados.Controller
                 bool produccion = false;
                 string prod_endpoint = "TimbradoEndpoint_PRODUCCION";
                 string test_endpoint = "TimbradoEndpoint_TESTING";
-                string [] uuid = null;
+                string[] uuid = null;
                 int cont = 0;
                 string pathCer = ArchivoCER(rfc);
                 string pathKey = ArchivoKEY(rfc);
@@ -1105,7 +1245,7 @@ namespace winAsimilados.Controller
                             bitacora.Empresa = item.Empresa;
                             //C:\DocAsimilados\00001000000413522787.cer
                             //C:\DocAsimilados\CSD_QUERETARO_PTP131002FA0_20190214_113034.key
-                            uuid = (new string[] { item.UUID});
+                            uuid = (new string[] { item.UUID });
 
                             byte[] bCer = File.ReadAllBytes(pathCer);
                             byte[] bKey = File.ReadAllBytes(pathKey);
@@ -1126,7 +1266,8 @@ namespace winAsimilados.Controller
                                 string rfcEmpl = item.RFCEmpl;
                                 //var cancelacionpac = clientProduccion.CancelaCfdiOtrosPACs(UUIDCFDI, rfc, xmlLINK, rfcEmpl, pathCer, pathKey, pass);
 
-                                var cancelacion = clientProduccion.CancelaCfdi("angel@inari.mx", "Inari2020.", UUIDCFDI, rfc, xmlLINK, rfcEmpl);
+                                var cancelacion = clientProduccion.CancelaCfdiRequest("angel@inari.mx", "Inari2020.", UUIDCFDI, rfc, xmlLINK, rfcEmpl);
+                                var cancelacion2 = clientProduccion.CancelaCfdiRequest("angel@inari.mx", "Inari2020", "https://pruebascfdicancelacion.cloudapp.net/Cancelacion/CancelaCFDService.svc?xsd=xsd0", xmlLINK, UUIDCFDI, rfcEmpl);
                                 //var cancelacion = clientProduccion.CancelaCfdi("karina@inari", "Inari2020.", item.UIID,rfc);
                                 //string newXML = client.TimbraCfdi("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
                                 clientProduccion.Close();
@@ -1300,7 +1441,7 @@ namespace winAsimilados.Controller
 
 
                     }
-                    catch(Exception cancelacion)
+                    catch (Exception cancelacion)
                     {
                         if (splashScreenManager.IsSplashFormVisible.Equals(true))
                         {
@@ -1419,7 +1560,7 @@ namespace winAsimilados.Controller
             {
                 Directory.CreateDirectory(url);
             }
-            string NombreArchivo = "Validar_Timbrado_Masivo_" +  Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
+            string NombreArchivo = "Validar_Timbrado_Masivo_" + Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
             + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
             + "-" + DateTime.Now.Second.ToString());
             string path = Path.Combine(url, NombreArchivo + ".txt");
@@ -1560,7 +1701,7 @@ namespace winAsimilados.Controller
                     nomina12.TotalDeducciones = nomiEmpl.ISR;
 
 
-                    if (periodicidad.Equals("Semanal")|| periodicidad.Equals("02"))
+                    if (periodicidad.Equals("Semanal") || periodicidad.Equals("02"))
                     {
                         nomina12.NumDiasPagados = 7;
                         nominaReceptor.PeriodicidadPago = "02";
@@ -2077,7 +2218,7 @@ namespace winAsimilados.Controller
                         ////var empersas = client.ObtenerEmpresas("jordyespejel7@gmail.com", "Asimilados2020");
                         //var newXML = client.TimbraCfdiQr("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
                         ////string newXML = client.TimbraCfdi("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
-                        
+
                         //client.Close();
 
                         ServicioTimbradoProduccion.TimbradoPortTypeClient portTypeClient = null;
@@ -2249,7 +2390,7 @@ namespace winAsimilados.Controller
             {
                 Directory.CreateDirectory(url);
             }
-            string NombreArchivo = "Timbrado_Masivo_" +Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
+            string NombreArchivo = "Timbrado_Masivo_" + Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
             + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
             + "-" + DateTime.Now.Second.ToString());
             string path = Path.Combine(url, NombreArchivo + ".txt");
@@ -2309,8 +2450,8 @@ namespace winAsimilados.Controller
 
                     if (destino.Equals("Cliente"))
                     {
-                        pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_"  + fecPago + @"\");
-                    }else if (destino.Equals("Empleado"))
+                        pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_" + fecPago + @"\");
+                    } else if (destino.Equals("Empleado"))
                     {
                         pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_" + nomiEmpl.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
                     }
@@ -2937,7 +3078,7 @@ namespace winAsimilados.Controller
                 {
                     splashScreenManager1.ShowWaitForm();
                     splashScreenManager1.SetWaitFormCaption("Enviando correo..");
-                    archivos.Add(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_"+ fecPago);
+                    archivos.Add(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_" + fecPago);
                     resultCorreo = EnviaFacturaCorreo(clienteAsimilado.correoCliente, archivos, destino);
 
                     if (resultCorreo != "true")
@@ -2977,7 +3118,7 @@ namespace winAsimilados.Controller
 
 
         [Obsolete]
-        public void GenXmlMasivo(List<E.Empleado> Lista , SplashScreenManager splashScreenManager1, string empresa, string rfc, string ip, DateTime FecIniPeriMasiv, DateTime FecFinPeriMasiv, DateTime FecPagoMasiv, string destino, bool enviaCorreo, string correoCliente, string PAC, string ambiente)
+        public void GenXmlMasivo(List<E.Empleado> Lista, SplashScreenManager splashScreenManager1, string empresa, string rfc, string ip, DateTime FecIniPeriMasiv, DateTime FecFinPeriMasiv, DateTime FecPagoMasiv, string destino, bool enviaCorreo, string correoCliente, string PAC, string ambiente)
         {
             E.Empleado nomiEmpl = new E.Empleado();
             E.FolioXML Folio = new E.FolioXML();
@@ -3059,12 +3200,12 @@ namespace winAsimilados.Controller
                     Bitacora.Origen = "Timbrado Masivo";
 
                     fecPago = Convert.ToDateTime(FecPagoMasiv).ToString("dd-MM-yyyy");
-                    pathArchivoXML = Path.Combine(pathXml+ fecPago + @"\");
+                    pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
                     if (destino.Equals("Cliente"))
                     {
-                        pathArchivoXML = Path.Combine(pathXml + fecPago + hora + "_Recibos"  + @"\");
+                        pathArchivoXML = Path.Combine(pathXml + fecPago + hora + "_Recibos" + @"\");
                         pathCorreo = pathArchivoXML;
-                    }else if (destino.Equals("Empleado"))
+                    } else if (destino.Equals("Empleado"))
                     {
                         pathArchivoXML = Path.Combine(pathXml + item.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
                     }
@@ -3081,10 +3222,10 @@ namespace winAsimilados.Controller
                     // produccion = false ---> para pruebas
                     if (PAC.Equals("SL") && ambiente.Equals("Pruebas"))
                     {
-                         produccion = false;
-                    }else if (PAC.Equals("SL") && ambiente.Equals("Produccion"))
+                        produccion = false;
+                    } else if (PAC.Equals("SL") && ambiente.Equals("Produccion"))
                     {
-                         produccion = true;
+                        produccion = true;
                     }
 
                     string prod_endpoint = "TimbradoEndpoint_PRODUCCION";
@@ -3510,14 +3651,14 @@ namespace winAsimilados.Controller
                             {
                                 portTypeClient = (produccion)
                                 ? new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint)
-                                : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient            (test_endpoint);
+                                : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint);
                                 respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
                             }
                             else
                             {
                                 portTypeClient = (produccion)
                                 ? new ServicioTimbradoProduccion.TimbradoPortTypeClient(prod_endpoint)
-                                : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient                (prod_endpoint);
+                                : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(prod_endpoint);
                                 respuesta = portTypeClient.timbrar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", bxml, false);
                             }
 
@@ -3633,7 +3774,7 @@ namespace winAsimilados.Controller
                         XtraMessageBox.Show(timbrado.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    
+
                     if (genPDF.Equals(true))
                     {
                         if (destino.Equals("Empleado"))
@@ -3642,7 +3783,7 @@ namespace winAsimilados.Controller
                         }
                         splashScreenManager1.SetWaitFormCaption("Generando PDF..");
                         string nomPDF = Path.GetFileNameWithoutExtension(pathArchivoXML);
-                        nomPDF = nomPDF  + ".pdf";
+                        nomPDF = nomPDF + ".pdf";
                         string resultPDF = LeerXMLModAsim(pathArchivoXML, pathArchivoXMLF, splashScreenManager1);
                         string nomPDFResult = Path.GetFileNameWithoutExtension(resultPDF);
                         nomPDFResult = nomPDFResult + ".pdf";
@@ -3898,7 +4039,7 @@ namespace winAsimilados.Controller
                     return resultado;
                 }
 
-            }catch(Exception e)
+            } catch (Exception e)
             {
                 string resultado;
                 //if (splash.IsSplashFormVisible.Equals(true))
@@ -3957,7 +4098,7 @@ namespace winAsimilados.Controller
                     return resultado;
                 }
 
-                
+
             }
             catch (Exception e)
             {
@@ -3980,7 +4121,7 @@ namespace winAsimilados.Controller
                 SqlCommand QueryFolio = N.Conexion.PerformConnection().CreateCommand();
                 QueryFolio.CommandText = @"SELECT
                 ISNULL(RIGHT('00000' + CAST(Max([Folio]) + 1 AS varchar(5)) , 4),0) AS [Folio]
-                FROM [FolioXML]"; 
+                FROM [FolioXML]";
                 SqlDataReader readerFolio;
                 readerFolio = QueryFolio.ExecuteReader();
 
@@ -3991,13 +4132,13 @@ namespace winAsimilados.Controller
                 readerFolio.Close();
 
                 return folio;
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: GetFolio()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
-        public string GetEntFed(string bd,string CodPost)
+        public string GetEntFed(string bd, string CodPost)
         {
             try
             {
@@ -4032,7 +4173,7 @@ namespace winAsimilados.Controller
                 N.Conexion.PerformConnection().ChangeDatabase(bd);
                 return entidad;
 
-            }catch(Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: GetEntFed()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
@@ -4061,7 +4202,7 @@ namespace winAsimilados.Controller
                 ReaderRecurso.Close();
 
                 return Recu;
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError controlador: GetParametros()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
@@ -4158,13 +4299,13 @@ namespace winAsimilados.Controller
                 readerParametros.Close();
 
                 return parametros;
-            }catch(Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "Error controlador: GetParametros()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
-        public E.ClienteAsimilado GetInfoCliente (string IDCliente)
+        public E.ClienteAsimilado GetInfoCliente(string IDCliente)
         {
             try
             {
@@ -4229,8 +4370,8 @@ namespace winAsimilados.Controller
                     cliente.PROVEEDOR = readerCliente.GetString(14);
                     cliente.EMPRESA_QUE_FACTUR_A_CLIENTE = readerCliente.GetString(15);
                     cliente.EMPRESA_QUE_FACTURA_A_CLIENTE1 = readerCliente.GetString(16);
-                    cliente.EMPRESA_QUE_FACTURA_A_CLIENTE2 =  readerCliente.GetString(17);
-                    cliente.EMPRESA_QUE_FACTURA_A_CLIENTE3 =  readerCliente.GetString(18);
+                    cliente.EMPRESA_QUE_FACTURA_A_CLIENTE2 = readerCliente.GetString(17);
+                    cliente.EMPRESA_QUE_FACTURA_A_CLIENTE3 = readerCliente.GetString(18);
                     cliente.Metodo_Pago = readerCliente.GetString(19);
                     cliente.Observaciones = readerCliente.GetString(20);
                     cliente.Forma_Pago = readerCliente.GetString(21);
@@ -4390,7 +4531,7 @@ namespace winAsimilados.Controller
             {
                 XtraMessageBox.Show(e.Message + "Error Controlador: ArchivoKEY()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
-            }         
+            }
         }
         public string PassKey(string RFC)
         {
@@ -4412,7 +4553,7 @@ namespace winAsimilados.Controller
                 return pass;
             }
             catch (Exception e)
-            { 
+            {
                 XtraMessageBox.Show(e.Message + "\n Error Controlador: PassKey()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
@@ -4428,250 +4569,250 @@ namespace winAsimilados.Controller
                 //calculo.IngresosBrutos = Math.Round(Ingresos,2);
                 calculo.IngresosBrutos = Math.Round(Ingresos, 2);
                 if (Periodicidad.Equals("Semanal") || Periodicidad.Equals("02"))
-                    {
-                        var ISR07 = new List<E.ISR7>();
-                        E.ISR7[] isr07 = null;
+                {
+                    var ISR07 = new List<E.ISR7>();
+                    E.ISR7[] isr07 = null;
 
-                        var SUB07 = new List<E.SUB7>();
-                        E.SUB7[] sub07 = null;
+                    var SUB07 = new List<E.SUB7>();
+                    E.SUB7[] sub07 = null;
 
-                        //N.Conexion.PerformConnectionSoprade().Open();
-                        //SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                        N.Conexion.PerformConnection().Close();
-                        N.Conexion.PerformConnection().Open();
-                        SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
-                        //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
-                        //from genTablasNumericasDet 
-                        //where tnudIDTnum = 'ISR07'";  
-                        queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                    //N.Conexion.PerformConnectionSoprade().Open();
+                    //SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    N.Conexion.PerformConnection().Close();
+                    N.Conexion.PerformConnection().Open();
+                    SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
+                    //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                    //from genTablasNumericasDet 
+                    //where tnudIDTnum = 'ISR07'";  
+                    queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
                         from TablaCalculos 
                         where tnudIDTnum = 'ISR07'";
 
                     SqlDataReader readerTabla;
-                        readerTabla = queryTablaISR.ExecuteReader();
+                    readerTabla = queryTablaISR.ExecuteReader();
 
-                        while (readerTabla.Read())
+                    while (readerTabla.Read())
+                    {
+                        ISR07.Add(new E.ISR7
                         {
-                            ISR07.Add(new E.ISR7
-                            {
-                                LimiteInferior = readerTabla.GetDecimal(0),
-                                LimiteSuperior = readerTabla.GetDecimal(1),
-                                CuotaFija = readerTabla.GetDecimal(2),
-                                Porcentaje = readerTabla.GetDecimal(3)
-                            });
-                            isr07 = ISR07.ToArray();
-                        }
-                        readerTabla.Close();
+                            LimiteInferior = readerTabla.GetDecimal(0),
+                            LimiteSuperior = readerTabla.GetDecimal(1),
+                            CuotaFija = readerTabla.GetDecimal(2),
+                            Porcentaje = readerTabla.GetDecimal(3)
+                        });
+                        isr07 = ISR07.ToArray();
+                    }
+                    readerTabla.Close();
 
-                     //SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                        SqlCommand queryTablaSub = N.Conexion.PerformConnection().CreateCommand();
-                        queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                    //SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    SqlCommand queryTablaSub = N.Conexion.PerformConnection().CreateCommand();
+                    queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
                         from TablaCalculos 
                         where tnudIDTnum = 'SUB07'";
 
-                        SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
-                        while (readerTablaSub.Read())
+                    SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
+                    while (readerTablaSub.Read())
+                    {
+                        SUB07.Add(new E.SUB7
                         {
-                            SUB07.Add(new E.SUB7
-                            {
-                                rango1 = readerTablaSub.GetDecimal(0),
-                                rango2 = readerTablaSub.GetDecimal(1),
-                                subsidio = readerTablaSub.GetDecimal(2)
-                            });
-                            sub07 = SUB07.ToArray();
-                        }
-                        readerTablaSub.Close();
-                        N.Conexion.PerformConnection().ChangeDatabase(BD);
+                            rango1 = readerTablaSub.GetDecimal(0),
+                            rango2 = readerTablaSub.GetDecimal(1),
+                            subsidio = readerTablaSub.GetDecimal(2)
+                        });
+                        sub07 = SUB07.ToArray();
+                    }
+                    readerTablaSub.Close();
+                    N.Conexion.PerformConnection().ChangeDatabase(BD);
 
-                        foreach (var valor in sub07)
+                    foreach (var valor in sub07)
+                    {
+                        if (Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
                         {
-                            if(Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
-                            {
-                                calculo.Sub = Math.Round(valor.subsidio,2);
-                            }
+                            calculo.Sub = Math.Round(valor.subsidio, 2);
                         }
-
-                        foreach (var valor in isr07)
-                        {
-                            if (Ingresos >= valor.LimiteInferior && Ingresos <= valor.LimiteSuperior)
-                            {
-                                calculo.LimInferior = Math.Round(valor.LimiteInferior,2);
-                              //calculo.PerExLimInf = Math.Round(valor.Porcentaje,2);
-                                calculo.PerExLimInf = valor.Porcentaje;
-                                calculo.CF = Math.Round(valor.CuotaFija,2);
-                            }
-                        }
-                        calculo.ExLimInf = Math.Round(calculo.IngresosBrutos - calculo.LimInferior,2);
-                        calculo.ImpMarg = Math.Round(calculo.ExLimInf * calculo.PerExLimInf,2);
-                        calculo.ISR = Math.Round(calculo.CF + calculo.ImpMarg,2);
-                        calculo.IngresosNetos = Math.Round(calculo.IngresosBrutos - calculo.ISR + calculo.Sub,2);
                     }
 
-                    if (Periodicidad.Equals("Quincenal") || Periodicidad.Equals("04"))
+                    foreach (var valor in isr07)
                     {
-                        var ISR15 = new List<E.ISR15>();
-                        E.ISR15[] isr15 = null;
+                        if (Ingresos >= valor.LimiteInferior && Ingresos <= valor.LimiteSuperior)
+                        {
+                            calculo.LimInferior = Math.Round(valor.LimiteInferior, 2);
+                            //calculo.PerExLimInf = Math.Round(valor.Porcentaje,2);
+                            calculo.PerExLimInf = valor.Porcentaje;
+                            calculo.CF = Math.Round(valor.CuotaFija, 2);
+                        }
+                    }
+                    calculo.ExLimInf = Math.Round(calculo.IngresosBrutos - calculo.LimInferior, 2);
+                    calculo.ImpMarg = Math.Round(calculo.ExLimInf * calculo.PerExLimInf, 2);
+                    calculo.ISR = Math.Round(calculo.CF + calculo.ImpMarg, 2);
+                    calculo.IngresosNetos = Math.Round(calculo.IngresosBrutos - calculo.ISR + calculo.Sub, 2);
+                }
 
-                        var SUB15 = new List<E.SUB15>();
-                        E.SUB15[] sub15 = null;
+                if (Periodicidad.Equals("Quincenal") || Periodicidad.Equals("04"))
+                {
+                    var ISR15 = new List<E.ISR15>();
+                    E.ISR15[] isr15 = null;
 
-                        //N.Conexion.PerformConnectionSoprade().Open();
-                        //SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                        N.Conexion.PerformConnection().Close();
-                        N.Conexion.PerformConnection().Open();
-                        SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
-                        //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
-                        //from genTablasNumericasDet 
-                        //where tnudIDTnum = 'ISR15'";  
-                        queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                    var SUB15 = new List<E.SUB15>();
+                    E.SUB15[] sub15 = null;
+
+                    //N.Conexion.PerformConnectionSoprade().Open();
+                    //SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    N.Conexion.PerformConnection().Close();
+                    N.Conexion.PerformConnection().Open();
+                    SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
+                    //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                    //from genTablasNumericasDet 
+                    //where tnudIDTnum = 'ISR15'";  
+                    queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
                             from TablaCalculos 
                             where tnudIDTnum = 'ISR15'";
 
                     SqlDataReader readerTabla;
-                        readerTabla = queryTablaISR.ExecuteReader();
+                    readerTabla = queryTablaISR.ExecuteReader();
 
-                        while (readerTabla.Read())
+                    while (readerTabla.Read())
+                    {
+                        ISR15.Add(new E.ISR15
                         {
-                            ISR15.Add(new E.ISR15
-                            {
-                                LimiteInferior = readerTabla.GetDecimal(0),
-                                LimiteSuperior = readerTabla.GetDecimal(1),
-                                CuotaFija = readerTabla.GetDecimal(2),
-                                Porcentaje = readerTabla.GetDecimal(3)
-                            });
-                            isr15 = ISR15.ToArray();
-                        }
-                        readerTabla.Close();
+                            LimiteInferior = readerTabla.GetDecimal(0),
+                            LimiteSuperior = readerTabla.GetDecimal(1),
+                            CuotaFija = readerTabla.GetDecimal(2),
+                            Porcentaje = readerTabla.GetDecimal(3)
+                        });
+                        isr15 = ISR15.ToArray();
+                    }
+                    readerTabla.Close();
 
-                        //SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                        SqlCommand queryTablaSub = N.Conexion.PerformConnection().CreateCommand();
-                        queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                    //SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    SqlCommand queryTablaSub = N.Conexion.PerformConnection().CreateCommand();
+                    queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
                             from TablaCalculos 
                             where tnudIDTnum = 'SUB15'";
 
                     SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
-                        while (readerTablaSub.Read())
+                    while (readerTablaSub.Read())
+                    {
+                        SUB15.Add(new E.SUB15
                         {
-                            SUB15.Add(new E.SUB15
-                            {
-                                rango1 = readerTablaSub.GetDecimal(0),
-                                rango2 = readerTablaSub.GetDecimal(1),
-                                subsidio = readerTablaSub.GetDecimal(2)
-                            });
-                            sub15 = SUB15.ToArray();
-                        }
-                        readerTablaSub.Close();
+                            rango1 = readerTablaSub.GetDecimal(0),
+                            rango2 = readerTablaSub.GetDecimal(1),
+                            subsidio = readerTablaSub.GetDecimal(2)
+                        });
+                        sub15 = SUB15.ToArray();
+                    }
+                    readerTablaSub.Close();
                     //N.Conexion.PerformConnectionSoprade().Close();
                     N.Conexion.PerformConnection().ChangeDatabase(BD);
 
                     foreach (var valor in sub15)
+                    {
+                        if (Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
                         {
-                            if (Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
-                            {
-                                calculo.Sub = Math.Round(valor.subsidio,2);
-                            }
+                            calculo.Sub = Math.Round(valor.subsidio, 2);
                         }
-
-                        foreach (var valor in isr15)
-                        {
-                            if (Ingresos >= valor.LimiteInferior && Ingresos <= valor.LimiteSuperior)
-                            {
-                                calculo.LimInferior = Math.Round(valor.LimiteInferior,2);
-                                //calculo.PerExLimInf = Math.Round(valor.Porcentaje,2);
-                                calculo.PerExLimInf = valor.Porcentaje;
-                                calculo.CF = Math.Round(valor.CuotaFija,2);
-                            }
-                        }
-                        calculo.ExLimInf = Math.Round(calculo.IngresosBrutos - calculo.LimInferior,2);
-                        calculo.ImpMarg = Math.Round(calculo.ExLimInf * calculo.PerExLimInf,2);
-                        calculo.ISR = Math.Round(calculo.CF + calculo.ImpMarg,2);
-                        calculo.IngresosNetos = Math.Round(calculo.IngresosBrutos - calculo.ISR + calculo.Sub,2);
                     }
 
-                    if (Periodicidad.Equals("Mensual") || Periodicidad.Equals("05"))
+                    foreach (var valor in isr15)
                     {
-                        var ISR30 = new List<E.ISR30>();
-                        E.ISR30[] isr30 = null;
+                        if (Ingresos >= valor.LimiteInferior && Ingresos <= valor.LimiteSuperior)
+                        {
+                            calculo.LimInferior = Math.Round(valor.LimiteInferior, 2);
+                            //calculo.PerExLimInf = Math.Round(valor.Porcentaje,2);
+                            calculo.PerExLimInf = valor.Porcentaje;
+                            calculo.CF = Math.Round(valor.CuotaFija, 2);
+                        }
+                    }
+                    calculo.ExLimInf = Math.Round(calculo.IngresosBrutos - calculo.LimInferior, 2);
+                    calculo.ImpMarg = Math.Round(calculo.ExLimInf * calculo.PerExLimInf, 2);
+                    calculo.ISR = Math.Round(calculo.CF + calculo.ImpMarg, 2);
+                    calculo.IngresosNetos = Math.Round(calculo.IngresosBrutos - calculo.ISR + calculo.Sub, 2);
+                }
 
-                        var SUB30 = new List<E.SUB30>();
-                        E.SUB30[] sub30 = null;
+                if (Periodicidad.Equals("Mensual") || Periodicidad.Equals("05"))
+                {
+                    var ISR30 = new List<E.ISR30>();
+                    E.ISR30[] isr30 = null;
 
-                        //N.Conexion.PerformConnectionSoprade().Open();
-                        //SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                        N.Conexion.PerformConnection().Close();
-                        N.Conexion.PerformConnection().Open();
-                        SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
-                        //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
-                        //from genTablasNumericasDet 
-                        //where tnudIDTnum = 'ISR15'";  
-                        queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                    var SUB30 = new List<E.SUB30>();
+                    E.SUB30[] sub30 = null;
+
+                    //N.Conexion.PerformConnectionSoprade().Open();
+                    //SqlCommand queryTablaISR = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    N.Conexion.PerformConnection().Close();
+                    N.Conexion.PerformConnection().Open();
+                    SqlCommand queryTablaISR = N.Conexion.PerformConnection().CreateCommand();
+                    //queryTablaISR.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                    //from genTablasNumericasDet 
+                    //where tnudIDTnum = 'ISR15'";  
+                    queryTablaISR.CommandText = @"  select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
                                 from TablaCalculos 
                                 where tnudIDTnum = 'ISR30'";
 
                     SqlDataReader readerTabla;
-                        readerTabla = queryTablaISR.ExecuteReader();
+                    readerTabla = queryTablaISR.ExecuteReader();
 
-                        while (readerTabla.Read())
+                    while (readerTabla.Read())
+                    {
+                        ISR30.Add(new E.ISR30
                         {
-                            ISR30.Add(new E.ISR30
-                            {
-                                LimiteInferior = readerTabla.GetDecimal(0),
-                                LimiteSuperior = readerTabla.GetDecimal(1),
-                                CuotaFija = readerTabla.GetDecimal(2),
-                                Porcentaje = readerTabla.GetDecimal(3)
-                            });
-                            isr30 = ISR30.ToArray();
-                        }
-                        readerTabla.Close();
+                            LimiteInferior = readerTabla.GetDecimal(0),
+                            LimiteSuperior = readerTabla.GetDecimal(1),
+                            CuotaFija = readerTabla.GetDecimal(2),
+                            Porcentaje = readerTabla.GetDecimal(3)
+                        });
+                        isr30 = ISR30.ToArray();
+                    }
+                    readerTabla.Close();
 
-                        //SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
-                        SqlCommand queryTablaSub = N.Conexion.PerformConnection().CreateCommand();
-                        queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
+                    //SqlCommand queryTablaSub = N.Conexion.PerformConnectionSoprade().CreateCommand();
+                    SqlCommand queryTablaSub = N.Conexion.PerformConnection().CreateCommand();
+                    queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
                                 from TablaCalculos 
                                 where tnudIDTnum = 'SUB30'";
 
                     SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
-                        while (readerTablaSub.Read())
+                    while (readerTablaSub.Read())
+                    {
+                        SUB30.Add(new E.SUB30
                         {
-                            SUB30.Add(new E.SUB30
-                            {
-                                rango1 = readerTablaSub.GetDecimal(0),
-                                rango2 = readerTablaSub.GetDecimal(1),
-                                subsidio = readerTablaSub.GetDecimal(2)
-                            });
-                            sub30 = SUB30.ToArray();
-                        }
-                        readerTablaSub.Close();
-                        //N.Conexion.PerformConnectionSoprade().Close();
-                        N.Conexion.PerformConnection().ChangeDatabase(BD);
+                            rango1 = readerTablaSub.GetDecimal(0),
+                            rango2 = readerTablaSub.GetDecimal(1),
+                            subsidio = readerTablaSub.GetDecimal(2)
+                        });
+                        sub30 = SUB30.ToArray();
+                    }
+                    readerTablaSub.Close();
+                    //N.Conexion.PerformConnectionSoprade().Close();
+                    N.Conexion.PerformConnection().ChangeDatabase(BD);
 
-                        foreach (var valor in sub30)
+                    foreach (var valor in sub30)
+                    {
+                        if (Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
                         {
-                            if (Ingresos >= valor.rango1 && Ingresos <= valor.rango2)
-                            {
-                                calculo.Sub = Math.Round(valor.subsidio,2);
-                            }
+                            calculo.Sub = Math.Round(valor.subsidio, 2);
                         }
+                    }
 
-                        foreach (var valor in isr30)
+                    foreach (var valor in isr30)
+                    {
+                        if (Ingresos >= valor.LimiteInferior && Ingresos <= valor.LimiteSuperior)
                         {
-                            if (Ingresos >= valor.LimiteInferior && Ingresos <= valor.LimiteSuperior)
-                            {
-                                calculo.LimInferior = Math.Round(valor.LimiteInferior,2);
+                            calculo.LimInferior = Math.Round(valor.LimiteInferior, 2);
                             //calculo.PerExLimInf = Math.Round(valor.Porcentaje,2);
                             calculo.PerExLimInf = valor.Porcentaje;
-                            calculo.CF = Math.Round(valor.CuotaFija,2);
-                            }
+                            calculo.CF = Math.Round(valor.CuotaFija, 2);
                         }
-                        calculo.ExLimInf = Math.Round(calculo.IngresosBrutos - calculo.LimInferior,2);
-                        calculo.ImpMarg = Math.Round(calculo.ExLimInf * calculo.PerExLimInf,2);
-                        calculo.ISR = Math.Round(calculo.CF + calculo.ImpMarg,2);
-                        calculo.IngresosNetos = Math.Round(calculo.IngresosBrutos - calculo.ISR + calculo.Sub,2);
                     }
+                    calculo.ExLimInf = Math.Round(calculo.IngresosBrutos - calculo.LimInferior, 2);
+                    calculo.ImpMarg = Math.Round(calculo.ExLimInf * calculo.PerExLimInf, 2);
+                    calculo.ISR = Math.Round(calculo.CF + calculo.ImpMarg, 2);
+                    calculo.IngresosNetos = Math.Round(calculo.IngresosBrutos - calculo.ISR + calculo.Sub, 2);
+                }
                 //}
                 return calculo;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: GeneraCalculo()", "Error", MessageBoxButtons.OK
                     , MessageBoxIcon.Error);
@@ -4886,9 +5027,9 @@ namespace winAsimilados.Controller
                     queryTablaSub.CommandText = @"select tnudValor1, tnudValor2, tnudValor3, tnudValor4 
                                 from TablaCalculos 
                                 where tnudIDTnum = 'SUB30'";
-                
 
-                SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
+
+                    SqlDataReader readerTablaSub = queryTablaSub.ExecuteReader();
                     while (readerTablaSub.Read())
                     {
                         SUB30.Add(new E.SUB30
@@ -4962,7 +5103,7 @@ namespace winAsimilados.Controller
                 inner join [BSNOMINAS].[dbo].[PeriodicidadPago] as Peri
                 on EMPLEADOS.PERIODICIDAD_PAGO = Peri.c_PeriodicidadPago
                 WHERE RFC = @RFC";
-                
+
                 queryEmpleado.Parameters.AddWithValue("@RFC", RFC);
 
                 SqlDataReader readerEmpleado;
@@ -4998,7 +5139,7 @@ namespace winAsimilados.Controller
             }
             catch (Exception e)
             {
-                XtraMessageBox.Show(e.Message + "\nError Controlador: BuscaEmpleado()" , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\nError Controlador: BuscaEmpleado()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -5027,7 +5168,7 @@ namespace winAsimilados.Controller
                         LimiteSuperior = readerTabla.GetDecimal(1),
                         CuotaFija = readerTabla.GetDecimal(2),
                         Porcentaje = readerTabla.GetDecimal(3)
-                    });              
+                    });
                 }
                 readerTabla.Close();
                 N.Conexion.PerformConnection().ChangeDatabase(BD);
@@ -5040,7 +5181,7 @@ namespace winAsimilados.Controller
                 return null;
             }
         }
-        public List<E.Colonia> Colonias(string BD, string CP, List <E.Colonia> colonias)
+        public List<E.Colonia> Colonias(string BD, string CP, List<E.Colonia> colonias)
         {
             try
             {
@@ -5056,7 +5197,7 @@ namespace winAsimilados.Controller
 
                 while (ReaderColonias.Read())
                 {
-                    colonias.Add(new E.Colonia{
+                    colonias.Add(new E.Colonia {
                         ID = ReaderColonias.GetString(0),
                         Nombre = ReaderColonias.GetString(1)
                     });
@@ -5073,7 +5214,7 @@ namespace winAsimilados.Controller
             }
         }
 
-        public List <E.Municipio> Municipios(string BD, string Estado, List <E.Municipio> municipios)
+        public List<E.Municipio> Municipios(string BD, string Estado, List<E.Municipio> municipios)
         {
             try
             {
@@ -5125,7 +5266,7 @@ namespace winAsimilados.Controller
             }
         }
 
-        public List<E.ListaBancos> Bancos(string empresa, List<E.ListaBancos> bancos) 
+        public List<E.ListaBancos> Bancos(string empresa, List<E.ListaBancos> bancos)
         {
             try
             {
@@ -5184,13 +5325,13 @@ namespace winAsimilados.Controller
                 }
                 readerLista.Close();
                 return listaClaves;
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: ListaClavesServ()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
-        public E.ClaveProdServ GetClaveProdServ (string clave)
+        public E.ClaveProdServ GetClaveProdServ(string clave)
         {
             try
             {
@@ -5211,7 +5352,7 @@ namespace winAsimilados.Controller
                     claveProd.descripcion = readerClave.GetString(1);
                 }
                 readerClave.Close();
-                return claveProd;                   
+                return claveProd;
             }
             catch (Exception e)
             {
@@ -5251,14 +5392,14 @@ namespace winAsimilados.Controller
                 process.StartInfo = cmd;
                 process.Start();
                 return true;
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: CreaTablas()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;          
+                return false;
             }
         }
 
-        public bool EditaEmpresa(Object _P ,string RFC, string bd)
+        public bool EditaEmpresa(Object _P, string RFC, string bd)
         {
             try
             {
@@ -5334,7 +5475,7 @@ namespace winAsimilados.Controller
                         result = true;
                         N.Conexion.PerformConnection().ChangeDatabase(bd);
                         XtraMessageBox.Show("¡Información de la Empresa Actualizada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }                    
+                    }
                 }
                 return result;
             }
@@ -5483,7 +5624,7 @@ namespace winAsimilados.Controller
                             if (queryParametros.ExecuteNonQuery().Equals(1))
                             {
                                 splashScreenManager.CloseWaitForm();
-                                XtraMessageBox.Show("¡Empresa Agregada con Éxito!", "Mensaje",              MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                XtraMessageBox.Show("¡Empresa Agregada con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
 
@@ -5500,7 +5641,7 @@ namespace winAsimilados.Controller
                 {
                     splashScreenManager.CloseWaitForm();
                 }
-                XtraMessageBox.Show(e.Message + "\nError Controlador:CrearBDEmpresa()" , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\nError Controlador:CrearBDEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
@@ -5511,7 +5652,7 @@ namespace winAsimilados.Controller
                 N.Conexion.PerformConnection().Open();
                 N.Conexion.PerformConnection().ChangeDatabase(Empresa);
                 return true;
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError en controlador:AccedeEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 N.Conexion.PerformConnection().Close();
@@ -5552,7 +5693,7 @@ namespace winAsimilados.Controller
                 {
                     return false;
                 }
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 N.Conexion.ChangeConnection(BD);
                 XtraMessageBox.Show(e.Message + "\nError Controlador:AgregaUsuario()"
@@ -5569,12 +5710,12 @@ namespace winAsimilados.Controller
                 N.Conexion.PerformConnection().Open();
                 SqlCommand queryEditaUsuario = N.Conexion.PerformConnection().CreateCommand();
                 queryEditaUsuario.CommandText = @"UPDATE [dbo].[UsuariosSistema]
-                 SET [usuarioNombre] = '" + user.nombre +"'" +
+                 SET [usuarioNombre] = '" + user.nombre + "'" +
                  ",[usuarioID] = '" + user.usuario + "'" +
                  ",[usuarioPass] = '" + user.pass + "'" +
                  ",[usuarioStatus] = '" + user.estatusUsuario + "'" +
                  ",[usuarioTipo] = '" + user.tipoUsiario + "'" +
-                 ",[usuarioFecMod] = '" + user.fecMod.ToString("dd/MM/yyyy") +"'" +
+                 ",[usuarioFecMod] = '" + user.fecMod.ToString("dd/MM/yyyy") + "'" +
                  "WHERE [ID] = " + user.ID;
                 if (queryEditaUsuario.ExecuteNonQuery().Equals(1))
                 {
@@ -5587,7 +5728,7 @@ namespace winAsimilados.Controller
                     return false;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 N.Conexion.ChangeConnection(BD);
                 XtraMessageBox.Show(e.Message + "\nError Controlador:EditaUsuario()",
@@ -5618,7 +5759,7 @@ namespace winAsimilados.Controller
                 readerUsuario = queryBuscaUsuario.ExecuteReader();
 
                 if (readerUsuario.Read())
-                { 
+                {
                     user.ID = readerUsuario.GetInt32(0);
                     user.nombre = readerUsuario.GetString(1);
                     user.usuario = readerUsuario.GetString(2);
@@ -5631,10 +5772,10 @@ namespace winAsimilados.Controller
                 readerUsuario.Close();
 
                 return user;
-            }catch(Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador:BuscaUsuario", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);    
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -5663,7 +5804,7 @@ namespace winAsimilados.Controller
                 queryLogin.Parameters.AddWithValue("@usuario", User.usuario.ToUpper());
                 queryLogin.Parameters.AddWithValue("@pass", passEncrip.ToString());
                 readerLogin = queryLogin.ExecuteReader();
-                
+
 
                 if (readerLogin.Read())
                 {
@@ -5685,8 +5826,8 @@ namespace winAsimilados.Controller
                 }
 
 
-                           
-            }catch (Exception e)
+
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "Error login()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //N.Conexion.PerformConnectionSoprade().Close();
@@ -5699,7 +5840,7 @@ namespace winAsimilados.Controller
             try
             {
                 E.Empleado empleado = (E.Empleado)_P;
-                int numEmplAnt =0, numEmplNue = 0;
+                int numEmplAnt = 0, numEmplNue = 0;
                 SqlCommand queryNumEmpl = N.Conexion.PerformConnection().CreateCommand();
                 queryNumEmpl.CommandText = @"select ISNULL(max (cast(NUM_EMPLEADO as int)), 0) from EMPLEADOS";
                 SqlDataReader readerNumEmpl;
@@ -5783,7 +5924,7 @@ namespace winAsimilados.Controller
             }
 
         }
-        
+
         public void EditarEmpleado(Object _P/*, SplashScreenManager splashScreenManager*/)
         {
             try
@@ -5792,7 +5933,7 @@ namespace winAsimilados.Controller
 
                 //query update
                 SqlCommand queryUpdateEmpl = N.Conexion.PerformConnection().CreateCommand();
-                queryUpdateEmpl.CommandText = @"UPDATE EMPLEADOS set NOMBRE = '" + empleado.Nombre +"',"+ "RFC = '" + empleado.RFC + "',"
+                queryUpdateEmpl.CommandText = @"UPDATE EMPLEADOS set NOMBRE = '" + empleado.Nombre + "'," + "RFC = '" + empleado.RFC + "',"
                 + "CURP = '" + empleado.CURP + "', PERIODICIDAD_PAGO = '" + empleado.Periodicidad + "'" +
                 ",CUENTA = '" + empleado.cuenta + "'" +
                 ",CLABE_BANCARIA = '" + empleado.clabe_bancaria + "'" +
@@ -5819,7 +5960,7 @@ namespace winAsimilados.Controller
             catch (Exception e)
             {
                 //splashScreenManager.CloseWaitForm();
-                XtraMessageBox.Show(e.Message + "\nError Controlador: EditarEMpleado()", "Error",  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\nError Controlador: EditarEMpleado()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -5834,7 +5975,7 @@ namespace winAsimilados.Controller
                 {
                     Directory.CreateDirectory(url);
                 }
-                string NombreArchivo = "Timbrado" + "_" + empleado.Nombre +"_" + Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
+                string NombreArchivo = "Timbrado" + "_" + empleado.Nombre + "_" + Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
                 + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
                 + "-" + DateTime.Now.Second.ToString());
                 string path = Path.Combine(url, NombreArchivo + ".txt");
@@ -5902,7 +6043,7 @@ namespace winAsimilados.Controller
                 string pathLog = Path.Combine(urlLog, NombreArchivoLog + ".txt");
 
                 string NombreArchivoLayout = nombreLayout;
-                                string pathLayout = Path.Combine(urlLayout, NombreArchivoLayout + ".txt");
+                string pathLayout = Path.Combine(urlLayout, NombreArchivoLayout + ".txt");
 
                 builderLog = new StringBuilder();
                 //builderLog.AppendLine();
@@ -6007,8 +6148,8 @@ namespace winAsimilados.Controller
                             updateErrorLayout.ExecuteNonQuery();
                         }
                         else
-                        {                            
-                            validaDestino = 1;                            
+                        {
+                            validaDestino = 1;
                         }
                         if (item.importe.Equals(0))
                         {
@@ -6031,7 +6172,7 @@ namespace winAsimilados.Controller
                         {
                             validaImporte = 1;
                         }
-                        if (item.claveID.Equals("No Definido")|| item.claveID.Equals("0"))
+                        if (item.claveID.Equals("No Definido") || item.claveID.Equals("0"))
                         {
                             if (nombre.Equals(true))
                             {
@@ -6135,7 +6276,7 @@ namespace winAsimilados.Controller
                         }
 
                     }
-                    catch(Exception lista)
+                    catch (Exception lista)
                     {
                         if (splash.IsSplashFormVisible.Equals(true))
                         {
@@ -6145,7 +6286,7 @@ namespace winAsimilados.Controller
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (splash.IsSplashFormVisible.Equals(true))
                 {
@@ -6213,7 +6354,7 @@ namespace winAsimilados.Controller
                ",'" + caratula.FechaIniPeriodo.ToString("dd/MM/yyyy") + "'" +
                ",'" + caratula.FechaFinPeriodo.ToString("dd/MM/yyyy") + "'" +
                "," + caratula.TotalEmpleados + "" +
-               "," + caratula.TotalPagoAsimilados +"" +
+               "," + caratula.TotalPagoAsimilados + "" +
                ",'" + caratula.usuario + "'" +
                ",'" + caratula.TipoPeri + "'" +
                "," + caratula.AsimiSalarios + "" +
@@ -6372,7 +6513,7 @@ namespace winAsimilados.Controller
                 {
                     return false;
                 }
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 if (splash.IsSplashFormVisible.Equals(true))
                 {
@@ -6419,7 +6560,7 @@ namespace winAsimilados.Controller
                         {
                             splash.ShowWaitForm();
                         }
-                        splash.SetWaitFormCaption("Guardando Movimientos de\n" + item.nombreEmpleado +"..");
+                        splash.SetWaitFormCaption("Guardando Movimientos de\n" + item.nombreEmpleado + "..");
                         queryInsertaLayout.CommandText = @"INSERT INTO [dbo].[LayoutHistorico]
                        ([numEmpl]
                        ,[nombreEmpleado]
@@ -6470,8 +6611,8 @@ namespace winAsimilados.Controller
                        ",'" + item.RFCEmpleado + "'" +
                        ",'" + item.CURPEmpleado + "'" +
                        ",'" + item.periPago + "'" +
-                       "," + item.ingresos +"" +                    
-                       "," + item.LimInferior +"" +
+                       "," + item.ingresos + "" +
+                       "," + item.LimInferior + "" +
                        "," + item.ExLimInf + "" +
                        "," + item.PerExLimInf + "" +
                        "," + item.ImpMarg + "" +
@@ -6487,10 +6628,10 @@ namespace winAsimilados.Controller
                        ",'" + item.descripcion + "'" +
                        ",'" + item.RFCOrdenante + "'" +
                        "," + item.IVA + "" +
-                       ",'" + item.fechaAplicacion.ToString("dd/MM/yyyy") +"'" +
+                       ",'" + item.fechaAplicacion.ToString("dd/MM/yyyy") + "'" +
                        ",'" + item.fecIniPeri.ToString("dd/MM/yyyy") + "'" +
-                       ",'" + item.fecFinPeri.ToString("dd/MM/yyyy") +"'" 
-                       + ",'"+ item.institucionPago + "'" +
+                       ",'" + item.fecFinPeri.ToString("dd/MM/yyyy") + "'"
+                       + ",'" + item.institucionPago + "'" +
                        ",'" + item.claveTipoCambio + "'" +
                        "," + "GETDATE()" + "" +
                        ",'" + item.bancoEmpleado + "'" +
@@ -6509,7 +6650,7 @@ namespace winAsimilados.Controller
                       "," + item.descuentos + ")";
                         queryInsertaLayout.ExecuteNonQuery();
 
-                    }catch(Exception lista)
+                    } catch (Exception lista)
                     {
                         error++;
                         if (error + 1 < listaLayout.Count())
@@ -6540,12 +6681,12 @@ namespace winAsimilados.Controller
                     proceso.StartInfo.FileName = path;
                     proceso.Start();
                 }
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaLayout()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public bool ActualizaLayout (List<E.Layout> layout, SplashScreenManager splash)
+        public bool ActualizaLayout(List<E.Layout> layout, SplashScreenManager splash)
         {
             try
             {
@@ -6559,7 +6700,7 @@ namespace winAsimilados.Controller
                         SET 
                             [PeriodicidadPago] = '" + item.periPago + "'" +
                             ",[ingresos] = " + item.ingresos + "" +
-                            ",[LimInferior] = " + item.LimInferior +"" +
+                            ",[LimInferior] = " + item.LimInferior + "" +
                             ",[ExLimInf] =  " + item.ExLimInf + "" +
                             ",[PerExLimInf] = " + item.PerExLimInf + "" +
                             ",[ImpMarg] = " + item.ImpMarg + "" +
@@ -6585,7 +6726,7 @@ namespace winAsimilados.Controller
 
                         updateLayout.ExecuteNonQuery();
 
-                    }catch (Exception lista)
+                    } catch (Exception lista)
                     {
                         XtraMessageBox.Show(lista.Message + "\nError Controlador: ActualizaLayout(foreach())", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
@@ -6593,7 +6734,7 @@ namespace winAsimilados.Controller
                 }
                 return true;
 
-            }catch(Exception e)
+            } catch (Exception e)
             {
                 if (splash.IsSplashFormVisible.Equals(true))
                 {
@@ -6622,7 +6763,7 @@ namespace winAsimilados.Controller
                 VALUES
                ('" + detalleLayout.Layout + "'" +
                ",'" + detalleLayout.Caratula + "'" +
-               "," +  detalleLayout.SalarioAsimilado +"" +
+               "," + detalleLayout.SalarioAsimilado + "" +
                "," + detalleLayout.ImpuestoNomina + "" +
                "," + detalleLayout.ComisionServicio + "" +
                "," + detalleLayout.SubTotal + "" +
@@ -6633,7 +6774,7 @@ namespace winAsimilados.Controller
 
                 insertaDetalle.ExecuteNonQuery();
 
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 if (splash.IsSplashFormVisible.Equals(true))
                 {
@@ -6654,7 +6795,7 @@ namespace winAsimilados.Controller
                     ",[ComisionServicio] = " + detalle.ComisionServicio + "" +
                     ",[SubTotal] = " + detalle.SubTotal + "" +
                     ",[IVA] = " + detalle.IVA + "" +
-                    ",[RetencionIVA] = " + detalle.RetencionIVA +"" +
+                    ",[RetencionIVA] = " + detalle.RetencionIVA + "" +
                     ",[Total] = " + detalle.Total + "" +
                     ",[Detalles] = '" + detalle.Detalles + "'" +
                     "WHERE [ID] = '" + detalle.ID + "'";
@@ -6678,7 +6819,7 @@ namespace winAsimilados.Controller
                 return false;
             }
         }
-        public List<E.Layout> GetListaLayout(string caratula, List <E.Layout> layout, SplashScreenManager splashManager)
+        public List<E.Layout> GetListaLayout(string caratula, List<E.Layout> layout, SplashScreenManager splashManager)
         {
             try
             {
@@ -6736,49 +6877,49 @@ namespace winAsimilados.Controller
                 {
                     layout.Add(new E.Layout
                     {
-                          ID= Convert.ToString(readerLista.GetInt32(0)),
-                          numEmpl= readerLista.GetInt32(1),
-                          nombreEmpleado= readerLista.GetString(2),
-                          RFCEmpleado= readerLista.GetString(3),
-                          CURPEmpleado= readerLista.GetString(4),
-                          periPago= readerLista.GetString(5),
-                          ingresos= readerLista.GetDecimal(6),
-                          LimInferior= readerLista.GetDecimal(7),
-                          ExLimInf= readerLista.GetDecimal(8),
-                          PerExLimInf= readerLista.GetDecimal(9),
-                          ImpMarg= readerLista.GetDecimal(10),
-                          CF= readerLista.GetDecimal(11),
-                          ISR= readerLista.GetDecimal(12),
-                          ingresosNet= readerLista.GetDecimal(13),
-                          operacion= readerLista.GetString(14),
-                          claveID= readerLista.GetString(15),
-                          cuentaOrigen= readerLista.GetString(16),
-                          cuentaClaveDestino= readerLista.GetString(17),
-                          importe= readerLista.GetDecimal(18),
-                          referencia= readerLista.GetString(19),
-                          descripcion= readerLista.GetString(20),
-                          RFCOrdenante= readerLista.GetString(21),
-                          IVA= readerLista.GetDecimal(22),
-                          fechaAplicacion= readerLista.GetDateTime(23),
-                          fecIniPeri= readerLista.GetDateTime(24),
-                          fecFinPeri= readerLista.GetDateTime(25),
-                          institucionPago= readerLista.GetString(26),
-                          claveTipoCambio= Convert.ToString(readerLista.GetInt32(27)),
-                          fechaCreacion= readerLista.GetDateTime(28),
-                          estatus= readerLista.GetString(29),
-                          bancoEmpleado= readerLista.GetString(30),
-                          Sub= readerLista.GetDecimal(31),
-                          caratula= readerLista.GetString(32),
+                        ID = Convert.ToString(readerLista.GetInt32(0)),
+                        numEmpl = readerLista.GetInt32(1),
+                        nombreEmpleado = readerLista.GetString(2),
+                        RFCEmpleado = readerLista.GetString(3),
+                        CURPEmpleado = readerLista.GetString(4),
+                        periPago = readerLista.GetString(5),
+                        ingresos = readerLista.GetDecimal(6),
+                        LimInferior = readerLista.GetDecimal(7),
+                        ExLimInf = readerLista.GetDecimal(8),
+                        PerExLimInf = readerLista.GetDecimal(9),
+                        ImpMarg = readerLista.GetDecimal(10),
+                        CF = readerLista.GetDecimal(11),
+                        ISR = readerLista.GetDecimal(12),
+                        ingresosNet = readerLista.GetDecimal(13),
+                        operacion = readerLista.GetString(14),
+                        claveID = readerLista.GetString(15),
+                        cuentaOrigen = readerLista.GetString(16),
+                        cuentaClaveDestino = readerLista.GetString(17),
+                        importe = readerLista.GetDecimal(18),
+                        referencia = readerLista.GetString(19),
+                        descripcion = readerLista.GetString(20),
+                        RFCOrdenante = readerLista.GetString(21),
+                        IVA = readerLista.GetDecimal(22),
+                        fechaAplicacion = readerLista.GetDateTime(23),
+                        fecIniPeri = readerLista.GetDateTime(24),
+                        fecFinPeri = readerLista.GetDateTime(25),
+                        institucionPago = readerLista.GetString(26),
+                        claveTipoCambio = Convert.ToString(readerLista.GetInt32(27)),
+                        fechaCreacion = readerLista.GetDateTime(28),
+                        estatus = readerLista.GetString(29),
+                        bancoEmpleado = readerLista.GetString(30),
+                        Sub = readerLista.GetDecimal(31),
+                        caratula = readerLista.GetString(32),
                         bancoEmpresaPago = readerLista.GetString(33),
                         IDEmpresa = readerLista.GetString(34),
-                          periodo= readerLista.GetString(35),
-                          IDCliente= readerLista.GetString(36),
-                          layout= readerLista.GetString(37),
-                          tipoPago= readerLista.GetString(38),
-                          otrosConceptos= readerLista.GetDecimal(39),
-                          depositoNeto= readerLista.GetDecimal(40),
-                          cuentaBancaria= readerLista.GetString(41),
-                          CLABE= readerLista.GetString(42),      
+                        periodo = readerLista.GetString(35),
+                        IDCliente = readerLista.GetString(36),
+                        layout = readerLista.GetString(37),
+                        tipoPago = readerLista.GetString(38),
+                        otrosConceptos = readerLista.GetDecimal(39),
+                        depositoNeto = readerLista.GetDecimal(40),
+                        cuentaBancaria = readerLista.GetString(41),
+                        CLABE = readerLista.GetString(42),
                     });
 
                 }
@@ -6795,7 +6936,7 @@ namespace winAsimilados.Controller
                 return null;
             }
         }
-        public E.Caratula GetDatosCaratula (string nombreCaratula)
+        public E.Caratula GetDatosCaratula(string nombreCaratula)
         {
             try
             {
@@ -6853,55 +6994,55 @@ namespace winAsimilados.Controller
 
                 if (readerData.Read())
                 {
-                    caratula.ID= Convert.ToString(readerData.GetInt32(0));
-                    caratula.caratula= readerData.GetString(1);
-                    caratula.Layout= readerData.GetString(2);
-                    caratula.IDCliente= readerData.GetString(3);
-                    caratula.Cliente= readerData.GetString(4);
-                    caratula.IDEmpresa= readerData.GetString(5);
-                    caratula.Empresa= readerData.GetString(6);
-                    caratula.FechaCreacion= readerData.GetDateTime(7);
-                    caratula.FechaAplicacion= readerData.GetDateTime(8);
-                    caratula.FechaIniPeriodo= readerData.GetDateTime(9);
-                    caratula.FechaFinPeriodo= readerData.GetDateTime(10);
-                    caratula.TotalEmpleados= readerData.GetInt32(11);
-                    caratula.TotalPagoAsimilados= readerData.GetDecimal(12);
-                    caratula.Estatus= readerData.GetString(13);
-                    caratula.usuario= readerData.GetString(14);
-                    caratula.TipoPeri= readerData.GetString(15);
-                    caratula.AsimiSalarios= readerData.GetDecimal(16);
-                    caratula.ProvAguinaldo= readerData.GetDecimal(17);
-                    caratula.ProviVacaciones= readerData.GetDecimal(18);
-                    caratula.ProviPrimVacacional= readerData.GetDecimal(19);
-                    caratula.SubTotalIAS= readerData.GetDecimal(20);
-                    caratula.ComisionServicio= readerData.GetDecimal(21);
-                    caratula.ImpNomi= readerData.GetDecimal(22);
-                    caratula.Total= readerData.GetDecimal(23);
-                    caratula.IVA= readerData.GetDecimal(24);
-                    caratula.RetencionIVA= readerData.GetDecimal(25);
-                    caratula.TotalFactura= readerData.GetDecimal(26);
-                    caratula.Ajuste= readerData.GetDecimal(27);
-                    caratula.TotalDeposito= readerData.GetDecimal(28);
-                    caratula.Banco= readerData.GetString(29);
-                    caratula.NumCuenta= readerData.GetString(30);
-                    caratula.CLABE= readerData.GetString(31);
-                    caratula.ClaveFacturacion= readerData.GetString(32);
-                    caratula.TipoPago= readerData.GetString(33);
-                    caratula.FormaPago= readerData.GetString(34);
-                    caratula.Observaciones= readerData.GetString(35);
-                    caratula.RutaLogo= readerData.GetString(36);
-                    caratula.Imagen= readerData.GetString(37);
+                    caratula.ID = Convert.ToString(readerData.GetInt32(0));
+                    caratula.caratula = readerData.GetString(1);
+                    caratula.Layout = readerData.GetString(2);
+                    caratula.IDCliente = readerData.GetString(3);
+                    caratula.Cliente = readerData.GetString(4);
+                    caratula.IDEmpresa = readerData.GetString(5);
+                    caratula.Empresa = readerData.GetString(6);
+                    caratula.FechaCreacion = readerData.GetDateTime(7);
+                    caratula.FechaAplicacion = readerData.GetDateTime(8);
+                    caratula.FechaIniPeriodo = readerData.GetDateTime(9);
+                    caratula.FechaFinPeriodo = readerData.GetDateTime(10);
+                    caratula.TotalEmpleados = readerData.GetInt32(11);
+                    caratula.TotalPagoAsimilados = readerData.GetDecimal(12);
+                    caratula.Estatus = readerData.GetString(13);
+                    caratula.usuario = readerData.GetString(14);
+                    caratula.TipoPeri = readerData.GetString(15);
+                    caratula.AsimiSalarios = readerData.GetDecimal(16);
+                    caratula.ProvAguinaldo = readerData.GetDecimal(17);
+                    caratula.ProviVacaciones = readerData.GetDecimal(18);
+                    caratula.ProviPrimVacacional = readerData.GetDecimal(19);
+                    caratula.SubTotalIAS = readerData.GetDecimal(20);
+                    caratula.ComisionServicio = readerData.GetDecimal(21);
+                    caratula.ImpNomi = readerData.GetDecimal(22);
+                    caratula.Total = readerData.GetDecimal(23);
+                    caratula.IVA = readerData.GetDecimal(24);
+                    caratula.RetencionIVA = readerData.GetDecimal(25);
+                    caratula.TotalFactura = readerData.GetDecimal(26);
+                    caratula.Ajuste = readerData.GetDecimal(27);
+                    caratula.TotalDeposito = readerData.GetDecimal(28);
+                    caratula.Banco = readerData.GetString(29);
+                    caratula.NumCuenta = readerData.GetString(30);
+                    caratula.CLABE = readerData.GetString(31);
+                    caratula.ClaveFacturacion = readerData.GetString(32);
+                    caratula.TipoPago = readerData.GetString(33);
+                    caratula.FormaPago = readerData.GetString(34);
+                    caratula.Observaciones = readerData.GetString(35);
+                    caratula.RutaLogo = readerData.GetString(36);
+                    caratula.Imagen = readerData.GetString(37);
                     caratula.FechaValidaPago = readerData.GetDateTime(38);
                     caratula.UsuarioPago = readerData.GetString(39);
-                    caratula.FechaModificacion  = readerData.GetDateTime(40);
-                    caratula.UsuarioModificacion= readerData.GetString(41);
+                    caratula.FechaModificacion = readerData.GetDateTime(40);
+                    caratula.UsuarioModificacion = readerData.GetString(41);
                     caratula.FechaReaperturaPeriodo = readerData.GetDateTime(42);
                     caratula.UsuarioReapertura = readerData.GetString(43);
                 }
                 readerData.Close();
                 return caratula;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador:GetDatosCaratula", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -6931,7 +7072,7 @@ namespace winAsimilados.Controller
                 SqlDataReader readerDetalle;
                 readerDetalle = getDetalle.ExecuteReader();
 
-                if (readerDetalle.Read())   
+                if (readerDetalle.Read())
                 {
                     detalle.ID = Convert.ToString(readerDetalle.GetInt32(0));
                     detalle.Layout = readerDetalle.GetString(1);
@@ -6947,7 +7088,7 @@ namespace winAsimilados.Controller
                 }
                 readerDetalle.Close();
                 return detalle;
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador:GetDetalleLayout", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -6969,7 +7110,7 @@ namespace winAsimilados.Controller
 
                     actualizaStatus.ExecuteNonQuery();
                 }
-            }catch (Exception e)
+            } catch (Exception e)
             {
                 if (splashManager.IsSplashFormVisible.Equals(true))
                 {
@@ -6996,7 +7137,7 @@ namespace winAsimilados.Controller
                 + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
                 + "-" + DateTime.Now.Second.ToString());
                 string path = Path.Combine(url, NombreArchivo + ".INARI");
-                int numEmplAnt = 0, numEmplNue = 0, contErroresExis = 0, contErrores = 0, contExito = 0, cont = 0, contErrRFC = 0, contErrCURP = 0, validaCURP = 0, ValidaRFC = 0, ValidaExiste = 0, TotalErrores = 0, contErrCuenta =0, validaCuenta = 0, contErrCLABE = 0, validaCLABE = 0, contErrBanco = 0, validaBanco = 0, contErrCVE = 0, validaCVE = 0;
+                int numEmplAnt = 0, numEmplNue = 0, contErroresExis = 0, contErrores = 0, contExito = 0, cont = 0, contErrRFC = 0, contErrCURP = 0, validaCURP = 0, ValidaRFC = 0, ValidaExiste = 0, TotalErrores = 0, contErrCuenta = 0, validaCuenta = 0, contErrCLABE = 0, validaCLABE = 0, contErrBanco = 0, validaBanco = 0, contErrCVE = 0, validaCVE = 0;
                 E.Empleado empleado = (E.Empleado)_P;
 
                 builder = new StringBuilder();
@@ -7012,7 +7153,7 @@ namespace winAsimilados.Controller
                     //    builder.AppendLine();
                     //}
                     cont++;
-                    if (empl.NumEmpl != "" &&empl.Nombre != "" && empl.CURP !="" && empl.RFC !="" && empl.Periodicidad !=""&&empl.cuenta !="" && empl.clabe_bancaria !="" &&empl.banco !="" &&empl.cve_banco!="" &&empl.empresa!="" &&empl.idEmpresa !="" )
+                    if (empl.NumEmpl != "" && empl.Nombre != "" && empl.CURP != "" && empl.RFC != "" && empl.Periodicidad != "" && empl.cuenta != "" && empl.clabe_bancaria != "" && empl.banco != "" && empl.cve_banco != "" && empl.empresa != "" && empl.idEmpresa != "")
                     {
                         SqlCommand queryNumEmpl = N.Conexion.PerformConnection().CreateCommand();
                         queryNumEmpl.CommandText = @"select
@@ -7072,7 +7213,7 @@ namespace winAsimilados.Controller
                         ",'" + empl.empresa + "'" +
                         ",'" + empl.idEmpresa + "'" +
                         "," + empl.descuento + "" +
-                        ",'" +empl.tipoPago + "')";
+                        ",'" + empl.tipoPago + "')";
 
                         if (!empl.RFC.Length.Equals(13))
                         {
@@ -7521,7 +7662,7 @@ namespace winAsimilados.Controller
                 dataAdapter.Fill(dataSet);
                 grid.DataSource = dataSet.Tables[0];
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: listaBancosEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -7655,7 +7796,7 @@ namespace winAsimilados.Controller
                 XtraMessageBox.Show(e.Message + "\nError Controlador: ListaEmpleadoMasivo()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void ListaEmpleados (string bd, GridControl grid)
+        public void ListaEmpleados(string bd, GridControl grid)
         {
             try
             {
@@ -7672,7 +7813,7 @@ namespace winAsimilados.Controller
                                                   ,[CURP]
                                                   ,[PERIODICIDAD_PAGO]
                                               FROM [EMPLEADOS]";
-                
+
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryListaEmpleados;
                 DataSet dataSet = new DataSet();
@@ -7703,9 +7844,9 @@ namespace winAsimilados.Controller
                 grid.DataSource = dataSet.Tables[0];
                 N.Conexion.PerformConnection().Close();
 
-            }catch (Exception e)
+            } catch (Exception e)
             {
-                XtraMessageBox.Show(e.Message + "\nError Controlador: ListadoEmpresas()","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ListadoEmpresas()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void ListadoLayoutGenerados(GridControl grid)
@@ -7745,6 +7886,27 @@ namespace winAsimilados.Controller
             catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: ListadoLayoutGenerado()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        } 
+        public void ListaEmpresasCFDI(GridControl grid)
+        {
+            try
+            {
+                SqlCommand queryListado = N.Conexion.PerformConnection().CreateCommand();
+                queryListado.CommandText = @"SELECT [NumEmpresa]
+                ,[Descripcion]
+                ,[Estatus]
+                FROM [BSNOMINAS].[dbo].[EmpresaCatalogoCFDI]
+                ORDER BY NumEmpresa ASC";
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = queryListado;
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                grid.DataSource = dataSet.Tables[0];
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ListaEmpresasCFDI()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void ListaEmpresasPago(GridControl grid)

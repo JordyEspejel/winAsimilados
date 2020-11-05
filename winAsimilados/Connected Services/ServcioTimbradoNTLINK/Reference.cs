@@ -1051,166 +1051,84 @@ namespace winAsimilados.ServcioTimbradoNTLINK {
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaSaldo", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaSaldoResponse")]
         int ConsultaSaldo(string userName, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaSaldo", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaSaldoResponse")]
-        System.Threading.Tasks.Task<int> ConsultaSaldoAsync(string userName, string password);
-        
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaAceptacionRecha" +
             "zo", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaAceptacionRecha" +
             "zoResponse")]
         string ConsultaAceptacionRechazo(string userName, string password, string rfcEmisor, string rfcReceptor);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaAceptacionRecha" +
-            "zo", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaAceptacionRecha" +
-            "zoResponse")]
-        System.Threading.Tasks.Task<string> ConsultaAceptacionRechazoAsync(string userName, string password, string rfcEmisor, string rfcReceptor);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ProcesarRespuestaAcepta" +
             "cionRechazo", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ProcesarRespuestaAcepta" +
             "cionRechazoResponse")]
         string ProcesarRespuestaAceptacionRechazo(string userName, string password, winAsimilados.ServcioTimbradoNTLINK.Folios[] uuid, string rfcEmisor, string rfcReceptor);
         
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ProcesarRespuestaAcepta" +
-            "cionRechazo", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ProcesarRespuestaAcepta" +
-            "cionRechazoResponse")]
-        System.Threading.Tasks.Task<string> ProcesarRespuestaAceptacionRechazoAsync(string userName, string password, winAsimilados.ServcioTimbradoNTLINK.Folios[] uuid, string rfcEmisor, string rfcReceptor);
-        
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaEstatusCFDI", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaEstatusCFDIResp" +
             "onse")]
         string ConsultaEstatusCFDI(string userName, string password, string expresion);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaEstatusCFDI", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaEstatusCFDIResp" +
-            "onse")]
-        System.Threading.Tasks.Task<string> ConsultaEstatusCFDIAsync(string userName, string password, string expresion);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaCFDIRelacionado" +
             "s", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaCFDIRelacionado" +
             "sResponse")]
         string ConsultaCFDIRelacionados(string userName, string password, string uuid, string rfcEmisor, string rfcReceptor);
         
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaCFDIRelacionado" +
-            "s", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ConsultaCFDIRelacionado" +
-            "sResponse")]
-        System.Threading.Tasks.Task<string> ConsultaCFDIRelacionadosAsync(string userName, string password, string uuid, string rfcEmisor, string rfcReceptor);
-        
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/RegistraEmpresa", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/RegistraEmpresaResponse" +
             "")]
         void RegistraEmpresa(string userName, string password, winAsimilados.ServcioTimbradoNTLINK.EmpresaNtLink empresa);
         
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/RegistraEmpresa", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/RegistraEmpresaResponse" +
-            "")]
-        System.Threading.Tasks.Task RegistraEmpresaAsync(string userName, string password, winAsimilados.ServcioTimbradoNTLINK.EmpresaNtLink empresa);
-        
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/BajaEmpresa", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/BajaEmpresaResponse")]
         void BajaEmpresa(string userName, string password, string rfcEmpresa);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/BajaEmpresa", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/BajaEmpresaResponse")]
-        System.Threading.Tasks.Task BajaEmpresaAsync(string userName, string password, string rfcEmpresa);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerDatosCliente", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerDatosClienteResp" +
             "onse")]
         winAsimilados.ServcioTimbradoNTLINK.ClienteNtLink ObtenerDatosCliente(string userName, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerDatosCliente", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerDatosClienteResp" +
-            "onse")]
-        System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.ClienteNtLink> ObtenerDatosClienteAsync(string userName, string password);
-        
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerEmpresas", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerEmpresasResponse" +
             "")]
         winAsimilados.ServcioTimbradoNTLINK.EmpresaNtLink[] ObtenerEmpresas(string userName, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerEmpresas", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerEmpresasResponse" +
-            "")]
-        System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.EmpresaNtLink[]> ObtenerEmpresasAsync(string userName, string password);
-        
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiQr", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiQrResponse")]
         winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse TimbraCfdiQr(string userName, string password, string comprobante);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiQr", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiQrResponse")]
-        System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse> TimbraCfdiQrAsync(string userName, string password, string comprobante);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiQrSinSello", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiQrSinSelloRes" +
             "ponse")]
         winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse TimbraCfdiQrSinSello(string userName, string password, string comprobante);
         
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiQrSinSello", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiQrSinSelloRes" +
-            "ponse")]
-        System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse> TimbraCfdiQrSinSelloAsync(string userName, string password, string comprobante);
-        
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdi", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiResponse")]
         string TimbraCfdi(string userName, string password, string comprobante);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdi", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiResponse")]
-        System.Threading.Tasks.Task<string> TimbraCfdiAsync(string userName, string password, string comprobante);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiSinSello", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiSinSelloRespo" +
             "nse")]
         string TimbraCfdiSinSello(string userName, string password, string comprobante);
         
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiSinSello", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraCfdiSinSelloRespo" +
-            "nse")]
-        System.Threading.Tasks.Task<string> TimbraCfdiSinSelloAsync(string userName, string password, string comprobante);
-        
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraRetencion", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraRetencionResponse" +
             "")]
         string TimbraRetencion(string userName, string password, string comprobante);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraRetencion", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraRetencionResponse" +
-            "")]
-        System.Threading.Tasks.Task<string> TimbraRetencionAsync(string userName, string password, string comprobante);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraRetencionQr", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraRetencionQrRespon" +
             "se")]
         winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse TimbraRetencionQr(string userName, string password, string comprobante);
         
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraRetencionQr", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/TimbraRetencionQrRespon" +
-            "se")]
-        System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse> TimbraRetencionQrAsync(string userName, string password, string comprobante);
-        
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaRetencion", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaRetencionRespons" +
             "e")]
         string CancelaRetencion(string userName, string password, string uuid, string rfc);
         
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaRetencion", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaRetencionRespons" +
-            "e")]
-        System.Threading.Tasks.Task<string> CancelaRetencionAsync(string userName, string password, string uuid, string rfc);
-        
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaCfdi", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaCfdiResponse")]
         string CancelaCfdi(string userName, string password, string uuid, string rfc, string expresion, string rfcReceptor);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaCfdi", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaCfdiResponse")]
-        System.Threading.Tasks.Task<string> CancelaCfdiAsync(string userName, string password, string uuid, string rfc, string expresion, string rfcReceptor);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaCfdiOtrosPACs", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaCfdiOtrosPACsRes" +
             "ponse")]
         string CancelaCfdiOtrosPACs(string uuid, string rfcEmisor, string expresion, string rfcReceptor, string Base64Cer, string Base64Key, string PasswordKey);
         
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaCfdiOtrosPACs", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaCfdiOtrosPACsRes" +
-            "ponse")]
-        System.Threading.Tasks.Task<string> CancelaCfdiOtrosPACsAsync(string uuid, string rfcEmisor, string expresion, string rfcReceptor, string Base64Cer, string Base64Key, string PasswordKey);
-        
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaCfdiRequest", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaCfdiRequestRespo" +
             "nse")]
         winAsimilados.ServcioTimbradoNTLINK.RespuestaCancelacion CancelaCfdiRequest(string userName, string password, string requestCancelacion, string expresion, string uuid, string rfcReceptor);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaCfdiRequest", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/CancelaCfdiRequestRespo" +
-            "nse")]
-        System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.RespuestaCancelacion> CancelaCfdiRequestAsync(string userName, string password, string requestCancelacion, string expresion, string uuid, string rfcReceptor);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerStatusUuid", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerStatusUuidRespon" +
             "se")]
         winAsimilados.ServcioTimbradoNTLINK.ResultadoConsulta ObtenerStatusUuid(string userName, string password, string uuid);
         
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerStatusUuid", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerStatusUuidRespon" +
-            "se")]
-        System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.ResultadoConsulta> ObtenerStatusUuidAsync(string userName, string password, string uuid);
-        
         [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerStatusHash", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerStatusHashRespon" +
             "se")]
         winAsimilados.ServcioTimbradoNTLINK.ResultadoConsulta ObtenerStatusHash(string userName, string password, string hash);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerStatusHash", ReplyAction="https://ntlink.com.mx/IServicioTimbrado/IServicioTimbrado/ObtenerStatusHashRespon" +
-            "se")]
-        System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.ResultadoConsulta> ObtenerStatusHashAsync(string userName, string password, string hash);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1244,168 +1162,84 @@ namespace winAsimilados.ServcioTimbradoNTLINK {
             return base.Channel.ConsultaSaldo(userName, password);
         }
         
-        public System.Threading.Tasks.Task<int> ConsultaSaldoAsync(string userName, string password) {
-            return base.Channel.ConsultaSaldoAsync(userName, password);
-        }
-        
         public string ConsultaAceptacionRechazo(string userName, string password, string rfcEmisor, string rfcReceptor) {
             return base.Channel.ConsultaAceptacionRechazo(userName, password, rfcEmisor, rfcReceptor);
-        }
-        
-        public System.Threading.Tasks.Task<string> ConsultaAceptacionRechazoAsync(string userName, string password, string rfcEmisor, string rfcReceptor) {
-            return base.Channel.ConsultaAceptacionRechazoAsync(userName, password, rfcEmisor, rfcReceptor);
         }
         
         public string ProcesarRespuestaAceptacionRechazo(string userName, string password, winAsimilados.ServcioTimbradoNTLINK.Folios[] uuid, string rfcEmisor, string rfcReceptor) {
             return base.Channel.ProcesarRespuestaAceptacionRechazo(userName, password, uuid, rfcEmisor, rfcReceptor);
         }
         
-        public System.Threading.Tasks.Task<string> ProcesarRespuestaAceptacionRechazoAsync(string userName, string password, winAsimilados.ServcioTimbradoNTLINK.Folios[] uuid, string rfcEmisor, string rfcReceptor) {
-            return base.Channel.ProcesarRespuestaAceptacionRechazoAsync(userName, password, uuid, rfcEmisor, rfcReceptor);
-        }
-        
         public string ConsultaEstatusCFDI(string userName, string password, string expresion) {
             return base.Channel.ConsultaEstatusCFDI(userName, password, expresion);
-        }
-        
-        public System.Threading.Tasks.Task<string> ConsultaEstatusCFDIAsync(string userName, string password, string expresion) {
-            return base.Channel.ConsultaEstatusCFDIAsync(userName, password, expresion);
         }
         
         public string ConsultaCFDIRelacionados(string userName, string password, string uuid, string rfcEmisor, string rfcReceptor) {
             return base.Channel.ConsultaCFDIRelacionados(userName, password, uuid, rfcEmisor, rfcReceptor);
         }
         
-        public System.Threading.Tasks.Task<string> ConsultaCFDIRelacionadosAsync(string userName, string password, string uuid, string rfcEmisor, string rfcReceptor) {
-            return base.Channel.ConsultaCFDIRelacionadosAsync(userName, password, uuid, rfcEmisor, rfcReceptor);
-        }
-        
         public void RegistraEmpresa(string userName, string password, winAsimilados.ServcioTimbradoNTLINK.EmpresaNtLink empresa) {
             base.Channel.RegistraEmpresa(userName, password, empresa);
-        }
-        
-        public System.Threading.Tasks.Task RegistraEmpresaAsync(string userName, string password, winAsimilados.ServcioTimbradoNTLINK.EmpresaNtLink empresa) {
-            return base.Channel.RegistraEmpresaAsync(userName, password, empresa);
         }
         
         public void BajaEmpresa(string userName, string password, string rfcEmpresa) {
             base.Channel.BajaEmpresa(userName, password, rfcEmpresa);
         }
         
-        public System.Threading.Tasks.Task BajaEmpresaAsync(string userName, string password, string rfcEmpresa) {
-            return base.Channel.BajaEmpresaAsync(userName, password, rfcEmpresa);
-        }
-        
         public winAsimilados.ServcioTimbradoNTLINK.ClienteNtLink ObtenerDatosCliente(string userName, string password) {
             return base.Channel.ObtenerDatosCliente(userName, password);
-        }
-        
-        public System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.ClienteNtLink> ObtenerDatosClienteAsync(string userName, string password) {
-            return base.Channel.ObtenerDatosClienteAsync(userName, password);
         }
         
         public winAsimilados.ServcioTimbradoNTLINK.EmpresaNtLink[] ObtenerEmpresas(string userName, string password) {
             return base.Channel.ObtenerEmpresas(userName, password);
         }
         
-        public System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.EmpresaNtLink[]> ObtenerEmpresasAsync(string userName, string password) {
-            return base.Channel.ObtenerEmpresasAsync(userName, password);
-        }
-        
         public winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse TimbraCfdiQr(string userName, string password, string comprobante) {
             return base.Channel.TimbraCfdiQr(userName, password, comprobante);
-        }
-        
-        public System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse> TimbraCfdiQrAsync(string userName, string password, string comprobante) {
-            return base.Channel.TimbraCfdiQrAsync(userName, password, comprobante);
         }
         
         public winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse TimbraCfdiQrSinSello(string userName, string password, string comprobante) {
             return base.Channel.TimbraCfdiQrSinSello(userName, password, comprobante);
         }
         
-        public System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse> TimbraCfdiQrSinSelloAsync(string userName, string password, string comprobante) {
-            return base.Channel.TimbraCfdiQrSinSelloAsync(userName, password, comprobante);
-        }
-        
         public string TimbraCfdi(string userName, string password, string comprobante) {
             return base.Channel.TimbraCfdi(userName, password, comprobante);
-        }
-        
-        public System.Threading.Tasks.Task<string> TimbraCfdiAsync(string userName, string password, string comprobante) {
-            return base.Channel.TimbraCfdiAsync(userName, password, comprobante);
         }
         
         public string TimbraCfdiSinSello(string userName, string password, string comprobante) {
             return base.Channel.TimbraCfdiSinSello(userName, password, comprobante);
         }
         
-        public System.Threading.Tasks.Task<string> TimbraCfdiSinSelloAsync(string userName, string password, string comprobante) {
-            return base.Channel.TimbraCfdiSinSelloAsync(userName, password, comprobante);
-        }
-        
         public string TimbraRetencion(string userName, string password, string comprobante) {
             return base.Channel.TimbraRetencion(userName, password, comprobante);
-        }
-        
-        public System.Threading.Tasks.Task<string> TimbraRetencionAsync(string userName, string password, string comprobante) {
-            return base.Channel.TimbraRetencionAsync(userName, password, comprobante);
         }
         
         public winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse TimbraRetencionQr(string userName, string password, string comprobante) {
             return base.Channel.TimbraRetencionQr(userName, password, comprobante);
         }
         
-        public System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.TimbradoResponse> TimbraRetencionQrAsync(string userName, string password, string comprobante) {
-            return base.Channel.TimbraRetencionQrAsync(userName, password, comprobante);
-        }
-        
         public string CancelaRetencion(string userName, string password, string uuid, string rfc) {
             return base.Channel.CancelaRetencion(userName, password, uuid, rfc);
-        }
-        
-        public System.Threading.Tasks.Task<string> CancelaRetencionAsync(string userName, string password, string uuid, string rfc) {
-            return base.Channel.CancelaRetencionAsync(userName, password, uuid, rfc);
         }
         
         public string CancelaCfdi(string userName, string password, string uuid, string rfc, string expresion, string rfcReceptor) {
             return base.Channel.CancelaCfdi(userName, password, uuid, rfc, expresion, rfcReceptor);
         }
         
-        public System.Threading.Tasks.Task<string> CancelaCfdiAsync(string userName, string password, string uuid, string rfc, string expresion, string rfcReceptor) {
-            return base.Channel.CancelaCfdiAsync(userName, password, uuid, rfc, expresion, rfcReceptor);
-        }
-        
         public string CancelaCfdiOtrosPACs(string uuid, string rfcEmisor, string expresion, string rfcReceptor, string Base64Cer, string Base64Key, string PasswordKey) {
             return base.Channel.CancelaCfdiOtrosPACs(uuid, rfcEmisor, expresion, rfcReceptor, Base64Cer, Base64Key, PasswordKey);
-        }
-        
-        public System.Threading.Tasks.Task<string> CancelaCfdiOtrosPACsAsync(string uuid, string rfcEmisor, string expresion, string rfcReceptor, string Base64Cer, string Base64Key, string PasswordKey) {
-            return base.Channel.CancelaCfdiOtrosPACsAsync(uuid, rfcEmisor, expresion, rfcReceptor, Base64Cer, Base64Key, PasswordKey);
         }
         
         public winAsimilados.ServcioTimbradoNTLINK.RespuestaCancelacion CancelaCfdiRequest(string userName, string password, string requestCancelacion, string expresion, string uuid, string rfcReceptor) {
             return base.Channel.CancelaCfdiRequest(userName, password, requestCancelacion, expresion, uuid, rfcReceptor);
         }
         
-        public System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.RespuestaCancelacion> CancelaCfdiRequestAsync(string userName, string password, string requestCancelacion, string expresion, string uuid, string rfcReceptor) {
-            return base.Channel.CancelaCfdiRequestAsync(userName, password, requestCancelacion, expresion, uuid, rfcReceptor);
-        }
-        
         public winAsimilados.ServcioTimbradoNTLINK.ResultadoConsulta ObtenerStatusUuid(string userName, string password, string uuid) {
             return base.Channel.ObtenerStatusUuid(userName, password, uuid);
         }
         
-        public System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.ResultadoConsulta> ObtenerStatusUuidAsync(string userName, string password, string uuid) {
-            return base.Channel.ObtenerStatusUuidAsync(userName, password, uuid);
-        }
-        
         public winAsimilados.ServcioTimbradoNTLINK.ResultadoConsulta ObtenerStatusHash(string userName, string password, string hash) {
             return base.Channel.ObtenerStatusHash(userName, password, hash);
-        }
-        
-        public System.Threading.Tasks.Task<winAsimilados.ServcioTimbradoNTLINK.ResultadoConsulta> ObtenerStatusHashAsync(string userName, string password, string hash) {
-            return base.Channel.ObtenerStatusHashAsync(userName, password, hash);
         }
     }
 }
