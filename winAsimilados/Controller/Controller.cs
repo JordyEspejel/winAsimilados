@@ -1243,6 +1243,7 @@ namespace winAsimilados.Controller
                             bitacora.IPMovimiento = item.IPMovimiento;
                             bitacora.Usuario = item.Usuario;
                             bitacora.Empresa = item.Empresa;
+                            bitacora.Origen = "CancelarCFDI";
                             //C:\DocAsimilados\00001000000413522787.cer
                             //C:\DocAsimilados\CSD_QUERETARO_PTP131002FA0_20190214_113034.key
                             uuid = (new string[] { item.UUID });
@@ -1259,36 +1260,39 @@ namespace winAsimilados.Controller
                                 ServicioTimbradoClient clientProduccion = new ServcioTimbradoNTLINK.ServicioTimbradoClient();
                                 //client.Open();
                                 clientProduccion.Open();
-                                //int totalTimbres = clientProduccion.ConsultaSaldo("angel@inari.mx", "Inari2020.");
-                                string xmlLINK = @"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?&amp;id=" + item.UUID + "&amp;re=" + rfc + "&amp;rr=" + item.RFCEmpl + "&amp;tt=" + Math.Round(item.total, 2) + "&amp;fe=" + item.selloCFD;
+                                //string xmlLINK = @"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?&amp;id=" + item.UUID + "&amp;re=" + rfc + "&amp;rr=" + item.RFCEmpl + "&amp;tt=" + Math.Round(item.total, 2) + "&amp;fe=" + item.selloCFD;
+
+                                string xmlLINK = @"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?&id=" + item.UUID + "&re=" + rfc + "&rr=" + item.RFCEmpl + "&tt=" + Math.Round(item.total, 2) + "&fe=" + item.selloCFD;
 
                                 string UUIDCFDI = item.UUID;
                                 string rfcEmpl = item.RFCEmpl;
-                                //var cancelacionpac = clientProduccion.CancelaCfdiOtrosPACs(UUIDCFDI, rfc, xmlLINK, rfcEmpl, pathCer, pathKey, pass);
 
-                                var cancelacion = clientProduccion.CancelaCfdiRequest("angel@inari.mx", "Inari2020.", UUIDCFDI, rfc, xmlLINK, rfcEmpl);
-                                var cancelacion2 = clientProduccion.CancelaCfdiRequest("angel@inari.mx", "Inari2020", "https://pruebascfdicancelacion.cloudapp.net/Cancelacion/CancelaCFDService.svc?xsd=xsd0", xmlLINK, UUIDCFDI, rfcEmpl);
-                                //var cancelacion = clientProduccion.CancelaCfdi("karina@inari", "Inari2020.", item.UIID,rfc);
-                                //string newXML = client.TimbraCfdi("jordyespejel7@gmail.com", "Asimilados2020", xmlLINK);
-                                clientProduccion.Close();
+                                E.Parametros parametros = GetParametros(rfc);
 
-                                if (cancelacion.Equals("Error al cancelar el comprobante: "))
+                                var cancelacion = clientProduccion.CancelaCfdi(parametros.usuarioNtlink, "Inari2020.", UUIDCFDI, rfc, xmlLINK, rfcEmpl);
+
+                                string resultado = cancelacion.ToString();
+
+                                if (resultado.Equals("Error al cancelar el comprobante: ") || resultado.Equals("203 - UUID No corresponde el RFC del emisor y de quien solicita la cancelación."))
                                 {
+                                    clientProduccion.Close();
                                     error++;
                                     builder.Append("UUID:" + item.UUID + "\r\n");
                                     builder.AppendLine();
-                                    builder.Append("Error al cancelar el comprobante: ");
+                                    builder.Append(resultado);
                                     builder.AppendLine();
                                     builder.AppendLine();
                                 }
                                 else
                                 {
                                     exito++;
-                                    var estatusUUID = clientProduccion.ObtenerStatusUuid("karina@inari.mx", "Inari2020.", item.UUID);
-                                    LogCancelacion(item.UIID, estatusUUID.AcuseCancelacion);
+                                    var estatusUUID = clientProduccion.ObtenerStatusUuid(parametros.usuarioNtlink, "Inari2020.", item.UUID);
+                                    bitacora.StatusSAT = estatusUUID.Status.ToString();
+                                    //LogCancelacion(item.UIID, estatusUUID.AcuseCancelacion);
                                     ActualizaFolio(bitacora.UUID, estatusUUID.Status.ToString());
                                     InsertaBitacora(bitacora, splashScreenManager);
-                                    LogCancelacion(UUIDCFDI, estatusUUID.AcuseCancelacion);
+                                    LogCancelacion(UUIDCFDI, estatusUUID.AcuseEnvio);
+                                    clientProduccion.Close();
                                 }
                             }
 
@@ -2510,6 +2514,7 @@ namespace winAsimilados.Controller
                             folio = "0001";
                         }
                         Bitacora.Folio = folio;
+                        Folio.Folio = folio;
                     }
                     #region comprobanteNomina
                     Comprobante comprobante = new Comprobante();
@@ -3262,6 +3267,7 @@ namespace winAsimilados.Controller
                             folio = "0001";
                         }
                         Bitacora.Folio = folio;
+                        Folio.Folio = folio;
                     }
                     #region comprobanteNomina
                     Comprobante comprobante = new Comprobante();
@@ -3581,6 +3587,7 @@ namespace winAsimilados.Controller
                                 Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
                                 Folio.StatusSAT = "Vigente";
                                 Folio.selloCFD = ultDigSello;
+                                //Folio.Folio = folio;
                                 Bitacora.UUID = UUIDNT;
                                 Bitacora.StatusSAT = "Vigente";
                                 Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
@@ -4059,7 +4066,8 @@ namespace winAsimilados.Controller
                 E.FolioXML folio = (E.FolioXML)_P;
                 SqlCommand queryInserta = N.Conexion.PerformConnection().CreateCommand();
                 queryInserta.CommandText = @"INSERT INTO [dbo].[FolioXML]
-                ([UUID]
+                ([Folio]
+                ,[UUID]
                 ,[XML]
                 ,[RutaXML]
                 ,[Empleado]
@@ -4073,7 +4081,8 @@ namespace winAsimilados.Controller
                 ,[SelloCFD]
                 ,[Total])
                 VALUES
-                ('" + folio.UUID + "'" +
+                ('" + folio.Folio + "'" +
+                ",'" + folio.UUID + "'" +
                 ",'" + folio.XML + "'" +
                 ",'" + folio.RutaXML + "'" +
                 ",'" + folio.Empleado + "'" +
@@ -4249,6 +4258,7 @@ namespace winAsimilados.Controller
 					  ,RP.Descripcion AS [Descripción Puesto]
 					  ,TN.Descripcion AS [Descripción Nómina]
                       ,ISNULL([CUENTA_ORIGEN], 'No Definido') as [CUENTA_ORIGEN]
+                      ,ISNULL([USUARIO_NTLINK], 'No Definido') as [USUARIO_NTLINK]
                   FROM [PARAMETROS] as P
 				  INNER JOIN  BSNOMINAS.dbo.RegimenFiscal as RF on RF.c_RegimenFiscal = P.REGIMEN
 				  --INNER JOIN  BSNOMINAS.dbo.OrigenRecurso AS RE  ON RE.c_OrigenRecurso = P.ORIGEN_RECURSOS
@@ -4295,6 +4305,7 @@ namespace winAsimilados.Controller
                     parametros.DescripcionPuesto = readerParametros.GetString(30);
                     parametros.DescripcionNomina = readerParametros.GetString(31);
                     parametros.cuentaOrigen = readerParametros.GetString(32);
+                    parametros.usuarioNtlink = readerParametros.GetString(33);
                 }
                 readerParametros.Close();
 
@@ -5214,6 +5225,39 @@ namespace winAsimilados.Controller
             }
         }
 
+        public List<E.ClienteAsimilado> Clientes(string empresa, List<E.ClienteAsimilado> clientes)
+        {
+            try
+            {
+                N.Conexion.PerformConnection().Open();
+                SqlCommand queryClientes = N.Conexion.PerformConnection().CreateCommand();
+                queryClientes.CommandText = @"SELECT [ID]
+                 ,[CLIENTE]
+                  FROM [BSNOMINAS].[dbo].[ClientesAsimilados]
+                  WHERE [EMPRESA_PAGADORA_EMITE_CFDI] = @Empresa";
+                queryClientes.Parameters.AddWithValue("@Empresa", empresa);
+
+                SqlDataReader readerClietnes;
+                readerClietnes = queryClientes.ExecuteReader();
+
+                while (readerClietnes.Read())
+                {
+                    clientes.Add(new E.ClienteAsimilado
+                    {
+                        ID = readerClietnes.GetString(0),
+                        CLIENTE = readerClietnes.GetString(1)
+                    });
+                }
+                readerClietnes.Close();
+                return clientes;
+            }
+            catch(Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: Lista Clientes()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
         public List<E.Municipio> Municipios(string BD, string Estado, List<E.Municipio> municipios)
         {
             try
@@ -5583,7 +5627,8 @@ namespace winAsimilados.Controller
                                                ,[ASUNTO_CERTIFICADO]
                                                ,[COLONIA]
                                                ,[RUTA_ALMACEN_PDF]
-                                                ,[CUENTA_ORIGEN])
+                                                ,[CUENTA_ORIGEN]
+                                                ,[USUARIO_NTLINK])
                                          VALUES
                                                ('" + parametros.NombreEmpresa + "'," +
                                                "'" + parametros.RFC + "'," +
@@ -5609,7 +5654,8 @@ namespace winAsimilados.Controller
                                                "'" + parametros.ASUNTO_CERTIFICADO + "'," +
                                                "'" + parametros.COLONIA + "'," +
                                                "'" + parametros.RUTA_ALMACEN_PDF + "'," +
-                                               "'" + parametros.cuentaOrigen + "')";
+                                               "'" + parametros.cuentaOrigen + "'," +
+                                               "'" + parametros.usuarioNtlink + "')";
 
                 if (queryInsertEmpr.ExecuteNonQuery().Equals(1))
                 {
@@ -5925,7 +5971,7 @@ namespace winAsimilados.Controller
 
         }
 
-        public void EditarEmpleado(Object _P/*, SplashScreenManager splashScreenManager*/)
+        public void EditarEmpleado(Object _P, string rfc/*, SplashScreenManager splashScreenManager*/)
         {
             try
             {
@@ -5933,7 +5979,7 @@ namespace winAsimilados.Controller
 
                 //query update
                 SqlCommand queryUpdateEmpl = N.Conexion.PerformConnection().CreateCommand();
-                queryUpdateEmpl.CommandText = @"UPDATE EMPLEADOS set NOMBRE = '" + empleado.Nombre + "'," + "RFC = '" + empleado.RFC + "',"
+                queryUpdateEmpl.CommandText = @"UPDATE EMPLEADOS set NOMBRE = '" + empleado.Nombre + "'," + "RFC = '" + rfc + "',"
                 + "CURP = '" + empleado.CURP + "', PERIODICIDAD_PAGO = '" + empleado.Periodicidad + "'" +
                 ",CUENTA = '" + empleado.cuenta + "'" +
                 ",CLABE_BANCARIA = '" + empleado.clabe_bancaria + "'" +
@@ -5944,6 +5990,7 @@ namespace winAsimilados.Controller
                 ",TIPO_PAGO = '" + empleado.tipoPago + "'" +
                 ",PORCENTAJE_DESCUENTO = '" + empleado.descuento + "'" +
                 ",MAIL = '" + empleado.Correo + "'" +
+                ",  NUM_EMPLEADO = '" + empleado.NumEmpl + "'" +
                 "where RFC = '" + empleado.RFC + "'"; //lo modifica por el ID del empleado
                 if (queryUpdateEmpl.ExecuteNonQuery().Equals(1))
                 {
@@ -7451,6 +7498,312 @@ namespace winAsimilados.Controller
                 }
                 XtraMessageBox.Show(e.Message + "\nError Controlador: AgregaEmpleadoMasivo()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+        }
+        public string InsertaBitacoraImportacionEmpledados(string emprOrigen, string emprDestino, int idemprOrigen, int idemprDestino,E.Empleado empleado, string usuario)
+        {
+            try
+            {
+                string resultado = "";
+                SqlCommand insertaBitacora = N.Conexion.PerformConnection().CreateCommand();
+                insertaBitacora.CommandText = @"INSERT INTO [BSNOMINAS].[dbo].[BitacoraImportacionEmpleados]
+                    ([NumEmpleado]
+                    ,[NomEmpleado]
+                    ,[RFC]
+                    ,[IDEmprOrigen]
+                    ,[EmprOrigen]
+                    ,[IDEmprDestino]
+                    ,[EmprDestino]
+                    ,[FecImp]
+                    ,[Usuario])
+                    VALUES
+                    ('" + empleado.NumEmpl + "'" +
+                ",'" + empleado.Nombre + "'" +
+                ",'" + empleado.RFC + "'" +
+                ",'" + idemprOrigen + "'" +
+                ",'" + emprOrigen + "'" +
+                ",'" + idemprDestino + "'" +
+                ",'" + emprDestino + "'" +
+                ", GETDATE()" +
+                ",'" + usuario + "')";
+
+                if (insertaBitacora.ExecuteNonQuery().Equals(1))
+                {
+                    resultado = "true";
+                }
+                return resultado;
+            }catch (Exception e)
+            {
+                string resultado = e.Message + "\nInserta biracora importación empleado.";
+                return resultado;
+            }
+        }
+
+        public string InsertaEmpleadoImportado(E.Empleado empleado)
+        {
+            try
+            {
+                string resultado ="";
+                SqlCommand queryInsertaEmpl = N.Conexion.PerformConnection().CreateCommand();
+                queryInsertaEmpl.CommandText = @"INSERT INTO [dbo].[EMPLEADOS]
+                ([NUM_EMPLEADO]
+                ,[NOMBRE]
+                ,[RFC]
+                ,[CURP]
+                ,[TIPO_REGIMEN]
+                ,[DEPARTAMENTO]
+                ,[FECHA_INICIO_LABORAL]
+                ,[PUESTO]
+                ,[TIPO_CONTRATO]
+                ,[TIPO_JORNADA]
+                ,[PERIODICIDAD_PAGO]
+                ,[SINDICALIZADO]
+                ,[CUENTA]
+                ,[CLABE_BANCARIA]
+                ,[BANCO]
+                ,[CVE_BANCO]
+                ,[EMPRESA]
+                ,[ID_EMPRESA]
+                ,[PORCENTAJE_DESCUENTO]
+                ,[TIPO_PAGO]
+                ,[MAIL])
+                VALUES
+                ('" + empleado.NumEmpl + "','" + empleado.Nombre + "','" + empleado.RFC + "','" + empleado.CURP + "','" + "09'," + "'ASIMILADO'," + "'01/01/1900'," + "'ASIMILADO',"
+                + "'99'," + "'00','" + empleado.Periodicidad + "'," + "'No'" +
+                ",'" + empleado.cuenta + "'" +
+                ",'" + empleado.clabe_bancaria + "'" +
+                ",'" + empleado.banco + "'" +
+                ",'" + empleado.cve_banco + "'" +
+                ",'" + empleado.empresa + "'" +
+                ",'" + empleado.idEmpresa + "'" +
+                "," + empleado.descuento + "" +
+                ",'" + empleado.tipoPago + "'" +
+                ",'" + empleado.Correo + "')";
+
+                if (queryInsertaEmpl.ExecuteNonQuery().Equals(1))
+                {
+                    resultado = "true";
+                }
+
+                return resultado;
+            }catch (Exception e)
+            {
+                string resultado = e.Message + "\nInserta empleado importación.";
+                return resultado;
+            }
+        }
+
+        public void ImportaEmpleado(string emprOrigen, string emprDestino, List<E.Empleado> listaEmpl, string usuario, SplashScreenManager splash)
+        {
+            try
+            {
+                StreamWriter writer = null;
+                StringBuilder builder = null;
+                string url = @"C:\AsimiladosLogs\";
+                if (!Directory.Exists(url))
+                {
+                    Directory.CreateDirectory(url);
+                }
+
+                string NombreArchivo = "Importción Empleados" + "_" + Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
+                + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
+                + "-" + DateTime.Now.Second.ToString());
+                string path = Path.Combine(url, NombreArchivo + ".txt");
+
+
+                builder = new StringBuilder();
+                builder.AppendLine();
+                builder.Append("********************************   Erroes Encontrados  ******************************************" + "\r\n");
+                builder.AppendLine();
+
+                int idEmprOri = 0, idEmprDest = 0, contError = 0, contExito = 0, contador = 0;
+                SqlCommand EmprOrigen = N.Conexion.PerformConnection().CreateCommand();
+                SqlCommand EmprDestino = N.Conexion.PerformConnection().CreateCommand();
+                EmprOrigen.CommandText = @"SELECT [Numero_Empresa]
+                 FROM [BSNOMINAS].[dbo].[Listado_Empresas]
+                 WHERE [Nombre_Empresa] = @empresa";
+                EmprOrigen.Parameters.AddWithValue("@empresa", emprOrigen);
+                EmprDestino.CommandText = @"SELECT [Numero_Empresa]
+                 FROM [BSNOMINAS].[dbo].[Listado_Empresas]
+                 WHERE [Nombre_Empresa] = @empresa";
+                EmprDestino.Parameters.AddWithValue("@empresa", emprDestino);
+
+                SqlDataReader readerOrigen;
+                readerOrigen = EmprOrigen.ExecuteReader();
+
+                if (readerOrigen.Read())
+                {
+                    idEmprOri = readerOrigen.GetInt32(0);
+                    readerOrigen.Close();
+                }
+
+                SqlDataReader readerDestino;
+                readerDestino = EmprDestino.ExecuteReader();
+
+                if (readerDestino.Read())
+                {
+                    idEmprDest = readerDestino.GetInt32(0);
+                    readerDestino.Close();
+                }
+
+                foreach (var empl in listaEmpl)
+                {
+                    contador++;
+                    splash.SetWaitFormCaption("Importando empleado " + contador + "/" + listaEmpl.Count());
+                    SqlCommand validaBitacora = N.Conexion.PerformConnection().CreateCommand();
+                    validaBitacora.CommandText = @"SELECT [NumEmpleado]
+                    ,[RFC]
+                    ,[IDEmprOrigen]
+                    ,[IDEmprDestino]
+                    FROM [BSNOMINAS].[dbo].[BitacoraImportacionEmpleados]
+                    WHERE[NumEmpleado] = @empleado
+                    AND [RFC] = @RFC
+                    AND [IDEmprOrigen] = @idOrigen
+                    AND [IDEmprDestino] = @idDestino";
+                    validaBitacora.Parameters.AddWithValue("@empleado", empl.NumEmpl);
+                    validaBitacora.Parameters.AddWithValue("@RFC", empl.RFC);
+                    validaBitacora.Parameters.AddWithValue("idOrigen", idEmprOri);
+                    validaBitacora.Parameters.AddWithValue("idDestino", idEmprDest);
+
+                    SqlDataReader readerBitacora = validaBitacora.ExecuteReader();
+
+                    if (readerBitacora.Read())
+                    {
+                        contError++;
+                        builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                        builder.AppendLine();
+                        builder.Append("El emplado ya fue importado anteriormente.");
+                        builder.AppendLine();
+                        readerBitacora.Close();
+                    }
+                    else
+                    {
+                        readerBitacora.Close();
+                        E.Empleado empleado = new E.Empleado();
+                        empleado.NumEmpl = empl.NumEmpl;
+                        empleado.Nombre = empl.Nombre;
+                        empleado.RFC = empl.RFC;
+                        empleado.CURP = empl.CURP;
+                        empleado.Periodicidad = empl.Periodicidad;
+                        empleado.cuenta = empl.cuenta;
+                        empleado.clabe_bancaria = empl.clabe_bancaria;
+                        empleado.banco = empl.banco;
+                        empleado.empresa = empl.empresa;
+                        empleado.idEmpresa = empl.idEmpresa;
+                        empleado.descuento = empl.descuento;
+                        empleado.tipoPago = empl.tipoPago;
+                        empleado.Correo = empl.Correo;
+
+                        string reslutInsertButacora = InsertaBitacoraImportacionEmpledados(emprOrigen, emprDestino, idEmprOri, idEmprDest, empleado, usuario);
+                        if (reslutInsertButacora != "true")
+                        {
+                            contError++;
+                            builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                            builder.AppendLine();
+                            builder.Append(reslutInsertButacora);
+                            builder.AppendLine();
+                        }
+                        else
+                        {
+                            string resultInsertEmpl = InsertaEmpleadoImportado(empleado);
+                            if (resultInsertEmpl != "true")
+                            {
+                                contError++;
+                                builder.AppendLine();
+                                builder.Append("Nombre del empleado:" + empl.Nombre + "\r\n");
+                                builder.AppendLine();
+                                builder.Append(resultInsertEmpl);
+                                builder.AppendLine();
+                            }
+                            else
+                            {
+                                contExito++;
+                            }
+                        }
+                    }
+                }
+                builder.AppendLine();
+                builder.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
+                if (contError.Equals(0) && contExito >= 1)
+                {
+                    if (splash.IsSplashFormVisible.Equals(true))
+                    {
+                        splash.CloseWaitForm();
+                    }
+                    XtraMessageBox.Show("¡Importación de empleados generada con éxito!","Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else if (contError >= 1 && contExito >= 0)
+                {
+                    if (splash.IsSplashFormVisible.Equals(true))
+                    {
+                        splash.CloseWaitForm();
+                    }
+                    XtraMessageBox.Show("¡Proceso terminado con " + contError + " error(es) & " + contExito + " registros con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    writer = new StreamWriter(path, true);
+                    writer.Write(builder);
+                    writer.Close();
+                    Process proceso = new Process();
+                    proceso.StartInfo.FileName = path;
+                    proceso.Start();
+                }
+            }
+            catch (Exception e)
+            {
+                if (splash.IsSplashFormVisible.Equals(true))
+                {
+                    splash.CloseWaitForm();
+                }
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ImportaEmpleado()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        public void ListaEmpleadosImportación(GridControl grid, string BD, string IDClte)
+        {
+            try
+            {
+                SqlCommand queryLista = N.Conexion.PerformConnection().CreateCommand();
+                queryLista.CommandText = @"SELECT [idempleado]
+                      ,[NUM_EMPLEADO]
+                      ,[NOMBRE]
+                      ,[RFC]
+                      ,ISNULL([MAIL], '') AS [MAIL]
+                      ,[CURP]
+                      ,[TIPO_REGIMEN]
+                      ,ISNULL([NUMERO_SS], 0) AS [NUMERO_SS]
+                      ,[DEPARTAMENTO]
+                      ,ISNULL([CUENTA], '') AS [CUENTA]
+                      ,ISNULL([CLABE_BANCARIA], '') AS [CLABE_BANCARIA]
+                      ,ISNULL([CVE_BANCO],'') AS [CVE_BANCO]
+                      ,ISNULL([BANCO], '') AS [BANCO]
+                      ,[FECHA_INICIO_LABORAL]
+                      ,[PUESTO]
+                      ,[TIPO_CONTRATO]
+                      ,[TIPO_JORNADA]
+                      ,[PERIODICIDAD_PAGO]
+                      ,ISNULL([SBC], 0) AS [SBC]
+                      ,ISNULL([SDI], 0) AS [SDI]
+                      ,[SINDICALIZADO]
+                      ,ISNULL([REGISTRO_PATRONAL], '') AS [REGISTRO_PATRONAL]
+                      ,ISNULL([RIESGO_PUESTO], 0) AS [RIESGO_PUESTO]
+                      ,ISNULL([ID_EMPRESA], '') AS [ID_EMPRESA]
+                      ,ISNULL([EMPRESA], '') AS [EMPRESA]
+                      ,ISNULL([PORCENTAJE_DESCUENTO], 0) AS [PORCENTAJE_DESCUENTO]
+                      ,ISNULL([TIPO_PAGO], '') AS [TIPO_PAGO]
+                  FROM [" + BD + "].[dbo].[EMPLEADOS]" +
+                  " WHERE ID_EMPRESA = @ID";
+                queryLista.Parameters.AddWithValue("@ID", IDClte);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = queryLista;
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                grid.DataSource = dataSet.Tables[0];
+            }
+            catch(Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: ListaEmpleadosMigracion()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void ListaCaratulas(GridControl grid/*, string estatus*/)

@@ -92,6 +92,7 @@
             this.accordionAgregaEmplUni = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionAgregaEmplMasiv = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.acoordionEditaEmpleado = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlMigracionEmpl = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlEmpresas = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionAgregarEmpresaUnitario = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -662,7 +663,8 @@
             // 
             this.accordionControlElement1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement2,
-            this.acoordionEditaEmpleado});
+            this.acoordionEditaEmpleado,
+            this.accordionControlMigracionEmpl});
             this.accordionControlElement1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement1.ImageOptions.Image")));
             this.accordionControlElement1.Name = "accordionControlElement1";
             this.accordionControlElement1.Text = "Empleados";
@@ -699,6 +701,14 @@
             this.acoordionEditaEmpleado.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.acoordionEditaEmpleado.Text = "Editar";
             this.acoordionEditaEmpleado.Click += new System.EventHandler(this.acoordionEditaEmpleado_Click);
+            // 
+            // accordionControlMigracionEmpl
+            // 
+            this.accordionControlMigracionEmpl.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlMigracionEmpl.ImageOptions.Image")));
+            this.accordionControlMigracionEmpl.Name = "accordionControlMigracionEmpl";
+            this.accordionControlMigracionEmpl.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlMigracionEmpl.Text = "Importación Empleados";
+            this.accordionControlMigracionEmpl.Click += new System.EventHandler(this.accordionControlMigracionEmpl_Click);
             // 
             // accordionControlEmpresas
             // 
@@ -969,5 +979,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel repositoryItemHypertextLabel1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlPACSTimbrado;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlEmpreasCFDI;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlMigracionEmpl;
     }
 }

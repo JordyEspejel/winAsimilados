@@ -209,5 +209,12 @@ namespace winAsimilados.Entities
             get { return _cuentaOrigen; }
             set { _cuentaOrigen = value; }
         }
+
+        private string _usuarioNtlink;
+        public string usuarioNtlink
+        {
+            get { return _usuarioNtlink; }
+            set { _usuarioNtlink = value; }
+        }
     }
 }

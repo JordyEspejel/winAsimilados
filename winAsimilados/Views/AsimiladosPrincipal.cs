@@ -1675,6 +1675,35 @@ namespace winAsimilados.Views
                 empresasEmitenCFDI.Show();
             }
         }
+
+        private void accordionControlMigracionEmpl_Click(object sender, EventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.SetWaitFormCaption("Cargando Modulo Importación Empleados...");
+            ImportacionEmpleados migracionEmpleados = new ImportacionEmpleados(splashScreenManager1, lblEmpresa.Caption);
+            var frm = Application.OpenForms.OfType<ImportacionEmpleados>().FirstOrDefault();
+            if (frm != null)
+            {
+                splashScreenManager1.CloseWaitForm();
+                frm.BringToFront();
+                frm.Location = new Point(270, 60);
+                if (frm.WindowState == FormWindowState.Minimized)
+                {
+                    //XtraMessageBox.Show("S")
+                    frm.WindowState = FormWindowState.Normal;
+                    //frm.Size = PanelPrincipal.Size;
+                    frm.BringToFront();
+                    //agregarEmpresa.Size = PanelPrincipal.Size;
+                    //agregarEmpresa.Location = new Point(270, 60);
+                }
+            }
+            else
+            {
+                migracionEmpleados.Location = new Point(270, 60);
+                //agregarUsuario.Size = PanelPrincipal.Size;
+                migracionEmpleados.Show();
+            }
+        }
     }
 }
 

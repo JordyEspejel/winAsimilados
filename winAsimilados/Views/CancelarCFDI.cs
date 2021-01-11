@@ -63,14 +63,14 @@ namespace winAsimilados.Views
         {
             try
             {
-
+                string status = "";
                 if (pacTimbrado.Equals("NT") && ambiente.Equals("Pruebas"))
                 {
                     XtraMessageBox.Show("Cancelacíón NT-LINK en ambiente de pruebas no sportado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
-                var UUID = new List<E.CancelarUUID>();
+                var UUIDSAT = new List<E.CancelarUUID>();
                 E.CancelarUUID[] uid = null;
                 for (int i = 0; i < gridView1.RowCount; i++)
                 {
@@ -84,26 +84,36 @@ namespace winAsimilados.Views
                         rfcEmpl = gridView1.GetRowCellValue(i, gridView1.Columns[4]).ToString();
                         selloCFD = gridView1.GetRowCellValue(i, gridView1.Columns[10]).ToString();
                         total = Convert.ToDecimal(gridView1.GetRowCellValue(i, gridView1.Columns[11]).ToString());
-                        UUID.Add(new E.CancelarUUID
+                        status = gridView1.GetRowCellValue(i, gridView1.Columns[6]).ToString();
+                        if (status.Equals("Cancelado"))
                         {
-                            Folio = folio,
-                            UUID = uuid,
-                            FecPago = Convert.ToDateTime(fecPago),
-                            FecInicio = Convert.ToDateTime(fecIni),
-                            FecFinal = Convert.ToDateTime(fecFin),
-                            Empresa = Empr,
-                            IPMovimiento = ip,
-                            Usuario = usuario,
-                            RFCEmpl = rfcEmpl,
-                            selloCFD = selloCFD,
-                            total = total
-                        });
-                        uid = UUID.ToArray();
+                            XtraMessageBox.Show("El folio: " + folio + " Con UUID: " + uuid + "Ya fue cancelado anteiormente.", "Cancelar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                            //UUIDSAT.RemoveAll(UUID => UUID.Equals(uuid));
+                        }
+                        else
+                        {
+                            UUIDSAT.Add(new E.CancelarUUID
+                            {
+                                Folio = folio,
+                                UUID = uuid,
+                                FecPago = Convert.ToDateTime(fecPago),
+                                FecInicio = Convert.ToDateTime(fecIni),
+                                FecFinal = Convert.ToDateTime(fecFin),
+                                Empresa = Empr,
+                                IPMovimiento = ip,
+                                Usuario = usuario,
+                                RFCEmpl = rfcEmpl,
+                                selloCFD = selloCFD,
+                                total = total
+                            });
+                            uid = UUIDSAT.ToArray();
+                        }
                     }
 
                 }
                 //Controlador.Generar12(UUID, splashScreenManager1);
-                Controlador.CancelarCFDI(UUID, splashScreenManager1, RFCEmpr,pacTimbrado, ambiente);
+                Controlador.CancelarCFDI(UUIDSAT, splashScreenManager1, RFCEmpr,pacTimbrado, ambiente);
                 RefrescaTabla();
             }
             catch (Exception btn)

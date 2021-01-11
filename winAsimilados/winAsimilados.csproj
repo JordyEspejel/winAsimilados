@@ -27,7 +27,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>Asimilados.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>34</ApplicationRevision>
+    <ApplicationRevision>51</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -369,6 +369,12 @@
     <Compile Include="Views\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MigracionEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MigracionEmpleados.Designer.cs">
+      <DependentUpon>MigracionEmpleados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\NominaAsimilados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -487,6 +493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MigracionEmpleados.resx">
+      <DependentUpon>MigracionEmpleados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\NominaAsimilados.resx">
       <DependentUpon>NominaAsimilados.cs</DependentUpon>

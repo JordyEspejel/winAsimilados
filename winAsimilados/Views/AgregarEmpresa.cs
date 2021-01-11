@@ -78,6 +78,24 @@ namespace winAsimilados.Views
             }
         }
 
+        private void chEditNtlink_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chEditNtlink.Checked.Equals(true))
+            {
+                txtUsuaNTLINK.Visibility  = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            }
+            else
+            {
+                txtUsuaNTLINK.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;                   
+            }
+        }
+
+        private void AgregarEmpresa_Load(object sender, EventArgs e)
+        {
+            chEditNtlink.Checked = true;
+            ChAsim.Checked = true;
+        }
+
         public AgregarEmpresa(bool listado, SplashScreenManager screenManager)
         {
             splash = screenManager;
@@ -112,7 +130,18 @@ namespace winAsimilados.Views
             numInt = TxtNumInt.Text;
             numExt = TxtNumExt.Text;
             #region ValidacionCampos
-
+            if (chEditNtlink.Checked.Equals(true))
+            {
+                if (txtUsuaNTLINK.Text.Equals(""))
+                {
+                    XtraMessageBox.Show("El campo usuario no puede estar vacio.", "Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    Parametros.usuarioNtlink = txtUsuaNTLINK.Text;
+                }
+            }
             if (nombreEmpresa == "")
             {
                 XtraMessageBox.Show("El campo Nombre no puede estar vacio", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
