@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Asimilados" Class="AsimiladosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.16.175\SQLDESARROLLO;Initial Catalog=Asimilados;Persist Security Info=True;User ID=sa" SettingsObjectName="winAsimilados.Properties.Settings" SettingsPropertyName="AsimiladosConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Nomina" Member="Nomina">
+    <Type Name="Nomina">
+      <Column Name="nominaID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nominanumEmpl" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nominanombreEmpleado" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="nominaRFCEmpleado" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="nominaPeriodidicadPago" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="nominaIngresos" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="nominaIngresosBruto" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="nominaISR" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="nominaFechaPago" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="nominaFechaIniPeri" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="nominaFechaFinPero" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="nominaFechaCreacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="nominaEstatus" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="nominaEstatusSAT" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="nominaPeriodo" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="nominaEmpresa" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="nominaRFCEmpresa" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="nominaIDEmp" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="nominaDescripciponError" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="nominaEmpresaNominaID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="nominaUsuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="nominaUsuarioCierrePeriodo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="nominaFechaCierrePeriodo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResumenNominaID" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ResumenNomina" Member="ResumenNomina">
+    <Type Name="ResumenNomina">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ResumenNominaID" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ResumenNominaTotalEmpleados" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ResumenNominaTotalIngresos" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ResumenNominaTotalIngresosBruto" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ResumenNominaTotalISR" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ResumenNominaFechaPago" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResumenNominaFechaInicioPeri" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResumenNominaFechaFinPeri" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResumenNominaFechaCreacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResumenNominaEstatus" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ResumenNominaEstatusSAT" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ResumenNominaPeriodo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ResumenNominaEmpresaNombre" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ResumenNominaRFCEmpresa" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ResumenNominaUsuarioCreacion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ResumenNominaUsuarioCierrePeriodo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ResumenNominaUsuarioFechaCierre" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ResumenNominaNominaEmpresaID" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

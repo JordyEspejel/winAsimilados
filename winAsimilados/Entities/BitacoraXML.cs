@@ -82,5 +82,11 @@ namespace winAsimilados.Entities
             get { return _Origen; }
             set { _Origen = value; }
         }
+        private string _nominaEmpresaID;
+        public string nominaEmpresaID
+        {
+            get { return _nominaEmpresaID; }
+            set { _nominaEmpresaID = value; }
+        }
     }
 }

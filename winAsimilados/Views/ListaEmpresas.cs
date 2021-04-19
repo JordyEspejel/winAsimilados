@@ -75,10 +75,12 @@ namespace winAsimilados.Views
                 }
                 if (Controlador.AccedeEmpresa(empresa.BD).Equals(true)){
 
-                    C.Conexion.PerformConnection().ChangeDatabase(empresa.BD);
+                    //C.Conexion.PerformConnection().ChangeDatabase(empresa.BD);
                     //string message = C.Conexion.PerformConnection().Database;
                     //XtraMessageBox.Show(message);
                     //C.Conexion.PerformConnection().Close();
+                    Properties.Settings.Default["EmpresaNominaID"] = empresa.BD;
+                    Properties.Settings.Default.Save();
                     this.Dispose();
                     V.AsimiladosPrincipal principal = new V.AsimiladosPrincipal(Properties.Settings.Default.Tema.ToString());
                     principal.lblEmpresa.Caption = empresa.empresa;

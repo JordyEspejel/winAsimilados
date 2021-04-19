@@ -112,5 +112,11 @@ namespace winAsimilados.Entities
 
         public DateTime FechaReaperturaPeriodo { get { return _FechaReaperturaPeriodo; } set { _FechaReaperturaPeriodo = value; } }
         public string UsuarioReapertura { get { return _UsuarioReapertura; } set { _UsuarioReapertura = value; } }
+        private string _nominaEmpresaID;
+        public string nominaEmpresaID
+        {
+            get { return _nominaEmpresaID; }
+            set { _nominaEmpresaID = value; }
+        }
     }
 }

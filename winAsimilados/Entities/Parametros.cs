@@ -216,5 +216,11 @@ namespace winAsimilados.Entities
             get { return _usuarioNtlink; }
             set { _usuarioNtlink = value; }
         }
+        private string _NOMINA_EMPRESA_ID;
+        public string NOMINA_EMPRESA_ID
+        {
+            get { return _NOMINA_EMPRESA_ID; }
+            set { _NOMINA_EMPRESA_ID = value; }
+        }
     }
 }

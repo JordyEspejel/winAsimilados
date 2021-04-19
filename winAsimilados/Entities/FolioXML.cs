@@ -94,5 +94,11 @@ namespace winAsimilados.Entities
             get { return _total; }
             set { _total = value; }
         }
+        private string _nominaEmpresaID;
+        public string nominaEmpresaID
+        {
+            get { return _nominaEmpresaID; }
+            set { _nominaEmpresaID = value; }
+        }
     }
 }

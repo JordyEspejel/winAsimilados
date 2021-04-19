@@ -77,7 +77,8 @@ namespace winAsimilados.Controller
         {
             try
             {
-                string cString = C.GetFirstConnectionString("localhost_BSNOMINAS_Connection 1");
+                //string cString = C.GetFirstConnectionString("localhost_BSNOMINAS_Connection 1");
+                string cString = C.GetFirstConnectionString("Asimilados");
                 if (Connection_BD == null)
                 {
                     //Connection_BD = new SqlConnection("Data Source=server-contpaq\\compac17;Initial Catalog=Nomina_Empresa17;User ID=sa;Password=Supervisor2020.;");

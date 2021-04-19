@@ -46,11 +46,250 @@ using Pechkin.Synchronized;
 using Pechkin;
 using System.Drawing.Printing;
 using WkHtmlToPdf;
+using M = winAsimilados.Models;
 
 namespace winAsimilados.Controller
 {
     class Controller
     {
+        M.AsimiladosDataContext dtc = new M.AsimiladosDataContext();
+
+        public M.ResumenNomina ObtieneInfoResumen(int IDResumen)
+        {
+            try
+            {
+                M.ResumenNomina resumen = new M.ResumenNomina();
+                dtc.Connection.Open();
+                SqlCommand queryGetResumen = (SqlCommand)dtc.Connection.CreateCommand();
+                queryGetResumen.CommandText = @"SELECT [ID]
+                ,[ResumenNominaID]
+                ,[ResumenNominaTotalEmpleados]
+                ,[ResumenNominaTotalIngresos]
+                ,[ResumenNominaTotalIngresosBruto]
+                ,[ResumenNominaTotalISR]
+                ,[ResumenNominaFechaPago]
+                ,[ResumenNominaFechaInicioPeri]
+                ,[ResumenNominaFechaFinPeri]
+                ,[ResumenNominaFechaCreacion]
+                ,[ResumenNominaEstatus]
+                ,[ResumenNominaEstatusSAT]
+                ,[ResumenNominaPeriodo]
+                ,[ResumenNominaEmpresaNombre]
+                ,[ResumenNominaRFCEmpresa]
+                ,[ResumenNominaUsuarioCreacion]
+                ,[ResumenNominaUsuarioCierrePeriodo]
+                ,ISNULL([ResumenNominaUsuarioFechaCierre], '') AS [ResumenNominaUsuarioFechaCierre]
+                ,[ResumenNominaNominaEmpresaID]
+                FROM [Asimilados].[dbo].[ResumenNomina]
+                WHERE [ID] = @ID";
+                queryGetResumen.Parameters.AddWithValue("@ID", IDResumen);
+                SqlDataReader reader;
+                reader = queryGetResumen.ExecuteReader();
+                if (reader.Read())
+                {
+                    resumen.ID = reader.GetInt32(0);
+                    resumen.ResumenNominaID = reader.GetString(1);
+                    resumen.ResumenNominaTotalEmpleados = reader.GetInt32(2);
+                    resumen.ResumenNominaTotalIngresos = reader.GetDecimal(3);
+                    resumen.ResumenNominaTotalIngresosBruto = reader.GetDecimal(4);
+                    resumen.ResumenNominaTotalISR = reader.GetDecimal(5);
+                    resumen.ResumenNominaFechaPago = reader.GetDateTime(6);
+                    resumen.ResumenNominaFechaInicioPeri = reader.GetDateTime(7);
+                    resumen.ResumenNominaFechaFinPeri = reader.GetDateTime(8);
+                    resumen.ResumenNominaFechaCreacion = reader.GetDateTime(9);
+                    resumen.ResumenNominaEstatus = reader.GetString(10);
+                    resumen.ResumenNominaEstatusSAT = reader.GetString(11);
+                    resumen.ResumenNominaPeriodo = reader.GetString(12);
+                    resumen.ResumenNominaEmpresaNombre = reader.GetString(13);
+                    resumen.ResumenNominaRFCEmpresa = reader.GetString(14);
+                    resumen.ResumenNominaUsuarioCreacion = reader.GetString(15);
+                    resumen.ResumenNominaUsuarioCierrePeriodo = reader.IsDBNull(16) ?"" : reader.GetString(16);
+                    resumen.ResumenNominaUsuarioFechaCierre = reader.GetDateTime(17);
+                    resumen.ResumenNominaNominaEmpresaID = reader.GetString(18);
+                }
+                return resumen;
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void CerrarNomina(int idResumen, string resumenNominaID, string usuario)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand queryStatusResumen = (SqlCommand)dtc.Connection.CreateCommand();
+                SqlCommand queryStatusNomina = (SqlCommand)dtc.Connection.CreateCommand();
+                queryStatusResumen.CommandText = @"UPDATE ResumenNomina
+                SET ResumenNominaEstatus = 'Cerrado'
+                , ResumenNominaUsuarioCierrePeriodo = @usuario
+                , ResumenNominaUsuarioFechaCierre = GETDATE()
+                WHERE ID = @IDResumen";
+                queryStatusResumen.Parameters.AddWithValue("@IDResumen", idResumen);
+                queryStatusResumen.Parameters.AddWithValue("@usuario", usuario);
+                queryStatusNomina.CommandText = @"update Nomina
+                SET nominaEstatus = 'Cerrado'
+                ,nominaUsuarioCierrePeriodo = @usuario
+                ,nominaFechaCierrePeriodo = GETDATE()
+                WHERE ResumenNominaID = @resumenNominaID";
+                queryStatusNomina.Parameters.AddWithValue("@resumenNominaID", resumenNominaID);
+                queryStatusNomina.Parameters.AddWithValue("@usuario", usuario);
+                queryStatusResumen.ExecuteNonQuery();
+                queryStatusNomina.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }
+            catch (Exception)
+            { 
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void InsertaResumenNomina(M.ResumenNomina resumenNomina)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand queryInsertaResumen = (SqlCommand)dtc.Connection.CreateCommand();
+                queryInsertaResumen.CommandText = @"INSERT INTO [dbo].[ResumenNomina]
+               ([ResumenNominaID]
+               ,[ResumenNominaTotalEmpleados]
+               ,[ResumenNominaTotalIngresos]
+               ,[ResumenNominaTotalIngresosBruto]
+               ,[ResumenNominaTotalISR]
+               ,[ResumenNominaFechaPago]
+               ,[ResumenNominaFechaInicioPeri]
+               ,[ResumenNominaFechaFinPeri]
+               ,[ResumenNominaFechaCreacion]
+               ,[ResumenNominaEstatus]
+               ,[ResumenNominaEstatusSAT]
+               ,[ResumenNominaPeriodo]
+               ,[ResumenNominaEmpresaNombre]
+               ,[ResumenNominaRFCEmpresa]
+               ,[ResumenNominaUsuarioCreacion]
+               --,[ResumenNominaUsuarioCierrePeriodo]
+               --,[ResumenNominaUsuarioFechaCierre]
+               ,[ResumenNominaNominaEmpresaID])
+                VALUES('" + resumenNomina.ResumenNominaID + "'" +
+                "," + resumenNomina.ResumenNominaTotalEmpleados + "" +
+                "," + resumenNomina.ResumenNominaTotalIngresos + "" +
+                "," + resumenNomina.ResumenNominaTotalIngresosBruto + "" +
+                "," + resumenNomina.ResumenNominaTotalISR + "" +
+                ",'" + Convert.ToDateTime(resumenNomina.ResumenNominaFechaPago).ToString("dd/MM/yyyy") + "'" +
+                ",'" + Convert.ToDateTime(resumenNomina.ResumenNominaFechaInicioPeri).ToString("dd/MM/yyyy") + "'" +
+                ",'" + Convert.ToDateTime(resumenNomina.ResumenNominaFechaFinPeri).ToString("dd/MM/yyyy") + "'" +
+                ", GETDATE()" +
+                ",'" + resumenNomina.ResumenNominaEstatus + "'" +
+                ",'" + resumenNomina.ResumenNominaEstatusSAT + "'" +
+                ",'" + resumenNomina.ResumenNominaPeriodo + "'" +
+                ",'" + resumenNomina.ResumenNominaEmpresaNombre + "'" +
+                ",'" + resumenNomina.ResumenNominaRFCEmpresa + "'" +
+                ",'" + resumenNomina.ResumenNominaUsuarioCreacion + "'" +
+                ",'" + resumenNomina.ResumenNominaNominaEmpresaID + "')";
+                queryInsertaResumen.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void InsertaNominaMasiva(List<M.Nomina> listaNominas)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand queryInsertaNomina = (SqlCommand)dtc.Connection.CreateCommand();
+                foreach (var item in listaNominas)
+                {
+                    queryInsertaNomina.CommandText = @"INSERT INTO [dbo].[Nomina]
+                    ([nominanumEmpl]
+                    ,[nominanombreEmpleado]
+                    ,[nominaRFCEmpleado]
+                    ,[nominaPeriodidicadPago]
+                    ,[nominaIngresos]
+                    ,[nominaIngresosBruto]
+                    ,[nominaISR]
+                    ,[nominaFechaPago]
+                    ,[nominaFechaIniPeri]
+                    ,[nominaFechaFinPero]
+                    ,[nominaFechaCreacion]
+                    ,[nominaEstatus]
+                    ,[nominaEstatusSAT]
+                    ,[nominaPeriodo]
+                    ,[nominaEmpresa]
+                    ,[nominaRFCEmpresa]
+                    --,[nominaIDEmp]
+                    ,[nominaDescripciponError]
+                    ,[nominaEmpresaNominaID]
+                    ,[nominaUsuario]
+                    ,[ResumenNominaID])
+                VALUES
+                      (" + item.nominanumEmpl + "" +
+                      ",'" + item.nominanombreEmpleado + "'" +
+                      ",'" + item.nominaRFCEmpleado + "'" +
+                      ",'" + item.nominaPeriodidicadPago + "'" +
+                      "," + item.nominaIngresos +  "" +
+                      "," + item.nominaIngresosBruto + "" +
+                      "," + item.nominaISR + "" +
+                      ",'" + Convert.ToDateTime(item.nominaFechaPago).ToString("dd/MM/yyyy") + "'" +
+                      ",'" + Convert.ToDateTime(item.nominaFechaIniPeri).ToString("dd/MM/yyyy") + "'" +
+                      ",'" + Convert.ToDateTime(item.nominaFechaFinPero).ToString("dd/MM/yyyy") + "'" +
+                      ",GETDATE()" +
+                      ",'" + item.nominaEstatus + "'" +
+                      ",'" + item.nominaEstatusSAT + "'" +
+                      ",'" + item.nominaPeriodo + "'" +
+                      ",'" + item.nominaEmpresa + "'" +
+                      ",'" + item.nominaRFCEmpresa + "'" +
+                      ",'" + item.nominaDescripciponError + "'" +
+                      ",'" + item.nominaEmpresaNominaID + "'" +
+                      ",'" + item.nominaUsuario + "'" +
+                      ",'" + item.ResumenNominaID + "')";
+
+                    queryInsertaNomina.ExecuteNonQuery();
+                }
+                dtc.Connection.Close();
+            }
+            catch(Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public int ObtieneContPeriodoNomina(string nominaEmpresaID, string mes, SplashScreenManager splash)
+        {
+            try
+            {
+                int cont = 0;
+                dtc.Connection.Open();
+                SqlCommand queryGetCont = (SqlCommand)dtc.Connection.CreateCommand();
+                queryGetCont.CommandText = @"SELECT
+                COUNT(ResumenNominaID)
+                from ResumenNomina
+                WHERE ResumenNominaNominaEmpresaID = @Empresa
+                AND MONTH(ResumenNominaFechaInicioPeri) = @Mes";
+                queryGetCont.Parameters.AddWithValue("@Empresa", nominaEmpresaID);
+                queryGetCont.Parameters.AddWithValue("@Mes", mes);
+                SqlDataReader ReaderCont;
+                ReaderCont = queryGetCont.ExecuteReader();
+                if (ReaderCont.Read())
+                {
+                    cont = ReaderCont.GetInt32(0);
+                }
+                ReaderCont.Close();
+                dtc.Connection.Close();
+                return cont;
+            }catch (Exception nomiCont)
+            {
+                if (splash.IsSplashFormVisible.Equals(true))
+                {
+                    splash.CloseWaitForm();
+                }
+                XtraMessageBox.Show("Error Controlador: ObtieneContPeriodoNomina:\n" + nomiCont.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dtc.Connection.Close();
+                return -1;
+            }
+        }
         public string EnviaFacturaCorreo(string correo, List<string> archivos, string destino)
         {
             try
@@ -133,7 +372,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand eliminaClave = N.Conexion.PerformConnection().CreateCommand();
-                eliminaClave.CommandText = @"DELETE FROM [BSNOMINAS].[dbo].[ClavesServCliente] WHERE
+                eliminaClave.CommandText = @"DELETE FROM [dbo].[ClavesServCliente] WHERE
                  [ID] = " + ID + "";
 
                 if (eliminaClave.ExecuteNonQuery().Equals(1))
@@ -155,7 +394,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand insertaClave = N.Conexion.PerformConnection().CreateCommand();
-                insertaClave.CommandText = @"INSERT INTO [BSNOMINAS].[dbo].[ClavesServCliente]
+                insertaClave.CommandText = @"INSERT INTO [dbo].[ClavesServCliente]
                     ([IDClte]
                     ,[Cliente]
                     ,[ClaveServProd]
@@ -172,7 +411,7 @@ namespace winAsimilados.Controller
                   ,[Cliente]
                   ,[ClaveServProd]
                   ,[Concepto]
-              FROM [BSNOMINAS].[dbo].[ClavesServCliente]
+              FROM [dbo].[ClavesServCliente]
               where [IDClte] = @IDclte AND [ClaveServProd] = @clave";
                 validaInsert.Parameters.AddWithValue("@IDclte", clave.IDClte);
                 validaInsert.Parameters.AddWithValue("@clave", clave.clave);
@@ -215,7 +454,7 @@ namespace winAsimilados.Controller
                 foreach (var item in lista)
                 {
                     SqlCommand updateBanco = N.Conexion.PerformConnection().CreateCommand();
-                    updateBanco.CommandText = @"UPDATE [BSNOMINAS].[dbo].[CatalogoBancosEmpresaPagaAsimilados]
+                    updateBanco.CommandText = @"UPDATE [dbo].[CatalogoBancosEmpresaPagaAsimilados]
                     SET [Cuenta] = '" + item.Cuenta + "'" +
                     ", [CLABE] = '" + item.CLABE + "'" +
                     "WHERE [ID] = " + item.ID + "";
@@ -248,7 +487,7 @@ namespace winAsimilados.Controller
                 foreach (var item in lista)
                 {
                     SqlCommand updateBanco = N.Conexion.PerformConnection().CreateCommand();
-                    updateBanco.CommandText = @"UPDATE [BSNOMINAS].[dbo].[Bancos]
+                    updateBanco.CommandText = @"UPDATE [dbo].[Bancos]
                     SET [c_Banco] = '" + item.cveBanco + "'" +
                     ", [Descripcion] = '" + item.nombre + "'" +
                     ", [Nombre o razón social] = '" + item.razonSocial + "'" +
@@ -281,7 +520,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand eliminaBanco = N.Conexion.PerformConnection().CreateCommand();
-                eliminaBanco.CommandText = @"DELETE FROM  [BSNOMINAS].[dbo].[Bancos] WHERE
+                eliminaBanco.CommandText = @"DELETE FROM  [dbo].[Bancos] WHERE
                  [c_Banco] = " + cve + "";
 
                 if (eliminaBanco.ExecuteNonQuery().Equals(1))
@@ -304,7 +543,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand eliminaBanco = N.Conexion.PerformConnection().CreateCommand();
-                eliminaBanco.CommandText = @"DELETE FROM  [BSNOMINAS].[dbo].[CatalogoBancosEmpresaPagaAsimilados] WHERE
+                eliminaBanco.CommandText = @"DELETE FROM  [dbo].[CatalogoBancosEmpresaPagaAsimilados] WHERE
                  [ID] = " + ID + "";
 
                 if (eliminaBanco.ExecuteNonQuery().Equals(1))
@@ -327,7 +566,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand insertaBanco = N.Conexion.PerformConnection().CreateCommand();
-                insertaBanco.CommandText = @"INSERT INTO  [BSNOMINAS].[dbo].[Bancos]
+                insertaBanco.CommandText = @"INSERT INTO  [dbo].[Bancos]
                    ([c_Banco]
                    ,[Descripcion]
                    ,[Nombre o razón social])
@@ -341,7 +580,7 @@ namespace winAsimilados.Controller
                       ,[Descripcion]
                       ,[Nombre o razón social]
                       ,[id]
-                  FROM [BSNOMINAS].[dbo].[Bancos]
+                  FROM [dbo].[Bancos]
                   WHERE [c_Banco] = @cve";
                 validaInsert.Parameters.AddWithValue("@cve", banco.cveBanco);
 
@@ -380,7 +619,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand insertaBanco = N.Conexion.PerformConnection().CreateCommand();
-                insertaBanco.CommandText = @"INSERT INTO  [BSNOMINAS].[dbo].[CatalogoBancosEmpresaPagaAsimilados]
+                insertaBanco.CommandText = @"INSERT INTO  [dbo].[CatalogoBancosEmpresaPagaAsimilados]
                        ([IDEmpresa]
                        ,[RazonSocial]
                        ,[Banco]
@@ -399,7 +638,7 @@ namespace winAsimilados.Controller
                       ,[Banco]
                       ,[Cuenta]
                       ,[CLABE]
-                  FROM [BSNOMINAS].[dbo].[CatalogoBancosEmpresaPagaAsimilados]
+                  FROM [dbo].[CatalogoBancosEmpresaPagaAsimilados]
                   where [IDEmpresa] = @IDEmpresa 
                   AND [Banco] = @Banco";
                 validaInsert.Parameters.AddWithValue("@IDEmpresa", banco.IDEmpresa);
@@ -438,7 +677,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand updateEstatus = N.Conexion.PerformConnection().CreateCommand();
-                updateEstatus.CommandText = @"UPDATE [BSNOMINAS].[dbo].[ClientesAsimilados]
+                updateEstatus.CommandText = @"UPDATE [dbo].[ClientesAsimilados]
                    SET [ESTATUS] = 'Activo' 
                 WHERE [ID] = '" + cliente.ID + "'";
 
@@ -462,7 +701,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand updateEstatus = N.Conexion.PerformConnection().CreateCommand();
-                updateEstatus.CommandText = @"UPDATE [BSNOMINAS].[dbo].[ClientesAsimilados]
+                updateEstatus.CommandText = @"UPDATE [dbo].[ClientesAsimilados]
                    SET [ESTATUS] = 'Inactivo'
                   ,[FECHA_BAJA] =  GETDATE()
                 WHERE [ID] = '" + cliente.ID + "'";
@@ -486,7 +725,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand updateCliente = N.Conexion.PerformConnection().CreateCommand();
-                updateCliente.CommandText = @"UPDATE [BSNOMINAS].[dbo].[ClientesAsimilados]
+                updateCliente.CommandText = @"UPDATE [dbo].[ClientesAsimilados]
                    SET [COMISIONISTA] = '" + cliente.COMISIONISTA + "'" +
                    ",[CLIENTE] = '" + cliente.CLIENTE + "'" +
                    ",[PORCENTAJE_ISN] = " + cliente.PORCENTAJE_ISN + "" +
@@ -538,7 +777,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand insertaCliente = N.Conexion.PerformConnection().CreateCommand();
-                insertaCliente.CommandText = @"INSERT INTO [BSNOMINAS].[dbo].[ClientesAsimilados]
+                insertaCliente.CommandText = @"INSERT INTO [dbo].[ClientesAsimilados]
                    ([ID]
                    ,[CLIENTE]
                    ,[FECHA_ALTA _PRIMER PAGO]
@@ -627,7 +866,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand updateEstatus = N.Conexion.PerformConnection().CreateCommand();
-                updateEstatus.CommandText = @"UPDATE [BSNOMINAS].[dbo].[EmpresaCatalogoCFDI]
+                updateEstatus.CommandText = @"UPDATE [dbo].[EmpresaCatalogoCFDI]
                 SET [Estatus] = 'A' WHERE [NumEmpresa] = '" + ID + "'";
 
                 if (updateEstatus.ExecuteNonQuery().Equals(1))
@@ -650,7 +889,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand updateEstatus = N.Conexion.PerformConnection().CreateCommand();
-                updateEstatus.CommandText = @"UPDATE [BSNOMINAS].[dbo].[EmpresaPagaAsimilados]
+                updateEstatus.CommandText = @"UPDATE [dbo].[EmpresaPagaAsimilados]
                 SET [Estatus] = 'A' WHERE [ID] = '" + ID + "'";
 
                 if (updateEstatus.ExecuteNonQuery().Equals(1))
@@ -674,7 +913,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand updateEstatus = N.Conexion.PerformConnection().CreateCommand();
-                updateEstatus.CommandText = @"UPDATE [BSNOMINAS].[dbo].[EmpresaCatalogoCFDI]
+                updateEstatus.CommandText = @"UPDATE [dbo].[EmpresaCatalogoCFDI]
                 SET [Estatus] = 'I' WHERE [NumEmpresa] = '" + ID + "'";
 
                 if (updateEstatus.ExecuteNonQuery().Equals(1))
@@ -697,7 +936,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand updateEstatus = N.Conexion.PerformConnection().CreateCommand();
-                updateEstatus.CommandText = @"UPDATE [BSNOMINAS].[dbo].[EmpresaPagaAsimilados]
+                updateEstatus.CommandText = @"UPDATE [dbo].[EmpresaPagaAsimilados]
                 SET [Estatus] = 'I' WHERE [ID] = '" + ID + "'";
 
                 if (updateEstatus.ExecuteNonQuery().Equals(1))
@@ -723,7 +962,7 @@ namespace winAsimilados.Controller
                 foreach (var item in lista)
                 {
                     SqlCommand updateEmpresa = N.Conexion.PerformConnection().CreateCommand();
-                    updateEmpresa.CommandText = @"UPDATE [BSNOMINAS].[dbo].[EmpresaCatalogoCFDI]
+                    updateEmpresa.CommandText = @"UPDATE [dbo].[EmpresaCatalogoCFDI]
                    SET [NumEmpresa] = '" + item.IDEmpresa + "'" +
                    ",[Descripcion] = '" + item.razonSocial + "'" +
                    "WHERE [NumEmpresa] = '" + item.IDEmpresa + "'";
@@ -757,7 +996,7 @@ namespace winAsimilados.Controller
                 foreach (var item in lista)
                 {
                     SqlCommand updateEmpresa = N.Conexion.PerformConnection().CreateCommand();
-                    updateEmpresa.CommandText = @"UPDATE [BSNOMINAS].[dbo].[EmpresaPagaAsimilados]
+                    updateEmpresa.CommandText = @"UPDATE [dbo].[EmpresaPagaAsimilados]
                    SET [IDEmpresa] = '" + item.IDEmpresa + "'" +
                    ",[RFC] = '" + item.RFC + "'" +
                    ",[RazonSocial] = '" + item.RazonSocial + "'" +
@@ -790,7 +1029,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand insertaEmpresa = N.Conexion.PerformConnection().CreateCommand();
-                insertaEmpresa.CommandText = @"INSERT INTO [BSNOMINAS].[dbo].[EmpresaCatalogoCFDI]
+                insertaEmpresa.CommandText = @"INSERT INTO [dbo].[EmpresaCatalogoCFDI]
                 ([NumEmpresa]
                 ,[Descripcion]
                 ,[Estatus])
@@ -820,7 +1059,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand insertaEmpresa = N.Conexion.PerformConnection().CreateCommand();
-                insertaEmpresa.CommandText = @"INSERT INTO [BSNOMINAS].[dbo].[EmpresaPagaAsimilados]
+                insertaEmpresa.CommandText = @"INSERT INTO [dbo].[EmpresaPagaAsimilados]
                        ([IDEmpresa]
                        ,[RFC]
                        ,[RazonSocial]
@@ -856,7 +1095,7 @@ namespace winAsimilados.Controller
                     if (item.CLIENTE != "" && item.ID != "")
                     {
                         SqlCommand insertaCliente = N.Conexion.PerformConnection().CreateCommand();
-                        insertaCliente.CommandText = @"INSERT INTO [BSNOMINAS].[dbo].[ClientesAsimilados]
+                        insertaCliente.CommandText = @"INSERT INTO [dbo].[ClientesAsimilados]
                    ([ID]
                    ,[CLIENTE]
                    ,[FECHA_ALTA _PRIMER PAGO]
@@ -936,7 +1175,6 @@ namespace winAsimilados.Controller
                 return;
             }
         }
-
         public string GetIDEmpresaCFDI()
         {
             try
@@ -945,7 +1183,7 @@ namespace winAsimilados.Controller
                 SqlCommand getID = N.Conexion.PerformConnection().CreateCommand();
                 getID.CommandText = @"SELECT TOP (1) [NumEmpresa]
                 ,[Descripcion]
-                FROM [BSNOMINAS].[dbo].[EmpresaCatalogoCFDI]
+                FROM [dbo].[EmpresaCatalogoCFDI]
                 ORDER BY NumEmpresa DESC";
 
                 SqlDataReader readerID;
@@ -971,7 +1209,7 @@ namespace winAsimilados.Controller
                 string ID = "";
                 SqlCommand getID = N.Conexion.PerformConnection().CreateCommand();
                 getID.CommandText = @"SELECT TOP (1) [IDEmpresa]
-                  FROM [BSNOMINAS].[dbo].[EmpresaPagaAsimilados]
+                  FROM [dbo].[EmpresaPagaAsimilados]
                   ORDER BY IDEmpresa desc";
 
                 SqlDataReader readerID;
@@ -997,7 +1235,7 @@ namespace winAsimilados.Controller
                 string ID = "";
                 SqlCommand getID = N.Conexion.PerformConnection().CreateCommand();
                 getID.CommandText = @"SELECT TOP (1) [ID]
-                  FROM [BSNOMINAS].[dbo].[ClientesAsimilados]
+                  FROM [dbo].[ClientesAsimilados]
                   ORDER BY ID DESC";
 
                 SqlDataReader readerID;
@@ -1244,6 +1482,7 @@ namespace winAsimilados.Controller
                             bitacora.Usuario = item.Usuario;
                             bitacora.Empresa = item.Empresa;
                             bitacora.Origen = "CancelarCFDI";
+                            bitacora.nominaEmpresaID = Properties.Settings.Default["EmpresaNominaID"].ToString();
                             //C:\DocAsimilados\00001000000413522787.cer
                             //C:\DocAsimilados\CSD_QUERETARO_PTP131002FA0_20190214_113034.key
                             uuid = (new string[] { item.UUID });
@@ -2439,6 +2678,7 @@ namespace winAsimilados.Controller
                     Folio.FecPago = item.fechaAplicacion;
                     Folio.Importe = nomiEmpl.IngresosBrutos;
                     Folio.total = item.IngresosNetos;
+                    Folio.nominaEmpresaID = Properties.Settings.Default["EmpresaNominaID"].ToString();
                     Bitacora.IPMovimiento = ip;
                     Bitacora.Empresa = empresa;
                     Bitacora.FecPago = item.fechaAplicacion;
@@ -2448,6 +2688,7 @@ namespace winAsimilados.Controller
                     Bitacora.FecMovimiento = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
                     Bitacora.Movimiento = "Timbrado";
                     Bitacora.Origen = "Nomina";
+                    Bitacora.nominaEmpresaID = Properties.Settings.Default["EmpresaNominaID"].ToString();
 
                     fecPago = Convert.ToDateTime(item.fechaAplicacion).ToString("dd-MM-yyyy");
                     pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
@@ -3194,6 +3435,7 @@ namespace winAsimilados.Controller
                     Folio.FecPago = FecPagoMasiv;
                     Folio.Importe = nomiEmpl.IngresosBrutos;
                     Folio.total = item.IngresosNetos;
+                    Folio.nominaEmpresaID = Properties.Settings.Default["EmpresaNominaID"].ToString();
                     Bitacora.IPMovimiento = ip;
                     Bitacora.Empresa = empresa;
                     Bitacora.FecPago = FecPagoMasiv;
@@ -3203,6 +3445,7 @@ namespace winAsimilados.Controller
                     Bitacora.FecMovimiento = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
                     Bitacora.Movimiento = "Timbrado";
                     Bitacora.Origen = "Timbrado Masivo";
+                    Bitacora.nominaEmpresaID = Properties.Settings.Default["EmpresaNominaID"].ToString();
 
                     fecPago = Convert.ToDateTime(FecPagoMasiv).ToString("dd-MM-yyyy");
                     pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
@@ -4020,7 +4263,8 @@ namespace winAsimilados.Controller
                 ,[FecMov]
                 ,[IPMov]
                 ,[Usuario]
-                ,[Origen])
+                ,[Origen]
+                ,[nominaEmpresaID])
                   VALUES
                 ('" + bitacora.Folio + "'" +
                 ",'" + bitacora.UUID + "'" +
@@ -4033,7 +4277,8 @@ namespace winAsimilados.Controller
                 ",'" + bitacora.FecMovimiento.ToString("dd/MM/yyyy") + "'" +
                 ",'" + bitacora.IPMovimiento + "'" +
                 ",'" + bitacora.Usuario.ToUpper() + "'" +
-                ",'" + bitacora.Origen + "')";
+                ",'" + bitacora.Origen + "'" +
+                ",'" + bitacora.nominaEmpresaID + "')";
 
                 if (queryInserta.ExecuteNonQuery().Equals(1))
                 {
@@ -4079,7 +4324,8 @@ namespace winAsimilados.Controller
                 ,[Empresa]
                 ,[RFC]
                 ,[SelloCFD]
-                ,[Total])
+                ,[Total]
+                ,[nominaEmpresaID])
                 VALUES
                 ('" + folio.Folio + "'" +
                 ",'" + folio.UUID + "'" +
@@ -4094,7 +4340,8 @@ namespace winAsimilados.Controller
                 ",'" + folio.Empresa + "'" +
                 ",'" + folio.RFC + "'" +
                 ",'" + folio.selloCFD + "'" +
-                "," + folio.total + ")";
+                "," + folio.total + "" +
+                ",'" + folio.nominaEmpresaID + "')";
 
                 if (queryInserta.ExecuteNonQuery().Equals(1))
                 {
@@ -4126,11 +4373,13 @@ namespace winAsimilados.Controller
             try
             {
                 string folio = null;
-
+                string NominaEmpresaID = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 SqlCommand QueryFolio = N.Conexion.PerformConnection().CreateCommand();
                 QueryFolio.CommandText = @"SELECT
                 ISNULL(RIGHT('00000' + CAST(Max([Folio]) + 1 AS varchar(5)) , 4),0) AS [Folio]
-                FROM [FolioXML]";
+                FROM [FolioXML]
+                WHERE [nominaEmpresaID] = @EmpresaID";
+                QueryFolio.Parameters.AddWithValue("@EmpresaID", NominaEmpresaID);
                 SqlDataReader readerFolio;
                 readerFolio = QueryFolio.ExecuteReader();
 
@@ -4194,7 +4443,7 @@ namespace winAsimilados.Controller
             {
                 string Recu = null;
                 SqlCommand queryRecurso = N.Conexion.PerformConnection().CreateCommand();
-                queryRecurso.CommandText = @"SELECT TOP (1) RE.Descripcion AS [Descripcion] FROM [PARAMETROS] as P INNER JOIN  BSNOMINAS.dbo.OrigenRecurso AS RE  ON RE.c_OrigenRecurso LIKE P.ORIGEN_RECURSOS  WHERE RFC = @RFC";
+                queryRecurso.CommandText = @"SELECT TOP (1) RE.Descripcion AS [Descripcion] FROM [PARAMETROS] as P INNER JOIN dbo.OrigenRecurso AS RE  ON RE.c_OrigenRecurso LIKE P.ORIGEN_RECURSOS  WHERE RFC = @RFC";
                 queryRecurso.Parameters.AddWithValue("@RFC", rfc);
 
                 SqlDataReader ReaderRecurso;
@@ -4259,11 +4508,12 @@ namespace winAsimilados.Controller
 					  ,TN.Descripcion AS [Descripción Nómina]
                       ,ISNULL([CUENTA_ORIGEN], 'No Definido') as [CUENTA_ORIGEN]
                       ,ISNULL([USUARIO_NTLINK], 'No Definido') as [USUARIO_NTLINK]
+                      ,NOMINA_EMPRESA_ID
                   FROM [PARAMETROS] as P
-				  INNER JOIN  BSNOMINAS.dbo.RegimenFiscal as RF on RF.c_RegimenFiscal = P.REGIMEN
-				  --INNER JOIN  BSNOMINAS.dbo.OrigenRecurso AS RE  ON RE.c_OrigenRecurso = P.ORIGEN_RECURSOS
-				  INNER JOIN  BSNOMINAS.dbo.RiesgoPuesto AS RP ON RP.c_RiesgoPuesto = P.RIESGO_PUESTO
-				  INNER JOIN BSNOMINAS.dbo.TipoNomina AS TN ON TN.c_TipoNomina = P.TIPO_NOMINA
+				  INNER JOIN  dbo.RegimenFiscal as RF on RF.c_RegimenFiscal = P.REGIMEN
+				  --INNER JOIN  dbo.OrigenRecurso AS RE  ON RE.c_OrigenRecurso = P.ORIGEN_RECURSOS
+				  INNER JOIN  dbo.RiesgoPuesto AS RP ON RP.c_RiesgoPuesto = P.RIESGO_PUESTO
+				  INNER JOIN dbo.TipoNomina AS TN ON TN.c_TipoNomina = P.TIPO_NOMINA
                   WHERE RFC = @RFC";
                 queryParametros.Parameters.AddWithValue("@RFC", RFC);
 
@@ -4306,6 +4556,7 @@ namespace winAsimilados.Controller
                     parametros.DescripcionNomina = readerParametros.GetString(31);
                     parametros.cuentaOrigen = readerParametros.GetString(32);
                     parametros.usuarioNtlink = readerParametros.GetString(33);
+                    parametros.NOMINA_EMPRESA_ID = readerParametros.GetString(34);
                 }
                 readerParametros.Close();
 
@@ -4356,7 +4607,7 @@ namespace winAsimilados.Controller
                 ,ISNULL([PORCENTAJE_FACTURA3], 0) AS [PORCENTAJE_FACTURA3]
                 ,ISNULL([PORCENTAJE_FACTURA4], 0) AS [PORCENTAJE_FACTURA4]
                 ,ISNULL([Correo], '') AS [Correo]
-                  FROM [BSNOMINAS].[dbo].[ClientesAsimilados]  
+                  FROM [dbo].[ClientesAsimilados]  
                   WHERE [ID] = @ID";
                 queryCliente.Parameters.AddWithValue("ID", IDCliente);
                 SqlDataReader readerCliente;
@@ -4419,7 +4670,7 @@ namespace winAsimilados.Controller
                   SELECT
                   [Cuenta]
                  ,[CLABE]
-                  FROM [BSNOMINAS].[dbo].[CatalogoBancosEmpresaPagaAsimilados]
+                  FROM [dbo].[CatalogoBancosEmpresaPagaAsimilados]
                   WHERE [IDEmpresa] =  @ID AND [Banco] = @nombreBanco";
                 queryInfoBanco.Parameters.AddWithValue("@ID", empresa);
                 queryInfoBanco.Parameters.AddWithValue("@nombreBanco", nombreBanco);
@@ -5095,8 +5346,8 @@ namespace winAsimilados.Controller
         {
             try
             {
-                E.Empleado empleado = new E.Empleado();
-
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
+                E.Empleado empleado = new E.Empleado();                
                 SqlCommand queryEmpleado = N.Conexion.PerformConnection().CreateCommand();
                 queryEmpleado.CommandText = @"select NUM_EMPLEADO, RFC, CURP, [PERIODICIDAD_PAGO]
                 , NOMBRE, TIPO_REGIMEN, TIPO_CONTRATO, SINDICALIZADO
@@ -5111,11 +5362,13 @@ namespace winAsimilados.Controller
                 ,ISNULL([PORCENTAJE_DESCUENTO], 0) as [PORCENTAJE_DESCUENTO]
                 ,ISNULL([MAIL],'') as [MAIL]
                 from EMPLEADOS 
-                inner join [BSNOMINAS].[dbo].[PeriodicidadPago] as Peri
+                inner join [dbo].[PeriodicidadPago] as Peri
                 on EMPLEADOS.PERIODICIDAD_PAGO = Peri.c_PeriodicidadPago
-                WHERE RFC = @RFC";
+                WHERE RFC = @RFC
+                AND [nominaEmpresaID] = @Empresa";
 
                 queryEmpleado.Parameters.AddWithValue("@RFC", RFC);
+                queryEmpleado.Parameters.AddWithValue("@Empresa", Empresa);
 
                 SqlDataReader readerEmpleado;
                 readerEmpleado = queryEmpleado.ExecuteReader();
@@ -5233,7 +5486,7 @@ namespace winAsimilados.Controller
                 SqlCommand queryClientes = N.Conexion.PerformConnection().CreateCommand();
                 queryClientes.CommandText = @"SELECT [ID]
                  ,[CLIENTE]
-                  FROM [BSNOMINAS].[dbo].[ClientesAsimilados]
+                  FROM [dbo].[ClientesAsimilados]
                   WHERE [EMPRESA_PAGADORA_EMITE_CFDI] = @Empresa";
                 queryClientes.Parameters.AddWithValue("@Empresa", empresa);
 
@@ -5320,7 +5573,7 @@ namespace winAsimilados.Controller
                 ,[Banco]
                 ,ISNULL([Cuenta], 'No Definido') As [Cuenta]
                 ,ISNULL([CLABE], 'No Definido') AS [CLABE]
-             FROM [BSNOMINAS].[dbo].[CatalogoBancosEmpresaPagaAsimilados]
+             FROM [dbo].[CatalogoBancosEmpresaPagaAsimilados]
                 WHERE IDEmpresa = @ID";
                 queryBancos.Parameters.AddWithValue("ID", empresa);
 
@@ -5352,7 +5605,7 @@ namespace winAsimilados.Controller
                 getLista.CommandText = @"SELECT
                 [ClaveServProd]
                 --,[Concepto]
-                 FROM [BSNOMINAS].[dbo].[ClavesServCliente]
+                 FROM [dbo].[ClavesServCliente]
                  WHERE [IDClte] = @cliente";
                 getLista.Parameters.AddWithValue("@cliente", cliente);
 
@@ -5383,7 +5636,7 @@ namespace winAsimilados.Controller
                 SqlCommand getClave = N.Conexion.PerformConnection().CreateCommand();
                 getClave.CommandText = @"SELECT [c_ClaveProdServ]
                   ,[Descripcion]
-                  FROM [BSNOMINAS].[dbo].[ClaveProdServ]
+                  FROM [dbo].[ClaveProdServ]
                   WHERE [c_ClaveProdServ] = @clave";
                 getClave.Parameters.AddWithValue("@clave", clave);
 
@@ -5509,7 +5762,7 @@ namespace winAsimilados.Controller
                     N.Conexion.PerformConnection().Close();
                     N.Conexion.PerformConnection().Open();
                     SqlCommand queryListaEmpr = N.Conexion.PerformConnection().CreateCommand();
-                    queryListaEmpr.CommandText = @"UPDATE [BSNOMINAS].[dbo].[Listado_Empresas]
+                    queryListaEmpr.CommandText = @"UPDATE [dbo].[Listado_Empresas]
                     SET Nombre_Empresa = '" + parametros.NombreEmpresa +
                     "', RFC_Empresa = '" + parametros.RFC + "'" +
                     "WHERE RFC_Empresa = '" + parametros.RFC + "'";
@@ -5556,6 +5809,7 @@ namespace winAsimilados.Controller
                 }
                 readerNumEmpresa.Close();
                 newNameDB = nameDB + nextNum.ToString();
+                parametros.NOMINA_EMPRESA_ID = newNameDB;
                 //XtraMessageBox.Show(newNameDB);
 
                 SqlCommand queryInsertEmpr = N.Conexion.PerformConnection().CreateCommand();
@@ -5567,17 +5821,18 @@ namespace winAsimilados.Controller
                 ,[TablaEmpresa])
                 VALUES
                 (" + nextNum + ", '" + empresa.empresa + "', '" + empresa.RFC + "', 1, '" + newNameDB + "')";
-
-                SqlCommand queryCreaBD = N.Conexion.PerformConnection().CreateCommand();
-                queryCreaBD.CommandText = @"CREATE DATABASE " + newNameDB;
+                #region creaBD
+                //SqlCommand queryCreaBD = N.Conexion.PerformConnection().CreateCommand();
+                //queryCreaBD.CommandText = @"CREATE DATABASE " + newNameDB;
+                #endregion
 
                 #region creaTablas 
-                SqlCommand queryCreaTablas2 = N.Conexion.PerformConnection().CreateCommand();
-                queryCreaTablas2.CommandText = CreaTablas2();
+                //SqlCommand queryCreaTablas2 = N.Conexion.PerformConnection().CreateCommand();
+                //queryCreaTablas2.CommandText = CreaTablas2();
                 //SqlCommand queryCreaTablas = N.Conexion.PerformConnection().CreateCommand();
                 #endregion
                 SqlCommand queryLocalidad = N.Conexion.PerformConnection().CreateCommand();
-                queryLocalidad.CommandText = @"Select clave from [BSNOMINAS].[dbo].[Municipios] where nombre = @municipio";
+                queryLocalidad.CommandText = @"Select clave from [dbo].[Municipios] where nombre = @municipio";
                 queryLocalidad.Parameters.AddWithValue("@municipio", parametros.MUNICIPIO);
 
                 SqlDataReader readerLocalidad;
@@ -5589,7 +5844,7 @@ namespace winAsimilados.Controller
                 readerLocalidad.Close();
 
                 SqlCommand queryPais = N.Conexion.PerformConnection().CreateCommand();
-                queryPais.CommandText = @"select [c_Pais] from [BSNOMINAS].[dbo].[Estados_Republica] where [Nombre del estado] = @estado";
+                queryPais.CommandText = @"select [c_Pais] from [dbo].[Estados_Republica] where [Nombre del estado] = @estado";
                 queryPais.Parameters.AddWithValue("estado", parametros.ESTADO);
 
                 SqlDataReader readerPais;
@@ -5628,7 +5883,8 @@ namespace winAsimilados.Controller
                                                ,[COLONIA]
                                                ,[RUTA_ALMACEN_PDF]
                                                 ,[CUENTA_ORIGEN]
-                                                ,[USUARIO_NTLINK])
+                                                ,[USUARIO_NTLINK]
+                                                ,[NOMINA_EMPRESA_ID])
                                          VALUES
                                                ('" + parametros.NombreEmpresa + "'," +
                                                "'" + parametros.RFC + "'," +
@@ -5655,31 +5911,37 @@ namespace winAsimilados.Controller
                                                "'" + parametros.COLONIA + "'," +
                                                "'" + parametros.RUTA_ALMACEN_PDF + "'," +
                                                "'" + parametros.cuentaOrigen + "'," +
-                                               "'" + parametros.usuarioNtlink + "')";
+                                               "'" + parametros.usuarioNtlink + "'," +
+                                               "'" + parametros.NOMINA_EMPRESA_ID + "')";
 
                 if (queryInsertEmpr.ExecuteNonQuery().Equals(1))
                 {
-                    if (!queryCreaBD.ExecuteNonQuery().Equals(1))
+                    #region if creacion bd y tablas
+                    //if (!queryCreaBD.ExecuteNonQuery().Equals(1))
+                    //{
+                    //    N.Conexion.PerformConnection().ChangeDatabase(newNameDB);
+                    //    if (!queryCreaTablas2.ExecuteNonQuery().Equals(0))
+                    //    {
+                    //        //XtraMessageBox.Show("¡Empresa Agregada con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //        //splashScreenManager.CloseWaitForm();
+                    //        //XtraMessageBox.Show(queryParametros.CommandText.ToString());
+                    //        if (queryParametros.ExecuteNonQuery().Equals(1))
+                    //        {
+                    //            splashScreenManager.CloseWaitForm();
+                    //            XtraMessageBox.Show("¡Empresa Agregada con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //        }
+                    //    }
+                    //}
+                    #endregion
+                    if (queryParametros.ExecuteNonQuery().Equals(1))
                     {
-                        N.Conexion.PerformConnection().ChangeDatabase(newNameDB);
-                        if (!queryCreaTablas2.ExecuteNonQuery().Equals(0))
-                        {
-                            //XtraMessageBox.Show("¡Empresa Agregada con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //splashScreenManager.CloseWaitForm();
-                            //XtraMessageBox.Show(queryParametros.CommandText.ToString());
-                            if (queryParametros.ExecuteNonQuery().Equals(1))
-                            {
-                                splashScreenManager.CloseWaitForm();
-                                XtraMessageBox.Show("¡Empresa Agregada con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        }
-
+                        splashScreenManager.CloseWaitForm();
+                        XtraMessageBox.Show("¡Empresa Agregada con Éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-
-
-                N.Conexion.PerformConnection().ChangeDatabase(BD);
+                //N.Conexion.PerformConnection().ChangeDatabase(BD);
                 //splashScreenManager.CloseWaitForm();
+                N.Conexion.PerformConnection().Close();
             }
             catch (Exception e)
             {
@@ -5687,6 +5949,7 @@ namespace winAsimilados.Controller
                 {
                     splashScreenManager.CloseWaitForm();
                 }
+                N.Conexion.PerformConnection().Close();
                 XtraMessageBox.Show(e.Message + "\nError Controlador:CrearBDEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
@@ -5696,7 +5959,8 @@ namespace winAsimilados.Controller
             try
             {
                 N.Conexion.PerformConnection().Open();
-                N.Conexion.PerformConnection().ChangeDatabase(Empresa);
+                //N.Conexion.PerformConnection().ChangeDatabase(Empresa);
+                N.Conexion.PerformConnection().Close();
                 return true;
             } catch (Exception e)
             {
@@ -5797,7 +6061,7 @@ namespace winAsimilados.Controller
                 ,[usuarioStatus]
                 ,[usuarioTipo]
                 ,isnull([usuarioFecMod], '1900-01-01') as [usuarioFecMod]
-                FROM [BSNOMINAS].[dbo].[UsuariosSistema]
+                FROM [dbo].[UsuariosSistema]
                 WHERE [ID] = @ID";
                 queryBuscaUsuario.Parameters.AddWithValue("@ID", ID);
 
@@ -5928,7 +6192,8 @@ namespace winAsimilados.Controller
                 ,[ID_EMPRESA]
                 ,[PORCENTAJE_DESCUENTO]
                 ,[TIPO_PAGO]
-                ,[MAIL])
+                ,[MAIL]
+                ,[nominaEmpresaID])
                 VALUES
                 ('" + empleado.NumEmpl + "','" + empleado.Nombre + "','" + empleado.RFC + "','" + empleado.CURP + "','" + "09'," + "'ASIMILADO'," + "'01/01/1900'," + "'ASIMILADO',"
                 + "'99'," + "'00','" + empleado.Periodicidad + "'," + "'No'" +
@@ -5940,7 +6205,8 @@ namespace winAsimilados.Controller
                 ",'" + empleado.idEmpresa + "'" +
                 "," + empleado.descuento + "" +
                 ",'" + empleado.tipoPago + "'" +
-                ",'" + empleado.Correo + "')";
+                ",'" + empleado.Correo + "'" +
+                ",'" + empleado.nominaEmpresaID + "')";
 
                 if (ReaderEmpl.Read())
                 {
@@ -6388,7 +6654,8 @@ namespace winAsimilados.Controller
       ,[PorcentajeISN]
       ,[PorcentajeComision]
       ,[PorcentajeRetencion]
-      ,[descuentos])
+      ,[descuentos]
+,[nominaEmpresaID])
          VALUES
                ('" + caratula.caratula + "'" +
                ",'" + caratula.Layout + "'" +
@@ -6429,7 +6696,8 @@ namespace winAsimilados.Controller
                "," + caratula.PorcentajeISN + "" +
                "," + caratula.PorcentajeComision + "" +
                "," + caratula.PorcentajeRetencion + "" +
-               "," + caratula.descuentos + ")";
+               "," + caratula.descuentos + "" +
+               ",'"+ caratula.nominaEmpresaID + "')";
 
                 queryInsertaCaratula.ExecuteNonQuery();
             }
@@ -6446,12 +6714,14 @@ namespace winAsimilados.Controller
         {
             try
             {
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 SqlCommand actualizaStatus = N.Conexion.PerformConnection().CreateCommand();
                 actualizaStatus.CommandText = @"Update caratulapago
                 set Estatus = 'Generado'
                 , FechaReAperturaCaratula = GETDATE()
                 , UsuarioReApertura = '" + usuario + "' " +
-                "where Caratula = '" + caratula + "'";
+                "where Caratula = '" + caratula + "'" +
+                " AND nominaEmpresaID = '" + Empresa + "'";
 
                 if (actualizaStatus.ExecuteNonQuery().Equals(1))
                 {
@@ -6472,12 +6742,14 @@ namespace winAsimilados.Controller
         {
             try
             {
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 SqlCommand actualizaStatus = N.Conexion.PerformConnection().CreateCommand();
                 actualizaStatus.CommandText = @"Update caratulapago
                 set Estatus = 'Pagado'
                 , FechaValidaPago = GETDATE()
                 , UsuarioPago = '" + usuario + "' " +
-                "where Caratula = '" + caratula + "'";
+                "where Caratula = '" + caratula + "'" +
+                "AND nominaEmpresaID = '" + Empresa + "'";
 
                 if (actualizaStatus.ExecuteNonQuery().Equals(1))
                 {
@@ -6498,10 +6770,12 @@ namespace winAsimilados.Controller
         {
             try
             {
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 SqlCommand updateLayout = N.Conexion.PerformConnection().CreateCommand();
                 updateLayout.CommandText = @"UPDATE [dbo].[LayoutHistorico]
                         SET [estatus] = '" + status + "'" +
-                        "where [Caratula] = '" + caratula + "'";
+                        "where [Caratula] = '" + caratula + "'" +
+                        "AND  [nominaEmpresaID] = '" + Empresa + "'";
 
                 updateLayout.ExecuteNonQuery();
             }
@@ -6515,6 +6789,7 @@ namespace winAsimilados.Controller
         {
             try
             {
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 SqlCommand updateCaratula = N.Conexion.PerformConnection().CreateCommand();
                 updateCaratula.CommandText = @"UPDATE [dbo].[CaratulaPago]
                SET 
@@ -6550,7 +6825,8 @@ namespace winAsimilados.Controller
                   ",[Observaciones] = '" + caratula.Observaciones + "'" +
                   ",[FechaModificacion] = " + "GETDATE()" + "" +
                   ",[UsuarioModificacion] = '" + caratula.UsuarioModificacion + "'" +
-                  "WHERE ID = '" + caratula.ID + "'";
+                  "WHERE ID = '" + caratula.ID + "'" +
+                  "AND nominaEmpresaID = '" + Empresa + "'";
 
                 if (updateCaratula.ExecuteNonQuery().Equals(1))
                 {
@@ -6651,7 +6927,8 @@ namespace winAsimilados.Controller
                        ,[cuentaBancaria]
                        ,[CLABE]
                        ,[bancoEmpresaPago]
-                        ,[descuentos])
+                        ,[descuentos]
+                        ,[nominaEmpresaID])
                  VALUES
                        ('" + item.numEmpl + "'" +
                        ",'" + item.nombreEmpleado + "'" +
@@ -6694,7 +6971,8 @@ namespace winAsimilados.Controller
                       ",'" + item.cuentaBancaria + "'" +
                       ",'" + item.CLABE + "'" +
                       ",'" + item.bancoEmpresaPago + "'" +
-                      "," + item.descuentos + ")";
+                      "," + item.descuentos + "" +
+                      ",'" + item.nominaEmpresaID + "')";
                         queryInsertaLayout.ExecuteNonQuery();
 
                     } catch (Exception lista)
@@ -6738,7 +7016,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand updateLayout = N.Conexion.PerformConnection().CreateCommand();
-
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 foreach (var item in layout)
                 {
                     try
@@ -6769,7 +7047,8 @@ namespace winAsimilados.Controller
                             ",[cuentaBancaria] = '" + item.cuentaBancaria + "'" +
                             ",[CLABE] = '" + item.CLABE + "'" +
                             ",[descuentos] = " + item.descuentos + "" +
-                            "WHERE [ID] = '" + item.ID + "'";
+                            "WHERE [ID] = '" + item.ID + "'" +
+                            "AND [nominaEmpresaID] = '" + Empresa + "'";
 
                         updateLayout.ExecuteNonQuery();
 
@@ -6806,7 +7085,8 @@ namespace winAsimilados.Controller
                ,[IVA]
                ,[RetencionIVA]
                ,[Total]
-               ,[Detalles])
+               ,[Detalles]
+,[nominaEmpresaID])
                 VALUES
                ('" + detalleLayout.Layout + "'" +
                ",'" + detalleLayout.Caratula + "'" +
@@ -6817,7 +7097,8 @@ namespace winAsimilados.Controller
                "," + detalleLayout.IVA + "" +
                "," + detalleLayout.RetencionIVA + "" +
                "," + detalleLayout.Total + "" +
-               ",'" + detalleLayout.Detalles + "')";
+               ",'" + detalleLayout.Detalles + "'" +
+               ",'" + detalleLayout.nominaEmpresaID + "')";
 
                 insertaDetalle.ExecuteNonQuery();
 
@@ -6834,6 +7115,7 @@ namespace winAsimilados.Controller
         {
             try
             {
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 SqlCommand updateDetalle = N.Conexion.PerformConnection().CreateCommand();
                 updateDetalle.CommandText = @"UPDATE [dbo].[ResumenLayout]
                 SET 
@@ -6845,7 +7127,8 @@ namespace winAsimilados.Controller
                     ",[RetencionIVA] = " + detalle.RetencionIVA + "" +
                     ",[Total] = " + detalle.Total + "" +
                     ",[Detalles] = '" + detalle.Detalles + "'" +
-                    "WHERE [ID] = '" + detalle.ID + "'";
+                    "WHERE [ID] = '" + detalle.ID + "'" +
+                    "AND [nominaEmpresaID] = '" + Empresa + "'";
 
                 if (updateDetalle.ExecuteNonQuery().Equals(1))
                 {
@@ -6870,6 +7153,7 @@ namespace winAsimilados.Controller
         {
             try
             {
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 SqlCommand getLista = N.Conexion.PerformConnection().CreateCommand();
                 getLista.CommandText = @"SELECT [ID]
                   ,[numEmpl]
@@ -6916,8 +7200,10 @@ namespace winAsimilados.Controller
                   ,[CLABE]
                   ,[descripcionError]
                 FROM[LayoutHistorico]
-                WHERE[Caratula] = @caratula";
+                WHERE[Caratula] = @caratula
+                AND [nominaEmpresaID] = @Empresa";
                 getLista.Parameters.AddWithValue("@caratula", caratula);
+                getLista.Parameters.AddWithValue("@Empresa", Empresa);
 
                 SqlDataReader readerLista = getLista.ExecuteReader();
                 while (readerLista.Read())
@@ -6987,6 +7273,7 @@ namespace winAsimilados.Controller
         {
             try
             {
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 E.Caratula caratula = new E.Caratula();
                 SqlCommand getDatos = N.Conexion.PerformConnection().CreateCommand();
                 getDatos.CommandText = @"SELECT TOP (1000) [ID]
@@ -7034,9 +7321,11 @@ namespace winAsimilados.Controller
                   ,ISNULL([FechaReAperturaCaratula], '') AS [FechaReAperturaCaratula]
                   ,ISNULL([UsuarioReApertura], '') AS [UsuarioReApertura]
               FROM [CaratulaPago]
-              WHERE [Caratula] = @caratula";
+              WHERE [Caratula] = @caratula
+              AND [nominaEmpresaID] = @Empresa";
 
                 getDatos.Parameters.AddWithValue("@caratula", nombreCaratula);
+                getDatos.Parameters.AddWithValue("@Empresa", Empresa);
                 SqlDataReader readerData = getDatos.ExecuteReader();
 
                 if (readerData.Read())
@@ -7100,6 +7389,7 @@ namespace winAsimilados.Controller
         {
             try
             {
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 E.DetalleLayout detalle = new E.DetalleLayout();
                 SqlCommand getDetalle = N.Conexion.PerformConnection().CreateCommand();
                 getDetalle.CommandText = @"SELECT  [ID]
@@ -7114,7 +7404,9 @@ namespace winAsimilados.Controller
                 ,[Total]
                 ,[Detalles]
             FROM [ResumenLayout] 
-            WHERE [Layout] = '" + nombreLayout + "'";
+            WHERE [Layout] = '" + nombreLayout + "'" +
+            " AND [nominaEmpresaID] = @Empresa";
+                getDetalle.Parameters.AddWithValue("@Empresa", Empresa);
 
                 SqlDataReader readerDetalle;
                 readerDetalle = getDetalle.ExecuteReader();
@@ -7146,6 +7438,7 @@ namespace winAsimilados.Controller
         {
             try
             {
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 SqlCommand actualizaStatus = N.Conexion.PerformConnection().CreateCommand();
                 foreach (var item in lista)
                 {
@@ -7153,7 +7446,8 @@ namespace winAsimilados.Controller
                     LayoutHistorico
                     SET [estatus] = 'Generado'
                     WHERE [Caratula] = '" + item.caratula + "'" +
-                    "AND [ID] =" + item.ID + "";
+                    "AND [ID] =" + item.ID + "" +
+                    "AND [nominaEmpresaID] = '" + Empresa + "'";
 
                     actualizaStatus.ExecuteNonQuery();
                 }
@@ -7200,6 +7494,7 @@ namespace winAsimilados.Controller
                     //    builder.AppendLine();
                     //}
                     cont++;
+                    splashManager.SetWaitFormCaption("Agregando Empleado " + cont + "/" + list.Count + "..");
                     if (empl.NumEmpl != "" && empl.Nombre != "" && empl.CURP != "" && empl.RFC != "" && empl.Periodicidad != "" && empl.cuenta != "" && empl.clabe_bancaria != "" && empl.banco != "" && empl.cve_banco != "" && empl.empresa != "" && empl.idEmpresa != "")
                     {
                         SqlCommand queryNumEmpl = N.Conexion.PerformConnection().CreateCommand();
@@ -7221,9 +7516,10 @@ namespace winAsimilados.Controller
                         }
                         readerNumEmpl.Close();
                         //XtraMessageBox.Show(numEmplAnt + "\n" + numEmplNue);
-
+                        string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                         SqlCommand queryBuscaEmpl = N.Conexion.PerformConnection().CreateCommand();
-                        queryBuscaEmpl.CommandText = @"select * from Empleados where RFC = @rfc";
+                        queryBuscaEmpl.CommandText = @"select * from Empleados where RFC = @rfc
+                        AND [nominaEmpresaID] = '" + Empresa + "'";
                         SqlDataReader ReaderEmpl;
                         queryBuscaEmpl.Parameters.AddWithValue("@rfc", empl.RFC);
                         ReaderEmpl = queryBuscaEmpl.ExecuteReader();
@@ -7249,7 +7545,8 @@ namespace winAsimilados.Controller
                     ,[EMPRESA]
                     ,[ID_EMPRESA]
                     ,[PORCENTAJE_DESCUENTO],
-[TIPO_PAGO])
+                    [TIPO_PAGO]
+                    ,[nominaEmpresaID])
                     VALUES
                     ('" + empl.NumEmpl + "','" + empl.Nombre + "','" + empl.RFC + "','" + empl.CURP + "','" + "09'," + "'ASIMILADO'," + "'01/01/1900'," + "'ASIMILADO',"
                         + "'99'," + "'00','" + empl.Periodicidad + "'," + "'No'" +
@@ -7260,7 +7557,9 @@ namespace winAsimilados.Controller
                         ",'" + empl.empresa + "'" +
                         ",'" + empl.idEmpresa + "'" +
                         "," + empl.descuento + "" +
-                        ",'" + empl.tipoPago + "')";
+                        ",'" + empl.tipoPago + "'" +
+                        ",'" + empl.nominaEmpresaID + "')";
+
 
                         if (!empl.RFC.Length.Equals(13))
                         {
@@ -7454,41 +7753,39 @@ namespace winAsimilados.Controller
                                 //XtraMessageBox.Show("¡Empleado agregado satisfactoriamente!", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
-
                         if (cont == list.Count())
                         {
-                            if (contErroresExis > 0 || contErrRFC > 0 || contErrCURP > 0 || contErrCuenta > 0 || contErrCLABE > 0 || contErrCVE > 0 || contErrBanco > 0)
-                            {
-                                //Aqui se genera el log
-                                TotalErrores = contErroresExis + contErrRFC + contErrCURP + contErrCuenta + contErrCLABE + contErrCVE + contErrBanco;
-                                builder.AppendLine();
-                                builder.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
-                                if (splashManager.IsSplashFormVisible.Equals(true))
-                                {
-                                    splashManager.CloseWaitForm();
-                                }
-
-                                XtraMessageBox.Show("Proceso terminado con " + TotalErrores + " errores y " + contExito + " con éxito.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                writer = new StreamWriter(path, true);
-                                writer.Write(builder);
-                                writer.Close();
-                                Process proceso = new Process();
-                                proceso.StartInfo.FileName = path;
-                                proceso.Start();
-                            }
-                            if (contErroresExis == 0 && contErrRFC == 0 && contErrCURP == 0 && contErrCuenta == 0 && contErrCLABE == 0 && contErrCVE == 0 && contErrBanco == 0 && contExito > 0)
-                            {
-                                if (splashManager.IsSplashFormVisible.Equals(true))
-                                {
-                                    splashManager.CloseWaitForm();
-                                }
-
-                                XtraMessageBox.Show("¡Carga masiva terminada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
                         }
                     }
                 } // fin foreach
+                if (contErroresExis > 0 || contErrRFC > 0 || contErrCURP > 0 || contErrCuenta > 0 || contErrCLABE > 0 || contErrCVE > 0 || contErrBanco > 0)
+                {
+                    //Aqui se genera el log
+                    TotalErrores = contErroresExis + contErrRFC + contErrCURP + contErrCuenta + contErrCLABE + contErrCVE + contErrBanco;
+                    builder.AppendLine();
+                    builder.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
+                    if (splashManager.IsSplashFormVisible.Equals(true))
+                    {
+                        splashManager.CloseWaitForm();
+                    }
 
+                    XtraMessageBox.Show("Proceso terminado con " + TotalErrores + " errores y " + contExito + " con éxito.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    writer = new StreamWriter(path, true);
+                    writer.Write(builder);
+                    writer.Close();
+                    Process proceso = new Process();
+                    proceso.StartInfo.FileName = path;
+                    proceso.Start();
+                }
+                if (contErroresExis == 0 && contErrRFC == 0 && contErrCURP == 0 && contErrCuenta == 0 && contErrCLABE == 0 && contErrCVE == 0 && contErrBanco == 0 && contExito > 0)
+                {
+                    if (splashManager.IsSplashFormVisible.Equals(true))
+                    {
+                        splashManager.CloseWaitForm();
+                    }
+
+                    XtraMessageBox.Show("¡Carga masiva terminada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception e)
             {
@@ -7505,8 +7802,11 @@ namespace winAsimilados.Controller
             try
             {
                 string resultado = "";
+                string EmprNomiIDOri = "", EmprNomiIDDest = "";
+                EmprNomiIDOri = "Nomina_Empresa" + idemprOrigen;
+                EmprNomiIDDest = "Nomina_Empresa" + idemprDestino;
                 SqlCommand insertaBitacora = N.Conexion.PerformConnection().CreateCommand();
-                insertaBitacora.CommandText = @"INSERT INTO [BSNOMINAS].[dbo].[BitacoraImportacionEmpleados]
+                insertaBitacora.CommandText = @"INSERT INTO [dbo].[BitacoraImportacionEmpleados]
                     ([NumEmpleado]
                     ,[NomEmpleado]
                     ,[RFC]
@@ -7520,9 +7820,9 @@ namespace winAsimilados.Controller
                     ('" + empleado.NumEmpl + "'" +
                 ",'" + empleado.Nombre + "'" +
                 ",'" + empleado.RFC + "'" +
-                ",'" + idemprOrigen + "'" +
+                ",'" + EmprNomiIDOri + "'" +
                 ",'" + emprOrigen + "'" +
-                ",'" + idemprDestino + "'" +
+                ",'" + EmprNomiIDDest + "'" +
                 ",'" + emprDestino + "'" +
                 ", GETDATE()" +
                 ",'" + usuario + "')";
@@ -7566,7 +7866,8 @@ namespace winAsimilados.Controller
                 ,[ID_EMPRESA]
                 ,[PORCENTAJE_DESCUENTO]
                 ,[TIPO_PAGO]
-                ,[MAIL])
+                ,[MAIL]
+                ,[nominaEmpresaID])
                 VALUES
                 ('" + empleado.NumEmpl + "','" + empleado.Nombre + "','" + empleado.RFC + "','" + empleado.CURP + "','" + "09'," + "'ASIMILADO'," + "'01/01/1900'," + "'ASIMILADO',"
                 + "'99'," + "'00','" + empleado.Periodicidad + "'," + "'No'" +
@@ -7578,7 +7879,8 @@ namespace winAsimilados.Controller
                 ",'" + empleado.idEmpresa + "'" +
                 "," + empleado.descuento + "" +
                 ",'" + empleado.tipoPago + "'" +
-                ",'" + empleado.Correo + "')";
+                ",'" + empleado.Correo + "'" +
+                ",'" + empleado.nominaEmpresaID + "')";
 
                 if (queryInsertaEmpl.ExecuteNonQuery().Equals(1))
                 {
@@ -7593,7 +7895,7 @@ namespace winAsimilados.Controller
             }
         }
 
-        public void ImportaEmpleado(string emprOrigen, string emprDestino, List<E.Empleado> listaEmpl, string usuario, SplashScreenManager splash)
+        public void ImportaEmpleado(string emprOrigen, string emprDestino, List<E.Empleado> listaEmpl, string usuario, SplashScreenManager splash, string EmpresaNominaID)
         {
             try
             {
@@ -7617,14 +7919,15 @@ namespace winAsimilados.Controller
                 builder.AppendLine();
 
                 int idEmprOri = 0, idEmprDest = 0, contError = 0, contExito = 0, contador = 0;
+                string EmprNomiIDOri = "", EmprNomiIDDest = "";
                 SqlCommand EmprOrigen = N.Conexion.PerformConnection().CreateCommand();
                 SqlCommand EmprDestino = N.Conexion.PerformConnection().CreateCommand();
                 EmprOrigen.CommandText = @"SELECT [Numero_Empresa]
-                 FROM [BSNOMINAS].[dbo].[Listado_Empresas]
+                 FROM [dbo].[Listado_Empresas]
                  WHERE [Nombre_Empresa] = @empresa";
                 EmprOrigen.Parameters.AddWithValue("@empresa", emprOrigen);
                 EmprDestino.CommandText = @"SELECT [Numero_Empresa]
-                 FROM [BSNOMINAS].[dbo].[Listado_Empresas]
+                 FROM [dbo].[Listado_Empresas]
                  WHERE [Nombre_Empresa] = @empresa";
                 EmprDestino.Parameters.AddWithValue("@empresa", emprDestino);
 
@@ -7634,6 +7937,7 @@ namespace winAsimilados.Controller
                 if (readerOrigen.Read())
                 {
                     idEmprOri = readerOrigen.GetInt32(0);
+                    EmprNomiIDOri = "Nomina_Empresa" + idEmprOri.ToString();
                     readerOrigen.Close();
                 }
 
@@ -7643,6 +7947,7 @@ namespace winAsimilados.Controller
                 if (readerDestino.Read())
                 {
                     idEmprDest = readerDestino.GetInt32(0);
+                    EmprNomiIDDest = "Nomina_Empresa" + idEmprDest.ToString();
                     readerDestino.Close();
                 }
 
@@ -7655,15 +7960,15 @@ namespace winAsimilados.Controller
                     ,[RFC]
                     ,[IDEmprOrigen]
                     ,[IDEmprDestino]
-                    FROM [BSNOMINAS].[dbo].[BitacoraImportacionEmpleados]
+                    FROM [dbo].[BitacoraImportacionEmpleados]
                     WHERE[NumEmpleado] = @empleado
                     AND [RFC] = @RFC
                     AND [IDEmprOrigen] = @idOrigen
                     AND [IDEmprDestino] = @idDestino";
                     validaBitacora.Parameters.AddWithValue("@empleado", empl.NumEmpl);
                     validaBitacora.Parameters.AddWithValue("@RFC", empl.RFC);
-                    validaBitacora.Parameters.AddWithValue("idOrigen", idEmprOri);
-                    validaBitacora.Parameters.AddWithValue("idDestino", idEmprDest);
+                    validaBitacora.Parameters.AddWithValue("idOrigen", EmprNomiIDOri);
+                    validaBitacora.Parameters.AddWithValue("idDestino", EmprNomiIDDest);
 
                     SqlDataReader readerBitacora = validaBitacora.ExecuteReader();
 
@@ -7693,6 +7998,7 @@ namespace winAsimilados.Controller
                         empleado.descuento = empl.descuento;
                         empleado.tipoPago = empl.tipoPago;
                         empleado.Correo = empl.Correo;
+                        empleado.nominaEmpresaID = EmpresaNominaID;
 
                         string reslutInsertButacora = InsertaBitacoraImportacionEmpledados(emprOrigen, emprDestino, idEmprOri, idEmprDest, empleado, usuario);
                         if (reslutInsertButacora != "true")
@@ -7791,9 +8097,11 @@ namespace winAsimilados.Controller
                       ,ISNULL([EMPRESA], '') AS [EMPRESA]
                       ,ISNULL([PORCENTAJE_DESCUENTO], 0) AS [PORCENTAJE_DESCUENTO]
                       ,ISNULL([TIPO_PAGO], '') AS [TIPO_PAGO]
-                  FROM [" + BD + "].[dbo].[EMPLEADOS]" +
-                  " WHERE ID_EMPRESA = @ID";
+                  FROM [dbo].[EMPLEADOS]" +
+                  " WHERE ID_EMPRESA = @ID " +
+                  "AND nominaEmpresaID = @EmpresaID";
                 queryLista.Parameters.AddWithValue("@ID", IDClte);
+                queryLista.Parameters.AddWithValue("@EmpresaID", BD);
 
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryLista;
@@ -7982,7 +8290,7 @@ namespace winAsimilados.Controller
                   ,[Descripcion]
                   ,[Nombre o razón social]
                   ,[id]
-              FROM [BSNOMINAS].[dbo].[Bancos]";
+              FROM [dbo].[Bancos]";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryLista;
                 DataSet dataSet = new DataSet();
@@ -8006,7 +8314,7 @@ namespace winAsimilados.Controller
                   ,[Banco]
                   ,[Cuenta]
                   ,[CLABE]
-              FROM [BSNOMINAS].[dbo].[CatalogoBancosEmpresaPagaAsimilados]
+              FROM [dbo].[CatalogoBancosEmpresaPagaAsimilados]
               WHERE [IDEmpresa] = @ID";
                 queryLista.Parameters.AddWithValue("@ID", ID);
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
@@ -8030,7 +8338,7 @@ namespace winAsimilados.Controller
                   ,[Cliente]
                   ,[ClaveServProd]
                   ,[Concepto]
-              FROM [BSNOMINAS].[dbo].[ClavesServCliente]
+              FROM [dbo].[ClavesServCliente]
               WHERE [IDClte] = @ID";
                 queryLista.Parameters.AddWithValue("@ID", ID);
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
@@ -8048,6 +8356,7 @@ namespace winAsimilados.Controller
         {
             try
             {
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 if (seleccion.Equals("E00000"))
                 {
                     SqlCommand queryListaEmpleados = N.Conexion.PerformConnection().CreateCommand();
@@ -8070,7 +8379,9 @@ namespace winAsimilados.Controller
                 ,0.00 as [Bruto]
                 ,'Pago a Asimilados' as [Descripcion]
                 ,0.00 as [Otro Concepto]
-                from EMPLEADOS";
+                from EMPLEADOS
+WHERE [nominaEmpresaID] = @Empresa";
+                    queryListaEmpleados.Parameters.AddWithValue("@Empresa", Empresa);
 
                     SqlDataAdapter dataAdapter = new SqlDataAdapter();
                     dataAdapter.SelectCommand = queryListaEmpleados;
@@ -8079,8 +8390,7 @@ namespace winAsimilados.Controller
                     grid.DataSource = dataSet.Tables[0];
                 }
                 else
-                {
-
+                {                    
                     SqlCommand queryListaEmpleados2 = N.Conexion.PerformConnection().CreateCommand();
                     queryListaEmpleados2.CommandText = @"SELECT
                     [idempleado]
@@ -8101,8 +8411,10 @@ namespace winAsimilados.Controller
                     ,0.00 as [Bruto]
                     ,'Pago a Asimilados' as [Descripcion]
                     ,0.00 as [Otro Concepto]
-                    from EMPLEADOS WHERE ID_EMPRESA = @IDE";
+                    from EMPLEADOS WHERE ID_EMPRESA = @IDE
+AND [nominaEmpresaID] = @Empresa";
                     queryListaEmpleados2.Parameters.AddWithValue("@IDE", seleccion);
+                    queryListaEmpleados2.Parameters.AddWithValue("@Empresa", Empresa);
                     SqlDataAdapter dataAdapter2 = new SqlDataAdapter();
                     dataAdapter2.SelectCommand = queryListaEmpleados2;
                     DataSet dataSet2 = new DataSet();
@@ -8115,7 +8427,7 @@ namespace winAsimilados.Controller
                 XtraMessageBox.Show(e.Message + "\nError Controlador: ListaEmplCaratula()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void ListaEmpleadosNomiMasiv(GridControl grid)
+        public void ListaEmpleadosNomiMasiv(GridControl grid, string nominaEmpresaID)
         {
             try
             {
@@ -8135,8 +8447,10 @@ namespace winAsimilados.Controller
                 ,GETDATE() as [Fecha Inicio Periodo]
                 ,GETDATE() as [Fecha Fin Periodo]
                 from EMPLEADOS 
-                inner join [BSNOMINAS].[dbo].[PeriodicidadPago] as Peri 
-                on EMPLEADOS.PERIODICIDAD_PAGO = Peri.c_PeriodicidadPago";
+                inner join [dbo].[PeriodicidadPago] as Peri 
+                on EMPLEADOS.PERIODICIDAD_PAGO = Peri.c_PeriodicidadPago
+                WHERE nominaEmpresaID = @Empresa";
+                queryListaEmpleados.Parameters.AddWithValue("@Empresa", nominaEmpresaID);
 
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryListaEmpleados;
@@ -8249,7 +8563,7 @@ namespace winAsimilados.Controller
                 queryListado.CommandText = @"SELECT [NumEmpresa]
                 ,[Descripcion]
                 ,[Estatus]
-                FROM [BSNOMINAS].[dbo].[EmpresaCatalogoCFDI]
+                FROM [dbo].[EmpresaCatalogoCFDI]
                 ORDER BY NumEmpresa ASC";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryListado;
@@ -8272,7 +8586,7 @@ namespace winAsimilados.Controller
                   ,[RFC]
                   ,[RazonSocial]
                   ,[Estatus]
-              FROM [BSNOMINAS].[dbo].[EmpresaPagaAsimilados]
+              FROM [dbo].[EmpresaPagaAsimilados]
               ORDER BY [IDEmpresa] ASC";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryListado;

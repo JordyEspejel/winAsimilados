@@ -54,7 +54,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>4BAC67AD075C591D03F65972E7D83D800F81421A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0CE37C4138E353088358E5439B83C8513458D044</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>
@@ -88,6 +88,7 @@
     <Reference Include="DevExpress.DemoData.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dialogs.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.ExpressApp.Reports.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Reports.Win.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Pdf.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -100,6 +101,7 @@
     <Reference Include="DevExpress.Tutorials.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v18.1.UI, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.ReportDesigner.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpo.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -233,6 +235,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Asimilados.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Asimilados.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\repCaratulaFactura.cs">
@@ -308,6 +315,12 @@
     </Compile>
     <Compile Include="Views\CancelarCFDI.Designer.cs">
       <DependentUpon>CancelarCFDI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetallesNomina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DetallesNomina.Designer.cs">
+      <DependentUpon>DetallesNomina.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\EditarCaratula.cs">
       <SubType>Form</SubType>
@@ -420,6 +433,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Models\Asimilados.dbml.layout">
+      <DependentUpon>Asimilados.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -463,6 +479,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CancelarCFDI.resx">
       <DependentUpon>CancelarCFDI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DetallesNomina.resx">
+      <DependentUpon>DetallesNomina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\EditarCaratula.resx">
       <DependentUpon>EditarCaratula.cs</DependentUpon>
@@ -607,6 +626,11 @@
     <None Include="Connected Services\ServicioTimbradoProduccion\winAsimilados.ServicioTimbradoProduccion.timbrarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Models\Asimilados.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Asimilados.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -708,6 +732,8 @@
     </None>
     <Content Include="invoice_78456.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

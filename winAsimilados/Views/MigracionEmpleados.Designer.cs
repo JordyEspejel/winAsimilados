@@ -462,7 +462,7 @@
             // 
             // sqlDataSourceBSNOMINAS
             // 
-            this.sqlDataSourceBSNOMINAS.ConnectionName = "localhost_BSNOMINAS_Connection 1";
+            this.sqlDataSourceBSNOMINAS.ConnectionName = "Asimilados";
             this.sqlDataSourceBSNOMINAS.Name = "sqlDataSourceBSNOMINAS";
             columnExpression1.ColumnName = "Numero_Empresa";
             table1.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"172\" />";
@@ -654,7 +654,7 @@
             // 
             // sqlDataSourceBDEmpresa
             // 
-            this.sqlDataSourceBDEmpresa.ConnectionName = "Nomina_Empresa19_Connection";
+            this.sqlDataSourceBDEmpresa.ConnectionName = "Asimilados";
             this.sqlDataSourceBDEmpresa.Name = "sqlDataSourceBDEmpresa";
             columnExpression7.ColumnName = "idempleado";
             table3.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"571\" />";

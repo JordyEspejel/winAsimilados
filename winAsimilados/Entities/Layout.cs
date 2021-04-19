@@ -141,5 +141,11 @@ namespace winAsimilados.Entities
         public string cuentaBancaria{ get { return _cuentaBancaria; } set { _cuentaBancaria = value; } }
         public string CLABE{ get { return _CLABE; } set { _CLABE = value; } }
         public decimal descuentos { get { return _descuentos; } set { _descuentos = value; } }
+        private string _nominaEmpresaID;
+        public string nominaEmpresaID
+        {
+            get { return _nominaEmpresaID; }
+            set { _nominaEmpresaID = value; }
+        }
     }
 }

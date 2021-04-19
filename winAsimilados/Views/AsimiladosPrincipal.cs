@@ -41,6 +41,7 @@ namespace winAsimilados.Views
         string TipoPago;
         string devTema;
         string correo;
+        string EmpresaID;
         public AsimiladosPrincipal(string tema)
         {
             devTema = tema;
@@ -241,20 +242,21 @@ namespace winAsimilados.Views
                     string rfc = (range.Cells[rCnt, "B"] as Excel.Range).Value2.ToString();
                     string curp = (range.Cells[rCnt, "C"] as Excel.Range).Value2.ToString();
                     string peri = (range.Cells[rCnt, "D"] as Excel.Range).Value2.ToString();
-
+                    string Empr = (range.Cells[rCnt, "F"] as Excel.Range).Value2.ToString();
 
                     empl.Nombre = nombre;
                     empl.CURP = curp;
                     empl.RFC = rfc;
                     empl.Periodicidad = peri;
+                    empl.nominaEmpresaID = Empr;
                     Empleado.Add(new E.Empleado
                     {
 
                         Nombre = nombre,
                         CURP = curp,
                         RFC = rfc,
-                        Periodicidad = peri
-
+                        Periodicidad = peri,
+                        nominaEmpresaID = Empr
                      });
                     empleado = Empleado.ToArray();
 
@@ -513,224 +515,253 @@ namespace winAsimilados.Views
 
         private void accordionAgregaEmplMasiv_Click(object sender, EventArgs e)
         {
-            E.Empleado empl = new E.Empleado();
-            C.Controller Controlador = new C.Controller();
-            XtraOpenFileDialog dialog = new XtraOpenFileDialog();
-            dialog.Filter = "Archivos de Excel (*.xls;*.xlsx)|*.xls;*.xlsx"; //le indicamos el tipo de filtro en este caso que busque
-                                                                             //solo los archivos excel
-
-            dialog.Title = "Seleccione el archivo de Excel";//le damos un titulo a la ventana
-
-            dialog.FileName = string.Empty;
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                try
+                E.Empleado empl = new E.Empleado();
+                C.Controller Controlador = new C.Controller();
+                XtraOpenFileDialog dialog = new XtraOpenFileDialog();
+                dialog.Filter = "Archivos de Excel (*.xls;*.xlsx)|*.xls;*.xlsx"; //le indicamos el tipo de filtro en este caso que busque
+                                                                                 //solo los archivos excel
+
+                dialog.Title = "Seleccione el archivo de Excel";//le damos un titulo a la ventana
+
+                dialog.FileName = string.Empty;
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    if (splashScreenManager1.IsSplashFormVisible.Equals(false))
+                    try
                     {
-                        splashScreenManager1.ShowWaitForm();
+                        if (splashScreenManager1.IsSplashFormVisible.Equals(false))
+                        {
+                            splashScreenManager1.ShowWaitForm();
+                            splashScreenManager1.SetWaitFormCaption("Leyendo Excel..");
+                        }
+
+                        Excel.Application xlApp;
+                        Excel.Workbook xlWorkBook;
+                        Excel.Worksheet xlWorkSheet;
+                        Excel.Range range;
+                        int rCnt;
+                        int rw = 0;
+                        int cl = 0;
+                        int cont = 0;
+                        string Archivo = dialog.FileName;
+                        var misValue = Type.Missing;
+
+                        xlApp = new Excel.Application();
+                        xlWorkBook = xlApp.Workbooks.Open(@Archivo, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue);
+                        xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+                        range = xlWorkSheet.UsedRange;
+                        rw = range.Rows.Count;
+                        cl = range.Columns.Count;
+
+                        var Empleado = new List<E.Empleado>();
+                        E.Empleado[] empleado = null;
+                        for (rCnt = 2; rCnt <= rw; rCnt++)
+                        {
+                            cont++;
+                            try
+                            {
+                                numEmpl = (range.Cells[rCnt, "A"] as Excel.Range).Value2.ToString();
+                            }
+                            catch (Exception Empl)
+                            {
+                                numEmpl = "";
+                            }
+                            try
+                            {
+                                nombre = (range.Cells[rCnt, "B"] as Excel.Range).Value2.ToString();
+                            }
+                            catch (Exception Nombre)
+                            {
+                                nombre = "";
+                            }
+                            try
+                            {
+                                rfc = (range.Cells[rCnt, "C"] as Excel.Range).Value2.ToString();
+                            }
+                            catch (Exception RFC)
+                            {
+                                rfc = "";
+                            }
+                            try
+                            {
+                                curp = (range.Cells[rCnt, "D"] as Excel.Range).Value2.ToString();
+                            }
+                            catch (Exception CURP)
+                            {
+                                curp = "";
+                            }
+                            try
+                            {
+                                peri = (range.Cells[rCnt, "E"] as Excel.Range).Value2.ToString();
+                                peri = peri.ToUpper();
+                            }
+                            catch (Exception PERI)
+                            {
+                                peri = "";
+                            }
+                            try
+                            {
+                                cuenta = (range.Cells[rCnt, "F"] as Excel.Range).Value2.ToString();
+                            }
+                            catch (Exception CUENTA)
+                            {
+                                cuenta = "";
+                            }
+                            try
+                            {
+                                clabe = (range.Cells[rCnt, "G"] as Excel.Range).Value2.ToString();
+                            }
+                            catch (Exception CLABE)
+                            {
+                                clabe = "";
+                            }
+                            try
+                            {
+                                cve = (range.Cells[rCnt, "H"] as Excel.Range).Value2.ToString();
+                            }
+                            catch (Exception CVE)
+                            {
+                                cve = "";
+                            }
+                            try
+                            {
+                                banco = (range.Cells[rCnt, "I"] as Excel.Range).Value2.ToString();
+                            }
+                            catch (Exception BANCO)
+                            {
+                                banco = "";
+                            }
+                            try
+                            {
+                                empresa = (range.Cells[rCnt, "J"] as Excel.Range).Value2.ToString();
+                            }
+                            catch (Exception EMPRESA)
+                            {
+                                empresa = "";
+                            }
+                            try
+                            {
+                                idEmpr = (range.Cells[rCnt, "K"] as Excel.Range).Value2.ToString();
+                            }
+                            catch (Exception IDEMPR)
+                            {
+                                idEmpr = "";
+                            }
+                            try
+                            {
+                                perDescuento = Convert.ToDecimal((range.Cells[rCnt, "L"] as Excel.Range).Value2.ToString());
+                            }
+                            catch (Exception DESCUENTO)
+                            {
+                                perDescuento = 0;
+                            }
+                            try
+                            {
+                                TipoPago = (range.Cells[rCnt, "M"] as Excel.Range).Value2.ToString();
+                            }
+                            catch (Exception pago)
+                            {
+                                TipoPago = "";
+                            }
+                            try
+                            {
+                                EmpresaID = Properties.Settings.Default["EmpresaNominaID"].ToString();
+                            }
+                            catch
+                            {
+                                EmpresaID = "";
+                            }
+                            if (peri.Equals("SEMANAL"))
+                            {
+                                peri = "02";
+                            }
+                            else if (peri.Equals("QUINCENAL"))
+                            {
+                                peri = "04";
+                            }
+                            else if (peri.Equals("MENSUAL"))
+                            {
+                                peri = "05";
+                            }
+                            else
+                            {
+                                peri = "99";
+                            }
+                            empl.NumEmpl = numEmpl;
+                            empl.Nombre = nombre;
+                            empl.CURP = curp;
+                            empl.RFC = rfc;
+                            empl.Periodicidad = peri;
+                            empl.cuenta = cuenta;
+                            empl.clabe_bancaria = clabe;
+                            empl.banco = banco;
+                            empl.cve_banco = cve;
+                            empl.empresa = empresa;
+                            empl.idEmpresa = idEmpr;
+                            empl.descuento = perDescuento;
+                            empl.tipoPago = TipoPago;
+                            empl.nominaEmpresaID = EmpresaID;
+                            Empleado.Add(new E.Empleado
+                            {
+                                NumEmpl = numEmpl,
+                                Nombre = nombre,
+                                CURP = curp,
+                                RFC = rfc,
+                                Periodicidad = peri,
+                                cuenta = cuenta,
+                                clabe_bancaria = clabe,
+                                banco = banco,
+                                cve_banco = cve,
+                                empresa = empresa,
+                                idEmpresa = idEmpr,
+                                descuento = perDescuento,
+                                tipoPago = TipoPago,
+                                nominaEmpresaID = EmpresaID,
+                            });
+                            empleado = Empleado.ToArray();
+
+                        }
+                        string nombreArchivo = xlWorkBook.Name;
+                        nombreArchivo = Path.GetFileNameWithoutExtension(nombreArchivo);
+                        //xlWorkBook.Close(true, "Formato_Masivo_Importe_Empleados", null);
+                        xlWorkBook.Close(true, nombreArchivo, null);
+                        xlApp.Quit();
+                        //progressPanel2.Hide();
+
+                        Marshal.ReleaseComObject(xlWorkSheet);
+                        Marshal.ReleaseComObject(xlWorkBook);
+                        Marshal.ReleaseComObject(xlApp);
+                        Controlador.AgregarEmpleadoMasivo(Empleado, empl, splashScreenManager1);
+
                     }
-
-                    Excel.Application xlApp;
-                    Excel.Workbook xlWorkBook;
-                    Excel.Worksheet xlWorkSheet;
-                    Excel.Range range;
-                    int rCnt;
-                    int rw = 0;
-                    int cl = 0;
-                    int cont = 0;
-                    string Archivo = dialog.FileName;
-                    var misValue = Type.Missing;
-
-                    xlApp = new Excel.Application();
-                    xlWorkBook = xlApp.Workbooks.Open(@Archivo, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue);
-                    xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-
-                    range = xlWorkSheet.UsedRange;
-                    rw = range.Rows.Count;
-                    cl = range.Columns.Count;
-
-                    var Empleado = new List<E.Empleado>();
-                    E.Empleado[] empleado = null;
-                    for (rCnt = 2; rCnt <= rw; rCnt++)
+                    catch (Exception leerExcel)
                     {
-                        cont++;
-                        try
+                        if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                         {
-                            numEmpl = (range.Cells[rCnt, "A"] as Excel.Range).Value2.ToString();
-                        }
-                        catch (Exception Empl)
-                        {
-                            numEmpl = "";
-                        }
-                        try
-                        {
-                            nombre = (range.Cells[rCnt, "B"] as Excel.Range).Value2.ToString();
-                        }catch(Exception Nombre)
-                        {
-                            nombre = "";
-                        }
-                        try
-                        {
-                            rfc = (range.Cells[rCnt, "C"] as Excel.Range).Value2.ToString();
-                        }catch(Exception RFC)
-                        {
-                            rfc = "";
-                        }
-                        try
-                        {
-                            curp = (range.Cells[rCnt, "D"] as Excel.Range).Value2.ToString();
-                        }catch (Exception CURP)
-                        {
-                            curp = "";
-                        }
-                        try
-                        {
-                            peri = (range.Cells[rCnt, "E"] as Excel.Range).Value2.ToString();
-                            peri = peri.ToUpper();
-                        }
-                        catch (Exception PERI)
-                        {
-                            peri = "";
-                        }
-                        try
-                        {
-                            cuenta = (range.Cells[rCnt, "F"] as Excel.Range).Value2.ToString();
-                        }catch (Exception CUENTA)
-                        {
-                            cuenta = "";
-                        }
-                        try
-                        {
-                            clabe = (range.Cells[rCnt, "G"] as Excel.Range).Value2.ToString();
-                        }catch (Exception CLABE)
-                        {
-                            clabe = "";
-                        }
-                        try
-                        {
-                            cve = (range.Cells[rCnt, "H"] as Excel.Range).Value2.ToString();
-                        }catch (Exception CVE)
-                        {
-                            cve = "";
-                        }
-                        try
-                        {
-                            banco = (range.Cells[rCnt, "I"] as Excel.Range).Value2.ToString();
-                        }catch (Exception BANCO)
-                        {
-                            banco = "";
-                        }
-                        try
-                        {
-                            empresa = (range.Cells[rCnt, "J"] as Excel.Range).Value2.ToString();
-                        }catch (Exception EMPRESA)
-                        {
-                            empresa = "";
-                        }
-                        try
-                        {
-                            idEmpr = (range.Cells[rCnt, "K"] as Excel.Range).Value2.ToString();
-                        }catch(Exception IDEMPR)
-                        {
-                            idEmpr = "";
-                        }
-                        try
-                        {
-                            perDescuento = Convert.ToDecimal((range.Cells[rCnt, "L"] as Excel.Range).Value2.ToString());
-                        }catch (Exception DESCUENTO)
-                        {
-                            perDescuento = 0;
-                        }
-                        try
-                        {
-                            TipoPago = (range.Cells[rCnt, "M"] as Excel.Range).Value2.ToString();
-                        }
-                        catch (Exception pago)
-                        {
-                            TipoPago = "";
+                            splashScreenManager1.CloseWaitForm();
                         }
 
-
-                        if (peri.Equals("SEMANAL"))
-                        {
-                            peri = "02";
-                        }
-                        else if (peri.Equals("QUINCENAL"))
-                        {
-                            peri = "04";
-                        }
-                        else if (peri.Equals("MENSUAL"))
-                        {
-                            peri = "05";
-                        }
-                        else
-                        {
-                            peri = "99";
-                        }
-                        empl.NumEmpl = numEmpl;
-                        empl.Nombre = nombre;
-                        empl.CURP = curp;
-                        empl.RFC = rfc;
-                        empl.Periodicidad = peri;
-                        empl.cuenta = cuenta;
-                        empl.clabe_bancaria = clabe;
-                        empl.banco = banco;
-                        empl.cve_banco = cve;
-                        empl.empresa = empresa;
-                        empl.idEmpresa = idEmpr;
-                        empl.descuento = perDescuento;
-                        empl.tipoPago = TipoPago;
-
-                        Empleado.Add(new E.Empleado
-                        {
-                            NumEmpl = numEmpl,
-                            Nombre = nombre,
-                            CURP = curp,
-                            RFC = rfc,
-                            Periodicidad = peri,
-                            cuenta = cuenta,
-                            clabe_bancaria = clabe,
-                            banco = banco,
-                            cve_banco = cve,
-                            empresa = empresa,
-                            idEmpresa = idEmpr,
-                            descuento = perDescuento,
-                            tipoPago = TipoPago,
-                        });
-                        empleado = Empleado.ToArray();
-
+                        XtraMessageBox.Show(leerExcel.Message + "\nCarga masiva empleados", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    string nombreArchivo = xlWorkBook.Name;
-                    nombreArchivo = Path.GetFileNameWithoutExtension(nombreArchivo);
-                    //xlWorkBook.Close(true, "Formato_Masivo_Importe_Empleados", null);
-                    xlWorkBook.Close(true, nombreArchivo, null);
-                    xlApp.Quit();
-                    //progressPanel2.Hide();
-
-                    Marshal.ReleaseComObject(xlWorkSheet);
-                    Marshal.ReleaseComObject(xlWorkBook);
-                    Marshal.ReleaseComObject(xlApp);
-                    Controlador.AgregarEmpleadoMasivo(Empleado, empl, splashScreenManager1);
 
                 }
-                catch (Exception leerExcel)
+                else
                 {
                     if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                     {
                         splashScreenManager1.CloseWaitForm();
                     }
-
-                    XtraMessageBox.Show(leerExcel.Message + "\nCarga masiva empleados", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
- 
             }
-            else
+            catch (Exception carga)
             {
                 if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                 {
                     splashScreenManager1.CloseWaitForm();
                 }
+                XtraMessageBox.Show(carga.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

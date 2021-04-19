@@ -206,6 +206,12 @@ namespace winAsimilados.Entities
             get { return _Correo; }
             set { _Correo = value; }
         }
+        private string _nominaEmpresaID;
+        public string nominaEmpresaID
+        {
+            get { return _nominaEmpresaID; }
+            set { _nominaEmpresaID = value; }
+        }
     }
 }
 

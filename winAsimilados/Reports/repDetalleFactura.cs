@@ -13,8 +13,10 @@ namespace winAsimilados.Reports
         {
             InitializeComponent();
             bd = BD;
-            sqlDataSource1.Connection.ConnectionString = @"Data Source=192.168.16.252\inari;Initial Catalog=" + bd + ";User ID=sa;Password=20201N4r1SQL;";
-            sqlDataSource1.Fill();            
+            string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
+            //sqlDataSource1.Connection.ConnectionString = @"Data Source=192.168.16.252\inari;Initial Catalog=" + bd + ";User ID=sa;Password=20201N4r1SQL;";
+            sqlDataSource1.Queries[0].Parameters[0].Value = Empresa;
+            sqlDataSource1.Fill();
         }
 
     }

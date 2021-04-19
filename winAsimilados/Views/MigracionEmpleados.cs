@@ -57,6 +57,7 @@ namespace winAsimilados.Views
             {
                 try
                 {
+                    string EmpresaNominaID = Properties.Settings.Default["EmpresaNominaID"].ToString();
                     if (splash.IsSplashFormVisible.Equals(false))
                     {
                         splash.ShowWaitForm();
@@ -85,10 +86,11 @@ namespace winAsimilados.Views
                             empresa = gridViewEmpl.GetRowCellValue(i, gridViewEmpl.Columns[24]).ToString(),
                             descuento = Convert.ToDecimal(gridViewEmpl.GetRowCellValue(i, gridViewEmpl.Columns[25]).ToString()),
                             tipoPago = gridViewEmpl.GetRowCellValue(i, gridViewEmpl.Columns[26]).ToString(),
+                            nominaEmpresaID = EmpresaNominaID
                         });
                     }
 
-                    controlador.ImportaEmpleado(lookUpEmpr.Text, empresaActiva, empleado, usuario, splash);
+                    controlador.ImportaEmpleado(lookUpEmpr.Text, empresaActiva, empleado, usuario, splash, EmpresaNominaID);
                     empleado.Clear();
                 }
                 catch (Exception imp)

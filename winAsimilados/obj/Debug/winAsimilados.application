@@ -14,14 +14,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="winAsimilados.exe.manifest" size="139402">
+    <dependentAssembly dependencyType="install" codebase="winAsimilados.exe.manifest" size="192599">
       <assemblyIdentity name="winAsimilados.exe" version="1.0.0.51" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9PCDIBfJBxs0u2/7qFql3vP1C1qulrwlAKBrrLY8Oy4=</dsig:DigestValue>
+        <dsig:DigestValue>ZAlbNvAbm69UuSOlOVhhroY6Bn1te8YW5Q+E0keUHdQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

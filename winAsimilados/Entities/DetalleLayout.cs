@@ -34,5 +34,11 @@ namespace winAsimilados.Entities
         public string Detalles { get { return _Detalles; } set { _Detalles = value; } }
 
         public decimal Descuentos { get { return _Descuentos; } set { _Descuentos = value; } }
+        private string _nominaEmpresaID;
+        public string nominaEmpresaID
+        {
+            get { return _nominaEmpresaID; }
+            set { _nominaEmpresaID = value; }
+        }
     }
 }
