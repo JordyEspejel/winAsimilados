@@ -254,6 +254,12 @@
     <Compile Include="Reports\repDetalleFactura.Designer.cs">
       <DependentUpon>repDetalleFactura.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RepNomina.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepNomina.Designer.cs">
+      <DependentUpon>RepNomina.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\cfdv33_tdCFDI_catCFDI.cs" />
     <Compile Include="Resources\Moneda.cs" />
     <Compile Include="Resources\nomina12_catCFDI_catNomina_tdCFDI.cs" />
@@ -452,6 +458,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\repDetalleFactura.resx">
       <DependentUpon>repDetalleFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepNomina.resx">
+      <DependentUpon>RepNomina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AgregarCliente.resx">
       <DependentUpon>AgregarCliente.cs</DependentUpon>

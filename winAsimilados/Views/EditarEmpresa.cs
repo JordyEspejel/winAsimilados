@@ -129,10 +129,19 @@ namespace winAsimilados.Views
             numExt = TxtNumExt.Text;
             #region ValidacionCampos
 
+            if (TxtCorreo.Text.Equals(""))
+            {
+                XtraMessageBox.Show("El campo Correo no puede estar vacio", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                parametros.correo_cliente = TxtCorreo.Text;
+            }
             if (nombreEmpresa == "")
             {
                 XtraMessageBox.Show("El campo Nombre no puede estar vacio", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                return;
             }
             else
             {
@@ -514,6 +523,7 @@ namespace winAsimilados.Views
                 TxtFevFinVig.Text = parametros.FECHA_VENCIMIENTO_CERTIFICADO.ToString("dd/MM/yyyy");
                 TxtCuenta.Text = parametros.cuentaOrigen;
                 TxtCuenta.ReadOnly = true;
+                TxtCorreo.Text = parametros.correo_cliente;                
                 splash.CloseWaitForm();
             }
             catch (Exception ex)
@@ -556,6 +566,7 @@ namespace winAsimilados.Views
             TxtCuenta.ReadOnly = false;
             layoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             layoutControlItem24.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            TxtCorreo.ReadOnly = false;
         }
 
         private void DesactivarCampos()
@@ -611,6 +622,7 @@ namespace winAsimilados.Views
             TxtCuenta.ReadOnly = true;
             layoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             layoutControlItem24.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            TxtCorreo.ReadOnly = true;
         }
         private void ChMostrar_CheckedChanged(object sender, EventArgs e)
         {

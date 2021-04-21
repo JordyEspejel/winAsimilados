@@ -19,6 +19,9 @@ using System.IO;
 using DevExpress.Persistent.Base;
 using Org.BouncyCastle.Asn1.Cmp;
 using DevExpress.Xpf.Core;
+using DevExpress.XtraReports.UI;
+using DevExpress.XtraPrinting.Control;
+using DevExpress.XtraPrinting;
 
 namespace winAsimilados.Views
 {
@@ -1735,6 +1738,52 @@ namespace winAsimilados.Views
                 migracionEmpleados.Show();
             }
         }
+
+        private void accordionReporteNomina_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                splashScreenManager1.ShowWaitForm();
+                splashScreenManager1.SetWaitFormCaption("Generando Reporte..");
+                XtraReport reporte;
+                reporte = new Reports.RepNomina();                   
+                ReportPrintTool printTool = new ReportPrintTool(reporte);
+                PrintControl printControl = printTool.PreviewForm.PrintControl;
+                //PrintControl printControl = printTool.PreviewRibbonForm.PrintControl; 
+
+
+                // Zoom the document, so that it fits the entire page into the Print Preview's dimensions.
+                if (printControl.CanExecCommand(PrintingSystemCommand.ViewWholePage))
+                {
+                    printControl.ExecCommand(PrintingSystemCommand.ViewWholePage);
+                }
+
+                // Invoke the Hand tool to scroll the document using the mouse.
+                if (printControl.CanExecCommand(PrintingSystemCommand.HandTool))
+                {
+                    printControl.ExecCommand(PrintingSystemCommand.HandTool, new object[] { true });
+                }
+
+                // Hide the Hand tool.
+                //if (printControlCanExecCommand(PrintingSystemCommand.HandTool)) {
+                //    printControl.ExecCommand(PrintingSystemCommand.HandTool, new object[] { false });
+                //}
+
+                // Show the report's Print Preview in a dialog window.
+                printControl.Zoom = 1.2F;
+                printTool.ShowPreview();
+                splashScreenManager1.CloseWaitForm();
+                //printTool.ShowPreviewDialog();
+                //printTool.ShowRibbonPreviewDialog();
+            }
+            catch (Exception reporte)
+            {
+                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                {
+                    splashScreenManager1.CloseWaitForm();
+                }
+                XtraMessageBox.Show(reporte.Message + "mostrarReporte()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
-

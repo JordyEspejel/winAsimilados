@@ -898,3 +898,4 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Deb
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\ja\DevExpress.Xpf.DocumentViewer.v18.1.Core.resources.dll
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\ru\DevExpress.Xpf.DocumentViewer.v18.1.Core.resources.dll
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.DetallesNomina.resources
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Reports.RepNomina.resources

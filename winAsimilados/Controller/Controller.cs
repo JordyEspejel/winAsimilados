@@ -54,6 +54,77 @@ namespace winAsimilados.Controller
     {
         M.AsimiladosDataContext dtc = new M.AsimiladosDataContext();
 
+        public void ActualizaErrorNomina(int ID, string error)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand queryUpdate = (SqlCommand)dtc.Connection.CreateCommand();
+                queryUpdate.CommandText = @"UPDATE Nomina SET nominaDescripciponError = '" + error + "'" +
+                    "where nominaID =" + ID + "";
+                queryUpdate.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void ActualizaStatusNominaCancelacion(string UUID, string statusNomina, string StatusSat)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand queryUpdate = (SqlCommand)dtc.Connection.CreateCommand();
+                queryUpdate.CommandText = @"UPDATE Nomina SET nominaEstatus = '" + statusNomina + "'" +
+                    ", nominaEstatusSAT = '" + StatusSat + "'" +
+                    "where nominaUUID ='" + UUID + "'";
+                queryUpdate.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void ActualizaStatusNomina(int ID, string statusNomina, string StatusSat)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand queryUpdate = (SqlCommand)dtc.Connection.CreateCommand();
+                queryUpdate.CommandText = @"UPDATE Nomina SET nominaEstatus = '" + statusNomina + "'" +
+                    ", nominaEstatusSAT = '" + StatusSat + "'" +
+                    "where nominaID =" + ID + "";
+                queryUpdate.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void ActualizaFolioUUIDNomina(string folio, string UUID, int ID)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand queryUpdate = (SqlCommand)dtc.Connection.CreateCommand();
+                queryUpdate.CommandText = @"UPDATE Nomina SET nominaUUID = '" + UUID + "'" +
+                    ", nominaFolio = '" + folio +"'" +
+                    "where nominaID =" + ID + "";
+                queryUpdate.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
         public M.ResumenNomina ObtieneInfoResumen(int IDResumen)
         {
             try
@@ -1528,6 +1599,7 @@ namespace winAsimilados.Controller
                                     var estatusUUID = clientProduccion.ObtenerStatusUuid(parametros.usuarioNtlink, "Inari2020.", item.UUID);
                                     bitacora.StatusSAT = estatusUUID.Status.ToString();
                                     //LogCancelacion(item.UIID, estatusUUID.AcuseCancelacion);
+                                    ActualizaStatusNominaCancelacion(item.UUID, estatusUUID.Status.ToString(), estatusUUID.Status.ToString());
                                     ActualizaFolio(bitacora.UUID, estatusUUID.Status.ToString());
                                     InsertaBitacora(bitacora, splashScreenManager);
                                     LogCancelacion(UUIDCFDI, estatusUUID.AcuseEnvio);
@@ -1574,6 +1646,7 @@ namespace winAsimilados.Controller
                                         }
                                         else if (resultados[0].statusUUID.Equals("211"))
                                         {
+                                            ActualizaStatusNominaCancelacion(item.UUID, "En Proceso de Cancelación", "En Proceso de Cancelación");
                                             bitacora.StatusSAT = "En Proceso de Cancelación";
                                             ActualizaFolio(bitacora.UUID, "En proceso de Cancelación");
                                             InsertaBitacora(bitacora, splashScreenManager);
@@ -1585,6 +1658,7 @@ namespace winAsimilados.Controller
                                         }
                                         else if (resultados[0].statusUUID.Equals("201"))
                                         {
+                                            ActualizaStatusNominaCancelacion(item.UUID, "Cancelado", "Cancelado");
                                             bitacora.StatusSAT = "Cancelado";
                                             ActualizaFolio(resultados[0].uuid, "Cancelado");
                                             InsertaBitacora(bitacora, splashScreenManager);
@@ -3362,7 +3436,798 @@ namespace winAsimilados.Controller
             }
         }
 
+        public void TimradoNomina(List<E.Empleado> Lista, SplashScreenManager splashScreenManager1, string empresa, string rfc, string ip, DateTime FecIniPeriMasiv, DateTime FecFinPeriMasiv, DateTime FecPagoMasiv, string destino, bool enviaCorreo, string correoCliente, string PAC, string ambiente)
+        {
+            try
+            {
+                E.Empleado nomiEmpl = new E.Empleado();
+                E.FolioXML Folio = new E.FolioXML();
+                E.BitacoraXML Bitacora = new E.BitacoraXML();
+                E.Parametros parametros = new E.Parametros();
+                List<string> archivos = new List<string>();
+                string fecPago = "";
+                string resultCorreo;
+                string periodicidad = null;
+                string pathXml = @"C:\XML\";
+                string pathArchivoXML = null;
+                string pathCorreo = null;
+                string nombreArchivo = null;
+                string pathArchivoXMLF = null;
+                string folio = null;
+                string estatusLayout = "";
+                string bd = N.Conexion.PerformConnection().Database;
+                int cont = -1, exito = 0, error = 0;
+                bool genPDF = false;
+                StreamWriter writerLog = null;
+                StringBuilder builder = null;
+                string url = @"C:\AsimiladosLogs\";
+                if (!Directory.Exists(url))
+                {
+                    Directory.CreateDirectory(url);
+                }
+                string NombreArchivo ="Timbrado_Nomina" + FecPagoMasiv.ToString("dd-mm-yyyy") + "_" + Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
+                + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
+                + "-" + DateTime.Now.Second.ToString());
+                string path = Path.Combine(url, NombreArchivo + ".txt");
+                string hora = Convert.ToString("," + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
+                + "-" + DateTime.Now.Second.ToString());
+                builder = new StringBuilder();
+                builder.AppendLine();
+                builder.Append("********************************   Erroes Encontrados  ******************************************" + "\r\n");
+                builder.AppendLine();
 
+                //inicia foreach
+                foreach (var item in Lista)
+                {
+                    cont++;
+                    //if (cont < Lista.Count())
+                    //{
+
+                    //}
+                    try
+                    {
+                        if (splashScreenManager1.IsSplashFormVisible.Equals(false))
+                        {
+                            splashScreenManager1.ShowWaitForm();
+                        }
+                        nomiEmpl = BuscaEmpleado(item.RFC);
+                        nomiEmpl.IngresosBrutos = item.IngresosBrutos;
+                        nomiEmpl.ISR = item.ISR;
+                        nomiEmpl.IngresosNetos = item.IngresosNetos;
+                        splashScreenManager1.SetWaitFormCaption("Generando nomina de: \n" + nomiEmpl.Nombre);
+
+                        parametros = GetParametros(rfc);
+
+                        periodicidad = nomiEmpl.Periodicidad;
+
+                        Folio.Empleado = nomiEmpl.Nombre;
+                        Folio.RFC = nomiEmpl.RFC;
+                        Folio.Empresa = empresa;
+                        Folio.FecIni = FecIniPeriMasiv;
+                        Folio.FecFin = FecFinPeriMasiv;
+                        Folio.FecPago = FecPagoMasiv;
+                        Folio.Importe = nomiEmpl.IngresosBrutos;
+                        Folio.total = item.IngresosNetos;
+                        Folio.nominaEmpresaID = Properties.Settings.Default["EmpresaNominaID"].ToString();
+                        Bitacora.IPMovimiento = ip;
+                        Bitacora.Empresa = empresa;
+                        Bitacora.FecPago = FecPagoMasiv;
+                        //Folio.FecPago = Convert.ToDateTime(FecPagoUni.EditValue.ToString());
+                        Bitacora.FecIni = FecIniPeriMasiv;
+                        Bitacora.FecFin = FecFinPeriMasiv;
+                        Bitacora.FecMovimiento = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
+                        Bitacora.Movimiento = "Timbrado";
+                        Bitacora.Origen = "Timbrado Nómina";
+                        Bitacora.nominaEmpresaID = Properties.Settings.Default["EmpresaNominaID"].ToString();
+
+                        fecPago = Convert.ToDateTime(FecPagoMasiv).ToString("dd-MM-yyyy");
+                        pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
+                        //if (destino.Equals("Cliente"))
+                        //{
+                        //    pathArchivoXML = Path.Combine(pathXml + fecPago + hora + "_Recibos" + @"\");
+                        //    pathCorreo = pathArchivoXML;
+                        //}
+                        //else if (destino.Equals("Empleado"))
+                        //{
+                            pathArchivoXML = Path.Combine(pathXml + item.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
+                        //}
+
+                        if (!Directory.Exists(pathArchivoXML))
+                        {
+                            Directory.CreateDirectory(pathArchivoXML);
+                        }
+
+                        nombreArchivo = fecPago + "_" + nomiEmpl.RFC + "_" + nomiEmpl.Nombre;
+
+                        pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo + ".xml");
+                        bool produccion = false;
+                        // produccion = false ---> para pruebas
+                        if (PAC.Equals("SL") && ambiente.Equals("Pruebas"))
+                        {
+                            produccion = false;
+                        }
+                        else if (PAC.Equals("SL") && ambiente.Equals("Produccion"))
+                        {
+                            produccion = true;
+                        }
+
+                        string prod_endpoint = "TimbradoEndpoint_PRODUCCION";
+                        string test_endpoint = "TimbradoEndpoint_TESTING";
+
+                        string pathPrincipalExe = AppDomain.CurrentDomain.BaseDirectory + "/";
+                        //string pathCer = @"C:\DocAsimilados\CSD01_AAA010101AAA.cer";
+                        //string pathKey = @"C:\DocAsimilados\CSD01_AAA010101AAA.key";
+                        //string pass = "12345678a";
+
+                        //string pathCer = @"C:\DocAsimilados\00001000000413522787.cer";
+                        //string pathKey = @"C:\DocAsimilados\CSD_QUERETARO_PTP131002FA0_20190214_113034.key";
+                        //string pass = "ptpinari";
+                        string pathCer = ArchivoCER(rfc);
+                        string pathKey = ArchivoKEY(rfc);
+                        string pass = PassKey(rfc);
+
+                        string Inicio, Final, Serie, NumCer;
+
+                        SelloDigital.leerCER(pathCer, out Inicio, out Final, out Serie, out NumCer);
+
+                        folio = GetFolio();                        
+
+                        if (folio.Equals(null) || folio.Equals(""))
+                        {
+                            splashScreenManager1.CloseWaitForm();
+                            XtraMessageBox.Show("¡Folio no encontrado!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        else
+                        {
+                            if (folio.Equals("0"))
+                            {
+                                folio = "0001";
+                            }
+                            Bitacora.Folio = folio;
+                            Folio.Folio = folio;
+                        }
+                        item.FolioNomina = folio;
+                        #region comprobanteNomina
+                        Comprobante comprobante = new Comprobante();
+                        comprobante.Folio = folio;
+                        comprobante.Fecha = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
+                        //comprobante.Sello = "faltante";
+                        comprobante.FormaPago = "99";
+                        comprobante.NoCertificado = NumCer;
+                        comprobante.SubTotal = nomiEmpl.IngresosBrutos;
+                        comprobante.Descuento = nomiEmpl.ISR;
+                        comprobante.Total = nomiEmpl.IngresosNetos; //ingresos netos
+                        comprobante.Moneda = "MXN";
+                        comprobante.TipoDeComprobante = "N";
+                        comprobante.MetodoPago = "PUE";
+                        comprobante.LugarExpedicion = parametros.CODIGO_POSTAL;
+                        comprobante.TipoCambio = 1;
+
+                        ComprobanteEmisor comprobanteEmisor = new ComprobanteEmisor();
+                        comprobanteEmisor.Rfc = rfc;
+                        comprobanteEmisor.Nombre = empresa;
+                        comprobanteEmisor.RegimenFiscal = "601";
+
+                        ComprobanteReceptor comprobanteReceptor = new ComprobanteReceptor();
+                        comprobanteReceptor.Nombre = nomiEmpl.Nombre;
+                        comprobanteReceptor.Rfc = nomiEmpl.RFC;
+                        comprobanteReceptor.UsoCFDI = "P01";
+
+
+                        comprobante.Emisor = comprobanteEmisor;
+                        comprobante.Receptor = comprobanteReceptor;
+
+                        List<ComprobanteConcepto> listaConceptos = new List<ComprobanteConcepto>();
+                        ComprobanteConcepto comprobanteConcepto = new ComprobanteConcepto();
+                        comprobanteConcepto.Importe = nomiEmpl.IngresosBrutos;
+                        comprobanteConcepto.ValorUnitario = nomiEmpl.IngresosBrutos;
+                        comprobanteConcepto.Descuento = nomiEmpl.ISR;
+                        comprobanteConcepto.ClaveProdServ = "84111505";
+                        comprobanteConcepto.Cantidad = 1;
+                        comprobanteConcepto.ClaveUnidad = "ACT";
+                        comprobanteConcepto.Descripcion = "Pago de nómina";
+
+                        listaConceptos.Add(comprobanteConcepto);
+
+                        comprobante.Conceptos = listaConceptos.ToArray();
+                        NominaReceptor nominaReceptor = new NominaReceptor();
+
+                        Nomina nomina12 = new Nomina();
+                        List<Nomina> nominas = new List<Nomina>();
+                        nomina12.Version = "1.2";
+                        nomina12.FechaPago = FecPagoMasiv;
+                        nomina12.FechaInicialPago = FecIniPeriMasiv;
+                        nomina12.FechaFinalPago = FecFinPeriMasiv;
+                        nomina12.TotalPercepcionesSpecified = true;
+                        nomina12.TotalDeduccionesSpecified = true;
+                        nomina12.TotalPercepciones = nomiEmpl.IngresosBrutos;
+                        nomina12.TotalDeducciones = nomiEmpl.ISR;
+
+
+                        if (periodicidad.Equals("Semanal") || periodicidad.Equals("02"))
+                        {
+                            nomina12.NumDiasPagados = 7;
+                            nominaReceptor.PeriodicidadPago = "02";
+                        }
+
+                        if (periodicidad.Equals("Quincenal") || periodicidad.Equals("04"))
+                        {
+                            nomina12.NumDiasPagados = 14;
+                            nominaReceptor.PeriodicidadPago = "04";
+                        }
+
+                        if (periodicidad.Equals("Mensual") || periodicidad.Equals("05"))
+                        {
+                            nomina12.NumDiasPagados = 30;
+                            nominaReceptor.PeriodicidadPago = "05";
+                        }
+
+                        nominaReceptor.Curp = nomiEmpl.CURP;
+                        nominaReceptor.TipoContrato = nomiEmpl.TipoContrato;
+                        nominaReceptor.Sindicalizado = nomiEmpl.Sindicalizado;
+                        nominaReceptor.NumEmpleado = nomiEmpl.NumEmpl;
+                        nominaReceptor.Departamento = nomiEmpl.Departamento;
+                        nominaReceptor.Puesto = nomiEmpl.Puesto;
+                        string entFed = GetEntFed(bd, parametros.CODIGO_POSTAL);
+                        nominaReceptor.TipoRegimen = nomiEmpl.TipoRegimen;
+                        nominaReceptor.ClaveEntFed = entFed;
+                        nominaReceptor.SalarioBaseCotApor = 0;
+
+                        NominaDeducciones nominaDeducciones = new NominaDeducciones();
+                        NominaDeduccionesDeduccion nominaDeduccionesDeduccion = new NominaDeduccionesDeduccion();
+                        NominaPercepciones nominaPercepciones = new NominaPercepciones();
+                        NominaPercepcionesPercepcion nominaPercepcionesPercepcion = new NominaPercepcionesPercepcion();
+
+                        nominaPercepciones.TotalSueldos = nomiEmpl.IngresosBrutos;
+                        nominaPercepciones.TotalExento = 0;
+                        nominaPercepciones.TotalGravado = nomiEmpl.IngresosBrutos;
+                        nominaPercepciones.TotalSueldosSpecified = true;
+                        nominaPercepciones.TotalSueldos = nomiEmpl.IngresosBrutos;
+                        nominaPercepcionesPercepcion.TipoPercepcion = "046";
+                        nominaPercepcionesPercepcion.Clave = "046";
+                        nominaPercepcionesPercepcion.Concepto = "INGRESO A ASIMILADOS A SALARIO";
+                        nominaPercepcionesPercepcion.ImporteGravado = nomiEmpl.IngresosBrutos;
+                        nominaPercepcionesPercepcion.ImporteExento = 0;
+
+                        nominaDeducciones.TotalImpuestosRetenidosSpecified = true;
+                        nominaDeducciones.TotalImpuestosRetenidos = nomiEmpl.ISR;
+
+                        nominaDeduccionesDeduccion.TipoDeduccion = "002";
+                        nominaDeduccionesDeduccion.Clave = "211";
+                        nominaDeduccionesDeduccion.Concepto = "ISR";
+                        nominaDeduccionesDeduccion.Importe = nomiEmpl.ISR;
+
+
+                        nomina12.Receptor = nominaReceptor;
+                        nomina12.Deducciones = nominaDeducciones;
+                        nomina12.Percepciones = nominaPercepciones;
+                        nomina12.Percepciones.Percepcion = nominaPercepcionesPercepcion.ToArray();
+                        nominaDeducciones.Deduccion = nominaDeduccionesDeduccion.ToArray();
+
+
+                        nominas.Add(nomina12);
+                        //comprobante.Nomina12 = nomina12;
+                        comprobante.Complemento = new ComprobanteComplemento[1];
+                        comprobante.Complemento[0] = new ComprobanteComplemento();
+
+                        splashScreenManager1.SetWaitFormCaption("Generando XML");
+
+                        XmlDocument nom12 = new XmlDocument();
+                        XmlSerializerNamespaces xmlNameSpaceNomi = new XmlSerializerNamespaces();
+                        xmlNameSpaceNomi.Add("nomina12", "http://www.sat.gob.mx/nomina12");
+                        using (XmlWriter writer = nom12.CreateNavigator().AppendChild())
+                        {
+                            new XmlSerializer(nomina12.GetType()).Serialize(writer, nomina12, xmlNameSpaceNomi);
+                        }
+                        comprobante.Complemento[0].Any = new System.Xml.XmlElement[1];
+                        comprobante.Complemento[0].Any[0] = nom12.DocumentElement;
+
+                        GenXML(comprobante, pathArchivoXML);
+
+                        string cadenaOrig = "";
+                        //string ruta = @"C:\DocAsimilados\xslt\cadenaoriginal_3_3.xslt";
+                        string pathCadenaOriginalxslt = pathPrincipalExe + @"xslt\cadenaoriginal_3_3.xslt";
+                        System.Xml.Xsl.XslCompiledTransform transformador = new System.Xml.Xsl.XslCompiledTransform(true);
+                        transformador.Load(pathCadenaOriginalxslt);
+
+                        using (StringWriter sw = new StringWriter())
+                        using (XmlWriter xwo = XmlWriter.Create(sw, transformador.OutputSettings))
+                        {
+
+                            //transformador.Transform(pathXml, xwo);
+                            transformador.Transform(pathArchivoXML, xwo);
+                            cadenaOrig = sw.ToString();
+                        }
+
+                        SelloDigital selloDigital = new SelloDigital();
+                        comprobante.Certificado = selloDigital.Certificado(pathCer);
+                        comprobante.Sello = selloDigital.Sellar(cadenaOrig, pathKey, pass);
+                        //Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
+                        GenXML(comprobante, pathArchivoXML);
+
+                        #endregion
+                        splashScreenManager1.SetWaitFormCaption("Timbrando Documento..");
+
+                        try
+                        {
+                            #region TimbradoNTLINK
+                            // inicia codigo WS NTLINK
+                            //SERVICIO PRUEBAS
+                            if (PAC.Equals("NT") && ambiente.Equals("Pruebas"))
+                            {
+                                System.IO.File.Delete(pathArchivoXML);
+                                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                                {
+                                    splashScreenManager1.CloseWaitForm();
+                                }
+                                XtraMessageBox.Show("El timbrado de pruebas no esta disponible para NT-LINK", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return; 
+                            }
+                            else if (PAC.Equals("NT") && ambiente.Equals("Produccion"))
+                            {
+                                ServicioTimbradoClient client = new ServicioTimbradoClient();
+                                client.Open();
+
+                                string xmlLINK = Convert.ToString(System.IO.File.ReadAllText(pathArchivoXML));
+                                var newXML = client.TimbraCfdiQr("angel@inari.mx", "Inari2020.", xmlLINK);
+                                client.Close();
+
+                                if (newXML.Valido.Equals(true))
+                                {
+                                    genPDF = true;
+                                    exito++;
+
+                                    string cadena = newXML.CadenaTimbre;
+                                    string[] arrayCadena;
+                                    arrayCadena = cadena.Split(Convert.ToChar("|"));
+                                    //XtraMessageBox.Show(arrayCadena[3]);
+                                    string UUIDNT = arrayCadena[3];
+                                    string ultDigSello = arrayCadena[6];
+                                    int tamDig = ultDigSello.Length;
+                                    ultDigSello = ultDigSello.Substring((tamDig - 8), 8);
+                                    System.IO.File.Delete(pathArchivoXML);
+                                    pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
+                                    if (destino.Equals("Cliente"))
+                                    {
+                                        pathArchivoXML = pathCorreo;
+                                    }
+                                    else if (destino.Equals("Empleado"))
+                                    {
+                                        pathArchivoXML = Path.Combine(pathXml + item.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
+                                    }
+                                    nombreArchivo = fecPago + "_" + nomiEmpl.RFC + "_" + nomiEmpl.Nombre;
+                                    pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo);
+                                    pathArchivoXMLF = Path.Combine(pathArchivoXML + "_" + UUIDNT);
+                                    pathArchivoXML = Path.Combine(pathArchivoXML + "_" + UUIDNT + ".xml");
+                                    byte[] info = Encoding.ASCII.GetBytes(newXML.Cfdi);
+                                    FileStream fs = new FileStream(path: pathArchivoXML, mode: FileMode.Create);
+                                    fs.Write(info, 0, info.Length);
+                                    fs.Close();
+
+                                    item.UUIDNomina = UUIDNT;
+                                    Folio.UUID = UUIDNT;
+                                    Folio.RutaXML = pathArchivoXML;
+                                    Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
+                                    Folio.StatusSAT = "Vigente";
+                                    Folio.selloCFD = ultDigSello;
+                                    //Folio.Folio = folio;
+                                    Bitacora.UUID = UUIDNT;
+                                    Bitacora.StatusSAT = "Vigente";
+                                    Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
+                                    splashScreenManager1.SetWaitFormCaption("Guardando Movimiento..");
+                                    ActualizaFolioUUIDNomina(item.FolioNomina, item.UUIDNomina, item.IDNomina);
+                                    ActualizaErrorNomina(item.IDNomina, "");
+                                    ActualizaStatusNomina(item.IDNomina, "Timbrado", "Timbrado");
+                                    string resultFolio = InsertaFolio(Folio, splashScreenManager1);
+                                    if (resultFolio != "true")
+                                    {
+                                        error++;
+                                        builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                        builder.AppendLine();
+                                        builder.Append("Error al intentar guardar información de timbrado\nUUID detimbre: " + UUIDNT);
+                                        builder.AppendLine();
+                                        builder.Append("Error: " + resultFolio);
+                                        builder.AppendLine();
+                                        //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en la base de datos.\n");
+                                    }
+                                    splashScreenManager1.SetWaitFormCaption("Guardando Historico..");
+                                    string resultBitacora = InsertaBitacora(Bitacora, splashScreenManager1);
+                                    if (resultBitacora != "true")
+                                    {
+                                        error++;
+                                        builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                        builder.AppendLine();
+                                        builder.Append("Error al intentar guardar información de timbrado en bitacora\nUUID de timbre: " + UUIDNT);
+                                        builder.AppendLine();
+                                        builder.Append("Error: " + resultBitacora);
+                                        builder.AppendLine();
+                                        //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en bitacora de la base de datos.\n");
+                                    }
+                                    estatusLayout = "Timbrado";
+                                    ActualizaStatusFolio(item.IDLayout, estatusLayout);
+                                }
+                                else
+                                {
+                                    ActualizaStatusNomina(item.IDNomina, "Error", "");
+                                    ActualizaErrorNomina(item.IDNomina, newXML.DescripcionError);
+                                    genPDF = false;
+                                    error++;
+                                    builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                    builder.AppendLine();
+                                    builder.Append(newXML.DescripcionError);
+                                    builder.AppendLine();
+                                    builder.AppendLine();
+                                    System.IO.File.Delete(pathArchivoXML);
+                                    if (cont + 1 < Lista.Count())
+                                    {
+                                        builder.Append("*************************************************************************************************");
+                                        builder.AppendLine();
+                                    }
+                                    //splashScreenManager1.CloseWaitForm();
+                                    //XtraMessageBox.Show(cFDIResultados[0].mensaje + "\nEmpleado #: " + nomiEmpl.NumEmpl + " (" + nomiEmpl.Nombre + ")"
+                                    //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            //fin codigo WS NTLINK
+                            #endregion
+
+                            #region TimbradoSolucion
+
+                            if (PAC.Equals("SL"))
+                            {
+                                ServicioTimbradoProduccion.TimbradoPortTypeClient portTypeClient = null;
+
+
+                                byte[] bxml = Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(pathArchivoXML));
+                                //servicio de prueba
+                                ServicioTimbradoProduccion.CFDICertificacion respuesta;
+                                if (ambiente.Equals("Pruebas"))
+                                {
+                                    portTypeClient = (produccion)
+                                    ? new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint)
+                                    : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(test_endpoint);
+                                    respuesta = portTypeClient.timbrar("testing@solucionfactible.com", "timbrado.SF.16672", bxml, false);
+                                }
+                                else
+                                {
+                                    portTypeClient = (produccion)
+                                    ? new ServicioTimbradoProduccion.TimbradoPortTypeClient(prod_endpoint)
+                                    : portTypeClient = new ServicioTimbradoProduccion.TimbradoPortTypeClient(prod_endpoint);
+                                    respuesta = portTypeClient.timbrar("facturacion@inteligencialaboral.com", "DFddf.gr6u45Tef", bxml, false);
+                                }
+
+                                //splashScreenManager1.SetWaitFormCaption(respuesta.status.ToString());
+                                //splashScreenManager1.SetWaitFormCaption(respuesta.mensaje);
+                                ServicioTimbradoProduccion.CFDIResultadoCertificacion[] cFDIResultados = respuesta.resultados;
+                                if (respuesta.status.Equals(200))
+                                {
+                                    //XtraMessageBox.Show(cFDIResultados[0].uuid);
+                                    //XtraMessageBox.Show(cFDIResultados[0].certificadoSAT);
+                                    //XtraMessageBox.Show(cFDIResultados[0].mensaje);
+                                    if (cFDIResultados[0].status.Equals(200))
+                                    {
+                                        genPDF = true;
+                                        exito++;
+                                        System.IO.File.Delete(pathArchivoXML);
+                                        pathArchivoXML = Path.Combine(pathXml + fecPago + @"\");
+                                        if (destino.Equals("Cliente"))
+                                        {
+                                            pathArchivoXML = pathCorreo;
+                                        }
+                                        else if (destino.Equals(""))
+                                        {
+                                            pathArchivoXML = Path.Combine(pathXml + item.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
+                                        }
+                                        nombreArchivo = fecPago + "_" + nomiEmpl.RFC + "_" + nomiEmpl.Nombre;
+                                        pathArchivoXML = Path.Combine(pathArchivoXML + nombreArchivo);
+                                        pathArchivoXMLF = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid);
+                                        pathArchivoXML = Path.Combine(pathArchivoXML + "_" + cFDIResultados[0].uuid + ".xml");
+                                        byte[] info = cFDIResultados[0].cfdiTimbrado;
+                                        FileStream fs = new FileStream(path: pathArchivoXML, mode: FileMode.Create);
+                                        fs.Write(info, 0, info.Length);
+                                        fs.Close();
+
+                                        item.UUIDNomina = cFDIResultados[0].uuid;
+                                        Folio.UUID = cFDIResultados[0].uuid;
+                                        Folio.RutaXML = pathArchivoXML;
+                                        Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
+                                        Folio.StatusSAT = "Vigente";
+                                        Bitacora.UUID = cFDIResultados[0].uuid;
+                                        Bitacora.StatusSAT = "Vigente";
+                                        Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
+                                        splashScreenManager1.SetWaitFormCaption("Guardando Movimiento..");
+                                        ActualizaFolioUUIDNomina(item.FolioNomina, item.UUIDNomina, item.IDNomina);
+                                        ActualizaErrorNomina(item.IDNomina, "");
+                                        ActualizaStatusNomina(item.IDNomina, "Timbrado", "Timbrado");
+                                        string resultFolio = InsertaFolio(Folio, splashScreenManager1);
+                                        if (resultFolio != "true")
+                                        {
+                                            error++;
+                                            builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                            builder.AppendLine();
+                                            builder.Append("Error al intentar guardar información de timbrado\nUUID detimbre: " + cFDIResultados[0].uuid);
+                                            builder.AppendLine();
+                                            builder.Append("Error: " + resultFolio);
+                                            builder.AppendLine();
+                                            //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en la base de datos.\n");
+                                        }
+                                        splashScreenManager1.SetWaitFormCaption("Guardando Historico..");
+                                        string resultBitacora = InsertaBitacora(Bitacora, splashScreenManager1);
+                                        if (resultBitacora != "true")
+                                        {
+                                            error++;
+                                            builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                            builder.AppendLine();
+                                            builder.Append("Error al intentar guardar información de timbrado en bitacora\nUUID de timbre: " + cFDIResultados[0].uuid);
+                                            builder.AppendLine();
+                                            builder.Append("Error: " + resultBitacora);
+                                            builder.AppendLine();
+                                            //XtraMessageBox.Show("Hubo un Error al intentar guardar información de timbrado en bitacora de la base de datos.\n");
+                                        }
+                                        estatusLayout = "Timbrado";
+                                        ActualizaStatusFolio(item.IDLayout, estatusLayout);
+                                    }
+                                    else
+                                    {
+                                        ActualizaErrorNomina(item.IDNomina, cFDIResultados[0].mensaje);
+                                        ActualizaStatusNomina(item.IDNomina, "Error", "");
+                                        genPDF = false;
+                                        error++;
+                                        builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                        builder.AppendLine();
+                                        builder.Append(cFDIResultados[0].mensaje);
+                                        builder.AppendLine();
+                                        builder.AppendLine();
+                                        System.IO.File.Delete(pathArchivoXML);
+                                        if (cont + 1 < Lista.Count())
+                                        {
+                                            builder.Append("*************************************************************************************************");
+                                            builder.AppendLine();
+                                        }
+                                        //splashScreenManager1.CloseWaitForm();
+                                        //XtraMessageBox.Show(cFDIResultados[0].mensaje + "\nEmpleado #: " + nomiEmpl.NumEmpl + " (" + nomiEmpl.Nombre + ")"
+                                        //    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    ActualizaErrorNomina(item.IDNomina, cFDIResultados[0].mensaje);
+                                    ActualizaStatusNomina(item.IDNomina, "Error", "");
+                                    estatusLayout = "Error al timbrar";
+                                    ActualizaStatusFolio(item.IDLayout, estatusLayout);
+                                    if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                                    {
+                                        splashScreenManager1.CloseWaitForm();
+                                    }
+                                    XtraMessageBox.Show(cFDIResultados[0].mensaje);
+                                    return;
+                                }
+                            }
+                            #endregion
+                            //XtraMessageBox.Show(cFDIResultados.ToString());
+                            //System.IO.File.WriteAllText(pathXml,);
+                        }
+                        catch (Exception timbrado)
+                        {
+                            ActualizaErrorNomina(item.IDNomina, timbrado.Message);
+                            ActualizaStatusNomina(item.IDNomina, "Error", "");
+                            if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                            {
+                                splashScreenManager1.CloseWaitForm();
+                            }
+                            XtraMessageBox.Show(timbrado.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        if (genPDF.Equals(true))
+                        {
+                            //if (destino.Equals("Empleado"))
+                            //{
+                                archivos.Add(pathArchivoXML);
+                            //}
+                            splashScreenManager1.SetWaitFormCaption("Generando PDF..");
+                            string nomPDF = Path.GetFileNameWithoutExtension(pathArchivoXML);
+                            nomPDF = nomPDF + ".pdf";
+                            string resultPDF = LeerXMLModAsim(pathArchivoXML, pathArchivoXMLF, splashScreenManager1);
+                            string nomPDFResult = Path.GetFileNameWithoutExtension(resultPDF);
+                            nomPDFResult = nomPDFResult + ".pdf";
+                            if (nomPDFResult != nomPDF)
+                            {
+                                //XtraMessageBox.Show("Hubo un error al generar archivo pdf", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                error++;
+                                builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                builder.AppendLine();
+                                builder.Append("Error al generar PDF: " + resultPDF);
+                                builder.AppendLine();
+                                builder.AppendLine();
+                            }
+                            else
+                            {
+                                //if (destino.Equals("Empleado"))
+                                //{
+                                    archivos.Add(resultPDF);
+                                //}
+                            }
+                        }
+                        if (enviaCorreo.Equals(true)/* && destino.Equals("Empleado")*/)
+                        {
+                            splashScreenManager1.SetWaitFormCaption("Enviando Correo...");
+                            string resultCorreoCliente = EnviaFacturaCorreo(correoCliente, archivos, "Empleado");
+                            if (resultCorreoCliente != "true")
+                            {
+                                error++;
+                                builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                builder.AppendLine();
+                                builder.Append("Error al enviar correo:");
+                                builder.AppendLine();     
+                                builder.Append(resultCorreoCliente);
+                                builder.AppendLine();
+                                builder.AppendLine();
+                            }
+                            if (nomiEmpl.Correo != "")
+                            {
+
+                                resultCorreo = EnviaFacturaCorreo(nomiEmpl.Correo, archivos, "Empleado");
+
+                                if (resultCorreo != "true")
+                                {
+                                    error++;
+                                    builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                    builder.AppendLine();
+                                    builder.Append("Error al enviar correo:");
+                                    builder.AppendLine();
+                                    if (nomiEmpl.Correo.Equals(""))
+                                    {
+                                        builder.Append(resultCorreo);
+                                        builder.AppendLine();
+                                    }
+                                    builder.AppendLine();
+                                }
+                            }
+                            else
+                            {
+                                error++;
+                                builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
+                                builder.AppendLine();
+                                builder.Append("Error al enviar correo:");
+                                builder.AppendLine();
+                                if (nomiEmpl.Correo.Equals(""))
+                                {
+                                    builder.Append("Empleado no tiene correo registrado.");
+                                    builder.AppendLine();
+                                }
+                                builder.AppendLine();
+                            }
+                            archivos.Clear();
+                        }
+
+
+                        //splashScreenManager1.CloseWaitForm();
+                        //XtraMessageBox.Show("¡Nómina Generada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception genxml)
+                    {
+                        if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                        {
+                            splashScreenManager1.CloseWaitForm();
+                        }
+                        XtraMessageBox.Show(genxml.Message + "Error controlaor: GenXMLMasiv()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (cont + 1 == Lista.Count)
+                    {
+                        //if (exito.Equals(Lista.Count()))
+                        //{
+
+                        //}
+
+                        if (error > 0)
+                        {
+                            try
+                            {
+                                builder.AppendLine();
+                                builder.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
+                                writerLog = new StreamWriter(path, true);
+                                writerLog.Write(builder);
+                                writerLog.Close();
+
+                                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                                {
+                                    splashScreenManager1.CloseWaitForm();
+                                }
+
+                                XtraMessageBox.Show("¡Nomina generada con " + error + " errores registrados y "
+                                    + exito + " registros con éxito! \n(Presione aceptar para ver errores)", "Mensaje"
+                                    , MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                Process proceso = new Process();
+                                proceso.StartInfo.FileName = path;
+                                proceso.Start();
+
+                                return;
+                            }
+                            catch (Exception feach)
+                            {
+                                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                                {
+                                    splashScreenManager1.CloseWaitForm();
+                                }
+
+                                XtraMessageBox.Show(feach.Message + "\nError controlador: foreach GenxmlMasiv(Generalog)",
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                            {
+                                splashScreenManager1.CloseWaitForm();
+                            }
+                            if (destino.Equals("Empleado"))
+                            {
+                                XtraMessageBox.Show("¡Nóminas generadas y correos enviados con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                XtraMessageBox.Show("¡Nóminas generadas y correos enviados con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+
+                        }
+                    }
+                } //termina foreach
+                //if (enviaCorreo.Equals(true))
+                //{
+                //    if (destino.Equals("Cliente"))
+                //    {
+                //        splashScreenManager1.ShowWaitForm();
+                //        splashScreenManager1.SetWaitFormCaption("Enviando correo..");
+                //        archivos.Add(pathCorreo);
+                //        resultCorreo = EnviaFacturaCorreo(correoCliente, archivos, destino);
+
+                //        if (resultCorreo != "true")
+                //        {
+                //            builder.Append("Error al enviar correo al cliente:");
+                //            builder.AppendLine();
+                //            builder.Append(resultCorreo);
+                //            builder.AppendLine();
+                //            builder.Append("********************************       Fin Erroes      ******************************************" + "\r\n");
+                //            writerLog = new StreamWriter(path, true);
+                //            writerLog.Write(builder);
+                //            writerLog.Close();
+
+                //            if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                //            {
+                //                splashScreenManager1.CloseWaitForm();
+                //            }
+
+                //            XtraMessageBox.Show("¡Error al enviar archivos al correo del cliente!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                //            Process proceso = new Process();
+                //            proceso.StartInfo.FileName = path;
+                //            proceso.Start();
+
+                //        }
+                //        else
+                //        {
+                //            if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                //            {
+                //                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                //                {
+                //                    splashScreenManager1.CloseWaitForm();
+                //                }
+                //                XtraMessageBox.Show("¡Correo enviado con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //            }
+                //        }
+                //    }
+                //}
+            }
+            catch (Exception timbNomi)
+            {
+                XtraMessageBox.Show("Error controlador Timbrado:\n" + timbNomi.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         [Obsolete]
         public void GenXmlMasivo(List<E.Empleado> Lista, SplashScreenManager splashScreenManager1, string empresa, string rfc, string ip, DateTime FecIniPeriMasiv, DateTime FecFinPeriMasiv, DateTime FecPagoMasiv, string destino, bool enviaCorreo, string correoCliente, string PAC, string ambiente)
         {
@@ -3391,7 +4256,8 @@ namespace winAsimilados.Controller
             {
                 Directory.CreateDirectory(url);
             }
-            string NombreArchivo = "Timbrado_Masivo_" + FecPagoMasiv.ToString("dd-mm-yyyy") + "_" + Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
+            string NombreArchivo = "Timbra" +
+                "do_Masivo_" + FecPagoMasiv.ToString("dd-mm-yyyy") + "_" + Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
             + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
             + "-" + DateTime.Now.Second.ToString());
             string path = Path.Combine(url, NombreArchivo + ".txt");
@@ -4217,8 +5083,6 @@ namespace winAsimilados.Controller
                     }
                 }
             }
-
-
         }
         private void GenXML(Comprobante comprobante, string pathArchivoXML)
         {
@@ -4509,6 +5373,7 @@ namespace winAsimilados.Controller
                       ,ISNULL([CUENTA_ORIGEN], 'No Definido') as [CUENTA_ORIGEN]
                       ,ISNULL([USUARIO_NTLINK], 'No Definido') as [USUARIO_NTLINK]
                       ,NOMINA_EMPRESA_ID
+                      ,CORREO_CLIENTE
                   FROM [PARAMETROS] as P
 				  INNER JOIN  dbo.RegimenFiscal as RF on RF.c_RegimenFiscal = P.REGIMEN
 				  --INNER JOIN  dbo.OrigenRecurso AS RE  ON RE.c_OrigenRecurso = P.ORIGEN_RECURSOS
@@ -4557,6 +5422,7 @@ namespace winAsimilados.Controller
                     parametros.cuentaOrigen = readerParametros.GetString(32);
                     parametros.usuarioNtlink = readerParametros.GetString(33);
                     parametros.NOMINA_EMPRESA_ID = readerParametros.GetString(34);
+                    parametros.correo_cliente = readerParametros.IsDBNull(35) ?"": readerParametros.GetString(35);
                 }
                 readerParametros.Close();
 
@@ -5728,7 +6594,7 @@ namespace winAsimilados.Controller
                 }
                 readerPais.Close();
 
-                N.Conexion.PerformConnection().ChangeDatabase(bd);
+                //N.Conexion.PerformConnection().ChangeDatabase(bd);
 
                 SqlCommand queryActEmpr = N.Conexion.PerformConnection().CreateCommand();
                 queryActEmpr.CommandText = @"UPDATE [dbo].[PARAMETROS]
@@ -5755,12 +6621,12 @@ namespace winAsimilados.Controller
                 "',[ARCHIVO_KEY] = '" + parametros.ARCHIVO_KEY +
                 "',[ASUNTO_CERTIFICADO] = '" + parametros.ASUNTO_CERTIFICADO +
                 "',[COLONIA] = '" + parametros.COLONIA +
-                "',[CUENTA_ORIGEN] = '" + parametros.cuentaOrigen + "' WHERE RFC ='" + RFC + "'";
+                "',[CUENTA_ORIGEN] = '" + parametros.cuentaOrigen + "'" +
+                ",[CORREO_CLIENTE] = '" + parametros.correo_cliente + "'" +
+                "WHERE RFC ='" + RFC + "'";
 
                 if (queryActEmpr.ExecuteNonQuery().Equals(1))
                 {
-                    N.Conexion.PerformConnection().Close();
-                    N.Conexion.PerformConnection().Open();
                     SqlCommand queryListaEmpr = N.Conexion.PerformConnection().CreateCommand();
                     queryListaEmpr.CommandText = @"UPDATE [dbo].[Listado_Empresas]
                     SET Nombre_Empresa = '" + parametros.NombreEmpresa +
@@ -5774,10 +6640,12 @@ namespace winAsimilados.Controller
                         XtraMessageBox.Show("¡Información de la Empresa Actualizada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
+                //N.Conexion.PerformConnection().Close();
                 return result;
             }
             catch (Exception e)
             {
+                //N.Conexion.PerformConnection().Close();
                 XtraMessageBox.Show(e.Message + "\nError Controlador: EditaEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -5884,7 +6752,8 @@ namespace winAsimilados.Controller
                                                ,[RUTA_ALMACEN_PDF]
                                                 ,[CUENTA_ORIGEN]
                                                 ,[USUARIO_NTLINK]
-                                                ,[NOMINA_EMPRESA_ID])
+                                                ,[NOMINA_EMPRESA_ID]
+                                                ,[CORREO_CLIENTE])
                                          VALUES
                                                ('" + parametros.NombreEmpresa + "'," +
                                                "'" + parametros.RFC + "'," +
@@ -5912,7 +6781,8 @@ namespace winAsimilados.Controller
                                                "'" + parametros.RUTA_ALMACEN_PDF + "'," +
                                                "'" + parametros.cuentaOrigen + "'," +
                                                "'" + parametros.usuarioNtlink + "'," +
-                                               "'" + parametros.NOMINA_EMPRESA_ID + "')";
+                                               "'" + parametros.NOMINA_EMPRESA_ID + "'," +
+                                               "'" + parametros.correo_cliente +"')";
 
                 if (queryInsertEmpr.ExecuteNonQuery().Equals(1))
                 {
@@ -8698,6 +9568,7 @@ AND [nominaEmpresaID] = @Empresa";
         {
             try
             {
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 SqlCommand queryBuscar = N.Conexion.PerformConnection().CreateCommand();
                 queryBuscar.CommandText = @"Select 
                 RIGHT('00000' + CAST(Max([Folio]) AS varchar(5)) , 4) AS [Folio]
@@ -8715,6 +9586,7 @@ AND [nominaEmpresaID] = @Empresa";
                 ,[FecFin] AS [Fecha Final]
                 ,[Empresa] from [FolioXML]
                 where FecIni >= @fechIni and FecFin <= @fechFinal
+                AND [nominaEmpresaID] = @empresa
                 group by [Folio]
                 ,UUID
 				,[SelloCFD]
@@ -8731,6 +9603,7 @@ AND [nominaEmpresaID] = @Empresa";
                 ,[Empresa]";
                 queryBuscar.Parameters.AddWithValue("@fechIni", fechaIni);
                 queryBuscar.Parameters.AddWithValue("@fechFinal", fechaFin);
+                queryBuscar.Parameters.AddWithValue("@empresa", Empresa);
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryBuscar;
                 DataSet dataSet = new DataSet();

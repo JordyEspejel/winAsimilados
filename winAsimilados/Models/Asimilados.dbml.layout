@@ -2,16 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Asimilados">
   <DataContextMoniker Name="/AsimiladosDataContext" />
   <nestedChildShapes>
-    <classShape Id="18b8f7c6-765e-439d-8cb2-b00880bdcdff" isExpanded="false" absoluteBounds="3.5, 0.5, 2.875, 0.45">
-      <DataClassMoniker Name="/AsimiladosDataContext/Nomina" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6219eba2-5dba-4425-8a3a-d28b7eb6e49c" absoluteBounds="3.515, 0.96, 2.8449999999999998, 4.8646240234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="45dba7d0-e0bb-4d57-9fd3-aebf98cafa0a" isExpanded="false" absoluteBounds="0.5, 0.5, 2.875, 0.45">
       <DataClassMoniker Name="/AsimiladosDataContext/ResumenNomina" />
       <nestedChildShapes>
         <elementListCompartment Id="1c4830b9-1194-4b4e-9eaf-26ac838b470f" absoluteBounds="0.515, 0.96, 2.8449999999999998, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cca271a9-0fcf-4091-887c-2549a23fee2b" isExpanded="false" absoluteBounds="3.75, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/AsimiladosDataContext/Nomina" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9b55fd12-6124-4a04-9fd0-ab99c677027a" absoluteBounds="3.7649999999999997, 0.96, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

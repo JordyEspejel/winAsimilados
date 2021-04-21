@@ -212,6 +212,24 @@ namespace winAsimilados.Entities
             get { return _nominaEmpresaID; }
             set { _nominaEmpresaID = value; }
         }
+        private int _IDNomina;
+        public int IDNomina
+        {
+            get { return _IDNomina; }
+            set { _IDNomina = value; }
+        }
+        private string _FolioNomina;
+        public string FolioNomina
+        {
+            get { return _FolioNomina; }
+            set { _FolioNomina = value; }
+        }
+        private string _UUIDNomina;
+        public string UUIDNomina
+        {
+            get { return _UUIDNomina; }
+            set { _UUIDNomina = value; }
+        }
     }
 }
 

@@ -107,6 +107,9 @@
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup7 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -114,6 +117,8 @@
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -133,15 +138,12 @@
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup9 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             this.xtraOpenFileDialog2 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.TxtCorreo = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TxtCP.Properties)).BeginInit();
@@ -186,6 +188,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).BeginInit();
@@ -193,6 +198,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
@@ -212,13 +219,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtCorreo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -250,6 +254,7 @@
             this.layoutControl1.Controls.Add(this.TxtCer);
             this.layoutControl1.Controls.Add(this.TxtKey);
             this.layoutControl1.Controls.Add(this.TxtCuenta);
+            this.layoutControl1.Controls.Add(this.TxtCorreo);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -261,7 +266,7 @@
             // 
             // TxtCP
             // 
-            this.TxtCP.Location = new System.Drawing.Point(117, 242);
+            this.TxtCP.Location = new System.Drawing.Point(117, 266);
             this.TxtCP.Name = "TxtCP";
             this.TxtCP.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCP.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -272,7 +277,7 @@
             // 
             // TxtNumExt
             // 
-            this.TxtNumExt.Location = new System.Drawing.Point(508, 194);
+            this.TxtNumExt.Location = new System.Drawing.Point(508, 218);
             this.TxtNumExt.Name = "TxtNumExt";
             this.TxtNumExt.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtNumExt.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -283,7 +288,7 @@
             // 
             // TxtNumInt
             // 
-            this.TxtNumInt.Location = new System.Drawing.Point(88, 194);
+            this.TxtNumInt.Location = new System.Drawing.Point(88, 218);
             this.TxtNumInt.Name = "TxtNumInt";
             this.TxtNumInt.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtNumInt.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -316,7 +321,7 @@
             // 
             // TxtCalle
             // 
-            this.TxtCalle.Location = new System.Drawing.Point(68, 170);
+            this.TxtCalle.Location = new System.Drawing.Point(68, 194);
             this.TxtCalle.Name = "TxtCalle";
             this.TxtCalle.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCalle.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -328,7 +333,7 @@
             // 
             // TxtAsunto
             // 
-            this.TxtAsunto.Location = new System.Drawing.Point(505, 338);
+            this.TxtAsunto.Location = new System.Drawing.Point(505, 362);
             this.TxtAsunto.Name = "TxtAsunto";
             this.TxtAsunto.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtAsunto.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -341,7 +346,7 @@
             // BtnActualizar
             // 
             this.BtnActualizar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnActualizar.ImageOptions.Image")));
-            this.BtnActualizar.Location = new System.Drawing.Point(778, 536);
+            this.BtnActualizar.Location = new System.Drawing.Point(778, 560);
             this.BtnActualizar.Name = "BtnActualizar";
             this.BtnActualizar.Size = new System.Drawing.Size(91, 38);
             this.BtnActualizar.StyleController = this.layoutControl1;
@@ -516,7 +521,7 @@
             // 
             // TxtPassKey
             // 
-            this.TxtPassKey.Location = new System.Drawing.Point(118, 386);
+            this.TxtPassKey.Location = new System.Drawing.Point(118, 410);
             this.TxtPassKey.Name = "TxtPassKey";
             this.TxtPassKey.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtPassKey.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -529,7 +534,7 @@
             // 
             // TxtSerie
             // 
-            this.TxtSerie.Location = new System.Drawing.Point(495, 362);
+            this.TxtSerie.Location = new System.Drawing.Point(495, 386);
             this.TxtSerie.Name = "TxtSerie";
             this.TxtSerie.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtSerie.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -541,7 +546,7 @@
             // 
             // TxtFecIniVig
             // 
-            this.TxtFecIniVig.Location = new System.Drawing.Point(532, 386);
+            this.TxtFecIniVig.Location = new System.Drawing.Point(532, 410);
             this.TxtFecIniVig.Name = "TxtFecIniVig";
             this.TxtFecIniVig.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtFecIniVig.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -553,7 +558,7 @@
             // 
             // TxtFevFinVig
             // 
-            this.TxtFevFinVig.Location = new System.Drawing.Point(530, 410);
+            this.TxtFevFinVig.Location = new System.Drawing.Point(530, 434);
             this.TxtFevFinVig.Name = "TxtFevFinVig";
             this.TxtFevFinVig.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtFevFinVig.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -578,7 +583,7 @@
             // BtnCancelar
             // 
             this.BtnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnCancelar.ImageOptions.Image")));
-            this.BtnCancelar.Location = new System.Drawing.Point(688, 536);
+            this.BtnCancelar.Location = new System.Drawing.Point(688, 560);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(86, 38);
             this.BtnCancelar.StyleController = this.layoutControl1;
@@ -589,7 +594,7 @@
             // ChMostrar
             // 
             this.ChMostrar.Enabled = false;
-            this.ChMostrar.Location = new System.Drawing.Point(48, 410);
+            this.ChMostrar.Location = new System.Drawing.Point(48, 434);
             this.ChMostrar.Name = "ChMostrar";
             this.ChMostrar.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.ChMostrar.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -624,7 +629,7 @@
             // 
             // LookUpEst
             // 
-            this.LookUpEst.Location = new System.Drawing.Point(79, 218);
+            this.LookUpEst.Location = new System.Drawing.Point(79, 242);
             this.LookUpEst.Name = "LookUpEst";
             this.LookUpEst.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.LookUpEst.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -647,7 +652,7 @@
             // 
             // LookUpMuni
             // 
-            this.LookUpMuni.Location = new System.Drawing.Point(512, 218);
+            this.LookUpMuni.Location = new System.Drawing.Point(512, 242);
             this.LookUpMuni.Name = "LookUpMuni";
             this.LookUpMuni.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.LookUpMuni.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -662,7 +667,7 @@
             // 
             // LookUpCol
             // 
-            this.LookUpCol.Location = new System.Drawing.Point(500, 242);
+            this.LookUpCol.Location = new System.Drawing.Point(500, 266);
             this.LookUpCol.Name = "LookUpCol";
             this.LookUpCol.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.LookUpCol.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -677,7 +682,7 @@
             // 
             // TxtCer
             // 
-            this.TxtCer.Location = new System.Drawing.Point(120, 338);
+            this.TxtCer.Location = new System.Drawing.Point(120, 362);
             this.TxtCer.Name = "TxtCer";
             this.TxtCer.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCer.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -692,7 +697,7 @@
             // 
             // TxtKey
             // 
-            this.TxtKey.Location = new System.Drawing.Point(123, 362);
+            this.TxtKey.Location = new System.Drawing.Point(123, 386);
             this.TxtKey.Name = "TxtKey";
             this.TxtKey.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtKey.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -707,7 +712,7 @@
             // 
             // TxtCuenta
             // 
-            this.TxtCuenta.Location = new System.Drawing.Point(120, 488);
+            this.TxtCuenta.Location = new System.Drawing.Point(120, 512);
             this.TxtCuenta.Name = "TxtCuenta";
             this.TxtCuenta.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
             this.TxtCuenta.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -724,7 +729,7 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.tabbedControlGroup1});
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(905, 696);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(905, 720);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // tabbedControlGroup1
@@ -733,7 +738,7 @@
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
             this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup2;
             this.tabbedControlGroup1.SelectedTabPageIndex = 0;
-            this.tabbedControlGroup1.Size = new System.Drawing.Size(885, 676);
+            this.tabbedControlGroup1.Size = new System.Drawing.Size(885, 700);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup2});
             // 
@@ -751,7 +756,7 @@
             this.layoutControlGroup9});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(861, 630);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(861, 654);
             this.layoutControlGroup2.Text = "Configuración Empresa";
             // 
             // layoutControlItem1
@@ -789,7 +794,7 @@
             this.emptySpaceItem2,
             this.emptySpaceItem3,
             this.emptySpaceItem4});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 180);
+            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 204);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
             this.layoutControlGroup4.Size = new System.Drawing.Size(861, 138);
             this.layoutControlGroup4.Text = "Dirección Fiscal";
@@ -892,10 +897,34 @@
             this.layoutControlItem16.TextSize = new System.Drawing.Size(38, 13);
             this.layoutControlItem16.TextToControlDistance = 5;
             // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(209, 72);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(209, 24);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem3
+            // 
+            this.emptySpaceItem3.AllowHotTrack = false;
+            this.emptySpaceItem3.Location = new System.Drawing.Point(106, 24);
+            this.emptySpaceItem3.Name = "emptySpaceItem3";
+            this.emptySpaceItem3.Size = new System.Drawing.Size(312, 24);
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem4
+            // 
+            this.emptySpaceItem4.AllowHotTrack = false;
+            this.emptySpaceItem4.Location = new System.Drawing.Point(530, 24);
+            this.emptySpaceItem4.Name = "emptySpaceItem4";
+            this.emptySpaceItem4.Size = new System.Drawing.Size(307, 24);
+            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 564);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 588);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(652, 66);
             this.emptySpaceItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -906,7 +935,7 @@
             this.layoutControlGroup5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup7,
             this.layoutControlGroup6});
-            this.layoutControlGroup5.Location = new System.Drawing.Point(0, 318);
+            this.layoutControlGroup5.Location = new System.Drawing.Point(0, 342);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
             this.layoutControlGroup5.Size = new System.Drawing.Size(861, 180);
             this.layoutControlGroup5.Text = "Datos CSD";
@@ -969,6 +998,22 @@
             this.layoutControlItem23.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem23.TextSize = new System.Drawing.Size(59, 13);
             this.layoutControlItem23.TextToControlDistance = 5;
+            // 
+            // emptySpaceItem5
+            // 
+            this.emptySpaceItem5.AllowHotTrack = false;
+            this.emptySpaceItem5.Location = new System.Drawing.Point(157, 48);
+            this.emptySpaceItem5.Name = "emptySpaceItem5";
+            this.emptySpaceItem5.Size = new System.Drawing.Size(238, 24);
+            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem6
+            // 
+            this.emptySpaceItem6.AllowHotTrack = false;
+            this.emptySpaceItem6.Location = new System.Drawing.Point(157, 72);
+            this.emptySpaceItem6.Name = "emptySpaceItem6";
+            this.emptySpaceItem6.Size = new System.Drawing.Size(238, 24);
+            this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup6
             // 
@@ -1046,10 +1091,11 @@
             this.layoutControlItem9,
             this.layoutControlItem10,
             this.layoutControlItem11,
-            this.layoutControlItem12});
+            this.layoutControlItem12,
+            this.layoutControlItem28});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 42);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(861, 138);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(861, 162);
             this.layoutControlGroup3.Text = "Configuración Patronal";
             // 
             // TxtNomEmpr
@@ -1168,7 +1214,7 @@
             this.layoutControlGroup8.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem25,
             this.layoutControlItem6});
-            this.layoutControlGroup8.Location = new System.Drawing.Point(652, 564);
+            this.layoutControlGroup8.Location = new System.Drawing.Point(652, 588);
             this.layoutControlGroup8.Name = "layoutControlGroup8";
             this.layoutControlGroup8.Size = new System.Drawing.Size(209, 66);
             this.layoutControlGroup8.TextVisible = false;
@@ -1205,7 +1251,7 @@
             this.layoutControlGroup9.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem27,
             this.emptySpaceItem7});
-            this.layoutControlGroup9.Location = new System.Drawing.Point(0, 498);
+            this.layoutControlGroup9.Location = new System.Drawing.Point(0, 522);
             this.layoutControlGroup9.Name = "layoutControlGroup9";
             this.layoutControlGroup9.Size = new System.Drawing.Size(861, 66);
             this.layoutControlGroup9.Text = "Información Bancaria";
@@ -1220,6 +1266,14 @@
             this.layoutControlItem27.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem27.TextSize = new System.Drawing.Size(79, 13);
             this.layoutControlItem27.TextToControlDistance = 5;
+            // 
+            // emptySpaceItem7
+            // 
+            this.emptySpaceItem7.AllowHotTrack = false;
+            this.emptySpaceItem7.Location = new System.Drawing.Point(256, 0);
+            this.emptySpaceItem7.Name = "emptySpaceItem7";
+            this.emptySpaceItem7.Size = new System.Drawing.Size(581, 24);
+            this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
             // 
@@ -1237,53 +1291,31 @@
             // 
             this.xtraOpenFileDialog2.FileName = "xtraOpenFileDialog2";
             // 
-            // emptySpaceItem2
+            // TxtCorreo
             // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(209, 72);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(209, 24);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.TxtCorreo.Location = new System.Drawing.Point(79, 128);
+            this.TxtCorreo.Name = "TxtCorreo";
+            this.TxtCorreo.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.Gainsboro;
+            this.TxtCorreo.Properties.AppearanceReadOnly.Options.UseBackColor = true;
+            this.TxtCorreo.Properties.ReadOnly = true;
+            this.TxtCorreo.Size = new System.Drawing.Size(790, 20);
+            this.TxtCorreo.StyleController = this.layoutControl1;
+            this.TxtCorreo.TabIndex = 27;
             // 
-            // emptySpaceItem3
+            // layoutControlItem28
             // 
-            this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(106, 24);
-            this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(312, 24);
-            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem4
-            // 
-            this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(530, 24);
-            this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(307, 24);
-            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem5
-            // 
-            this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(157, 48);
-            this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(238, 24);
-            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem6
-            // 
-            this.emptySpaceItem6.AllowHotTrack = false;
-            this.emptySpaceItem6.Location = new System.Drawing.Point(157, 72);
-            this.emptySpaceItem6.Name = "emptySpaceItem6";
-            this.emptySpaceItem6.Size = new System.Drawing.Size(238, 24);
-            this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem7
-            // 
-            this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(256, 0);
-            this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(581, 24);
-            this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem28.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.layoutControlItem28.AppearanceItemCaption.ForeColor = System.Drawing.Color.Blue;
+            this.layoutControlItem28.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem28.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem28.Control = this.TxtCorreo;
+            this.layoutControlItem28.Location = new System.Drawing.Point(0, 96);
+            this.layoutControlItem28.Name = "layoutControlItem28";
+            this.layoutControlItem28.Size = new System.Drawing.Size(837, 24);
+            this.layoutControlItem28.Text = "Correo";
+            this.layoutControlItem28.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem28.TextSize = new System.Drawing.Size(38, 13);
+            this.layoutControlItem28.TextToControlDistance = 5;
             // 
             // EditarEmpresa
             // 
@@ -1339,6 +1371,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).EndInit();
@@ -1346,6 +1381,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
@@ -1365,13 +1402,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtCorreo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1460,5 +1494,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
+        private DevExpress.XtraEditors.TextEdit TxtCorreo;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
     }
 }

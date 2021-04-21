@@ -112,6 +112,8 @@
             this.accordionControlPACSTimbrado = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::winAsimilados.Views.WaitForm1), true, true, true);
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionReporteNomina = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.PopBtnEmpleados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -544,7 +546,8 @@
             this.accordionControlElement1,
             this.accordionControlEmpresas,
             this.accordionControlElement5,
-            this.accordionControlElement8});
+            this.accordionControlElement8,
+            this.accordionControlElement3});
             this.accordionControl1.Location = new System.Drawing.Point(0, 34);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
@@ -864,6 +867,23 @@
             // 
             this.splashScreenManager1.ClosingDelay = 500;
             // 
+            // accordionControlElement3
+            // 
+            this.accordionControlElement3.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionReporteNomina});
+            this.accordionControlElement3.Expanded = true;
+            this.accordionControlElement3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement3.ImageOptions.Image")));
+            this.accordionControlElement3.Name = "accordionControlElement3";
+            this.accordionControlElement3.Text = "Reportes";
+            // 
+            // accordionReporteNomina
+            // 
+            this.accordionReporteNomina.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement14.ImageOptions.Image")));
+            this.accordionReporteNomina.Name = "accordionReporteNomina";
+            this.accordionReporteNomina.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionReporteNomina.Text = "Nómina";
+            this.accordionReporteNomina.Click += new System.EventHandler(this.accordionReporteNomina_Click);
+            // 
             // AsimiladosPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -980,5 +1000,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlPACSTimbrado;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlEmpreasCFDI;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlMigracionEmpl;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionReporteNomina;
     }
 }

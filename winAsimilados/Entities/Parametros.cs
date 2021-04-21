@@ -222,5 +222,12 @@ namespace winAsimilados.Entities
             get { return _NOMINA_EMPRESA_ID; }
             set { _NOMINA_EMPRESA_ID = value; }
         }
+
+        private string _correo_clietne;
+        public string correo_cliente
+        {
+            get { return _correo_clietne; }
+            set { _correo_clietne = value; }
+        }
     }
 }

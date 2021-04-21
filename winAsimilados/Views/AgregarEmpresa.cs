@@ -130,6 +130,15 @@ namespace winAsimilados.Views
             numInt = TxtNumInt.Text;
             numExt = TxtNumExt.Text;
             #region ValidacionCampos
+            if (txtCorreo.Text.Equals(""))
+            {
+                XtraMessageBox.Show("El campo correo no puede estar vacio.", "Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                Parametros.correo_cliente = txtCorreo.Text;
+            }
             if (chEditNtlink.Checked.Equals(true))
             {
                 if (txtUsuaNTLINK.Text.Equals(""))

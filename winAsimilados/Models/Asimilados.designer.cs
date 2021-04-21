@@ -62,6 +62,14 @@ namespace winAsimilados.Models
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<ResumenNomina> ResumenNomina
+		{
+			get
+			{
+				return this.GetTable<ResumenNomina>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Nomina> Nomina
 		{
 			get
@@ -69,12 +77,355 @@ namespace winAsimilados.Models
 				return this.GetTable<Nomina>();
 			}
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ResumenNomina")]
+	public partial class ResumenNomina
+	{
 		
-		public System.Data.Linq.Table<ResumenNomina> ResumenNomina
+		private int _ID;
+		
+		private string _ResumenNominaID;
+		
+		private System.Nullable<int> _ResumenNominaTotalEmpleados;
+		
+		private System.Nullable<decimal> _ResumenNominaTotalIngresos;
+		
+		private System.Nullable<decimal> _ResumenNominaTotalIngresosBruto;
+		
+		private System.Nullable<decimal> _ResumenNominaTotalISR;
+		
+		private System.Nullable<System.DateTime> _ResumenNominaFechaPago;
+		
+		private System.Nullable<System.DateTime> _ResumenNominaFechaInicioPeri;
+		
+		private System.Nullable<System.DateTime> _ResumenNominaFechaFinPeri;
+		
+		private System.Nullable<System.DateTime> _ResumenNominaFechaCreacion;
+		
+		private string _ResumenNominaEstatus;
+		
+		private string _ResumenNominaEstatusSAT;
+		
+		private string _ResumenNominaPeriodo;
+		
+		private string _ResumenNominaEmpresaNombre;
+		
+		private string _ResumenNominaRFCEmpresa;
+		
+		private string _ResumenNominaUsuarioCreacion;
+		
+		private string _ResumenNominaUsuarioCierrePeriodo;
+		
+		private System.Nullable<System.DateTime> _ResumenNominaUsuarioFechaCierre;
+		
+		private string _ResumenNominaNominaEmpresaID;
+		
+		public ResumenNomina()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int ID
 		{
 			get
 			{
-				return this.GetTable<ResumenNomina>();
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaID", DbType="VarChar(MAX)")]
+		public string ResumenNominaID
+		{
+			get
+			{
+				return this._ResumenNominaID;
+			}
+			set
+			{
+				if ((this._ResumenNominaID != value))
+				{
+					this._ResumenNominaID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaTotalEmpleados", DbType="Int")]
+		public System.Nullable<int> ResumenNominaTotalEmpleados
+		{
+			get
+			{
+				return this._ResumenNominaTotalEmpleados;
+			}
+			set
+			{
+				if ((this._ResumenNominaTotalEmpleados != value))
+				{
+					this._ResumenNominaTotalEmpleados = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaTotalIngresos", DbType="Money")]
+		public System.Nullable<decimal> ResumenNominaTotalIngresos
+		{
+			get
+			{
+				return this._ResumenNominaTotalIngresos;
+			}
+			set
+			{
+				if ((this._ResumenNominaTotalIngresos != value))
+				{
+					this._ResumenNominaTotalIngresos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaTotalIngresosBruto", DbType="Money")]
+		public System.Nullable<decimal> ResumenNominaTotalIngresosBruto
+		{
+			get
+			{
+				return this._ResumenNominaTotalIngresosBruto;
+			}
+			set
+			{
+				if ((this._ResumenNominaTotalIngresosBruto != value))
+				{
+					this._ResumenNominaTotalIngresosBruto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaTotalISR", DbType="Money")]
+		public System.Nullable<decimal> ResumenNominaTotalISR
+		{
+			get
+			{
+				return this._ResumenNominaTotalISR;
+			}
+			set
+			{
+				if ((this._ResumenNominaTotalISR != value))
+				{
+					this._ResumenNominaTotalISR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaFechaPago", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ResumenNominaFechaPago
+		{
+			get
+			{
+				return this._ResumenNominaFechaPago;
+			}
+			set
+			{
+				if ((this._ResumenNominaFechaPago != value))
+				{
+					this._ResumenNominaFechaPago = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaFechaInicioPeri", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ResumenNominaFechaInicioPeri
+		{
+			get
+			{
+				return this._ResumenNominaFechaInicioPeri;
+			}
+			set
+			{
+				if ((this._ResumenNominaFechaInicioPeri != value))
+				{
+					this._ResumenNominaFechaInicioPeri = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaFechaFinPeri", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ResumenNominaFechaFinPeri
+		{
+			get
+			{
+				return this._ResumenNominaFechaFinPeri;
+			}
+			set
+			{
+				if ((this._ResumenNominaFechaFinPeri != value))
+				{
+					this._ResumenNominaFechaFinPeri = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaFechaCreacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ResumenNominaFechaCreacion
+		{
+			get
+			{
+				return this._ResumenNominaFechaCreacion;
+			}
+			set
+			{
+				if ((this._ResumenNominaFechaCreacion != value))
+				{
+					this._ResumenNominaFechaCreacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaEstatus", DbType="VarChar(100)")]
+		public string ResumenNominaEstatus
+		{
+			get
+			{
+				return this._ResumenNominaEstatus;
+			}
+			set
+			{
+				if ((this._ResumenNominaEstatus != value))
+				{
+					this._ResumenNominaEstatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaEstatusSAT", DbType="VarChar(100)")]
+		public string ResumenNominaEstatusSAT
+		{
+			get
+			{
+				return this._ResumenNominaEstatusSAT;
+			}
+			set
+			{
+				if ((this._ResumenNominaEstatusSAT != value))
+				{
+					this._ResumenNominaEstatusSAT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaPeriodo", DbType="VarChar(100)")]
+		public string ResumenNominaPeriodo
+		{
+			get
+			{
+				return this._ResumenNominaPeriodo;
+			}
+			set
+			{
+				if ((this._ResumenNominaPeriodo != value))
+				{
+					this._ResumenNominaPeriodo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaEmpresaNombre", DbType="VarChar(MAX)")]
+		public string ResumenNominaEmpresaNombre
+		{
+			get
+			{
+				return this._ResumenNominaEmpresaNombre;
+			}
+			set
+			{
+				if ((this._ResumenNominaEmpresaNombre != value))
+				{
+					this._ResumenNominaEmpresaNombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaRFCEmpresa", DbType="VarChar(20)")]
+		public string ResumenNominaRFCEmpresa
+		{
+			get
+			{
+				return this._ResumenNominaRFCEmpresa;
+			}
+			set
+			{
+				if ((this._ResumenNominaRFCEmpresa != value))
+				{
+					this._ResumenNominaRFCEmpresa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaUsuarioCreacion", DbType="VarChar(100)")]
+		public string ResumenNominaUsuarioCreacion
+		{
+			get
+			{
+				return this._ResumenNominaUsuarioCreacion;
+			}
+			set
+			{
+				if ((this._ResumenNominaUsuarioCreacion != value))
+				{
+					this._ResumenNominaUsuarioCreacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaUsuarioCierrePeriodo", DbType="VarChar(100)")]
+		public string ResumenNominaUsuarioCierrePeriodo
+		{
+			get
+			{
+				return this._ResumenNominaUsuarioCierrePeriodo;
+			}
+			set
+			{
+				if ((this._ResumenNominaUsuarioCierrePeriodo != value))
+				{
+					this._ResumenNominaUsuarioCierrePeriodo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaUsuarioFechaCierre", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ResumenNominaUsuarioFechaCierre
+		{
+			get
+			{
+				return this._ResumenNominaUsuarioFechaCierre;
+			}
+			set
+			{
+				if ((this._ResumenNominaUsuarioFechaCierre != value))
+				{
+					this._ResumenNominaUsuarioFechaCierre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaNominaEmpresaID", DbType="VarChar(100)")]
+		public string ResumenNominaNominaEmpresaID
+		{
+			get
+			{
+				return this._ResumenNominaNominaEmpresaID;
+			}
+			set
+			{
+				if ((this._ResumenNominaNominaEmpresaID != value))
+				{
+					this._ResumenNominaNominaEmpresaID = value;
+				}
 			}
 		}
 	}
@@ -130,6 +481,10 @@ namespace winAsimilados.Models
 		private System.Nullable<System.DateTime> _nominaFechaCierrePeriodo;
 		
 		private string _ResumenNominaID;
+		
+		private string _nominaUUID;
+		
+		private string _nominaFolio;
 		
 		public Nomina()
 		{
@@ -518,354 +873,35 @@ namespace winAsimilados.Models
 				}
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ResumenNomina")]
-	public partial class ResumenNomina
-	{
 		
-		private int _ID;
-		
-		private string _ResumenNominaID;
-		
-		private System.Nullable<int> _ResumenNominaTotalEmpleados;
-		
-		private System.Nullable<decimal> _ResumenNominaTotalIngresos;
-		
-		private System.Nullable<decimal> _ResumenNominaTotalIngresosBruto;
-		
-		private System.Nullable<decimal> _ResumenNominaTotalISR;
-		
-		private System.Nullable<System.DateTime> _ResumenNominaFechaPago;
-		
-		private System.Nullable<System.DateTime> _ResumenNominaFechaInicioPeri;
-		
-		private System.Nullable<System.DateTime> _ResumenNominaFechaFinPeri;
-		
-		private System.Nullable<System.DateTime> _ResumenNominaFechaCreacion;
-		
-		private string _ResumenNominaEstatus;
-		
-		private string _ResumenNominaEstatusSAT;
-		
-		private string _ResumenNominaPeriodo;
-		
-		private string _ResumenNominaEmpresaNombre;
-		
-		private string _ResumenNominaRFCEmpresa;
-		
-		private string _ResumenNominaUsuarioCreacion;
-		
-		private string _ResumenNominaUsuarioCierrePeriodo;
-		
-		private System.Nullable<System.DateTime> _ResumenNominaUsuarioFechaCierre;
-		
-		private string _ResumenNominaNominaEmpresaID;
-		
-		public ResumenNomina()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nominaUUID", DbType="VarChar(MAX)")]
+		public string nominaUUID
 		{
 			get
 			{
-				return this._ID;
+				return this._nominaUUID;
 			}
 			set
 			{
-				if ((this._ID != value))
+				if ((this._nominaUUID != value))
 				{
-					this._ID = value;
+					this._nominaUUID = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaID", DbType="VarChar(MAX)")]
-		public string ResumenNominaID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nominaFolio", DbType="VarChar(10)")]
+		public string nominaFolio
 		{
 			get
 			{
-				return this._ResumenNominaID;
+				return this._nominaFolio;
 			}
 			set
 			{
-				if ((this._ResumenNominaID != value))
+				if ((this._nominaFolio != value))
 				{
-					this._ResumenNominaID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaTotalEmpleados", DbType="Int")]
-		public System.Nullable<int> ResumenNominaTotalEmpleados
-		{
-			get
-			{
-				return this._ResumenNominaTotalEmpleados;
-			}
-			set
-			{
-				if ((this._ResumenNominaTotalEmpleados != value))
-				{
-					this._ResumenNominaTotalEmpleados = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaTotalIngresos", DbType="Money")]
-		public System.Nullable<decimal> ResumenNominaTotalIngresos
-		{
-			get
-			{
-				return this._ResumenNominaTotalIngresos;
-			}
-			set
-			{
-				if ((this._ResumenNominaTotalIngresos != value))
-				{
-					this._ResumenNominaTotalIngresos = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaTotalIngresosBruto", DbType="Money")]
-		public System.Nullable<decimal> ResumenNominaTotalIngresosBruto
-		{
-			get
-			{
-				return this._ResumenNominaTotalIngresosBruto;
-			}
-			set
-			{
-				if ((this._ResumenNominaTotalIngresosBruto != value))
-				{
-					this._ResumenNominaTotalIngresosBruto = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaTotalISR", DbType="Money")]
-		public System.Nullable<decimal> ResumenNominaTotalISR
-		{
-			get
-			{
-				return this._ResumenNominaTotalISR;
-			}
-			set
-			{
-				if ((this._ResumenNominaTotalISR != value))
-				{
-					this._ResumenNominaTotalISR = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaFechaPago", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ResumenNominaFechaPago
-		{
-			get
-			{
-				return this._ResumenNominaFechaPago;
-			}
-			set
-			{
-				if ((this._ResumenNominaFechaPago != value))
-				{
-					this._ResumenNominaFechaPago = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaFechaInicioPeri", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ResumenNominaFechaInicioPeri
-		{
-			get
-			{
-				return this._ResumenNominaFechaInicioPeri;
-			}
-			set
-			{
-				if ((this._ResumenNominaFechaInicioPeri != value))
-				{
-					this._ResumenNominaFechaInicioPeri = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaFechaFinPeri", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ResumenNominaFechaFinPeri
-		{
-			get
-			{
-				return this._ResumenNominaFechaFinPeri;
-			}
-			set
-			{
-				if ((this._ResumenNominaFechaFinPeri != value))
-				{
-					this._ResumenNominaFechaFinPeri = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaFechaCreacion", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ResumenNominaFechaCreacion
-		{
-			get
-			{
-				return this._ResumenNominaFechaCreacion;
-			}
-			set
-			{
-				if ((this._ResumenNominaFechaCreacion != value))
-				{
-					this._ResumenNominaFechaCreacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaEstatus", DbType="VarChar(100)")]
-		public string ResumenNominaEstatus
-		{
-			get
-			{
-				return this._ResumenNominaEstatus;
-			}
-			set
-			{
-				if ((this._ResumenNominaEstatus != value))
-				{
-					this._ResumenNominaEstatus = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaEstatusSAT", DbType="VarChar(100)")]
-		public string ResumenNominaEstatusSAT
-		{
-			get
-			{
-				return this._ResumenNominaEstatusSAT;
-			}
-			set
-			{
-				if ((this._ResumenNominaEstatusSAT != value))
-				{
-					this._ResumenNominaEstatusSAT = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaPeriodo", DbType="VarChar(100)")]
-		public string ResumenNominaPeriodo
-		{
-			get
-			{
-				return this._ResumenNominaPeriodo;
-			}
-			set
-			{
-				if ((this._ResumenNominaPeriodo != value))
-				{
-					this._ResumenNominaPeriodo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaEmpresaNombre", DbType="VarChar(MAX)")]
-		public string ResumenNominaEmpresaNombre
-		{
-			get
-			{
-				return this._ResumenNominaEmpresaNombre;
-			}
-			set
-			{
-				if ((this._ResumenNominaEmpresaNombre != value))
-				{
-					this._ResumenNominaEmpresaNombre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaRFCEmpresa", DbType="VarChar(20)")]
-		public string ResumenNominaRFCEmpresa
-		{
-			get
-			{
-				return this._ResumenNominaRFCEmpresa;
-			}
-			set
-			{
-				if ((this._ResumenNominaRFCEmpresa != value))
-				{
-					this._ResumenNominaRFCEmpresa = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaUsuarioCreacion", DbType="VarChar(100)")]
-		public string ResumenNominaUsuarioCreacion
-		{
-			get
-			{
-				return this._ResumenNominaUsuarioCreacion;
-			}
-			set
-			{
-				if ((this._ResumenNominaUsuarioCreacion != value))
-				{
-					this._ResumenNominaUsuarioCreacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaUsuarioCierrePeriodo", DbType="VarChar(100)")]
-		public string ResumenNominaUsuarioCierrePeriodo
-		{
-			get
-			{
-				return this._ResumenNominaUsuarioCierrePeriodo;
-			}
-			set
-			{
-				if ((this._ResumenNominaUsuarioCierrePeriodo != value))
-				{
-					this._ResumenNominaUsuarioCierrePeriodo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaUsuarioFechaCierre", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ResumenNominaUsuarioFechaCierre
-		{
-			get
-			{
-				return this._ResumenNominaUsuarioFechaCierre;
-			}
-			set
-			{
-				if ((this._ResumenNominaUsuarioFechaCierre != value))
-				{
-					this._ResumenNominaUsuarioFechaCierre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaNominaEmpresaID", DbType="VarChar(100)")]
-		public string ResumenNominaNominaEmpresaID
-		{
-			get
-			{
-				return this._ResumenNominaNominaEmpresaID;
-			}
-			set
-			{
-				if ((this._ResumenNominaNominaEmpresaID != value))
-				{
-					this._ResumenNominaNominaEmpresaID = value;
+					this._nominaFolio = value;
 				}
 			}
 		}

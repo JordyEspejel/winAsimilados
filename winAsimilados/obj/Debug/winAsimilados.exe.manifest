@@ -3127,14 +3127,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="1790400">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="1837504">
       <assemblyIdentity name="winAsimilados" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>eHGnK6r/VM+9xIYc8rALpOKUYgyrOaw5cN7LKzBGZEE=</dsig:DigestValue>
+        <dsig:DigestValue>cqb++klB0djQzztJHTd6OPiyTcWSkstfWSgll7QJwOo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -3195,13 +3195,13 @@
       <dsig:DigestValue>Xg+uf/7I3bql1r5hCrmfajtnHZV6aqYBCRrLDa4ZIdw=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="winAsimilados.exe.config" size="9030">
+  <file name="winAsimilados.exe.config" size="9053">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>507Wkvw5kwiEY6gNTS5s2fLXij+3t6leGpFX+7x0VX0=</dsig:DigestValue>
+      <dsig:DigestValue>ST+5B9xvfYg6dnxdGrnEV3/nn/e1+eJ6FC5s0a8A8GE=</dsig:DigestValue>
     </hash>
   </file>
   <file name="wkhtmltox0.dll" size="30307840">
