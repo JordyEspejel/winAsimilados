@@ -159,7 +159,7 @@ namespace winAsimilados.Reports
             this.xrTableCell22.StyleName = "DetailData3";
             this.xrTableCell22.StylePriority.UseTextAlignment = false;
             this.xrTableCell22.Text = "xrTableCell22";
-            this.xrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell22.Weight = 0.033247601711479072D;
             // 
             // xrTableCell23
@@ -170,7 +170,9 @@ namespace winAsimilados.Reports
             this.xrTableCell23.Name = "xrTableCell23";
             this.xrTableCell23.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell23.StyleName = "DetailData3";
+            this.xrTableCell23.StylePriority.UseTextAlignment = false;
             this.xrTableCell23.Text = "xrTableCell23";
+            this.xrTableCell23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell23.Weight = 0.0909990953475654D;
             // 
             // xrTableCell24
@@ -181,7 +183,9 @@ namespace winAsimilados.Reports
             this.xrTableCell24.Name = "xrTableCell24";
             this.xrTableCell24.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell24.StyleName = "DetailData3";
+            this.xrTableCell24.StylePriority.UseTextAlignment = false;
             this.xrTableCell24.Text = "xrTableCell24";
+            this.xrTableCell24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell24.Weight = 0.071974168871737285D;
             // 
             // xrTableCell25
@@ -192,7 +196,9 @@ namespace winAsimilados.Reports
             this.xrTableCell25.Name = "xrTableCell25";
             this.xrTableCell25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell25.StyleName = "DetailData3";
+            this.xrTableCell25.StylePriority.UseTextAlignment = false;
             this.xrTableCell25.Text = "xrTableCell25";
+            this.xrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell25.Weight = 0.042525345355752933D;
             // 
             // xrTableCell26
@@ -205,7 +211,7 @@ namespace winAsimilados.Reports
             this.xrTableCell26.StyleName = "DetailData3";
             this.xrTableCell26.StylePriority.UseTextAlignment = false;
             this.xrTableCell26.Text = "xrTableCell26";
-            this.xrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell26.TextFormatString = "{0:C2}";
             this.xrTableCell26.Weight = 0.051290236016631879D;
             // 
@@ -219,7 +225,7 @@ namespace winAsimilados.Reports
             this.xrTableCell27.StyleName = "DetailData3";
             this.xrTableCell27.StylePriority.UseTextAlignment = false;
             this.xrTableCell27.Text = "xrTableCell27";
-            this.xrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell27.TextFormatString = "{0:C2}";
             this.xrTableCell27.Weight = 0.051208445384879883D;
             // 
@@ -233,7 +239,7 @@ namespace winAsimilados.Reports
             this.xrTableCell28.StyleName = "DetailData3";
             this.xrTableCell28.StylePriority.UseTextAlignment = false;
             this.xrTableCell28.Text = "xrTableCell28";
-            this.xrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell28.TextFormatString = "{0:C2}";
             this.xrTableCell28.Weight = 0.071741610326151256D;
             // 
@@ -245,7 +251,9 @@ namespace winAsimilados.Reports
             this.xrTableCell29.Name = "xrTableCell29";
             this.xrTableCell29.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell29.StyleName = "DetailData3";
+            this.xrTableCell29.StylePriority.UseTextAlignment = false;
             this.xrTableCell29.Text = "xrTableCell29";
+            this.xrTableCell29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell29.TextFormatString = "{0:dd/MM/yyyy}";
             this.xrTableCell29.Weight = 0.065975095308743986D;
             // 
@@ -257,7 +265,9 @@ namespace winAsimilados.Reports
             this.xrTableCell30.Name = "xrTableCell30";
             this.xrTableCell30.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell30.StyleName = "DetailData3";
+            this.xrTableCell30.StylePriority.UseTextAlignment = false;
             this.xrTableCell30.Text = "xrTableCell30";
+            this.xrTableCell30.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell30.TextFormatString = "{0:dd/MM/yyyy}";
             this.xrTableCell30.Weight = 0.062726734065486539D;
             // 
@@ -269,7 +279,9 @@ namespace winAsimilados.Reports
             this.xrTableCell31.Name = "xrTableCell31";
             this.xrTableCell31.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell31.StyleName = "DetailData3";
+            this.xrTableCell31.StylePriority.UseTextAlignment = false;
             this.xrTableCell31.Text = "xrTableCell31";
+            this.xrTableCell31.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell31.TextFormatString = "{0:dd/MM/yyyy}";
             this.xrTableCell31.Weight = 0.070899945163605455D;
             // 
@@ -281,7 +293,9 @@ namespace winAsimilados.Reports
             this.xrTableCell32.Name = "xrTableCell32";
             this.xrTableCell32.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell32.StyleName = "DetailData3";
+            this.xrTableCell32.StylePriority.UseTextAlignment = false;
             this.xrTableCell32.Text = "xrTableCell32";
+            this.xrTableCell32.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell32.TextFormatString = "{0:dd/MM/yyyy}";
             this.xrTableCell32.Weight = 0.066271729418561978D;
             // 
@@ -293,7 +307,9 @@ namespace winAsimilados.Reports
             this.xrTableCell33.Name = "xrTableCell33";
             this.xrTableCell33.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell33.StyleName = "DetailData3";
+            this.xrTableCell33.StylePriority.UseTextAlignment = false;
             this.xrTableCell33.Text = "xrTableCell33";
+            this.xrTableCell33.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell33.Weight = 0.067517923489537515D;
             // 
             // xrTableCell34
@@ -304,7 +320,9 @@ namespace winAsimilados.Reports
             this.xrTableCell34.Name = "xrTableCell34";
             this.xrTableCell34.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell34.StyleName = "DetailData3";
+            this.xrTableCell34.StylePriority.UseTextAlignment = false;
             this.xrTableCell34.Text = "xrTableCell34";
+            this.xrTableCell34.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell34.Weight = 0.061219043101984311D;
             // 
             // xrTableCell35
@@ -315,7 +333,9 @@ namespace winAsimilados.Reports
             this.xrTableCell35.Name = "xrTableCell35";
             this.xrTableCell35.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell35.StyleName = "DetailData3";
+            this.xrTableCell35.StylePriority.UseTextAlignment = false;
             this.xrTableCell35.Text = "xrTableCell35";
+            this.xrTableCell35.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell35.Weight = 0.15853689531558679D;
             // 
             // xrTableCell36
@@ -326,7 +346,9 @@ namespace winAsimilados.Reports
             this.xrTableCell36.Name = "xrTableCell36";
             this.xrTableCell36.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell36.StyleName = "DetailData3";
+            this.xrTableCell36.StylePriority.UseTextAlignment = false;
             this.xrTableCell36.Text = "xrTableCell36";
+            this.xrTableCell36.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell36.Weight = 0.033866154597355771D;
             // 
             // TopMargin
@@ -596,7 +618,7 @@ namespace winAsimilados.Reports
             this.xrTableCell7.StyleName = "DetailCaption3";
             this.xrTableCell7.StylePriority.UseTextAlignment = false;
             this.xrTableCell7.Text = "# EMPLEADO";
-            this.xrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell7.Weight = 0.033247600629223564D;
             // 
             // xrTableCell8
@@ -605,7 +627,9 @@ namespace winAsimilados.Reports
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell8.StyleName = "DetailCaption3";
+            this.xrTableCell8.StylePriority.UseTextAlignment = false;
             this.xrTableCell8.Text = "Nombre";
+            this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell8.Weight = 0.090999084692290871D;
             // 
             // xrTableCell9
@@ -614,7 +638,9 @@ namespace winAsimilados.Reports
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell9.StyleName = "DetailCaption3";
+            this.xrTableCell9.StylePriority.UseTextAlignment = false;
             this.xrTableCell9.Text = "RFC";
+            this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell9.Weight = 0.071974161084067567D;
             // 
             // xrTableCell10
@@ -623,7 +649,9 @@ namespace winAsimilados.Reports
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell10.StyleName = "DetailCaption3";
+            this.xrTableCell10.StylePriority.UseTextAlignment = false;
             this.xrTableCell10.Text = "Tipo Pago";
+            this.xrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell10.Weight = 0.042525338686327574D;
             // 
             // xrTableCell11
@@ -634,7 +662,7 @@ namespace winAsimilados.Reports
             this.xrTableCell11.StyleName = "DetailCaption3";
             this.xrTableCell11.StylePriority.UseTextAlignment = false;
             this.xrTableCell11.Text = "Ingresos Brutos";
-            this.xrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell11.Weight = 0.051290257945423912D;
             // 
             // xrTableCell12
@@ -645,7 +673,7 @@ namespace winAsimilados.Reports
             this.xrTableCell12.StyleName = "DetailCaption3";
             this.xrTableCell12.StylePriority.UseTextAlignment = false;
             this.xrTableCell12.Text = "ISR";
-            this.xrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell12.Weight = 0.05120846078750127D;
             // 
             // xrTableCell13
@@ -656,7 +684,7 @@ namespace winAsimilados.Reports
             this.xrTableCell13.StyleName = "DetailCaption3";
             this.xrTableCell13.StylePriority.UseTextAlignment = false;
             this.xrTableCell13.Text = "Ingresos Netos";
-            this.xrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell13.Weight = 0.071741563976772824D;
             // 
             // xrTableCell14
@@ -665,7 +693,9 @@ namespace winAsimilados.Reports
             this.xrTableCell14.Name = "xrTableCell14";
             this.xrTableCell14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell14.StyleName = "DetailCaption3";
+            this.xrTableCell14.StylePriority.UseTextAlignment = false;
             this.xrTableCell14.Text = "Fecha Pago";
+            this.xrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell14.Weight = 0.065975089439978971D;
             // 
             // xrTableCell15
@@ -674,7 +704,9 @@ namespace winAsimilados.Reports
             this.xrTableCell15.Name = "xrTableCell15";
             this.xrTableCell15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell15.StyleName = "DetailCaption3";
+            this.xrTableCell15.StylePriority.UseTextAlignment = false;
             this.xrTableCell15.Text = "Fecha Inicio Periodo";
+            this.xrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell15.Weight = 0.062726727697742D;
             // 
             // xrTableCell16
@@ -683,7 +715,9 @@ namespace winAsimilados.Reports
             this.xrTableCell16.Name = "xrTableCell16";
             this.xrTableCell16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell16.StyleName = "DetailCaption3";
+            this.xrTableCell16.StylePriority.UseTextAlignment = false;
             this.xrTableCell16.Text = "Fecha Fin Periodo";
+            this.xrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell16.Weight = 0.070899942235435054D;
             // 
             // xrTableCell17
@@ -692,7 +726,9 @@ namespace winAsimilados.Reports
             this.xrTableCell17.Name = "xrTableCell17";
             this.xrTableCell17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell17.StyleName = "DetailCaption3";
+            this.xrTableCell17.StylePriority.UseTextAlignment = false;
             this.xrTableCell17.Text = "Fecha Creación";
+            this.xrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell17.Weight = 0.066271794328710054D;
             // 
             // xrTableCell18
@@ -701,7 +737,9 @@ namespace winAsimilados.Reports
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell18.StyleName = "DetailCaption3";
+            this.xrTableCell18.StylePriority.UseTextAlignment = false;
             this.xrTableCell18.Text = "Estatus Nómina";
+            this.xrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell18.Weight = 0.067517836971684023D;
             // 
             // xrTableCell19
@@ -710,7 +748,9 @@ namespace winAsimilados.Reports
             this.xrTableCell19.Name = "xrTableCell19";
             this.xrTableCell19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell19.StyleName = "DetailCaption3";
+            this.xrTableCell19.StylePriority.UseTextAlignment = false;
             this.xrTableCell19.Text = "Estatus SAT";
+            this.xrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell19.Weight = 0.06121911409789018D;
             // 
             // xrTableCell20
@@ -719,7 +759,9 @@ namespace winAsimilados.Reports
             this.xrTableCell20.Name = "xrTableCell20";
             this.xrTableCell20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell20.StyleName = "DetailCaption3";
+            this.xrTableCell20.StylePriority.UseTextAlignment = false;
             this.xrTableCell20.Text = "UUID";
+            this.xrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell20.Weight = 0.15853681707632869D;
             // 
             // xrTableCell21
@@ -728,7 +770,9 @@ namespace winAsimilados.Reports
             this.xrTableCell21.Name = "xrTableCell21";
             this.xrTableCell21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell21.StyleName = "DetailCaption3";
+            this.xrTableCell21.StylePriority.UseTextAlignment = false;
             this.xrTableCell21.Text = "Folio";
+            this.xrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell21.Weight = 0.033866119384765622D;
             // 
             // groupFooterBand1
