@@ -52,8 +52,8 @@ namespace winAsimilados.Entities
         private string _CLABE;
         private string _bancoEmpresaPago;
         private decimal _descuentos;
-
-
+        private string _ResumenNominaID;
+        public string ResumenNominaID { get { return _ResumenNominaID; } set { _ResumenNominaID = value; } }
         public string ID { get { return _ID; } set { _ID = value; } }
         public int numEmpl { get { return _numEmpl; } set { _numEmpl = value; } }
         public string nombreEmpleado { get { return _nombreEmpleado; } set { _nombreEmpleado = value; } }

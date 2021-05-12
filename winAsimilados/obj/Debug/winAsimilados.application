@@ -3,11 +3,6 @@
   <assemblyIdentity name="winAsimilados.application" version="1.0.0.51" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <description asmv2:publisher="winAsimilados" asmv2:product="winAsimilados" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" co.v1:createDesktopShortcut="true">
-    <subscription>
-      <update>
-        <beforeApplicationStartup />
-      </update>
-    </subscription>
     <deploymentProvider codebase="file://192.168.16.20/Aplicaciones/Asimilados/winAsimilados.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
@@ -21,7 +16,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>y0dMMn+iMFMeAa5yw6LrZPpitnhg5eB/eGME1QtX+T0=</dsig:DigestValue>
+        <dsig:DigestValue>pDE+WejnsBT5LU3r3Jikz4eIKv9rGM0f1U9rswVRlUk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

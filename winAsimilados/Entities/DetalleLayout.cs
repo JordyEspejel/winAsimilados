@@ -20,7 +20,7 @@ namespace winAsimilados.Entities
         private decimal _Total;
         private string _Detalles;
         private decimal _Descuentos;
-
+        private string _ResumenNominaID;
         public string ID{ get { return _ID; } set { _ID = value; } }
         public string Layout { get { return _Layout; } set { _Layout = value; } }
         public string Caratula { get { return _Caratula; } set { _Caratula = value; } }
@@ -40,5 +40,7 @@ namespace winAsimilados.Entities
             get { return _nominaEmpresaID; }
             set { _nominaEmpresaID = value; }
         }
+        public string ResumenNominaID { get { return _ResumenNominaID; } set { _ResumenNominaID = value; } }
+
     }
 }

@@ -44,6 +44,7 @@ namespace winAsimilados.Entities
         private string _TipoPago;
         private string _FormaPago;
         private string _Observaciones;
+        private string _ResumenNominaID;
 
         public string ID{ get { return _ID; } set { _ID = value;} }
         public string Caratula{ get { return _Caratula; } set { _Caratula = value; } }
@@ -81,5 +82,6 @@ namespace winAsimilados.Entities
         public string TipoPago{ get { return _TipoPago; } set { _TipoPago = value; } }
         public string FormaPago{ get { return _FormaPago; } set { _FormaPago = value; } }
         public string Observaciones{ get { return _Observaciones; } set { _Observaciones = value; } }
+        public string ResumenNominaID { get { return _ResumenNominaID; } set { _ResumenNominaID = value; } }
     }
 }

@@ -2459,6 +2459,7 @@ namespace winAsimilados.Views
 
         private void btnVerInfoCaratula_Click(object sender, EventArgs e)
         {
+            string ResumenNominaID = "";
             if (gridViewLayout.RowCount.Equals(0))
             {
                 XtraMessageBox.Show("La tabla no contiene información", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -2480,9 +2481,10 @@ namespace winAsimilados.Views
                     //EstatusCaratula = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[13]).ToString();
                     nomGenLayout = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[2]).ToString();
                     IDClienteLayout = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[3]).ToString();
+                    ResumenNominaID = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[39]).ToString();
                 }
             }
-            V.VerDetalleLayout verDetalle = new V.VerDetalleLayout(nomGenLayout, IDClienteLayout, nomCaratulaGenLayout, splashScreenManager1);
+            V.VerDetalleLayout verDetalle = new V.VerDetalleLayout(nomGenLayout, IDClienteLayout, nomCaratulaGenLayout, splashScreenManager1, ResumenNominaID);
             verDetalle.Text = "Detalle " + nomGenLayout;
             verDetalle.ShowDialog();
             verDetalle.BringToFront();
@@ -2497,6 +2499,7 @@ namespace winAsimilados.Views
 
         private void btnEditarCaratula_Click(object sender, EventArgs e)
         {
+            string ResumenNominaID = "";
             if (splashScreenManager1.IsSplashFormVisible.Equals(false))
             {
                 splashScreenManager1.ShowWaitForm();
@@ -2514,6 +2517,7 @@ namespace winAsimilados.Views
                     nomCaratulaGenLayout = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[1]).ToString();
                     nomGenLayout = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[2]).ToString();
                     EstatusCaratula = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[13]).ToString();
+                    ResumenNominaID = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[39]).ToString();
                 }
             }
             if (EstatusCaratula.Equals("Pagado"))
@@ -2526,7 +2530,7 @@ namespace winAsimilados.Views
             }
             else
             {
-                EditarCaratula editarCaratula = new EditarCaratula(nomCaratulaGenLayout, nomGenLayout, splashScreenManager1, rfc)
+                EditarCaratula editarCaratula = new EditarCaratula(nomCaratulaGenLayout, nomGenLayout, splashScreenManager1, rfc, ResumenNominaID)
                 {
                     Text = "Editar " + nomCaratulaGenLayout  ,                   
                 };
@@ -2804,7 +2808,7 @@ namespace winAsimilados.Views
                 XtraMessageBox.Show("La tabla no contiene información", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
+            string estatusNomi = "";
             for (int i = 0; i < gridViewLayout.RowCount; i++)
             {
                 if (gridViewLayout.IsRowSelected(i))
@@ -2812,7 +2816,18 @@ namespace winAsimilados.Views
                     nomCaratulaGenLayout = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[1]).ToString();
                     nomGenLayout = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[2]).ToString();
                     EstatusCaratula = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[13]).ToString();
+                    estatusNomi = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[38]).ToString();
+                    resumenNominaID = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[39]).ToString();
                 }
+            }      
+            if (estatusNomi.Equals("Timbrado"))
+            {
+                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                {
+                    splashScreenManager1.CloseWaitForm();
+                }
+                XtraMessageBox.Show("¡La Nómina se encuentra con estatus 'Timbtado', no se puede re abrir!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
             if (EstatusCaratula.Equals("Generado"))
             {
@@ -2824,12 +2839,25 @@ namespace winAsimilados.Views
             }
             else
             {
+                if (estatusNomi.Equals("Timbrado"))
+                {
+                    if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                    {
+                        splashScreenManager1.CloseWaitForm();
+                    }
+                    XtraMessageBox.Show("¡La Nómina se encuentra con estatus 'Timbtado', no se puede re abrir!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
                 if (controlador.ReabrirCaratula(nomCaratulaGenLayout, usuarioSistema).Equals(true))
                 {
-                    XtraMessageBox.Show("Periodo abierto con éxito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     controlador.ActualizaStatusLayout(nomCaratulaGenLayout, "Generado");
                     controlador.ListaCaratulas(gridControlLayout);
                     controlador.ListadoLayoutGenerados(gridControlFactura);
+                    controlador.ActualizaStatusNominaAbrirPeriodo(resumenNominaID);
+                    XtraMessageBox.Show("Periodo abierto con éxito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    controlador.ListaCaratulas(gridControlLayout);
+                    sqlDataSource1.Fill();
+                    sqlDataSource2.Fill();
                 }
                 else
                 {
@@ -3073,128 +3101,207 @@ namespace winAsimilados.Views
                 }
 
                 E.Parametros parametrosNomina = controlador.GetParametros(rfc);
-                if (parametrosNomina.correo_cliente.Equals(""))
+                //if (parametrosNomina.correo_cliente.Equals(""))
+                //{
+                //    XtraMessageBox.Show("El correo de la empresa (cliente) no se ha definido. Para contiunar, por favor dar de alta el correo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Informastion);
+                //    return;
+                //}
+                string estatus = "", periodo = "";
+                for (int i = 0; i < gridViewTimbradoNomina.RowCount; i++)
                 {
-                    XtraMessageBox.Show("El correo de la empresa (cliente) no se ha definido. Para contiunar, por favor dar de alta el correo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (gridViewTimbradoNomina.IsRowSelected(i))
+                    {
+                        estatus = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[11]).ToString();
+                        //ingresosMasiv = Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[6]));
+                        //string ing = String.Format("{0:0.00}", ingresosMasiv);
+                        //ingresosMasiv = Convert.ToDecimal(ing);
+                        //ingresosMasiv = Math.Round(ingresosMasiv, 2);
+                        //tipoIngresos = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[4]).ToString();
+                        ////ingresosMasiv = Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[5]));
+                        //ISRMasiv = Math.Round(Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[7])), 2);
+                        //rfcEmplMasiv = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[3]).ToString();
+                        //netoMasiv = Math.Round(Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[5])), 2);
+                        nombreEmpleado = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[2]).ToString();
+                        periodo = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[13]).ToString();
+                        resumenNominaID = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[15]).ToString();
+                    }
+                }
+                    string IdCliente = controlador.GetIDClienteNomina(resumenNominaID);
+                    string correoCliente = controlador.GetCorreoClienteNomina(IdCliente);
+
+                    if (correoCliente.Equals(""))
+                    {
+                        XtraMessageBox.Show("El correo de la empresa (cliente) no se ha definido. Para contiunar, por favor dar de alta el correo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    if (estatus.Equals("Timbrado"))
+                    {
+                        XtraMessageBox.Show("La nómina, del empleado " + nombreEmpleado + " en el periodo " + periodo + " ya fue timbrado anteriormente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    else if (estatus.Equals("Cancelado"))
+                    {
+                        XtraMessageBox.Show("La nómina, del empleado " + nombreEmpleado + " en el periodo " + periodo + " ha sido cancelada, no es posible timbrarla de nuevo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    else if (estatus.Equals("En Proceso de Cancelación"))
+                    {
+                        XtraMessageBox.Show("La nómina, del empleado " + nombreEmpleado + " en el periodo " + periodo + " Se encuentra en proceso de cancelación, no es posible timbrarla de nuevo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                var empleadoMasivo = new List<E.Empleado>();
+                E.Empleado[] emplMasiv = null;
+                DateTime FechaInicioMasivo = Convert.ToDateTime("01/01/1900");
+                DateTime FechaFinMasivo = Convert.ToDateTime("01/01/1900");
+                DateTime FechaPago = Convert.ToDateTime("01/01/1900");
+                for (int i = 0; i < gridViewTimbradoNomina.RowCount; i++)
+                {
+                    if (gridViewTimbradoNomina.IsRowSelected(i))
+                    {
+                        ingresosMasiv = Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[6]));
+                        string ing = String.Format("{0:0.00}", ingresosMasiv);
+                        ingresosMasiv = Convert.ToDecimal(ing);
+                        ingresosMasiv = Math.Round(ingresosMasiv, 2);
+                        tipoIngresos = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[4]).ToString();
+                        //ingresosMasiv = Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[5]));
+                        ISRMasiv = Math.Round(Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[7])), 2);
+                        rfcEmplMasiv = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[3]).ToString();
+                        netoMasiv = Math.Round(Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[5])), 2);
+                        nombreEmpleado = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[2]).ToString();
+                        int IDNomina = Convert.ToInt32(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[0]));
+                        FechaPago = Convert.ToDateTime(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[8]));
+                        FechaInicioMasivo = Convert.ToDateTime(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[9]));
+                        FechaFinMasivo = Convert.ToDateTime(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[10]));
+                        resumenNominaID = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[15]).ToString();
+                        if (ingresosMasiv.Equals(0))
+                        {
+                            if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                            {
+                                splashScreenManager1.CloseWaitForm();
+                            }
+                            var resultado = XtraMessageBox.Show("El empleado " + nombreEmpleado + " No tiene    ingresos. ¿Desea continuar?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (resultado.Equals(DialogResult.No))
+                            {
+                                return;
+                            }
+                            else
+                            {
+                                splashScreenManager1.ShowWaitForm();
+                            }
+                        }
+
+                        if (ingresosMasiv > 0)
+                        {
+                            empleadoMasivo.Add(new E.Empleado
+                            {
+                                Nombre = nombreEmpleado,
+                                RFC = rfcEmplMasiv,
+                                //IngresosBrutos = ingresosMasiv,
+                                IngresosBrutos = ingresosMasiv,
+                                ISR = ISRMasiv,
+                                //IngresosNetos = netoMasiv,
+                                IngresosNetos = netoMasiv,
+                                Periodicidad = tipoIngresos,
+                                nominaEmpresaID = bd,
+                                IDNomina = IDNomina,
+                                resumenNominaID = resumenNominaID
+                            });
+                            emplMasiv = empleadoMasivo.ToArray();
+                        }
+                    }
+                }
+                if (empleadoMasivo.Count.Equals(0))
+                {
+                    XtraMessageBox.Show("Por favor, Seleccione una celda.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    if (ValidaCer().Equals(false))
+                    {
+                        return;
+                    }
+                    if (ValidaKey().Equals(false))
+                    {
+                        return;
+                    }
+                    controlador.TimradoNomina(empleadoMasivo, splash, empresa, rfc, ip, FechaInicioMasivo, FechaFinMasivo, FechaPago, "", true, correoCliente, pacTimbrado, ambiente);
+                    this.CargaTimbresDisponibles();
+                    sqlDataSource2.Fill();
+                }
+            }
+            catch (Exception btnTimNomi)
+            {
+                XtraMessageBox.Show("Error al timbrar nómina:\n" + btnTimNomi.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnCerrarPeriodoNomi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gridViewLayout.RowCount.Equals(0))
+                {
+                    XtraMessageBox.Show("La tabla no contiene información", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (gridViewLayout.GetSelectedRows().Equals(0))
+                {
+                    XtraMessageBox.Show("Por favor, Seleccione una celda.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 else
                 {
-                    string estatus = "", periodo ="";
-                    for (int i = 0; i < gridViewTimbradoNomina.RowCount; i++)
+                    for (int i = 0; i < gridViewLayout.RowCount; i++)
                     {
-                        if (gridViewTimbradoNomina.IsRowSelected(i))
+                        if (gridViewLayout.IsRowSelected(i))
                         {
-                            estatus = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[11]).ToString();
-                            ingresosMasiv = Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[6]));
-                            string ing = String.Format("{0:0.00}", ingresosMasiv);
-                            ingresosMasiv = Convert.ToDecimal(ing);
-                            ingresosMasiv = Math.Round(ingresosMasiv, 2);
-                            tipoIngresos = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[4]).ToString();
-                            //ingresosMasiv = Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[5]));
-                            ISRMasiv = Math.Round(Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[7])), 2);
-                            rfcEmplMasiv = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[3]).ToString();
-                            netoMasiv = Math.Round(Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[5])), 2);
-                            nombreEmpleado = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[2]).ToString();
-                            periodo = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[13]).ToString();
-                        }
-                        if (estatus.Equals("Timbrado"))
-                        {
-                            XtraMessageBox.Show("La nómina, del empleado " + nombreEmpleado + " en el periodo " + periodo + " ya fue timbrado anteriormente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return;
-                        }else if (estatus.Equals("Cancelado"))
-                        {
-                            XtraMessageBox.Show("La nómina, del empleado " + nombreEmpleado + " en el periodo " + periodo + " ha sido cancelada, no es posible timbrarla de nuevo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return;
-                        }else if (estatus.Equals("En Proceso de Cancelación"))
-                        {
-                            XtraMessageBox.Show("La nómina, del empleado " + nombreEmpleado + " en el periodo " + periodo + " Se encuentra en proceso de cancelación, no es posible timbrarla de nuevo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return;
+                            EstatusCaratula = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[13]).ToString();
+                            estatusNomina = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[38]).ToString();
+                            //IDResumenNomina = Convert.ToInt32(gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[39]));
+                            resumenNominaID = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[39]).ToString();
                         }
                     }
-                    var empleadoMasivo = new List<E.Empleado>();
-                    E.Empleado[] emplMasiv = null;
-                    DateTime FechaInicioMasivo = Convert.ToDateTime("01/01/1900");
-                    DateTime FechaFinMasivo = Convert.ToDateTime("01/01/1900");
-                    DateTime FechaPago = Convert.ToDateTime("01/01/1900");
-                    for (int i = 0; i < gridViewTimbradoNomina.RowCount; i++)
+                    if (EstatusCaratula.Equals("Generado"))
                     {
-                        if (gridViewTimbradoNomina.IsRowSelected(i))
-                        {
-                            ingresosMasiv = Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[6]));
-                            string ing = String.Format("{0:0.00}", ingresosMasiv);
-                            ingresosMasiv = Convert.ToDecimal(ing);
-                            ingresosMasiv = Math.Round(ingresosMasiv, 2);
-                            tipoIngresos = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[4]).ToString();
-                            //ingresosMasiv = Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[5]));
-                            ISRMasiv = Math.Round(Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[7])),2);
-                            rfcEmplMasiv = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[3]).ToString();
-                            netoMasiv = Math.Round(Convert.ToDecimal(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[5])),2);
-                            nombreEmpleado = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[2]).ToString();
-                            int IDNomina = Convert.ToInt32(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[0]));
-                            FechaPago = Convert.ToDateTime(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[8]));
-                            FechaInicioMasivo = Convert.ToDateTime(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[9]));
-                            FechaFinMasivo = Convert.ToDateTime(gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[10]));
-
-                            if (ingresosMasiv.Equals(0))
-                            {
-                                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
-                                {
-                                    splashScreenManager1.CloseWaitForm();
-                                }
-                            var resultado = XtraMessageBox.Show("El empleado " + nombreEmpleado + " No tiene    ingresos. ¿Desea continuar?", "Mensaje", MessageBoxButtons.YesNo,   MessageBoxIcon.Question);
-
-                                if (resultado.Equals(DialogResult.No))
-                                {
-                                    return;
-                                }
-                                else
-                                {
-                                    splashScreenManager1.ShowWaitForm();
-                                }
-                            }
-
-                            if (ingresosMasiv > 0)
-                            {
-                                empleadoMasivo.Add(new E.Empleado
-                                {
-                                    Nombre = nombreEmpleado,
-                                    RFC = rfcEmplMasiv,
-                                    //IngresosBrutos = ingresosMasiv,
-                                    IngresosBrutos = ingresosMasiv,
-                                    ISR = ISRMasiv,
-                                    //IngresosNetos = netoMasiv,
-                                    IngresosNetos = netoMasiv,
-                                    Periodicidad = tipoIngresos,
-                                    nominaEmpresaID = bd,
-                                    IDNomina = IDNomina
-                                });
-                                emplMasiv = empleadoMasivo.ToArray();
-                            }
-                        }
+                        XtraMessageBox.Show("No se puede cerrar periodo con pago no validado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
                     }
-                    if (empleadoMasivo.Count.Equals(0))
+                    if (estatusNomina.Equals("Generado"))
                     {
-                        XtraMessageBox.Show("Por favor, Seleccione una celda.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        var respuesta = XtraMessageBox.Show("¿Desea cerrar la nómina seleccionada?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (respuesta.Equals(DialogResult.Yes))
+                        {
+                            //System.Drawing.Icon icon = new System.Drawing.Icon(@"C:\DocAsimilados\Ico\Success.ico");
+                            //XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+                            //args.Caption = "Mensaje";
+                            //args.Text = "¡Nómina cerrada con éxito!";
+                            //args.Buttons = new DialogResult[] { DialogResult.OK };
+                            //args.Icon = icon;
+                            //args.Showing += Args_Showing;
+                            //XtraMessageBox.Show(args).ToString();
+                            //XtraMessageBox.Icons[MessageBoxIcon.Exclamation] = icon;
+                            controlador.CerrarNomina(IDResumenNomina, resumenNominaID, usuarioSistema);
+                            sqlDataSource2.Fill();
+                            sqlDataSource1.Fill();                           
+                            XtraMessageBox.Show("¡Nómina cerrada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            controlador.ListaCaratulas(gridControlLayout);
+                        }
                     }
                     else
                     {
-                        if (ValidaCer().Equals(false))
-                        {
-                            return;
-                        }
-                        if (ValidaKey().Equals(false))
-                        {
-                            return;
-                        }
-                        controlador.TimradoNomina(empleadoMasivo, splash, empresa, rfc, ip, FechaInicioMasivo, FechaFinMasivo, FechaPago, "", true,parametros.correo_cliente,pacTimbrado, ambiente);
-                        this.CargaTimbresDisponibles();
-                        sqlDataSource2.Fill();
-                        }                                         
+                        XtraMessageBox.Show("La nómina ya fue cerrada anteriormente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
                 }
-            }catch (Exception btnTimNomi)
+            }
+            catch (Exception btnCerrarNomi)
             {
-                XtraMessageBox.Show("Error al timbrar nómina:\n" + btnTimNomi.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Error al intentar cerrar nómina:\n" + btnCerrarNomi.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -3397,6 +3504,7 @@ namespace winAsimilados.Views
                 #endregion
 
                 splashScreenManager1.ShowWaitForm();
+                splashScreenManager1.SetWaitFormCaption("Generando Caratula..");
                 string IDCliente = lookUpCliente.EditValue.ToString();
                 string nombreCliente = lookUpCliente.Text;
                 string fechaAplicacionPeriodo = FecAplicacionLayoutBanorte.Value.ToString("yyyy-MM-dd");
@@ -3418,8 +3526,38 @@ namespace winAsimilados.Views
                 caratulaPago.FechaAplicacion = fechaApliPeri;
                 caratulaPago.FechaIniPeriodo = fechaInPer;
                 caratulaPago.FechaFinPeriodo = fechaFiPer;
+                caratulaPago.nominaEmpresaID = nominaEmpresaID;
 
-                string periodo = Convert.ToString(anio + mes + "0");
+                string periodo = "";
+                //string mesActual = DateTime.Now.Month.ToString();
+                int contPeriodo = controlador.ObtieneContPeriodoNomina(nominaEmpresaID, mes, splashScreenManager1);
+                if (contPeriodo == 0 || contPeriodo == 1)
+                {
+                    contPeriodo++;
+                }
+                if (Convert.ToInt32(mes) < 10)
+                {
+                    if (contPeriodo < 10)
+                    {
+                        periodo = Convert.ToString(anio + "0" + mes + "00" + contPeriodo.ToString());
+                    }
+                    else
+                    {
+                        periodo = Convert.ToString(anio + "0" + mes + "0" + contPeriodo.ToString());
+                    }
+
+                }
+                else
+                {
+                    if (contPeriodo < 10)
+                    {
+                        periodo = Convert.ToString(anio + "0" + mes + "00" + contPeriodo.ToString());
+                    }
+                    else
+                    {
+                        periodo = Convert.ToString(anio + "0" + mes + "0" + contPeriodo.ToString());
+                    }
+                }
 
                 //string periodo = Convert.ToString(DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + numSemana);
 
@@ -3443,11 +3581,15 @@ namespace winAsimilados.Views
                 var listaLayout = new List<E.Layout>();
                 var empleadoMasivoLayout = new List<E.Empleado>();
                 E.Empleado[] emplMasiv = null;
+                splashScreenManager1.SetWaitFormCaption("Generando nómina..");
+                M.ResumenNomina resumenNomina = new M.ResumenNomina();
+                parametrosNomina = controlador.GetParametros(rfc);
+                List<M.Nomina> nominaMasiva = new List<M.Nomina>();
                 for (int i = 0; i < gridViewLayoutBanorte.RowCount; i++)
                 {
                     if (gridViewLayoutBanorte.IsRowSelected(i))
                     {
-                        periodo = Convert.ToString(anio + mes + "0");
+                        //periodo = Convert.ToString(anio + mes + "0");
                         cont++;
                         ingresosMasiv = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[6]));
                         string ing = String.Format("{0:0.00}", ingresosMasiv);
@@ -3475,35 +3617,35 @@ namespace winAsimilados.Views
 
 
                         #region ifPeriodos
-                        if (empleadoLayout.Periodicidad.Equals("Semanal")|| empleadoLayout.Periodicidad.Equals("02"))
-                        {
-                            if (dia <= 7)
-                            {
-                                periodo = periodo + "1";
-                            }else if (dia <= 14)
-                            {
-                                periodo = periodo + "2";
-                            }else if (dia <= 21)
-                            {
-                                periodo = periodo + "3";
-                            }else if (dia <= 28 || dia > 28)
-                            {
-                                periodo = periodo + "4";
-                            }
-                        }else if (empleadoLayout.Periodicidad.Equals("Quincenal")|| empleadoLayout.Periodicidad.Equals("04"))
-                        {
-                            if (dia <= 15)
-                            {
-                                periodo = periodo + "1";
-                            }
-                            else
-                            {
-                                periodo = periodo + "2";
-                            }
-                        }else if (empleadoLayout.Periodicidad.Equals("Mensual")|| empleadoLayout.Periodicidad.Equals("05"))
-                        {
-                            periodo = periodo + "1";
-                        }
+                        //if (empleadoLayout.Periodicidad.Equals("Semanal")|| empleadoLayout.Periodicidad.Equals("02"))
+                        //{
+                        //    if (dia <= 7)
+                        //    {
+                        //        periodo = periodo + "1";
+                        //    }else if (dia <= 14)
+                        //    {
+                        //        periodo = periodo + "2";
+                        //    }else if (dia <= 21)
+                        //    {
+                        //        periodo = periodo + "3";
+                        //    }else if (dia <= 28 || dia > 28)
+                        //    {
+                        //        periodo = periodo + "4";
+                        //    }
+                        //}else if (empleadoLayout.Periodicidad.Equals("Quincenal")|| empleadoLayout.Periodicidad.Equals("04"))
+                        //{
+                        //    if (dia <= 15)
+                        //    {
+                        //        periodo = periodo + "1";
+                        //    }
+                        //    else
+                        //    {
+                        //        periodo = periodo + "2";
+                        //    }
+                        //}else if (empleadoLayout.Periodicidad.Equals("Mensual")|| empleadoLayout.Periodicidad.Equals("05"))
+                        //{
+                        //    periodo = periodo + "1";
+                        //}
                         #endregion
 
                         #region AsignaCuenta/Clabe
@@ -3629,7 +3771,9 @@ namespace winAsimilados.Views
                                 cuentaBancaria = empleadoLayout.cuenta,
                                 CLABE = empleadoLayout.clabe_bancaria,
                                 bancoEmpresaPago = lookUpBanco.EditValue.ToString(),
-                                descuentos = descuento
+                                descuentos = descuento,
+                                ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + periodo,
+                            nominaEmpresaID = nominaEmpresaID
                             });
                         }
 
@@ -3646,6 +3790,30 @@ namespace winAsimilados.Views
                         emplMasiv = empleadoMasivoLayout.ToArray();
                     }
 
+                    nominaMasiva.Add(new M.Nomina
+                    {
+                        nominanumEmpl = Convert.ToInt32(empleadoLayout.NumEmpl),
+                        nominanombreEmpleado = empleadoLayout.Nombre,
+                        nominaRFCEmpleado = rfcEmplMasiv,
+                        nominaPeriodidicadPago = tipoIngresos,
+                        nominaIngresos = ingresosMasiv,
+                        nominaIngresosBruto = netoMasiv,
+                        nominaISR = ISRMasiv,
+                        nominaFechaPago = fechaApliPeri,
+                        nominaFechaIniPeri = fechaInPer,
+                        nominaFechaFinPero = fechaFiPer,
+                        nominaFechaCreacion = DateTime.Now,
+                        nominaEstatus = "Generado",
+                        nominaEstatusSAT = "",
+                        nominaPeriodo = periodo,
+                        nominaEmpresa = parametrosNomina.NombreEmpresa,
+                        nominaRFCEmpresa = parametrosNomina.RFC,
+                        nominaDescripciponError = "",
+                        nominaEmpresaNominaID = parametrosNomina.NOMINA_EMPRESA_ID,
+                        nominaUsuario = usuarioSistema,
+                        ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + periodo,
+                });
+
                 }
                 foreach (var item in listaLayout)
                 {
@@ -3661,7 +3829,7 @@ namespace winAsimilados.Views
                 detalleLayout.ComisionServicio = detalleLayout.SalarioAsimilado * Convert.ToDecimal(infoCliente.PORCENTAJE_COMISION);
                 detalleLayout.SubTotal = detalleLayout.SalarioAsimilado + detalleLayout.ImpuestoNomina + detalleLayout.ComisionServicio;
                 detalleLayout.IVA = Math.Round(detalleLayout.SubTotal * IVA, 2);
-                
+                detalleLayout.nominaEmpresaID = nominaEmpresaID;
 
                 if (infoCliente.RETENCION.Equals("S"))
                 {
@@ -3717,6 +3885,39 @@ namespace winAsimilados.Views
                 }
                 else
                 {
+                    caratulaPago.ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + periodo;
+                    detalleLayout.ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + periodo;
+                    resumenNomina.ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + periodo;
+                    resumenNomina.ResumenNominaTotalEmpleados = nominaMasiva.Count;
+                    resumenNomina.ResumenNominaFechaPago = fechaApliPeri;
+                    resumenNomina.ResumenNominaFechaInicioPeri = fechaInPer;
+                    resumenNomina.ResumenNominaFechaFinPeri = fechaFiPer;
+                    resumenNomina.ResumenNominaEstatus = "Generado";
+                    resumenNomina.ResumenNominaEstatusSAT = "";
+                    resumenNomina.ResumenNominaPeriodo = periodo;
+                    resumenNomina.ResumenNominaEmpresaNombre = parametrosNomina.NombreEmpresa;
+                    resumenNomina.ResumenNominaRFCEmpresa = parametros.RFC;
+                    resumenNomina.ResumenNominaUsuarioCreacion = usuarioSistema;
+                    resumenNomina.ResumenNominaNominaEmpresaID = nominaEmpresaID;
+
+                    foreach (var item in nominaMasiva)
+                    {
+                        if (resumenNomina.ResumenNominaTotalIngresos == null || resumenNomina.ResumenNominaTotalIngresosBruto == null || resumenNomina.ResumenNominaTotalISR == null)
+                        {
+                            resumenNomina.ResumenNominaTotalIngresos = item.nominaIngresos;
+                            resumenNomina.ResumenNominaTotalIngresosBruto = item.nominaIngresosBruto;
+                            resumenNomina.ResumenNominaTotalISR = item.nominaISR;
+                        }
+                        else
+                        {
+                            resumenNomina.ResumenNominaTotalIngresos += item.nominaIngresos;
+                            resumenNomina.ResumenNominaTotalIngresosBruto += item.nominaIngresosBruto;
+                            resumenNomina.ResumenNominaTotalISR += item.nominaISR;
+                        }
+
+                    }
+                    controlador.InsertaResumenNomina(resumenNomina);
+                    controlador.InsertaNominaMasiva(nominaMasiva);
                     controlador.InsertaLayout(listaLayout, splashScreenManager1);
                     controlador.InsertaDetalleLyout(detalleLayout, splashScreenManager1);
                     controlador.InsertaCaratula(caratulaPago, splashScreenManager1);
@@ -4028,7 +4229,7 @@ namespace winAsimilados.Views
                 DateTime FechaPago = Convert.ToDateTime(FecPagoMasiv.Text);
                 string fechaAplicacionPeriodo = FecPagoMasiv.EditValue.ToString();
                 //fechaAplicacion = Convert.ToDateTime(fecAplicación),
-                string fechaIniPeri = FecPagoMasiv.EditValue.ToString();
+                string fechaIniPeri = FecIniPeriMasiv.EditValue.ToString();
                 string fechaFinPeri = FecFinPeriMasiv.EditValue.ToString();
                 string fecha = DateTime.Now.ToString("dd/MM/yyyy");
                 DateTime fechaSistema = DateTime.Parse(fecha.Trim());

@@ -230,6 +230,12 @@ namespace winAsimilados.Entities
             get { return _UUIDNomina; }
             set { _UUIDNomina = value; }
         }
+        private string _resumenNominaID;
+        public string resumenNominaID
+        {
+            get { return _resumenNominaID; }
+            set { _resumenNominaID = value; }
+        }
     }
 }
 

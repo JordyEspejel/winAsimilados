@@ -53,7 +53,196 @@ namespace winAsimilados.Controller
     class Controller
     {
         M.AsimiladosDataContext dtc = new M.AsimiladosDataContext();
+        public void ActualizaStatusLayoutNomina(string IDResumen, string estatus, string RFCEmpleado, string descError)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand queryUpdateEstatus = (SqlCommand)dtc.Connection.CreateCommand();
+                queryUpdateEstatus.CommandText = @"UPDATE LayoutHistorico SET [estatus] = '" + estatus + "'" +
+                    ",[descripcionError] = '" + descError + "'"
+                 + "WHERE [ResumenNomianID] = '" + IDResumen + "'" +
+                 "AND [RFCEmpleado] = '" + RFCEmpleado + "'";
+                queryUpdateEstatus.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void ActualizaStatusNominaAbrirPeriodo(string IDResumen)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand queryStatusResumen = (SqlCommand)dtc.Connection.CreateCommand();
+                SqlCommand queryStatusNomina = (SqlCommand)dtc.Connection.CreateCommand();
+                queryStatusResumen.CommandText = @"UPDATE ResumenNomina
+                SET ResumenNominaEstatus = 'Generado'
+                WHERE ResumenNominaID = @ResumenNominaID";
+                queryStatusResumen.Parameters.AddWithValue("@ResumenNominaID", IDResumen);
+                queryStatusNomina.CommandText = @"update Nomina
+                SET nominaEstatus = 'Generado'
+                WHERE ResumenNominaID = @resumenNominaID";
+                queryStatusNomina.Parameters.AddWithValue("@resumenNominaID", IDResumen);
+                queryStatusResumen.ExecuteNonQuery();
+                queryStatusNomina.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public string GetCorreoClienteNomina(string IDCliente)
+        {
+            try
+            {
+                string correo = "";
+                dtc.Connection.Open();
+                SqlCommand getCorreo = (SqlCommand)dtc.Connection.CreateCommand();
+                getCorreo.CommandText = @"select Correo from ClientesAsimilados where ID = @ID";
+                getCorreo.Parameters.AddWithValue("@ID", IDCliente);
+                SqlDataReader readerCorreo;
+                readerCorreo = getCorreo.ExecuteReader();
+                if (readerCorreo.Read())
+                {
+                    correo = readerCorreo.IsDBNull(0) ? "" : readerCorreo.GetString(0);
+                }
+                readerCorreo.Close();
+                dtc.Connection.Close();
+                return correo;
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public string GetIDClienteNomina(string IDResumen)
+        {
+            try
+            {
+                string ID = "";
+                dtc.Connection.Open();
+                SqlCommand getID = (SqlCommand)dtc.Connection.CreateCommand();
+                getID.CommandText = @"select IDCliente from CaratulaPago where ResumenNomianID = @ID";
+                getID.Parameters.AddWithValue("@ID", IDResumen);
+                SqlDataReader readerID;
+                readerID = getID.ExecuteReader();
+                if (readerID.Read())
+                {
+                    ID = readerID.IsDBNull(0) ? "": readerID.GetString(0);
+                }
+                readerID.Close();
+                dtc.Connection.Close();
+                return ID;
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void ActualizaStatusResumenNomina(string IDResumen)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand updateStatus = (SqlCommand)dtc.Connection.CreateCommand();
+                updateStatus.CommandText = @"UPDATE ResumenNomina
+                SET ResumenNominaEstatus = 'Timbrado'
+                , ResumenNominaEstatusSAT = 'Timbrado'
+                where ResumenNominaID = '" + IDResumen + "'";
+                updateStatus.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public M.ResumenNomina GetResumenNomina(string IDNomina)
+        {
+            try
+            {
+                M.ResumenNomina resumenNomina = new M.ResumenNomina();
+                dtc.Connection.Open();
+                SqlCommand queryGetResumenNomina = (SqlCommand)dtc.Connection.CreateCommand();
+                queryGetResumenNomina.CommandText = @"SELECT [ID]
+                      ,[ResumenNominaID]
+                      ,[ResumenNominaTotalEmpleados]
+                      ,[ResumenNominaTotalIngresos]
+                      ,[ResumenNominaTotalIngresosBruto]
+                      ,[ResumenNominaTotalISR]
+                      ,[ResumenNominaFechaPago]
+                      ,[ResumenNominaFechaInicioPeri]
+                      ,[ResumenNominaFechaFinPeri]
+                      ,[ResumenNominaFechaCreacion]
+                      ,[ResumenNominaEstatus]
+                      ,[ResumenNominaEstatusSAT]
+                      ,[ResumenNominaPeriodo]
+                      ,[ResumenNominaEmpresaNombre]
+                      ,[ResumenNominaRFCEmpresa]
+                      ,[ResumenNominaUsuarioCreacion]
+                      ,[ResumenNominaUsuarioCierrePeriodo]
+                      ,ISNULL([ResumenNominaUsuarioFechaCierre], '') AS[ResumenNominaUsuarioFechaCierre]
+                      ,[ResumenNominaNominaEmpresaID]
+                  FROM [Asimilados].[dbo].[ResumenNomina]
+                  WHERE [ResumenNominaID] = @ID";
+                queryGetResumenNomina.Parameters.AddWithValue("@ID", IDNomina);
+                SqlDataReader readerResumen;
+                readerResumen = queryGetResumenNomina.ExecuteReader();
+                if (readerResumen.Read())
+                {
+                    resumenNomina.ID = readerResumen.GetInt32(0);
+                    resumenNomina.ResumenNominaID = readerResumen.GetString(1);
+                    resumenNomina.ResumenNominaTotalEmpleados = readerResumen.GetInt32(2);
+                    resumenNomina.ResumenNominaTotalIngresos = readerResumen.GetDecimal(3);
+                    resumenNomina.ResumenNominaTotalIngresosBruto = readerResumen.GetDecimal(4);
+                    resumenNomina.ResumenNominaTotalISR = readerResumen.GetDecimal(5);
+                    resumenNomina.ResumenNominaFechaPago = readerResumen.GetDateTime(6);
+                    resumenNomina.ResumenNominaFechaInicioPeri = readerResumen.GetDateTime(7);
+                    resumenNomina.ResumenNominaFechaFinPeri = readerResumen.GetDateTime(8);
+                    resumenNomina.ResumenNominaFechaCreacion = readerResumen.GetDateTime(9);
+                    resumenNomina.ResumenNominaEstatus = readerResumen.GetString(10);
+                    resumenNomina.ResumenNominaEstatusSAT = readerResumen.GetString(11);
+                    resumenNomina.ResumenNominaPeriodo = readerResumen.GetString(12);
+                    resumenNomina.ResumenNominaEmpresaNombre = readerResumen.GetString(13);
+                    resumenNomina.ResumenNominaRFCEmpresa = readerResumen.GetString(14);
+                    resumenNomina.ResumenNominaUsuarioCreacion = readerResumen.GetString(15);
+                    resumenNomina.ResumenNominaUsuarioCierrePeriodo = readerResumen.IsDBNull(16) ? "Sin Cerrar" : readerResumen.GetString(16);
+                    resumenNomina.ResumenNominaUsuarioFechaCierre = readerResumen.GetDateTime(17);
+                    resumenNomina.ResumenNominaID = readerResumen.GetString(18);
+                }
 
+                return resumenNomina;
+            }
+            catch (Exception e)
+            {
+                dtc.Connection.Close();
+                XtraMessageBox.Show(e.Message + "\nError Controlador: GetResumenNomina()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+        public M.Nomina GetInfoNomina(string IDNomina)
+        {
+            try
+            {
+                M.Nomina nomina = new M.Nomina();
+                dtc.Connection.Open();
+                SqlCommand queryGetInfoNomina = (SqlCommand)dtc.Connection.CreateCommand();
+                queryGetInfoNomina.CommandText = @"";
+
+                return nomina;
+            }catch (Exception e)
+            {
+                dtc.Connection.Close();
+                XtraMessageBox.Show(e.Message + "\nError Controlador: GetInfoNomina()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
         public void ActualizaErrorNomina(int ID, string error)
         {
             try
@@ -196,8 +385,8 @@ namespace winAsimilados.Controller
                 SET ResumenNominaEstatus = 'Cerrado'
                 , ResumenNominaUsuarioCierrePeriodo = @usuario
                 , ResumenNominaUsuarioFechaCierre = GETDATE()
-                WHERE ID = @IDResumen";
-                queryStatusResumen.Parameters.AddWithValue("@IDResumen", idResumen);
+                WHERE ResumenNominaID = @ResumenNominaID";
+                queryStatusResumen.Parameters.AddWithValue("@ResumenNominaID", resumenNominaID);
                 queryStatusResumen.Parameters.AddWithValue("@usuario", usuario);
                 queryStatusNomina.CommandText = @"update Nomina
                 SET nominaEstatus = 'Cerrado'
@@ -212,6 +401,23 @@ namespace winAsimilados.Controller
             }
             catch (Exception)
             { 
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void ActualizaResumenNomina(M.ResumenNomina resumenNomina, string IDNomiAct)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand queryActualizaResumen = (SqlCommand)dtc.Connection.CreateCommand();
+                queryActualizaResumen.CommandText = @"UPDATE ResumenNomina
+                SET [ResumenNominaTotalIngresos] = " + resumenNomina.ResumenNominaTotalIngresos + ", [ResumenNominaTotalIngresosBruto] = " + resumenNomina.ResumenNominaTotalIngresosBruto + ", [ResumenNominaTotalISR] = " + resumenNomina.ResumenNominaTotalISR + ", [ResumenNominaFechaPago] = '" + Convert.ToDateTime(resumenNomina.ResumenNominaFechaPago).ToString("dd/MM/yyyy") + "', [ResumenNominaFechaInicioPeri] = '" + Convert.ToDateTime(resumenNomina.ResumenNominaFechaInicioPeri).ToString("dd/MM/yyyy") + "', [ResumenNominaFechaFinPeri] = '" + Convert.ToDateTime(resumenNomina.ResumenNominaFechaFinPeri).ToString("dd/MM/yyyy") /*+ "', [ResumenNominaPeriodo] = '" + resumenNomina.ResumenNominaPeriodo*/ + "' WHERE [ResumenNominaNominaEmpresaID] = '" + resumenNomina.ResumenNominaNominaEmpresaID + "' AND [ResumenNominaID] = '" + IDNomiAct + "'";
+
+                queryActualizaResumen.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }catch (Exception)
+            {                
                 dtc.Connection.Close();
                 throw;
             }
@@ -258,6 +464,26 @@ namespace winAsimilados.Controller
                 ",'" + resumenNomina.ResumenNominaUsuarioCreacion + "'" +
                 ",'" + resumenNomina.ResumenNominaNominaEmpresaID + "')";
                 queryInsertaResumen.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void ActualizaNominaMasiva(List<M.Nomina> listaNomina, string IDNomiAct)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand queryActualizaNomina = (SqlCommand)dtc.Connection.CreateCommand();
+                foreach (var item in listaNomina)
+                {
+                    queryActualizaNomina.CommandText = @"UPDATE Nomina
+                    SET [nominaPeriodidicadPago] = '" + item.nominaPeriodidicadPago + "', [nominaIngresos] = " + item.nominaIngresos + ", [nominaIngresosBruto] = " + item.nominaIngresosBruto + ", [nominaISR] = " + item.nominaISR + ", [nominaFechaPago] = '" + Convert.ToDateTime(item.nominaFechaPago).ToString("dd/MM/yyyy") + "', [nominaFechaIniPeri] = '" + Convert.ToDateTime(item.nominaFechaIniPeri).ToString("dd/MM/yyyy") + "', [nominaFechaFinPero] = '" + Convert.ToDateTime(item.nominaFechaFinPero).ToString("dd/MM/yyyy") /*+ "', [nominaPeriodo] = '" + item.nominaPeriodo*/ /*+ "', [ResumenNominaID] = '" + item.ResumenNominaID */+ "' WHERE [nominaEmpresaNominaID] = '" + item.nominaEmpresaNominaID + "' AND [ResumenNominaID] = '" + IDNomiAct + "' AND [nominaRFCEmpleado] = '" + item.nominaRFCEmpleado + "'";
+
+                    queryActualizaNomina.ExecuteNonQuery();
+                }
                 dtc.Connection.Close();
             }catch (Exception)
             {
@@ -3819,6 +4045,7 @@ namespace winAsimilados.Controller
                                     ActualizaFolioUUIDNomina(item.FolioNomina, item.UUIDNomina, item.IDNomina);
                                     ActualizaErrorNomina(item.IDNomina, "");
                                     ActualizaStatusNomina(item.IDNomina, "Timbrado", "Timbrado");
+                                    ActualizaStatusLayoutNomina(item.resumenNominaID, "Timbrado", item.RFC, "");
                                     string resultFolio = InsertaFolio(Folio, splashScreenManager1);
                                     if (resultFolio != "true")
                                     {
@@ -3851,6 +4078,7 @@ namespace winAsimilados.Controller
                                 {
                                     ActualizaStatusNomina(item.IDNomina, "Error", "");
                                     ActualizaErrorNomina(item.IDNomina, newXML.DescripcionError);
+                                    ActualizaStatusLayoutNomina(item.resumenNominaID, "Error", item.RFC, newXML.DescripcionError);
                                     genPDF = false;
                                     error++;
                                     builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
@@ -3940,6 +4168,7 @@ namespace winAsimilados.Controller
                                         ActualizaFolioUUIDNomina(item.FolioNomina, item.UUIDNomina, item.IDNomina);
                                         ActualizaErrorNomina(item.IDNomina, "");
                                         ActualizaStatusNomina(item.IDNomina, "Timbrado", "Timbrado");
+                                        ActualizaStatusLayoutNomina(item.resumenNominaID, "Timbrado", item.RFC, "");
                                         string resultFolio = InsertaFolio(Folio, splashScreenManager1);
                                         if (resultFolio != "true")
                                         {
@@ -3972,6 +4201,7 @@ namespace winAsimilados.Controller
                                     {
                                         ActualizaErrorNomina(item.IDNomina, cFDIResultados[0].mensaje);
                                         ActualizaStatusNomina(item.IDNomina, "Error", "");
+                                        ActualizaStatusLayoutNomina(item.resumenNominaID, "Error", item.RFC, cFDIResultados[0].mensaje);
                                         genPDF = false;
                                         error++;
                                         builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
@@ -3996,6 +4226,7 @@ namespace winAsimilados.Controller
                                     ActualizaStatusNomina(item.IDNomina, "Error", "");
                                     estatusLayout = "Error al timbrar";
                                     ActualizaStatusFolio(item.IDLayout, estatusLayout);
+                                    ActualizaStatusLayoutNomina(item.resumenNominaID, "Error", item.RFC, cFDIResultados[0].mensaje);
                                     if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                                     {
                                         splashScreenManager1.CloseWaitForm();
@@ -4012,6 +4243,7 @@ namespace winAsimilados.Controller
                         {
                             ActualizaErrorNomina(item.IDNomina, timbrado.Message);
                             ActualizaStatusNomina(item.IDNomina, "Error", "");
+                            ActualizaStatusLayoutNomina(item.resumenNominaID, "Error", item.RFC, timbrado.Message);
                             if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                             {
                                 splashScreenManager1.CloseWaitForm();
@@ -4050,7 +4282,7 @@ namespace winAsimilados.Controller
                                 //}
                             }
                         }
-                        if (enviaCorreo.Equals(true)/* && destino.Equals("Empleado")*/)
+                        if (enviaCorreo.Equals(true) && genPDF.Equals(true)/* && destino.Equals("Empleado")*/)
                         {
                             splashScreenManager1.SetWaitFormCaption("Enviando Correo...");
                             string resultCorreoCliente = EnviaFacturaCorreo(correoCliente, archivos, "Empleado");
@@ -4118,10 +4350,10 @@ namespace winAsimilados.Controller
 
                     if (cont + 1 == Lista.Count)
                     {
-                        //if (exito.Equals(Lista.Count()))
-                        //{
-
-                        //}
+                        if (exito.Equals(Lista.Count()))
+                        {
+                            ActualizaStatusResumenNomina(item.resumenNominaID);
+                        }
 
                         if (error > 0)
                         {
@@ -7020,6 +7252,7 @@ namespace winAsimilados.Controller
             try
             {
                 E.Empleado empleado = (E.Empleado)_P;
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 int numEmplAnt = 0, numEmplNue = 0;
                 SqlCommand queryNumEmpl = N.Conexion.PerformConnection().CreateCommand();
                 queryNumEmpl.CommandText = @"select ISNULL(max (cast(NUM_EMPLEADO as int)), 0) from EMPLEADOS";
@@ -7035,9 +7268,10 @@ namespace winAsimilados.Controller
                 //XtraMessageBox.Show(numEmplAnt + "\n" + numEmplNue);
 
                 SqlCommand queryBuscaEmpl = N.Conexion.PerformConnection().CreateCommand();
-                queryBuscaEmpl.CommandText = @"select * from Empleados where RFC = @rfc";
+                queryBuscaEmpl.CommandText = @"select * from Empleados where RFC = @rfc AND nominaEmpresaID = @empresa";
                 SqlDataReader ReaderEmpl;
                 queryBuscaEmpl.Parameters.AddWithValue("@rfc", empleado.RFC);
+                queryBuscaEmpl.Parameters.AddWithValue("@empresa", Empresa);
                 ReaderEmpl = queryBuscaEmpl.ExecuteReader();
                 // con esta se agrega el empleado unitario
                 SqlCommand queryInsertaEmpl = N.Conexion.PerformConnection().CreateCommand();
@@ -7082,7 +7316,7 @@ namespace winAsimilados.Controller
                 {
                     XtraMessageBox.Show("El empleado Con RFC: " + empleado.RFC + "Ya se encuentra registrado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ReaderEmpl.Close();
-                    return true;
+                    return false;
                 }
                 else
                 {
@@ -7525,7 +7759,8 @@ namespace winAsimilados.Controller
       ,[PorcentajeComision]
       ,[PorcentajeRetencion]
       ,[descuentos]
-,[nominaEmpresaID])
+,[nominaEmpresaID]
+,[ResumenNomianID])
          VALUES
                ('" + caratula.caratula + "'" +
                ",'" + caratula.Layout + "'" +
@@ -7567,7 +7802,8 @@ namespace winAsimilados.Controller
                "," + caratula.PorcentajeComision + "" +
                "," + caratula.PorcentajeRetencion + "" +
                "," + caratula.descuentos + "" +
-               ",'"+ caratula.nominaEmpresaID + "')";
+               ",'"+ caratula.nominaEmpresaID + "'" +
+               ",'" + caratula.ResumenNominaID + "')";
 
                 queryInsertaCaratula.ExecuteNonQuery();
             }
@@ -7655,7 +7891,7 @@ namespace winAsimilados.Controller
                 return;
             }
         }
-        public bool ActualizaCaratula(E.Caratula caratula, SplashScreenManager splash)
+        public bool ActualizaCaratula(E.Caratula caratula, SplashScreenManager splash, string IDNominaAct)
         {
             try
             {
@@ -7694,9 +7930,10 @@ namespace winAsimilados.Controller
                   ",[FormaPago] = '" + caratula.FormaPago + "'" +
                   ",[Observaciones] = '" + caratula.Observaciones + "'" +
                   ",[FechaModificacion] = " + "GETDATE()" + "" +
-                  ",[UsuarioModificacion] = '" + caratula.UsuarioModificacion + "'" +
+                  ",[UsuarioModificacion] = '" + caratula.UsuarioModificacion + "'" +                  
                   "WHERE ID = '" + caratula.ID + "'" +
-                  "AND nominaEmpresaID = '" + Empresa + "'";
+                  "AND nominaEmpresaID = '" + Empresa + "'" +
+                  "AND ResumenNomianID = '" + IDNominaAct + "'";
 
                 if (updateCaratula.ExecuteNonQuery().Equals(1))
                 {
@@ -7798,7 +8035,8 @@ namespace winAsimilados.Controller
                        ,[CLABE]
                        ,[bancoEmpresaPago]
                         ,[descuentos]
-                        ,[nominaEmpresaID])
+                        ,[nominaEmpresaID]
+                        ,[ResumenNomianID])
                  VALUES
                        ('" + item.numEmpl + "'" +
                        ",'" + item.nombreEmpleado + "'" +
@@ -7842,7 +8080,8 @@ namespace winAsimilados.Controller
                       ",'" + item.CLABE + "'" +
                       ",'" + item.bancoEmpresaPago + "'" +
                       "," + item.descuentos + "" +
-                      ",'" + item.nominaEmpresaID + "')";
+                      ",'" + item.nominaEmpresaID + "'" +
+                      ",'" + item.ResumenNominaID + "')";
                         queryInsertaLayout.ExecuteNonQuery();
 
                     } catch (Exception lista)
@@ -7881,10 +8120,11 @@ namespace winAsimilados.Controller
                 XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaLayout()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public bool ActualizaLayout(List<E.Layout> layout, SplashScreenManager splash)
+        public bool ActualizaLayout(List<E.Layout> layout, SplashScreenManager splash, string IDNominaAct)
         {
             try
             {
+                bool respuesta = false;
                 SqlCommand updateLayout = N.Conexion.PerformConnection().CreateCommand();
                 string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 foreach (var item in layout)
@@ -7918,18 +8158,29 @@ namespace winAsimilados.Controller
                             ",[CLABE] = '" + item.CLABE + "'" +
                             ",[descuentos] = " + item.descuentos + "" +
                             "WHERE [ID] = '" + item.ID + "'" +
-                            "AND [nominaEmpresaID] = '" + Empresa + "'";
+                            "AND [nominaEmpresaID] = '" + Empresa + "'" +
+                            "AND [ResumenNomianID] = '" + IDNominaAct + "'";
 
-                        updateLayout.ExecuteNonQuery();
+                        if (updateLayout.ExecuteNonQuery().Equals(1))
+                        {
+                            respuesta = true;
+                        }
+                        else
+                        {
+                            respuesta =  false;
+                        }
 
                     } catch (Exception lista)
                     {
+                        if (splash.IsSplashFormVisible.Equals(true))
+                        {
+                            splash.CloseWaitForm();
+                        }
                         XtraMessageBox.Show(lista.Message + "\nError Controlador: ActualizaLayout(foreach())", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
                 }
-                return true;
-
+                return respuesta;
             } catch (Exception e)
             {
                 if (splash.IsSplashFormVisible.Equals(true))
@@ -7956,7 +8207,8 @@ namespace winAsimilados.Controller
                ,[RetencionIVA]
                ,[Total]
                ,[Detalles]
-,[nominaEmpresaID])
+,[nominaEmpresaID]
+,[ResumenNomianID])
                 VALUES
                ('" + detalleLayout.Layout + "'" +
                ",'" + detalleLayout.Caratula + "'" +
@@ -7968,7 +8220,8 @@ namespace winAsimilados.Controller
                "," + detalleLayout.RetencionIVA + "" +
                "," + detalleLayout.Total + "" +
                ",'" + detalleLayout.Detalles + "'" +
-               ",'" + detalleLayout.nominaEmpresaID + "')";
+               ",'" + detalleLayout.nominaEmpresaID + "'" +
+               ",'" + detalleLayout.ResumenNominaID + "')";
 
                 insertaDetalle.ExecuteNonQuery();
 
@@ -7981,7 +8234,7 @@ namespace winAsimilados.Controller
                 XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaLayout()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public bool ActualizaDetalleLayout(E.DetalleLayout detalle, SplashScreenManager splash)
+        public bool ActualizaDetalleLayout(E.DetalleLayout detalle, SplashScreenManager splash, string IDNominaAct)
         {
             try
             {
@@ -7998,7 +8251,8 @@ namespace winAsimilados.Controller
                     ",[Total] = " + detalle.Total + "" +
                     ",[Detalles] = '" + detalle.Detalles + "'" +
                     "WHERE [ID] = '" + detalle.ID + "'" +
-                    "AND [nominaEmpresaID] = '" + Empresa + "'";
+                    "AND [nominaEmpresaID] = '" + Empresa + "'" +
+                    "AND [ResumenNomianID] = '" + IDNominaAct + "'";
 
                 if (updateDetalle.ExecuteNonQuery().Equals(1))
                 {
@@ -8190,6 +8444,7 @@ namespace winAsimilados.Controller
                   ,ISNULL([UsuarioModificacion], '') AS [UsuarioModificacion]
                   ,ISNULL([FechaReAperturaCaratula], '') AS [FechaReAperturaCaratula]
                   ,ISNULL([UsuarioReApertura], '') AS [UsuarioReApertura]
+                  ,[ResumenNomianID] AS [NominaID]
               FROM [CaratulaPago]
               WHERE [Caratula] = @caratula
               AND [nominaEmpresaID] = @Empresa";
@@ -8244,6 +8499,7 @@ namespace winAsimilados.Controller
                     caratula.UsuarioModificacion = readerData.GetString(41);
                     caratula.FechaReaperturaPeriodo = readerData.GetDateTime(42);
                     caratula.UsuarioReapertura = readerData.GetString(43);
+                    caratula.ResumenNominaID = readerData.GetString(44);
                 }
                 readerData.Close();
                 return caratula;
@@ -8989,7 +9245,7 @@ namespace winAsimilados.Controller
             try
             {
                 SqlCommand queryLista = N.Conexion.PerformConnection().CreateCommand();
-                queryLista.CommandText = @"SELECT [ID]
+                queryLista.CommandText = @"SELECT CaratulaPago.ID
                     ,[Caratula]
                     ,[Layout]
                     ,[IDCliente]
@@ -9031,7 +9287,11 @@ namespace winAsimilados.Controller
                     ,[UsuarioPago]
                     ,[FechaModificacion]
                     ,[UsuarioModificacion]
+					,RN.ResumenNominaEstatus as [Estatusnomina]
+					,RN.ResumenNominaEstatusSAT
+					,RN.ResumenNominaID AS [ResumenNominaID]
                 FROM [CaratulaPago]
+				INNER JOIN ResumenNomina AS RN on RN.ResumenNominaID = ResumenNomianID
                 --WHERE [Estatus] = 'Generado'";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryLista;

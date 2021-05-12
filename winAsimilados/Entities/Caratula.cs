@@ -57,6 +57,7 @@ namespace winAsimilados.Entities
         private decimal _PorcentajeComision;
         private decimal _PorcentajeIVA;
         private decimal _PorcentajeRetencion;
+        private string _ResumenNominaID;
 
         public string ID { get { return _ID; } set { _ID = value; } }
         public string caratula { get { return _caratula; } set { _caratula = value; } }
@@ -118,5 +119,6 @@ namespace winAsimilados.Entities
             get { return _nominaEmpresaID; }
             set { _nominaEmpresaID = value; }
         }
+        public string ResumenNominaID { get { return _ResumenNominaID; } set { _ResumenNominaID = value; } }
     }
 }
