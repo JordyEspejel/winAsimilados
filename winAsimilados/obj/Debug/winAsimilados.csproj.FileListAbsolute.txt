@@ -899,3 +899,4 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Deb
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.csproj.CopyComplete
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.exe
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.pdb
+C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.ReporteNomina.resources

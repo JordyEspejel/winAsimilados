@@ -1744,37 +1744,32 @@ namespace winAsimilados.Views
             try
             {
                 splashScreenManager1.ShowWaitForm();
-                splashScreenManager1.SetWaitFormCaption("Generando Reporte..");
-                XtraReport reporte;
-                reporte = new Reports.RepNomina();                   
-                ReportPrintTool printTool = new ReportPrintTool(reporte);
-                PrintControl printControl = printTool.PreviewForm.PrintControl;
-                //PrintControl printControl = printTool.PreviewRibbonForm.PrintControl; 
-
-
-                // Zoom the document, so that it fits the entire page into the Print Preview's dimensions.
-                if (printControl.CanExecCommand(PrintingSystemCommand.ViewWholePage))
+                splashScreenManager1.SetWaitFormCaption("Cargando Módulo Reporte de Nómina..");
+                ReporteNomina reporteNomina = new ReporteNomina(splashScreenManager1);
+                var frm = Application.OpenForms.OfType<ReporteNomina>().FirstOrDefault();
+                if (frm != null)
                 {
-                    printControl.ExecCommand(PrintingSystemCommand.ViewWholePage);
+                    splashScreenManager1.CloseWaitForm();
+                    frm.BringToFront();
+                    //frm.StartPosition = FormStartPosition.CenterScreen;
+                    frm.Location = new Point(270, 60);
+                    if (frm.WindowState == FormWindowState.Minimized)
+                    {
+                        //XtraMessageBox.Show("S")
+                        frm.WindowState = FormWindowState.Normal;
+                        //frm.Size = PanelPrincipal.Size;
+                        frm.BringToFront();
+                        //agregarEmpresa.Size = PanelPrincipal.Size;
+                        //agregarEmpresa.Location = new Point(270, 60);
+                    }
                 }
-
-                // Invoke the Hand tool to scroll the document using the mouse.
-                if (printControl.CanExecCommand(PrintingSystemCommand.HandTool))
+                else
                 {
-                    printControl.ExecCommand(PrintingSystemCommand.HandTool, new object[] { true });
+                    //frm.StartPosition = FormStartPosition.CenterScreen;
+                    reporteNomina.Location = new Point(270, 60);
+                    //agregarUsuario.Size = PanelPrincipal.Size;
+                    reporteNomina.ShowDialog();
                 }
-
-                // Hide the Hand tool.
-                //if (printControlCanExecCommand(PrintingSystemCommand.HandTool)) {
-                //    printControl.ExecCommand(PrintingSystemCommand.HandTool, new object[] { false });
-                //}
-
-                // Show the report's Print Preview in a dialog window.
-                printControl.Zoom = 1.2F;
-                printTool.ShowPreview();
-                splashScreenManager1.CloseWaitForm();
-                //printTool.ShowPreviewDialog();
-                //printTool.ShowRibbonPreviewDialog();
             }
             catch (Exception reporte)
             {

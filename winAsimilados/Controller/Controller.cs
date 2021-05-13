@@ -9244,6 +9244,7 @@ namespace winAsimilados.Controller
         {
             try
             {
+                string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
                 SqlCommand queryLista = N.Conexion.PerformConnection().CreateCommand();
                 queryLista.CommandText = @"SELECT CaratulaPago.ID
                     ,[Caratula]
@@ -9292,7 +9293,8 @@ namespace winAsimilados.Controller
 					,RN.ResumenNominaID AS [ResumenNominaID]
                 FROM [CaratulaPago]
 				INNER JOIN ResumenNomina AS RN on RN.ResumenNominaID = ResumenNomianID
-                --WHERE [Estatus] = 'Generado'";
+				WHERE [CaratulaPago].nominaEmpresaID = '" + Empresa + "'" +
+                "--WHERE [Estatus] = 'Generado'";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryLista;
                 DataSet dataSet = new DataSet();

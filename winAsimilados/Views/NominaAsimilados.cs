@@ -2845,7 +2845,7 @@ namespace winAsimilados.Views
                     {
                         splashScreenManager1.CloseWaitForm();
                     }
-                    XtraMessageBox.Show("¡La Nómina se encuentra con estatus 'Timbtado', no se puede re abrir!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("¡La Nómina se encuentra con estatus 'Timbrado', no se puede re abrir!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 if (controlador.ReabrirCaratula(nomCaratulaGenLayout, usuarioSistema).Equals(true))
@@ -3230,6 +3230,7 @@ namespace winAsimilados.Views
                     controlador.TimradoNomina(empleadoMasivo, splash, empresa, rfc, ip, FechaInicioMasivo, FechaFinMasivo, FechaPago, "", true, correoCliente, pacTimbrado, ambiente);
                     this.CargaTimbresDisponibles();
                     sqlDataSource2.Fill();
+                    controlador.ListaCaratulas(gridControlLayout);
                 }
             }
             catch (Exception btnTimNomi)
@@ -3796,8 +3797,8 @@ namespace winAsimilados.Views
                         nominanombreEmpleado = empleadoLayout.Nombre,
                         nominaRFCEmpleado = rfcEmplMasiv,
                         nominaPeriodidicadPago = tipoIngresos,
-                        nominaIngresos = ingresosMasiv,
-                        nominaIngresosBruto = netoMasiv,
+                        nominaIngresos = netoMasiv,
+                        nominaIngresosBruto = ingresosMasiv,
                         nominaISR = ISRMasiv,
                         nominaFechaPago = fechaApliPeri,
                         nominaFechaIniPeri = fechaInPer,

@@ -31,6 +31,8 @@ namespace winAsimilados.Reports
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter2 = new DevExpress.DataAccess.Sql.QueryParameter();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RepNomina));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable5 = new DevExpress.XtraReports.UI.XRTable();
@@ -390,6 +392,12 @@ namespace winAsimilados.Reports
             this.sqlDataSource1.ConnectionName = "Asimilados";
             this.sqlDataSource1.Name = "sqlDataSource1";
             storedProcQuery1.Name = "SP_ReporteNomina";
+            queryParameter1.Name = "@mes";
+            queryParameter1.Type = typeof(string);
+            queryParameter2.Name = "@anio";
+            queryParameter2.Type = typeof(string);
+            storedProcQuery1.Parameters.Add(queryParameter1);
+            storedProcQuery1.Parameters.Add(queryParameter2);
             storedProcQuery1.StoredProcName = "SP_ReporteNomina";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             storedProcQuery1});
