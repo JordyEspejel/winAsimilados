@@ -21,6 +21,10 @@
       <Column Name="ResumenNominaUsuarioCierrePeriodo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="ResumenNominaUsuarioFechaCierre" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ResumenNominaNominaEmpresaID" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ResumenNominaIDCliente" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ResumenNominaCliente" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ResumenNominaIDEmpresaPago" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ResumenNominaEmpresaPago" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Nomina" Member="Nomina">
@@ -51,6 +55,10 @@
       <Column Name="ResumenNominaID" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="nominaUUID" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="nominaFolio" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="nominaIDCliente" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="nominaCliente" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="nominaIDEmpresaPago" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="nominaEmpresaPago" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

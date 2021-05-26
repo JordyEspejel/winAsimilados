@@ -53,6 +53,47 @@ namespace winAsimilados.Controller
     class Controller
     {
         M.AsimiladosDataContext dtc = new M.AsimiladosDataContext();
+        public bool ValidaPeriodoTimbrado(string NominaEmpresaID, string IDCliente, string IDEmpresa, string mes)
+        {
+            try
+            {
+                bool valida = false;
+                string estatusNomina = "";
+                dtc.Connection.Open();
+                SqlCommand getEstatusNomina = (SqlCommand)dtc.Connection.CreateCommand();
+                getEstatusNomina.CommandText = @"select TOP (1) ResumenNominaEstatus from ResumenNomina
+                where ResumenNominaNominaEmpresaID = '" + NominaEmpresaID + "'" +
+                "and ResumenNominaIDCliente = '" + IDCliente + "'" +
+                "and ResumenNominaIDEmpresaPago = '" + IDEmpresa + "' " +
+                "and MONTH(ResumenNominaFechaInicioPeri) = '" + mes + "' order by ID desc";
+                SqlDataReader readerEstatus;
+                readerEstatus = getEstatusNomina.ExecuteReader();
+                if (readerEstatus.Read())
+                {
+                    estatusNomina = readerEstatus.IsDBNull(0) ? "1" : readerEstatus.GetString(0);                    
+                }
+                readerEstatus.Close();
+                dtc.Connection.Close();
+                if (estatusNomina.Equals("1")|| estatusNomina.Equals(""))
+                {
+                    valida = true;
+                }
+                else if(estatusNomina != "Timbrado")
+                {
+                    valida = false;
+                }
+                else
+                {
+                    valida = true;
+                }
+                return valida;
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
         public void ActualizaStatusLayoutNomina(string IDResumen, string estatus, string RFCEmpleado, string descError)
         {
             try
@@ -143,6 +184,56 @@ namespace winAsimilados.Controller
             {
                 dtc.Connection.Close();
                 throw;
+            }
+        }
+        public int GetTotalMovNomina(string IDresumen)
+        {
+            try
+            {
+                int totalMov = 0;
+                dtc.Connection.Open();
+                SqlCommand getMovimientos = (SqlCommand)dtc.Connection.CreateCommand();
+                getMovimientos.CommandText = @"select ResumenNominaTotalEmpleados from ResumenNomina
+                where ResumenNominaID = '" + IDresumen + "'";
+                SqlDataReader readergetMovimientos = getMovimientos.ExecuteReader();
+                if (readergetMovimientos.Read())
+                {
+                    totalMov = readergetMovimientos.GetInt32(0);
+                }
+                readergetMovimientos.Close();
+                dtc.Connection.Close();
+                return totalMov;
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                return 0;
+            }
+        }
+        public int GetTotalMovTimbrado(string IDResumen)
+        {
+            try
+            {
+                int totalTimbrado = 0;
+                dtc.Connection.Open();
+                SqlCommand getNominas = (SqlCommand)dtc.Connection.CreateCommand();
+                getNominas.CommandText = @"select * from Nomina where
+                nominaEstatusSAT = 'timbrado'
+                and ResumenNominaID = '" + IDResumen + "'";
+                SqlDataReader readerTimbrado;
+                readerTimbrado = getNominas.ExecuteReader();
+                while (readerTimbrado.Read())
+                {
+                    totalTimbrado++;
+                }
+                readerTimbrado.Close();
+                dtc.Connection.Close();
+
+                return totalTimbrado;
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                return 0;
             }
         }
         public void ActualizaStatusResumenNomina(string IDResumen)
@@ -446,7 +537,11 @@ namespace winAsimilados.Controller
                ,[ResumenNominaUsuarioCreacion]
                --,[ResumenNominaUsuarioCierrePeriodo]
                --,[ResumenNominaUsuarioFechaCierre]
-               ,[ResumenNominaNominaEmpresaID])
+               ,[ResumenNominaNominaEmpresaID]
+                ,[ResumenNominaIDCliente]
+                ,[ResumenNominaCliente]
+                ,[ResumenNominaIDEmpresaPago]
+                ,[ResumenNominaEmpresaPago])
                 VALUES('" + resumenNomina.ResumenNominaID + "'" +
                 "," + resumenNomina.ResumenNominaTotalEmpleados + "" +
                 "," + resumenNomina.ResumenNominaTotalIngresos + "" +
@@ -462,7 +557,11 @@ namespace winAsimilados.Controller
                 ",'" + resumenNomina.ResumenNominaEmpresaNombre + "'" +
                 ",'" + resumenNomina.ResumenNominaRFCEmpresa + "'" +
                 ",'" + resumenNomina.ResumenNominaUsuarioCreacion + "'" +
-                ",'" + resumenNomina.ResumenNominaNominaEmpresaID + "')";
+                ",'" + resumenNomina.ResumenNominaNominaEmpresaID + "'" +
+                ",'" + resumenNomina.ResumenNominaIDCliente + "'" +
+                ",'" + resumenNomina.ResumenNominaCliente + "'" +
+                ",'" + resumenNomina.ResumenNominaIDEmpresaPago + "'" +
+                ",'" + resumenNomina.ResumenNominaEmpresaPago + "')";
                 queryInsertaResumen.ExecuteNonQuery();
                 dtc.Connection.Close();
             }catch (Exception)
@@ -520,7 +619,11 @@ namespace winAsimilados.Controller
                     ,[nominaDescripciponError]
                     ,[nominaEmpresaNominaID]
                     ,[nominaUsuario]
-                    ,[ResumenNominaID])
+                    ,[ResumenNominaID]
+                    ,[nominaIDCliente]
+                    ,[nominaCliente]
+                    ,[nominaIDEmpresaPago]
+                    ,[nominaEmpresaPago])
                 VALUES
                       (" + item.nominanumEmpl + "" +
                       ",'" + item.nominanombreEmpleado + "'" +
@@ -541,7 +644,11 @@ namespace winAsimilados.Controller
                       ",'" + item.nominaDescripciponError + "'" +
                       ",'" + item.nominaEmpresaNominaID + "'" +
                       ",'" + item.nominaUsuario + "'" +
-                      ",'" + item.ResumenNominaID + "')";
+                      ",'" + item.ResumenNominaID + "'" +
+                      ",'" + item.nominaIDCliente + "'" +
+                      ",'" + item.nominaCliente + "'" +
+                      ",'" + item.nominaIDEmpresaPago + "" +
+                      ",'" + item.nominaEmpresaPago + "')";
 
                     queryInsertaNomina.ExecuteNonQuery();
                 }
@@ -553,7 +660,7 @@ namespace winAsimilados.Controller
                 throw;
             }
         }
-        public int ObtieneContPeriodoNomina(string nominaEmpresaID, string mes, SplashScreenManager splash)
+        public int ObtieneContPeriodoNomina(string nominaEmpresaID, string mes, string IDCliente, string IDEmpresa, SplashScreenManager splash)
         {
             try
             {
@@ -564,9 +671,13 @@ namespace winAsimilados.Controller
                 COUNT(ResumenNominaID)
                 from ResumenNomina
                 WHERE ResumenNominaNominaEmpresaID = @Empresa
-                AND MONTH(ResumenNominaFechaInicioPeri) = @Mes";
+                AND MONTH(ResumenNominaFechaInicioPeri) = @Mes
+                AND ResumenNominaIDCliente = @cliente
+                AND ResumenNominaIDEmpresaPago = @empresaPago";
                 queryGetCont.Parameters.AddWithValue("@Empresa", nominaEmpresaID);
                 queryGetCont.Parameters.AddWithValue("@Mes", mes);
+                queryGetCont.Parameters.AddWithValue("@cliente", IDCliente);
+                queryGetCont.Parameters.AddWithValue("@empresaPago", IDEmpresa);
                 SqlDataReader ReaderCont;
                 ReaderCont = queryGetCont.ExecuteReader();
                 if (ReaderCont.Read())
@@ -3671,6 +3782,7 @@ namespace winAsimilados.Controller
                 E.BitacoraXML Bitacora = new E.BitacoraXML();
                 E.Parametros parametros = new E.Parametros();
                 List<string> archivos = new List<string>();
+                string idNomina = "";
                 string fecPago = "";
                 string resultCorreo;
                 string periodicidad = null;
@@ -4353,8 +4465,7 @@ namespace winAsimilados.Controller
                         if (exito.Equals(Lista.Count()))
                         {
                             ActualizaStatusResumenNomina(item.resumenNominaID);
-                        }
-
+                        }                        
                         if (error > 0)
                         {
                             try
@@ -4407,6 +4518,13 @@ namespace winAsimilados.Controller
                             }
 
                         }
+                    }
+                    int  totalTimbrado = GetTotalMovTimbrado(item.resumenNominaID);
+                    int totalMovimientos = GetTotalMovNomina(item.resumenNominaID);
+
+                    if (totalTimbrado.Equals(totalMovimientos))
+                    {
+                        ActualizaStatusResumenNomina(item.resumenNominaID);
                     }
                 } //termina foreach
                 //if (enviaCorreo.Equals(true))
@@ -9293,7 +9411,7 @@ namespace winAsimilados.Controller
 					,RN.ResumenNominaID AS [ResumenNominaID]
                 FROM [CaratulaPago]
 				INNER JOIN ResumenNomina AS RN on RN.ResumenNominaID = ResumenNomianID
-				WHERE [CaratulaPago].nominaEmpresaID = '" + Empresa + "'" +
+				WHERE [CaratulaPago].nominaEmpresaID = '" + Empresa + "' ORDER BY ID ASC" +
                 "--WHERE [Estatus] = 'Generado'";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = queryLista;

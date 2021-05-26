@@ -3508,6 +3508,7 @@ namespace winAsimilados.Views
                 splashScreenManager1.SetWaitFormCaption("Generando Caratula..");
                 string IDCliente = lookUpCliente.EditValue.ToString();
                 string nombreCliente = lookUpCliente.Text;
+                string IDEmpresa = lookUpEmprPago.EditValue.ToString();
                 string fechaAplicacionPeriodo = FecAplicacionLayoutBanorte.Value.ToString("yyyy-MM-dd");
                 //fechaAplicacion = Convert.ToDateTime(fecAplicación),
                 string fechaIniPeri = FecIniLayout.Value.ToString("yyyy-MM-dd");
@@ -3524,6 +3525,17 @@ namespace winAsimilados.Views
                 string mes = cul.Calendar.GetMonth(fechaInPer).ToString();
                 int dia = cul.Calendar.GetDayOfMonth(fechaFiPer);
 
+                if (controlador.ValidaPeriodoTimbrado(nominaEmpresaID, IDCliente, IDEmpresa, mes).Equals(false))
+                {
+                    if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                    {
+                        splashScreenManager1.CloseWaitForm();
+                    }
+                    string mensaje = string.Concat("El cliente ", lookUpCliente.Text, " Con pago de la empresa ", lookUpEmprPago.Text, ", tiene movimientos sin timbrar en el periodo seleccionado. No es posible generar Caratula/nómina.");
+                    XtraMessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 caratulaPago.FechaAplicacion = fechaApliPeri;
                 caratulaPago.FechaIniPeriodo = fechaInPer;
                 caratulaPago.FechaFinPeriodo = fechaFiPer;
@@ -3531,11 +3543,8 @@ namespace winAsimilados.Views
 
                 string periodo = "";
                 //string mesActual = DateTime.Now.Month.ToString();
-                int contPeriodo = controlador.ObtieneContPeriodoNomina(nominaEmpresaID, mes, splashScreenManager1);
-                if (contPeriodo == 0 || contPeriodo == 1)
-                {
+                int contPeriodo = controlador.ObtieneContPeriodoNomina(nominaEmpresaID, mes, IDCliente, IDEmpresa, splashScreenManager1);
                     contPeriodo++;
-                }
                 if (Convert.ToInt32(mes) < 10)
                 {
                     if (contPeriodo < 10)
@@ -3559,6 +3568,7 @@ namespace winAsimilados.Views
                         periodo = Convert.ToString(anio + "0" + mes + "0" + contPeriodo.ToString());
                     }
                 }
+
 
                 //string periodo = Convert.ToString(DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + numSemana);
 
@@ -3773,7 +3783,7 @@ namespace winAsimilados.Views
                                 CLABE = empleadoLayout.clabe_bancaria,
                                 bancoEmpresaPago = lookUpBanco.EditValue.ToString(),
                                 descuentos = descuento,
-                                ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + periodo,
+                                ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + IDCliente + "_" + idEmpresaCaratula + "_" + periodo,
                             nominaEmpresaID = nominaEmpresaID
                             });
                         }
@@ -3812,8 +3822,12 @@ namespace winAsimilados.Views
                         nominaDescripciponError = "",
                         nominaEmpresaNominaID = parametrosNomina.NOMINA_EMPRESA_ID,
                         nominaUsuario = usuarioSistema,
-                        ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + periodo,
-                });
+                        ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + IDCliente + "_" + idEmpresaCaratula + "_" + periodo,
+                        nominaIDCliente = IDCliente,
+                        nominaCliente = lookUpCliente.Text,
+                        nominaIDEmpresaPago = IDEmpresa,
+                        nominaEmpresaPago = lookUpEmprPago.Text
+                    });
 
                 }
                 foreach (var item in listaLayout)
@@ -3886,9 +3900,9 @@ namespace winAsimilados.Views
                 }
                 else
                 {
-                    caratulaPago.ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + periodo;
-                    detalleLayout.ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + periodo;
-                    resumenNomina.ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + periodo;
+                    caratulaPago.ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + IDCliente + "_" + idEmpresaCaratula + "_" + periodo;
+                    detalleLayout.ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + IDCliente + "_" + idEmpresaCaratula + "_" + periodo;
+                    resumenNomina.ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + IDCliente + "_" + idEmpresaCaratula + "_" + periodo;
                     resumenNomina.ResumenNominaTotalEmpleados = nominaMasiva.Count;
                     resumenNomina.ResumenNominaFechaPago = fechaApliPeri;
                     resumenNomina.ResumenNominaFechaInicioPeri = fechaInPer;
@@ -3900,6 +3914,10 @@ namespace winAsimilados.Views
                     resumenNomina.ResumenNominaRFCEmpresa = parametros.RFC;
                     resumenNomina.ResumenNominaUsuarioCreacion = usuarioSistema;
                     resumenNomina.ResumenNominaNominaEmpresaID = nominaEmpresaID;
+                    resumenNomina.ResumenNominaIDCliente = IDCliente;
+                    resumenNomina.ResumenNominaCliente = lookUpCliente.Text;
+                    resumenNomina.ResumenNominaIDEmpresaPago = lookUpEmprPago.EditValue.ToString();
+                    resumenNomina.ResumenNominaEmpresaPago = lookUpEmprPago.Text;
 
                     foreach (var item in nominaMasiva)
                     {
@@ -4245,7 +4263,7 @@ namespace winAsimilados.Views
                 int dia = cul.Calendar.GetDayOfMonth(fechaFiPer);               
                 string periodo = "";
                 //string mesActual = DateTime.Now.Month.ToString();
-                int contPeriodo = controlador.ObtieneContPeriodoNomina(nominaEmpresaID, mes, splashScreenManager1);    
+                int contPeriodo = controlador.ObtieneContPeriodoNomina(nominaEmpresaID, mes, lookUpCliente.EditValue.ToString(), lookUpEmprPago.EditValue.ToString(), splashScreenManager1);    
                 if (contPeriodo == 0 || contPeriodo == 1)
                 {
                     contPeriodo++;

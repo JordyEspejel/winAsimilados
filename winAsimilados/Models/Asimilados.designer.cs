@@ -121,6 +121,14 @@ namespace winAsimilados.Models
 		
 		private string _ResumenNominaNominaEmpresaID;
 		
+		private string _ResumenNominaIDCliente;
+		
+		private string _ResumenNominaCliente;
+		
+		private string _ResumenNominaIDEmpresaPago;
+		
+		private string _ResumenNominaEmpresaPago;
+		
 		public ResumenNomina()
 		{
 		}
@@ -428,6 +436,70 @@ namespace winAsimilados.Models
 				}
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaIDCliente", DbType="VarChar(20)")]
+		public string ResumenNominaIDCliente
+		{
+			get
+			{
+				return this._ResumenNominaIDCliente;
+			}
+			set
+			{
+				if ((this._ResumenNominaIDCliente != value))
+				{
+					this._ResumenNominaIDCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaCliente", DbType="VarChar(MAX)")]
+		public string ResumenNominaCliente
+		{
+			get
+			{
+				return this._ResumenNominaCliente;
+			}
+			set
+			{
+				if ((this._ResumenNominaCliente != value))
+				{
+					this._ResumenNominaCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaIDEmpresaPago", DbType="VarChar(20)")]
+		public string ResumenNominaIDEmpresaPago
+		{
+			get
+			{
+				return this._ResumenNominaIDEmpresaPago;
+			}
+			set
+			{
+				if ((this._ResumenNominaIDEmpresaPago != value))
+				{
+					this._ResumenNominaIDEmpresaPago = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResumenNominaEmpresaPago", DbType="VarChar(MAX)")]
+		public string ResumenNominaEmpresaPago
+		{
+			get
+			{
+				return this._ResumenNominaEmpresaPago;
+			}
+			set
+			{
+				if ((this._ResumenNominaEmpresaPago != value))
+				{
+					this._ResumenNominaEmpresaPago = value;
+				}
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Nomina")]
@@ -485,6 +557,14 @@ namespace winAsimilados.Models
 		private string _nominaUUID;
 		
 		private string _nominaFolio;
+		
+		private string _nominaIDCliente;
+		
+		private string _nominaCliente;
+		
+		private string _nominaIDEmpresaPago;
+		
+		private string _nominaEmpresaPago;
 		
 		public Nomina()
 		{
@@ -902,6 +982,70 @@ namespace winAsimilados.Models
 				if ((this._nominaFolio != value))
 				{
 					this._nominaFolio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nominaIDCliente", DbType="VarChar(20)")]
+		public string nominaIDCliente
+		{
+			get
+			{
+				return this._nominaIDCliente;
+			}
+			set
+			{
+				if ((this._nominaIDCliente != value))
+				{
+					this._nominaIDCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nominaCliente", DbType="VarChar(MAX)")]
+		public string nominaCliente
+		{
+			get
+			{
+				return this._nominaCliente;
+			}
+			set
+			{
+				if ((this._nominaCliente != value))
+				{
+					this._nominaCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nominaIDEmpresaPago", DbType="VarChar(20)")]
+		public string nominaIDEmpresaPago
+		{
+			get
+			{
+				return this._nominaIDEmpresaPago;
+			}
+			set
+			{
+				if ((this._nominaIDEmpresaPago != value))
+				{
+					this._nominaIDEmpresaPago = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nominaEmpresaPago", DbType="VarChar(MAX)")]
+		public string nominaEmpresaPago
+		{
+			get
+			{
+				return this._nominaEmpresaPago;
+			}
+			set
+			{
+				if ((this._nominaEmpresaPago != value))
+				{
+					this._nominaEmpresaPago = value;
 				}
 			}
 		}

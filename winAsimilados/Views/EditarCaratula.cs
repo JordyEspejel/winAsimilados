@@ -233,6 +233,7 @@ namespace winAsimilados.Views
                     datosBanco = controlador.GetInfoBanco(banco, idEmpresaCaratula);
                     splashScreenManager1.ShowWaitForm();
                     string IDCliente = lookUpClte.EditValue.ToString();
+                    string IDEmpresa = lookUpEmp.EditValue.ToString();
                     string nombreCliente = lookUpClte.Text;
                     string fechaAplicacionPeriodo = FecApp.Value.ToString("yyyy-MM-dd");
                     //fechaAplicacion = Convert.ToDateTime(fecAplicación),
@@ -258,7 +259,7 @@ namespace winAsimilados.Views
 
                     string periodo = "";
                     //string mesActual = DateTime.Now.Month.ToString();
-                    int contPeriodo = controlador.ObtieneContPeriodoNomina(nominaEmpresaID, mes, splashScreenManager1);
+                    int contPeriodo = controlador.ObtieneContPeriodoNomina(nominaEmpresaID, mes,IDCliente, IDEmpresa, splashScreenManager1);
                     if (contPeriodo == 0 || contPeriodo == 1)
                     {
                         contPeriodo++;
