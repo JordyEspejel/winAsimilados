@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AsimiladosModelStoreContainer" CdmEntityContainer="AsimiladosEntitiesArchivos">
+    <EntitySetMapping Name="Archivos">
+      <EntityTypeMapping TypeName="AsimiladosModel.Archivos">
+        <MappingFragment StoreEntitySet="Archivos">
+          <ScalarProperty Name="archivosURL" ColumnName="archivosURL" />
+          <ScalarProperty Name="archivoID" ColumnName="archivoID" />
+          <ScalarProperty Name="archivoNombre" ColumnName="archivoNombre" />
+          <ScalarProperty Name="archivoPath" ColumnName="archivoPath" />
+          <ScalarProperty Name="archivoCargado" ColumnName="archivoCargado" />
+          <ScalarProperty Name="archivoFechaCarga" ColumnName="archivoFechaCarga" />
+          <ScalarProperty Name="archivoUsuarioCarga" ColumnName="archivoUsuarioCarga" />
+          <ScalarProperty Name="archivoIDCliente" ColumnName="archivoIDCliente" />
+          <ScalarProperty Name="archivoCliente" ColumnName="archivoCliente" />
+          <ScalarProperty Name="archivoIDEmpresa" ColumnName="archivoIDEmpresa" />
+          <ScalarProperty Name="archivoEmpresa" ColumnName="archivoEmpresa" />
+          <ScalarProperty Name="archivoPeriodo" ColumnName="archivoPeriodo" />
+          <ScalarProperty Name="archivoNominaEmpresaID" ColumnName="archivoNominaEmpresaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

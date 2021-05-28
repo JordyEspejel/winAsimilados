@@ -47,12 +47,205 @@ using Pechkin;
 using System.Drawing.Printing;
 using WkHtmlToPdf;
 using M = winAsimilados.Models;
-
+using P = winAsimilados.Views.DescargarArchivos;
 namespace winAsimilados.Controller
 {
     class Controller
     {
         M.AsimiladosDataContext dtc = new M.AsimiladosDataContext();
+        //public void DescargaArchivos(List<M.Archivos> listaArchivos)
+        //{
+        //    try
+        //    {
+        //        dtc.Connection.Open();
+        //        SqlCommand getArchivo = (SqlCommand)dtc.Connection.CreateCommand();
+        //        string path = AppDomain.CurrentDomain.BaseDirectory;
+        //        string folder = string.Concat(path, "/temp/");
+        //        string fullPath = "";
+        //        byte[] archivoByte = null;
+        //        foreach (var archivo in listaArchivos)
+        //        {
+        //            getArchivo.CommandText = @"SELECT archivoCargado FROM Archivos WHERE archivoID = @ID";
+        //            getArchivo.Parameters.AddWithValue("@ID", archivo.archivoID);
+        //            SqlDataReader readerArchivo;
+        //            readerArchivo = getArchivo.ExecuteReader();
+        //            if (readerArchivo.Read())
+        //            {
+        //                //long len = readerArchivo.GetBytes(1, 0, null, 0, 0);
+        //                // Create a buffer to hold the bytes, and then
+        //                // read the bytes from the DataTableReader.
+        //                //Byte[] buffer = new Byte[len];
+
+        //                archivoByte = (byte[])readerArchivo["archivoCargado"];
+        //            }
+        //            readerArchivo.Close();
+        //            fullPath = string.Concat(folder, archivo.archivoPath);
+        //            if (!Directory.Exists(folder))
+        //            {
+        //                Directory.CreateDirectory(folder);
+        //            }                   
+        //            if (File.Exists(fullPath))
+        //            {
+        //                Directory.Delete(fullPath);
+        //            }
+        //            File.WriteAllBytes(fullPath , archivoByte);
+
+        //            Process.Start(fullPath);
+        //        }
+        //        dtc.Connection.Close();
+        //    }catch (Exception)
+        //    {
+        //        dtc.Connection.Close();
+        //        throw;
+        //    }
+        //}
+        public void GetListaArchivos(GridControl grid, string idCliente, string idEmpresa, string periodo, string nominaEmpresaID)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand queryLista = (SqlCommand)dtc.Connection.CreateCommand();
+                queryLista.CommandText = @"SELECT [archivoID]
+                ,[archivoNombre]
+                ,[archivoPath]
+                ,[archivoCargado]
+                ,[archivoFechaCarga]
+                ,[archivoUsuarioCarga]
+                ,[archivoIDCliente]
+                ,[archivoCliente]
+                ,[archivoIDEmpresa]
+                ,[archivoEmpresa]
+                ,[archivoPeriodo]
+                ,[archivoNominaEmpresaID]
+                FROM [Asimilados].[dbo].[Archivos]
+                where [archivoIDEmpresa] = @IDEmpresa
+                and [archivoIDCliente] = @IDCliente
+                and [archivoPeriodo] = @Periodo
+                and [archivoNominaEmpresaID] = @NominaEmpresaID";
+                queryLista.Parameters.AddWithValue("@IDCliente", idCliente);
+                queryLista.Parameters.AddWithValue("@IDEmpresa", idEmpresa);
+                queryLista.Parameters.AddWithValue("@Periodo", periodo);
+                queryLista.Parameters.AddWithValue("@NominaEmpresaID", nominaEmpresaID);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = queryLista;
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                grid.DataSource = dataSet.Tables[0];
+                dtc.Connection.Close();
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public List<E.EmpresaPago> GetEmpresaPagos(string IDCliente)
+        {
+            try
+            {
+                List<E.EmpresaPago> listaEmpresa = new List<E.EmpresaPago>();
+                dtc.Connection.Open();
+                SqlCommand getListaEmpresas = (SqlCommand)dtc.Connection.CreateCommand();
+                getListaEmpresas.CommandText = @"select distinct ResumenNominaIDEmpresaPago AS [ID], ResumenNominaEmpresaPago AS [Empresa] from ResumenNomina where ResumenNominaIDCliente = @idCliente";
+                getListaEmpresas.Parameters.AddWithValue("@idCliente", IDCliente);
+                SqlDataReader readerEmpresas;
+                readerEmpresas = getListaEmpresas.ExecuteReader();
+                while (readerEmpresas.Read())
+                {
+                    listaEmpresa.Add(new E.EmpresaPago
+                    {
+                        IDEmpresa = readerEmpresas.GetString(0),
+                        RazonSocial = readerEmpresas.GetString(1)
+                    });
+                }
+                readerEmpresas.Close();
+                dtc.Connection.Close();
+                return listaEmpresa;
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public List<E.Periodo> GetPeriodosNominaDescargaArchivos(string IDEmpresa, string IDCliente)
+        {
+            try
+            {
+                string nominaEmpresaID = Properties.Settings.Default["EmpresaNominaID"].ToString();
+                List<E.Periodo> listaPeriodos = new List<E.Periodo>();
+                dtc.Connection.Open();
+                SqlCommand getPeriodos = (SqlCommand)dtc.Connection.CreateCommand();
+                //getPeriodos.CommandText = @"select ResumenNominaPeriodo AS [Periodo] from ResumenNomina 
+                //where ResumenNominaIDCliente = @idCliente
+                //and ResumenNominaIDEmpresaPago = @idEmpresaPago
+                //order by ResumenNominaPeriodo asc";
+                getPeriodos.CommandText = @"SELECT distinct
+	            [archivoPeriodo]
+	            FROM [Asimilados].[dbo].[Archivos]
+	            where [archivoIDEmpresa] = @IDEmpresa
+	            and [archivoIDCliente] = @IDCliente
+	            and [archivoNominaEmpresaID] = @NominaEmpresaID
+	            order by [archivoPeriodo] ASC";
+                getPeriodos.Parameters.AddWithValue("@IDEmpresa", IDEmpresa);
+                getPeriodos.Parameters.AddWithValue("@IDCliente", IDCliente);
+                getPeriodos.Parameters.AddWithValue("@NominaEmpresaID", nominaEmpresaID);
+                SqlDataReader readerPeriodos;
+                readerPeriodos = getPeriodos.ExecuteReader();
+                while (readerPeriodos.Read())
+                {
+                    listaPeriodos.Add(new E.Periodo
+                    {
+                        periodo = readerPeriodos.GetString(0)
+                    });
+                }
+                readerPeriodos.Close();
+                dtc.Connection.Close();
+                return listaPeriodos;
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        //public void CargaArchivoBD(M.Archivos archivos)
+        //{
+        //    try
+        //    {
+        //        dtc.Connection.Open();
+        //        SqlCommand insertArchivo = (SqlCommand)dtc.Connection.CreateCommand();
+        //        insertArchivo.CommandText = @"INSERT INTO [dbo].[Archivos]
+        //        ([archivoNombre]
+        //        ,[archivoPath]
+        //        ,[archivoCargado]
+        //        ,[archivoFechaCarga]
+        //        ,[archivoUsuarioCarga]
+        //        ,[archivoIDCliente]
+        //        ,[archivoCliente]
+        //        ,[archivoIDEmpresa]
+        //        ,[archivoEmpresa]
+        //        ,[archivoPeriodo]
+        //        ,[archivoNominaEmpresaID])
+        //        VALUES
+        //        ('" + archivos.archivoNombre + "'" +
+        //        ",'" + archivos.archivoPath + "'" +
+        //        ",Convert(VARBINARY,'" + archivos.archivoCargado + "')" +
+        //        ", GETDATE()" +
+        //        ",'" + archivos.archivoUsuarioCarga + "'" +
+        //        ",'" + archivos.archivoIDCliente + "'" +
+        //        ",'" + archivos.archivoCliente + "'" +
+        //        ",'" + archivos.archivoIDEmpresa + "'" +
+        //        ",'" + archivos.archivoEmpresa + "'" +
+        //        ",'" + archivos.archivoPeriodo + "'" +
+        //        ",'" + archivos.archivoNominaEmpresaID +"')";
+        //        insertArchivo.ExecuteNonQuery();
+        //        dtc.Connection.Close();
+        //    }catch (Exception)
+        //    {
+        //        dtc.Connection.Close();
+        //        throw;
+        //    }
+        //}
         public bool ValidaPeriodoTimbrado(string NominaEmpresaID, string IDCliente, string IDEmpresa, string mes)
         {
             try
@@ -262,26 +455,30 @@ namespace winAsimilados.Controller
                 dtc.Connection.Open();
                 SqlCommand queryGetResumenNomina = (SqlCommand)dtc.Connection.CreateCommand();
                 queryGetResumenNomina.CommandText = @"SELECT [ID]
-                      ,[ResumenNominaID]
-                      ,[ResumenNominaTotalEmpleados]
-                      ,[ResumenNominaTotalIngresos]
-                      ,[ResumenNominaTotalIngresosBruto]
-                      ,[ResumenNominaTotalISR]
-                      ,[ResumenNominaFechaPago]
-                      ,[ResumenNominaFechaInicioPeri]
-                      ,[ResumenNominaFechaFinPeri]
-                      ,[ResumenNominaFechaCreacion]
-                      ,[ResumenNominaEstatus]
-                      ,[ResumenNominaEstatusSAT]
-                      ,[ResumenNominaPeriodo]
-                      ,[ResumenNominaEmpresaNombre]
-                      ,[ResumenNominaRFCEmpresa]
-                      ,[ResumenNominaUsuarioCreacion]
-                      ,[ResumenNominaUsuarioCierrePeriodo]
-                      ,ISNULL([ResumenNominaUsuarioFechaCierre], '') AS[ResumenNominaUsuarioFechaCierre]
-                      ,[ResumenNominaNominaEmpresaID]
-                  FROM [Asimilados].[dbo].[ResumenNomina]
-                  WHERE [ResumenNominaID] = @ID";
+                ,[ResumenNominaID]
+                ,[ResumenNominaTotalEmpleados]
+                ,[ResumenNominaTotalIngresos]
+                ,[ResumenNominaTotalIngresosBruto]
+                ,[ResumenNominaTotalISR]
+                ,[ResumenNominaFechaPago]
+                ,[ResumenNominaFechaInicioPeri]
+                ,[ResumenNominaFechaFinPeri]
+                ,[ResumenNominaFechaCreacion]
+                ,[ResumenNominaEstatus]
+                ,[ResumenNominaEstatusSAT]
+                ,[ResumenNominaPeriodo]
+                ,[ResumenNominaEmpresaNombre]
+                ,[ResumenNominaRFCEmpresa]
+                ,[ResumenNominaUsuarioCreacion]
+                ,[ResumenNominaUsuarioCierrePeriodo]
+                ,ISNULL([ResumenNominaUsuarioFechaCierre], '') AS[ResumenNominaUsuarioFechaCierre]
+                ,[ResumenNominaNominaEmpresaID]
+                ,[ResumenNominaIDCliente]
+                ,[ResumenNominaCliente]
+                ,[ResumenNominaIDEmpresaPago]
+                ,[ResumenNominaEmpresaPago]
+                FROM [Asimilados].[dbo].[ResumenNomina]
+                WHERE [ResumenNominaID] = @ID";
                 queryGetResumenNomina.Parameters.AddWithValue("@ID", IDNomina);
                 SqlDataReader readerResumen;
                 readerResumen = queryGetResumenNomina.ExecuteReader();
@@ -305,9 +502,14 @@ namespace winAsimilados.Controller
                     resumenNomina.ResumenNominaUsuarioCreacion = readerResumen.GetString(15);
                     resumenNomina.ResumenNominaUsuarioCierrePeriodo = readerResumen.IsDBNull(16) ? "Sin Cerrar" : readerResumen.GetString(16);
                     resumenNomina.ResumenNominaUsuarioFechaCierre = readerResumen.GetDateTime(17);
-                    resumenNomina.ResumenNominaID = readerResumen.GetString(18);
+                    resumenNomina.ResumenNominaNominaEmpresaID = readerResumen.GetString(18);
+                    resumenNomina.ResumenNominaIDCliente = readerResumen.GetString(19);
+                    resumenNomina.ResumenNominaCliente = readerResumen.GetString(20);
+                    resumenNomina.ResumenNominaIDEmpresaPago = readerResumen.GetString(21);
+                    resumenNomina.ResumenNominaEmpresaPago = readerResumen.GetString(22);
                 }
-
+                readerResumen.Close();
+                dtc.Connection.Close();
                 return resumenNomina;
             }
             catch (Exception e)

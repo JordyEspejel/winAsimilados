@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AsimiladosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Archivos">
+    <Key>
+      <PropertyRef Name="archivoID" />
+    </Key>
+    <Property Name="archivoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="archivoNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="archivoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="archivoCargado" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="archivoFechaCarga" Type="DateTime" Precision="3" />
+    <Property Name="archivoUsuarioCarga" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="archivoIDCliente" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="archivoCliente" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="archivoIDEmpresa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="archivoEmpresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="archivoPeriodo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="archivoNominaEmpresaID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="archivosURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="AsimiladosEntitiesArchivos" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Archivos" EntityType="Self.Archivos" />
+  </EntityContainer>
+</Schema>

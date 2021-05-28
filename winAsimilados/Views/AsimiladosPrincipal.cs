@@ -1780,5 +1780,47 @@ namespace winAsimilados.Views
                 XtraMessageBox.Show(reporte.Message + "mostrarReporte()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void accordionDescargarArchivos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                splashScreenManager1.ShowWaitForm();
+                splashScreenManager1.SetWaitFormCaption("Cargando Módulo Descarga Archivos..");
+                DescargarArchivos descargarArchivos = new DescargarArchivos(splashScreenManager1);
+                var frm = Application.OpenForms.OfType<DescargarArchivos>().FirstOrDefault();
+                if (frm != null)
+                {
+                    splashScreenManager1.CloseWaitForm();
+                    frm.BringToFront();
+                    //frm.StartPosition = FormStartPosition.CenterScreen;
+                    frm.Location = new Point(270, 60);
+                    if (frm.WindowState == FormWindowState.Minimized)
+                    {
+                        //XtraMessageBox.Show("S")
+                        frm.WindowState = FormWindowState.Normal;
+                        //frm.Size = PanelPrincipal.Size;
+                        frm.BringToFront();
+                        //agregarEmpresa.Size = PanelPrincipal.Size;
+                        //agregarEmpresa.Location = new Point(270, 60);
+                    }
+                }
+                else
+                {
+                    //frm.StartPosition = FormStartPosition.CenterScreen;
+                    descargarArchivos.Location = new Point(270, 60);
+                    //agregarUsuario.Size = PanelPrincipal.Size;
+                    descargarArchivos.ShowDialog();
+                }
+            }
+            catch(Exception descargaArchivos)
+            {
+                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                {
+                    splashScreenManager1.CloseWaitForm();
+                }
+                XtraMessageBox.Show(descargaArchivos.Message + "descargaArchivos()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

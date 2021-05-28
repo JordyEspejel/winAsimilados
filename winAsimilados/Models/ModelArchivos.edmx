@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AsimiladosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Archivos">
+          <Key>
+            <PropertyRef Name="archivoID" />
+          </Key>
+          <Property Name="archivoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="archivoNombre" Type="varchar(max)" />
+          <Property Name="archivoPath" Type="varchar(max)" />
+          <Property Name="archivoCargado" Type="varbinary(max)" />
+          <Property Name="archivoFechaCarga" Type="datetime" />
+          <Property Name="archivoUsuarioCarga" Type="varchar" MaxLength="20" />
+          <Property Name="archivoIDCliente" Type="varchar" MaxLength="20" />
+          <Property Name="archivoCliente" Type="varchar(max)" />
+          <Property Name="archivoIDEmpresa" Type="varchar" MaxLength="20" />
+          <Property Name="archivoEmpresa" Type="varchar(max)" />
+          <Property Name="archivoPeriodo" Type="varchar" MaxLength="10" />
+          <Property Name="archivoNominaEmpresaID" Type="varchar(max)" />
+          <Property Name="archivosURL" Type="varchar(max)" />
+        </EntityType>
+        <EntityContainer Name="AsimiladosModelStoreContainer">
+          <EntitySet Name="Archivos" EntityType="Self.Archivos" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AsimiladosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Archivos">
+          <Key>
+            <PropertyRef Name="archivoID" />
+          </Key>
+          <Property Name="archivoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="archivoNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="archivoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="archivoCargado" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="archivoFechaCarga" Type="DateTime" Precision="3" />
+          <Property Name="archivoUsuarioCarga" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="archivoIDCliente" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="archivoCliente" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="archivoIDEmpresa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="archivoEmpresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="archivoPeriodo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="archivoNominaEmpresaID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="archivosURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="AsimiladosEntitiesArchivos" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Archivos" EntityType="Self.Archivos" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AsimiladosModelStoreContainer" CdmEntityContainer="AsimiladosEntitiesArchivos">
+          <EntitySetMapping Name="Archivos">
+            <EntityTypeMapping TypeName="AsimiladosModel.Archivos">
+              <MappingFragment StoreEntitySet="Archivos">
+                <ScalarProperty Name="archivosURL" ColumnName="archivosURL" />
+                <ScalarProperty Name="archivoID" ColumnName="archivoID" />
+                <ScalarProperty Name="archivoNombre" ColumnName="archivoNombre" />
+                <ScalarProperty Name="archivoPath" ColumnName="archivoPath" />
+                <ScalarProperty Name="archivoCargado" ColumnName="archivoCargado" />
+                <ScalarProperty Name="archivoFechaCarga" ColumnName="archivoFechaCarga" />
+                <ScalarProperty Name="archivoUsuarioCarga" ColumnName="archivoUsuarioCarga" />
+                <ScalarProperty Name="archivoIDCliente" ColumnName="archivoIDCliente" />
+                <ScalarProperty Name="archivoCliente" ColumnName="archivoCliente" />
+                <ScalarProperty Name="archivoIDEmpresa" ColumnName="archivoIDEmpresa" />
+                <ScalarProperty Name="archivoEmpresa" ColumnName="archivoEmpresa" />
+                <ScalarProperty Name="archivoPeriodo" ColumnName="archivoPeriodo" />
+                <ScalarProperty Name="archivoNominaEmpresaID" ColumnName="archivoNominaEmpresaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

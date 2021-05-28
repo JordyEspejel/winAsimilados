@@ -3043,6 +3043,30 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EntityFramework.dll" size="5225168">
+      <assemblyIdentity name="EntityFramework" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>nCD7KthqdgsMauvZMByQCYkdAq4UcgqTkmwLU1uK0Js=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EntityFramework.SqlServer.dll" size="622288">
+      <assemblyIdentity name="EntityFramework.SqlServer" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>4OEmw7inupUB0D+Z1Upcu9F0vOy2FwCYq0zBIZ8n+TM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="itextsharp.dll" size="2621440">
       <assemblyIdentity name="itextsharp" version="5.5.13.2" publicKeyToken="8354AE6D2174DDCA" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -3127,14 +3151,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="1876992">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="1931264">
       <assemblyIdentity name="winAsimilados" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>b1A067GKY5XT0c0SjGvYG8pI6l6oB8HLhNW2VFLKDk4=</dsig:DigestValue>
+        <dsig:DigestValue>qIDQddNI9MXpa94sNsaq9joI+Rg0uIUKbjkw/6ZPhEI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -3186,6 +3210,24 @@
       <dsig:DigestValue>YBv6eQUWyAjkJ6Mp8pBYe14tf66jsWgdbpjvN/i49zI=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Models\ModelArchivos.Context.tt" size="22937">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>reRJS3B/taBf3+4MSZG/gFW2EsLwR0R6sGt9BZ2/86Y=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Models\ModelArchivos.tt" size="25282">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>fiiMim86XjvLswKFJuVTTKAMvtwgdTQRoDlCFuL9Gn4=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="ssleay32.dll" size="232960">
     <hash>
       <dsig:Transforms>
@@ -3195,13 +3237,13 @@
       <dsig:DigestValue>Xg+uf/7I3bql1r5hCrmfajtnHZV6aqYBCRrLDa4ZIdw=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="winAsimilados.exe.config" size="9053">
+  <file name="winAsimilados.exe.config" size="9796">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ST+5B9xvfYg6dnxdGrnEV3/nn/e1+eJ6FC5s0a8A8GE=</dsig:DigestValue>
+      <dsig:DigestValue>l03aaasSeE/36lI/uU2pweGad5PjD/ItXtmnAQ+Hq/Y=</dsig:DigestValue>
     </hash>
   </file>
   <file name="wkhtmltox0.dll" size="30307840">

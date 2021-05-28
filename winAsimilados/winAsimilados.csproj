@@ -120,6 +120,12 @@
     <Reference Include="DevExpress.XtraScheduler.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
@@ -223,6 +229,7 @@
     <Compile Include="Entities\ListaClaveProdServ.cs" />
     <Compile Include="Entities\Municipio.cs" />
     <Compile Include="Entities\Parametros.cs" />
+    <Compile Include="Entities\Periodo.cs" />
     <Compile Include="Entities\SUB15.cs" />
     <Compile Include="Entities\SUB30.cs" />
     <Compile Include="Entities\SUB7.cs" />
@@ -234,10 +241,28 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Archivos.cs">
+      <DependentUpon>ModelArchivos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Asimilados.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Asimilados.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelArchivos.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelArchivos.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelArchivos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelArchivos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelArchivos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelArchivos.edmx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -320,6 +345,18 @@
     </Compile>
     <Compile Include="Views\CancelarCFDI.Designer.cs">
       <DependentUpon>CancelarCFDI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CargarArchivoNomina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CargarArchivoNomina.Designer.cs">
+      <DependentUpon>CargarArchivoNomina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DescargarArchivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DescargarArchivos.Designer.cs">
+      <DependentUpon>DescargarArchivos.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\DetallesNomina.cs">
       <SubType>Form</SubType>
@@ -494,6 +531,12 @@
     <EmbeddedResource Include="Views\CancelarCFDI.resx">
       <DependentUpon>CancelarCFDI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\CargarArchivoNomina.resx">
+      <DependentUpon>CargarArchivoNomina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DescargarArchivos.resx">
+      <DependentUpon>DescargarArchivos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\DetallesNomina.resx">
       <DependentUpon>DetallesNomina.cs</DependentUpon>
     </EmbeddedResource>
@@ -648,6 +691,13 @@
       <LastGenOutput>Asimilados.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <EntityDeploy Include="Models\ModelArchivos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelArchivos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\ModelArchivos.edmx.diagram">
+      <DependentUpon>ModelArchivos.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -729,6 +779,16 @@
     <Content Include="mingwm10.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Models\ModelArchivos.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelArchivos.edmx</DependentUpon>
+      <LastGenOutput>ModelArchivos.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelArchivos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelArchivos.edmx</DependentUpon>
+      <LastGenOutput>ModelArchivos.cs</LastGenOutput>
+    </Content>
     <Content Include="ssleay32.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -751,6 +811,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -75,6 +75,8 @@
             this.PopBtnEmpresas = new DevExpress.XtraBars.PopupMenu(this.components);
             this.PanelPrincipal = new DevExpress.XtraEditors.SidePanel();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
+            this.accordionControlElement14 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionDescargarArchivos = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement12 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement13 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlBanSucursales = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -541,6 +543,7 @@
             // 
             this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlElement14,
             this.accordionControlElement12,
             this.accordionControlElement10,
             this.accordionControlElement1,
@@ -558,6 +561,22 @@
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.Text = "Menu";
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
+            // 
+            // accordionControlElement14
+            // 
+            this.accordionControlElement14.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionDescargarArchivos});
+            this.accordionControlElement14.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement14.ImageOptions.Image")));
+            this.accordionControlElement14.Name = "accordionControlElement14";
+            this.accordionControlElement14.Text = "Archivos";
+            // 
+            // accordionDescargarArchivos
+            // 
+            this.accordionDescargarArchivos.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionDescargarArchivos.ImageOptions.Image")));
+            this.accordionDescargarArchivos.Name = "accordionDescargarArchivos";
+            this.accordionDescargarArchivos.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionDescargarArchivos.Text = "Descarga";
+            this.accordionDescargarArchivos.Click += new System.EventHandler(this.accordionDescargarArchivos_Click);
             // 
             // accordionControlElement12
             // 
@@ -1001,5 +1020,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlMigracionEmpl;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionReporteNomina;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement14;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionDescargarArchivos;
     }
 }
