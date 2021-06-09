@@ -29,7 +29,6 @@ namespace winAsimilados.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.DataAccess.Sql.SelectQuery selectQuery1 = new DevExpress.DataAccess.Sql.SelectQuery();
             DevExpress.DataAccess.Sql.Column column1 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression1 = new DevExpress.DataAccess.Sql.ColumnExpression();
@@ -93,12 +92,13 @@ namespace winAsimilados.Views
             this.colarchivoPeriodo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colarchivoNominaEmpresaID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lookUpCliente = new DevExpress.XtraEditors.LookUpEdit();
-            this.clientesAsimiladosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
+            this.clientesAsimiladosBindingSource = new System.Windows.Forms.BindingSource();
+            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource();
             this.lookUpEmpresa = new DevExpress.XtraEditors.LookUpEdit();
             this.lookUpPeriodo = new DevExpress.XtraEditors.LookUpEdit();
             this.BtnBuscarArchivos = new DevExpress.XtraEditors.SimpleButton();
             this.btnDescargar = new DevExpress.XtraEditors.SimpleButton();
+            this.BtnEliminar = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -110,11 +110,10 @@ namespace winAsimilados.Views
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.archivosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sqlDataSourceGridArchivos = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
-            this.resumenNominaEmpresasPagoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.BtnEliminar = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.archivosBindingSource = new System.Windows.Forms.BindingSource();
+            this.sqlDataSourceGridArchivos = new DevExpress.DataAccess.Sql.SqlDataSource();
+            this.resumenNominaEmpresasPagoBindingSource = new System.Windows.Forms.BindingSource();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlArchivos)).BeginInit();
@@ -134,9 +133,9 @@ namespace winAsimilados.Views
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.archivosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.resumenNominaEmpresasPagoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -279,6 +278,7 @@ namespace winAsimilados.Views
             this.lookUpCliente.Properties.NullText = "";
             this.lookUpCliente.Properties.NullValuePrompt = "Seleccione";
             this.lookUpCliente.Properties.NullValuePromptShowForEmptyValue = true;
+            this.lookUpCliente.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.lookUpCliente.Properties.ShowNullValuePromptWhenFocused = true;
             this.lookUpCliente.Properties.ValueMember = "ID";
             this.lookUpCliente.Size = new System.Drawing.Size(303, 20);
@@ -345,6 +345,7 @@ namespace winAsimilados.Views
             this.lookUpEmpresa.Properties.NullText = "";
             this.lookUpEmpresa.Properties.NullValuePrompt = "Seleccione";
             this.lookUpEmpresa.Properties.NullValuePromptShowForEmptyValue = true;
+            this.lookUpEmpresa.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.lookUpEmpresa.Properties.ShowNullValuePromptWhenFocused = true;
             this.lookUpEmpresa.Size = new System.Drawing.Size(361, 20);
             this.lookUpEmpresa.StyleController = this.layoutControl1;
@@ -360,6 +361,7 @@ namespace winAsimilados.Views
             this.lookUpPeriodo.Properties.NullText = "";
             this.lookUpPeriodo.Properties.NullValuePrompt = "Seleccione";
             this.lookUpPeriodo.Properties.NullValuePromptShowForEmptyValue = true;
+            this.lookUpPeriodo.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.lookUpPeriodo.Properties.ShowNullValuePromptWhenFocused = true;
             this.lookUpPeriodo.Size = new System.Drawing.Size(103, 20);
             this.lookUpPeriodo.StyleController = this.layoutControl1;
@@ -387,6 +389,17 @@ namespace winAsimilados.Views
             this.btnDescargar.TabIndex = 9;
             this.btnDescargar.Text = "Descargar";
             this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
+            // 
+            // BtnEliminar
+            // 
+            this.BtnEliminar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnEliminar.ImageOptions.Image")));
+            this.BtnEliminar.Location = new System.Drawing.Point(696, 388);
+            this.BtnEliminar.Name = "BtnEliminar";
+            this.BtnEliminar.Size = new System.Drawing.Size(80, 38);
+            this.BtnEliminar.StyleController = this.layoutControl1;
+            this.BtnEliminar.TabIndex = 10;
+            this.BtnEliminar.Text = "Eliminar";
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // layoutControlGroup1
             // 
@@ -502,6 +515,15 @@ namespace winAsimilados.Views
             this.emptySpaceItem1.Size = new System.Drawing.Size(575, 42);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.BtnEliminar;
+            this.layoutControlItem7.Location = new System.Drawing.Point(672, 238);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(84, 42);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
+            // 
             // archivosBindingSource
             // 
             this.archivosBindingSource.DataMember = "Archivos";
@@ -588,26 +610,6 @@ namespace winAsimilados.Views
             this.resumenNominaEmpresasPagoBindingSource.DataMember = "ResumenNominaEmpresasPago";
             this.resumenNominaEmpresasPagoBindingSource.DataSource = this.sqlDataSource1;
             // 
-            // BtnEliminar
-            // 
-            this.BtnEliminar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.BtnEliminar.Location = new System.Drawing.Point(696, 388);
-            this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(80, 38);
-            this.BtnEliminar.StyleController = this.layoutControl1;
-            this.BtnEliminar.TabIndex = 10;
-            this.BtnEliminar.Text = "Eliminar";
-            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.BtnEliminar;
-            this.layoutControlItem7.Location = new System.Drawing.Point(672, 238);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(84, 42);
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
-            // 
             // DescargarArchivos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -638,9 +640,9 @@ namespace winAsimilados.Views
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.archivosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.resumenNominaEmpresasPagoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             this.ResumeLayout(false);
 
         }

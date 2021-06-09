@@ -38,29 +38,29 @@ namespace winAsimilados.Views
 
         private void buttonEditArchivo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
-            openFileDialog1.FilterIndex = 1;
-            openFileDialog1.RestoreDirectory = true;
+            //openFileDialog1.InitialDirectory = "c:\\";
+            //openFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
+            //openFileDialog1.FilterIndex = 1;
+            //openFileDialog1.RestoreDirectory = true;
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                Archivo = openFileDialog1.FileName;
-                nombreArchivoOriginal = openFileDialog1.SafeFileName;
-                buttonEditArchivo.Text = Archivo;
-            }
-            //xtraOpenFileDialog1.Title = "Selecciona Archivo a Cargar";
-            //xtraOpenFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
-            //xtraOpenFileDialog1.FileName = "";
-            //xtraOpenFileDialog1.FilterIndex = 1;
-            //xtraOpenFileDialog1.RestoreDirectory = true;
-
-            //if (xtraOpenFileDialog1.ShowDialog() == DialogResult.OK)
+            //if (openFileDialog1.ShowDialog() == DialogResult.OK)
             //{
-            //    Archivo = xtraOpenFileDialog1.FileName;
-            //    nombreArchivoOriginal = xtraOpenFileDialog1.SafeFileName;
+            //    Archivo = openFileDialog1.FileName;
+            //    nombreArchivoOriginal = openFileDialog1.SafeFileName;
             //    buttonEditArchivo.Text = Archivo;
             //}
+            xtraOpenFileDialog1.Title = "Selecciona Archivo a Cargar";
+            xtraOpenFileDialog1.Filter = "Todos los archivos (*.*)|*.*";
+            xtraOpenFileDialog1.FileName = "";
+            xtraOpenFileDialog1.FilterIndex = 1;
+            xtraOpenFileDialog1.RestoreDirectory = true;
+
+            if (xtraOpenFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Archivo = xtraOpenFileDialog1.FileName;
+                nombreArchivoOriginal = xtraOpenFileDialog1.SafeFileName;
+                buttonEditArchivo.Text = Archivo;
+            }
         }
 
         private void CargarArchivoNomina_Load(object sender, EventArgs e)
@@ -89,7 +89,8 @@ namespace winAsimilados.Views
                     return;
                 }
                 byte[] file = null;
-                Stream stream = openFileDialog1.OpenFile();
+                //Stream stream = openFileDialog1.OpenFile();
+                Stream stream = OpenFile(Archivo);
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
                     stream.CopyTo(memoryStream);

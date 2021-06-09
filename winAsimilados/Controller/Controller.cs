@@ -53,6 +53,232 @@ namespace winAsimilados.Controller
     class Controller
     {
         M.AsimiladosDataContext dtc = new M.AsimiladosDataContext();
+        //public void CargarXML(List<E.BitacoraXML> listaBitacora , List<M.Nomina> listaNomina, List<E.FolioXML> listaFolio)
+        //{
+        //    try
+        //    {
+        //         if (this.InsertaFolioLecturaXML(listaFolio).Equals(true))
+        //        {
+        //            this.InsertaNominaXML(listaNomina);
+        //            this.InsertaBitacoraXML(listaBitacora);
+        //        }
+        //    }catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+        public void InsertaBitacoraXML(List<E.BitacoraXML> listaBitacora)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand insertaBitacora = (SqlCommand)dtc.Connection.CreateCommand();
+                SqlCommand ValidaUUIDBitacora = (SqlCommand)dtc.Connection.CreateCommand();
+                SqlDataReader readerUUID;
+                foreach (var bitacora in listaBitacora)
+                {
+                    ValidaUUIDBitacora.CommandText = @"Select UUID from BitacoraXML where UUID = '"+ bitacora.UUID + "'";
+                    //ValidaUUIDBitacora.Parameters.AddWithValue("@uuid", bitacora.UUID);
+                    readerUUID = ValidaUUIDBitacora.ExecuteReader();
+
+                    if (readerUUID.Read())
+                    {
+                        readerUUID.Close();
+                    }
+                    else
+                    {
+                        insertaBitacora.CommandText = @"INSERT INTO [dbo].[BitacoraXML]
+                        ([Folio]
+                        ,[UUID]
+                        ,[StatusSAT]
+                        ,[FecPago]
+                        ,[FecIni]
+                        ,[FecFin]
+                        ,[Empresa]
+                        ,[Movimiento]
+                        ,[FecMov]
+                        ,[IPMov]
+                        ,[Usuario]
+                        ,[Origen]
+                        ,[nominaEmpresaID])
+                        VALUES
+                        ('" + bitacora.Folio + "'" +
+                        ",'" + bitacora.UUID + "'" +
+                        ",'" + bitacora.StatusSAT + "'" +
+                        ",'" + bitacora.FecPago.ToString("yyyy-dd-MM") + "'" +
+                        ",'" + bitacora.FecIni.ToString("yyyy-dd-MM") + "'" +
+                        ",'" + bitacora.FecFin.ToString("yyyy-dd-MM") + "'" +
+                        ",'" + bitacora.Empresa + "'" +
+                        ",'" + bitacora.Movimiento + "'" +
+                        ", GETDATE() " +
+                        ",'" + bitacora.IPMovimiento + "'" +
+                        ",'" + bitacora.Usuario + "'" +
+                        ",'" + bitacora.Origen + "'" +
+                        ",'" + bitacora.nominaEmpresaID + "')";
+                        insertaBitacora.ExecuteNonQuery();
+                    }
+                }
+                dtc.Connection.Close();
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void InsertaNominaXML(List<M.Nomina> listaNomina)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand insertaNomina = (SqlCommand)dtc.Connection.CreateCommand();
+                SqlCommand ValidaUUIDNomina = (SqlCommand)dtc.Connection.CreateCommand();
+                SqlDataReader readerUUID;
+                foreach (var nomina in listaNomina)
+                {
+                    ValidaUUIDNomina.CommandText = @"Select nominaUUID from Nomina where nominaUUID = '" + nomina.nominaUUID + "'";
+                    //ValidaUUIDNomina.Parameters.AddWithValue("@uuid", nomina.nominaUUID);
+                    readerUUID = ValidaUUIDNomina.ExecuteReader();
+
+                    if (readerUUID.Read())
+                    {
+                        readerUUID.Close();
+                    }
+                    else
+                    {
+                        insertaNomina.CommandText = @"INSERT INTO [dbo].[Nomina]
+                        ([nominanumEmpl]
+                        ,[nominanombreEmpleado]
+                        ,[nominaRFCEmpleado]
+                        ,[nominaPeriodidicadPago]
+                        ,[nominaIngresos]
+                        ,[nominaIngresosBruto]
+                        ,[nominaISR]
+                        ,[nominaFechaPago]
+                        ,[nominaFechaIniPeri]
+                        ,[nominaFechaFinPero]
+                        ,[nominaFechaCreacion]
+                        ,[nominaEstatus]
+                        ,[nominaEstatusSAT]
+                        ,[nominaPeriodo]
+                        ,[nominaEmpresa]
+                        ,[nominaRFCEmpresa]
+                        ,[nominaEmpresaNominaID]
+                        ,[nominaUsuario]
+                        ,[nominaUsuarioCierrePeriodo]
+                        ,[nominaFechaCierrePeriodo]
+                        ,[ResumenNominaID]
+                        ,[nominaUUID]
+                        ,[nominaFolio]
+                        ,[nominaIDCliente]
+                        ,[nominaCliente]
+                        ,[nominaIDEmpresaPago]
+                        ,[nominaEmpresaPago])
+                        VALUES
+                        (" + nomina.nominanumEmpl + "" +
+                        ",'" + nomina.nominanombreEmpleado + "'" +
+                        ",'" + nomina.nominaRFCEmpleado + "'" +
+                        ",'" + nomina.nominaPeriodidicadPago + "'" +
+                        "," + nomina.nominaIngresos + "" +
+                        "," + nomina.nominaIngresosBruto + "" +
+                        "," + nomina.nominaISR + "" +
+                        ",'" + Convert.ToDateTime(nomina.nominaFechaPago).ToString("yyyy-dd-MM") + "'" +
+                        ",'" + Convert.ToDateTime(nomina.nominaFechaIniPeri).ToString("yyyy-dd-MM") + "'" +
+                        ",'" + Convert.ToDateTime(nomina.nominaFechaFinPero).ToString("yyyy-dd-MM") + "'" +
+                        ", GETDATE()" +
+                        ",'" + nomina.nominaEstatus + "'" +
+                        ",'" + nomina.nominaEstatusSAT + "'" +
+                        ",'" + nomina.nominaPeriodo + "'" +
+                        ",'" + nomina.nominaEmpresa + "'" +
+                        ",'" + nomina.nominaRFCEmpresa + "'" +
+                        ",'" + nomina.nominaEmpresaNominaID + "'" +
+                        ",'" + nomina.nominaUsuario + "'" +
+                        ",'" + nomina.nominaUsuarioCierrePeriodo + "'" +
+                        ", GETDATE()" +
+                        ",'" + nomina.ResumenNominaID + "'" +
+                        ",'" + nomina.nominaUUID + "'" +
+                        ",'" + nomina.nominaFolio + "'" +
+                        ",'" + nomina.nominaIDCliente + "'" +
+                        ",'" + nomina.nominaCliente + "'" +
+                        ",'" + nomina.nominaIDEmp + "'" +
+                        ",'" + nomina.nominaEmpresaPago + "')";
+                        insertaNomina.ExecuteNonQuery();
+                    }
+                }
+                dtc.Connection.Close();
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void InsertaFolioLecturaXML(List<E.FolioXML> listaFolio)
+        {
+            try
+            {
+                //bool resInesta = false;
+                dtc.Connection.Open();
+                SqlCommand insertFolio = (SqlCommand)dtc.Connection.CreateCommand();
+                SqlCommand ValidaUUIDFolio = (SqlCommand)dtc.Connection.CreateCommand();
+                SqlDataReader readerUUID;
+                foreach (var folio in listaFolio)
+                {
+                    ValidaUUIDFolio.CommandText = @"SELECT UUID FROM FolioXML WHERE UUID = '" + folio.UUID + "'";
+                    //ValidaUUIDFolio.Parameters.AddWithValue("@uuid", folio.UUID);
+                    readerUUID = ValidaUUIDFolio.ExecuteReader();
+                    if (readerUUID.Read())
+                    {
+                        readerUUID.Close();
+                        //resInesta = false;
+                    }
+                    else
+                    {
+                        insertFolio.CommandText = @"
+                        INSERT INTO [dbo].[FolioXML]
+                        ([Folio]
+                        ,[UUID]
+                        ,[XML]
+                        ,[RutaXML]
+                        ,[Empleado]
+                        ,[Importe]
+                        ,[StatusSAT]
+                        ,[FecPago]
+                        ,[FecIni]
+                        ,[FecFin]
+                        ,[Empresa]
+                        ,[RFC]
+                        ,[SelloCFD]
+                        ,[Total]
+                        ,[nominaEmpresaID])
+                        VALUES
+                        ('" + folio.Folio + "'" +
+                        ",'" + folio.UUID + "'" +
+                        ",'" + folio.XML + "'" +
+                        ",'" + folio.RutaXML + "'" +
+                        ",'" + folio.Empleado + "'" +
+                        "," + folio.Importe + "" +
+                        ",'" + folio.StatusSAT + "'" +
+                        ",'" + folio.FecPago.ToString("yyyy-dd-MM") + "'" +
+                        ",'" + folio.FecIni.ToString("yyyy-dd-M" +
+                        "M") + "'" +
+                        ",'" + folio.FecFin.ToString("yyyy-dd-MM") + "'" +
+                        ",'" + folio.Empresa + "'" +
+                        ",'" + folio.RFC + "'" +
+                        ",'" + "'" +
+                        "," + folio.total + "" +
+                        ",'" + folio.nominaEmpresaID + "')";
+                        insertFolio.ExecuteNonQuery();
+                    }              
+                }
+                //return resInesta;
+                dtc.Connection.Close();
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                //return false;
+                throw;
+            }
+        } 
         //public void DescargaArchivos(List<M.Archivos> listaArchivos)
         //{
         //    try
@@ -849,7 +1075,7 @@ namespace winAsimilados.Controller
                       ",'" + item.ResumenNominaID + "'" +
                       ",'" + item.nominaIDCliente + "'" +
                       ",'" + item.nominaCliente + "'" +
-                      ",'" + item.nominaIDEmpresaPago + "" +
+                      ",'" + item.nominaIDEmpresaPago + "'" +
                       ",'" + item.nominaEmpresaPago + "')";
 
                     queryInsertaNomina.ExecuteNonQuery();
@@ -862,6 +1088,42 @@ namespace winAsimilados.Controller
                 throw;
             }
         }
+        public int ObtieneContPeriodoNominaXML(string nominaEmpresaID, string mes, string IDCliente, string IDEmpresa)
+        {
+            try
+            {
+                int cont = 0;
+                dtc.Connection.Open();
+                SqlCommand queryGetCont = (SqlCommand)dtc.Connection.CreateCommand();
+                queryGetCont.CommandText = @"SELECT
+                COUNT(ResumenNominaID)
+                from ResumenNomina
+                WHERE ResumenNominaNominaEmpresaID = @Empresa
+                AND MONTH(ResumenNominaFechaInicioPeri) = @Mes
+                AND ResumenNominaIDCliente = @cliente
+                AND ResumenNominaIDEmpresaPago = @empresaPago";
+                queryGetCont.Parameters.AddWithValue("@Empresa", nominaEmpresaID);
+                queryGetCont.Parameters.AddWithValue("@Mes", mes);
+                queryGetCont.Parameters.AddWithValue("@cliente", IDCliente);
+                queryGetCont.Parameters.AddWithValue("@empresaPago", IDEmpresa);
+                SqlDataReader ReaderCont;
+                ReaderCont = queryGetCont.ExecuteReader();
+                if (ReaderCont.Read())
+                {
+                    cont = ReaderCont.GetInt32(0);
+                }
+                ReaderCont.Close();
+                dtc.Connection.Close();
+                return cont;
+            }
+            catch (Exception nomiCont)
+            {
+                XtraMessageBox.Show("Error Controlador: ObtieneContPeriodoNomina:\n" + nomiCont.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dtc.Connection.Close();
+                return -1;
+            }
+        }
+
         public int ObtieneContPeriodoNomina(string nominaEmpresaID, string mes, string IDCliente, string IDEmpresa, SplashScreenManager splash)
         {
             try
@@ -1390,20 +1652,20 @@ namespace winAsimilados.Controller
                 insertaCliente.CommandText = @"INSERT INTO [dbo].[ClientesAsimilados]
                    ([ID]
                    ,[CLIENTE]
-                   ,[FECHA_ALTA _PRIMER PAGO]
+                   ,[FECHA_ALTA_PRIMER_PAGO]
                    ,[COMISIONISTA]
                    ,[PORCENTAJE_ISN]
                    ,[PORCENTAJE_COMISION]
                    ,[TOTAL]
-                   ,[FACTURACION_CON IVA _SIN IVA]
+                   ,[FACTURACION_CON_IVA_SIN_IVA]
                    ,[RETENCION]
                    ,[PORCENTAJE_RETENCION]
                    ,[PERIODO_DE_PAGO]
                    ,[ESTATUS]
                    ,[EJECUTIVO_RESPONSABLE]
-                   ,[EMPRESA_PAGADORA_EMITE CFDI]
+                   ,[EMPRESA_PAGADORA_EMITE_CFDI]
                    ,[PROVEEDOR]
-                   ,[EMPRESA_QUE_FACTUR_A _CLIENTE]
+                   ,[EMPRESA_QUE_FACTURA_A_CLIENTE]
                    ,[EMPRESA_QUE_FACTURA_A_CLIENTE1]
                    ,[EMPRESA_QUE_FACTURA_A_CLIENTE2]
                    ,[EMPRESA_QUE_FACTURA_A_CLIENTE3]
@@ -1414,7 +1676,7 @@ namespace winAsimilados.Controller
                   ,[COMISIONISTA2]
                   ,[PORCENTAJE_COMISIONISTA2]
                   ,[COMISIONISTA3]
-                  ,[PORCENTAJE_COMISIONIST3]
+                  ,[PORCENTAJE_COMISIONISTA3]
                   ,[PORCENTAJE_FACTURA]
                   ,[PORCENTAJE_FACTURA2]
                   ,[PORCENTAJE_FACTURA3]
@@ -1827,7 +2089,7 @@ namespace winAsimilados.Controller
 
                 if (readerID.Read())
                 {
-                    ID = readerID.GetString(0);
+                    ID = readerID.IsDBNull(0) ? "" : readerID.GetString(0);
                 }
                 readerID.Close();
                 return ID;
@@ -5794,7 +6056,8 @@ namespace winAsimilados.Controller
                 QueryFolio.CommandText = @"SELECT
                 ISNULL(RIGHT('00000' + CAST(Max([Folio]) + 1 AS varchar(5)) , 4),0) AS [Folio]
                 FROM [FolioXML]
-                WHERE [nominaEmpresaID] = @EmpresaID";
+                WHERE [nominaEmpresaID] = @EmpresaID
+                AND Folio not like '%FDP%'";
                 QueryFolio.Parameters.AddWithValue("@EmpresaID", NominaEmpresaID);
                 SqlDataReader readerFolio;
                 readerFolio = QueryFolio.ExecuteReader();
@@ -7794,7 +8057,7 @@ namespace winAsimilados.Controller
                         cont++;
 
                         nombre = true;
-                        if (item.cuentaOrigen.Length > 10)
+                        if (item.cuentaOrigen.Length > 18)
                         {
                             if (nombre.Equals(true))
                             {
@@ -7803,7 +8066,7 @@ namespace winAsimilados.Controller
                                 nombre = false;
                             }
                             errorCuentaOrigen++;
-                            mensaje = "Cuenta Origen mayor a 10 digitos";
+                            mensaje = "Cuenta Origen mayor a 18 digitos";
                             builderLog.Append(mensaje);
                             builderLog.AppendLine();
                             builderLog.AppendLine();

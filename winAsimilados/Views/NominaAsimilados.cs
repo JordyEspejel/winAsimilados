@@ -2826,7 +2826,7 @@ namespace winAsimilados.Views
                 {
                     splashScreenManager1.CloseWaitForm();
                 }
-                XtraMessageBox.Show("¡La Nómina se encuentra con estatus 'Timbtado', no se puede re abrir!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                XtraMessageBox.Show("¡La Nómina se encuentra con estatus 'Timbrado', no se puede re abrir!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (EstatusCaratula.Equals("Generado"))
@@ -3340,6 +3340,59 @@ namespace winAsimilados.Views
                 }catch (Exception cargarArchivo)
             {
                 string mensaje = string.Concat("¡Error al intentar cargar archivo!", "\n", cargarArchivo.Message);
+                XtraMessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void barButtonArchivo_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                if (gridViewLayout.RowCount.Equals(0))
+                {
+                    XtraMessageBox.Show("La tabla no contiene información", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (gridViewLayout.GetSelectedRows().Equals(0))
+                {
+                    XtraMessageBox.Show("Por favor, Seleccione una celda.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    for (int i = 0; i < gridViewLayout.RowCount; i++)
+                    {
+                        if (gridViewLayout.IsRowSelected(i))
+                        {
+                            //EstatusCaratula = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[13]).ToString();
+                            //estatusNomina = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[38]).ToString();
+                            //IDResumenNomina = Convert.ToInt32(gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[39]));
+                            resumenNominaID = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[39]).ToString();
+                        }
+                    }
+                    CargarArchivoNomina cargarArchivo = new CargarArchivoNomina(resumenNominaID);
+                    cargarArchivo.ShowDialog();
+                    cargarArchivo.BringToFront();
+                }
+            }
+            catch (Exception cargarArchivo)
+            {
+                string mensaje = string.Concat("¡Error al intentar cargar archivo!", "\n", cargarArchivo.Message);
+                XtraMessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void barButtonXML_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                CargarXMLNomina cargarXML = new CargarXMLNomina();
+                cargarXML.ShowDialog();
+                cargarXML.BringToFront();
+            }catch (Exception cargarXML)
+            {
+                string mensaje = string.Concat("¡Error al intentar cargar archivo!", "\n", cargarXML.Message);
                 XtraMessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

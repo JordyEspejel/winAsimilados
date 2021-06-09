@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\aespejel\Desktop\ActAsimilados\</PublishUrl>
+    <PublishUrl>C:\Users\aespejel.TI-SOPAPLI01\Desktop\Act Aimilados XML\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,7 +26,7 @@
     <UpdateUrl>\\192.168.16.20\Aplicaciones\Asimilados\</UpdateUrl>
     <WebPage>Asimilados.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>51</ApplicationRevision>
+    <ApplicationRevision>53</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -53,7 +53,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0CE37C4138E353088358E5439B83C8513458D044</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A4C8EE5F3EDA7473A0C12B201C4A91F09A7DAE46</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>
@@ -352,6 +352,12 @@
     <Compile Include="Views\CargarArchivoNomina.Designer.cs">
       <DependentUpon>CargarArchivoNomina.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CargarXMLNomina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CargarXMLNomina.Designer.cs">
+      <DependentUpon>CargarXMLNomina.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\DescargarArchivos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -533,6 +539,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CargarArchivoNomina.resx">
       <DependentUpon>CargarArchivoNomina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CargarXMLNomina.resx">
+      <DependentUpon>CargarXMLNomina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DescargarArchivos.resx">
       <DependentUpon>DescargarArchivos.cs</DependentUpon>

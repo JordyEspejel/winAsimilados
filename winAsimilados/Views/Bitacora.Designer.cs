@@ -175,9 +175,7 @@
             this.sqlDataSourceAnio.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataSourceAnio.Name = "sqlDataSourceAnio";
             customSqlQuery1.Name = "Query";
-            customSqlQuery1.Sql = "select 2020 as Anio\r\nunion select 2022 as anio\r\nunion select 2023 as anio\r\nunion " +
-    "select 2024 as anio\r\nunion select 2025 as anio\r\nunion select 2026 as anio\r\nunion" +
-    " select 2027 as anio\r\n";
+            customSqlQuery1.Sql = resources.GetString("customSqlQuery1.Sql");
             this.sqlDataSourceAnio.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             customSqlQuery1});
             this.sqlDataSourceAnio.ResultSchemaSerializable = "PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZUFuaW8iPjxWaWV3IE5hbWU9IlF1ZXJ5Ij48RmllbGQgT" +
