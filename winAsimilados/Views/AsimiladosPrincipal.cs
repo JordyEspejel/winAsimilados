@@ -854,31 +854,39 @@ namespace winAsimilados.Views
 
         private void accordionNomiAsim_Click(object sender, EventArgs e)
         {
-            splashScreenManager1.ShowWaitForm();
-            splashScreenManager1.SetWaitFormCaption("Cargando Modulo Nómina...");
-            NominaAsimilados nominaAsimilados = new NominaAsimilados(lblEmpresa.Caption, lblRFC.Caption, splashScreenManager1);
-
-            var frm = Application.OpenForms.OfType<NominaAsimilados>().FirstOrDefault();
-            if (frm != null)
+            try
             {
-                splashScreenManager1.CloseWaitForm();
-                frm.BringToFront();
-                frm.Location = new Point(270, 60);
-                if (frm.WindowState == FormWindowState.Minimized)
+                splashScreenManager1.ShowWaitForm();
+                splashScreenManager1.SetWaitFormCaption("Cargando Modulo Nómina...");
+                NominaAsimilados nominaAsimilados = new NominaAsimilados(lblEmpresa.Caption, lblRFC.Caption, splashScreenManager1);
+
+                var frm = Application.OpenForms.OfType<NominaAsimilados>().FirstOrDefault();
+                if (frm != null)
                 {
-                    //XtraMessageBox.Show("S")
-                    frm.WindowState = FormWindowState.Normal;
-                    frm.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Size = PanelPrincipal.Size;
-                    //agregarEmpresa.Location = new Point(270, 60);
+                    splashScreenManager1.CloseWaitForm();
+                    frm.BringToFront();
+                    frm.Location = new Point(270, 60);
+                    if (frm.WindowState == FormWindowState.Minimized)
+                    {
+                        //XtraMessageBox.Show("S")
+                        frm.WindowState = FormWindowState.Normal;
+                        frm.Size = PanelPrincipal.Size;
+                        //agregarEmpresa.Size = PanelPrincipal.Size;
+                        //agregarEmpresa.Location = new Point(270, 60);
+                    }
+                }
+                else
+                {
+                    nominaAsimilados.Location = new Point(270, 60);
+                    nominaAsimilados.Size = PanelPrincipal.Size;
+                    nominaAsimilados.ShowDialog();
+                    nominaAsimilados.BringToFront();
                 }
             }
-            else
+            catch (Exception btnModNomi)
             {
-                nominaAsimilados.Location = new Point(270, 60);
-                nominaAsimilados.Size = PanelPrincipal.Size;
-                nominaAsimilados.ShowDialog();
-                nominaAsimilados.BringToFront();
+                string mensaje = string.Concat("Error al intentar abrir módulo nómina:", "\n", btnModNomi.Message);
+                XtraMessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

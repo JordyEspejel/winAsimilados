@@ -3151,14 +3151,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="1969120">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="1991648">
       <assemblyIdentity name="winAsimilados" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>n7MxbSuDSVdlyO+4stLaQRiB3b3SSiUXbsavIR0YiOI=</dsig:DigestValue>
+        <dsig:DigestValue>skb15AhLSGtbBARIBNo0tel3lErTTawq1cTR/w8u6Og=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

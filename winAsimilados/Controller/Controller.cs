@@ -66,7 +66,461 @@ namespace winAsimilados.Controller
         //    {
         //        throw;
         //    }
-        //}
+        //}                
+
+        public E.Layout GetLayoutCancelacion(string UUID)
+        {
+            try
+            {
+                E.Layout layout = new E.Layout();
+                dtc.Connection.Open();
+                SqlCommand getLayout = (SqlCommand)dtc.Connection.CreateCommand();
+                getLayout.CommandText = @"SELECT [ID]
+                ,[numEmpl]
+                ,[nombreEmpleado]
+                ,[RFCEmpleado]
+                ,[CURPEmpleado]
+                ,[PeriodicidadPago]
+                ,[ingresos]
+                ,[LimInferior]
+                ,[ExLimInf]
+                ,[PerExLimInf]
+                ,[ImpMarg]
+                ,[CF]
+                ,[ISR]
+                ,[ingresosNeto]
+                ,[operacion]
+                ,[claveID]
+                ,[cuentaOrigen]
+                ,[cuenta_ClaveDestino]
+                ,[importe]
+                ,[referencia]
+                ,[descripcion]
+                ,[RFCOrdenante]
+                ,[IVA]
+                ,[fechaAplicacion]
+                ,[fecIniPeri]
+                ,[fecFinPeri]
+                ,[InstruccionPago]
+                ,[claveTipoCambio]
+                ,[fechaCreacion]
+                ,[estatus]
+                ,[BancoEmpleado]
+                ,[sub]
+                ,[Caratula]
+                ,[IDEmpresaPago]
+                ,[bancoEmpresaPago]
+                ,[IDPeriodo]
+                ,[IDCliente]
+                ,[Layout]
+                ,[tipoPago]
+                ,[otrosConceptos]
+                ,[depositoNeto]
+                ,[cuentaBancaria]
+                ,[CLABE]
+                ,[descripcionError]
+                ,[descuentos]
+                ,[nominaEmpresaID]
+                ,[ResumenNomianID]
+                ,[UUID]
+                FROM [Asimilados].[dbo].[LayoutHistorico]
+                WHERE [UUID] = '" + UUID + "'";
+                SqlDataReader readerLayout;
+                readerLayout = getLayout.ExecuteReader();
+                if (readerLayout.Read())
+                {
+                    //layout.ID = Convert.ToString(readerLayout.GetDecimal(0));
+                    layout.numEmpl = readerLayout.GetInt32(1);
+                    layout.nombreEmpleado = readerLayout.GetString(2);
+                    layout.RFCEmpleado = readerLayout.GetString(3);
+                    layout.CURPEmpleado = readerLayout.GetString(4);
+                    layout.periPago = readerLayout.GetString(5);
+                    layout.ingresos = readerLayout.GetDecimal(6);
+                    layout.LimInferior = readerLayout.GetDecimal(7);
+                    layout.ExLimInf = readerLayout.GetDecimal(8);
+                    layout.PerExLimInf = readerLayout.GetDecimal(9);
+                    layout.ImpMarg = readerLayout.GetDecimal(10);
+                    layout.CF = readerLayout.GetDecimal(11);
+                    layout.ISR = readerLayout.GetDecimal(12);
+                    layout.ingresosNet = readerLayout.GetDecimal(13);
+                    layout.operacion = readerLayout.GetString(14);
+                    layout.claveID = readerLayout.GetString(15);
+                    layout.cuentaOrigen = readerLayout.GetString(16);
+                    layout.cuentaClaveDestino = readerLayout.GetString(17);
+                    layout.importe = readerLayout.GetDecimal(18);
+                    layout.referencia = readerLayout.GetString(19);
+                    layout.descripcion = readerLayout.GetString(20);
+                    layout.RFCOrdenante = readerLayout.GetString(21);
+                    layout.IVA = readerLayout.GetDecimal(22);
+                    layout.fechaAplicacion = readerLayout.GetDateTime(23);
+                    layout.fecIniPeri = readerLayout.GetDateTime(24);
+                    layout.fecFinPeri = readerLayout.GetDateTime(25);
+                    layout.institucionPago = readerLayout.GetString(26);
+                    layout.claveTipoCambio = Convert.ToString(readerLayout.GetInt32(27));
+                    layout.fechaCreacion = readerLayout.GetDateTime(28);
+                    layout.estatus = "Generado";
+                    layout.bancoEmpleado = readerLayout.GetString(30);
+                    layout.Sub = readerLayout.GetDecimal(31);
+                    layout.caratula = readerLayout.GetString(32);
+                    layout.IDEmpresa = readerLayout.GetString(33);
+                    layout.bancoEmpresaPago = readerLayout.GetString(34);
+                    layout.periodo = readerLayout.GetString(35);
+                    layout.IDCliente = readerLayout.GetString(36);
+                    layout.layout = readerLayout.GetString(37);
+                    layout.tipoPago = readerLayout.GetString(38);
+                    layout.otrosConceptos = readerLayout.GetDecimal(39);
+                    layout.depositoNeto = readerLayout.GetDecimal(40);
+                    layout.cuentaBancaria = readerLayout.GetString(41);
+                    layout.CLABE = readerLayout.GetString(42);
+                    layout.descripcion = readerLayout.GetString(43);
+                    layout.descuentos = readerLayout.GetDecimal(44);
+                    layout.nominaEmpresaID = readerLayout.GetString(45);
+                    layout.ResumenNominaID = readerLayout.GetString(46);
+                    readerLayout.Close();
+                }
+                dtc.Connection.Close();
+                return layout;
+            }
+            catch (Exception e)
+            {
+                dtc.Connection.Close();
+                return null;
+                throw;
+            }     
+        }
+        public void InsertaLayoutCancelacion(E.Layout layout)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand insertLayout = (SqlCommand)dtc.Connection.CreateCommand();
+                insertLayout.CommandText = @"INSERT INTO [dbo].[LayoutHistorico]
+                ([numEmpl]
+                ,[nombreEmpleado]
+                ,[RFCEmpleado]
+                ,[CURPEmpleado]
+                ,[PeriodicidadPago]
+                ,[ingresos]
+                ,[LimInferior]
+                ,[ExLimInf]
+                ,[PerExLimInf]
+                ,[ImpMarg]
+                ,[CF]
+                ,[ISR]
+                ,[ingresosNeto]
+                ,[operacion]
+                ,[claveID]
+                ,[cuentaOrigen]
+                ,[cuenta_ClaveDestino]
+                ,[importe]
+                ,[referencia]
+                ,[descripcion]
+                ,[RFCOrdenante]
+                ,[IVA]
+                ,[fechaAplicacion]
+                ,[fecIniPeri]
+                ,[fecFinPeri]
+                ,[InstruccionPago]
+                ,[claveTipoCambio]
+                ,[fechaCreacion]
+                ,[estatus]
+                ,[BancoEmpleado]
+                ,[sub]
+                ,[Caratula]
+                ,[IDEmpresaPago]
+                ,[bancoEmpresaPago]
+                ,[IDPeriodo]
+                ,[IDCliente]
+                ,[Layout]
+                ,[tipoPago]
+                ,[otrosConceptos]
+                ,[depositoNeto]
+                ,[cuentaBancaria]
+                ,[CLABE]
+                ,[descripcionError]
+                ,[descuentos]
+                ,[nominaEmpresaID]
+                ,[ResumenNomianID]
+                ,[UUID])
+                VALUES
+                (" + layout.numEmpl + "" +
+                ",'" + layout.nombreEmpleado + "'" +
+                ",'" + layout.RFCEmpleado  + "'" +
+                ",'" + layout.CURPEmpleado + "'" +
+                ",'" + layout.periPago + "'" +
+                "," + layout.ingresos + "" +
+                "," + layout.LimInferior + "" +
+                "," + layout.ExLimInf + "" +
+                "," + layout.PerExLimInf + "" +
+                "," + layout.ImpMarg + "" +
+                "," + layout.CF + "" +
+                "," + layout.ISR + "" +
+                "," + layout.ingresosNet + "" +
+                ",'" + layout.operacion + "'" +
+                ",'" + layout.claveID + "'" +
+                ",'" + layout.cuentaOrigen + "'" +
+                ",'" + layout.cuentaClaveDestino + "'" +
+                "," + layout.importe + "" +
+                ",'" + layout.referencia + "'" +
+                ",'" + layout.descripcion + "'" +
+                ",'" + layout.RFCOrdenante + "'" +
+                "," + layout.IVA + "" +
+                ",'" + Convert.ToDateTime(layout.fechaAplicacion).ToString("dd/MM/yyyy") + "'" +
+                ",'" + Convert.ToDateTime(layout.fecIniPeri).ToString("dd/MM/yyyy") + "'" +
+                ",'" + Convert.ToDateTime(layout.fecFinPeri).ToString("dd/MM/yyyy") + "'" +
+                ",'" + layout.institucionPago + "'" +
+                ",'" + layout.claveTipoCambio + "'" +
+                ",GETDATE()" +
+                ",'" + layout.estatus + "'" +
+                ",'" + layout.bancoEmpleado + "'" +
+                "," + layout.Sub + "" +
+                ",'" + layout.caratula + "'" +
+                ",'" + layout.IDEmpresa + "'" +
+                ",'" + layout.bancoEmpresaPago + "'" +
+                ",'" + layout.periodo + "'" +
+                ",'" + layout.IDCliente + "'" +
+                ",'" + layout.layout + "'" +
+                ",'" + layout.tipoPago + "'" +
+                "," + layout.otrosConceptos + "" +
+                "," + layout.depositoNeto + "" +
+                ",'" + layout.cuentaBancaria + "'" +
+                ",'" + layout.CLABE + "'" +
+                ",'" + layout.descripcion + "'" +
+                "," + layout.descuentos + "" +
+                ",'" + layout.nominaEmpresaID + "'" +
+                ",'" + layout.ResumenNominaID + "'" +
+                ",'')";
+                insertLayout.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }catch (Exception e)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public M.Nomina GetNominaCancelacion(string UUID)
+        {
+            try
+            {
+                M.Nomina nomina = new M.Nomina();
+                dtc.Connection.Open();
+                SqlCommand getNomina = (SqlCommand)dtc.Connection.CreateCommand();
+                getNomina.CommandText = @"SELECT [nominaID]
+                ,[nominanumEmpl]
+                ,[nominanombreEmpleado]
+                ,[nominaRFCEmpleado]
+                ,[nominaPeriodidicadPago]
+                ,[nominaIngresos]
+                ,[nominaIngresosBruto]
+                ,[nominaISR]
+                ,[nominaFechaPago]
+                ,[nominaFechaIniPeri]
+                ,[nominaFechaFinPero]
+                ,[nominaFechaCreacion]
+                ,[nominaEstatus]
+                ,[nominaEstatusSAT]
+                ,[nominaPeriodo]
+                ,[nominaEmpresa]
+                ,[nominaRFCEmpresa]
+                ,[nominaIDEmp]
+                ,[nominaDescripciponError]
+                ,[nominaEmpresaNominaID]
+                ,[nominaUsuario]
+                ,[nominaUsuarioCierrePeriodo]
+                ,[nominaFechaCierrePeriodo]
+                ,[ResumenNominaID]
+                ,[nominaUUID]
+                ,[nominaFolio]
+                ,[nominaIDCliente]
+                ,[nominaCliente]
+                ,[nominaIDEmpresaPago]
+                ,[nominaEmpresaPago]
+                FROM [Asimilados].[dbo].[Nomina]
+                WHERE [nominaUUID] = '" + UUID + "'";
+
+                SqlDataReader readerNomina;
+                readerNomina = getNomina.ExecuteReader();
+
+                if (readerNomina.Read())
+                {
+                    //nomina.nominaID = readerNomina.GetInt32(0);
+                    nomina.nominanumEmpl = readerNomina.GetInt32(1);
+                    nomina.nominanombreEmpleado = readerNomina.GetString(2);
+                    nomina.nominaRFCEmpleado = readerNomina.GetString(3);
+                    nomina.nominaPeriodidicadPago = readerNomina.GetString(4);
+                    nomina.nominaIngresos = readerNomina.GetDecimal(5);
+                    nomina.nominaIngresosBruto = readerNomina.GetDecimal(6);
+                    nomina.nominaISR = readerNomina.GetDecimal(7);
+                    nomina.nominaFechaPago = readerNomina.GetDateTime(8);
+                    nomina.nominaFechaIniPeri = readerNomina.GetDateTime(9);
+                    nomina.nominaFechaFinPero = readerNomina.GetDateTime(10);
+                    nomina.nominaFechaCreacion = readerNomina.GetDateTime(11);
+                    nomina.nominaEstatus = "Generado";
+                    nomina.nominaEstatusSAT = "";
+                    nomina.nominaPeriodo = readerNomina.GetString(14);
+                    nomina.nominaEmpresa = readerNomina.GetString(15);
+                    nomina.nominaRFCEmpresa = readerNomina.GetString(16);
+                    nomina.nominaIDEmp = readerNomina.IsDBNull(17) ? "" : readerNomina.GetString(17);
+                    nomina.nominaDescripciponError = readerNomina.IsDBNull(18) ? "" : readerNomina.GetString(18);
+                    nomina.nominaEmpresaNominaID = readerNomina.GetString(19);
+                    nomina.nominaUsuario = readerNomina.GetString(20);
+                    nomina.nominaUsuarioCierrePeriodo = "";
+                    nomina.nominaFechaCierrePeriodo = readerNomina.GetDateTime(22);
+                    nomina.ResumenNominaID = readerNomina.GetString(23);
+                    nomina.nominaUUID = "";
+                    nomina.nominaFolio = "";
+                    nomina.nominaIDCliente = readerNomina.GetString(26);
+                    nomina.nominaCliente = readerNomina.GetString(27);
+                    nomina.nominaIDEmpresaPago = readerNomina.GetString(28);
+                    nomina.nominaEmpresaPago = readerNomina.GetString(29);
+                    readerNomina.Close();
+                }
+                dtc.Connection.Close();
+                return nomina;
+            }
+            catch (Exception e)
+            {
+                dtc.Connection.Close();
+                return null;
+                throw;
+            }
+        }
+        public void InsertaNominaCancelacion(M.Nomina nomina)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand insertNomina = (SqlCommand)dtc.Connection.CreateCommand();
+                insertNomina.CommandText = @"INSERT INTO [dbo].[Nomina]
+                ([nominanumEmpl]
+                ,[nominanombreEmpleado]
+                ,[nominaRFCEmpleado]
+                ,[nominaPeriodidicadPago]
+                ,[nominaIngresos]
+                ,[nominaIngresosBruto]
+                ,[nominaISR]
+                ,[nominaFechaPago]
+                ,[nominaFechaIniPeri]
+                ,[nominaFechaFinPero]
+                ,[nominaFechaCreacion]
+                ,[nominaEstatus]
+                ,[nominaEstatusSAT]
+                ,[nominaPeriodo]
+                ,[nominaEmpresa]
+                ,[nominaRFCEmpresa]
+                ,[nominaIDEmp]
+                ,[nominaDescripciponError]
+                ,[nominaEmpresaNominaID]
+                ,[nominaUsuario]
+                ,[nominaUsuarioCierrePeriodo]
+                --,[nominaFechaCierrePeriodo]
+                ,[ResumenNominaID]
+                ,[nominaUUID]
+                ,[nominaFolio]
+                ,[nominaIDCliente]
+                ,[nominaCliente]
+                ,[nominaIDEmpresaPago]
+                ,[nominaEmpresaPago])
+                VALUES
+                (" + nomina.nominanumEmpl + "" +
+                ",'" + nomina.nominanombreEmpleado + "'" +
+                ",'" + nomina.nominaRFCEmpleado + "'" +
+                ",'" + nomina.nominaPeriodidicadPago + "'" +
+                "," + nomina.nominaIngresos + "" +
+                "," + nomina.nominaIngresosBruto + "" +
+                "," + nomina.nominaISR + "" +
+                ",'" + Convert.ToDateTime(nomina.nominaFechaPago).ToString("dd-MM-yyyy") + "'" +
+                ",'" + Convert.ToDateTime(nomina.nominaFechaIniPeri).ToString("dd-MM-yyyy") + "'" +
+                ",'" + Convert.ToDateTime(nomina.nominaFechaFinPero).ToString("dd-MM-yyyy") + "'" +
+                ", GETDATE()" +
+                ",'" + nomina.nominaEstatus + "'" +
+                ",'" + nomina.nominaEstatusSAT + "'" +
+                ",'" + nomina.nominaPeriodo + "'" +
+                ",'" + nomina.nominaEmpresa + "'" +
+                ",'" + nomina.nominaRFCEmpresa + "'" +
+                ",'" + nomina.nominaIDEmp + "'" +
+                ",'" + nomina.nominaDescripciponError + "'" +
+                ",'" + nomina.nominaEmpresaNominaID + "'" +
+                ",'" + nomina.nominaUsuario + "'" +
+                ",''" +
+                ",'" + nomina.ResumenNominaID + "'" +
+                ",'" + nomina.nominaUUID + "'" +
+                ",''" +
+                ",'" + nomina.nominaIDCliente + "'" +
+                ",'" + nomina.nominaCliente + "'" +
+                ",'" + nomina.nominaIDEmpresaPago + "'" +
+                ",'" + nomina.nominaEmpresaPago + "')";
+                insertNomina.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }catch (Exception e)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void ActualisaStatusSATResumenNominaCancelacion(string idResumen)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand actStatus = (SqlCommand)dtc.Connection.CreateCommand();
+                actStatus.CommandText = @"update ResumenNomina
+                set ResumenNominaEstatusSAT = 'Cancelado'
+                where ResumenNominaID = '" + idResumen + "'";
+
+                actStatus.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public string GetResumenNominaIDCancelacion(string UUID)
+        {
+            try
+            {
+                string ID = null;
+                dtc.Connection.Open();
+                SqlCommand getID = (SqlCommand)dtc.Connection.CreateCommand();
+                getID.CommandText = @"select ResumenNominaID from Nomina
+                where nominaUUID = '" + UUID + "'";
+                SqlDataReader readerID;
+                readerID = getID.ExecuteReader();
+                if (readerID.Read())
+                {
+                    ID = readerID.GetString(0);
+                    readerID.Close();
+                }
+                dtc.Connection.Close();
+                return ID;
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void ActualizaStatusLayoutHistoricoCancelacion(string uuid)
+        {
+            try
+            {
+                dtc.Connection.Open();
+                SqlCommand actLayout = (SqlCommand)dtc.Connection.CreateCommand();
+                actLayout.CommandText = @"update LayoutHistorico
+                set estatus = 'Cancelado'
+                where UUID = '" + uuid + "'";
+
+                actLayout.ExecuteNonQuery();
+                dtc.Connection.Close();
+            }
+            catch
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
         public void InsertaBitacoraXML(List<E.BitacoraXML> listaBitacora)
         {
             try
@@ -77,7 +531,7 @@ namespace winAsimilados.Controller
                 SqlDataReader readerUUID;
                 foreach (var bitacora in listaBitacora)
                 {
-                    ValidaUUIDBitacora.CommandText = @"Select UUID from BitacoraXML where UUID = '"+ bitacora.UUID + "'";
+                    ValidaUUIDBitacora.CommandText = @"Select UUID from BitacoraXML where UUID = '" + bitacora.UUID + "'";
                     //ValidaUUIDBitacora.Parameters.AddWithValue("@uuid", bitacora.UUID);
                     readerUUID = ValidaUUIDBitacora.ExecuteReader();
 
@@ -87,6 +541,7 @@ namespace winAsimilados.Controller
                     }
                     else
                     {
+                        readerUUID.Close();
                         insertaBitacora.CommandText = @"INSERT INTO [dbo].[BitacoraXML]
                         ([Folio]
                         ,[UUID]
@@ -119,7 +574,8 @@ namespace winAsimilados.Controller
                     }
                 }
                 dtc.Connection.Close();
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 dtc.Connection.Close();
                 throw;
@@ -145,6 +601,7 @@ namespace winAsimilados.Controller
                     }
                     else
                     {
+                        readerUUID.Close();
                         insertaNomina.CommandText = @"INSERT INTO [dbo].[Nomina]
                         ([nominanumEmpl]
                         ,[nominanombreEmpleado]
@@ -233,6 +690,7 @@ namespace winAsimilados.Controller
                     }
                     else
                     {
+                        readerUUID.Close();
                         insertFolio.CommandText = @"
                         INSERT INTO [dbo].[FolioXML]
                         ([Folio]
@@ -268,17 +726,18 @@ namespace winAsimilados.Controller
                         "," + folio.total + "" +
                         ",'" + folio.nominaEmpresaID + "')";
                         insertFolio.ExecuteNonQuery();
-                    }              
+                    }
                 }
                 //return resInesta;
                 dtc.Connection.Close();
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 dtc.Connection.Close();
                 //return false;
                 throw;
             }
-        } 
+        }
         //public void DescargaArchivos(List<M.Archivos> listaArchivos)
         //{
         //    try
@@ -388,7 +847,8 @@ namespace winAsimilados.Controller
                 readerEmpresas.Close();
                 dtc.Connection.Close();
                 return listaEmpresa;
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 dtc.Connection.Close();
                 throw;
@@ -428,7 +888,8 @@ namespace winAsimilados.Controller
                 readerPeriodos.Close();
                 dtc.Connection.Close();
                 return listaPeriodos;
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 dtc.Connection.Close();
                 throw;
@@ -489,15 +950,15 @@ namespace winAsimilados.Controller
                 readerEstatus = getEstatusNomina.ExecuteReader();
                 if (readerEstatus.Read())
                 {
-                    estatusNomina = readerEstatus.IsDBNull(0) ? "1" : readerEstatus.GetString(0);                    
+                    estatusNomina = readerEstatus.IsDBNull(0) ? "1" : readerEstatus.GetString(0);
                 }
                 readerEstatus.Close();
                 dtc.Connection.Close();
-                if (estatusNomina.Equals("1")|| estatusNomina.Equals(""))
+                if (estatusNomina.Equals("1") || estatusNomina.Equals(""))
                 {
                     valida = true;
                 }
-                else if(estatusNomina != "Timbrado")
+                else if (estatusNomina != "Timbrado")
                 {
                     valida = false;
                 }
@@ -513,19 +974,22 @@ namespace winAsimilados.Controller
                 throw;
             }
         }
-        public void ActualizaStatusLayoutNomina(string IDResumen, string estatus, string RFCEmpleado, string descError)
+
+        public void ActualizaStatusLayoutNomina(string IDResumen, string estatus, string RFCEmpleado, string descError, string UUID)
         {
             try
             {
                 dtc.Connection.Open();
                 SqlCommand queryUpdateEstatus = (SqlCommand)dtc.Connection.CreateCommand();
                 queryUpdateEstatus.CommandText = @"UPDATE LayoutHistorico SET [estatus] = '" + estatus + "'" +
-                    ",[descripcionError] = '" + descError + "'"
+                    ",[descripcionError] = '" + descError + "'" +
+                    ",[UUID] = '" + UUID + "' "
                  + "WHERE [ResumenNomianID] = '" + IDResumen + "'" +
                  "AND [RFCEmpleado] = '" + RFCEmpleado + "'";
                 queryUpdateEstatus.ExecuteNonQuery();
                 dtc.Connection.Close();
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 dtc.Connection.Close();
                 throw;
@@ -544,7 +1008,8 @@ namespace winAsimilados.Controller
                 queryStatusResumen.Parameters.AddWithValue("@ResumenNominaID", IDResumen);
                 queryStatusNomina.CommandText = @"update Nomina
                 SET nominaEstatus = 'Generado'
-                WHERE ResumenNominaID = @resumenNominaID";
+                WHERE ResumenNominaID = @resumenNominaID
+                AND nominaEstatusSAT not in ('Timbrado', 'Cancelado')";
                 queryStatusNomina.Parameters.AddWithValue("@resumenNominaID", IDResumen);
                 queryStatusResumen.ExecuteNonQuery();
                 queryStatusNomina.ExecuteNonQuery();
@@ -574,7 +1039,8 @@ namespace winAsimilados.Controller
                 readerCorreo.Close();
                 dtc.Connection.Close();
                 return correo;
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 dtc.Connection.Close();
                 throw;
@@ -593,7 +1059,7 @@ namespace winAsimilados.Controller
                 readerID = getID.ExecuteReader();
                 if (readerID.Read())
                 {
-                    ID = readerID.IsDBNull(0) ? "": readerID.GetString(0);
+                    ID = readerID.IsDBNull(0) ? "" : readerID.GetString(0);
                 }
                 readerID.Close();
                 dtc.Connection.Close();
@@ -622,7 +1088,8 @@ namespace winAsimilados.Controller
                 readergetMovimientos.Close();
                 dtc.Connection.Close();
                 return totalMov;
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 dtc.Connection.Close();
                 return 0;
@@ -636,7 +1103,7 @@ namespace winAsimilados.Controller
                 dtc.Connection.Open();
                 SqlCommand getNominas = (SqlCommand)dtc.Connection.CreateCommand();
                 getNominas.CommandText = @"select * from Nomina where
-                nominaEstatusSAT = 'timbrado'
+                nominaEstatusSAT = 'Timbrado'
                 and ResumenNominaID = '" + IDResumen + "'";
                 SqlDataReader readerTimbrado;
                 readerTimbrado = getNominas.ExecuteReader();
@@ -667,7 +1134,8 @@ namespace winAsimilados.Controller
                 where ResumenNominaID = '" + IDResumen + "'";
                 updateStatus.ExecuteNonQuery();
                 dtc.Connection.Close();
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 dtc.Connection.Close();
                 throw;
@@ -755,7 +1223,8 @@ namespace winAsimilados.Controller
                 queryGetInfoNomina.CommandText = @"";
 
                 return nomina;
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 dtc.Connection.Close();
                 XtraMessageBox.Show(e.Message + "\nError Controlador: GetInfoNomina()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -822,7 +1291,7 @@ namespace winAsimilados.Controller
                 dtc.Connection.Open();
                 SqlCommand queryUpdate = (SqlCommand)dtc.Connection.CreateCommand();
                 queryUpdate.CommandText = @"UPDATE Nomina SET nominaUUID = '" + UUID + "'" +
-                    ", nominaFolio = '" + folio +"'" +
+                    ", nominaFolio = '" + folio + "'" +
                     "where nominaID =" + ID + "";
                 queryUpdate.ExecuteNonQuery();
                 dtc.Connection.Close();
@@ -882,12 +1351,13 @@ namespace winAsimilados.Controller
                     resumen.ResumenNominaEmpresaNombre = reader.GetString(13);
                     resumen.ResumenNominaRFCEmpresa = reader.GetString(14);
                     resumen.ResumenNominaUsuarioCreacion = reader.GetString(15);
-                    resumen.ResumenNominaUsuarioCierrePeriodo = reader.IsDBNull(16) ?"" : reader.GetString(16);
+                    resumen.ResumenNominaUsuarioCierrePeriodo = reader.IsDBNull(16) ? "" : reader.GetString(16);
                     resumen.ResumenNominaUsuarioFechaCierre = reader.GetDateTime(17);
                     resumen.ResumenNominaNominaEmpresaID = reader.GetString(18);
                 }
                 return resumen;
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 dtc.Connection.Close();
                 throw;
@@ -911,7 +1381,8 @@ namespace winAsimilados.Controller
                 SET nominaEstatus = 'Cerrado'
                 ,nominaUsuarioCierrePeriodo = @usuario
                 ,nominaFechaCierrePeriodo = GETDATE()
-                WHERE ResumenNominaID = @resumenNominaID";
+                WHERE ResumenNominaID = @resumenNominaID
+                AND nominaEstatusSAT not in('Timbrado', 'Cancelado')";
                 queryStatusNomina.Parameters.AddWithValue("@resumenNominaID", resumenNominaID);
                 queryStatusNomina.Parameters.AddWithValue("@usuario", usuario);
                 queryStatusResumen.ExecuteNonQuery();
@@ -919,7 +1390,7 @@ namespace winAsimilados.Controller
                 dtc.Connection.Close();
             }
             catch (Exception)
-            { 
+            {
                 dtc.Connection.Close();
                 throw;
             }
@@ -935,8 +1406,9 @@ namespace winAsimilados.Controller
 
                 queryActualizaResumen.ExecuteNonQuery();
                 dtc.Connection.Close();
-            }catch (Exception)
-            {                
+            }
+            catch (Exception)
+            {
                 dtc.Connection.Close();
                 throw;
             }
@@ -992,7 +1464,8 @@ namespace winAsimilados.Controller
                 ",'" + resumenNomina.ResumenNominaEmpresaPago + "')";
                 queryInsertaResumen.ExecuteNonQuery();
                 dtc.Connection.Close();
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 dtc.Connection.Close();
                 throw;
@@ -1007,12 +1480,14 @@ namespace winAsimilados.Controller
                 foreach (var item in listaNomina)
                 {
                     queryActualizaNomina.CommandText = @"UPDATE Nomina
-                    SET [nominaPeriodidicadPago] = '" + item.nominaPeriodidicadPago + "', [nominaIngresos] = " + item.nominaIngresos + ", [nominaIngresosBruto] = " + item.nominaIngresosBruto + ", [nominaISR] = " + item.nominaISR + ", [nominaFechaPago] = '" + Convert.ToDateTime(item.nominaFechaPago).ToString("dd/MM/yyyy") + "', [nominaFechaIniPeri] = '" + Convert.ToDateTime(item.nominaFechaIniPeri).ToString("dd/MM/yyyy") + "', [nominaFechaFinPero] = '" + Convert.ToDateTime(item.nominaFechaFinPero).ToString("dd/MM/yyyy") /*+ "', [nominaPeriodo] = '" + item.nominaPeriodo*/ /*+ "', [ResumenNominaID] = '" + item.ResumenNominaID */+ "' WHERE [nominaEmpresaNominaID] = '" + item.nominaEmpresaNominaID + "' AND [ResumenNominaID] = '" + IDNomiAct + "' AND [nominaRFCEmpleado] = '" + item.nominaRFCEmpleado + "'";
+                    SET [nominaPeriodidicadPago] = '" + item.nominaPeriodidicadPago + "', [nominaIngresos] = " + item.nominaIngresos + ", [nominaIngresosBruto] = " + item.nominaIngresosBruto + ", [nominaISR] = " + item.nominaISR + ", [nominaFechaPago] = '" + Convert.ToDateTime(item.nominaFechaPago).ToString("dd/MM/yyyy") + "', [nominaFechaIniPeri] = '" + Convert.ToDateTime(item.nominaFechaIniPeri).ToString("dd/MM/yyyy") + "', [nominaFechaFinPero] = '" + Convert.ToDateTime(item.nominaFechaFinPero).ToString("dd/MM/yyyy") /*+ "', [nominaPeriodo] = '" + item.nominaPeriodo*/ /*+ "', [ResumenNominaID] = '" + item.ResumenNominaID */+ "' WHERE [nominaEmpresaNominaID] = '" + item.nominaEmpresaNominaID + "' AND [ResumenNominaID] = '" + IDNomiAct + "' AND [nominaRFCEmpleado] = '" + item.nominaRFCEmpleado + "'" +
+                    "AND [nominaEstatusSAT] != 'Cancelado'";
 
                     queryActualizaNomina.ExecuteNonQuery();
                 }
                 dtc.Connection.Close();
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 dtc.Connection.Close();
                 throw;
@@ -1057,7 +1532,7 @@ namespace winAsimilados.Controller
                       ",'" + item.nominanombreEmpleado + "'" +
                       ",'" + item.nominaRFCEmpleado + "'" +
                       ",'" + item.nominaPeriodidicadPago + "'" +
-                      "," + item.nominaIngresos +  "" +
+                      "," + item.nominaIngresos + "" +
                       "," + item.nominaIngresosBruto + "" +
                       "," + item.nominaISR + "" +
                       ",'" + Convert.ToDateTime(item.nominaFechaPago).ToString("dd/MM/yyyy") + "'" +
@@ -1082,7 +1557,7 @@ namespace winAsimilados.Controller
                 }
                 dtc.Connection.Close();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 dtc.Connection.Close();
                 throw;
@@ -1151,7 +1626,8 @@ namespace winAsimilados.Controller
                 ReaderCont.Close();
                 dtc.Connection.Close();
                 return cont;
-            }catch (Exception nomiCont)
+            }
+            catch (Exception nomiCont)
             {
                 if (splash.IsSplashFormVisible.Equals(true))
                 {
@@ -1194,7 +1670,8 @@ namespace winAsimilados.Controller
                             }
                         }
                     }
-                } else if (destino.Equals("Cliente"))
+                }
+                else if (destino.Equals("Cliente"))
                 {
                     if (archivos != null)
                     {
@@ -1234,7 +1711,8 @@ namespace winAsimilados.Controller
                     "WHERE [ID] = " + ID + "";
 
                 updateEstatus.ExecuteNonQuery();
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: ActualizaStatusFolio()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -1255,7 +1733,8 @@ namespace winAsimilados.Controller
                 {
                     return false;
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: EliminaClaveSAT", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -1345,7 +1824,8 @@ namespace winAsimilados.Controller
                 {
                     return false;
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: ModificaBancoEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -1538,7 +2018,8 @@ namespace winAsimilados.Controller
                     }
                 }
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: InsertaBancoEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -1586,7 +2067,8 @@ namespace winAsimilados.Controller
                 {
                     return false;
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: BajaCliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -1638,7 +2120,8 @@ namespace winAsimilados.Controller
                     return false;
                 }
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: updateClte", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -1826,7 +2309,7 @@ namespace winAsimilados.Controller
                 return false;
             }
         }
-        public bool ModificaEmpresaCFDI(List <E.EmpresaCFDI> lista)
+        public bool ModificaEmpresaCFDI(List<E.EmpresaCFDI> lista)
         {
             try
             {
@@ -1920,7 +2403,7 @@ namespace winAsimilados.Controller
                     return false;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: InsertaEmpresaCFDI()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -2234,7 +2717,8 @@ namespace winAsimilados.Controller
                 N.Conexion.PerformConnection().Close();
                 return tipoUsua;
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 N.Conexion.PerformConnection().Close();
 
@@ -2285,7 +2769,8 @@ namespace winAsimilados.Controller
                 }
 
                 return Admin;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 N.Conexion.PerformConnectionSoprade().Close();
                 XtraMessageBox.Show(e.Message + "\nError Controlador: GetAdminUser()",
@@ -2297,6 +2782,8 @@ namespace winAsimilados.Controller
         {
             try
             {
+                E.Layout layout = new E.Layout();
+                M.Nomina nomina = new M.Nomina();
                 StreamWriter writerLog = null;
                 StringBuilder builder = null;
                 string url = @"C:\AsimiladosLogs\";
@@ -2404,6 +2891,13 @@ namespace winAsimilados.Controller
                                     ActualizaFolio(bitacora.UUID, estatusUUID.Status.ToString());
                                     InsertaBitacora(bitacora, splashScreenManager);
                                     LogCancelacion(UUIDCFDI, estatusUUID.AcuseEnvio);
+                                    ActualizaStatusLayoutHistoricoCancelacion(item.UIID);
+                                    string idResumen = GetResumenNominaIDCancelacion(item.UUID);
+                                    ActualisaStatusSATResumenNominaCancelacion(idResumen);
+                                    layout = GetLayoutCancelacion(item.UUID);
+                                    InsertaLayoutCancelacion(layout);
+                                    nomina = GetNominaCancelacion(item.UUID);
+                                    InsertaNominaCancelacion(nomina);
                                     clientProduccion.Close();
                                 }
                             }
@@ -2464,6 +2958,13 @@ namespace winAsimilados.Controller
                                             ActualizaFolio(resultados[0].uuid, "Cancelado");
                                             InsertaBitacora(bitacora, splashScreenManager);
                                             LogCancelacion(resultados[0].uuid, resultados[0].mensaje);
+                                            ActualizaStatusLayoutHistoricoCancelacion(resultados[0].uuid);
+                                            string idResumen = GetResumenNominaIDCancelacion(item.UUID);
+                                            ActualisaStatusSATResumenNominaCancelacion(idResumen);
+                                            layout = GetLayoutCancelacion(item.UUID);
+                                            InsertaLayoutCancelacion(layout);
+                                            nomina = GetNominaCancelacion(item.UUID);
+                                            InsertaNominaCancelacion(nomina);
                                             if (splashScreenManager.IsSplashFormVisible.Equals(true))
                                             {
                                                 splashScreenManager.CloseWaitForm();
@@ -3571,7 +4072,8 @@ namespace winAsimilados.Controller
                     if (destino.Equals("Cliente"))
                     {
                         pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_" + fecPago + @"\");
-                    } else if (destino.Equals("Empleado"))
+                    }
+                    else if (destino.Equals("Empleado"))
                     {
                         pathArchivoXML = Path.Combine(pathXml + clienteAsimilado.CLIENTE.Replace(" ", string.Empty) + "_" + nomiEmpl.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
                     }
@@ -4267,7 +4769,7 @@ namespace winAsimilados.Controller
                 {
                     Directory.CreateDirectory(url);
                 }
-                string NombreArchivo ="Timbrado_Nomina" + FecPagoMasiv.ToString("dd-mm-yyyy") + "_" + Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
+                string NombreArchivo = "Timbrado_Nomina" + FecPagoMasiv.ToString("dd-mm-yyyy") + "_" + Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
                 + DateTime.Now.Year.ToString() + ", " + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString()
                 + "-" + DateTime.Now.Second.ToString());
                 string path = Path.Combine(url, NombreArchivo + ".txt");
@@ -4331,7 +4833,7 @@ namespace winAsimilados.Controller
                         //}
                         //else if (destino.Equals("Empleado"))
                         //{
-                            pathArchivoXML = Path.Combine(pathXml + item.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
+                        pathArchivoXML = Path.Combine(pathXml + item.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
                         //}
 
                         if (!Directory.Exists(pathArchivoXML))
@@ -4372,7 +4874,7 @@ namespace winAsimilados.Controller
 
                         SelloDigital.leerCER(pathCer, out Inicio, out Final, out Serie, out NumCer);
 
-                        folio = GetFolio();                        
+                        folio = GetFolio();
 
                         if (folio.Equals(null) || folio.Equals(""))
                         {
@@ -4564,7 +5066,7 @@ namespace winAsimilados.Controller
                                     splashScreenManager1.CloseWaitForm();
                                 }
                                 XtraMessageBox.Show("El timbrado de pruebas no esta disponible para NT-LINK", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                return; 
+                                return;
                             }
                             else if (PAC.Equals("NT") && ambiente.Equals("Produccion"))
                             {
@@ -4621,7 +5123,7 @@ namespace winAsimilados.Controller
                                     ActualizaFolioUUIDNomina(item.FolioNomina, item.UUIDNomina, item.IDNomina);
                                     ActualizaErrorNomina(item.IDNomina, "");
                                     ActualizaStatusNomina(item.IDNomina, "Timbrado", "Timbrado");
-                                    ActualizaStatusLayoutNomina(item.resumenNominaID, "Timbrado", item.RFC, "");
+                                    ActualizaStatusLayoutNomina(item.resumenNominaID, "Timbrado", item.RFC, "", UUIDNT);
                                     string resultFolio = InsertaFolio(Folio, splashScreenManager1);
                                     if (resultFolio != "true")
                                     {
@@ -4654,7 +5156,7 @@ namespace winAsimilados.Controller
                                 {
                                     ActualizaStatusNomina(item.IDNomina, "Error", "");
                                     ActualizaErrorNomina(item.IDNomina, newXML.DescripcionError);
-                                    ActualizaStatusLayoutNomina(item.resumenNominaID, "Error", item.RFC, newXML.DescripcionError);
+                                    ActualizaStatusLayoutNomina(item.resumenNominaID, "Error", item.RFC, newXML.DescripcionError, "");
                                     genPDF = false;
                                     error++;
                                     builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
@@ -4744,7 +5246,7 @@ namespace winAsimilados.Controller
                                         ActualizaFolioUUIDNomina(item.FolioNomina, item.UUIDNomina, item.IDNomina);
                                         ActualizaErrorNomina(item.IDNomina, "");
                                         ActualizaStatusNomina(item.IDNomina, "Timbrado", "Timbrado");
-                                        ActualizaStatusLayoutNomina(item.resumenNominaID, "Timbrado", item.RFC, "");
+                                        ActualizaStatusLayoutNomina(item.resumenNominaID, "Timbrado", item.RFC, "", cFDIResultados[0].uuid);
                                         string resultFolio = InsertaFolio(Folio, splashScreenManager1);
                                         if (resultFolio != "true")
                                         {
@@ -4777,7 +5279,7 @@ namespace winAsimilados.Controller
                                     {
                                         ActualizaErrorNomina(item.IDNomina, cFDIResultados[0].mensaje);
                                         ActualizaStatusNomina(item.IDNomina, "Error", "");
-                                        ActualizaStatusLayoutNomina(item.resumenNominaID, "Error", item.RFC, cFDIResultados[0].mensaje);
+                                        ActualizaStatusLayoutNomina(item.resumenNominaID, "Error", item.RFC, cFDIResultados[0].mensaje, "");
                                         genPDF = false;
                                         error++;
                                         builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
@@ -4802,7 +5304,7 @@ namespace winAsimilados.Controller
                                     ActualizaStatusNomina(item.IDNomina, "Error", "");
                                     estatusLayout = "Error al timbrar";
                                     ActualizaStatusFolio(item.IDLayout, estatusLayout);
-                                    ActualizaStatusLayoutNomina(item.resumenNominaID, "Error", item.RFC, cFDIResultados[0].mensaje);
+                                    ActualizaStatusLayoutNomina(item.resumenNominaID, "Error", item.RFC, cFDIResultados[0].mensaje, "");
                                     if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                                     {
                                         splashScreenManager1.CloseWaitForm();
@@ -4819,7 +5321,7 @@ namespace winAsimilados.Controller
                         {
                             ActualizaErrorNomina(item.IDNomina, timbrado.Message);
                             ActualizaStatusNomina(item.IDNomina, "Error", "");
-                            ActualizaStatusLayoutNomina(item.resumenNominaID, "Error", item.RFC, timbrado.Message);
+                            ActualizaStatusLayoutNomina(item.resumenNominaID, "Error", item.RFC, timbrado.Message, "");
                             if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                             {
                                 splashScreenManager1.CloseWaitForm();
@@ -4832,7 +5334,7 @@ namespace winAsimilados.Controller
                         {
                             //if (destino.Equals("Empleado"))
                             //{
-                                archivos.Add(pathArchivoXML);
+                            archivos.Add(pathArchivoXML);
                             //}
                             splashScreenManager1.SetWaitFormCaption("Generando PDF..");
                             string nomPDF = Path.GetFileNameWithoutExtension(pathArchivoXML);
@@ -4854,7 +5356,7 @@ namespace winAsimilados.Controller
                             {
                                 //if (destino.Equals("Empleado"))
                                 //{
-                                    archivos.Add(resultPDF);
+                                archivos.Add(resultPDF);
                                 //}
                             }
                         }
@@ -4868,7 +5370,7 @@ namespace winAsimilados.Controller
                                 builder.Append("Nombre del empleado:" + nomiEmpl.Nombre + "\r\n");
                                 builder.AppendLine();
                                 builder.Append("Error al enviar correo:");
-                                builder.AppendLine();     
+                                builder.AppendLine();
                                 builder.Append(resultCorreoCliente);
                                 builder.AppendLine();
                                 builder.AppendLine();
@@ -4929,7 +5431,7 @@ namespace winAsimilados.Controller
                         if (exito.Equals(Lista.Count()))
                         {
                             ActualizaStatusResumenNomina(item.resumenNominaID);
-                        }                        
+                        }
                         if (error > 0)
                         {
                             try
@@ -4983,7 +5485,7 @@ namespace winAsimilados.Controller
 
                         }
                     }
-                    int  totalTimbrado = GetTotalMovTimbrado(item.resumenNominaID);
+                    int totalTimbrado = GetTotalMovTimbrado(item.resumenNominaID);
                     int totalMovimientos = GetTotalMovNomina(item.resumenNominaID);
 
                     if (totalTimbrado.Equals(totalMovimientos))
@@ -5133,7 +5635,8 @@ namespace winAsimilados.Controller
                     {
                         pathArchivoXML = Path.Combine(pathXml + fecPago + hora + "_Recibos" + @"\");
                         pathCorreo = pathArchivoXML;
-                    } else if (destino.Equals("Empleado"))
+                    }
+                    else if (destino.Equals("Empleado"))
                     {
                         pathArchivoXML = Path.Combine(pathXml + item.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
                     }
@@ -5151,7 +5654,8 @@ namespace winAsimilados.Controller
                     if (PAC.Equals("SL") && ambiente.Equals("Pruebas"))
                     {
                         produccion = false;
-                    } else if (PAC.Equals("SL") && ambiente.Equals("Produccion"))
+                    }
+                    else if (PAC.Equals("SL") && ambiente.Equals("Produccion"))
                     {
                         produccion = true;
                     }
@@ -5969,7 +6473,8 @@ namespace winAsimilados.Controller
                     return resultado;
                 }
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 string resultado;
                 //if (splash.IsSplashFormVisible.Equals(true))
@@ -6069,7 +6574,8 @@ namespace winAsimilados.Controller
                 readerFolio.Close();
 
                 return folio;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: GetFolio()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
@@ -6110,7 +6616,8 @@ namespace winAsimilados.Controller
                 N.Conexion.PerformConnection().ChangeDatabase(bd);
                 return entidad;
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: GetEntFed()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
@@ -6139,7 +6646,8 @@ namespace winAsimilados.Controller
                 ReaderRecurso.Close();
 
                 return Recu;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError controlador: GetParametros()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
@@ -6237,12 +6745,13 @@ namespace winAsimilados.Controller
                     parametros.cuentaOrigen = readerParametros.GetString(32);
                     parametros.usuarioNtlink = readerParametros.GetString(33);
                     parametros.NOMINA_EMPRESA_ID = readerParametros.GetString(34);
-                    parametros.correo_cliente = readerParametros.IsDBNull(35) ?"": readerParametros.GetString(35);
+                    parametros.correo_cliente = readerParametros.IsDBNull(35) ? "" : readerParametros.GetString(35);
                 }
                 readerParametros.Close();
 
                 return parametros;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "Error controlador: GetParametros()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
@@ -7028,7 +7537,7 @@ namespace winAsimilados.Controller
             try
             {
                 string Empresa = Properties.Settings.Default["EmpresaNominaID"].ToString();
-                E.Empleado empleado = new E.Empleado();                
+                E.Empleado empleado = new E.Empleado();
                 SqlCommand queryEmpleado = N.Conexion.PerformConnection().CreateCommand();
                 queryEmpleado.CommandText = @"select NUM_EMPLEADO, RFC, CURP, [PERIODICIDAD_PAGO]
                 , NOMBRE, TIPO_REGIMEN, TIPO_CONTRATO, SINDICALIZADO
@@ -7142,7 +7651,8 @@ namespace winAsimilados.Controller
 
                 while (ReaderColonias.Read())
                 {
-                    colonias.Add(new E.Colonia {
+                    colonias.Add(new E.Colonia
+                    {
                         ID = ReaderColonias.GetString(0),
                         Nombre = ReaderColonias.GetString(1)
                     });
@@ -7185,7 +7695,7 @@ namespace winAsimilados.Controller
                 readerClietnes.Close();
                 return clientes;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: Lista Clientes()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
@@ -7303,7 +7813,8 @@ namespace winAsimilados.Controller
                 }
                 readerLista.Close();
                 return listaClaves;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: ListaClavesServ()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
@@ -7370,7 +7881,8 @@ namespace winAsimilados.Controller
                 process.StartInfo = cmd;
                 process.Start();
                 return true;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: CreaTablas()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -7597,7 +8109,7 @@ namespace winAsimilados.Controller
                                                "'" + parametros.cuentaOrigen + "'," +
                                                "'" + parametros.usuarioNtlink + "'," +
                                                "'" + parametros.NOMINA_EMPRESA_ID + "'," +
-                                               "'" + parametros.correo_cliente +"')";
+                                               "'" + parametros.correo_cliente + "')";
 
                 if (queryInsertEmpr.ExecuteNonQuery().Equals(1))
                 {
@@ -7647,7 +8159,8 @@ namespace winAsimilados.Controller
                 //N.Conexion.PerformConnection().ChangeDatabase(Empresa);
                 N.Conexion.PerformConnection().Close();
                 return true;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError en controlador:AccedeEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 N.Conexion.PerformConnection().Close();
@@ -7688,7 +8201,8 @@ namespace winAsimilados.Controller
                 {
                     return false;
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 N.Conexion.ChangeConnection(BD);
                 XtraMessageBox.Show(e.Message + "\nError Controlador:AgregaUsuario()"
@@ -7767,7 +8281,8 @@ namespace winAsimilados.Controller
                 readerUsuario.Close();
 
                 return user;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador:BuscaUsuario", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -7822,7 +8337,8 @@ namespace winAsimilados.Controller
 
 
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "Error login()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //N.Conexion.PerformConnectionSoprade().Close();
@@ -8385,7 +8901,7 @@ namespace winAsimilados.Controller
                "," + caratula.PorcentajeComision + "" +
                "," + caratula.PorcentajeRetencion + "" +
                "," + caratula.descuentos + "" +
-               ",'"+ caratula.nominaEmpresaID + "'" +
+               ",'" + caratula.nominaEmpresaID + "'" +
                ",'" + caratula.ResumenNominaID + "')";
 
                 queryInsertaCaratula.ExecuteNonQuery();
@@ -8464,7 +8980,8 @@ namespace winAsimilados.Controller
                 updateLayout.CommandText = @"UPDATE [dbo].[LayoutHistorico]
                         SET [estatus] = '" + status + "'" +
                         "where [Caratula] = '" + caratula + "'" +
-                        "AND  [nominaEmpresaID] = '" + Empresa + "'";
+                        "AND  [nominaEmpresaID] = '" + Empresa + "'" +
+                        "AND [estatus] not in ('Timbrado','Cancelado')";
 
                 updateLayout.ExecuteNonQuery();
             }
@@ -8513,7 +9030,7 @@ namespace winAsimilados.Controller
                   ",[FormaPago] = '" + caratula.FormaPago + "'" +
                   ",[Observaciones] = '" + caratula.Observaciones + "'" +
                   ",[FechaModificacion] = " + "GETDATE()" + "" +
-                  ",[UsuarioModificacion] = '" + caratula.UsuarioModificacion + "'" +                  
+                  ",[UsuarioModificacion] = '" + caratula.UsuarioModificacion + "'" +
                   "WHERE ID = '" + caratula.ID + "'" +
                   "AND nominaEmpresaID = '" + Empresa + "'" +
                   "AND ResumenNomianID = '" + IDNominaAct + "'";
@@ -8526,7 +9043,8 @@ namespace winAsimilados.Controller
                 {
                     return false;
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 if (splash.IsSplashFormVisible.Equals(true))
                 {
@@ -8667,7 +9185,8 @@ namespace winAsimilados.Controller
                       ",'" + item.ResumenNominaID + "')";
                         queryInsertaLayout.ExecuteNonQuery();
 
-                    } catch (Exception lista)
+                    }
+                    catch (Exception lista)
                     {
                         error++;
                         if (error + 1 < listaLayout.Count())
@@ -8698,7 +9217,8 @@ namespace winAsimilados.Controller
                     proceso.StartInfo.FileName = path;
                     proceso.Start();
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: InsertaLayout()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -8750,10 +9270,11 @@ namespace winAsimilados.Controller
                         }
                         else
                         {
-                            respuesta =  false;
+                            respuesta = false;
                         }
 
-                    } catch (Exception lista)
+                    }
+                    catch (Exception lista)
                     {
                         if (splash.IsSplashFormVisible.Equals(true))
                         {
@@ -8764,7 +9285,8 @@ namespace winAsimilados.Controller
                     }
                 }
                 return respuesta;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 if (splash.IsSplashFormVisible.Equals(true))
                 {
@@ -8808,7 +9330,8 @@ namespace winAsimilados.Controller
 
                 insertaDetalle.ExecuteNonQuery();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 if (splash.IsSplashFormVisible.Equals(true))
                 {
@@ -9136,7 +9659,8 @@ namespace winAsimilados.Controller
                 }
                 readerDetalle.Close();
                 return detalle;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador:GetDetalleLayout", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -9160,7 +9684,8 @@ namespace winAsimilados.Controller
 
                     actualizaStatus.ExecuteNonQuery();
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 if (splashManager.IsSplashFormVisible.Equals(true))
                 {
@@ -9506,7 +10031,7 @@ namespace winAsimilados.Controller
 
             }
         }
-        public string InsertaBitacoraImportacionEmpledados(string emprOrigen, string emprDestino, int idemprOrigen, int idemprDestino,E.Empleado empleado, string usuario)
+        public string InsertaBitacoraImportacionEmpledados(string emprOrigen, string emprDestino, int idemprOrigen, int idemprDestino, E.Empleado empleado, string usuario)
         {
             try
             {
@@ -9541,7 +10066,8 @@ namespace winAsimilados.Controller
                     resultado = "true";
                 }
                 return resultado;
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 string resultado = e.Message + "\nInserta biracora importación empleado.";
                 return resultado;
@@ -9552,7 +10078,7 @@ namespace winAsimilados.Controller
         {
             try
             {
-                string resultado ="";
+                string resultado = "";
                 SqlCommand queryInsertaEmpl = N.Conexion.PerformConnection().CreateCommand();
                 queryInsertaEmpl.CommandText = @"INSERT INTO [dbo].[EMPLEADOS]
                 ([NUM_EMPLEADO]
@@ -9597,7 +10123,8 @@ namespace winAsimilados.Controller
                 }
 
                 return resultado;
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 string resultado = e.Message + "\nInserta empleado importación.";
                 return resultado;
@@ -9745,7 +10272,7 @@ namespace winAsimilados.Controller
                     {
                         splash.CloseWaitForm();
                     }
-                    XtraMessageBox.Show("¡Importación de empleados generada con éxito!","Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("¡Importación de empleados generada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 else if (contError >= 1 && contExito >= 0)
@@ -9818,7 +10345,7 @@ namespace winAsimilados.Controller
                 dataAdapter.Fill(dataSet);
                 grid.DataSource = dataSet.Tables[0];
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: ListaEmpleadosMigracion()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -9872,7 +10399,7 @@ namespace winAsimilados.Controller
                     ,[FechaModificacion]
                     ,[UsuarioModificacion]
 					,RN.ResumenNominaEstatus as [Estatusnomina]
-					,RN.ResumenNominaEstatusSAT
+					,RN.ResumenNominaEstatusSAT as [EstatusSAT]
 					,RN.ResumenNominaID AS [ResumenNominaID]
                 FROM [CaratulaPago]
 				INNER JOIN ResumenNomina AS RN on RN.ResumenNominaID = ResumenNomianID
@@ -10105,7 +10632,7 @@ WHERE [nominaEmpresaID] = @Empresa";
                     grid.DataSource = dataSet.Tables[0];
                 }
                 else
-                {                    
+                {
                     SqlCommand queryListaEmpleados2 = N.Conexion.PerformConnection().CreateCommand();
                     queryListaEmpleados2.CommandText = @"SELECT
                     [idempleado]
@@ -10226,7 +10753,8 @@ AND [nominaEmpresaID] = @Empresa";
                 grid.DataSource = dataSet.Tables[0];
                 N.Conexion.PerformConnection().Close();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: ListadoEmpresas()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -10269,7 +10797,7 @@ AND [nominaEmpresaID] = @Empresa";
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: ListadoLayoutGenerado()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        } 
+        }
         public void ListaEmpresasCFDI(GridControl grid)
         {
             try
@@ -10312,6 +10840,71 @@ AND [nominaEmpresaID] = @Empresa";
             catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\nError Controlador: ListaEmpresasPago()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void DetalleLayoytEditar(GridControl grid, string layout)
+        {
+            try
+            {
+                SqlCommand detalle = N.Conexion.PerformConnection().CreateCommand();
+                detalle.CommandText = @"SELECT [ID]
+                  ,[numEmpl]
+                  ,[nombreEmpleado]
+                  ,[RFCEmpleado]
+                  ,[CURPEmpleado]
+                  ,[PeriodicidadPago]
+                  ,[ingresos]
+                  ,[LimInferior]
+                  ,[ExLimInf]
+                  ,[PerExLimInf]
+                  ,[ImpMarg]
+                  ,[CF]
+                  ,[ISR]
+                  ,[ingresosNeto]
+                  ,[operacion]
+                  ,[claveID]
+                  ,[cuentaOrigen]
+                  ,[cuenta_ClaveDestino]
+                  ,[importe]
+                  ,[referencia]
+                  ,[descripcion]
+                  ,[RFCOrdenante]
+                  ,[IVA]
+                  ,[fechaAplicacion]
+                  ,[fecIniPeri]
+                  ,[fecFinPeri]
+                  ,[InstruccionPago]
+                  ,[claveTipoCambio]
+                  ,[fechaCreacion]
+                  ,[estatus]
+                  ,[BancoEmpleado]
+                  ,[sub]
+                  ,[Caratula]
+                  ,[IDEmpresaPago]
+                  ,[bancoEmpresaPago]
+                  ,[IDPeriodo]
+                  ,[IDCliente]
+                  ,[Layout]
+                  ,[tipoPago]
+                  ,[otrosConceptos]
+                  ,[depositoNeto]
+                  ,[cuentaBancaria]
+                  ,[CLABE]
+                  ,[descripcionError]
+              FROM [LayoutHistorico]
+              WHERE [Layout] = @layout
+                AND [estatus] not in ('Timbrado', 'Cancelado')";
+                detalle.Parameters.AddWithValue("@layout", layout);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = detalle;
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                grid.DataSource = dataSet.Tables[0];
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show(e.Message + "\nError Controlador: DetalleLayoyt()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void DetalleLayoyt(GridControl grid, string layout)
@@ -10382,7 +10975,7 @@ AND [nominaEmpresaID] = @Empresa";
         {
             try
             {
-               // N.Conexion.PerformConnection().Open();
+                // N.Conexion.PerformConnection().Open();
                 //N.Conexion.PerformConnection().ChangeDatabase("Nomina_Empresa17");
                 SqlCommand queryBuscar = N.Conexion.PerformConnection().CreateCommand();
                 queryBuscar.CommandText = @"SELECT Nom_Generales.FechaPago as 'Fecha Pago',Nom_Generales.UUID,Doc_Encabezados.Total AS 'IMPORTE PAGADO',Doc_Encabezados.Receptor_Rfc as 'R.F.C TRABAJADOR'
@@ -10399,14 +10992,14 @@ AND [nominaEmpresaID] = @Empresa";
                 DataSet dataSet = new DataSet();
                 dataAdapter.Fill(dataSet);
                 grid.DataSource = dataSet.Tables[0];
-             //   N.Conexion.PerformConnection().Close();
-                
+                //   N.Conexion.PerformConnection().Close();
+
             }
             catch (Exception e)
             {
                 XtraMessageBox.Show(e.Message + "\n Controller: Buscar()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //N.Conexion.PerformConnection().Close();
-            }            
+            }
         }
 
         public void Buscar12(GridControl grid, string fechaIni, string fechaFin)
@@ -10429,6 +11022,7 @@ AND [nominaEmpresaID] = @Empresa";
                 ,[FecPago] AS [Fecha Pago]
                 ,[FecIni] AS [Fecha Inicio]
                 ,[FecFin] AS [Fecha Final]
+                ,[ID]
                 ,[Empresa] from [FolioXML]
                 where FecIni >= @fechIni and FecFin <= @fechFinal
                 AND [nominaEmpresaID] = @empresa
@@ -10445,7 +11039,8 @@ AND [nominaEmpresaID] = @Empresa";
                 ,[FecPago] 
                 ,[FecIni] 
                 ,[FecFin] 
-                ,[Empresa]";
+                ,[Empresa]
+                ,[ID]";
                 queryBuscar.Parameters.AddWithValue("@fechIni", fechaIni);
                 queryBuscar.Parameters.AddWithValue("@fechFinal", fechaFin);
                 queryBuscar.Parameters.AddWithValue("@empresa", Empresa);
@@ -10509,7 +11104,8 @@ AND [nominaEmpresaID] = @Empresa";
                     try
                     {
                         File.Copy(origenPlantilla, destinoPlantilla, true);
-                    }catch (Exception e)
+                    }
+                    catch (Exception e)
                     {
                         XtraMessageBox.Show(e.Message + "\nHubo un error al intentar generar los archivos necesarios para crear PDF, por favor pongase en contacto con el administrador de sistema.", "Error");
                     }
@@ -10549,7 +11145,8 @@ AND [nominaEmpresaID] = @Empresa";
                                 }
                             }
                         }
-                    }catch(Exception e)
+                    }
+                    catch (Exception e)
                     {
                         XtraMessageBox.Show(e.Message + "\nHubo un error al intentar generar los archivos necesarios para crear XML, por favor pongase en contacto con el administrador de sistema.", "Error");
                     }
@@ -10561,7 +11158,7 @@ AND [nominaEmpresaID] = @Empresa";
                     {
                         if (!Directory.Exists(origenPDF))
                         {
-                            XtraMessageBox.Show("La carpeta de origen de archivos PDF no existe.\nPor favor, notifique al administrador de sistema.","Error");
+                            XtraMessageBox.Show("La carpeta de origen de archivos PDF no existe.\nPor favor, notifique al administrador de sistema.", "Error");
                         }
                         else
                         {
@@ -10587,7 +11184,8 @@ AND [nominaEmpresaID] = @Empresa";
                                 }
                             }
                         }
-                    }catch(Exception e)
+                    }
+                    catch (Exception e)
                     {
                         XtraMessageBox.Show(e.Message + "\nHubo un error al intentar generar los archivos necesarios para crear PDF, por favor pongase en contacto con el administrador de sistema.", "Error");
 
@@ -10601,13 +11199,11 @@ AND [nominaEmpresaID] = @Empresa";
             }
         }
 
-
-
         [Obsolete]
         public string LeerXMLModAsim(string pathXML, string pathF, SplashScreenManager splashScreenManager)
         {
             try
-            {            
+            {
                 Comprobante oComprobante;
 
                 ///*oComprobante*/.Nomina12.Receptor.Departamento
@@ -10732,7 +11328,7 @@ AND [nominaEmpresaID] = @Empresa";
             }
             catch (Exception _Exception)
             {
-                XtraMessageBox.Show("Exception caught in process while trying to save : {0}"  + _Exception.ToString(),"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Exception caught in process while trying to save : {0}" + _Exception.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return false;
             }
@@ -10744,7 +11340,7 @@ AND [nominaEmpresaID] = @Empresa";
             try
             {
                 Comprobante oComprobante;
-                
+
                 ///*oComprobante*/.Nomina12.Receptor.Departamento
                 XmlSerializer oSerializer = new XmlSerializer(typeof(Comprobante));
 
@@ -10809,7 +11405,7 @@ AND [nominaEmpresaID] = @Empresa";
                 {
                     oProcess.WaitForExit();
                 }
-              
+
                 //eliminamos el archivo temporal
                 System.IO.File.Delete(pathHTMLTemp);
                 File.Move(path + "mipdf.pdf", pathF + ".pdf");
@@ -10896,8 +11492,8 @@ AND [nominaEmpresaID] = @Empresa";
                 ObjectConfig configuration = new ObjectConfig();
 
                 configuration.SetAllowLocalContent(true)
-                .SetPrintBackground(true);          
-                byte[] pdfContent = pechkin.Convert(configuration, resultHtml);           
+                .SetPrintBackground(true);
+                byte[] pdfContent = pechkin.Convert(configuration, resultHtml);
 
                 ByteArrayToFile(pathF + ".pdf", pdfContent);
 
@@ -10929,7 +11525,7 @@ AND [nominaEmpresaID] = @Empresa";
         public void Generar12(List<E.UUID> list, SplashScreenManager splashScreenManager)
         {
             string uuid = null;
-            string rutaXML =null;
+            string rutaXML = null;
             string XML = null;
             string fecPago = null;
             string nomEmpl = null;
@@ -11000,7 +11596,7 @@ AND [nominaEmpresaID] = @Empresa";
                     {
                         if (File.Exists(rutaXML))
                         {
-                            if(!File.Exists(Path.Combine(PDF + ".pdf")))
+                            if (!File.Exists(Path.Combine(PDF + ".pdf")))
                             {
                                 LeerXML12(rutaXML, Path.Combine(PDF + ".pdf"), splashScreenManager);
                             }
@@ -11008,7 +11604,7 @@ AND [nominaEmpresaID] = @Empresa";
                         else
                         {
                             splashScreenManager.CloseWaitForm();
-                            var result = XtraMessageBox.Show("El archivo XML de " + nomEmpl + " UUID: " + uuid + 
+                            var result = XtraMessageBox.Show("El archivo XML de " + nomEmpl + " UUID: " + uuid +
                                 " no existe.´\n¿Desea Crearlo?"
                                 , "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (result.Equals(DialogResult.Yes))
@@ -11074,7 +11670,8 @@ AND [nominaEmpresaID] = @Empresa";
         [Obsolete]
         public bool Generar(List<E.UUID> list, SplashScreenManager splashScreenManager)
         {
-            if (BuscarRecursos().Equals(true)){
+            if (BuscarRecursos().Equals(true))
+            {
                 try
                 {
                     string XML = null;
@@ -11125,7 +11722,7 @@ AND [nominaEmpresaID] = @Empresa";
                                 }
                                 splashScreenManager.SetWaitFormCaption("Generando XML de: " + nombreTrabajador);
                                 readerUUID.Close();
-                               // N.Conexion.PerformConnection().Close();
+                                // N.Conexion.PerformConnection().Close();
                                 //XtraMessageBox.Show(XML);
                                 dia = DateTime.Now.Day.ToString();
                                 mes = DateTime.Now.Month.ToString();
@@ -11138,7 +11735,7 @@ AND [nominaEmpresaID] = @Empresa";
                                 string name = fechaPago.ToString() + "_" + RFC + "_" + nombreTrabajador + "_" + UUID;
                                 string nombre = fechaPago.ToString() + "_" + RFC + "_" + nombreTrabajador + "_" + UUID;
                                 string rutafila = Path.Combine(ruta, nombre);
-                                
+
                                 if (File.Exists(rutafila + ".xml"))
                                 {
                                     splashScreenManager.CloseWaitForm();
@@ -11160,7 +11757,7 @@ AND [nominaEmpresaID] = @Empresa";
                                     {
                                         splashScreenManager.CloseWaitForm();
                                     }
-                                    
+
                                     XtraMessageBox.Show("¡Proceso Terminado!", "Mensaje");
                                 }
 
@@ -11179,7 +11776,7 @@ AND [nominaEmpresaID] = @Empresa";
                 catch (Exception e)
                 {
                     XtraMessageBox.Show(e.Message + "\nError Controller: Generar()", "Error");
-                    
+
                     return false;
                 }
             }
@@ -11189,7 +11786,7 @@ AND [nominaEmpresaID] = @Empresa";
                 AgregarRecursos();
                 return false;
             }
- 
+
         }
     }
 }

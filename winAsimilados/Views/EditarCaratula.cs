@@ -115,7 +115,7 @@ namespace winAsimilados.Views
 
         private void CargaInformación()
         {
-            controlador.DetalleLayoyt(gridControlEditaCaratula, nombreLayout);
+            controlador.DetalleLayoytEditar(gridControlEditaCaratula, nombreLayout);
             caratula = controlador.GetDatosCaratula(nomCaratula);
             detalle = controlador.GetDetalleLayout(nombreLayout);
             FecApp.Value = caratula.FechaAplicacion;
@@ -185,6 +185,14 @@ namespace winAsimilados.Views
         private void btnEditar_Click(object sender, EventArgs e)
         {
             this.HabilitarCampos();
+            //for (int i = 0; i < gridViewEditaCaratula.DataRowCount; i++)
+            //{                
+            //    if (!gridViewEditaCaratula.GetRowCellValue(i, "estatus").ToString().Equals("Timbrado"))
+            //    {                    
+            //        gridViewEditaCaratula.Columns[5].OptionsColumn.AllowEdit = false;
+            //        gridViewEditaCaratula.Columns[13].OptionsColumn.AllowEdit = false;
+            //    }
+            //}
         }
 
         private void DesahiblitarCampos()
@@ -212,7 +220,7 @@ namespace winAsimilados.Views
             emptySpaceItem3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             layoutControlItemBtnEditar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             emptySpaceItem1.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            controlador.DetalleLayoyt(gridControlEditaCaratula, nombreLayout);
+            controlador.DetalleLayoytEditar(gridControlEditaCaratula, nombreLayout);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

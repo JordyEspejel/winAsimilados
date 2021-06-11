@@ -2397,17 +2397,38 @@ namespace winAsimilados.Views
 
         private void txtAgu_EditValueChanged(object sender, EventArgs e)
         {
-            aguinaldo = Convert.ToDecimal(txtAgu.Text);
+            try
+            {
+                aguinaldo = Convert.ToDecimal(txtAgu.Text);
+            }
+            catch (Exception agu)
+            {
+
+            }
         }
 
         private void txtVac_EditValueChanged(object sender, EventArgs e)
         {
-            vacaciones = Convert.ToDecimal(txtVac.Text);
+            try
+           {
+                vacaciones = Convert.ToDecimal(txtVac.Text);
+            }
+            catch (Exception vac)
+            {
+
+            }
         }
 
         private void txtPrimVac_EditValueChanged(object sender, EventArgs e)
         {
-            primaVac = Convert.ToDecimal(txtPrimVac.Text);
+            try
+            {
+                primaVac = Convert.ToDecimal(txtPrimVac.Text);
+            }
+            catch (Exception prim)
+            {
+
+            }
         }
 
         private void btnValidarPago_Click(object sender, EventArgs e)
@@ -2808,7 +2829,14 @@ namespace winAsimilados.Views
                 XtraMessageBox.Show("La tabla no contiene información", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+            string mensaje = "¿Desea abrir el periodo seleccionado?";
+            var respuesta = XtraMessageBox.Show(mensaje, "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (respuesta.Equals(DialogResult.No))
+            {
+                return;
+            }
             string estatusNomi = "";
+            string estatusSAT = "";
             for (int i = 0; i < gridViewLayout.RowCount; i++)
             {
                 if (gridViewLayout.IsRowSelected(i))
@@ -2818,9 +2846,10 @@ namespace winAsimilados.Views
                     EstatusCaratula = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[13]).ToString();
                     estatusNomi = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[38]).ToString();
                     resumenNominaID = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[39]).ToString();
+                    estatusSAT = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[40]).ToString();
                 }
             }      
-            if (estatusNomi.Equals("Timbrado"))
+            if (estatusSAT.Equals("Timbrado"))
             {
                 if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                 {
@@ -2839,7 +2868,7 @@ namespace winAsimilados.Views
             }
             else
             {
-                if (estatusNomi.Equals("Timbrado"))
+                if (estatusSAT.Equals("Timbrado"))
                 {
                     if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                     {
@@ -3597,6 +3626,15 @@ namespace winAsimilados.Views
 
                 splashScreenManager1.ShowWaitForm();
                 splashScreenManager1.SetWaitFormCaption("Generando Caratula..");
+                string agu = txtAgu.Text;
+                agu = agu.Replace("$","");
+                string vac = txtVac.Text;
+                vac = vac.Replace("$", "");
+                string prim = txtPrimVac.Text;
+                prim = prim.Replace("$", "");
+                aguinaldo = Math.Round(Convert.ToDecimal(agu),2);
+                vacaciones = Math.Round(Convert.ToDecimal(vac),2);
+                primaVac = Math.Round(Convert.ToDecimal(prim),2);
                 string IDCliente = lookUpCliente.EditValue.ToString();
                 string nombreCliente = lookUpCliente.Text;
                 string IDEmpresa = lookUpEmprPago.EditValue.ToString();
