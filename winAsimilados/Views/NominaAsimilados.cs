@@ -2570,7 +2570,7 @@ namespace winAsimilados.Views
         private void btnDetalleCaratula_Click(object sender, EventArgs e)
         {
 
-            string caratula = gridViewLayout.GetFocusedRowCellValue( colCaratula).ToString();
+            string caratula = gridViewLayout.GetFocusedRowCellValue(colCaratula).ToString();
              
             if (caratula.Length > 0)
             {
@@ -3591,6 +3591,9 @@ namespace winAsimilados.Views
         {
             try
             {
+                string path = AppDomain.CurrentDomain.BaseDirectory;
+                string folder = path + @"Logos\";
+                string fullPath = "";
                 #region validacionesCliente-EmpresaPago
                 if (lookUpCliente.EditValue.ToString().Equals("E00000") && lookUpEmprPago.Text.Equals("Seleccione"))
                 {
@@ -3623,7 +3626,21 @@ namespace winAsimilados.Views
                     return;
                 }
                 #endregion
-
+                #region validacionLogoEmpresa
+                if (controlador.BuscaLogoEmpresa(lookUpEmprPago.EditValue.ToString()).Equals(true))
+                {
+                   fullPath = controlador.GetLogoEmpresa(lookUpEmprPago.EditValue.ToString());
+                }
+                else
+                {
+                    string mensaje = string.Concat("El cliente: ", lookUpCliente.Text, " No tiene Logo cargado. ¿Desea continuar?");
+                    var respuesta = XtraMessageBox.Show(mensaje, "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (respuesta.Equals(DialogResult.No))
+                    {
+                        return;
+                    }
+                }
+                #endregion
                 splashScreenManager1.ShowWaitForm();
                 splashScreenManager1.SetWaitFormCaption("Generando Caratula..");
                 string agu = txtAgu.Text;
@@ -3654,6 +3671,8 @@ namespace winAsimilados.Views
                 string mes = cul.Calendar.GetMonth(fechaInPer).ToString();
                 int dia = cul.Calendar.GetDayOfMonth(fechaFiPer);
 
+                #region validacionPeriodo
+                //Validacion de periodo no timbrado
                 if (controlador.ValidaPeriodoTimbrado(nominaEmpresaID, IDCliente, IDEmpresa, mes).Equals(false))
                 {
                     if (splashScreenManager1.IsSplashFormVisible.Equals(true))
@@ -3664,12 +3683,13 @@ namespace winAsimilados.Views
                     XtraMessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-
+                #endregion
                 caratulaPago.FechaAplicacion = fechaApliPeri;
                 caratulaPago.FechaIniPeriodo = fechaInPer;
                 caratulaPago.FechaFinPeriodo = fechaFiPer;
                 caratulaPago.nominaEmpresaID = nominaEmpresaID;
 
+                #region periodo
                 string periodo = "";
                 //string mesActual = DateTime.Now.Month.ToString();
                 int contPeriodo = controlador.ObtieneContPeriodoNomina(nominaEmpresaID, mes, IDCliente, IDEmpresa, splashScreenManager1);
@@ -3698,7 +3718,7 @@ namespace winAsimilados.Views
                     }
                 }
 
-
+                #endregion
                 //string periodo = Convert.ToString(DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + numSemana);
 
                 nombreCaratula = lookUpCliente.Text + "-" + Convert.ToString(DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-"
@@ -3754,39 +3774,6 @@ namespace winAsimilados.Views
                         descuento = empleadoLayout.descuento;
                         depositoNeto = otrosConceptos + netoMasiv - descuento;
 
-
-
-                        #region ifPeriodos
-                        //if (empleadoLayout.Periodicidad.Equals("Semanal")|| empleadoLayout.Periodicidad.Equals("02"))
-                        //{
-                        //    if (dia <= 7)
-                        //    {
-                        //        periodo = periodo + "1";
-                        //    }else if (dia <= 14)
-                        //    {
-                        //        periodo = periodo + "2";
-                        //    }else if (dia <= 21)
-                        //    {
-                        //        periodo = periodo + "3";
-                        //    }else if (dia <= 28 || dia > 28)
-                        //    {
-                        //        periodo = periodo + "4";
-                        //    }
-                        //}else if (empleadoLayout.Periodicidad.Equals("Quincenal")|| empleadoLayout.Periodicidad.Equals("04"))
-                        //{
-                        //    if (dia <= 15)
-                        //    {
-                        //        periodo = periodo + "1";
-                        //    }
-                        //    else
-                        //    {
-                        //        periodo = periodo + "2";
-                        //    }
-                        //}else if (empleadoLayout.Periodicidad.Equals("Mensual")|| empleadoLayout.Periodicidad.Equals("05"))
-                        //{
-                        //    periodo = periodo + "1";
-                        //}
-                        #endregion
 
                         #region AsignaCuenta/Clabe
                         if (empleadoLayout.cuenta.Equals("No Definido") && empleadoLayout.clabe_bancaria.Equals("No Definido"))
@@ -4017,8 +4004,8 @@ namespace winAsimilados.Views
                 caratulaPago.ClaveFacturacion = lookUpClave.EditValue.ToString() /*+ "(" + txtDescClave.Text + ")"*/;
                 caratulaPago.FormaPago = lookUpFormaPago.EditValue.ToString()/* + "(" + lookUpFormaPago.Text + ")"*/;
                 caratulaPago.TipoPago = lookUpTipoPago.EditValue.ToString() /*+ "(" + lookUpTipoPago.Text + ")"*/;
-                caratulaPago.RutaLogo = "Prueba";
-                caratulaPago.Imagen = "prueba";
+                caratulaPago.RutaLogo = fullPath;
+                caratulaPago.Imagen = "";
                 caratulaPago.PorcentajeISN = infoCliente.PORCENTAJE_ISN;
                 caratulaPago.PorcentajeComision = infoCliente.PORCENTAJE_COMISION;
                 caratulaPago.PorcentajeRetencion = infoCliente.PORCENTAJE_RETENCION;
@@ -4117,7 +4104,7 @@ namespace winAsimilados.Views
                 }
                 else
                 {
-                    reporte = new Reports.repCaratulaFactura(bd);
+                    reporte = new Reports.repCaratulaFactura(caratula);
 
                 }             
                 reporte.FilterString = "[caratula] ='" + caratula + "'";

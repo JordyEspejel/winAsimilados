@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AsimiladosModelLogo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="LogosEmpresas">
+    <Key>
+      <PropertyRef Name="logoIDEmpresa" />
+    </Key>
+    <Property Name="logoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="logoNombre" Type="varchar(max)" />
+    <Property Name="logoPath" Type="varchar(max)" />
+    <Property Name="logoArchivo" Type="varbinary(max)" />
+    <Property Name="logoFechaCarga" Type="datetime" />
+    <Property Name="logousuarioArchivoCarga" Type="varchar" MaxLength="20" />
+    <Property Name="logoIDEmpresa" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="logoEmpresa" Type="varchar(max)" />
+  </EntityType>
+  <EntityContainer Name="AsimiladosModelLogoStoreContainer">
+    <EntitySet Name="LogosEmpresas" EntityType="Self.LogosEmpresas" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

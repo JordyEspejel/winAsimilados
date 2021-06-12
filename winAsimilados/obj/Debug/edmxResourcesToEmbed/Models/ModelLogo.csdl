@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AsimiladosModelLogo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AsimiladosEntitiesLogos" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LogosEmpresas" EntityType="AsimiladosModelLogo.LogosEmpresas" />
+  </EntityContainer>
+  <EntityType Name="LogosEmpresas">
+    <Key>
+      <PropertyRef Name="logoIDEmpresa" />
+    </Key>
+    <Property Name="logoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="logoNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="logoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="logoArchivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="logoFechaCarga" Type="DateTime" Precision="3" />
+    <Property Name="logousuarioArchivoCarga" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="logoIDEmpresa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="logoEmpresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

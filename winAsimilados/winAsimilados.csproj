@@ -249,6 +249,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Asimilados.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\LogosEmpresas.cs">
+      <DependentUpon>ModelLogo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelArchivos.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -263,6 +266,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelArchivos.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelLogo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelLogo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelLogo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelLogo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelLogo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelLogo.edmx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -707,6 +725,13 @@
     <None Include="Models\ModelArchivos.edmx.diagram">
       <DependentUpon>ModelArchivos.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="Models\ModelLogo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelLogo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\ModelLogo.edmx.diagram">
+      <DependentUpon>ModelLogo.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -797,6 +822,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelArchivos.edmx</DependentUpon>
       <LastGenOutput>ModelArchivos.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelLogo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelLogo.edmx</DependentUpon>
+      <LastGenOutput>ModelLogo.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelLogo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelLogo.edmx</DependentUpon>
+      <LastGenOutput>ModelLogo.cs</LastGenOutput>
     </Content>
     <Content Include="ssleay32.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

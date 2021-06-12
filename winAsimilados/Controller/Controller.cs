@@ -66,8 +66,149 @@ namespace winAsimilados.Controller
         //    {
         //        throw;
         //    }
-        //}                
+        //}        
 
+        public string GetIDEmpresaPagoByCaratula(string caratula)
+        {
+            try
+            {
+                string IDEmpresa = "";
+                dtc.Connection.Open();
+                SqlCommand getIDEmpresa = (SqlCommand)dtc.Connection.CreateCommand();
+                getIDEmpresa.CommandText = @"Select IDEmpresa from CaratulaPago where Caratula = @caratula";
+                getIDEmpresa.Parameters.AddWithValue("@caratula", caratula);
+                SqlDataReader readerIDEmpresa = getIDEmpresa.ExecuteReader();
+                if (readerIDEmpresa.Read())
+                {
+                    IDEmpresa = readerIDEmpresa.GetString(0);
+                }
+                readerIDEmpresa.Close();
+                dtc.Connection.Close();
+                return IDEmpresa;
+            }
+            catch (Exception e)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public string GetLogoEmpresa(string IDEmpresa)
+        {
+            try
+            {
+                string path = AppDomain.CurrentDomain.BaseDirectory;
+                string folder = path + @"Logos\";
+                string pathLogo = null;
+                dtc.Connection.Open();
+                SqlCommand searchLogo = (SqlCommand)dtc.Connection.CreateCommand();
+                searchLogo.CommandText = @"Select logoPath from logosEmpresas where logoIDEmpresa = @idEmpresa";
+                searchLogo.Parameters.AddWithValue("@idEmpresa", IDEmpresa);
+                SqlDataReader readerLogo;
+                readerLogo = searchLogo.ExecuteReader();
+                if (readerLogo.Read())
+                {
+                    pathLogo = folder + readerLogo.GetString(0);
+                }
+                else
+                {
+                    pathLogo = "";
+                }
+                readerLogo.Close();
+                dtc.Connection.Close();
+                return pathLogo;
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public bool GeneraLogoEmpresa(string IDEmpresa)
+        {
+            try
+            {
+                //bool respuesta = false;
+                using(Models.AsimiladosEntitiesLogos lg = new M.AsimiladosEntitiesLogos())
+                {
+                    string path = AppDomain.CurrentDomain.BaseDirectory;
+                    string folder = path + @"Logos\";
+                    var logo = lg.LogosEmpresas.Find(IDEmpresa);
+                    if (logo != null)
+                    {
+                        string fullFilePath = folder + logo.logoPath;
+
+                        if (!Directory.Exists(folder))
+                        {
+                            Directory.CreateDirectory(folder);
+                        }
+
+                        File.WriteAllBytes(fullFilePath, logo.logoArchivo);
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }                    
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw;
+            }
+        }
+        public bool BuscaLogoEmpresa(string IDEmpresa)
+        {
+            try
+            {
+                bool respuesta = false;
+                string path = AppDomain.CurrentDomain.BaseDirectory;
+                string folder = path + @"Logos\";
+                string pathLogo = null;
+                dtc.Connection.Open();
+                SqlCommand searchLogo = (SqlCommand)dtc.Connection.CreateCommand();
+                searchLogo.CommandText = @"Select logoPath from logosEmpresas where logoIDEmpresa = @idEmpresa";
+                searchLogo.Parameters.AddWithValue("@idEmpresa", IDEmpresa);
+                SqlDataReader readerLogo;
+                readerLogo = searchLogo.ExecuteReader();
+                if (readerLogo.Read())
+                {
+                    pathLogo = folder + readerLogo.GetString(0);
+                }
+                else
+                {
+                    pathLogo = "";
+                }
+                readerLogo.Close();
+                dtc.Connection.Close();
+
+                if (pathLogo != null)
+                {
+                    if (File.Exists(pathLogo))
+                    {
+                        respuesta = true;
+                    }
+                    else
+                    {
+                        if (GeneraLogoEmpresa(IDEmpresa).Equals(true))
+                        {
+                            respuesta = true;
+                        }
+                        else
+                        {
+                            respuesta = false;
+                        }                        
+                    }
+                }
+
+                return respuesta;
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
         public E.Layout GetLayoutCancelacion(string UUID)
         {
             try

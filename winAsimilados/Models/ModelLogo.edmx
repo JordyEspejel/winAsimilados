@@ -4,64 +4,60 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AsimiladosModelLogos.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AsimiladosModelLogo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="LogosEmpresas">
           <Key>
-            <PropertyRef Name="logoID" />
+            <PropertyRef Name="logoIDEmpresa" />
           </Key>
           <Property Name="logoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="logoNombre" Type="varchar(max)" />
-          <Property Name="logNombreReal" Type="varchar(max)" />
           <Property Name="logoPath" Type="varchar(max)" />
           <Property Name="logoArchivo" Type="varbinary(max)" />
           <Property Name="logoFechaCarga" Type="datetime" />
-          <Property Name="logoArchivoCarga" Type="varchar" MaxLength="20" />
-          <Property Name="logoIDEmpresa" Type="varchar" MaxLength="20" />
+          <Property Name="logousuarioArchivoCarga" Type="varchar" MaxLength="20" />
+          <Property Name="logoIDEmpresa" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="logoEmpresa" Type="varchar(max)" />
         </EntityType>
-        <EntityContainer Name="AsimiladosModelLogosStoreContainer">
+        <EntityContainer Name="AsimiladosModelLogoStoreContainer">
           <EntitySet Name="LogosEmpresas" EntityType="Self.LogosEmpresas" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="AsimiladosModelLogos" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="AsimiladosModelLogo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AsimiladosEntitiesLogos" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LogosEmpresas" EntityType="AsimiladosModelLogo.LogosEmpresas" />
+        </EntityContainer>
         <EntityType Name="LogosEmpresas">
           <Key>
-            <PropertyRef Name="logoID" />
+            <PropertyRef Name="logoIDEmpresa" />
           </Key>
           <Property Name="logoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="logoNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="logNombreReal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="logoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="logoArchivo" Type="Byte" />
+          <Property Name="logoArchivo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="logoFechaCarga" Type="DateTime" Precision="3" />
-          <Property Name="logoArchivoCarga" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="logoIDEmpresa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="logousuarioArchivoCarga" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="logoIDEmpresa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="logoEmpresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="LogosEmpresas" EntityType="Self.LogosEmpresas" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AsimiladosModelLogosStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="AsimiladosModelLogoStoreContainer" CdmEntityContainer="AsimiladosEntitiesLogos">
           <EntitySetMapping Name="LogosEmpresas">
-            <EntityTypeMapping TypeName="AsimiladosModelLogos.LogosEmpresas">
+            <EntityTypeMapping TypeName="AsimiladosModelLogo.LogosEmpresas">
               <MappingFragment StoreEntitySet="LogosEmpresas">
-                <ScalarProperty Name="logoID" ColumnName="logoID" />
-                <ScalarProperty Name="logoNombre" ColumnName="logoNombre" />
-                <ScalarProperty Name="logNombreReal" ColumnName="logNombreReal" />
-                <ScalarProperty Name="logoPath" ColumnName="logoPath" />
-                <ScalarProperty Name="logoArchivo" ColumnName="logoArchivo" />
-                <ScalarProperty Name="logoFechaCarga" ColumnName="logoFechaCarga" />
-                <ScalarProperty Name="logoArchivoCarga" ColumnName="logoArchivoCarga" />
-                <ScalarProperty Name="logoIDEmpresa" ColumnName="logoIDEmpresa" />
                 <ScalarProperty Name="logoEmpresa" ColumnName="logoEmpresa" />
+                <ScalarProperty Name="logoIDEmpresa" ColumnName="logoIDEmpresa" />
+                <ScalarProperty Name="logousuarioArchivoCarga" ColumnName="logousuarioArchivoCarga" />
+                <ScalarProperty Name="logoFechaCarga" ColumnName="logoFechaCarga" />
+                <ScalarProperty Name="logoArchivo" ColumnName="logoArchivo" />
+                <ScalarProperty Name="logoPath" ColumnName="logoPath" />
+                <ScalarProperty Name="logoNombre" ColumnName="logoNombre" />
+                <ScalarProperty Name="logoID" ColumnName="logoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

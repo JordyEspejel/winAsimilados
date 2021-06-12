@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,12 @@ namespace winAsimilados.Views
         string newID;
         int numID, IDE;
         string IDEmp, RFC, RS, Estatus;
+        string Archivo;
+        string NombreArchivo;
+        string nominaID;
+        string usuarioSistema = Properties.Settings.Default.Usuario.ToString();
+        string mensaje;
+        string nombreArchivoOriginal;
         public EmpresasPagoAsimilados(SplashScreenManager splashScreenManager)
         {
             splash = splashScreenManager;
@@ -200,6 +207,22 @@ namespace winAsimilados.Views
             }
         }
 
+        private void txtLogo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            xtraOpenFileDialog1.Title = "Selecciona Archivo a Cargar";
+            xtraOpenFileDialog1.Filter = "Archivos de imagen (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            xtraOpenFileDialog1.FileName = "";
+            xtraOpenFileDialog1.FilterIndex = 1;
+            xtraOpenFileDialog1.RestoreDirectory = true;
+
+            if (xtraOpenFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Archivo = xtraOpenFileDialog1.FileName;
+                nombreArchivoOriginal = xtraOpenFileDialog1.SafeFileName;
+                txtLogo.Text = Archivo;
+            }
+        }
+
         private void btnEditar_Click(object sender, EventArgs e)
         {
             layoutControlbtnEditar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -207,9 +230,84 @@ namespace winAsimilados.Views
             layoutControlbtnCancelar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             layoutControlbtnBaja.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             layoutControlbtnAlta.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            layoutControlBtnActLogo.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             gridColumnRazonSocial.OptionsColumn.AllowEdit = true;
             gridColumnRFC.OptionsColumn.AllowEdit = true;
             gridColumnEstatus.OptionsColumn.AllowEdit = true;
+        }
+
+        private void btnActualizaLogo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                byte[] file = null;
+                if (txtLogo.Text.Equals(""))
+                {
+                    mensaje = "Por favor, cargue un archivo.";
+                    XtraMessageBox.Show(mensaje, "Cargar Archivo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+
+                    //Stream stream = openFileDialog1.OpenFile();
+                    Stream stream = OpenFile(Archivo);
+                    using (MemoryStream memoryStream = new MemoryStream())
+                    {
+                        stream.CopyTo(memoryStream);
+                        file = memoryStream.ToArray();
+                    }
+                }
+                for (int i = 0; i < gridViewEmpr.RowCount; i++)
+                {
+                    if (gridViewEmpr.IsRowSelected(i))
+                    {
+                        IDE = Convert.ToInt32(gridViewEmpr.GetRowCellValue(i, gridViewEmpr.Columns[0]).ToString());
+                        IDEmp = gridViewEmpr.GetRowCellValue(i, gridViewEmpr.Columns[1]).ToString();
+                        RFC = gridViewEmpr.GetRowCellValue(i, gridViewEmpr.Columns[2]).ToString();
+                        RS = gridViewEmpr.GetRowCellValue(i, gridViewEmpr.Columns[3]).ToString();
+                        Estatus = gridViewEmpr.GetRowCellValue(i, gridViewEmpr.Columns[4]).ToString();
+                    }
+                }
+                using (Models.AsimiladosEntitiesLogos lg = new Models.AsimiladosEntitiesLogos())
+                {
+                    var logo = lg.LogosEmpresas.SingleOrDefault(b => b.logoIDEmpresa == IDEmp);
+                    if (logo != null)
+                    {
+                        string path = AppDomain.CurrentDomain.BaseDirectory;
+                        string folder = path + @"Logos\";
+                        string fullPath = folder + logo.logoPath;
+                        if (File.Exists(fullPath))
+                        {
+                            File.Delete(fullPath);
+                        }
+                        logo.logoArchivo = file;
+                        lg.SaveChanges();
+                    }
+                    else
+                    {
+                        Models.LogosEmpresas logoNuevo = new Models.LogosEmpresas();
+                        logoNuevo.logoNombre = nombreArchivoOriginal;
+                        string path = AppDomain.CurrentDomain.BaseDirectory;
+                        string folder = path + "/Logos/";
+                        string fullFilePath = folder + Archivo;
+                        logoNuevo.logoPath = nombreArchivoOriginal;
+                        logoNuevo.logoArchivo = file;
+                        logoNuevo.logoFechaCarga = DateTime.Now;
+                        logoNuevo.logousuarioArchivoCarga = usuarioSistema;
+                        logoNuevo.logoIDEmpresa = IDEmp;
+                        logoNuevo.logoEmpresa = RS;
+                        lg.LogosEmpresas.Add(logoNuevo);
+                        lg.SaveChanges();
+                    }
+                }
+                mensaje = "¡Logo Actualizado con éxito!";
+                XtraMessageBox.Show(mensaje, "Actualizar Logo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }catch (Exception btnActLogo)
+            {
+                mensaje = string.Concat("Error al intentar actualizar logo:", "\n", btnActLogo.Message);
+                XtraMessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -234,11 +332,43 @@ namespace winAsimilados.Views
             {
                 empresaPago.RFC = txtRFC.Text;
             }
+            if (txtLogo.Text.Equals(""))
+            {
+                mensaje = "Por favor, cargue un archivo.";
+                XtraMessageBox.Show(mensaje, "Cargar Archivo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             #endregion
             empresaPago.IDEmpresa = txtID.Text;
 
             if (controlador.InsertaEmpresaPago(empresaPago).Equals(true))
             {
+                NombreArchivo = txtLogo.Text;
+
+                byte[] file = null;
+                //Stream stream = openFileDialog1.OpenFile();
+                Stream stream = OpenFile(Archivo);
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    stream.CopyTo(memoryStream);
+                    file = memoryStream.ToArray();
+                }
+                using (Models.AsimiladosEntitiesLogos lg = new Models.AsimiladosEntitiesLogos())
+                {
+                    Models.LogosEmpresas logo = new Models.LogosEmpresas();
+                    logo.logoNombre = nombreArchivoOriginal;
+                    string path = AppDomain.CurrentDomain.BaseDirectory;
+                    string folder = path + "/Logos/";
+                    string fullFilePath = folder + Archivo;
+                    logo.logoPath = nombreArchivoOriginal;
+                    logo.logoArchivo = file;
+                    logo.logoFechaCarga = DateTime.Now;
+                    logo.logousuarioArchivoCarga = usuarioSistema;
+                    logo.logoIDEmpresa = txtID.Text;
+                    logo.logoEmpresa = txtRazon.Text;
+                    lg.LogosEmpresas.Add(logo);
+                    lg.SaveChanges();
+                }
                 this.LlenaTabla();
                 this.GetNextID();
                 txtRazon.Text = "";
@@ -257,6 +387,7 @@ namespace winAsimilados.Views
             layoutControlbtnCancelar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             layoutControlbtnBaja.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             layoutControlbtnAlta.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            layoutControlBtnActLogo.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             gridColumnRazonSocial.OptionsColumn.AllowEdit = false;
             gridColumnRFC.OptionsColumn.AllowEdit = false;
             gridColumnEstatus.OptionsColumn.AllowEdit = false;
@@ -295,6 +426,7 @@ namespace winAsimilados.Views
                     layoutControlbtnCancelar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                     layoutControlbtnBaja.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                     layoutControlbtnAlta.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                    layoutControlBtnActLogo.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                     gridColumnRazonSocial.OptionsColumn.AllowEdit = false;
                     gridColumnRFC.OptionsColumn.AllowEdit = false;
                     gridColumnEstatus.OptionsColumn.AllowEdit = false;
@@ -302,6 +434,19 @@ namespace winAsimilados.Views
                 }
 
             }
+        }
+        public Stream OpenFile(string fileName)
+        {
+            FileStream stream = null;
+            try
+            {
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+            }
+            finally
+            {
+                //...  
+            }
+            return stream;
         }
     }
 }

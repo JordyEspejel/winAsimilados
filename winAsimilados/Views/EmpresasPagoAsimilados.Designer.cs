@@ -51,6 +51,8 @@
             this.btnBaja = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
             this.btnAltaEmpr = new DevExpress.XtraEditors.SimpleButton();
+            this.txtLogo = new DevExpress.XtraEditors.ButtonEdit();
+            this.btnActualizaLogo = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -59,14 +61,17 @@
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlbtnEditar = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlbtnGuardar = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlbtnBaja = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlbtnCancelar = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlbtnAlta = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlBtnActLogo = new DevExpress.XtraLayout.LayoutControlItem();
             this.btnAgregar = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlbtnGuardar = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmpr)).BeginInit();
@@ -76,6 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtRazon.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRFC.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLogo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -84,14 +90,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnEditar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnGuardar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnBaja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnCancelar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnAlta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlBtnActLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnGuardar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -106,6 +114,8 @@
             this.layoutControl1.Controls.Add(this.btnBaja);
             this.layoutControl1.Controls.Add(this.btnCancelar);
             this.layoutControl1.Controls.Add(this.btnAltaEmpr);
+            this.layoutControl1.Controls.Add(this.txtLogo);
+            this.layoutControl1.Controls.Add(this.btnActualizaLogo);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -117,12 +127,12 @@
             // 
             // gridControlEmpr
             // 
-            this.gridControlEmpr.Location = new System.Drawing.Point(36, 180);
+            this.gridControlEmpr.Location = new System.Drawing.Point(36, 204);
             this.gridControlEmpr.MainView = this.gridViewEmpr;
             this.gridControlEmpr.Name = "gridControlEmpr";
             this.gridControlEmpr.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1});
-            this.gridControlEmpr.Size = new System.Drawing.Size(728, 265);
+            this.gridControlEmpr.Size = new System.Drawing.Size(728, 241);
             this.gridControlEmpr.TabIndex = 7;
             this.gridControlEmpr.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewEmpr});
@@ -246,7 +256,7 @@
             // btnEditar
             // 
             this.btnEditar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.ImageOptions.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(692, 138);
+            this.btnEditar.Location = new System.Drawing.Point(692, 162);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(72, 38);
             this.btnEditar.StyleController = this.layoutControl1;
@@ -268,7 +278,7 @@
             // btnGuardar
             // 
             this.btnGuardar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.ImageOptions.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(36, 138);
+            this.btnGuardar.Location = new System.Drawing.Point(157, 162);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(83, 38);
             this.btnGuardar.StyleController = this.layoutControl1;
@@ -279,7 +289,7 @@
             // btnBaja
             // 
             this.btnBaja.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBaja.ImageOptions.Image")));
-            this.btnBaja.Location = new System.Drawing.Point(234, 138);
+            this.btnBaja.Location = new System.Drawing.Point(355, 162);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(109, 38);
             this.btnBaja.StyleController = this.layoutControl1;
@@ -290,7 +300,7 @@
             // btnCancelar
             // 
             this.btnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.ImageOptions.Image")));
-            this.btnCancelar.Location = new System.Drawing.Point(347, 138);
+            this.btnCancelar.Location = new System.Drawing.Point(468, 162);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(86, 38);
             this.btnCancelar.StyleController = this.layoutControl1;
@@ -301,13 +311,36 @@
             // btnAltaEmpr
             // 
             this.btnAltaEmpr.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAltaEmpr.ImageOptions.Image")));
-            this.btnAltaEmpr.Location = new System.Drawing.Point(123, 138);
+            this.btnAltaEmpr.Location = new System.Drawing.Point(244, 162);
             this.btnAltaEmpr.Name = "btnAltaEmpr";
             this.btnAltaEmpr.Size = new System.Drawing.Size(107, 38);
             this.btnAltaEmpr.StyleController = this.layoutControl1;
             this.btnAltaEmpr.TabIndex = 13;
             this.btnAltaEmpr.Text = "Alta Empresa";
             this.btnAltaEmpr.Click += new System.EventHandler(this.btnAltaEmpr_Click);
+            // 
+            // txtLogo
+            // 
+            this.txtLogo.AllowHtmlTextInToolTip = DevExpress.Utils.DefaultBoolean.True;
+            this.txtLogo.Location = new System.Drawing.Point(52, 108);
+            this.txtLogo.Name = "txtLogo";
+            this.txtLogo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
+            this.txtLogo.Size = new System.Drawing.Size(724, 20);
+            this.txtLogo.StyleController = this.layoutControl1;
+            this.txtLogo.TabIndex = 14;
+            this.txtLogo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtLogo_ButtonClick);
+            // 
+            // btnActualizaLogo
+            // 
+            this.btnActualizaLogo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizaLogo.ImageOptions.Image")));
+            this.btnActualizaLogo.Location = new System.Drawing.Point(36, 162);
+            this.btnActualizaLogo.Name = "btnActualizaLogo";
+            this.btnActualizaLogo.Size = new System.Drawing.Size(117, 38);
+            this.btnActualizaLogo.StyleController = this.layoutControl1;
+            this.btnActualizaLogo.TabIndex = 15;
+            this.btnActualizaLogo.Text = "Actualizar Logo";
+            this.btnActualizaLogo.Click += new System.EventHandler(this.btnActualizaLogo_Click);
             // 
             // layoutControlGroup1
             // 
@@ -329,7 +362,8 @@
             this.layoutControlGroup3,
             this.btnAgregar,
             this.emptySpaceItem1,
-            this.emptySpaceItem3});
+            this.emptySpaceItem3,
+            this.layoutControlItem5});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(780, 461);
@@ -378,10 +412,11 @@
             this.layoutControlbtnGuardar,
             this.layoutControlbtnBaja,
             this.layoutControlbtnCancelar,
-            this.layoutControlbtnAlta});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 66);
+            this.layoutControlbtnAlta,
+            this.layoutControlBtnActLogo});
+            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 90);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(756, 353);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(756, 329);
             this.layoutControlGroup3.Text = "Empresas Registradas";
             // 
             // layoutControlItem4
@@ -389,7 +424,7 @@
             this.layoutControlItem4.Control = this.gridControlEmpr;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 42);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(732, 269);
+            this.layoutControlItem4.Size = new System.Drawing.Size(732, 245);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
@@ -402,10 +437,28 @@
             this.layoutControlbtnEditar.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlbtnEditar.TextVisible = false;
             // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(522, 0);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(134, 42);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlbtnGuardar
+            // 
+            this.layoutControlbtnGuardar.Control = this.btnGuardar;
+            this.layoutControlbtnGuardar.Location = new System.Drawing.Point(121, 0);
+            this.layoutControlbtnGuardar.Name = "layoutControlbtnGuardar";
+            this.layoutControlbtnGuardar.Size = new System.Drawing.Size(87, 42);
+            this.layoutControlbtnGuardar.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlbtnGuardar.TextVisible = false;
+            this.layoutControlbtnGuardar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
             // layoutControlbtnBaja
             // 
             this.layoutControlbtnBaja.Control = this.btnBaja;
-            this.layoutControlbtnBaja.Location = new System.Drawing.Point(198, 0);
+            this.layoutControlbtnBaja.Location = new System.Drawing.Point(319, 0);
             this.layoutControlbtnBaja.Name = "layoutControlbtnBaja";
             this.layoutControlbtnBaja.Size = new System.Drawing.Size(113, 42);
             this.layoutControlbtnBaja.TextSize = new System.Drawing.Size(0, 0);
@@ -415,7 +468,7 @@
             // layoutControlbtnCancelar
             // 
             this.layoutControlbtnCancelar.Control = this.btnCancelar;
-            this.layoutControlbtnCancelar.Location = new System.Drawing.Point(311, 0);
+            this.layoutControlbtnCancelar.Location = new System.Drawing.Point(432, 0);
             this.layoutControlbtnCancelar.Name = "layoutControlbtnCancelar";
             this.layoutControlbtnCancelar.Size = new System.Drawing.Size(90, 42);
             this.layoutControlbtnCancelar.TextSize = new System.Drawing.Size(0, 0);
@@ -425,12 +478,22 @@
             // layoutControlbtnAlta
             // 
             this.layoutControlbtnAlta.Control = this.btnAltaEmpr;
-            this.layoutControlbtnAlta.Location = new System.Drawing.Point(87, 0);
+            this.layoutControlbtnAlta.Location = new System.Drawing.Point(208, 0);
             this.layoutControlbtnAlta.Name = "layoutControlbtnAlta";
             this.layoutControlbtnAlta.Size = new System.Drawing.Size(111, 42);
             this.layoutControlbtnAlta.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlbtnAlta.TextVisible = false;
             this.layoutControlbtnAlta.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
+            // layoutControlBtnActLogo
+            // 
+            this.layoutControlBtnActLogo.Control = this.btnActualizaLogo;
+            this.layoutControlBtnActLogo.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlBtnActLogo.Name = "layoutControlBtnActLogo";
+            this.layoutControlBtnActLogo.Size = new System.Drawing.Size(121, 42);
+            this.layoutControlBtnActLogo.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlBtnActLogo.TextVisible = false;
+            this.layoutControlBtnActLogo.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // btnAgregar
             // 
@@ -457,23 +520,20 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(94, 18);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // emptySpaceItem2
+            // layoutControlItem5
             // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(401, 0);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(255, 42);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.Control = this.txtLogo;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 66);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(756, 24);
+            this.layoutControlItem5.Text = "Logo";
+            this.layoutControlItem5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(23, 13);
+            this.layoutControlItem5.TextToControlDistance = 5;
             // 
-            // layoutControlbtnGuardar
+            // xtraOpenFileDialog1
             // 
-            this.layoutControlbtnGuardar.Control = this.btnGuardar;
-            this.layoutControlbtnGuardar.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlbtnGuardar.Name = "layoutControlbtnGuardar";
-            this.layoutControlbtnGuardar.Size = new System.Drawing.Size(87, 42);
-            this.layoutControlbtnGuardar.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlbtnGuardar.TextVisible = false;
-            this.layoutControlbtnGuardar.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            this.xtraOpenFileDialog1.FileName = "xtraOpenFileDialog1";
             // 
             // EmpresasPagoAsimilados
             // 
@@ -495,6 +555,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtRazon.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRFC.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLogo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -503,14 +564,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnEditar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnGuardar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnBaja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnCancelar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnAlta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlBtnActLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlbtnGuardar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -553,5 +616,10 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlbtnAlta;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlbtnGuardar;
+        private DevExpress.XtraEditors.ButtonEdit txtLogo;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.XtraOpenFileDialog xtraOpenFileDialog1;
+        private DevExpress.XtraEditors.SimpleButton btnActualizaLogo;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlBtnActLogo;
     }
 }

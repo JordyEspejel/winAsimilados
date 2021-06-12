@@ -3151,14 +3151,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="1991648">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="2006496">
       <assemblyIdentity name="winAsimilados" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>skb15AhLSGtbBARIBNo0tel3lErTTawq1cTR/w8u6Og=</dsig:DigestValue>
+        <dsig:DigestValue>XPWfBc/mYt57vVm/tanYALJxVcDUQLjTeTSvCKckOQo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -3228,6 +3228,24 @@
       <dsig:DigestValue>fiiMim86XjvLswKFJuVTTKAMvtwgdTQRoDlCFuL9Gn4=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Models\ModelLogo.Context.tt" size="22933">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ClBFJ60gYrQv8nwKp6d1q8gzEvvS/kMpm+K9249mL80=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Models\ModelLogo.tt" size="25278">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>E4nb/gv5ssoFi8wcsmK33W0l+eFGOLKYXU3TaL0VpZ4=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="ssleay32.dll" size="232960">
     <hash>
       <dsig:Transforms>
@@ -3237,13 +3255,13 @@
       <dsig:DigestValue>Xg+uf/7I3bql1r5hCrmfajtnHZV6aqYBCRrLDa4ZIdw=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="winAsimilados.exe.config" size="9796">
+  <file name="winAsimilados.exe.config" size="10838">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>l03aaasSeE/36lI/uU2pweGad5PjD/ItXtmnAQ+Hq/Y=</dsig:DigestValue>
+      <dsig:DigestValue>gDgynMaTzNYaDMauX6J9dgMDopwKWrVEw5XKS8a1HGI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="wkhtmltox0.dll" size="30307840">

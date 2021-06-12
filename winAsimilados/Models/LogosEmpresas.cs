@@ -16,11 +16,10 @@ namespace winAsimilados.Models
     {
         public int logoID { get; set; }
         public string logoNombre { get; set; }
-        public string logNombreReal { get; set; }
         public string logoPath { get; set; }
-        public Nullable<byte> logoArchivo { get; set; }
+        public byte[] logoArchivo { get; set; }
         public Nullable<System.DateTime> logoFechaCarga { get; set; }
-        public string logoArchivoCarga { get; set; }
+        public string logousuarioArchivoCarga { get; set; }
         public string logoIDEmpresa { get; set; }
         public string logoEmpresa { get; set; }
     }
