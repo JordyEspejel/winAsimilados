@@ -66,8 +66,132 @@ namespace winAsimilados.Controller
         //    {
         //        throw;
         //    }
-        //}        
+        //}                
+        public string GetNameKey(string rfc)
+        {
+            try
+            {
+                string nameKey= "";
+                dtc.Connection.Open();
+                SqlCommand getKey = (SqlCommand)dtc.Connection.CreateCommand();
+                getKey.CommandText = @"SELECT cerKeyNombre FROM CertificadosDigitales where cerRFCEmpresa = @rfc";
+                getKey.Parameters.AddWithValue("@rfc", rfc);
+                SqlDataReader readerCer;
+                readerCer = getKey.ExecuteReader();
+                if (readerCer.Read())
+                {
+                    nameKey = readerCer.GetString(0);
+                }
+                readerCer.Close();
+                dtc.Connection.Close();
 
+                return nameKey;
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public string GetNameCer(string rfc)
+        {
+            try
+            {
+                string nameCer = "";
+                dtc.Connection.Open();
+                SqlCommand getCer = (SqlCommand)dtc.Connection.CreateCommand();
+                getCer.CommandText = @"SELECT cerNombre FROM CertificadosDigitales where cerRFCEmpresa = @rfc";
+                getCer.Parameters.AddWithValue("@rfc", rfc);
+                SqlDataReader readerCer;
+                readerCer = getCer.ExecuteReader();
+                if (readerCer.Read())
+                {
+                    nameCer = readerCer.GetString(0);
+                }
+                readerCer.Close();
+                dtc.Connection.Close();
+
+                return nameCer;
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public int GetCerKeyID(string rfcEmpresa)
+        {
+            try
+            {
+                int IDRegCer = 0;
+                dtc.Connection.Open();
+                SqlCommand getIDReg = (SqlCommand)dtc.Connection.CreateCommand();
+                getIDReg.CommandText = @"select cerID from CertificadosDigitales where cerRFCEmpresa = @rfc";
+                getIDReg.Parameters.AddWithValue("@rfc", rfcEmpresa);
+                SqlDataReader readerID;
+                readerID = getIDReg.ExecuteReader();
+                if (readerID.Read())
+                {
+                    IDRegCer = readerID.GetInt32(0);
+                }
+                readerID.Close();
+                dtc.Connection.Close();
+
+                return IDRegCer;
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public void GenerarCerKey(string rfcEmpresa)
+        {
+            try
+            {
+                int IDRegCer = 0;
+                dtc.Connection.Open();
+                SqlCommand getIDReg = (SqlCommand)dtc.Connection.CreateCommand();
+                getIDReg.CommandText = @"select cerID from CertificadosDigitales where cerRFCEmpresa = @rfc";
+                getIDReg.Parameters.AddWithValue("@rfc", rfcEmpresa);
+                SqlDataReader readerID;
+                readerID = getIDReg.ExecuteReader();
+                if (readerID.Read())
+                {
+                    IDRegCer = readerID.GetInt32(0);
+                }
+                readerID.Close();
+                dtc.Connection.Close();
+
+                using (Models.AsimiladosEntitiesCertificados cr = new M.AsimiladosEntitiesCertificados())
+                {
+                    var certificado = cr.CertificadosDigitales.Find(IDRegCer);
+                    if (certificado != null)
+                    {
+                        string path = AppDomain.CurrentDomain.BaseDirectory;
+                        string folder = path + @"Certificados\" + certificado.cerNombreEmpresa.Trim() + @"\";
+                        string pathCer = folder + certificado.cerNombre;
+                        string pathKey = folder + certificado.cerKeyNombre;
+
+                        if (!Directory.Exists(folder))
+                        {
+                            Directory.CreateDirectory(folder);
+                        }
+                        File.WriteAllBytes(pathCer, certificado.cerArchivo);
+                        File.WriteAllBytes(pathKey, certificado.cerKeyArchivo);
+                    }
+                    else
+                    {                        
+                        return;
+                    }
+                }
+            }
+            catch (Exception gen)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
         public string GetIDEmpresaPagoByCaratula(string caratula)
         {
             try
@@ -5007,8 +5131,18 @@ namespace winAsimilados.Controller
                         //string pathCer = @"C:\DocAsimilados\00001000000413522787.cer";
                         //string pathKey = @"C:\DocAsimilados\CSD_QUERETARO_PTP131002FA0_20190214_113034.key";
                         //string pass = "ptpinari";
-                        string pathCer = ArchivoCER(rfc);
-                        string pathKey = ArchivoKEY(rfc);
+
+                        string pathDomain = AppDomain.CurrentDomain.BaseDirectory;
+                        string folder = pathDomain + @"Certificados\" + empresa + @"\";
+                        string NombreArchivoCer = GetNameCer(rfc);
+                        string NombreArchivoKey = GetNameKey(rfc);
+                        string fullFilePathCer = folder + NombreArchivoCer;
+                        string fullFilePathKey = folder + NombreArchivoKey;
+
+                        //string pathCer = ArchivoCER(rfc);
+                        //string pathKey = ArchivoKEY(rfc);
+                        string pathCer = fullFilePathCer;
+                        string pathKey = fullFilePathKey;
                         string pass = PassKey(rfc);
 
                         string Inicio, Final, Serie, NumCer;
@@ -8101,7 +8235,7 @@ namespace winAsimilados.Controller
                     "', RFC_Empresa = '" + parametros.RFC + "'" +
                     "WHERE RFC_Empresa = '" + parametros.RFC + "'";
 
-                    if (queryListaEmpr.ExecuteNonQuery().Equals(1))
+                    if (queryListaEmpr.ExecuteNonQuery() >= 1)
                     {
                         result = true;
                         N.Conexion.PerformConnection().ChangeDatabase(bd);
@@ -8116,6 +8250,61 @@ namespace winAsimilados.Controller
                 //N.Conexion.PerformConnection().Close();
                 XtraMessageBox.Show(e.Message + "\nError Controlador: EditaEmpresa()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+        }
+        public string GetIDEmpresa(string rfc)
+        {
+            try
+            {
+                string idEmpresa = "";
+                dtc.Connection.Open();
+                SqlCommand getIDEmpresa = (SqlCommand)dtc.Connection.CreateCommand();
+                getIDEmpresa.CommandText = @"SELECT NOMINA_EMPRESA_ID FROM PARAMETROS WHERE RFC = @rfc";
+                getIDEmpresa.Parameters.AddWithValue("@rfc", rfc);
+                SqlDataReader readerID;
+                readerID = getIDEmpresa.ExecuteReader();
+                if (readerID.Read())
+                {
+                    idEmpresa = readerID.GetString(0);
+                }
+                readerID.Close();
+                dtc.Connection.Close();
+
+                return idEmpresa;
+            }catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
+            }
+        }
+        public string GetNewIDEmpresa()
+        {
+            try
+            {
+                string ID = "Nomina_Empresa";
+                int num = 0, nextNum = 0;
+                dtc.Connection.Open();
+                SqlCommand getID = (SqlCommand)dtc.Connection.CreateCommand();
+                getID.CommandText = @"select  max(numero_empresa) from Listado_Empresas";
+                SqlDataReader readerNumEmpresa;
+                readerNumEmpresa = getID.ExecuteReader();
+
+                if (readerNumEmpresa.Read())
+                {
+                    num = readerNumEmpresa.GetInt32(0);
+                    nextNum = num + 1;
+                }
+                readerNumEmpresa.Close();
+                dtc.Connection.Close();
+                ID = ID + nextNum.ToString();
+
+                return ID;
+                
+            }
+            catch (Exception)
+            {
+                dtc.Connection.Close();
+                throw;
             }
         }
         public void CreaBDEmpresa(string BD, Object _P, SplashScreenManager splashScreenManager, Object _A)

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -30,6 +31,9 @@ namespace winAsimilados.Views
         string Estado, CodPost;
         string RutaCer, RutaKey, Pass;
         string cuenta;
+        string ArchivoCer, ArchivoKey;
+        string NombreArchivoCer, NombreArchivoKey;
+        string usuarioSistema = Properties.Settings.Default.Usuario.ToString();
 
         private void TxtEmpresa_EditValueChanged(object sender, EventArgs e)
         {
@@ -127,6 +131,10 @@ namespace winAsimilados.Views
             RFC = TxtRFC.Text.ToUpper();
             numInt = TxtNumInt.Text;
             numExt = TxtNumExt.Text;
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string folder = path + @"Certificados\" + nombreEmpresa.Trim() + @"\";
+            string fullFilePathCer = folder + NombreArchivoCer;
+            string fullFilePathKey = folder + NombreArchivoKey;
             #region ValidacionCampos
 
             if (TxtCorreo.Text.Equals(""))
@@ -273,7 +281,8 @@ namespace winAsimilados.Views
             }
             else
             {
-                parametros.ARCHIVO_CER = RutaCer;
+                //parametros.ARCHIVO_CER = RutaCer;
+                parametros.ARCHIVO_CER = fullFilePathCer;
             }
             if (TxtKey.Text == "" || TxtKey == null)
             {
@@ -281,7 +290,8 @@ namespace winAsimilados.Views
             }
             else
             {
-                parametros.ARCHIVO_KEY = RutaKey;
+                //parametros.ARCHIVO_KEY = RutaKey;
+                parametros.ARCHIVO_KEY = fullFilePathKey;
             }
             if (TxtPassKey.Text == "" || TxtPassKey.Text == null)
             {
@@ -319,6 +329,15 @@ namespace winAsimilados.Views
                 {
                     if(controlador.EditaEmpresa(parametros, RFCEmpr, bd).Equals(true))
                     {
+                        this.UpdateCerKey();
+                        DesactivarCampos();
+                        //string mensaje = "¡Información Actualizada con Éxito!";
+                        //XtraMessageBox.Show(mensaje, "Editar Empresa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        string mensaje = "¡Error al Actualizar Información!";
+                        XtraMessageBox.Show(mensaje, "Editar Empresa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DesactivarCampos();
                     }
                 }
@@ -359,11 +378,106 @@ namespace winAsimilados.Views
                         parametros.FECHA_INICIO_CERTIFICADO = Convert.ToDateTime(TxtFecIniVig.Text);
                         parametros.FECHA_VENCIMIENTO_CERTIFICADO = Convert.ToDateTime(TxtFevFinVig.Text);
                         parametros.ASUNTO_CERTIFICADO = TxtAsunto.Text;
+                        ArchivoCer = xtraOpenFileDialog1.FileName;
+                        NombreArchivoCer = xtraOpenFileDialog1.SafeFileName;
                     }
                 }
             }
         }
+        private void UpdateCerKey()
+        {
+            try
+            {
+                byte[] fileCer = null;
+                byte[] fileKey = null;
 
+                Stream streamCer = OpenFile(ArchivoCer);
+                using (MemoryStream memoryStreamCer = new MemoryStream())
+                {
+                    streamCer.CopyTo(memoryStreamCer);
+                    fileCer = memoryStreamCer.ToArray();
+                }
+                Stream streamKey = OpenFile(ArchivoKey);
+                using (MemoryStream memoryStreamKey = new MemoryStream())
+                {
+                    streamKey.CopyTo(memoryStreamKey);
+                    fileKey = memoryStreamKey.ToArray();
+                }
+                int IDCerKey = controlador.GetCerKeyID(RFCEmpr);
+                using (Models.AsimiladosEntitiesCertificados cr = new Models.AsimiladosEntitiesCertificados())
+                {
+                    var certificado = cr.CertificadosDigitales.FirstOrDefault(b => b.cerID ==IDCerKey);
+
+                    if (certificado != null)
+                    {
+                        string path = AppDomain.CurrentDomain.BaseDirectory;
+                        string folder = path + @"Certificados\" + @"\" + nombreEmpresa + @"\";
+                        string fullFilePathCer = folder + NombreArchivoCer;
+                        string fullFilePathKey = folder + NombreArchivoKey;
+
+                        if (File.Exists(certificado.cerPath))
+                        {
+                            File.Delete(certificado.cerPath);
+                        }
+                        if (File.Exists(certificado.cerKeyPath))
+                        {
+                            File.Delete(certificado.cerKeyPath);
+                        }
+                        certificado.cerArchivo = fileCer;
+                        certificado.cerKeyArchivo = fileKey;
+                        certificado.cerPath = fullFilePathCer;
+                        certificado.cerKeyPath = fullFilePathKey;
+                        cr.SaveChanges();
+                        controlador.GenerarCerKey(certificado.cerRFCEmpresa);
+                    }
+                    else
+                    {
+                        Models.CertificadosDigitales cer = new Models.CertificadosDigitales();
+                        string path = AppDomain.CurrentDomain.BaseDirectory;
+                        string folder = path + @"Certificados\" + nombreEmpresa.Trim() + @"\";
+                        string fullFilePathCer = folder + NombreArchivoCer;
+                        string fullFilePathKey = folder + NombreArchivoKey;
+                        parametros.ARCHIVO_CER = fullFilePathCer;
+                        parametros.ARCHIVO_KEY = fullFilePathKey;
+                        cer.cerNombre = NombreArchivoCer;
+                        cer.cerNum = parametros.NUMERO_CERTIFICADO;
+                        cer.cerFechaVencimiento = Convert.ToDateTime(parametros.FECHA_VENCIMIENTO_CERTIFICADO);
+                        cer.cerAsunto = parametros.ASUNTO_CERTIFICADO;
+                        cer.cerPath = fullFilePathCer;
+                        cer.cerArchivo = fileCer;
+                        cer.cerKeyNombre = NombreArchivoKey;
+                        cer.cerKeyArchivo = fileKey;
+                        cer.cerKeyPath = fullFilePathKey;
+                        cer.cerNombreEmpresa = parametros.NombreEmpresa;
+                        cer.cerRFCEmpresa = parametros.RFC;
+                        cer.cerNominaEmpresaID = controlador.GetIDEmpresa(parametros.RFC);
+                        cer.cerFechaCarga = DateTime.Now;
+                        cer.cerUsuarioCarga = usuarioSistema;
+
+                        cr.CertificadosDigitales.Add(cer);
+                        cr.SaveChanges();
+                        controlador.GenerarCerKey(parametros.RFC);
+                    }
+                }
+            }
+            catch (Exception ec)
+            {
+                throw;
+            }
+        }
+        public Stream OpenFile(string fileName)
+        {
+            FileStream stream = null;
+            try
+            {
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+            }
+            finally
+            {
+                //...  
+            }
+            return stream;
+        }
         private void TxtKey_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (FileDialog.Equals(true))
@@ -376,7 +490,8 @@ namespace winAsimilados.Views
                     RutaKey = xtraOpenFileDialog2.FileName;
                     //XtraMessageBox.Show(RutaKey);
                     TxtKey.Text = RutaKey;
-
+                    ArchivoKey = xtraOpenFileDialog2.FileName;
+                    NombreArchivoKey = xtraOpenFileDialog2.SafeFileName;
                 }
             }
         }

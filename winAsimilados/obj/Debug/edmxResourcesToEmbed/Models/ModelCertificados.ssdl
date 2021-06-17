@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AsimiladosModelCertificados.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CertificadosDigitales">
+    <Key>
+      <PropertyRef Name="cerID" />
+    </Key>
+    <Property Name="cerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cerNombre" Type="varchar(max)" />
+    <Property Name="cerNum" Type="varchar" MaxLength="100" />
+    <Property Name="cerFechaVencimiento" Type="datetime" />
+    <Property Name="cerAsunto" Type="varchar(max)" />
+    <Property Name="cerPath" Type="varchar(max)" />
+    <Property Name="cerArchivo" Type="varbinary(max)" />
+    <Property Name="cerKeyNombre" Type="varchar(max)" />
+    <Property Name="cerKeyPath" Type="varchar(max)" />
+    <Property Name="cerKeyArchivo" Type="varbinary(max)" />
+    <Property Name="cerNombreEmpresa" Type="varchar(max)" />
+    <Property Name="cerRFCEmpresa" Type="varchar" MaxLength="20" />
+    <Property Name="cerNominaEmpresaID" Type="varchar" MaxLength="100" />
+    <Property Name="cerFechaCarga" Type="datetime" />
+    <Property Name="cerUsuarioCarga" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityContainer Name="AsimiladosModelCertificadosStoreContainer">
+    <EntitySet Name="CertificadosDigitales" EntityType="Self.CertificadosDigitales" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

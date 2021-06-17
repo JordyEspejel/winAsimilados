@@ -13,6 +13,7 @@ using E = winAsimilados.Entities;
 using V = winAsimilados.Views;
 using System.Security.Cryptography.X509Certificates;
 using DevExpress.XtraSplashScreen;
+using System.IO;
 
 namespace winAsimilados.Views
 {
@@ -31,6 +32,11 @@ namespace winAsimilados.Views
         string Estado,CodPost;
         string RutaCer, RutaKey, Pass;
         string cuenta;
+        string ArchivoCer, ArchivoKey;
+        string NombreArchivoCer, NombreArchivoKey;
+        string usuarioSistema = Properties.Settings.Default.Usuario.ToString();
+        string mensaje;
+        string nombreArchivoOriginal;
 
         private void TxtNomEmpresa_EditValueChanged(object sender, EventArgs e)
         {
@@ -345,6 +351,8 @@ namespace winAsimilados.Views
                     if (XtraMessageBox.Show("¿Desea Agregar la empresa?:\n" + Empresa.empresa.ToString() + "\n\nRFC:" + Empresa.RFC.ToString() + "\n\nFavor de verificar los datos.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                     {
                         splashScreenManager1.ShowWaitForm();
+                        this.InsertCerFiles();
+                        Controlador.GenerarCerKey(Parametros.RFC);
                         Controlador.CreaBDEmpresa(bd, Empresa, splashScreenManager1, Parametros);
                     }
                 }
@@ -353,6 +361,71 @@ namespace winAsimilados.Views
             {
                 XtraMessageBox.Show("Error en formulario!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public void InsertCerFiles()
+        {
+            try
+            {
+                byte[] fileCer = null;
+                byte[] fileKey = null;
+
+                Stream streamCer = OpenFile(ArchivoCer);
+                using (MemoryStream memoryStreamCer = new MemoryStream())
+                {
+                    streamCer.CopyTo(memoryStreamCer);
+                    fileCer = memoryStreamCer.ToArray();
+                }
+                Stream streamKey = OpenFile(ArchivoKey);
+                using (MemoryStream memoryStreamKey = new MemoryStream())
+                {
+                    streamKey.CopyTo(memoryStreamKey);
+                    fileKey = memoryStreamKey.ToArray();
+                }
+                using (Models.AsimiladosEntitiesCertificados cr = new Models.AsimiladosEntitiesCertificados())
+                {
+                    string path = AppDomain.CurrentDomain.BaseDirectory;
+                    string folder = path + @"Certificados\" + nombreEmpresa.Trim() + @"\";
+                    string fullFilePathCer = folder + NombreArchivoCer;
+                    string fullFilePathKey = folder + NombreArchivoKey;
+                    Parametros.ARCHIVO_CER = fullFilePathCer;
+                    Parametros.ARCHIVO_KEY = fullFilePathKey;
+                    Models.CertificadosDigitales cer = new Models.CertificadosDigitales();
+                    cer.cerNombre = NombreArchivoCer;
+                    cer.cerNum = Parametros.NUMERO_CERTIFICADO;
+                    cer.cerFechaVencimiento = Convert.ToDateTime(Parametros.FECHA_VENCIMIENTO_CERTIFICADO);
+                    cer.cerAsunto = Parametros.ASUNTO_CERTIFICADO;
+                    cer.cerPath = fullFilePathCer;
+                    cer.cerArchivo = fileCer;
+                    cer.cerKeyNombre = NombreArchivoKey;
+                    cer.cerKeyArchivo = fileKey;
+                    cer.cerKeyPath = fullFilePathKey;
+                    cer.cerNombreEmpresa = Parametros.NombreEmpresa;
+                    cer.cerRFCEmpresa = Parametros.RFC;
+                    cer.cerNominaEmpresaID = Controlador.GetNewIDEmpresa();
+                    cer.cerFechaCarga = DateTime.Now;
+                    cer.cerUsuarioCarga = usuarioSistema;
+
+                    cr.CertificadosDigitales.Add(cer);
+                    cr.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public Stream OpenFile(string fileName)
+        {
+            FileStream stream = null;
+            try
+            {
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+            }
+            finally
+            {
+                //...  
+            }
+            return stream;
         }
 
         private void LookUpRecu_EditValueChanged(object sender, EventArgs e)
@@ -441,6 +514,8 @@ namespace winAsimilados.Views
                     Parametros.FECHA_INICIO_CERTIFICADO = Convert.ToDateTime(TxtCerFecIni.Text);
                     Parametros.FECHA_VENCIMIENTO_CERTIFICADO = Convert.ToDateTime(TxtCerFecExp.Text);
                     Parametros.ASUNTO_CERTIFICADO = TxtCerSubj.Text;
+                    ArchivoCer = xtraOpenFileDialog1.FileName;
+                    NombreArchivoCer = xtraOpenFileDialog1.SafeFileName;
                 }
             }
         }
@@ -470,6 +545,8 @@ namespace winAsimilados.Views
                 RutaKey = xtraOpenFileDialog2.FileName;
                 //XtraMessageBox.Show(RutaKey);
                 TxtKey.Text = RutaKey;
+                ArchivoKey = xtraOpenFileDialog2.FileName;
+                NombreArchivoKey = xtraOpenFileDialog2.SafeFileName;
 
             }
         }

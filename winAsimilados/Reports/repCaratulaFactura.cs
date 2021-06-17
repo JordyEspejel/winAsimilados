@@ -29,6 +29,7 @@ namespace winAsimilados.Reports
             sqlDataSource1.Queries[0].Parameters[0].Value = Empresa;
             sqlDataSource1.Fill();
             xrPictureBox1.ImageUrl = pathLogo;
+            xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
         }
 
     }

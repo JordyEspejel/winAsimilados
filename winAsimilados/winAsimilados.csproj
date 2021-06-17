@@ -16,7 +16,7 @@
     <PublishUrl>C:\Users\aespejel.TI-SOPAPLI01\Desktop\Act Aimilados XML\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
@@ -26,7 +26,7 @@
     <UpdateUrl>\\192.168.16.20\Aplicaciones\Asimilados\</UpdateUrl>
     <WebPage>Asimilados.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>53</ApplicationRevision>
+    <ApplicationRevision>54</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -249,6 +249,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Asimilados.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\CertificadosDigitales.cs">
+      <DependentUpon>ModelCertificados.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LogosEmpresas.cs">
       <DependentUpon>ModelLogo.tt</DependentUpon>
     </Compile>
@@ -266,6 +269,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelArchivos.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelCertificados.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCertificados.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelCertificados.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCertificados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelCertificados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCertificados.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelLogo.Context.cs">
       <AutoGen>True</AutoGen>
@@ -729,6 +747,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelLogo.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <EntityDeploy Include="Models\ModelCertificados.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelCertificados.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\ModelCertificados.edmx.diagram">
+      <DependentUpon>ModelCertificados.edmx</DependentUpon>
+    </None>
     <None Include="Models\ModelLogo.edmx.diagram">
       <DependentUpon>ModelLogo.edmx</DependentUpon>
     </None>
@@ -822,6 +847,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelArchivos.edmx</DependentUpon>
       <LastGenOutput>ModelArchivos.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelCertificados.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelCertificados.edmx</DependentUpon>
+      <LastGenOutput>ModelCertificados.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelCertificados.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelCertificados.edmx</DependentUpon>
+      <LastGenOutput>ModelCertificados.cs</LastGenOutput>
     </Content>
     <Content Include="Models\ModelLogo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

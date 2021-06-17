@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="winAsimilados.exe" version="1.0.0.53" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="winAsimilados.exe" version="1.0.0.54" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="invoice_78456.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -3151,14 +3151,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="2006496">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="winAsimilados.exe" size="2018784">
       <assemblyIdentity name="winAsimilados" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XPWfBc/mYt57vVm/tanYALJxVcDUQLjTeTSvCKckOQo=</dsig:DigestValue>
+        <dsig:DigestValue>Ba0+hsgHIkdYfG/WtZ+1pPphTe+Zvk781K5j/kSFE4M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -3228,6 +3228,24 @@
       <dsig:DigestValue>fiiMim86XjvLswKFJuVTTKAMvtwgdTQRoDlCFuL9Gn4=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Models\ModelCertificados.Context.tt" size="22941">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>8X0bl9eMjJLbM4VorCM4dQlXwamBMCmdeG2ZLE/VMNc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Models\ModelCertificados.tt" size="25286">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ES57aufq014eUItJY0nVpXwxEqmM5CxjrZ9X1OfdEeM=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Models\ModelLogo.Context.tt" size="22933">
     <hash>
       <dsig:Transforms>
@@ -3255,13 +3273,13 @@
       <dsig:DigestValue>Xg+uf/7I3bql1r5hCrmfajtnHZV6aqYBCRrLDa4ZIdw=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="winAsimilados.exe.config" size="10838">
+  <file name="winAsimilados.exe.config" size="11360">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>gDgynMaTzNYaDMauX6J9dgMDopwKWrVEw5XKS8a1HGI=</dsig:DigestValue>
+      <dsig:DigestValue>WenDpQ2DWe1xPVAdf8AVcwZuHI9HfVdhAQvWfa1spGw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="wkhtmltox0.dll" size="30307840">

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AsimiladosModelCertificadosStoreContainer" CdmEntityContainer="AsimiladosEntitiesCertificados">
+    <EntitySetMapping Name="CertificadosDigitales">
+      <EntityTypeMapping TypeName="AsimiladosModelCertificados.CertificadosDigitales">
+        <MappingFragment StoreEntitySet="CertificadosDigitales">
+          <ScalarProperty Name="cerID" ColumnName="cerID" />
+          <ScalarProperty Name="cerNombre" ColumnName="cerNombre" />
+          <ScalarProperty Name="cerNum" ColumnName="cerNum" />
+          <ScalarProperty Name="cerFechaVencimiento" ColumnName="cerFechaVencimiento" />
+          <ScalarProperty Name="cerAsunto" ColumnName="cerAsunto" />
+          <ScalarProperty Name="cerPath" ColumnName="cerPath" />
+          <ScalarProperty Name="cerArchivo" ColumnName="cerArchivo" />
+          <ScalarProperty Name="cerKeyNombre" ColumnName="cerKeyNombre" />
+          <ScalarProperty Name="cerKeyPath" ColumnName="cerKeyPath" />
+          <ScalarProperty Name="cerKeyArchivo" ColumnName="cerKeyArchivo" />
+          <ScalarProperty Name="cerNombreEmpresa" ColumnName="cerNombreEmpresa" />
+          <ScalarProperty Name="cerRFCEmpresa" ColumnName="cerRFCEmpresa" />
+          <ScalarProperty Name="cerNominaEmpresaID" ColumnName="cerNominaEmpresaID" />
+          <ScalarProperty Name="cerFechaCarga" ColumnName="cerFechaCarga" />
+          <ScalarProperty Name="cerUsuarioCarga" ColumnName="cerUsuarioCarga" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

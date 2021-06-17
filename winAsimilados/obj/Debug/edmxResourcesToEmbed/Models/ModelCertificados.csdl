@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AsimiladosModelCertificados" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CertificadosDigitales">
+    <Key>
+      <PropertyRef Name="cerID" />
+    </Key>
+    <Property Name="cerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cerNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cerNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cerFechaVencimiento" Type="DateTime" Precision="3" />
+    <Property Name="cerAsunto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cerPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cerArchivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="cerKeyNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cerKeyPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cerKeyArchivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="cerNombreEmpresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cerRFCEmpresa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cerNominaEmpresaID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cerFechaCarga" Type="DateTime" Precision="3" />
+    <Property Name="cerUsuarioCarga" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="AsimiladosEntitiesCertificados" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CertificadosDigitales" EntityType="Self.CertificadosDigitales" />
+  </EntityContainer>
+</Schema>

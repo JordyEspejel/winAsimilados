@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AsimiladosModelCertificados.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CertificadosDigitales">
+          <Key>
+            <PropertyRef Name="cerID" />
+          </Key>
+          <Property Name="cerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cerNombre" Type="varchar(max)" />
+          <Property Name="cerNum" Type="varchar" MaxLength="100" />
+          <Property Name="cerFechaVencimiento" Type="datetime" />
+          <Property Name="cerAsunto" Type="varchar(max)" />
+          <Property Name="cerPath" Type="varchar(max)" />
+          <Property Name="cerArchivo" Type="varbinary(max)" />
+          <Property Name="cerKeyNombre" Type="varchar(max)" />
+          <Property Name="cerKeyPath" Type="varchar(max)" />
+          <Property Name="cerKeyArchivo" Type="varbinary(max)" />
+          <Property Name="cerNombreEmpresa" Type="varchar(max)" />
+          <Property Name="cerRFCEmpresa" Type="varchar" MaxLength="20" />
+          <Property Name="cerNominaEmpresaID" Type="varchar" MaxLength="100" />
+          <Property Name="cerFechaCarga" Type="datetime" />
+          <Property Name="cerUsuarioCarga" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityContainer Name="AsimiladosModelCertificadosStoreContainer">
+          <EntitySet Name="CertificadosDigitales" EntityType="Self.CertificadosDigitales" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AsimiladosModelCertificados" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CertificadosDigitales">
+          <Key>
+            <PropertyRef Name="cerID" />
+          </Key>
+          <Property Name="cerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cerNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cerNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cerFechaVencimiento" Type="DateTime" Precision="3" />
+          <Property Name="cerAsunto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cerPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cerArchivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="cerKeyNombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cerKeyPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cerKeyArchivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="cerNombreEmpresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cerRFCEmpresa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cerNominaEmpresaID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cerFechaCarga" Type="DateTime" Precision="3" />
+          <Property Name="cerUsuarioCarga" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="AsimiladosEntitiesCertificados" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CertificadosDigitales" EntityType="Self.CertificadosDigitales" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AsimiladosModelCertificadosStoreContainer" CdmEntityContainer="AsimiladosEntitiesCertificados">
+          <EntitySetMapping Name="CertificadosDigitales">
+            <EntityTypeMapping TypeName="AsimiladosModelCertificados.CertificadosDigitales">
+              <MappingFragment StoreEntitySet="CertificadosDigitales">
+                <ScalarProperty Name="cerID" ColumnName="cerID" />
+                <ScalarProperty Name="cerNombre" ColumnName="cerNombre" />
+                <ScalarProperty Name="cerNum" ColumnName="cerNum" />
+                <ScalarProperty Name="cerFechaVencimiento" ColumnName="cerFechaVencimiento" />
+                <ScalarProperty Name="cerAsunto" ColumnName="cerAsunto" />
+                <ScalarProperty Name="cerPath" ColumnName="cerPath" />
+                <ScalarProperty Name="cerArchivo" ColumnName="cerArchivo" />
+                <ScalarProperty Name="cerKeyNombre" ColumnName="cerKeyNombre" />
+                <ScalarProperty Name="cerKeyPath" ColumnName="cerKeyPath" />
+                <ScalarProperty Name="cerKeyArchivo" ColumnName="cerKeyArchivo" />
+                <ScalarProperty Name="cerNombreEmpresa" ColumnName="cerNombreEmpresa" />
+                <ScalarProperty Name="cerRFCEmpresa" ColumnName="cerRFCEmpresa" />
+                <ScalarProperty Name="cerNominaEmpresaID" ColumnName="cerNominaEmpresaID" />
+                <ScalarProperty Name="cerFechaCarga" ColumnName="cerFechaCarga" />
+                <ScalarProperty Name="cerUsuarioCarga" ColumnName="cerUsuarioCarga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

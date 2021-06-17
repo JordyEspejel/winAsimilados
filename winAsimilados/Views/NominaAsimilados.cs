@@ -332,10 +332,27 @@ namespace winAsimilados.Views
         private bool ValidaCer()
         {
             bool result = false;
-            string pathCerPrueba = controlador.ArchivoCER(rfc);
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string folder = path + @"Certificados\" + empresa + @"\";
+            string NombreArchivoCer = controlador.GetNameCer(rfc);
+            string fullFilePathCer = folder + NombreArchivoCer;
+            //string fullFilePathKey = folder + NombreArchivoKey;
+            //string pathCerPrueba = controlador.ArchivoCER(rfc);
+            string pathCerPrueba = fullFilePathCer;
             string RutaCer;
             if (pathCerPrueba.Equals("") || pathCerPrueba.Equals(null) || !File.Exists(pathCerPrueba))
             {
+                controlador.GenerarCerKey(rfc);
+                if (File.Exists(pathCerPrueba))
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                    XtraMessageBox.Show("Error al generar xml de nómina, archivo .CER no encontrado. Favor de notificar al administrador del sistema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                #region agregarCer (Obsoleto)
                 if (controlador.GetAdminUsuario(usuarioSistema, bd, false).Equals(true))
                 {
                     DialogResult resultado = XtraMessageBox.Show("Archivo .CER no encontrado, ¿Desea Agregarlo?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -372,7 +389,7 @@ namespace winAsimilados.Views
                     XtraMessageBox.Show("Error al generar xml de nómina, archivo .CER no encontrado. Favor de notificar al administrador del sistema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     result = false;
                 }
-
+                #endregion
             }
             else
             {
@@ -383,78 +400,96 @@ namespace winAsimilados.Views
         private bool ValidaKey()
         {
             bool result = false;
-            string pathCerPrueba = controlador.ArchivoKEY(rfc);
-            string RutaKey, Pass = null;
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string folder = path + @"Certificados\"  + empresa + @"\";
+            string NombreArchivoKey = controlador.GetNameKey(rfc);
+            //string fullFilePathCer = folder + NombreArchivoCer;
+            string fullFilePathKey = folder + NombreArchivoKey;
+            //string pathCerPrueba = controlador.ArchivoKEY(rfc);
+            string pathCerPrueba = fullFilePathKey;
+            //string RutaKey, Pass = null;
             if (pathCerPrueba.Equals("") || pathCerPrueba.Equals(null) || !File.Exists(pathCerPrueba))
             {
-                if (controlador.GetAdminUsuario(usuarioSistema, bd, false).Equals(true))
+                controlador.GenerarCerKey(rfc);
+                if (File.Exists(pathCerPrueba))
                 {
-                    DialogResult resultado = XtraMessageBox.Show("Archivo .KEY no encontrado, ¿Desea Agregarlo?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (resultado.Equals(DialogResult.Yes))
-                    {
-                        OpenFileDialogKey.Title = "Selecciona Archivo KEY";
-                        OpenFileDialogKey.Filter = "Archivos KEY (*.key;*)|*.key";
-                        if (OpenFileDialogKey.ShowDialog() == DialogResult.OK)
-                        {
-                            RutaKey = OpenFileDialogKey.FileName;
-                            //XtraMessageBox.Show(RutaKey);
-                            try
-                            {
-                                // initialize a new XtraInputBoxArgs instance
-                                XtraInputBoxArgs args = new XtraInputBoxArgs();
-                                // set required Input Box options
-                                args.Caption = "Archivo .key";
-                                args.Prompt = "Contraseña";
-                                args.DefaultButtonIndex = 0;
-                                args.Showing += Args_Showing;
-                                // initialize a DateEdit editor with custom settings
-                                TextEdit editor = new TextEdit();
-                                CheckEdit check = new CheckEdit();
-                                args.Editor = check;
-                                args.Editor = editor;
-                                editor.Properties.UseSystemPasswordChar = true;
-                                // display an Input Box with the custom editor
-                                var result2 = XtraInputBox.Show(args).ToString();
-                                // set a dialog icon
-                                if (result2 != null || result2 != "")
-                                {
-                                    XtraMessageBox.Show(result2);
-                                    Pass = result2;
-                                }
-                            }
-                            catch (Exception xtra)
-                            {
-                                result = false;
-                                //XtraMessageBox.Show("Error al generar xml de nómina, archivo .KEY no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                XtraMessageBox.Show("Error al generar Xml de nómina, archivo .key no encontrado.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return false;
-                                //XtraMessageBox.Show(xtra.Message + "\nValidaKey()");
-                            }
-                            if (controlador.AgregaArchivoKey(rfc, RutaKey, Pass).Equals(true))
-                            {
-                                result = true;
-                            }
-                            else
-                            {
-                                result = false;
-                            }
-                        }
-                        else
-                        {
-                            result = false;
-                        }
-                    }
-                    else
-                    {
-                        XtraMessageBox.Show("Error al generar xml de nómina, archivo .KEY no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        result = false;
-                    }
+                    result = true;
                 }
                 else
                 {
-                    XtraMessageBox.Show("Error al generar xml de nómina, archivo .KEY no encontrado. Favor de notificar al administrador del sistema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     result = false;
+                    XtraMessageBox.Show("Error al generar xml de nómina, archivo .CER no encontrado. Favor de notificar al administrador del sistema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                #region AgregarKey (Obsoleto)
+                //if (controlador.GetAdminUsuario(usuarioSistema, bd, false).Equals(true))
+                //{
+                //    DialogResult resultado = XtraMessageBox.Show("Archivo .KEY no encontrado, ¿Desea Agregarlo?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    if (resultado.Equals(DialogResult.Yes))
+                //    {
+                //        OpenFileDialogKey.Title = "Selecciona Archivo KEY";
+                //        OpenFileDialogKey.Filter = "Archivos KEY (*.key;*)|*.key";
+                //        if (OpenFileDialogKey.ShowDialog() == DialogResult.OK)
+                //        {
+                //            RutaKey = OpenFileDialogKey.FileName;
+                //            //XtraMessageBox.Show(RutaKey);
+                //            try
+                //            {
+                //                // initialize a new XtraInputBoxArgs instance
+                //                XtraInputBoxArgs args = new XtraInputBoxArgs();
+                //                // set required Input Box options
+                //                args.Caption = "Archivo .key";
+                //                args.Prompt = "Contraseña";
+                //                args.DefaultButtonIndex = 0;
+                //                args.Showing += Args_Showing;
+                //                // initialize a DateEdit editor with custom settings
+                //                TextEdit editor = new TextEdit();
+                //                CheckEdit check = new CheckEdit();
+                //                args.Editor = check;
+                //                args.Editor = editor;
+                //                editor.Properties.UseSystemPasswordChar = true;
+                //                // display an Input Box with the custom editor
+                //                var result2 = XtraInputBox.Show(args).ToString();
+                //                // set a dialog icon
+                //                if (result2 != null || result2 != "")
+                //                {
+                //                    XtraMessageBox.Show(result2);
+                //                    Pass = result2;
+                //                }
+                //            }
+                //            catch (Exception xtra)
+                //            {
+                //                result = false;
+                //                //XtraMessageBox.Show("Error al generar xml de nómina, archivo .KEY no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //                XtraMessageBox.Show("Error al generar Xml de nómina, archivo .key no encontrado.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //                return false;
+                //                //XtraMessageBox.Show(xtra.Message + "\nValidaKey()");
+                //            }
+                //            if (controlador.AgregaArchivoKey(rfc, RutaKey, Pass).Equals(true))
+                //            {
+                //                result = true;
+                //            }
+                //            else
+                //            {
+                //                result = false;
+                //            }
+                //        }
+                //        else
+                //        {
+                //            result = false;
+                //        }
+                //    }
+                //    else
+                //    {
+                //        XtraMessageBox.Show("Error al generar xml de nómina, archivo .KEY no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //        result = false;
+                //    }
+                //}
+                //else
+                //{
+                //    XtraMessageBox.Show("Error al generar xml de nómina, archivo .KEY no encontrado. Favor de notificar al administrador del sistema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    result = false;
+                //}
+                #endregion
             }
             else
             {
