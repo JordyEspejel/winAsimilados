@@ -900,10 +900,6 @@ C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Deb
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.exe
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.pdb
 C:\Users\aespejel\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.ReporteNomina.resources
-C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\DevExpress.BonusSkins.v18.1.dll
-C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\DevExpress.Xpf.DocumentViewer.v18.1.Core.xml
-C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\de\DevExpress.RichEdit.v18.1.Core.resources.dll
-C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\de\DevExpress.XtraCharts.v18.1.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\libeay32.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\libgcc_s_dw2-1.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\mingwm10.dll
@@ -917,6 +913,7 @@ C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimi
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\BouncyCastle.Crypto.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\Common.Logging.Core.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\Common.Logging.dll
+C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\DevExpress.BonusSkins.v18.1.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\DevExpress.Charts.v18.1.Core.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\DevExpress.CodeParser.v18.1.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\DevExpress.Data.v18.1.dll
@@ -1053,6 +1050,7 @@ C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimi
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\DevExpress.Xpf.Docking.v18.1.xml
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\DevExpress.DataAccess.v18.1.UI.xml
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\DevExpress.XtraPivotGrid.v18.1.xml
+C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\DevExpress.Xpf.DocumentViewer.v18.1.Core.xml
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\DevExpress.Xpf.Layout.v18.1.Core.xml
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\DevExpress.XtraDiagram.v18.1.xml
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\de\DevExpress.Data.v18.1.resources.dll
@@ -1091,6 +1089,7 @@ C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimi
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\es\DevExpress.Printing.v18.1.Core.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\ja\DevExpress.Printing.v18.1.Core.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\ru\DevExpress.Printing.v18.1.Core.resources.dll
+C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\de\DevExpress.RichEdit.v18.1.Core.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\es\DevExpress.RichEdit.v18.1.Core.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\ja\DevExpress.RichEdit.v18.1.Core.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\ru\DevExpress.RichEdit.v18.1.Core.resources.dll
@@ -1118,6 +1117,7 @@ C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimi
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\es\DevExpress.XtraBars.v18.1.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\ja\DevExpress.XtraBars.v18.1.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\ru\DevExpress.XtraBars.v18.1.resources.dll
+C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\de\DevExpress.XtraCharts.v18.1.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\es\DevExpress.XtraCharts.v18.1.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\ja\DevExpress.XtraCharts.v18.1.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\ru\DevExpress.XtraCharts.v18.1.resources.dll
@@ -1233,6 +1233,7 @@ C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimi
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\es\DevExpress.Xpf.DocumentViewer.v18.1.Core.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\ja\DevExpress.Xpf.DocumentViewer.v18.1.Core.resources.dll
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\bin\Debug\ru\DevExpress.Xpf.DocumentViewer.v18.1.Core.resources.dll
+C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.csproj.AssemblyReference.cache
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Form1.resources
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Properties.Resources.resources
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Reports.repCaratulaFactura.resources
@@ -1248,6 +1249,7 @@ C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimi
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.Bitacora.resources
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.CancelarCFDI.resources
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.CargarArchivoNomina.resources
+C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.CargarXMLNomina.resources
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.DescargarArchivos.resources
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.DetallesNomina.resources
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.EditarCaratula.resources
@@ -1277,5 +1279,3 @@ C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimi
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.csproj.CopyComplete
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.exe
 C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.pdb
-C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.Views.CargarXMLNomina.resources
-C:\Users\aespejel.TI-SOPAPLI01\source\repos\winAsimilados\winAsimilados\winAsimilados\obj\Debug\winAsimilados.csproj.AssemblyReference.cache

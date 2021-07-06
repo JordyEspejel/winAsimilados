@@ -20,10 +20,10 @@
     <Setting Name="AsimiladosConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=192.168.16.175\SQLDESARROLLO;Initial Catalog=Asimilados;Persist Security Info=True;User ID=sa;Password=2021D3s4rr0ll04pl1c4c10n3s&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=192.168.16.252\INARI;Initial Catalog=Asimilados;Persist Security Info=True;User ID=sa;Password=20201N4r1SQL&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=192.168.16.175\SQLDESARROLLO;Initial Catalog=Asimilados;Persist Security Info=True;User ID=sa;Password=2021D3s4rr0ll04pl1c4c10n3s</Value>
+      <Value Profile="(Default)">Data Source=192.168.16.252\INARI;Initial Catalog=Asimilados;Persist Security Info=True;User ID=sa;Password=20201N4r1SQL</Value>
     </Setting>
   </Settings>
 </SettingsFile>

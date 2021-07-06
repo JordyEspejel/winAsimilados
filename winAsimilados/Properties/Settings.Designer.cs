@@ -12,7 +12,7 @@ namespace winAsimilados.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -86,8 +86,8 @@ namespace winAsimilados.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.16.175\\SQLDESARROLLO;Initial Catalog=Asimilados;Persist Secur" +
-            "ity Info=True;User ID=sa;Password=2021D3s4rr0ll04pl1c4c10n3s")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.16.252\\INARI;Initial Catalog=Asimilados;Persist Security Info" +
+            "=True;User ID=sa;Password=20201N4r1SQL")]
         public string AsimiladosConnectionString {
             get {
                 return ((string)(this["AsimiladosConnectionString"]));

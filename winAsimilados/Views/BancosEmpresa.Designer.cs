@@ -220,7 +220,7 @@
             // 
             // sqlDataSource1
             // 
-            this.sqlDataSource1.ConnectionName = "localhost_BSNOMINAS_Connection 1";
+            this.sqlDataSource1.ConnectionName = "Asimilados";
             this.sqlDataSource1.Name = "sqlDataSource1";
             columnExpression1.ColumnName = "IDEmpresa";
             table1.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"134\" />";
