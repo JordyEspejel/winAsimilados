@@ -333,14 +333,18 @@ namespace winAsimilados.Views
         {
             bool result = false;
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            string folder = path + @"Certificados\" + empresa + @"\";
+            string folder = path + @"Certificados\" + empresa.Trim() + @"\";
             string NombreArchivoCer = controlador.GetNameCer(rfc);
             string fullFilePathCer = folder + NombreArchivoCer;
             //string fullFilePathKey = folder + NombreArchivoKey;
             //string pathCerPrueba = controlador.ArchivoCER(rfc);
             string pathCerPrueba = fullFilePathCer;
             string RutaCer;
-            if (pathCerPrueba.Equals("") || pathCerPrueba.Equals(null) || !File.Exists(pathCerPrueba))
+            if (File.Exists(fullFilePathCer))
+            {
+                Console.WriteLine("entra");
+            }
+            if (!File.Exists(pathCerPrueba))
             {
                 controlador.GenerarCerKey(rfc);
                 if (File.Exists(pathCerPrueba))
@@ -401,14 +405,14 @@ namespace winAsimilados.Views
         {
             bool result = false;
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            string folder = path + @"Certificados\"  + empresa + @"\";
+            string folder = path + @"Certificados\"  + empresa.Trim() + @"\";
             string NombreArchivoKey = controlador.GetNameKey(rfc);
             //string fullFilePathCer = folder + NombreArchivoCer;
             string fullFilePathKey = folder + NombreArchivoKey;
             //string pathCerPrueba = controlador.ArchivoKEY(rfc);
             string pathCerPrueba = fullFilePathKey;
             //string RutaKey, Pass = null;
-            if (pathCerPrueba.Equals("") || pathCerPrueba.Equals(null) || !File.Exists(pathCerPrueba))
+            if (!File.Exists(pathCerPrueba))
             {
                 controlador.GenerarCerKey(rfc);
                 if (File.Exists(pathCerPrueba))

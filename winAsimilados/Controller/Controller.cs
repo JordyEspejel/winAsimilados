@@ -177,7 +177,7 @@ namespace winAsimilados.Controller
                         {
                             Directory.CreateDirectory(folder);
                         }
-                        File.WriteAllBytes(pathCer, certificado.cerArchivo);
+                            File.WriteAllBytes(pathCer, certificado.cerArchivo);
                         File.WriteAllBytes(pathKey, certificado.cerKeyArchivo);
                     }
                     else
@@ -5123,7 +5123,7 @@ namespace winAsimilados.Controller
                         string prod_endpoint = "TimbradoEndpoint_PRODUCCION";
                         string test_endpoint = "TimbradoEndpoint_TESTING";
 
-                        string pathPrincipalExe = AppDomain.CurrentDomain.BaseDirectory + "/";
+                        string pathPrincipalExe = AppDomain.CurrentDomain.BaseDirectory;
                         //string pathCer = @"C:\DocAsimilados\CSD01_AAA010101AAA.cer";
                         //string pathKey = @"C:\DocAsimilados\CSD01_AAA010101AAA.key";
                         //string pass = "12345678a";
@@ -5133,7 +5133,7 @@ namespace winAsimilados.Controller
                         //string pass = "ptpinari";
 
                         string pathDomain = AppDomain.CurrentDomain.BaseDirectory;
-                        string folder = pathDomain + @"Certificados\" + empresa + @"\";
+                        string folder = pathDomain + @"Certificados\" + empresa.Trim() + @"\";
                         string NombreArchivoCer = GetNameCer(rfc);
                         string NombreArchivoKey = GetNameKey(rfc);
                         string fullFilePathCer = folder + NombreArchivoCer;
