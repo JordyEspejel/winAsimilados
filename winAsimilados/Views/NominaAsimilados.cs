@@ -357,42 +357,42 @@ namespace winAsimilados.Views
                     XtraMessageBox.Show("Error al generar xml de nómina, archivo .CER no encontrado. Favor de notificar al administrador del sistema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 #region agregarCer (Obsoleto)
-                if (controlador.GetAdminUsuario(usuarioSistema, bd, false).Equals(true))
-                {
-                    DialogResult resultado = XtraMessageBox.Show("Archivo .CER no encontrado, ¿Desea Agregarlo?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (resultado.Equals(DialogResult.Yes))
-                    {
-                        OpenFileDialogCer.Title = "Selecciona Archivo CER";
-                        OpenFileDialogCer.Filter = "Archivos Certificado de Seguridad (*.cer;*)|*.cer";
-                        if (OpenFileDialogCer.ShowDialog() == DialogResult.OK)
-                        {
-                            RutaCer = OpenFileDialogCer.FileName;
-                            //XtraMessageBox.Show(RutaKey);
-                            if (controlador.AgregaArchivoCer(rfc, RutaCer).Equals(true))
-                            {
-                                result = true;
-                            }
-                            else
-                            {
-                                result = false;
-                            }
-                        }
-                        else
-                        {
-                            result = false;
-                        }
-                    }
-                    else
-                    {
-                        XtraMessageBox.Show("Error al generar xml de nómina, archivo .CER no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        result = false;
-                    }
-                }
-                else
-                {
-                    XtraMessageBox.Show("Error al generar xml de nómina, archivo .CER no encontrado. Favor de notificar al administrador del sistema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    result = false;
-                }
+                //if (controlador.GetAdminUsuario(usuarioSistema, bd, false).Equals(true))
+                //{
+                //    //DialogResult resultado = XtraMessageBox.Show("Archivo .CER no encontrado, ¿Desea Agregarlo?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    //if (resultado.Equals(DialogResult.Yes))
+                //    //{
+                //    //    OpenFileDialogCer.Title = "Selecciona Archivo CER";
+                //    //    OpenFileDialogCer.Filter = "Archivos Certificado de Seguridad (*.cer;*)|*.cer";
+                //    //    if (OpenFileDialogCer.ShowDialog() == DialogResult.OK)
+                //    //    {
+                //    //        RutaCer = OpenFileDialogCer.FileName;
+                //    //        //XtraMessageBox.Show(RutaKey);
+                //    //        if (controlador.AgregaArchivoCer(rfc, RutaCer).Equals(true))
+                //    //        {
+                //    //            result = true;
+                //    //        }
+                //    //        else
+                //    //        {
+                //    //            result = false;
+                //    //        }
+                //    //    }
+                //    //    else
+                //    //    {
+                //    //        result = false;
+                //    //    }
+                //    //}
+                //    //else
+                //    //{
+                //    //    XtraMessageBox.Show("Error al generar xml de nómina, archivo .CER no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    //    result = false;
+                //    //}
+                //}
+                //else
+                //{
+                //    XtraMessageBox.Show("Error al generar xml de nómina, archivo .CER no encontrado. Favor de notificar al administrador del sistema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    result = false;
+                //}
                 #endregion
             }
             else
