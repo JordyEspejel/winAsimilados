@@ -5003,7 +5003,7 @@ namespace winAsimilados.Controller
                 }
             }
         }
-
+        //funcion timbrado nomina actual
         public void TimradoNomina(List<E.Empleado> Lista, SplashScreenManager splashScreenManager1, string empresa, string rfc, string ip, DateTime FecIniPeriMasiv, DateTime FecFinPeriMasiv, DateTime FecPagoMasiv, string destino, bool enviaCorreo, string correoCliente, string PAC, string ambiente)
         {
             try
@@ -5310,6 +5310,7 @@ namespace winAsimilados.Controller
                         System.Xml.Xsl.XslCompiledTransform transformador = new System.Xml.Xsl.XslCompiledTransform(true);
                         transformador.Load(pathCadenaOriginalxslt);
 
+
                         using (StringWriter sw = new StringWriter())
                         using (XmlWriter xwo = XmlWriter.Create(sw, transformador.OutputSettings))
                         {
@@ -5327,7 +5328,13 @@ namespace winAsimilados.Controller
 
                         #endregion
                         splashScreenManager1.SetWaitFormCaption("Timbrando Documento..");
-
+                        string rutas = string.Concat("Rutas de sistema:\n", "pathArchivoXML: ", pathArchivoXML, "\n", "pathPrincipalExe: ", pathPrincipalExe, "\n", "pathCer: ", pathCer, "\n", "pathKey", pathKey);
+                        if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                        {
+                            splashScreenManager1.CloseWaitForm();
+                        }
+                        XtraMessageBox.Show(rutas, "Rutas sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        splashScreenManager1.ShowWaitForm();
                         try
                         {
                             #region TimbradoNTLINK
@@ -5938,7 +5945,9 @@ namespace winAsimilados.Controller
                     string prod_endpoint = "TimbradoEndpoint_PRODUCCION";
                     string test_endpoint = "TimbradoEndpoint_TESTING";
 
-                    string pathPrincipalExe = AppDomain.CurrentDomain.BaseDirectory + "/";
+                    string pathPrincipalExe = AppDomain.CurrentDomain.BaseDirectory;
+
+
                     //string pathCer = @"C:\DocAsimilados\CSD01_AAA010101AAA.cer";
                     //string pathKey = @"C:\DocAsimilados\CSD01_AAA010101AAA.key";
                     //string pass = "12345678a";
@@ -5949,6 +5958,9 @@ namespace winAsimilados.Controller
                     string pathCer = ArchivoCER(rfc);
                     string pathKey = ArchivoKEY(rfc);
                     string pass = PassKey(rfc);
+
+                    //string rutas = string.Concat("Rutas de sistema:\n", "pathArchivoXML: ", pathArchivoXML, "\n", "pathPrincipalExe: ", pathPrincipalExe,"\n", "pathCer: ", pathCer, "\n", "pathKey", pathKey);
+                    //XtraMessageBox.Show(rutas, "Rutas sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     string Inicio, Final, Serie, NumCer;
 

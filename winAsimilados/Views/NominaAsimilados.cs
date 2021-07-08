@@ -3147,7 +3147,7 @@ namespace winAsimilados.Views
                 XtraMessageBox.Show("Error al intentar mostrar información nómina:\n" + btnDetallesNomina.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //Boton timbrado actual
         private void BtnTimbrarNomina_Click(object sender, EventArgs e)
         {
             try
@@ -3167,7 +3167,7 @@ namespace winAsimilados.Views
                         return;
                     }
                 }
-
+                XtraMessageBox.Show("Inicia lectura de datos Empleados..", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 E.Parametros parametrosNomina = controlador.GetParametros(rfc);
                 //if (parametrosNomina.correo_cliente.Equals(""))
                 //{
