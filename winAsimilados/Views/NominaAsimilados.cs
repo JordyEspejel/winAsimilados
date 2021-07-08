@@ -3167,7 +3167,7 @@ namespace winAsimilados.Views
                         return;
                     }
                 }
-                XtraMessageBox.Show("Inicia lectura de datos Empleados..", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //XtraMessageBox.Show("Inicia lectura de datos Empleados..", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 E.Parametros parametrosNomina = controlador.GetParametros(rfc);
                 //if (parametrosNomina.correo_cliente.Equals(""))
                 //{

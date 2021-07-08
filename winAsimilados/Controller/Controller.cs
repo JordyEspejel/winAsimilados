@@ -1500,6 +1500,7 @@ namespace winAsimilados.Controller
         {
             try
             {
+                error = error.Replace("'","");
                 dtc.Connection.Open();
                 SqlCommand queryUpdate = (SqlCommand)dtc.Connection.CreateCommand();
                 queryUpdate.CommandText = @"UPDATE Nomina SET nominaDescripciponError = '" + error + "'" +
@@ -5328,13 +5329,13 @@ namespace winAsimilados.Controller
 
                         #endregion
                         splashScreenManager1.SetWaitFormCaption("Timbrando Documento..");
-                        string rutas = string.Concat("Rutas de sistema:\n", "pathArchivoXML: ", pathArchivoXML, "\n", "pathPrincipalExe: ", pathPrincipalExe, "\n", "pathCer: ", pathCer, "\n", "pathKey", pathKey);
-                        if (splashScreenManager1.IsSplashFormVisible.Equals(true))
-                        {
-                            splashScreenManager1.CloseWaitForm();
-                        }
-                        XtraMessageBox.Show(rutas, "Rutas sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        splashScreenManager1.ShowWaitForm();
+                        //string rutas = string.Concat("Rutas de sistema:\n", "pathArchivoXML: ", pathArchivoXML, "\n", "pathPrincipalExe: ", pathPrincipalExe, "\n", "pathCer: ", pathCer, "\n", "pathKey", pathKey);
+                        //if (splashScreenManager1.IsSplashFormVisible.Equals(true))
+                        //{
+                        //    splashScreenManager1.CloseWaitForm();
+                        //}
+                        //XtraMessageBox.Show(rutas, "Rutas sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //splashScreenManager1.ShowWaitForm();
                         try
                         {
                             #region TimbradoNTLINK
@@ -5378,7 +5379,7 @@ namespace winAsimilados.Controller
                                     {
                                         pathArchivoXML = pathCorreo;
                                     }
-                                    else if (destino.Equals("Empleado"))
+                                    else if (destino.Equals(""))
                                     {
                                         pathArchivoXML = Path.Combine(pathXml + item.Nombre.Replace(" ", string.Empty) + "_" + fecPago + @"\");
                                     }
@@ -5397,7 +5398,7 @@ namespace winAsimilados.Controller
                                     Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
                                     Folio.StatusSAT = "Vigente";
                                     Folio.selloCFD = ultDigSello;
-                                    //Folio.Folio = folio;
+                                    Folio.Folio = folio;
                                     Bitacora.UUID = UUIDNT;
                                     Bitacora.StatusSAT = "Vigente";
                                     Bitacora.Usuario = Properties.Settings.Default.Usuario.ToString();
