@@ -423,10 +423,20 @@ namespace winAsimilados.Views
                         {
                             File.Delete(certificado.cerKeyPath);
                         }
-                        certificado.cerArchivo = fileCer;
-                        certificado.cerKeyArchivo = fileKey;
+                        certificado.cerNombre = NombreArchivoCer;
+                        certificado.cerNum = parametros.NUMERO_CERTIFICADO;
+                        certificado.cerFechaVencimiento = Convert.ToDateTime(parametros.FECHA_VENCIMIENTO_CERTIFICADO);
+                        certificado.cerAsunto = parametros.ASUNTO_CERTIFICADO;
                         certificado.cerPath = fullFilePathCer;
+                        certificado.cerArchivo = fileCer;
+                        certificado.cerKeyNombre = NombreArchivoKey;
+                        certificado.cerKeyArchivo = fileKey;
                         certificado.cerKeyPath = fullFilePathKey;
+                        certificado.cerNombreEmpresa = parametros.NombreEmpresa;
+                        certificado.cerRFCEmpresa = parametros.RFC;
+                        certificado.cerNominaEmpresaID = controlador.GetIDEmpresa(parametros.RFC);
+                        certificado.cerFechaCarga = DateTime.Now;
+                        certificado.cerUsuarioCarga = usuarioSistema;
                         cr.SaveChanges();
                         controlador.GenerarCerKey(certificado.cerRFCEmpresa);
                     }

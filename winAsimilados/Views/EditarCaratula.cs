@@ -556,7 +556,7 @@ namespace winAsimilados.Views
                         caratulaPago.RetencionIVA = Math.Round(caratulaPago.Total * retencion, 2);
                     }
 
-                    caratulaPago.TotalFactura = Math.Round(caratulaPago.Total + caratulaPago.IVA + caratulaPago.RetencionIVA, 2);
+                    caratulaPago.TotalFactura = Math.Round(caratulaPago.Total + caratulaPago.IVA - caratulaPago.RetencionIVA, 2);
 
                     caratulaPago.TotalDeposito = Math.Round(caratulaPago.TotalFactura + caratulaPago.Ajuste, 2);
                     caratulaPago.ClaveFacturacion = lookUpClve.EditValue.ToString();

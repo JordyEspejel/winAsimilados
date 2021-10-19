@@ -11,7 +11,6 @@ using M = winAsimilados.Models;
 using C = winAsimilados.Controller;
 using DevExpress.XtraEditors;
 using System.IO;
-
 namespace winAsimilados.Views
 {
     public partial class CargarArchivoNomina : Form

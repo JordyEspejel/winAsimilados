@@ -1048,7 +1048,7 @@
             this.xrTableCell22.BackColor = System.Drawing.Color.Gray;
             this.xrTableCell22.BorderWidth = 3F;
             this.xrTableCell22.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SubTotal]+[IVA]+[RetencionIVA]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SubTotal]+[IVA]-[RetencionIVA]")});
             this.xrTableCell22.ForeColor = System.Drawing.Color.White;
             this.xrTableCell22.Multiline = true;
             this.xrTableCell22.Name = "xrTableCell22";

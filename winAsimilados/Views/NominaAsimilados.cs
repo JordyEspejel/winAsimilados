@@ -132,7 +132,7 @@ namespace winAsimilados.Views
         {
             this.Dispose();
         }
-
+        [Obsolete]
         private void BtnSelEmpl_Click(object sender, EventArgs e)
         {
             if (LookUpEmpl.Text.Equals("Seleccione / Escriba Empleado"))
@@ -151,7 +151,7 @@ namespace winAsimilados.Views
                 TxtCurp.Text = empleado.CURP;
                 periodicidad = TxtPeriPago.EditValue.ToString();
                 LblIngBru.Text = "Ingresos Brutos " + periodicidad;
-                LblIngNet.Text =  "Ingresos Netos " + periodicidad;
+                LblIngNet.Text = "Ingresos Netos " + periodicidad;
                 ChBruto.Checked = true;
                 //ChNeto.Checked = true;
                 FecPagoUni.EditValue = System.DateTime.Today.ToString("dd/MM/yyyy");
@@ -166,7 +166,7 @@ namespace winAsimilados.Views
             }
 
         }
-
+        [Obsolete]
         private void TxtIngresos_EditValueChanged(object sender, EventArgs e)
         {
             try
@@ -192,7 +192,7 @@ namespace winAsimilados.Views
                 XtraMessageBox.Show(ex.Message + "\nError Componente NominaAsimilados", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        [Obsolete]
         private void ChBruto_CheckedChanged(object sender, EventArgs e)
         {
             if (ChBruto.Checked.Equals(true))
@@ -206,7 +206,7 @@ namespace winAsimilados.Views
 
             }
         }
-
+        [Obsolete]
         private void ChNeto_CheckedChanged(object sender, EventArgs e)
         {
             if (ChNeto.Checked.Equals(true))
@@ -217,10 +217,10 @@ namespace winAsimilados.Views
                 {
                     GenerarCalculoIngresosNetos();
                 }
-                   
+
             }
         }
-
+        [Obsolete]
         private void ChCambioPeri_CheckedChanged(object sender, EventArgs e)
         {
             if (ChCambioPeri.Checked.Equals(true))
@@ -242,11 +242,12 @@ namespace winAsimilados.Views
                 TxtPeriPago.ReadOnly = true;
             }
         }
+        [Obsolete]
         private void GenerarCalculoIngresosBrutos()
         {
             try
             {
-                decimal neto= 0;
+                decimal neto = 0;
                 ingresos = Convert.ToDecimal(TxtIngresos.EditValue.ToString());
                 string ing = String.Format("{0:0.00}", ingresos);
                 ingresos = Convert.ToDecimal(ing);
@@ -286,10 +287,10 @@ namespace winAsimilados.Views
                 TxtISR.Text = Calculo.ISR.ToString();
                 TxtSubEmpl.Text = Calculo.Sub.ToString();
                 TxtIngNet.Text = Calculo.IngresosNetos.ToString();
-                
+
 
             }
-            catch(Exception calc)
+            catch (Exception calc)
             {
                 XtraMessageBox.Show(calc.Message +
                     "\nError Modulo Calculo Nomina Unitario: GenerarCalculoIngresosBrutos()",
@@ -297,6 +298,7 @@ namespace winAsimilados.Views
             }
 
         }
+        [Obsolete]
         private void GenerarCalculoIngresosNetos()
         {
             try
@@ -304,7 +306,7 @@ namespace winAsimilados.Views
                 ingresos = Convert.ToDecimal(TxtIngresos.EditValue.ToString());
                 string ing = String.Format("{0:0.00}", ingresos);
                 ingresos = Convert.ToDecimal(ing);
-                Calculo = controlador.GeneraCalculoInverso(ingresos, periodicidad,bd);
+                Calculo = controlador.GeneraCalculoInverso(ingresos, periodicidad, bd);
                 TxtIngBru.Text = Calculo.IngresosBrutos.ToString();
                 TxtLimInf.Text = Calculo.LimInferior.ToString();
                 TxtExcLimInf.Text = Calculo.ExLimInf.ToString();
@@ -405,7 +407,7 @@ namespace winAsimilados.Views
         {
             bool result = false;
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            string folder = path + @"Certificados\"  + empresa.Trim() + @"\";
+            string folder = path + @"Certificados\" + empresa.Trim() + @"\";
             string NombreArchivoKey = controlador.GetNameKey(rfc);
             //string fullFilePathCer = folder + NombreArchivoCer;
             string fullFilePathKey = folder + NombreArchivoKey;
@@ -502,7 +504,7 @@ namespace winAsimilados.Views
             return result;
         }
 
-
+        [Obsolete]
         private void ValidarXML()
         {
             try
@@ -723,7 +725,7 @@ namespace winAsimilados.Views
                 //Folio.XML = System.IO.File.ReadAllText(pathArchivoXML);
                 GenXML(comprobante);
                 #endregion
-                splashScreenManager1.SetWaitFormCaption( "Validando Timbrando..");
+                splashScreenManager1.SetWaitFormCaption("Validando Timbrando..");
 
                 try
                 {
@@ -808,7 +810,6 @@ namespace winAsimilados.Views
 
         }
 
-
         [Obsolete]
         private void GeneraXML()
         {
@@ -870,7 +871,7 @@ namespace winAsimilados.Views
                 //string pass = "ptpinari";
                 string pathCer = controlador.ArchivoCER(rfc);
                 string pathKey = controlador.ArchivoKEY(rfc);
-                string pass = controlador.PassKey(rfc); 
+                string pass = controlador.PassKey(rfc);
 
                 string Inicio, Final, Serie, NumCer;
 
@@ -918,7 +919,7 @@ namespace winAsimilados.Views
                 comprobanteReceptor.Rfc = empleado.RFC;
                 comprobanteReceptor.UsoCFDI = "P01";
 
-               
+
                 comprobante.Emisor = comprobanteEmisor;
                 comprobante.Receptor = comprobanteReceptor;
 
@@ -979,9 +980,9 @@ namespace winAsimilados.Views
                 nominaReceptor.SalarioBaseCotApor = 0;
 
                 NominaDeducciones nominaDeducciones = new NominaDeducciones();
-                NominaDeduccionesDeduccion nominaDeduccionesDeduccion  = new NominaDeduccionesDeduccion();
+                NominaDeduccionesDeduccion nominaDeduccionesDeduccion = new NominaDeduccionesDeduccion();
                 NominaPercepciones nominaPercepciones = new NominaPercepciones();
-                NominaPercepcionesPercepcion nominaPercepcionesPercepcion  = new NominaPercepcionesPercepcion();
+                NominaPercepcionesPercepcion nominaPercepcionesPercepcion = new NominaPercepcionesPercepcion();
 
                 nominaPercepciones.TotalSueldos = Calculo.IngresosBrutos;
                 nominaPercepciones.TotalExento = 0;
@@ -1033,15 +1034,15 @@ namespace winAsimilados.Views
                 //string ruta = @"C:\DocAsimilados\xslt\cadenaoriginal_3_3.xslt";
                 string pathCadenaOriginalxslt = pathPrincipalExe + @"xslt\cadenaoriginal_3_3.xslt";
                 System.Xml.Xsl.XslCompiledTransform transformador = new System.Xml.Xsl.XslCompiledTransform(true);
-                transformador.Load(pathCadenaOriginalxslt);       
+                transformador.Load(pathCadenaOriginalxslt);
 
                 using (StringWriter sw = new StringWriter())
                 using (XmlWriter xwo = XmlWriter.Create(sw, transformador.OutputSettings))
                 {
 
                     //transformador.Transform(pathXml, xwo);
-                    transformador.Transform(pathArchivoXML, xwo);                 
-                    cadenaOrig = sw.ToString(); 
+                    transformador.Transform(pathArchivoXML, xwo);
+                    cadenaOrig = sw.ToString();
                 }
 
                 SelloDigital selloDigital = new SelloDigital();
@@ -1122,7 +1123,8 @@ namespace winAsimilados.Views
                     }
                     //XtraMessageBox.Show(cFDIResultados.ToString());
                     //System.IO.File.WriteAllText(pathXml,);
-                } catch(Exception timbrado)
+                }
+                catch (Exception timbrado)
                 {
                     if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                     {
@@ -1134,7 +1136,7 @@ namespace winAsimilados.Views
                 }
                 splashScreenManager1.SetWaitFormCaption("Generando PDF..");
 
-               if(controlador.LeerXMLModAsim(pathArchivoXML, pathArchivoXMLF, splashScreenManager1).Equals(!true))
+                if (controlador.LeerXMLModAsim(pathArchivoXML, pathArchivoXMLF, splashScreenManager1).Equals(!true))
                 {
                     XtraMessageBox.Show("Hubo un error al generar archivo pdf", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -1163,7 +1165,7 @@ namespace winAsimilados.Views
         {
             //try
             //{
-                
+
             //    if (ValidaCer().Equals(false))
             //    {
             //        return;
@@ -1484,7 +1486,7 @@ namespace winAsimilados.Views
             //}
 
         }
-
+        [Obsolete]
         private void GenXML(Comprobante comprobante)
         {
             XmlSerializerNamespaces xmlNameSpace = new XmlSerializerNamespaces();
@@ -1508,6 +1510,7 @@ namespace winAsimilados.Views
             }
             System.IO.File.WriteAllText(pathArchivoXML, pathXmlWrit);
         }
+        [Obsolete]
         private void TxtPeriPago_EditValueChanged(object sender, EventArgs e)
         {
             periodicidad = TxtPeriPago.EditValue.ToString();
@@ -1528,7 +1531,7 @@ namespace winAsimilados.Views
         {
 
         }
-
+        [Obsolete]
         private void ChPeriMasiv_CheckedChanged(object sender, EventArgs e)
         {
             //if (ChPeriMasiv.Checked.Equals(true))
@@ -1555,7 +1558,7 @@ namespace winAsimilados.Views
             //}
 
         }
-
+        [Obsolete]
         private void BtnValidarInfo_Click(object sender, EventArgs e)
         {
             ValidarXML();
@@ -1600,19 +1603,19 @@ namespace winAsimilados.Views
                 }
                 else
                 {
-                        if (ValidaCer().Equals(false))
-                        {
-                            return;
-                        }
-                        if (ValidaKey().Equals(false))
-                        {
-                            return;
-                        }
+                    if (ValidaCer().Equals(false))
+                    {
+                        return;
+                    }
+                    if (ValidaKey().Equals(false))
+                    {
+                        return;
+                    }
 
-                        DateTime FechaInicioMasivo = Convert.ToDateTime(FecIniPeriMasiv.EditValue.ToString());
-                        DateTime FechaFinMasivo = Convert.ToDateTime(FecFinPeriMasiv.EditValue.ToString());
-                        DateTime FechaPago = Convert.ToDateTime(FecPagoMasiv.Text);
-                        controlador.ValXmlMasivo(empleadoMasivo, splash, empresa, rfc, ip, FechaInicioMasivo, FechaFinMasivo, FechaPago);                    
+                    DateTime FechaInicioMasivo = Convert.ToDateTime(FecIniPeriMasiv.EditValue.ToString());
+                    DateTime FechaFinMasivo = Convert.ToDateTime(FecFinPeriMasiv.EditValue.ToString());
+                    DateTime FechaPago = Convert.ToDateTime(FecPagoMasiv.Text);
+                    controlador.ValXmlMasivo(empleadoMasivo, splash, empresa, rfc, ip, FechaInicioMasivo, FechaFinMasivo, FechaPago);
                     //int row = -1;
                     //int contRow = gridViewNomiMasiv.RowCount;
                     //foreach (var item in emplMasiv)
@@ -1733,16 +1736,18 @@ namespace winAsimilados.Views
                     Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                     Excel.Worksheet worksheetQuincenal = (Excel.Worksheet)libroQuincenal.Sheets["Calculo"];
 
+                    //agregar libro catorcenal
                     var listaImporteEmpleados = new List<E.Empleado>();
 
                     for (rCnt = 2; rCnt <= rw; rCnt++)
                     {
                         try
                         {
-                             IDEmpl = Convert.ToInt32((range.Cells[rCnt, "A"] as Excel.Range).Value2.ToString());
-                        }catch(Exception idEmpl)
+                            IDEmpl = Convert.ToInt32((range.Cells[rCnt, "A"] as Excel.Range).Value2.ToString());
+                        }
+                        catch (Exception idEmpl)
                         {
-                             IDEmpl = 0;
+                            IDEmpl = 0;
                         }
                         try
                         {
@@ -1757,7 +1762,8 @@ namespace winAsimilados.Views
                         {
                             periodicidadExcel = (range.Cells[rCnt, "C"] as Excel.Range).Value2.ToString();
                             periodicidadExcel = periodicidadExcel.ToUpper();
-                        }catch (Exception periExcel)
+                        }
+                        catch (Exception periExcel)
                         {
                             periodicidadExcel = "MENSUAL";
                         }
@@ -1867,7 +1873,7 @@ namespace winAsimilados.Views
                                 if (empleado.Periodicidad != "")
                                 {
                                     //repositoryItemLookUpPeriLayout.ValueMember = periodicidad;
-                                    gridViewNomiMasiv.SetRowCellValue(i, "Periodicidad Pago",           empleado.Periodicidad);
+                                    gridViewNomiMasiv.SetRowCellValue(i, "Periodicidad Pago", empleado.Periodicidad);
                                 }
                                 gridViewNomiMasiv.SetRowCellValue(i, "ISR", empleado.ISR);
                                 gridViewNomiMasiv.SetRowCellValue(i, "Neto", empleado.IngresosBrutos);
@@ -2065,7 +2071,7 @@ namespace winAsimilados.Views
                     decimal resultado = 0;
                     decimal cuotaFija = 0;
                     decimal isrEx = 0;
-                    decimal sub = 0; 
+                    decimal sub = 0;
 
                     xlApp = new Excel.Application();
                     xlWorkBook = xlApp.Workbooks.Open(@Archivo, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue, misValue);
@@ -2192,113 +2198,114 @@ namespace winAsimilados.Views
                         //else
                         //{
                         if (periodicidadExcel.Equals("SEMANAL"))
-                            {
+                        {
                             periodicidadExcel = "02";
-                                //((Excel.Worksheet)excel.ActiveWorkbook.Sheets["Calculo"]).Activate();
+                            //((Excel.Worksheet)excel.ActiveWorkbook.Sheets["Calculo"]).Activate();
 
-                                worksheetSemanal.Cells[6, 3] = importeExcel;
-                                excelSem.Run("Hoja1.Inverso");
-                                //excel.Run("Hoja1.Inverso");
-                                //excel.Run("Hoja1.Inverso");
-                                //decimal resultado = Convert.ToDecimal(worksheet.Cells[8, 3]);
-                                gravado = Math.Round((decimal)(worksheetSemanal.Cells[8, 3] as Excel.Range).Value, 2);
-                                limInf = Math.Round((decimal)(worksheetSemanal.Cells[9, 3] as Excel.Range).Value, 2);
-                                ba = Math.Round((decimal)(worksheetSemanal.Cells[10, 3] as Excel.Range).Value, 2);
-                                tasa = Math.Round((decimal)(worksheetSemanal.Cells[11, 3] as Excel.Range).Value, 2);
-                                resultado = Math.Round((decimal)(worksheetSemanal.Cells[12, 3] as Excel.Range).Value, 2);
-                                cuotaFija = Math.Round((decimal)(worksheetSemanal.Cells[13, 3] as Excel.Range).Value, 2);
-                                isrEx = Math.Round((decimal)(worksheetSemanal.Cells[14, 3] as Excel.Range).Value, 2);
-                                sub = Math.Round((decimal)(worksheetSemanal.Cells[15, 3] as Excel.Range).Value, 2);
-                            }
-                            else if (periodicidadExcel.Equals("QUINCENAL"))
-                            {
+                            worksheetSemanal.Cells[6, 3] = importeExcel;
+                            excelSem.Run("Hoja1.Inverso");
+                            //excel.Run("Hoja1.Inverso");
+                            //excel.Run("Hoja1.Inverso");
+                            //decimal resultado = Convert.ToDecimal(worksheet.Cells[8, 3]);
+                            gravado = Math.Round((decimal)(worksheetSemanal.Cells[8, 3] as Excel.Range).Value, 2);
+                            limInf = Math.Round((decimal)(worksheetSemanal.Cells[9, 3] as Excel.Range).Value, 2);
+                            ba = Math.Round((decimal)(worksheetSemanal.Cells[10, 3] as Excel.Range).Value, 2);
+                            tasa = Math.Round((decimal)(worksheetSemanal.Cells[11, 3] as Excel.Range).Value, 2);
+                            resultado = Math.Round((decimal)(worksheetSemanal.Cells[12, 3] as Excel.Range).Value, 2);
+                            cuotaFija = Math.Round((decimal)(worksheetSemanal.Cells[13, 3] as Excel.Range).Value, 2);
+                            isrEx = Math.Round((decimal)(worksheetSemanal.Cells[14, 3] as Excel.Range).Value, 2);
+                            sub = Math.Round((decimal)(worksheetSemanal.Cells[15, 3] as Excel.Range).Value, 2);
+                        }
+                        else if (periodicidadExcel.Equals("QUINCENAL"))
+                        {
                             periodicidadExcel = "04";
 
-                                //((Excel.Worksheet)excel.ActiveWorkbook.Sheets["Calculo"]).Activate();
+                            //((Excel.Worksheet)excel.ActiveWorkbook.Sheets["Calculo"]).Activate();
 
-                                worksheetQuincenal.Cells[6, 3] = importeExcel;
-                                excelQui.Run("Hoja1.Inverso");
-                                //excel.Run("Hoja1.Inverso");
-                                //excel.Run("Hoja1.Inverso");
-                                //decimal resultado = Convert.ToDecimal(worksheet.Cells[8, 3]);
-                                gravado = Math.Round((decimal)(worksheetQuincenal.Cells[8, 3] as Excel.Range).Value, 2);
-                                limInf = Math.Round((decimal)(worksheetQuincenal.Cells[9, 3] as Excel.Range).Value, 2);
-                                ba = Math.Round((decimal)(worksheetQuincenal.Cells[10, 3] as Excel.Range).Value, 2);
-                                tasa = Math.Round((decimal)(worksheetQuincenal.Cells[11, 3] as Excel.Range).Value, 2);
-                                resultado = Math.Round((decimal)(worksheetQuincenal.Cells[12, 3] as Excel.Range).Value, 2);
-                                cuotaFija = Math.Round((decimal)(worksheetQuincenal.Cells[13, 3] as Excel.Range).Value, 2);
-                                isrEx = Math.Round((decimal)(worksheetQuincenal.Cells[14, 3] as Excel.Range).Value, 2);
-                                sub = Math.Round((decimal)(worksheetQuincenal.Cells[15, 3] as Excel.Range).Value, 2);
+                            worksheetQuincenal.Cells[6, 3] = importeExcel;
+                            excelQui.Run("Hoja1.Inverso");
+                            //excel.Run("Hoja1.Inverso");
+                            //excel.Run("Hoja1.Inverso");
+                            //decimal resultado = Convert.ToDecimal(worksheet.Cells[8, 3]);
+                            gravado = Math.Round((decimal)(worksheetQuincenal.Cells[8, 3] as Excel.Range).Value, 2);
+                            limInf = Math.Round((decimal)(worksheetQuincenal.Cells[9, 3] as Excel.Range).Value, 2);
+                            ba = Math.Round((decimal)(worksheetQuincenal.Cells[10, 3] as Excel.Range).Value, 2);
+                            tasa = Math.Round((decimal)(worksheetQuincenal.Cells[11, 3] as Excel.Range).Value, 2);
+                            resultado = Math.Round((decimal)(worksheetQuincenal.Cells[12, 3] as Excel.Range).Value, 2);
+                            cuotaFija = Math.Round((decimal)(worksheetQuincenal.Cells[13, 3] as Excel.Range).Value, 2);
+                            isrEx = Math.Round((decimal)(worksheetQuincenal.Cells[14, 3] as Excel.Range).Value, 2);
+                            sub = Math.Round((decimal)(worksheetQuincenal.Cells[15, 3] as Excel.Range).Value, 2);
 
 
-                            }else if (periodicidadExcel.Equals("CATORCENAL"))
-                            {
-                                periodicidadExcel = "03";
-                                worksheet.Cells[6, 3] = importeExcel;
-                                excel.Run("Hoja1.Inverso");
-                                //excel.Run("Hoja1.Inverso");
-                                //excel.Run("Hoja1.Inverso");
-                                //decimal resultado = Convert.ToDecimal(worksheet.Cells[8, 3]);
-                                gravado = Math.Round((decimal)(worksheet.Cells[8, 3] as Excel.Range).Value, 2);
-                                limInf = Math.Round((decimal)(worksheet.Cells[9, 3] as Excel.Range).Value, 2);
-                                ba = Math.Round((decimal)(worksheet.Cells[10, 3] as Excel.Range).Value, 2);
-                                tasa = Math.Round((decimal)(worksheet.Cells[11, 3] as Excel.Range).Value, 2);
-                                resultado = Math.Round((decimal)(worksheet.Cells[12, 3] as Excel.Range).Value, 2);
-                                cuotaFija = Math.Round((decimal)(worksheet.Cells[13, 3] as Excel.Range).Value, 2);
-                                isrEx = Math.Round((decimal)(worksheet.Cells[14, 3] as Excel.Range).Value, 2);
-                                sub = Math.Round((decimal)(worksheet.Cells[15, 3] as Excel.Range).Value, 2);
                         }
-                            else if (periodicidadExcel.Equals("MENSUAL"))
-                            {
+                        else if (periodicidadExcel.Equals("CATORCENAL"))
+                        {
+                            periodicidadExcel = "03";
+                            worksheet.Cells[6, 3] = importeExcel;
+                            excel.Run("Hoja1.Inverso");
+                            //excel.Run("Hoja1.Inverso");
+                            //excel.Run("Hoja1.Inverso");
+                            //decimal resultado = Convert.ToDecimal(worksheet.Cells[8, 3]);
+                            gravado = Math.Round((decimal)(worksheet.Cells[8, 3] as Excel.Range).Value, 2);
+                            limInf = Math.Round((decimal)(worksheet.Cells[9, 3] as Excel.Range).Value, 2);
+                            ba = Math.Round((decimal)(worksheet.Cells[10, 3] as Excel.Range).Value, 2);
+                            tasa = Math.Round((decimal)(worksheet.Cells[11, 3] as Excel.Range).Value, 2);
+                            resultado = Math.Round((decimal)(worksheet.Cells[12, 3] as Excel.Range).Value, 2);
+                            cuotaFija = Math.Round((decimal)(worksheet.Cells[13, 3] as Excel.Range).Value, 2);
+                            isrEx = Math.Round((decimal)(worksheet.Cells[14, 3] as Excel.Range).Value, 2);
+                            sub = Math.Round((decimal)(worksheet.Cells[15, 3] as Excel.Range).Value, 2);
+                        }
+                        else if (periodicidadExcel.Equals("MENSUAL"))
+                        {
                             periodicidadExcel = "05";
 
-                                //((Excel.Worksheet)excel.ActiveWorkbook.Sheets["Calculo"]).Activate();
+                            //((Excel.Worksheet)excel.ActiveWorkbook.Sheets["Calculo"]).Activate();
 
-                                worksheet.Cells[6, 3] = importeExcel;
-                                excel.Run("Hoja1.Inverso");
-                                //excel.Run("Hoja1.Inverso");
-                                //excel.Run("Hoja1.Inverso");
-                                //decimal resultado = Convert.ToDecimal(worksheet.Cells[8, 3]);
-                                gravado = Math.Round((decimal)(worksheet.Cells[8, 3] as Excel.Range).Value, 2);
-                                limInf = Math.Round((decimal)(worksheet.Cells[9, 3] as Excel.Range).Value, 2);
-                                ba = Math.Round((decimal)(worksheet.Cells[10, 3] as Excel.Range).Value, 2);
-                                tasa = Math.Round((decimal)(worksheet.Cells[11, 3] as Excel.Range).Value, 2);
-                                resultado = Math.Round((decimal)(worksheet.Cells[12, 3] as Excel.Range).Value, 2);
-                                cuotaFija = Math.Round((decimal)(worksheet.Cells[13, 3] as Excel.Range).Value, 2);
-                                isrEx = Math.Round((decimal)(worksheet.Cells[14, 3] as Excel.Range).Value, 2);
-                                sub = Math.Round((decimal)(worksheet.Cells[15, 3] as Excel.Range).Value, 2);
+                            worksheet.Cells[6, 3] = importeExcel;
+                            excel.Run("Hoja1.Inverso");
+                            //excel.Run("Hoja1.Inverso");
+                            //excel.Run("Hoja1.Inverso");
+                            //decimal resultado = Convert.ToDecimal(worksheet.Cells[8, 3]);
+                            gravado = Math.Round((decimal)(worksheet.Cells[8, 3] as Excel.Range).Value, 2);
+                            limInf = Math.Round((decimal)(worksheet.Cells[9, 3] as Excel.Range).Value, 2);
+                            ba = Math.Round((decimal)(worksheet.Cells[10, 3] as Excel.Range).Value, 2);
+                            tasa = Math.Round((decimal)(worksheet.Cells[11, 3] as Excel.Range).Value, 2);
+                            resultado = Math.Round((decimal)(worksheet.Cells[12, 3] as Excel.Range).Value, 2);
+                            cuotaFija = Math.Round((decimal)(worksheet.Cells[13, 3] as Excel.Range).Value, 2);
+                            isrEx = Math.Round((decimal)(worksheet.Cells[14, 3] as Excel.Range).Value, 2);
+                            sub = Math.Round((decimal)(worksheet.Cells[15, 3] as Excel.Range).Value, 2);
 
-                            }
-                            else
-                            {
+                        }
+                        else
+                        {
                             periodicidadExcel = "99";
-                                gravado = 0;
-                                limInf = 0;
-                                ba = 0;
-                                tasa = 0;
-                                resultado = 0;
-                                cuotaFija = 0;
-                                isrEx = 0;
-                                sub = 0;
-                            }
-                            listaImporteEmpleados.Add(new E.Empleado
-                            {
+                            gravado = 0;
+                            limInf = 0;
+                            ba = 0;
+                            tasa = 0;
+                            resultado = 0;
+                            cuotaFija = 0;
+                            isrEx = 0;
+                            sub = 0;
+                        }
+                        listaImporteEmpleados.Add(new E.Empleado
+                        {
 
-                                IDEmpleado = IDEmpl,
-                                Periodicidad = periodicidadExcel,
-                                IngresosBrutos = gravado,
-                                LimInferior = limInf,
-                                ExLimInf = ba,
-                                PerExLimInf = tasa,
-                                ImpMarg = resultado,
-                                CF = cuotaFija,
-                                ISR = isrEx,
-                                Sub = sub,
-                                IngresosNetos = importeExcel,
-                                //fechaAplicacion = Convert.ToDateTime(fechaAplicacion),
-                                //fecIniPeri = Convert.ToDateTime(fechaIniPeriodo),
-                                //fecFinPeri = Convert.ToDateTime(fechaFinperiodo)
-                            });
+                            IDEmpleado = IDEmpl,
+                            Periodicidad = periodicidadExcel,
+                            IngresosBrutos = gravado,
+                            LimInferior = limInf,
+                            ExLimInf = ba,
+                            PerExLimInf = tasa,
+                            ImpMarg = resultado,
+                            CF = cuotaFija,
+                            ISR = isrEx,
+                            Sub = sub,
+                            IngresosNetos = importeExcel,
+                            //fechaAplicacion = Convert.ToDateTime(fechaAplicacion),
+                            //fecIniPeri = Convert.ToDateTime(fechaIniPeriodo),
+                            //fecFinPeri = Convert.ToDateTime(fechaFinperiodo)
+                        });
                         //}
 
                     }
@@ -2335,7 +2342,7 @@ namespace winAsimilados.Views
                                 gridViewLayoutBanorte.SetRowCellValue(i, "Sub", empleado.Sub);
                                 gridViewLayoutBanorte.SetRowCellValue(i, "ISR", empleado.ISR);
                                 gridViewLayoutBanorte.SetRowCellValue(i, "Ingresos", empleado.IngresosNetos);
-                                gridViewLayoutBanorte.SetRowCellValue(i, "Otro Concepto",0.00);
+                                gridViewLayoutBanorte.SetRowCellValue(i, "Otro Concepto", 0.00);
                                 //gridViewLayoutBanorte.SetRowCellValue(i, "Fecha Aplicacion", empleado.fechaAplicacion);
                                 //gridViewLayoutBanorte.SetRowCellValue(i, "Fecha Inicio Periodo", empleado.fecIniPeri);
                                 //gridViewLayoutBanorte.SetRowCellValue(i, "Fecha Fin Periodo", empleado.fecFinPeri);
@@ -2420,7 +2427,7 @@ namespace winAsimilados.Views
             }
             catch (Exception importar)
             {
-                if (splashScreenManager1.IsSplashFormVisible.Equals(true)) 
+                if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                 {
                     splashScreenManager1.CloseWaitForm();
                 }
@@ -2430,7 +2437,7 @@ namespace winAsimilados.Views
         }
 
         private void repositoryItemLookUpEdit1_EditValueChanged(object sender, EventArgs e)
-        {      
+        {
             System.Windows.Forms.SendKeys.Send("{ENTER}");
         }
 
@@ -2449,7 +2456,7 @@ namespace winAsimilados.Views
         private void txtVac_EditValueChanged(object sender, EventArgs e)
         {
             try
-           {
+            {
                 vacaciones = Convert.ToDecimal(txtVac.Text);
             }
             catch (Exception vac)
@@ -2508,7 +2515,7 @@ namespace winAsimilados.Views
                     XtraMessageBox.Show("Pago validado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     controlador.ActualizaStatusLayout(nomCaratulaGenLayout, "Pagado");
                     controlador.ListaCaratulas(gridControlLayout);
-                    controlador.ListadoLayoutGenerados(gridControlFactura);                    
+                    controlador.ListadoLayoutGenerados(gridControlFactura);
                 }
                 else
                 {
@@ -2592,7 +2599,7 @@ namespace winAsimilados.Views
             {
                 EditarCaratula editarCaratula = new EditarCaratula(nomCaratulaGenLayout, nomGenLayout, splashScreenManager1, rfc, ResumenNominaID)
                 {
-                    Text = "Editar " + nomCaratulaGenLayout  ,                   
+                    Text = "Editar " + nomCaratulaGenLayout,
                 };
                 editarCaratula.FormClosed += editarCaratula_FormClosed;
                 editarCaratula.ShowDialog();
@@ -2610,14 +2617,14 @@ namespace winAsimilados.Views
         {
 
             string caratula = gridViewLayout.GetFocusedRowCellValue(colCaratula).ToString();
-             
+
             if (caratula.Length > 0)
             {
                 MostrarReporte(caratula, 0);
                 MostrarReporte(caratula, 1);
             }
 
-            
+
         }
 
         [Obsolete]
@@ -2887,7 +2894,7 @@ namespace winAsimilados.Views
                     resumenNominaID = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[39]).ToString();
                     estatusSAT = gridViewLayout.GetRowCellValue(i, gridViewLayout.Columns[40]).ToString();
                 }
-            }      
+            }
             if (estatusSAT.Equals("Timbrado"))
             {
                 if (splashScreenManager1.IsSplashFormVisible.Equals(true))
@@ -2954,7 +2961,7 @@ namespace winAsimilados.Views
         {
 
         }
-
+        [Obsolete]
         private void chBoxCorreoEmpleado_CheckedChanged(object sender, EventArgs e)
         {
             if (chBoxCorreoEmpleado.Checked.Equals(true))
@@ -2968,7 +2975,7 @@ namespace winAsimilados.Views
                 chBoxClte.Enabled = true;
             }
         }
-
+        [Obsolete]
         private void chBoxClte_CheckedChanged(object sender, EventArgs e)
         {
             if (chBoxClte.Checked.Equals(true))
@@ -2982,7 +2989,7 @@ namespace winAsimilados.Views
                 chBoxCorreoEmpleado.Enabled = true;
             }
         }
-
+        [Obsolete]
         private void chEditSolucion_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -3009,12 +3016,13 @@ namespace winAsimilados.Views
                         txtPACActivo.Text = "Solucion Factible / Producción";
                     }
                 }
-            }catch (Exception SL)
+            }
+            catch (Exception SL)
             {
 
             }
         }
-
+        [Obsolete]
         private void chNtLink_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -3040,12 +3048,13 @@ namespace winAsimilados.Views
                         txtPACActivo.Text = "Solucion Factible / Producción";
                     }
                 }
-            }catch (Exception chLINK)
+            }
+            catch (Exception chLINK)
             {
 
             }
         }
-
+        [Obsolete]
         private void chBoxCorreoEmpleado2_CheckedChanged(object sender, EventArgs e)
         {
             if (chBoxCorreoEmpleado2.Checked.Equals(true))
@@ -3059,7 +3068,7 @@ namespace winAsimilados.Views
                 chBoxCorreoClte2.Enabled = true;
             }
         }
-
+        [Obsolete]
         private void lookUpPAC_EditValueChanged(object sender, EventArgs e)
         {
             try
@@ -3073,7 +3082,7 @@ namespace winAsimilados.Views
                 {
                     txtPACActivo.Text = "NT-LINK / Pruebas";
                 }
-                 if (chEditSolucion.Checked.Equals(true) && ambiente.Equals("Pruebas"))
+                if (chEditSolucion.Checked.Equals(true) && ambiente.Equals("Pruebas"))
                 {
                     txtPACActivo.Text = "Solucion Factible / Pruebas";
                 }
@@ -3081,17 +3090,18 @@ namespace winAsimilados.Views
                 {
                     txtPACActivo.Text = "Solucion Factible / Producción";
                 }
-            }catch (Exception PAC)
+            }
+            catch (Exception PAC)
             {
 
             }
         }
-
+        [Obsolete]
         private void gridControlNomiMasiv_Click(object sender, EventArgs e)
         {
 
         }
-
+        [Obsolete]
         private void chBoxCorreoClte2_CheckedChanged(object sender, EventArgs e)
         {
             if (chBoxCorreoClte2.Checked.Equals(true))
@@ -3109,7 +3119,7 @@ namespace winAsimilados.Views
         private void BtnDetallesNomi_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 if (gridViewNomina.RowCount.Equals(0))
                 {
                     XtraMessageBox.Show("La tabla no contiene información", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -3138,7 +3148,7 @@ namespace winAsimilados.Views
                     detallesNomina.BringToFront();
                 }
             }
-            catch(Exception btnDetallesNomina)
+            catch (Exception btnDetallesNomina)
             {
                 if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                 {
@@ -3151,7 +3161,8 @@ namespace winAsimilados.Views
         private void BtnTimbrarNomina_Click(object sender, EventArgs e)
         {
             try
-            {               
+            {
+                //validaciones
                 if (pacTimbrado.Equals("NT") && ambiente.Equals("Pruebas"))
                 {
                     XtraMessageBox.Show("El timbrado de pruebas no esta disponible para NT-LINK", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -3194,31 +3205,32 @@ namespace winAsimilados.Views
                         resumenNominaID = gridViewTimbradoNomina.GetRowCellValue(i, gridViewTimbradoNomina.Columns[15]).ToString();
                     }
                 }
-                    string IdCliente = controlador.GetIDClienteNomina(resumenNominaID);
-                    string correoCliente = controlador.GetCorreoClienteNomina(IdCliente);
+                string IdCliente = controlador.GetIDClienteNomina(resumenNominaID);
+                string correoCliente = controlador.GetCorreoClienteNomina(IdCliente);
 
-                    if (correoCliente.Equals(""))
-                    {
-                        XtraMessageBox.Show("El correo de la empresa (cliente) no se ha definido. Para contiunar, por favor dar de alta el correo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
+                if (correoCliente.Equals(""))
+                {
+                    XtraMessageBox.Show("El correo de la empresa (cliente) no se ha definido. Para contiunar, por favor dar de alta el correo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
-                    if (estatus.Equals("Timbrado"))
-                    {
-                        XtraMessageBox.Show("La nómina, del empleado " + nombreEmpleado + " en el periodo " + periodo + " ya fue timbrado anteriormente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                    else if (estatus.Equals("Cancelado"))
-                    {
-                        XtraMessageBox.Show("La nómina, del empleado " + nombreEmpleado + " en el periodo " + periodo + " ha sido cancelada, no es posible timbrarla de nuevo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                    else if (estatus.Equals("En Proceso de Cancelación"))
-                    {
-                        XtraMessageBox.Show("La nómina, del empleado " + nombreEmpleado + " en el periodo " + periodo + " Se encuentra en proceso de cancelación, no es posible timbrarla de nuevo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
+                if (estatus.Equals("Timbrado"))
+                {
+                    XtraMessageBox.Show("La nómina, del empleado " + nombreEmpleado + " en el periodo " + periodo + " ya fue timbrado anteriormente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else if (estatus.Equals("Cancelado"))
+                {
+                    XtraMessageBox.Show("La nómina, del empleado " + nombreEmpleado + " en el periodo " + periodo + " ha sido cancelada, no es posible timbrarla de nuevo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else if (estatus.Equals("En Proceso de Cancelación"))
+                {
+                    XtraMessageBox.Show("La nómina, del empleado " + nombreEmpleado + " en el periodo " + periodo + " Se encuentra en proceso de cancelación, no es posible timbrarla de nuevo.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                } //fin validaciones
 
+                //inicia timbrado, se obtiene lista de nominas a timbrar
                 var empleadoMasivo = new List<E.Empleado>();
                 E.Empleado[] emplMasiv = null;
                 DateTime FechaInicioMasivo = Convert.ToDateTime("01/01/1900");
@@ -3287,6 +3299,7 @@ namespace winAsimilados.Views
                 }
                 else
                 {
+                    //validan archivor cer y key
                     if (ValidaCer().Equals(false))
                     {
                         return;
@@ -3295,6 +3308,7 @@ namespace winAsimilados.Views
                     {
                         return;
                     }
+                    //controlador contiene metodos de timbrado (WS proveedor PAC)
                     controlador.TimradoNomina(empleadoMasivo, splash, empresa, rfc, ip, FechaInicioMasivo, FechaFinMasivo, FechaPago, "", true, correoCliente, pacTimbrado, ambiente);
                     this.CargaTimbresDisponibles();
                     sqlDataSource2.Fill();
@@ -3356,7 +3370,7 @@ namespace winAsimilados.Views
                             //XtraMessageBox.Icons[MessageBoxIcon.Exclamation] = icon;
                             controlador.CerrarNomina(IDResumenNomina, resumenNominaID, usuarioSistema);
                             sqlDataSource2.Fill();
-                            sqlDataSource1.Fill();                           
+                            sqlDataSource1.Fill();
                             XtraMessageBox.Show("¡Nómina cerrada con éxito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             controlador.ListaCaratulas(gridControlLayout);
                         }
@@ -3405,7 +3419,8 @@ namespace winAsimilados.Views
                     cargarArchivo.ShowDialog();
                     cargarArchivo.BringToFront();
                 }
-                }catch (Exception cargarArchivo)
+            }
+            catch (Exception cargarArchivo)
             {
                 string mensaje = string.Concat("¡Error al intentar cargar archivo!", "\n", cargarArchivo.Message);
                 XtraMessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -3458,7 +3473,8 @@ namespace winAsimilados.Views
                 CargarXMLNomina cargarXML = new CargarXMLNomina();
                 cargarXML.ShowDialog();
                 cargarXML.BringToFront();
-            }catch (Exception cargarXML)
+            }
+            catch (Exception cargarXML)
             {
                 string mensaje = string.Concat("¡Error al intentar cargar archivo!", "\n", cargarXML.Message);
                 XtraMessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -3518,7 +3534,8 @@ namespace winAsimilados.Views
                         }
                     }
                 }
-            } catch(Exception btnCerrarNomi)
+            }
+            catch (Exception btnCerrarNomi)
             {
                 XtraMessageBox.Show("Error al intentar cerrar nómina:\n" + btnCerrarNomi.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -3611,7 +3628,7 @@ namespace winAsimilados.Views
 
         private void repositoryItemLookUpPeriLayout_EditValueChanged(object sender, EventArgs e)
         {
-            
+
             System.Windows.Forms.SendKeys.Send("{ENTER}");
         }
 
@@ -3648,9 +3665,9 @@ namespace winAsimilados.Views
 
 
                 if (lookUpEmprPago.Text.Equals("Seleccione"))
-                {                   
+                {
                     XtraMessageBox.Show("Por favor seleccione empresa que realiza pago.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;                   
+                    return;
                 }
 
                 if (lookUpEmprPago.Text != "Seleccione" && lookUpBanco.Text.Equals("Seleccione"))
@@ -3668,7 +3685,7 @@ namespace winAsimilados.Views
                 #region validacionLogoEmpresa
                 if (controlador.BuscaLogoEmpresa(lookUpEmprPago.EditValue.ToString()).Equals(true))
                 {
-                   fullPath = controlador.GetLogoEmpresa(lookUpEmprPago.EditValue.ToString());
+                    fullPath = controlador.GetLogoEmpresa(lookUpEmprPago.EditValue.ToString());
                 }
                 else
                 {
@@ -3683,14 +3700,14 @@ namespace winAsimilados.Views
                 splashScreenManager1.ShowWaitForm();
                 splashScreenManager1.SetWaitFormCaption("Generando Caratula..");
                 string agu = txtAgu.Text;
-                agu = agu.Replace("$","");
+                agu = agu.Replace("$", "");
                 string vac = txtVac.Text;
                 vac = vac.Replace("$", "");
                 string prim = txtPrimVac.Text;
                 prim = prim.Replace("$", "");
-                aguinaldo = Math.Round(Convert.ToDecimal(agu),2);
-                vacaciones = Math.Round(Convert.ToDecimal(vac),2);
-                primaVac = Math.Round(Convert.ToDecimal(prim),2);
+                aguinaldo = Math.Round(Convert.ToDecimal(agu), 2);
+                vacaciones = Math.Round(Convert.ToDecimal(vac), 2);
+                primaVac = Math.Round(Convert.ToDecimal(prim), 2);
                 string IDCliente = lookUpCliente.EditValue.ToString();
                 string nombreCliente = lookUpCliente.Text;
                 string IDEmpresa = lookUpEmprPago.EditValue.ToString();
@@ -3732,7 +3749,7 @@ namespace winAsimilados.Views
                 string periodo = "";
                 //string mesActual = DateTime.Now.Month.ToString();
                 int contPeriodo = controlador.ObtieneContPeriodoNomina(nominaEmpresaID, mes, IDCliente, IDEmpresa, splashScreenManager1);
-                    contPeriodo++;
+                contPeriodo++;
                 if (Convert.ToInt32(mes) < 10)
                 {
                     if (contPeriodo < 10)
@@ -3800,12 +3817,12 @@ namespace winAsimilados.Views
                         netoMasiv = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[14]));
                         numEmplLayoutBanorte = gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[0]).ToString();
                         periPagoLayout = gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[4]).ToString();
-                        LimInferiorLayout = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[7])); 
-                        ExLimInfLayout   = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[8])); 
-                        PerExLimInfLayout= Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[9])); 
-                        ImpMargLayout    = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[10])); 
-                        CFLayout         = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[11])); 
-                        SubLayout = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[13])); 
+                        LimInferiorLayout = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[7]));
+                        ExLimInfLayout = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[8]));
+                        PerExLimInfLayout = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[9]));
+                        ImpMargLayout = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[10]));
+                        CFLayout = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[11]));
+                        SubLayout = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[13]));
                         otrosConceptos = Convert.ToDecimal(gridViewLayoutBanorte.GetRowCellValue(i, gridViewLayoutBanorte.Columns[15]));
 
                         empleadoLayout = controlador.BuscaEmpleado(rfcEmplMasiv);
@@ -3846,7 +3863,8 @@ namespace winAsimilados.Views
                                 XtraMessageBox.Show("El empleado: " + empleadoLayout.Nombre + ", No tiene definido el # de cuenta, favor de validar e intentar nuevamente.\nFin de proceso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
-                        }else if (empleadoLayout.tipoPago.Equals("040"))
+                        }
+                        else if (empleadoLayout.tipoPago.Equals("040"))
                         {
                             if (empleadoLayout.clabe_bancaria.Equals("0") || empleadoLayout.clabe_bancaria.Equals("000000000000000000"))
                             {
@@ -3879,7 +3897,7 @@ namespace winAsimilados.Views
                             {
                                 splashScreenManager1.CloseWaitForm();
                             }
-                            var resultado = XtraMessageBox.Show("El empleado " + empleadoLayout.Nombre + " No tiene ingresos. ¿Desea continuar?" , "Mensaje" , MessageBoxButtons.YesNo , MessageBoxIcon.Question);
+                            var resultado = XtraMessageBox.Show("El empleado " + empleadoLayout.Nombre + " No tiene ingresos. ¿Desea continuar?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                             if (resultado.Equals(DialogResult.No))
                             {
@@ -3939,7 +3957,7 @@ namespace winAsimilados.Views
                                 bancoEmpresaPago = lookUpBanco.EditValue.ToString(),
                                 descuentos = descuento,
                                 ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + IDCliente + "_" + idEmpresaCaratula + "_" + periodo,
-                            nominaEmpresaID = nominaEmpresaID
+                                nominaEmpresaID = nominaEmpresaID
                             });
                         }
 
@@ -3954,37 +3972,37 @@ namespace winAsimilados.Views
                             Periodicidad = tipoIngresos
                         });
                         emplMasiv = empleadoMasivoLayout.ToArray();
+
+                        nominaMasiva.Add(new M.Nomina
+                        {
+                            nominanumEmpl = Convert.ToInt32(empleadoLayout.NumEmpl),
+                            nominanombreEmpleado = empleadoLayout.Nombre,
+                            nominaRFCEmpleado = rfcEmplMasiv,
+                            nominaPeriodidicadPago = tipoIngresos,
+                            nominaIngresos = netoMasiv,
+                            nominaIngresosBruto = ingresosMasiv,
+                            nominaISR = ISRMasiv,
+                            nominaFechaPago = fechaApliPeri,
+                            nominaFechaIniPeri = fechaInPer,
+                            nominaFechaFinPero = fechaFiPer,
+                            nominaFechaCreacion = DateTime.Now,
+                            nominaEstatus = "Generado",
+                            nominaEstatusSAT = "",
+                            nominaPeriodo = periodo,
+                            nominaEmpresa = parametrosNomina.NombreEmpresa,
+                            nominaRFCEmpresa = parametrosNomina.RFC,
+                            nominaDescripciponError = "",
+                            nominaEmpresaNominaID = parametrosNomina.NOMINA_EMPRESA_ID,
+                            nominaUsuario = usuarioSistema,
+                            ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + IDCliente + "_" + idEmpresaCaratula + "_" + periodo,
+                            nominaIDCliente = IDCliente,
+                            nominaCliente = lookUpCliente.Text,
+                            nominaIDEmpresaPago = IDEmpresa,
+                            nominaEmpresaPago = lookUpEmprPago.Text
+                        });
                     }
-
-                    nominaMasiva.Add(new M.Nomina
-                    {
-                        nominanumEmpl = Convert.ToInt32(empleadoLayout.NumEmpl),
-                        nominanombreEmpleado = empleadoLayout.Nombre,
-                        nominaRFCEmpleado = rfcEmplMasiv,
-                        nominaPeriodidicadPago = tipoIngresos,
-                        nominaIngresos = netoMasiv,
-                        nominaIngresosBruto = ingresosMasiv,
-                        nominaISR = ISRMasiv,
-                        nominaFechaPago = fechaApliPeri,
-                        nominaFechaIniPeri = fechaInPer,
-                        nominaFechaFinPero = fechaFiPer,
-                        nominaFechaCreacion = DateTime.Now,
-                        nominaEstatus = "Generado",
-                        nominaEstatusSAT = "",
-                        nominaPeriodo = periodo,
-                        nominaEmpresa = parametrosNomina.NombreEmpresa,
-                        nominaRFCEmpresa = parametrosNomina.RFC,
-                        nominaDescripciponError = "",
-                        nominaEmpresaNominaID = parametrosNomina.NOMINA_EMPRESA_ID,
-                        nominaUsuario = usuarioSistema,
-                        ResumenNominaID = "Nomina_" + parametrosNomina.NombreEmpresa + "_" + IDCliente + "_" + idEmpresaCaratula + "_" + periodo,
-                        nominaIDCliente = IDCliente,
-                        nominaCliente = lookUpCliente.Text,
-                        nominaIDEmpresaPago = IDEmpresa,
-                        nominaEmpresaPago = lookUpEmprPago.Text
-                    });
-
-                }
+                    //Fin if row selected
+                } // fin for recorre grid
                 foreach (var item in listaLayout)
                 {
                     totalPagoAsimilados = totalPagoAsimilados + item.depositoNeto;
@@ -4037,7 +4055,7 @@ namespace winAsimilados.Views
                     caratulaPago.RetencionIVA = Math.Round(caratulaPago.Total * retencion, 2);
                 }
 
-                caratulaPago.TotalFactura = Math.Round(caratulaPago.Total + caratulaPago.IVA + caratulaPago.RetencionIVA, 2);
+                caratulaPago.TotalFactura = Math.Round(caratulaPago.Total + caratulaPago.IVA - caratulaPago.RetencionIVA, 2);
 
                 caratulaPago.TotalDeposito = Math.Round(caratulaPago.TotalFactura + caratulaPago.Ajuste, 2);
                 caratulaPago.ClaveFacturacion = lookUpClave.EditValue.ToString() /*+ "(" + txtDescClave.Text + ")"*/;
@@ -4120,7 +4138,7 @@ namespace winAsimilados.Views
                     //controlador.GenXmlMasivo(empleadoMasivoLayout, splash, empresa, rfc, ip, FechaInicioMasivo, FechaFinMasivo, FechaPago);
                 }
             }
-            catch(Exception banorte)
+            catch (Exception banorte)
             {
                 if (splashScreenManager1.IsSplashFormVisible.Equals(true))
                 {
@@ -4145,7 +4163,7 @@ namespace winAsimilados.Views
                 {
                     reporte = new Reports.repCaratulaFactura(caratula);
 
-                }             
+                }
                 reporte.FilterString = "[caratula] ='" + caratula + "'";
                 reporte.FillDataSource();
 
@@ -4176,7 +4194,8 @@ namespace winAsimilados.Views
                 printTool.ShowPreview();
                 //printTool.ShowPreviewDialog();
                 //printTool.ShowRibbonPreviewDialog();
-            }catch(Exception reporte)
+            }
+            catch (Exception reporte)
             {
                 XtraMessageBox.Show(reporte.Message + "mostrarReporte()", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -4247,19 +4266,21 @@ namespace winAsimilados.Views
             txtTimbres.Text = totalTimbres.ToString();
             txtTimbresMasiv.Text = totalTimbres.ToString();
         }
-
-        public void DefinirPAC() 
+        [Obsolete]
+        public void DefinirPAC()
         {
             chNtLink.Checked = true;
             lookUpPAC.EditValue = "Produccion";
-            
+
             if (chNtLink.Checked.Equals(true) && ambiente.Equals("Produccion"))
             {
                 txtPACActivo.Text = "NT-LINK / Producción";
-            }else if (chNtLink.Checked.Equals(true) && ambiente.Equals("Pruebas"))
+            }
+            else if (chNtLink.Checked.Equals(true) && ambiente.Equals("Pruebas"))
             {
                 txtPACActivo.Text = "NT-LINK / Pruebas";
-            }else if (chEditSolucion.Checked.Equals(true) && ambiente.Equals("Pruebas"))
+            }
+            else if (chEditSolucion.Checked.Equals(true) && ambiente.Equals("Pruebas"))
             {
                 txtPACActivo.Text = "Solucion Factible / Pruebas";
             }
@@ -4314,7 +4335,7 @@ namespace winAsimilados.Views
                 }
                 FecAplicacionLayoutBanorte.Value = System.DateTime.Today;
                 FecIniLayout.Value = System.DateTime.Today;
-                FecFinLayout.Value = System.DateTime.Today;               
+                FecFinLayout.Value = System.DateTime.Today;
                 sqlDataSource1.Queries[0].Parameters[0].Value = nominaEmpresaID;
                 sqlDataSource1.Fill();
                 //lookUpCliente.EditValue = "E00000";
@@ -4382,7 +4403,7 @@ namespace winAsimilados.Views
                 lookUpTipoPago.EditValue = infoCliente.Metodo_Pago;
                 lookUpFormaPago.EditValue = infoCliente.Forma_Pago;
             }
-            catch(Exception cliente)
+            catch (Exception cliente)
             {
 
             }
@@ -4403,7 +4424,8 @@ namespace winAsimilados.Views
                 {
                     XtraMessageBox.Show("El timbrado de pruebas no esta disponible para NT-LINK", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
-                }else if (pacTimbrado.Equals("SL") && ambiente.Equals("Pruebas"))
+                }
+                else if (pacTimbrado.Equals("SL") && ambiente.Equals("Pruebas"))
                 {
                     var respuestaTimbre = XtraMessageBox.Show("El PAC de timbrado de Solución Factible esta configurado en ambiente de pruebas.\n¿Desea continuar?\n(Si no es el ambiente correcto, favor de notificar a su adminsitrador de sistema.)", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -4446,7 +4468,7 @@ namespace winAsimilados.Views
                                     {
                                         splashScreenManager1.CloseWaitForm();
                                     }
-                                var resultado = XtraMessageBox.Show("El empleado " + nombreEmpleado + " No tiene    ingresos. ¿Desea continuar?", "Mensaje", MessageBoxButtons.YesNo,   MessageBoxIcon.Question);
+                                    var resultado = XtraMessageBox.Show("El empleado " + nombreEmpleado + " No tiene    ingresos. ¿Desea continuar?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                                     if (resultado.Equals(DialogResult.No))
                                     {
@@ -4494,7 +4516,7 @@ namespace winAsimilados.Views
                             DateTime FechaInicioMasivo = Convert.ToDateTime(FecIniPeriMasiv.EditValue.ToString());
                             DateTime FechaFinMasivo = Convert.ToDateTime(FecFinPeriMasiv.EditValue.ToString());
                             DateTime FechaPago = Convert.ToDateTime(FecPagoMasiv.Text);
-                            controlador.GenXmlMasivo(empleadoMasivo, splash, empresa, rfc, ip, FechaInicioMasivo, FechaFinMasivo, FechaPago, destinoCorreo, enviaCorreo,correoCliente,pacTimbrado, ambiente);
+                            controlador.GenXmlMasivo(empleadoMasivo, splash, empresa, rfc, ip, FechaInicioMasivo, FechaFinMasivo, FechaPago, destinoCorreo, enviaCorreo, correoCliente, pacTimbrado, ambiente);
                             this.CargaTimbresDisponibles();
                         }
                     }
@@ -4579,7 +4601,7 @@ namespace winAsimilados.Views
             else
             {
                 XtraMessageBox.Show("¡Nomina de " + LookUpEmpl.Text + " no fue generada por cancelacion de usuario!"
-                   , "Mensaje" , MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   , "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -4705,7 +4727,7 @@ namespace winAsimilados.Views
                 Marshal.ReleaseComObject(libro);
                 Marshal.ReleaseComObject(excel);
             }
-            else if (periodo.Equals("QUINCENAL")|| periodo.Equals("04"))
+            else if (periodo.Equals("QUINCENAL") || periodo.Equals("04"))
             {
                 Excel.Application excel = new Excel.Application();
                 Excel._Workbook libro = null;
@@ -4755,7 +4777,7 @@ namespace winAsimilados.Views
                 Marshal.ReleaseComObject(libro);
                 Marshal.ReleaseComObject(excel);
             }
-            else if (periodo.Equals("MENSUAL")|| periodo.Equals("05"))
+            else if (periodo.Equals("MENSUAL") || periodo.Equals("05"))
             {
                 Excel.Application excel = new Excel.Application();
                 Excel._Workbook libro = null;
@@ -4809,7 +4831,7 @@ namespace winAsimilados.Views
             {
                 calc.IngresosBrutos = ingresos;
                 calc.LimInferior = 0;
-                calc.ExLimInf = 0; 
+                calc.ExLimInf = 0;
                 calc.PerExLimInf = 0;
                 calc.ImpMarg = 0;
                 calc.CF = 0;
@@ -4822,7 +4844,7 @@ namespace winAsimilados.Views
 
             return calc;
         }
-
+        [Obsolete]
         private void GenCaratula()
         {
             Excel.Application excel = new Excel.Application();

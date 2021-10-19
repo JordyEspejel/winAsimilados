@@ -180,8 +180,8 @@
             this.sqlDataSource1.ConnectionName = "localhost_BSNOMINAS_Connection 1";
             this.sqlDataSource1.Name = "sqlDataSource1";
             customSqlQuery1.Name = "Query";
-            customSqlQuery1.Sql = "SELECT [ID]\r\n      ,[usuarioNombre]\r\n      ,[usuarioID]\r\n  FROM [BSNOMINAS].[dbo]" +
-    ".[UsuariosSistema]";
+            customSqlQuery1.Sql = "SELECT [ID]\r\n      ,[usuarioNombre]\r\n      ,[usuarioID]\r\n  FROM [UsuariosSistema]" +
+    "";
             customSqlQuery2.Name = "QueryTipoUsua";
             customSqlQuery2.Sql = "select \'A\' AS c_tipo, \'Administrador\' as Descripcion\r\nunion select \'O\' as c_tipo," +
     " \'Operador\' as Descripcion\r\nunion select \'S\' as c_tipo, \'Supervisor\' as Descripc" +

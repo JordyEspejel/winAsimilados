@@ -166,14 +166,15 @@ namespace winAsimilados.Views
 
             try
             {
+                //instancia
                 string connectionString = C.ConnectionStringManager.GetConnectionString(nameConnection);
                 string newConnectionString = C.ConnectionStringManager.SetConnectionStringServerName(connectionString, lookUpServidor.Text);
                 C.ConnectionStringManager.SaveConnectionString(nameConnection, newConnectionString);
-
+                //BD
                 string connectionStringBD = C.ConnectionStringManager.GetConnectionString(nameConnection);
                 string newBD = C.ConnectionStringManager.SetConnectionStringDatabaseName(connectionStringBD, lookUpBD.Text);
                 C.ConnectionStringManager.SaveConnectionString(nameConnection, newBD);
-
+                //credenciales
                 string connectionStringCr = C.ConnectionStringManager.GetConnectionString(nameConnection);
                 string credentials = C.ConnectionStringManager.SetConnectionStringAutenticationSQLServer(connectionStringCr, txtUser.Text, txtPass.Text);
                 C.ConnectionStringManager.SaveConnectionString(nameConnection, credentials);
